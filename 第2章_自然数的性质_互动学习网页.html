@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第2章 · 自然数的性质 | 互动学习网页</title>
+<!-- 蔡逸众 / ecchua79 / 华仁中学 制作 -->
+<meta name="author" content="蔡逸众 (ecchua79) - 华仁中学">
+<style>
+:root{
+  --bg:#070b14;
+  --bg2:#0c1322;
+  --panel:#0f1a2e;
+  --panel2:#121f38;
+  --border:rgba(120,200,255,.18);
+  --cyan:#39e6ff;
+  --cyan-dim:#1fa8c2;
+  --purple:#b98bff;
+  --gold:#ffd166;
+  --green:#5be69b;
+  --red:#ff6b6b;
+  --text:#e6f1ff;
+  --text-dim:#9db2d6;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(ellipse at 20% -10%, #12213f 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, #1a1030 0%, transparent 50%),
+    var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  min-height:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+::selection{background:var(--cyan);color:#001018;}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  padding:14px 16px calc(14px + env(safe-area-inset-top,0px)) 16px;
+  padding-top:calc(14px + env(safe-area-inset-top,0px));
+  background:linear-gradient(180deg,#0a1120f0,#0a112000);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--border);
+}
+.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.chip{
+  font-size:11px;letter-spacing:.12em;color:var(--cyan);
+  border:1px solid var(--cyan-dim);border-radius:999px;padding:3px 10px;
+  text-transform:uppercase;font-weight:700;background:rgba(57,230,255,.06);
+}
+h1{
+  margin:6px 0 2px 0;font-size:clamp(19px,4.2vw,26px);
+  letter-spacing:.02em;font-weight:800;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.subtitle{color:var(--text-dim);font-size:13px;margin-bottom:10px;}
+
+nav#tabs{
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+  padding-bottom:2px;
+}
+nav#tabs::-webkit-scrollbar{display:none;}
+nav#tabs button{
+  flex:0 0 auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  padding:8px 13px;border-radius:10px;font-size:13px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:.15s;
+}
+nav#tabs button:hover{border-color:var(--cyan-dim);color:var(--text);}
+nav#tabs button.active{
+  background:linear-gradient(135deg,rgba(57,230,255,.18),rgba(185,139,255,.14));
+  border-color:var(--cyan);color:#fff;
+  box-shadow:0 0 14px rgba(57,230,255,.25);
+}
+
+/* ---------- layout ---------- */
+main{max-width:920px;margin:0 auto;padding:18px 14px 60px 14px;}
+section.page{display:none;animation:fade .25s ease;}
+section.page.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+.card{
+  background:linear-gradient(160deg,var(--panel),var(--panel2));
+  border:1px solid var(--border);
+  border-radius:16px;padding:16px 16px;margin-bottom:16px;
+  box-shadow:0 4px 22px rgba(0,0,0,.35);
+}
+.card h2{
+  margin:0 0 10px 0;font-size:18px;color:var(--cyan);
+  display:flex;align-items:center;gap:8px;
+}
+.card h2 .num{
+  font-size:12px;background:rgba(57,230,255,.14);color:var(--cyan);
+  border:1px solid var(--cyan-dim);border-radius:8px;padding:2px 8px;font-weight:800;
+}
+.card h3{color:var(--purple);font-size:15px;margin:16px 0 8px 0;}
+p{line-height:1.75;color:var(--text);font-size:14.5px;}
+p.dim, .note{color:var(--text-dim);font-size:13.5px;line-height:1.65;}
+ul,ol{padding-left:20px;line-height:1.8;font-size:14.5px;}
+b{color:var(--gold);}
+
+.def-box{
+  border-left:3px solid var(--cyan);
+  background:rgba(57,230,255,.06);
+  padding:10px 14px;border-radius:0 10px 10px 0;margin:10px 0;
+  font-size:14.5px;line-height:1.7;
+}
+.example{
+  border:1px dashed var(--border);
+  border-radius:12px;padding:10px 14px;margin:10px 0;
+  background:rgba(255,255,255,.02);
+}
+.example .tag{
+  display:inline-block;font-size:11px;font-weight:800;color:#001018;
+  background:var(--gold);border-radius:6px;padding:1px 8px;margin-bottom:6px;
+}
+.warn{
+  border-left:3px solid var(--red);background:rgba(255,107,107,.08);
+  padding:8px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:13.5px;
+}
+.think{
+  border-left:3px solid var(--purple);background:rgba(185,139,255,.08);
+  padding:8px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:13.5px;
+}
+code, .mono{font-family:"Consolas",monospace;color:var(--green);}
+
+/* ---------- tool box ---------- */
+.tool{
+  margin-top:14px;border-top:1px solid var(--border);padding-top:14px;
+}
+.tool .tool-title{
+  font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--purple);
+  text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.tool .tool-title::before{content:"⚙";}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
+input[type=number], input[type=text]{
+  background:#081020;border:1px solid var(--border);color:var(--text);
+  border-radius:8px;padding:9px 10px;font-size:15px;width:110px;
+}
+input:focus{outline:none;border-color:var(--cyan);}
+button.btn{
+  background:linear-gradient(135deg,var(--cyan-dim),var(--cyan));
+  color:#001018;border:none;border-radius:8px;padding:9px 16px;
+  font-weight:800;font-size:13.5px;cursor:pointer;transition:.15s;
+}
+button.btn:hover{filter:brightness(1.12);}
+button.btn.alt{background:linear-gradient(135deg,#8a5cf6,var(--purple));color:#0b0218;}
+button.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text-dim);}
+.result-box{
+  margin-top:10px;padding:12px 14px;border-radius:10px;
+  background:#081020;border:1px solid var(--border);font-size:14.5px;line-height:1.85;
+  min-height:20px;
+}
+.result-box .big{font-size:20px;font-weight:800;color:var(--cyan);}
+.pill{
+  display:inline-block;padding:2px 9px;border-radius:999px;font-size:12.5px;
+  font-weight:700;margin:2px 3px;
+}
+.pill.yes{background:rgba(91,230,155,.15);color:var(--green);border:1px solid var(--green);}
+.pill.no{background:rgba(255,107,107,.12);color:var(--red);border:1px solid var(--red);}
+.pill.num{background:rgba(57,230,255,.12);color:var(--cyan);border:1px solid var(--cyan-dim);}
+
+.ladder{font-family:Consolas,monospace;font-size:15px;line-height:1.6;white-space:pre;}
+.ladder .div{color:var(--gold);}
+.grid-primes{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px;margin-top:8px;}
+.grid-primes span{
+  text-align:center;padding:6px 0;border-radius:6px;font-size:12.5px;
+  background:#081020;border:1px solid var(--border);color:var(--text-dim);
+}
+.grid-primes span.p{background:rgba(91,230,155,.14);border-color:var(--green);color:var(--green);font-weight:800;}
+
+table.rule-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px;}
+table.rule-table th,table.rule-table td{
+  border:1px solid var(--border);padding:7px 8px;text-align:center;
+}
+table.rule-table th{background:rgba(57,230,255,.08);color:var(--cyan);}
+table.rule-table td.yes{color:var(--green);font-weight:800;}
+table.rule-table td.no{color:var(--text-dim);}
+
+/* ---------- quiz ---------- */
+#quiz-cover{text-align:center;padding:20px 10px;}
+#quiz-cover .big-icon{font-size:44px;margin-bottom:6px;}
+.progress-wrap{background:#081020;border:1px solid var(--border);border-radius:999px;height:10px;overflow:hidden;margin:10px 0 16px 0;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));width:0%;transition:width .3s;}
+.q-card{display:none;}
+.q-card.show{display:block;}
+.q-meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-dim);margin-bottom:6px;}
+.q-stem{font-size:16px;font-weight:700;margin:6px 0 14px 0;line-height:1.6;}
+.opt{
+  display:block;width:100%;text-align:left;background:#081020;
+  border:1px solid var(--border);color:var(--text);border-radius:10px;
+  padding:11px 14px;margin-bottom:9px;font-size:14.5px;cursor:pointer;transition:.15s;
+}
+.opt:hover{border-color:var(--cyan-dim);}
+.opt.correct{background:rgba(91,230,155,.16);border-color:var(--green);color:var(--green);font-weight:700;}
+.opt.wrong{background:rgba(255,107,107,.14);border-color:var(--red);color:var(--red);font-weight:700;}
+.opt.disabled{pointer-events:none;opacity:.85;}
+.explain{
+  margin-top:8px;padding:10px 12px;border-radius:10px;background:rgba(185,139,255,.08);
+  border-left:3px solid var(--purple);font-size:13.5px;display:none;line-height:1.65;
+}
+.explain.show{display:block;}
+.nav-quiz{display:flex;justify-content:space-between;margin-top:14px;}
+#quiz-result{text-align:center;padding:10px;}
+#quiz-result .score{font-size:42px;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.topic-tag{display:inline-block;font-size:11px;color:var(--purple);border:1px solid var(--purple);border-radius:999px;padding:1px 9px;margin-bottom:8px;}
+
+footer{
+  text-align:center;color:var(--text-dim);font-size:12px;padding:26px 10px 34px 10px;
+  border-top:1px solid var(--border);margin-top:20px;line-height:1.9;
+}
+footer b{color:var(--cyan);}
+
+@media (max-width:480px){
+  .card{padding:14px 12px;border-radius:13px;}
+  input[type=number]{width:88px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-row">
+    <span class="chip">初一数学 · Form 1</span>
+    <span class="chip">互动学习</span>
+  </div>
+  <h1>第2章 · 自然数的性质</h1>
+  <div class="subtitle">奇偶数 · 因数与倍数 · 质数与合数 · 质因数 · 最大公因数 · 最小公倍数 · 可除性</div>
+  <nav id="tabs">
+    <button data-p="goal" class="active">学习目标</button>
+    <button data-p="s21">2.1 奇偶数</button>
+    <button data-p="s22">2.2 因数倍数</button>
+    <button data-p="s23">2.3 质数合数</button>
+    <button data-p="s24">2.4 质因数</button>
+    <button data-p="s25">2.5 最大公因数</button>
+    <button data-p="s26">2.6 最小公倍数</button>
+    <button data-p="s27">2.7 应用问题</button>
+    <button data-p="s28">2.8 可除性</button>
+    <button data-p="quiz" style="border-color:var(--gold);color:var(--gold);">🎯 随机测验</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ 学习目标 ============ -->
+<section class="page active" id="goal">
+  <div class="card">
+    <h2><span class="num">目标</span>本章学习目标</h2>
+    <ul>
+      <li>理解奇数与偶数、质数与合数、因数与倍数及质因数的概念</li>
+      <li>了解自然数可除性的检验法</li>
+      <li>能进行质因数分解</li>
+      <li>能求公因数与最大公因数、公倍数与最小公倍数，并解决相关应用问题</li>
+    </ul>
+    <div class="note">💡 使用方法：点击上方的分节标签浏览每个小节的讲解与互动工具；准备好后，点击最右边的 <b>🎯 随机测验</b> 进行选择题自我测试 — 每次的题目与选项顺序都会重新打乱。</div>
+  </div>
+</section>
+
+<!-- ============ 2.1 奇数与偶数 ============ -->
+<section class="page" id="s21">
+  <div class="card">
+    <h2><span class="num">2.1</span>奇数与偶数</h2>
+    <div class="def-box">能被 2 整除的自然数叫做 <b>偶数</b>；不能被 2 整除的自然数叫做 <b>奇数</b>。</div>
+    <p>例如 2, 4, 6, 8, 10 都是偶数；1, 3, 5, 7, 9 都是奇数。</p>
+    <div class="note">补充资料：奇偶数的定义不只限于自然数，0 也是偶数（因为 0 能被 2 整除）。</div>
+    <div class="example"><span class="tag">例题</span>
+      12, 25, 17, 21, 36, 14, 32, 45 中：<br>
+      能被 2 整除的 12, 36, 14, 32 是<b>偶数</b>；不能被 2 整除的 25, 17, 21, 45 是<b>奇数</b>。
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">奇偶判断器</div>
+      <div class="row">
+        <input type="number" id="t21-input" placeholder="输入自然数" value="38">
+        <button class="btn" onclick="tool21()">判断</button>
+      </div>
+      <div class="result-box" id="t21-result">在上面输入一个自然数，然后点击「判断」。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.2 因数与倍数 ============ -->
+<section class="page" id="s22">
+  <div class="card">
+    <h2><span class="num">2.2</span>因数与倍数</h2>
+    <div class="def-box">对于任意两个自然数 a 与 b，如果 a 能整除 b，则 <b>a 叫做 b 的因数</b>，而 <b>b 叫做 a 的倍数</b>。</div>
+    <p>例如 30 = 1×30 = 2×15 = 3×10 = 5×6，所以 1, 2, 3, 5, 6, 10, 15, 30 都是 30 的因数；而 30 是这些数的倍数。</p>
+    <ul>
+      <li>一个自然数的因数个数<b>有限</b>：最小的因数是 1，最大的因数是它本身。</li>
+      <li>一个自然数的倍数<b>有无限多个</b>：最小的倍数是它本身。</li>
+    </ul>
+    <div class="example"><span class="tag">例题</span>
+      求 18 的因数：18 = 1×18 = 2×9 = 3×6<br>
+      ∴ 18 的因数是 1, 2, 3, 6, 9, 18。
+    </div>
+    <div class="example"><span class="tag">例题</span>
+      判断 104 是不是 8 的倍数：104 ÷ 8 = 13（整除）∴ 104 是 8 的倍数。
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">因数与倍数生成器</div>
+      <div class="row">
+        <input type="number" id="t22-input" value="24" min="1">
+        <button class="btn" onclick="tool22factors()">求因数</button>
+        <button class="btn alt" onclick="tool22multiples()">求首8个倍数</button>
+      </div>
+      <div class="result-box" id="t22-result">输入一个自然数，求它的因数或倍数。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.3 质数与合数 ============ -->
+<section class="page" id="s23">
+  <div class="card">
+    <h2><span class="num">2.3</span>质数与合数</h2>
+    <div class="def-box">大于 1 的自然数，如果只能被 1 及它本身整除，叫做 <b>质数（素数）</b>；如果除了 1 及本身外，还能被其他自然数整除，叫做 <b>合数</b>。</div>
+    <div class="warn">⚠ 注意：<b>1 既不是质数，也不是合数</b>。 <b>2 是质数中唯一的偶数</b>。</div>
+    <div class="example"><span class="tag">例题</span>
+      10~20 中：11, 13, 17, 19 只能被 1 与本身整除 → <b>质数</b>；<br>
+      10, 12, 14, 15, 16, 18, 20 还能被其他数整除 → <b>合数</b>。
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">质数判断 / 埃拉托斯特尼筛选</div>
+      <div class="row">
+        <input type="number" id="t23-input" value="97" min="1">
+        <button class="btn" onclick="tool23check()">判断质数</button>
+        <button class="btn alt" onclick="tool23sieve()">显示 1–100 质数表</button>
+      </div>
+      <div class="result-box" id="t23-result">输入一个自然数并判断，或查看 1–100 的质数筛选表。</div>
+      <div class="grid-primes" id="t23-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.4 质因数 ============ -->
+<section class="page" id="s24">
+  <div class="card">
+    <h2><span class="num">2.4</span>质因数与质因数分解</h2>
+    <div class="def-box">如果自然数的一个因数同时也是质数，这个因数就叫做该自然数的 <b>质因数</b>。</div>
+    <p>例如 12 的因数有 1, 2, 3, 4, 6, 12；其中 2, 3 是质数，所以 <b>2, 3 是 12 的质因数</b>。</p>
+
+    <h3>指数式</h3>
+    <p>同一个数连乘几次，可用指数式简洁表示：6×6 = 6²（读作 6 的平方）；6×6×6 = 6³（6 的立方）。<br>
+    右上角的小数字叫 <b>指数</b>，被连乘的数叫 <b>底数</b>。</p>
+    <div class="think">🤔 思考题：底数为 1 的指数式有什么特别？（1ⁿ 恒等于 1，不论指数是多少）</div>
+
+    <h3>质因数分解</h3>
+    <p>把一个自然数写成几个质因数相乘的形式，叫做 <b>质因数分解</b>，常用短除法（除法阶梯）进行。</p>
+    <div class="example"><span class="tag">例题</span>
+      180 = 2×2×3×3×5 = <b>2²×3²×5</b>
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">质因数分解阶梯生成器</div>
+      <div class="row">
+        <input type="number" id="t24-input" value="180" min="2">
+        <button class="btn" onclick="tool24()">分解</button>
+      </div>
+      <div class="result-box" id="t24-result">输入一个大于 1 的自然数，查看短除法质因数分解过程。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.5 最大公因数 ============ -->
+<section class="page" id="s25">
+  <div class="card">
+    <h2><span class="num">2.5</span>最大公因数（GCD / HCF）</h2>
+    <div class="def-box">几个自然数共有的因数叫做 <b>公因数</b>，其中最大的一个叫做 <b>最大公因数</b>。</div>
+    <div class="example"><span class="tag">例题</span>
+      36 与 90 的最大公因数：<br>
+      36 = 2²×3²　　90 = 2×3²×5<br>
+      公有的质因数取次方较低者：2¹×3² = <b>18</b>
+    </div>
+    <div class="note">短除法求最大公因数：必须演算到<b>没有大于 1 的公因数为止</b>，然后把所有除数相乘。</div>
+
+    <div class="tool">
+      <div class="tool-title">最大公因数短除法计算器</div>
+      <div class="row">
+        <input type="number" id="t25-a" placeholder="数字A" value="36">
+        <input type="number" id="t25-b" placeholder="数字B" value="90">
+        <input type="number" id="t25-c" placeholder="数字C（可留空）">
+        <button class="btn" onclick="tool25()">求最大公因数</button>
+      </div>
+      <div class="result-box" id="t25-result">输入 2 或 3 个自然数，查看短除法求最大公因数的过程。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.6 最小公倍数 ============ -->
+<section class="page" id="s26">
+  <div class="card">
+    <h2><span class="num">2.6</span>公倍数与最小公倍数（LCM）</h2>
+    <div class="def-box">几个自然数共有的倍数叫做 <b>公倍数</b>，其中最小的一个（不计 0）叫做 <b>最小公倍数</b>，以 L.C.M. 表示。</div>
+    <div class="example"><span class="tag">例题</span>
+      36 与 90 的最小公倍数：<br>
+      36 = 2²×3²　　90 = 2×3²×5<br>
+      取每个质因数的<b>较高</b>次方：2²×3²×5 = <b>180</b>
+    </div>
+    <div class="note">短除法求最小公倍数：必须演算到<b>任意两数都互质（没有公因数）为止</b>，然后把所有除数与剩下的数全部相乘。</div>
+    <div class="def-box">补充：两数的最大公因数与最小公倍数的乘积 = 这两数的乘积。（例：28,40 → 最大公因数4 × 最小公倍数280 = 4×280 = 1120 = 28×40）</div>
+
+    <div class="tool">
+      <div class="tool-title">最小公倍数短除法计算器</div>
+      <div class="row">
+        <input type="number" id="t26-a" placeholder="数字A" value="36">
+        <input type="number" id="t26-b" placeholder="数字B" value="90">
+        <input type="number" id="t26-c" placeholder="数字C（可留空）">
+        <button class="btn" onclick="tool26()">求最小公倍数</button>
+      </div>
+      <div class="result-box" id="t26-result">输入 2 或 3 个自然数，查看短除法求最小公倍数的过程。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.7 应用问题 ============ -->
+<section class="page" id="s27">
+  <div class="card">
+    <h2><span class="num">2.7</span>最大公因数与最小公倍数的应用问题</h2>
+    <p>解应用题的关键：判断题目问的是「最大能分成多少份 / 最长能切多长」→ 用<b>最大公因数</b>；还是「多久后再次同时发生 / 最少需要多少个」→ 用<b>最小公倍数</b>。</p>
+
+    <div class="example"><span class="tag">例题（最大公因数）</span>
+      三根木材长 6, 9, 12 公尺，锯成一样长的小段，每段最长可锯成多少公尺？<br>
+      解：所求 = 6, 9, 12 的最大公因数 = 3。每根可锯成 3 公尺，共可锯成 6÷3+9÷3+12÷3 = <b>9 根</b>。
+    </div>
+    <div class="example"><span class="tag">例题（最小公倍数）</span>
+      甲、乙、丙跑一圈分别需 50, 55, 60 秒，同时起跑后最少经过多久会再次同在起点？<br>
+      解：所求 = 50, 55, 60 的最小公倍数 = 3300 秒 = <b>55 分钟</b>。
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">应用题判断助手</div>
+      <p class="dim">下面各写出一句应用题的关键句，点击判断该用最大公因数还是最小公倍数：</p>
+      <div id="t27-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.8 可除性 ============ -->
+<section class="page" id="s28">
+  <div class="card">
+    <h2><span class="num">2.8</span>自然数的可除性</h2>
+    <table class="rule-table">
+      <tr><th>除数</th><th>检验法</th></tr>
+      <tr><td>2</td><td>个位数为 0, 2, 4, 6, 8</td></tr>
+      <tr><td>5</td><td>个位数为 0 或 5</td></tr>
+      <tr><td>3</td><td>各位数字之和能被 3 整除</td></tr>
+      <tr><td>9</td><td>各位数字之和能被 9 整除</td></tr>
+      <tr><td>4</td><td>末两位数能被 4 整除</td></tr>
+      <tr><td>8</td><td>末三位数能被 8 整除</td></tr>
+      <tr><td>11</td><td>各奇位数字和与各偶位数字和之差能被 11 整除</td></tr>
+    </table>
+    <div class="example"><span class="tag">例题</span>
+      在 □ 填上最小数字，使四位数 5□23 能被 3 整除：<br>
+      5+2+3=10，大于 10 且能被 3 整除的最小整数是 12，∴ □ = <b>2</b>
+    </div>
+
+    <div class="tool">
+      <div class="tool-title">可除性检验器</div>
+      <div class="row">
+        <input type="number" id="t28-input" value="32120" min="0">
+        <button class="btn" onclick="tool28()">检验</button>
+      </div>
+      <div class="result-box" id="t28-result">输入一个自然数，检验它能否被 2, 3, 4, 5, 8, 9, 11 整除。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 测验 ============ -->
+<section class="page" id="quiz">
+  <div class="card">
+    <div id="quiz-cover">
+      <div class="big-icon">🎯</div>
+      <h2 style="justify-content:center;">第2章 随机选择题测验</h2>
+      <p class="dim">题库涵盖 2.1–2.8 所有小节。每次测验会<b>随机抽取题目并打乱选项顺序</b>，可重复挑战！</p>
+      <div class="row" style="justify-content:center;">
+        <label class="dim" style="font-size:13.5px;">题目数量：</label>
+        <select id="quiz-count" style="background:#081020;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;">
+          <option value="10">10 题</option>
+          <option value="15" selected>15 题</option>
+          <option value="20">20 题</option>
+          <option value="35">全部（35 题）</option>
+        </select>
+      </div>
+      <button class="btn" style="margin-top:12px;font-size:15px;padding:11px 26px;" onclick="startQuiz()">开始测验 ▶</button>
+    </div>
+
+    <div id="quiz-play" style="display:none;">
+      <div class="q-meta"><span id="q-progress-text">第 1 / 15 题</span><span id="q-score-text">得分：0</span></div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div id="q-cards"></div>
+      <div class="nav-quiz">
+        <button class="btn ghost" onclick="quitQuiz()">退出测验</button>
+        <button class="btn" id="next-btn" style="display:none;" onclick="nextQuestion()">下一题 ▶</button>
+      </div>
+    </div>
+
+    <div id="quiz-result" style="display:none;">
+      <div class="score" id="final-score">0%</div>
+      <p id="final-text" style="font-size:15px;"></p>
+      <button class="btn" onclick="showCover()">🔄 重新测验（重新出题）</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  第2章 · 自然数的性质 互动学习网页<br>
+  <b>峇株吧辖华仁中学 Chinese High School</b> · 蔡逸众老师 制作 (ecchua79)
+</footer>
+
+<script>
+/* ============================================================
+   第2章 自然数的性质 - 互动学习网页
+   蔡逸众 (ecchua79) - 华仁中学 Chinese High School
+   ============================================================ */
+console.log("%c第2章 自然数的性质 | 蔡逸众老师 (ecchua79) · 华仁中学 Chinese High School","color:#39e6ff;font-weight:bold;font-size:13px;");
+
+/* ---------- tab switching ---------- */
+document.querySelectorAll('#tabs button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('section.page').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.p).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+/* ============================================================
+   数学工具函数
+   ============================================================ */
+function isPrime(n){
+  if(n<2) return false;
+  if(n%2===0) return n===2;
+  for(let i=3;i*i<=n;i+=2){ if(n%i===0) return false; }
+  return true;
+}
+function smallestPrimeFactor(n){
+  if(n%2===0) return 2;
+  for(let i=3;i*i<=n;i+=2){ if(n%i===0) return i; }
+  return n;
+}
+function getFactors(n){
+  const f=[];
+  for(let i=1;i<=n;i++){ if(n%i===0) f.push(i); }
+  return f;
+}
+function primeFactorSteps(n){
+  const steps=[]; let x=n;
+  while(x>1){
+    const p=smallestPrimeFactor(x);
+    steps.push(p);
+    x=x/p;
+  }
+  return steps;
+}
+function groupExponents(steps){
+  const map={};
+  steps.forEach(p=>{ map[p]=(map[p]||0)+1; });
+  return Object.keys(map).sort((a,b)=>a-b).map(p=>({p:Number(p),e:map[p]}));
+}
+function gcdTwo(a,b){ while(b){ [a,b]=[b,a%b]; } return a; }
+function digitSum(n){ return String(Math.trunc(n)).split('').reduce((s,d)=>s+Number(d),0); }
+
+/* ---------- 2.1 奇偶数 ---------- */
+function tool21(){
+  const n=parseInt(document.getElementById('t21-input').value);
+  const box=document.getElementById('t21-result');
+  if(isNaN(n)||n<0){ box.innerHTML='请输入一个自然数（0 或正整数）。'; return; }
+  const even = n%2===0;
+  box.innerHTML = `<span class="big">${n}</span> ÷ 2 = ${n/2===Math.trunc(n/2)? n/2 : (n/2).toFixed(1)}　→　`+
+    (even? `<span class="pill yes">偶数 EVEN</span>（能被 2 整除）` : `<span class="pill no">奇数 ODD</span>（不能被 2 整除）`);
+}
+
+/* ---------- 2.2 因数与倍数 ---------- */
+function tool22factors(){
+  const n=parseInt(document.getElementById('t22-input').value);
+  const box=document.getElementById('t22-result');
+  if(isNaN(n)||n<1){ box.innerHTML='请输入一个大于 0 的自然数。'; return; }
+  const f=getFactors(n);
+  box.innerHTML = `<b>${n}</b> 的因数共有 <span class="pill num">${f.length} 个</span>：<br>`+
+    f.map(x=>`<span class="pill num">${x}</span>`).join(' ') +
+    `<br><span class="note">最小因数 = 1，最大因数 = ${n}（本身）</span>`;
+}
+function tool22multiples(){
+  const n=parseInt(document.getElementById('t22-input').value);
+  const box=document.getElementById('t22-result');
+  if(isNaN(n)||n<1){ box.innerHTML='请输入一个大于 0 的自然数。'; return; }
+  const m=[]; for(let i=1;i<=8;i++) m.push(n*i);
+  box.innerHTML = `<b>${n}</b> 的首 8 个倍数：<br>`+ m.map(x=>`<span class="pill num">${x}</span>`).join(' ');
+}
+
+/* ---------- 2.3 质数与合数 ---------- */
+function tool23check(){
+  const n=parseInt(document.getElementById('t23-input').value);
+  const box=document.getElementById('t23-result');
+  if(isNaN(n)||n<0){ box.innerHTML='请输入一个自然数。'; return; }
+  if(n===1){ box.innerHTML = `<span class="big">1</span> 既不是<span class="pill no">质数</span>，也不是<span class="pill no">合数</span>（特殊数）。`; return; }
+  if(n<1){ box.innerHTML='质数与合数的定义只适用于大于 1 的自然数。'; return; }
+  if(isPrime(n)){
+    box.innerHTML = `<span class="big">${n}</span> 只能被 1 及本身整除 → <span class="pill yes">质数</span>`;
+  }else{
+    const f=getFactors(n).filter(x=>x!==1&&x!==n);
+    box.innerHTML = `<span class="big">${n}</span> 除了 1 及本身外，还能被 ${f.slice(0,4).join(', ')}${f.length>4?'...':''} 整除 → <span class="pill no">合数</span>`;
+  }
+}
+function tool23sieve(){
+  const grid=document.getElementById('t23-grid');
+  const box=document.getElementById('t23-result');
+  box.innerHTML = '1–100 中，质数共有 <span class="pill num">25 个</span>（绿色格）：';
+  let html='';
+  for(let i=1;i<=100;i++){
+    html += `<span class="${isPrime(i)?'p':''}">${i}</span>`;
+  }
+  grid.innerHTML = html;
+}
+
+/* ---------- 2.4 质因数分解 ---------- */
+function tool24(){
+  const n=parseInt(document.getElementById('t24-input').value);
+  const box=document.getElementById('t24-result');
+  if(isNaN(n)||n<2){ box.innerHTML='请输入一个大于 1 的自然数。'; return; }
+  const steps=primeFactorSteps(n);
+  const groups=groupExponents(steps);
+  // build short-division ladder text
+  let x=n; let ladder='';
+  steps.forEach(p=>{
+    ladder += `<span class="div">${p}</span> │ ${x}\n`;
+    x = x/p;
+  });
+  ladder += `　　${x}`;
+  const expForm = groups.map(g=> g.e>1? `${g.p}<sup>${g.e}</sup>` : `${g.p}`).join(' × ');
+  const mulForm = steps.join(' × ');
+  box.innerHTML = `
+    <div class="ladder">${ladder}</div>
+    <div style="margin-top:10px;">∴ ${n} = ${mulForm}</div>
+    <div>∴ ${n} = <span class="big">${expForm}</span>（指数式）</div>
+    <div class="note">质因数：${groups.map(g=>g.p).join(', ')}</div>`;
+}
+
+/* ---------- short-division ladder engine (shared by GCD & LCM) ---------- */
+function allPairwiseCoprime(list){
+  for(let i=0;i<list.length;i++){
+    for(let j=i+1;j<list.length;j++){
+      if(gcdTwo(list[i],list[j])!==1) return false;
+    }
+  }
+  return true;
+}
+function smallestPrimeDividingAtLeastTwo(list){
+  const maxV = Math.max(...list);
+  for(let p=2;p<=maxV;p++){
+    if(!isPrime(p)) continue;
+    let count=0;
+    list.forEach(v=>{ if(v>0 && v%p===0) count++; });
+    if(count>=2) return p;
+  }
+  return null;
+}
+function smallestPrimeDividingAll(list){
+  const minV=Math.min(...list);
+  for(let p=2;p<=minV;p++){
+    if(!isPrime(p)) continue;
+    if(list.every(v=>v%p===0)) return p;
+  }
+  return null;
+}
+
+/* ---------- 2.5 最大公因数 ---------- */
+function tool25(){
+  const a=parseInt(document.getElementById('t25-a').value);
+  const b=parseInt(document.getElementById('t25-b').value);
+  const cRaw=document.getElementById('t25-c').value;
+  const box=document.getElementById('t25-result');
+  let nums=[a,b];
+  if(cRaw.trim()!=='') nums.push(parseInt(cRaw));
+  if(nums.some(v=>isNaN(v)||v<1)){ box.innerHTML='请输入 2 或 3 个大于 0 的自然数。'; return; }
+
+  let list=nums.slice();
+  const divisors=[];
+  const rows=[list.slice()];
+  while(true){
+    const p=smallestPrimeDividingAll(list);
+    if(p===null) break;
+    divisors.push(p);
+    list = list.map(v=>v/p);
+    rows.push(list.slice());
+  }
+  const gcd = divisors.length? divisors.reduce((a,b)=>a*b,1) : 1;
+
+  let ladder='';
+  for(let i=0;i<divisors.length;i++){
+    ladder += `<span class="div">${divisors[i]}</span> │ ${rows[i].join('    ')}\n`;
+  }
+  ladder += `　　${rows[rows.length-1].join('    ')}`;
+
+  if(divisors.length===0){
+    box.innerHTML = `${nums.join(', ')} 没有大于 1 的公因数。<br>∴ 最大公因数 = <span class="big">1</span>（互质）`;
+  }else{
+    box.innerHTML = `
+      <div class="ladder">${ladder}</div>
+      <div style="margin-top:10px;">∴ 最大公因数 = ${divisors.join(' × ')} = <span class="big">${gcd}</span></div>`;
+  }
+}
+
+/* ---------- 2.6 最小公倍数 ---------- */
+function tool26(){
+  const a=parseInt(document.getElementById('t26-a').value);
+  const b=parseInt(document.getElementById('t26-b').value);
+  const cRaw=document.getElementById('t26-c').value;
+  const box=document.getElementById('t26-result');
+  let nums=[a,b];
+  if(cRaw.trim()!=='') nums.push(parseInt(cRaw));
+  if(nums.some(v=>isNaN(v)||v<1)){ box.innerHTML='请输入 2 或 3 个大于 0 的自然数。'; return; }
+
+  let list=nums.slice();
+  const divisors=[];
+  const rows=[list.slice()];
+  let guard=0;
+  while(!allPairwiseCoprime(list) && guard<50){
+    guard++;
+    const p=smallestPrimeDividingAtLeastTwo(list);
+    if(p===null) break;
+    divisors.push(p);
+    list = list.map(v=> v%p===0 ? v/p : v);
+    rows.push(list.slice());
+  }
+  const lcm = divisors.reduce((a,b)=>a*b,1) * list.reduce((a,b)=>a*b,1);
+
+  let ladder='';
+  for(let i=0;i<divisors.length;i++){
+    ladder += `<span class="div">${divisors[i]}</span> │ ${rows[i].join('    ')}\n`;
+  }
+  ladder += `　　${rows[rows.length-1].join('    ')}`;
+
+  if(divisors.length===0){
+    box.innerHTML = `${nums.join(', ')} 已经互质（没有公因数）。<br>∴ 最小公倍数 = ${nums.join(' × ')} = <span class="big">${lcm}</span>`;
+  }else{
+    box.innerHTML = `
+      <div class="ladder">${ladder}</div>
+      <div style="margin-top:10px;">∴ 最小公倍数 = ${divisors.join(' × ')} × ${list.join(' × ')} = <span class="big">${lcm}</span></div>`;
+  }
+}
+
+/* ---------- 2.7 应用题判断助手 ---------- */
+const t27data=[
+  {q:"三根木材要锯成一样长且最长的小段，每段最长可锯成多少公尺？", a:"最大公因数", why:"「最长可切」→ 用最大公因数。"},
+  {q:"甲乙丙三人绕圈跑，问最少经过多久后三人再次同时回到起点？", a:"最小公倍数", why:"「最少经过多久再次同时发生」→ 用最小公倍数。"},
+  {q:"把水果分装在礼盒里，同一水果数量相同，问最多可装几盒？", a:"最大公因数", why:"「最多可分成几份」→ 用最大公因数。"},
+  {q:"两盏灯以不同频率闪烁，问最少隔多久才再次一起闪烁？", a:"最小公倍数", why:"「最少隔多久再次一起发生」→ 用最小公倍数。"},
+  {q:"把长方形卡片剪成大小相等、边最长的正方形，边长最大可以是多少？", a:"最大公因数", why:"「剪成最大的相等份」→ 用最大公因数。"},
+  {q:"两个商会分别每隔若干年在同地开会，问下次同时开会是哪一年？", a:"最小公倍数", why:"「下一次同时发生」→ 用最小公倍数。"}
+];
+function renderT27(){
+  const wrap=document.getElementById('t27-list');
+  wrap.innerHTML = t27data.map((d,i)=>`
+    <div class="example" id="t27-item-${i}">
+      <div>${i+1}. ${d.q}</div>
+      <div class="row" style="margin-top:8px;">
+        <button class="btn ghost" onclick="t27check(${i},'最大公因数')">最大公因数</button>
+        <button class="btn ghost" onclick="t27check(${i},'最小公倍数')">最小公倍数</button>
+      </div>
+      <div class="explain" id="t27-explain-${i}"></div>
+    </div>`).join('');
+}
+function t27check(i,choice){
+  const d=t27data[i];
+  const box=document.getElementById(`t27-explain-${i}`);
+  const correct = choice===d.a;
+  box.className='explain show';
+  box.innerHTML = (correct? `✅ 正确！`:`❌ 不对，正确答案是「${d.a}」。`) + ` ${d.why}`;
+}
+renderT27();
+
+/* ---------- 2.8 可除性检验 ---------- */
+function tool28(){
+  const n=parseInt(document.getElementById('t28-input').value);
+  const box=document.getElementById('t28-result');
+  if(isNaN(n)||n<0){ box.innerHTML='请输入一个自然数。'; return; }
+  const s=String(n);
+  const last1=n%10;
+  const last2=n%100;
+  const last3=n%1000;
+  const dsum=digitSum(n);
+  let oddPosSum=0, evenPosSum=0; // from the right, position 1 = units (odd position)
+  for(let i=0;i<s.length;i++){
+    const posFromRight = s.length-i;
+    const d=Number(s[i]);
+    if(posFromRight%2===1) oddPosSum+=d; else evenPosSum+=d;
+  }
+  const rules=[
+    {d:2, ok:last1%2===0, why:`个位数 ${last1} 是否为偶数`},
+    {d:3, ok:dsum%3===0, why:`数字和 ${dsum} 能否被3整除`},
+    {d:4, ok:last2%4===0, why:`末两位 ${String(last2).padStart(2,'0')} 能否被4整除`},
+    {d:5, ok:(last1===0||last1===5), why:`个位数 ${last1} 是否为0或5`},
+    {d:8, ok:last3%8===0, why:`末三位 ${String(last3).padStart(3,'0')} 能否被8整除`},
+    {d:9, ok:dsum%9===0, why:`数字和 ${dsum} 能否被9整除`},
+    {d:11, ok:Math.abs(oddPosSum-evenPosSum)%11===0, why:`奇偶位数字和之差 |${oddPosSum}-${evenPosSum}|=${Math.abs(oddPosSum-evenPosSum)} 能否被11整除`}
+  ];
+  box.innerHTML = `<span class="big">${n}</span> 的可除性：<br>` +
+    rules.map(r=> `<span class="pill ${r.ok?'yes':'no'}">${r.ok?'✓':'✗'} 除以 ${r.d}</span>`).join(' ') +
+    `<div class="note" style="margin-top:8px;">` + rules.map(r=>`除以${r.d}：${r.why}`).join('<br>') + `</div>`;
+}
+
+/* ============================================================
+   随机测验题库（共35题，涵盖 2.1–2.8）
+   ============================================================ */
+const QUIZ_BANK=[
+  {topic:"2.1 奇偶数", q:"38 是奇数还是偶数？", opts:["奇数","偶数"], correct:1, explain:"38 ÷ 2 = 19，能整除，所以是偶数。"},
+  {topic:"2.1 奇偶数", q:"57 是奇数还是偶数？", opts:["奇数","偶数"], correct:0, explain:"57 ÷ 2 = 28.5，不能整除，所以是奇数。"},
+  {topic:"2.1 奇偶数", q:"下列哪一个是偶数？", opts:["91","84","77","63"], correct:1, explain:"84 ÷ 2 = 42，能整除，是偶数；其余都不能被2整除。"},
+  {topic:"2.1 奇偶数", q:"下列哪一个是奇数？", opts:["128","245","360","502"], correct:1, explain:"245 的个位数是5，不能被2整除，是奇数。"},
+  {topic:"2.1 奇偶数", q:"小于10的偶数（不含0）共有几个？", opts:["3个","4个","5个","6个"], correct:1, explain:"2,4,6,8 共4个。"},
+  {topic:"2.2 因数与倍数", q:"18 的因数有哪些？", opts:["1,2,3,6,9,18","1,2,3,4,6,18","1,3,6,9,18","2,3,6,9,18"], correct:0, explain:"18=1×18=2×9=3×6，因数是1,2,3,6,9,18。"},
+  {topic:"2.2 因数与倍数", q:"23 的因数有几个？", opts:["1个","2个","3个","4个"], correct:1, explain:"23=1×23，23是质数，只有1和23两个因数。"},
+  {topic:"2.2 因数与倍数", q:"下列哪个数是 24 的因数？", opts:["5","6","7","9"], correct:1, explain:"24÷6=4，能整除，6是24的因数。"},
+  {topic:"2.2 因数与倍数", q:"5 的首6个倍数中，最大的是？", opts:["25","28","30","35"], correct:2, explain:"5的首6个倍数：5,10,15,20,25,30，最大是30。"},
+  {topic:"2.2 因数与倍数", q:"104 是不是 8 的倍数？", opts:["是","不是"], correct:0, explain:"104÷8=13，能整除，所以104是8的倍数。"},
+  {topic:"2.3 质数与合数", q:"下列哪个数是质数？", opts:["21","33","17","49"], correct:2, explain:"17只能被1和本身整除，是质数；21=3×7，33=3×11，49=7×7都是合数。"},
+  {topic:"2.3 质数与合数", q:"下列哪个数是合数？", opts:["13","19","23","21"], correct:3, explain:"21=3×7，除了1和本身外还能被3、7整除，是合数。"},
+  {topic:"2.3 质数与合数", q:"质数中唯一的偶数是？", opts:["0","1","2","4"], correct:2, explain:"2只能被1和本身整除，是质数，也是质数中唯一的偶数。"},
+  {topic:"2.3 质数与合数", q:"1 是质数还是合数？", opts:["质数","合数","两者都不是","两者都是"], correct:2, explain:"1既不是质数也不是合数，是特殊的自然数。"},
+  {topic:"2.3 质数与合数", q:"10到20之间（不含10和20）的质数有几个？", opts:["3个","4个","5个","6个"], correct:1, explain:"11,13,17,19共4个质数。"},
+  {topic:"2.4 质因数", q:"12 的质因数是？", opts:["2和3","2,3,4","1,2,3","2,3,6"], correct:0, explain:"12的因数是1,2,3,4,6,12，其中2和3是质数，所以是12的质因数。"},
+  {topic:"2.4 质因数", q:"6×6×6 写成指数式是？", opts:["6³","3⁶","6×3","18"], correct:0, explain:"底数6连乘3次，写作6的三次方，即6³。"},
+  {topic:"2.4 质因数", q:"3⁵ 的值是？", opts:["15","125","243","15625"], correct:2, explain:"3⁵=3×3×3×3×3=243。"},
+  {topic:"2.4 质因数", q:"180 的质因数分解是？", opts:["2²×3²×5","2×3²×5","2²×3×5²","2×3×5"], correct:0, explain:"180=2×2×3×3×5=2²×3²×5。"},
+  {topic:"2.4 质因数", q:"在指数式 aⁿ 中，n 叫做什么？", opts:["底数","指数","系数","乘积"], correct:1, explain:"a叫底数，右上角的n叫指数。"},
+  {topic:"2.5 最大公因数", q:"36 与 90 的最大公因数是？", opts:["6","9","18","36"], correct:2, explain:"36=2²×3²，90=2×3²×5，公有质因数取较低次方：2×3²=18。"},
+  {topic:"2.5 最大公因数", q:"用短除法求最大公因数时，必须除到什么时候为止？", opts:["商为1为止","没有大于1的公因数为止","两数互质为止","余数为0为止"], correct:1, explain:"必须演算到没有大于1的公因数为止，才把所有除数相乘。"},
+  {topic:"2.5 最大公因数", q:"8 和 12 的最大公因数是？", opts:["2","4","6","24"], correct:1, explain:"8的因数：1,2,4,8；12的因数：1,2,3,4,6,12；公因数中最大的是4。"},
+  {topic:"2.5 最大公因数", q:"45, 75 与 180 的最大公因数是？", opts:["5","9","15","45"], correct:2, explain:"45=3²×5，75=3×5²，180=2²×3²×5，公有质因数取较低次方：3×5=15。"},
+  {topic:"2.5 最大公因数", q:"求最大公因数的方法不包括下列哪一种？", opts:["排列法","质因数分解法","短除法","加法运算法"], correct:3, explain:"求最大公因数常用排列法、质因数分解法与短除法，没有「加法运算法」。"},
+  {topic:"2.6 最小公倍数", q:"36 与 90 的最小公倍数是？", opts:["90","180","270","360"], correct:1, explain:"36=2²×3²，90=2×3²×5，取每个质因数较高次方：2²×3²×5=180。"},
+  {topic:"2.6 最小公倍数", q:"24, 40 与 60 的最小公倍数是？", opts:["60","120","240","480"], correct:1, explain:"24=2³×3，40=2³×5，60=2²×3×5，取较高次方：2³×3×5=120。"},
+  {topic:"2.6 最小公倍数", q:"用短除法求最小公倍数时，必须除到什么时候为止？", opts:["任意两数都互质为止","商为0为止","没有公因数为止","都变成质数为止"], correct:0, explain:"必须演算到任意两数都互质（不再有公因数）为止。"},
+  {topic:"2.6 最小公倍数", q:"两个自然数的最大公因数与最小公倍数的乘积等于？", opts:["两数之和","两数之差","两数之积","两数之商"], correct:2, explain:"a与b的最大公因数×最小公倍数 = a×b。"},
+  {topic:"2.6 最小公倍数", q:"甲乙丙沿跑道跑步，周期分别为50秒、55秒、60秒，三人同时起跑后再次同时回到起点所需的时间，是三数的？", opts:["最大公因数","最小公倍数","平均数","总和"], correct:1, explain:"「最少经过多久后再次同时发生」是最小公倍数的典型应用。"},
+  {topic:"2.7 应用问题", q:"要把三段不同长度的木材锯成一样长且最长的小段，应求三数的？", opts:["最大公因数","最小公倍数","总和","差"], correct:0, explain:"「最长可切成的等长段」用最大公因数。"},
+  {topic:"2.7 应用问题", q:"要把水果分装在礼盒中使每种水果数量相同，且要求盒数最多，应求各数量的？", opts:["最大公因数","最小公倍数","乘积","平均数"], correct:0, explain:"「最多可分成几份」用最大公因数。"},
+  {topic:"2.7 应用问题", q:"两盏灯分别每6秒和每8秒闪烁一次，问两灯至少隔多久才会再次一起闪烁，应求？", opts:["6与8的和","6与8的最大公因数","6与8的最小公倍数","6与8的差"], correct:2, explain:"「至少隔多久再次同时发生」用最小公倍数：LCM(6,8)=24秒。"},
+  {topic:"2.8 可除性", q:"一个数能被 4 整除的条件是？", opts:["个位数为偶数","末两位数能被4整除","数字和能被4整除","末三位数能被4整除"], correct:1, explain:"能被4整除的检验法是看末两位数能否被4整除。"},
+  {topic:"2.8 可除性", q:"一个数能被 9 整除的条件是？", opts:["个位数是9的倍数","各位数字之和能被9整除","末两位数能被9整除","十位数是9"], correct:1, explain:"能被9整除的检验法是各位数字之和能被9整除。"},
+  {topic:"2.8 可除性", q:"一个数能被 11 整除的条件是？", opts:["各位数字之和能被11整除","各奇位数字和与偶位数字和之差能被11整除","末两位数能被11整除","个位数是1"], correct:1, explain:"能被11整除的检验法是奇位数字和与偶位数字和之差能被11整除。"},
+  {topic:"2.8 可除性", q:"684 能被 9 整除吗？", opts:["能","不能"], correct:0, explain:"6+8+4=18，18能被9整除，所以684能被9整除。"},
+  {topic:"2.8 可除性", q:"300 能被 8 整除吗？", opts:["能","不能"], correct:1, explain:"末三位是300，300÷8=37.5，不能整除，所以300不能被8整除。"}
+];
+
+/* ============================================================
+   测验引擎
+   ============================================================ */
+let quizQuestions=[];
+let quizIndex=0;
+let quizScore=0;
+let quizAnswered=false;
+
+function shuffleArr(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function startQuiz(){
+  const count=parseInt(document.getElementById('quiz-count').value);
+  const pool=shuffleArr(QUIZ_BANK).slice(0,Math.min(count,QUIZ_BANK.length));
+  quizQuestions = pool.map(q=>{
+    const optIdx = q.opts.map((o,i)=>i);
+    const shuffled = shuffleArr(optIdx);
+    return {
+      topic:q.topic,
+      stem:q.q,
+      explain:q.explain,
+      opts: shuffled.map(i=>q.opts[i]),
+      correctIndex: shuffled.indexOf(q.correct)
+    };
+  });
+  quizIndex=0; quizScore=0; quizAnswered=false;
+  document.getElementById('quiz-cover').style.display='none';
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('quiz-play').style.display='block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  quizAnswered=false;
+  const q=quizQuestions[quizIndex];
+  document.getElementById('q-progress-text').textContent = `第 ${quizIndex+1} / ${quizQuestions.length} 题`;
+  document.getElementById('q-score-text').textContent = `得分：${quizScore}`;
+  document.getElementById('progress-bar').style.width = `${(quizIndex/quizQuestions.length)*100}%`;
+  document.getElementById('next-btn').style.display='none';
+
+  const wrap=document.getElementById('q-cards');
+  wrap.innerHTML = `
+    <div class="q-card show">
+      <span class="topic-tag">${q.topic}</span>
+      <div class="q-stem">${quizIndex+1}. ${q.stem}</div>
+      <div id="opts-wrap"></div>
+      <div class="explain" id="explain-box"></div>
+    </div>`;
+  const optsWrap=document.getElementById('opts-wrap');
+  q.opts.forEach((opt,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=`${String.fromCharCode(65+i)}. ${opt}`;
+    b.onclick=()=>answerQuestion(i);
+    optsWrap.appendChild(b);
+  });
+}
+
+function answerQuestion(i){
+  if(quizAnswered) return;
+  quizAnswered=true;
+  const q=quizQuestions[quizIndex];
+  const btns=document.querySelectorAll('#opts-wrap .opt');
+  btns.forEach((b,idx)=>{
+    b.classList.add('disabled');
+    if(idx===q.correctIndex) b.classList.add('correct');
+    else if(idx===i) b.classList.add('wrong');
+  });
+  if(i===q.correctIndex) quizScore++;
+  document.getElementById('q-score-text').textContent = `得分：${quizScore}`;
+  const exp=document.getElementById('explain-box');
+  exp.className='explain show';
+  exp.innerHTML = (i===q.correctIndex? '✅ 答对了！ ' : '❌ 答错了。 ') + q.explain;
+  document.getElementById('next-btn').style.display='inline-block';
+  document.getElementById('next-btn').textContent = (quizIndex===quizQuestions.length-1)? '查看结果 ▶' : '下一题 ▶';
+}
+
+function nextQuestion(){
+  quizIndex++;
+  if(quizIndex>=quizQuestions.length){
+    finishQuiz();
+  }else{
+    renderQuestion();
+  }
+}
+
+function finishQuiz(){
+  document.getElementById('progress-bar').style.width='100%';
+  document.getElementById('quiz-play').style.display='none';
+  document.getElementById('quiz-result').style.display='block';
+  const pct=Math.round((quizScore/quizQuestions.length)*100);
+  document.getElementById('final-score').textContent = `${pct}%`;
+  let comment;
+  if(pct===100) comment='🏆 满分！完全掌握本章内容！';
+  else if(pct>=80) comment='🎉 非常好！继续保持！';
+  else if(pct>=60) comment='👍 不错，再复习一下容易错的部分吧。';
+  else comment='💪 再接再厉，回去重看相关小节再挑战一次！';
+  document.getElementById('final-text').innerHTML = `答对 ${quizScore} / ${quizQuestions.length} 题<br>${comment}`;
+}
+
+function quitQuiz(){
+  document.getElementById('quiz-play').style.display='none';
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('quiz-cover').style.display='block';
+}
+function showCover(){
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('quiz-cover').style.display='block';
+}
+</script>
+</body>
+</html>
