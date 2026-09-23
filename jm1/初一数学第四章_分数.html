@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>初一数学 第4章 分数 · 互动学习</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5da8'/%3E%3Ctext x='32' y='25' font-size='17' text-anchor='middle' fill='white' font-family='serif'%3E3%3C/text%3E%3Cline x1='17' y1='33' x2='47' y2='33' stroke='white' stroke-width='2.5'/%3E%3Ctext x='32' y='50' font-size='17' text-anchor='middle' fill='white' font-family='serif'%3E4%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* ===== 设计令牌 ===== */
+:root{
+  --bg:#f5f1e7;
+  --surface:#fffdf6;
+  --surface2:#ece6d8;
+  --ink:#2b2720;
+  --muted:#736c5c;
+  --line:#e2dac8;
+  --accent:#2f5da8;
+  --accent-soft:#e4ebf6;
+  --accent-ink:#ffffff;
+  --good:#1f7a4d;
+  --good-bg:#e2f1e7;
+  --bad:#b23a2e;
+  --bad-bg:#f8e5e2;
+  --warn:#8a6a12;
+  --warn-bg:#f6eed2;
+  --shadow:0 1px 2px rgba(43,39,32,.05),0 10px 28px rgba(43,39,32,.07);
+  --radius:14px;
+  --font-serif:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
+  --font-sans:'Noto Sans SC','PingFang SC','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+}
+html[data-theme="dark"]{
+  --bg:#14171e;
+  --surface:#1c2029;
+  --surface2:#262b37;
+  --ink:#e9e6dc;
+  --muted:#9aa2ae;
+  --line:#303846;
+  --accent:#7da5df;
+  --accent-soft:#1e2c44;
+  --accent-ink:#0e1522;
+  --good:#4cc38a;
+  --good-bg:#16301f;
+  --bad:#ef7a6a;
+  --bad-bg:#3a1f1c;
+  --warn:#d9b45c;
+  --warn-bg:#332b14;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 28px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);line-height:1.75;
+  transition:background .25s ease,color .25s ease;
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+a{color:var(--accent);text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* ===== 分数排版 ===== */
+.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;line-height:1.12;margin:0 .14em;
+  font-family:var(--font-serif);font-weight:600;
+  font-variant-numeric:tabular-nums;
+}
+.frac .num{border-bottom:1.5px solid currentColor;padding:0 .3em .05em}
+.frac .den{padding:.05em .3em 0}
+.frac .num.q, .frac .den.q{color:var(--accent);font-style:italic}
+.mixed{white-space:nowrap;font-family:var(--font-serif);font-weight:600}
+.mixed .frac{margin-left:.1em}
+.frac-lg .frac{font-size:1.5em}
+
+/* ===== 顶栏 ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:1rem;
+  padding:.7rem 1.2rem;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  display:flex;align-items:center;gap:.55rem;white-space:nowrap;
+  font-family:var(--font-serif);font-weight:700;font-size:1.06rem;color:var(--ink);
+}
+.brand .mark{
+  width:2rem;height:2rem;border-radius:.55rem;flex:none;
+  background:var(--accent);color:var(--accent-ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-size:.8rem;line-height:1;padding:.2rem 0;
+}
+.brand .mark i{display:block;border-bottom:1.5px solid currentColor;font-style:normal;padding:0 .1em .04em}
+.topnav{
+  flex:1;min-width:0;display:flex;gap:.3rem;overflow-x:auto;scrollbar-width:none;
+  padding:.15rem 0;
+}
+.topnav::-webkit-scrollbar{display:none}
+.nav-chip{
+  flex:none;padding:.42rem .85rem;border-radius:999px;
+  font-size:.9rem;color:var(--muted);white-space:nowrap;
+  border:1px solid transparent;background:transparent;
+}
+.nav-chip:hover{color:var(--ink);background:var(--surface2)}
+.nav-chip.on{background:var(--accent);color:var(--accent-ink);font-weight:500}
+.tools{display:flex;align-items:center;gap:.5rem;flex:none}
+.fs-ctl{display:flex;align-items:center;gap:.2rem;border:1px solid var(--line);border-radius:999px;padding:.2rem .4rem;background:var(--surface)}
+.fs-ctl button{
+  border:0;background:transparent;color:var(--ink);font-weight:700;font-size:.95rem;
+  width:2.2rem;height:2.2rem;border-radius:999px;line-height:1;
+}
+.fs-ctl button:hover{background:var(--surface2)}
+.fs-ctl span{min-width:3rem;text-align:center;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.icon-btn{
+  border:1px solid var(--line);background:var(--surface);border-radius:999px;
+  width:2.6rem;height:2.6rem;display:flex;align-items:center;justify-content:center;color:var(--ink);
+}
+.icon-btn:hover{background:var(--surface2)}
+.icon-btn svg{width:1.15rem;height:1.15rem}
+html[data-theme="dark"] .icon-sun{display:none}
+html:not([data-theme="dark"]) .icon-moon{display:none}
+
+/* ===== 视图容器 ===== */
+main{max-width:880px;margin:0 auto;padding:1.6rem 1.2rem 4rem}
+.view{display:none}
+.view.active{display:block}
+
+/* ===== 首页 ===== */
+.hero{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  background:var(--accent);color:var(--accent-ink);
+  padding:2.4rem 2rem;box-shadow:var(--shadow);
+}
+.hero .grid-bg{
+  position:absolute;inset:0;opacity:.14;pointer-events:none;
+  background-image:
+    linear-gradient(var(--accent-ink) 1px,transparent 1px),
+    linear-gradient(90deg,var(--accent-ink) 1px,transparent 1px);
+  background-size:2.2rem 2.2rem;
+}
+.hero .hero-frac{
+  position:absolute;right:1.6rem;top:50%;transform:translateY(-50%);
+  opacity:.22;font-family:var(--font-serif);
+}
+.hero .hero-frac .frac .num,.hero .hero-frac .frac .den{font-size:4.5rem;padding:.1em .5em}
+.hero h1{margin:0 0 .4rem;font-family:var(--font-serif);font-size:2.1rem;line-height:1.25}
+.hero .sub{margin:0;opacity:.9;font-size:1.02rem}
+.hero .chips{margin-top:1.1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.hero .chip{
+  font-size:.85rem;padding:.24rem .75rem;border-radius:999px;
+  background:rgba(255,255,255,.16);color:var(--accent-ink);border:1px solid rgba(255,255,255,.35);
+}
+.panel{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:1.3rem 1.5rem;margin-top:1.3rem;
+}
+.panel h2, .panel h3{margin:.1rem 0 .7rem;font-family:var(--font-serif)}
+.objectives{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.objectives li{
+  display:flex;gap:.65rem;align-items:flex-start;
+  padding:.55rem .8rem;background:var(--surface2);border-radius:10px;font-size:.98rem;
+}
+.objectives li b{color:var(--accent);font-family:var(--font-serif)}
+.sec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;margin-top:1.3rem}
+.sec-card{
+  display:flex;flex-direction:column;gap:.35rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.05rem 1.15rem;color:var(--ink);box-shadow:var(--shadow);
+  transition:transform .15s ease,border-color .15s ease;
+}
+.sec-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.sec-card .no{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:2.1rem;height:2.1rem;border-radius:.6rem;background:var(--accent-soft);color:var(--accent);
+  font-family:var(--font-serif);font-weight:700;font-size:.92rem;
+}
+.sec-card h3{margin:.35rem 0 0;font-size:1.06rem;font-family:var(--font-serif)}
+.sec-card p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.55}
+.sec-card .go{margin-top:.35rem;font-size:.9rem;color:var(--accent);font-weight:500}
+.sec-card.mix{grid-column:1/-1;flex-direction:row;align-items:center;gap:.9rem}
+.sec-card.mix .no{flex:none}
+.sec-card.mix h3{margin:0}
+.sec-card.mix p{flex:1}
+.howto{margin-top:1.3rem}
+.howto ol{margin:.4rem 0 0;padding-left:1.3rem;display:grid;gap:.4rem;font-size:.96rem}
+
+/* ===== 章节页 ===== */
+.sec-head{display:flex;align-items:baseline;gap:.9rem;border-bottom:2px solid var(--accent);padding-bottom:.7rem}
+.sec-head .sec-no{
+  font-family:var(--font-serif);font-weight:900;color:var(--accent);font-size:1.5rem;
+}
+.sec-head h2{margin:0;font-family:var(--font-serif);font-size:1.65rem;line-height:1.3}
+.sec-head .sec-desc{margin:0;color:var(--muted);font-size:.92rem}
+.know h3, .examp h3{display:flex;align-items:center;gap:.5rem}
+.know h3::before,.examp h3::before,.quiz h3::before{
+  content:"";width:.55rem;height:.55rem;border-radius:2px;background:var(--accent);flex:none;
+}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.rules li{
+  position:relative;padding:.5rem .8rem .5rem 2.1rem;background:var(--surface2);border-radius:10px;font-size:1rem;
+}
+.rules li::before{
+  content:"§";position:absolute;left:.75rem;top:.5rem;color:var(--accent);
+  font-family:var(--font-serif);font-weight:700;
+}
+.examples{list-style:none;margin:.3rem 0 0;padding:0;display:grid;gap:.55rem;counter-reset:ex}
+.examples li{
+  position:relative;padding:.5rem .8rem .5rem 2.4rem;border:1px dashed var(--line);border-radius:10px;font-size:.98rem;
+  counter-increment:ex;
+}
+.examples li::before{
+  content:"例" counter(ex);position:absolute;left:.7rem;top:.55rem;
+  color:var(--accent);font-family:var(--font-serif);font-weight:700;font-size:.82rem;
+}
+
+/* ===== 练习区 ===== */
+.quiz-tag{
+  font-size:.8rem;color:var(--accent);background:var(--accent-soft);
+  border-radius:999px;padding:.14rem .6rem;font-weight:500;
+}
+.quiz-rule{margin:.2rem 0 .9rem;color:var(--muted);font-size:.92rem}
+.btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:10px;padding:.55rem 1.15rem;font-size:.96rem;font-weight:500;
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.q-area{margin-top:1.1rem;display:grid;gap:1rem}
+.progress{display:flex;align-items:center;gap:.8rem;font-size:.88rem;color:var(--muted)}
+.pbar{flex:1;height:.55rem;border-radius:999px;background:var(--surface2);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .3s ease}
+.q-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:1.1rem 1.25rem}
+.q-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.55rem}
+.q-num{font-family:var(--font-serif);font-weight:700;color:var(--accent)}
+.q-status{font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.08rem .6rem}
+.q-status.done{color:var(--good);border-color:var(--good)}
+.q-text{font-size:1.08rem;margin:.3rem 0 .8rem}
+.q-text .frac .num,.q-text .frac .den{padding-left:.34em;padding-right:.34em}
+.q-opts{display:grid;gap:.55rem}
+.opt{
+  display:flex;align-items:center;gap:.6rem;text-align:left;
+  border:1px solid var(--line);border-radius:10px;background:var(--surface);
+  padding:.6rem .85rem;font-size:1rem;color:var(--ink);
+  transition:border-color .12s ease,background .12s ease;
+}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.opt .tag{
+  flex:none;width:1.55rem;height:1.55rem;border-radius:999px;background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--muted);
+  font-family:var(--font-serif);font-weight:700;
+}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right .tag{background:var(--good);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .tag{background:var(--bad);color:#fff}
+.opt.picked-right{border-width:2px}
+.opt.picked-wrong{border-width:2px}
+.q-explain{
+  margin-top:.7rem;padding:.6rem .85rem;border-radius:10px;font-size:.92rem;
+  background:var(--accent-soft);color:var(--ink);
+}
+.q-explain.hidden{display:none}
+.result{
+  margin-top:1.1rem;padding:1.1rem 1.25rem;border-radius:var(--radius);
+  border:1px solid var(--line);background:var(--surface);
+}
+.result.good{border-color:var(--good);background:var(--good-bg)}
+.result.keep{border-color:var(--warn);background:var(--warn-bg)}
+.res-score{font-size:1.15rem;font-weight:700;font-family:var(--font-serif)}
+.res-score b{color:var(--accent);font-size:1.5rem}
+.result .res-msg{margin:.35rem 0 .8rem;font-size:.95rem}
+.w-area{margin-top:1.2rem;border-top:1px dashed var(--line);padding-top:1rem;display:grid;gap:.9rem}
+.w-title{font-family:var(--font-serif);font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
+.w-title .lock{color:var(--accent)}
+.w-card{border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.15rem;background:var(--surface2)}
+.w-row{display:flex;align-items:center;gap:.6rem;margin-top:.6rem;flex-wrap:wrap}
+.w-row label{font-size:.92rem;color:var(--muted)}
+.w-row input{
+  flex:1;min-width:9rem;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);color:var(--ink);padding:.5rem .75rem;font-size:1rem;font-family:var(--font-serif);
+}
+.w-row input:focus{border-color:var(--accent);outline:none}
+.w-hint{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+.w-feedback{margin-top:.6rem;font-size:.95rem;font-weight:500}
+.w-feedback.ok{color:var(--good)}
+.w-feedback.no{color:var(--bad)}
+.foot{margin-top:2.2rem;text-align:center;color:var(--muted);font-size:.85rem}
+
+@media (max-width:680px){
+  .brand .name{display:none}
+  .sec-grid{grid-template-columns:1fr}
+  .sec-card.mix{flex-direction:column;align-items:flex-start}
+  .hero .hero-frac{display:none}
+  .topbar{padding:.55rem .8rem;gap:.6rem}
+  main{padding:1.1rem .8rem 3rem}
+  .fs-ctl span{min-width:2.4rem}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="返回首页">
+    <span class="mark"><i>3</i>4</span>
+    <span class="name">第4章 · 分数</span>
+  </a>
+  <nav class="topnav" id="topnav" aria-label="章节导航"></nav>
+  <div class="tools">
+    <div class="fs-ctl" role="group" aria-label="调节字体大小">
+      <button id="fsMinus" aria-label="减小字体" title="减小字体">A−</button>
+      <span id="fsVal" aria-live="polite">100%</span>
+      <button id="fsPlus" aria-label="增大字体" title="增大字体">A+</button>
+    </div>
+    <button id="themeBtn" class="icon-btn" aria-label="切换浅色/深色模式" title="切换浅色/深色模式">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- 隐藏锚点：配合 hash 路由 -->
+  <span id="home" hidden></span>
+  <span id="s4-1" hidden></span><span id="s4-2" hidden></span><span id="s4-3" hidden></span><span id="s4-4" hidden></span>
+  <span id="s4-5" hidden></span><span id="s4-6" hidden></span><span id="s4-7" hidden></span><span id="s4-8" hidden></span>
+  <span id="mix" hidden></span>
+
+  <!-- ===== 视图：首页 ===== -->
+  <div class="view" id="v-home">
+    <section class="hero">
+      <div class="grid-bg"></div>
+      <div class="hero-frac frac-lg"><span class="frac"><span class="num">3</span><span class="den">4</span></span></div>
+      <h1>第4章　分数</h1>
+      <p class="sub">初一数学 · 互动学习与随机测验</p>
+      <div class="chips">
+        <span class="chip">概念与性质</span>
+        <span class="chip">比较与运算</span>
+        <span class="chip">互化与应用</span>
+        <span class="chip">随机出题</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>学习目标</h2>
+      <ul class="objectives">
+        <li><b>1</b><span>理解分数的概念与基本性质</span></li>
+        <li><b>2</b><span>能进行分数的加、减、乘、除运算</span></li>
+        <li><b>3</b><span>理解分数与小数、百分数的关系</span></li>
+        <li><b>4</b><span>能解决分数的应用问题</span></li>
+      </ul>
+    </section>
+
+    <div class="sec-grid" id="secGrid"></div>
+
+    <section class="panel howto">
+      <h2>怎么玩</h2>
+      <ol>
+        <li>选一个章节，先看「知识点」和「例题」，再点「开始新测验」。</li>
+        <li>每节随机出 <b>5 道选择题</b>，选项顺序每次打乱，题目数字每次重新生成，每次都不一样。</li>
+        <li>答对 <b>3 题及以上</b>，解锁 <b>2 道作答题</b>：自己输入答案（支持分数如 3/4、小数如 0.75、整数、带分数如 2 1/3）。</li>
+        <li>答对不足 3 题也没关系，先复习再点「再测一轮」，又是一套全新题目。</li>
+        <li>顶栏随时可切换 <b>浅色 / 深色</b> 模式、调节 <b>字体大小</b>，设置会自动记住。</li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ===== 视图：章节 ===== -->
+  <div class="view" id="v-section"></div>
+</main>
+
+<footer class="foot">初一数学 · 第4章 分数 互动练习 · 数据来自课本章节内容</footer>
+
+<script>
+/* ===== JS:core ===== */
+'use strict';
+/* ---------- 通用工具 ---------- */
+const $ = s => document.querySelector(s);
+const R = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+const gcd = (a,b) => b ? gcd(b, a % b) : Math.abs(a);
+function simp(n,d){ if(d===0) return [n,1]; const g=gcd(n,d); return [n/g, d/g]; }
+function ratEq(a,b){ return a[0]===b[0] && a[1]===b[1]; }
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=R(0,i); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function pick(arr){ return arr[R(0,arr.length-1)]; }
+function pickN(n,k){ return shuffle([...Array(n).keys()]).slice(0,k); }
+/* 渲染分数：frHTML 自动约分；frRaw 不约分（用于“变形后”的展示） */
+function frHTML(n,d){
+  if(d===1) return String(n);
+  const [a,b] = simp(n,d);
+  return '<span class="frac"><span class="num">'+a+'</span><span class="den">'+b+'</span></span>';
+}
+function frRaw(n,d){
+  if(d===1) return String(n);
+  return '<span class="frac"><span class="num">'+n+'</span><span class="den">'+d+'</span></span>';
+}
+function frDist(n,d){
+  /* 干扰项显示：约 45% 概率用未化简的同值形式（如 1/2 → 2/4、1/3 → 3/9），增加迷惑性 */
+  if(d>1 && n<d && Math.random()<0.45){
+    const k = pick([2,3]);
+    return frRaw(n*k, d*k);
+  }
+  return frHTML(n,d);
+}
+function frQ(n,d){ /* 问号占位 */
+  return '<span class="frac"><span class="num q">'+n+'</span><span class="den q">'+d+'</span></span>';
+}
+function mixedHTML(w,n,d){ return '<span class="mixed">'+w+frHTML(n,d)+'</span>'; }
+function decHTML(x){
+  let s = x.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+  return s;
+}
+const STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg>';
+/* 解析学生输入 → 有理数 [n,d]（已约分） */
+function parseRational(raw){
+  const s = String(raw).trim().replace(/\s+/g,' ');
+  if(!s) return null;
+  let m = s.match(/^(-?\d+)\s+(-?\d+)\s*\/\s*(-?\d+)$/);   /* 带分数 w n/d */
+  if(m){
+    const w=+m[1], n=+m[2], d=+m[3];
+    if(d===0) return null;
+    return simp(w*d + (w<0?-n:n), d);
+  }
+  m = s.match(/^(-?\d+)\s*\/\s*(-?\d+)$/);                   /* 分数 n/d */
+  if(m){
+    const n=+m[1], d=+m[2];
+    if(d===0) return null;
+    return simp(n,d);
+  }
+  m = s.match(/^(-?\d+(?:\.\d+)?)$/);                        /* 整数或小数 */
+  if(m){
+    const t = m[1];
+    if(t.indexOf('.')>-1){
+      const p = t.split('.');
+      const fp = p[1]||'';
+      const d = Math.pow(10, fp.length);
+      const n = Math.round(Math.abs(parseFloat(t))*d) * (t.charAt(0)==='-'?-1:1);
+      return simp(n,d);
+    }
+    return [parseInt(t,10),1];
+  }
+  return null;
+}
+/* 原样分数串（用于“变形题”的精确比对），如 "6/8" */
+function canonRaw(raw){
+  const m = String(raw).trim().replace(/\s+/g,'').match(/^(-?\d+)\/(-?\d+)$/);
+  return m ? m[1]+'/'+m[2] : null;
+}
+/* 答案显示规范化：最简 1/1 显示为整数 1（如 frHTML(6,6) 的 "1/1" → "1"） */
+function normAns(h){
+  const s = String(h).replace(/<[^>]*>/g,'').trim();
+  if(s === '1/1') return '1';
+  return h;
+}
+/* 构造选择题：correct 为正确选项 HTML，wrongs 为错误选项 HTML 数组 */
+function optKey(h){
+  /* 选项去重键：分数/小数/整数统一为最简分数键，文本选项用原文 */
+  const s = String(h).replace(/<[^>]*>/g,'').trim();
+  const m = s.match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+  if(m && +m[2]!==0){ const [a,b]=simp(+m[1],+m[2]); return a+'/'+b; }
+  const n = s.match(/^-?(\d+)(\.(\d+))?$/);
+  if(n){
+    let num, den;
+    if(n[2]){ den=Math.pow(10,(n[3]||'').length); num=Math.round(Math.abs(parseFloat(s))*den)*(s[0]==='-'?-1:1); }
+    else { num=+s; den=1; }
+    const [a,b]=simp(num,den); return a+'/'+b;
+  }
+  return s;
+}
+function mkMCQ(q, correct, wrongs, explain, pool){
+  correct = normAns(correct);
+  wrongs = wrongs.map(normAns);
+  const seen = new Set([optKey(correct)]);
+  const good = [];
+  for(const w of wrongs){
+    if(good.length>=3) break;
+    const kk = optKey(w);
+    if(!seen.has(kk)){ seen.add(kk); good.push(w); }
+  }
+  const extra = pool || [frDist(1,2), frDist(1,3), frDist(2,3), frDist(3,4), '1'];
+  for(const w of extra){ if(good.length>=3) break; const kk=optKey(w); if(!seen.has(kk)){ seen.add(kk); good.push(w); } }
+  const opts = shuffle([{h:correct,ok:true}].concat(good.map(h=>({h:h,ok:false}))));
+  return {q:q, opts:opts, explain:explain};
+}
+function mkWritten(q, rat0, rat1, mode, explain, hint, disp){
+  const w = {
+    q:q, ans:simp(rat0,rat1), mode:mode||'value',
+    explain:explain||'', hint:hint||'可输入分数（如 3/4）、小数（如 0.75）或整数'
+  };
+  w.ansRaw = rat0+'/'+rat1;
+  w.ansDisp = disp || normAns(frHTML(rat0,rat1));
+  return w;
+}
+
+/* ---------- 章节内容数据 ---------- */
+const SECTIONS = [
+  {id:'s4-1', no:'4.1', title:'分数的概念与基本性质', desc:'什么是分数，分数的基本性质',
+   rules:[
+     '把单位“1”平均分成若干份，表示这样的一份或几份的数叫做分数。',
+     '分数的分子和分母都乘以或都除以同一个不为零的数，分数的大小不变。这叫做分数的基本性质。'
+   ],
+   examples:[
+     '把单位“1”平均分成 8 份，表示其中的 3 份，就是 ' + frHTML(3,8) + '。',
+     '根据基本性质：' + frHTML(3,4) + ' = ' + frRaw(6,8) + ' = ' + frRaw(9,12) + '（分子、分母同乘 2、3）。',
+     '根据基本性质：' + frRaw(8,12) + ' = ' + frRaw(4,6) + ' = ' + frHTML(2,3) + '（分子、分母同除以 2、4）。'
+   ]},
+  {id:'s4-2', no:'4.2', title:'分数的比较', desc:'同分母、同分子、异分母怎样比大小',
+   rules:[
+     '同分母分数，分子大的分数较大。',
+     '同分子分数，分母小的分数较大。',
+     '异分母分数，先通分，再比较大小。'
+   ],
+   examples:[
+     '同分母：' + frHTML(3,8) + ' < ' + frHTML(5,8) + '（分子 5 > 3）。',
+     '同分子：' + frHTML(3,5) + ' > ' + frHTML(3,7) + '（分母 5 < 7）。',
+     '异分母：' + frHTML(2,3) + ' 与 ' + frHTML(3,4) + '，通分得 ' + frRaw(8,12) + ' < ' + frRaw(9,12) + '，所以 ' + frHTML(2,3) + ' < ' + frHTML(3,4) + '。'
+   ]},
+  {id:'s4-3', no:'4.3', title:'分数的种类', desc:'真分数、假分数与带分数',
+   rules:[
+     '真分数：分子小于分母的分数，真分数小于 1。',
+     '假分数：分子大于或等于分母的分数，假分数大于或等于 1。',
+     '带分数：一个正整数和一个真分数相加所成的数。'
+   ],
+   examples:[
+     '真分数：' + frHTML(3,5) + '（分子 3 < 分母 5），' + frHTML(3,5) + ' < 1。',
+     '假分数：' + frHTML(7,4) + '（分子 7 > 分母 4），' + frHTML(7,4) + ' > 1；' + frHTML(4,4) + ' = 1。',
+     '带分数：2 ' + frHTML(1,3) + '，它等于 ' + frHTML(7,3) + '。'
+   ]},
+  {id:'s4-4', no:'4.4', title:'分数的加减法', desc:'同分母与异分母的加减',
+   rules:[
+     '同分母分数相加减，分母不变，分子相加减。',
+     '异分母分数相加减，先通分，再按同分母分数加减法的法则计算。'
+   ],
+   examples:[
+     '同分母加法：' + frHTML(2,7) + ' + ' + frHTML(3,7) + ' = ' + frHTML(5,7) + '。',
+     '异分母加法：' + frHTML(1,2) + ' + ' + frHTML(1,3) + ' = ' + frRaw(3,6) + ' + ' + frRaw(2,6) + ' = ' + frHTML(5,6) + '。',
+     '异分母减法：' + frHTML(3,4) + ' − ' + frHTML(1,2) + ' = ' + frHTML(3,4) + ' − ' + frRaw(2,4) + ' = ' + frHTML(1,4) + '。'
+   ]},
+  {id:'s4-5', no:'4.5', title:'分数的乘法', desc:'分数乘分数、整数乘分数',
+   rules:[
+     '分数乘以分数，用分子相乘的积做分子，分母相乘的积做分母。',
+     '整数乘以分数，用整数乘以分子的积做分子，分母不变。'
+   ],
+   examples:[
+     '分数乘分数：' + frHTML(2,3) + ' × ' + frHTML(3,4) + ' = ' + frRaw(6,12) + ' = ' + frHTML(1,2) + '。',
+     '整数乘分数：3 × ' + frHTML(2,5) + ' = ' + frHTML(6,5) + '。'
+   ]},
+  {id:'s4-6', no:'4.6', title:'分数的除法', desc:'除以一个分数等于乘它的倒数',
+   rules:[
+     '除以一个分数，等于乘以这个分数的倒数。',
+     '倒数：乘积为 1 的两个数互为倒数。'
+   ],
+   examples:[
+     '分数除分数：' + frHTML(3,4) + ' ÷ ' + frHTML(2,3) + ' = ' + frHTML(3,4) + ' × ' + frHTML(3,2) + ' = ' + frHTML(9,8) + '。',
+     '整数除分数：2 ÷ ' + frHTML(1,4) + ' = 2 × 4 = 8。',
+     '互为倒数：' + frHTML(5,7) + ' 与 ' + frHTML(7,5) + ' 的乘积为 1。'
+   ]},
+  {id:'s4-7', no:'4.7', title:'分数与小数的互化', desc:'分数化小数、小数化分数',
+   rules:[
+     '分数化小数：用分子除以分母。',
+     '小数化分数：原来有几位小数，就在 1 后面写几个 0 做分母，把原来的小数去掉小数点做分子。'
+   ],
+   examples:[
+     '分数化小数：' + frHTML(1,2) + ' = 1 ÷ 2 = 0.5；' + frHTML(3,4) + ' = 3 ÷ 4 = 0.75。',
+     '小数化分数：0.3 = ' + frHTML(3,10) + '；0.25 = ' + frRaw(25,100) + ' = ' + frHTML(1,4) + '。'
+   ]},
+  {id:'s4-8', no:'4.8', title:'分数的应用问题', desc:'找单位“1”，用乘除法解题',
+   rules:[
+     '解决分数应用问题的关键是找出单位“1”，并分析数量关系。',
+     '求一个数的几分之几是多少，用乘法计算。',
+     '已知一个数的几分之几是多少，求这个数，用除法计算。'
+   ],
+   examples:[
+     '某班有 30 人，其中 ' + frHTML(2,5) + ' 是女生，女生人数 = 30 × ' + frHTML(2,5) + ' = 12（人）。',
+     '一本书的 ' + frHTML(3,4) + ' 是 120 页，全书页数 = 120 ÷ ' + frHTML(3,4) + ' = 120 × ' + frHTML(4,3) + ' = 160（页）。',
+     '一根绳子长 6 米，用去 ' + frHTML(2,3) + '，用去 6 × ' + frHTML(2,3) + ' = 4 米。'
+   ]}
+];
+const MIX = {id:'mix', no:'★', title:'综合测验', desc:'从全章 8 个小节随机抽题', rules:[], examples:[]};
+
+/* ---------- 全局状态 ---------- */
+const rounds = {};            /* 每个章节一个测验轮次 */
+let curView = 'home';
+
+/* ---------- 主题与字号 ---------- */
+const store = {
+  theme: localStorage.getItem('fz_theme') || 'light',
+  fs: parseFloat(localStorage.getItem('fz_fs') || '1')
+};
+function applyTheme(){
+  document.documentElement.dataset.theme = store.theme;
+  localStorage.setItem('fz_theme', store.theme);
+}
+function applyFs(){
+  document.documentElement.style.fontSize = (16 * store.fs) + 'px';
+  const v = $('#fsVal'); if(v) v.textContent = Math.round(store.fs*100) + '%';
+  localStorage.setItem('fz_fs', String(store.fs));
+}
+$('#themeBtn').addEventListener('click', ()=>{
+  store.theme = store.theme==='dark' ? 'light' : 'dark';
+  applyTheme();
+});
+$('#fsPlus').addEventListener('click', ()=>{ store.fs = Math.min(1.5, Math.round((store.fs+0.05)*100)/100); applyFs(); });
+$('#fsMinus').addEventListener('click', ()=>{ store.fs = Math.max(0.8, Math.round((store.fs-0.05)*100)/100); applyFs(); });
+applyTheme(); applyFs();
+
+/* ---------- 导航与路由 ---------- */
+const NAV = [{v:'home', t:'首页'}].concat(SECTIONS.map(s=>({v:s.id, t:s.no}))).concat([{v:'mix', t:'综合'}]);
+$('#topnav').innerHTML = NAV.map(n=>'<button class="nav-chip" data-v="'+n.v+'" onclick="location.hash=\''+n.v+'\'">'+n.t+'</button>').join('');
+
+function view(){ return location.hash.replace('#','') || 'home'; }
+window.addEventListener('hashchange', render);
+function render(){
+  const v = view();
+  curView = v;
+  const isHome = v==='home';
+  $('#v-home').classList.toggle('active', isHome);
+  $('#v-section').classList.toggle('active', !isHome);
+  document.querySelectorAll('.nav-chip').forEach(a=>a.classList.toggle('on', a.dataset.v===v));
+  if(isHome){ renderHome(); } else { renderSection(v); }
+  window.scrollTo({top:0, behavior:'auto'});
+}
+function renderHome(){
+  const grid = $('#secGrid');
+  if(!grid.dataset.ready){
+    grid.innerHTML = SECTIONS.map(s=>
+      '<a class="sec-card" href="#'+s.id+'">'+
+        '<span class="no">'+s.no+'</span>'+
+        '<h3>'+s.title+'</h3>'+
+        '<p>'+s.desc+'</p>'+
+        '<span class="go">进入本节 →</span>'+
+      '</a>'
+    ).join('') +
+      '<a class="sec-card mix" href="#mix">'+
+        '<span class="no" style="padding:.4rem">'+STAR+'</span>'+
+        '<h3>综合测验</h3>'+
+        '<p>从 8 个小节随机抽 5 道选择题，答对 3 题解锁 2 道作答题。</p>'+
+        '<span class="go">开始 →</span>'+
+      '</a>';
+    grid.dataset.ready = '1';
+  }
+}
+
+/* ---------- 测验引擎 ---------- */
+function buildSectionHTML(sec){
+  const isMix = sec.id==='mix';
+  let inner = '';
+  if(!isMix){
+    inner =
+      '<header class="sec-head">'+
+        '<span class="sec-no">'+sec.no+'</span>'+
+        '<div><h2>'+sec.title+'</h2><p class="sec-desc">'+sec.desc+'</p></div>'+
+      '</header>'+
+      '<section class="panel know"><h3>知识点</h3><ul class="rules">'+
+        sec.rules.map(r=>'<li>'+r+'</li>').join('')+
+      '</ul></section>'+
+      '<section class="panel examp"><h3>例题</h3><ol class="examples">'+
+        sec.examples.map(e=>'<li>'+e+'</li>').join('')+
+      '</ol></section>';
+  } else {
+    inner =
+      '<header class="sec-head">'+
+        '<span class="sec-no" style="font-size:1.1rem;display:flex;align-items:center">'+STAR+'</span>'+
+        '<div><h2>综合测验</h2><p class="sec-desc">'+sec.desc+'</p></div>'+
+      '</header>'+
+      '<section class="panel examp"><h3>测验范围</h3><p>从第 4 章全部 8 个小节的题库中随机抽取 5 道选择题、2 道作答题，每次抽题都不同。</p></section>';
+  }
+  inner +=
+    '<section class="panel quiz">'+
+      '<h3>本节练习 <span class="quiz-tag">随机出题</span></h3>'+
+      '<p class="quiz-rule">每轮随机生成 5 道选择题（选项顺序打乱、题目数字重算）。答对 3 题及以上，解锁 2 道作答题。答对不足 3 题，先复习再测一轮。</p>'+
+      '<button class="btn primary" id="qStart">开始新测验</button>'+
+      '<div class="q-area" id="qArea"></div>'+
+    '</section>';
+  return inner;
+}
+function currentRound(){ return rounds[curView] || null; }
+
+function renderSection(v){
+  const sec = v==='mix' ? MIX : SECTIONS.find(s=>s.id===v);
+  const wrap = $('#v-section');
+  wrap.innerHTML = buildSectionHTML(sec);
+  const r = rounds[v];
+  renderQuizArea(v);
+  const btn = $('#qStart');
+  if(btn) btn.addEventListener('click', ()=>{ newRound(v); });
+}
+function renderQuizArea(v){
+  const r = rounds[v];
+  const area = $('#qArea');
+  if(!area) return;
+  if(!r){ area.innerHTML = ''; return; }
+  if(r.stage==='mcq') renderMCQs(v);
+  else if(r.stage==='written'){ renderMCQs(v); renderWritten(v); }
+  else if(r.stage==='done'){ renderMCQs(v); renderWritten(v); renderDone(v); }
+}
+function genRound(bank, n, avoid){
+  const idxs = shuffle([...Array(bank.length).keys()]);
+  const out=[]; const seenQ=new Set();
+  for(const i of idxs){
+    if(out.length>=n) break;
+    const item = bank[i]();
+    if(seenQ.has(item.q)) continue;
+    if(avoid && avoid.has(item.q)) continue;
+    seenQ.add(item.q); out.push(item);
+  }
+  let guard=0;
+  while(out.length<n && guard<500){
+    guard++;
+    const item = bank[R(0,bank.length-1)]();
+    if(seenQ.has(item.q)) continue;
+    if(avoid && avoid.has(item.q)) continue;
+    seenQ.add(item.q); out.push(item);
+  }
+  return out;
+}
+function newRound(v){
+  const bank = v==='mix' ? MIX_BANK : BANKS[v];
+  const wbank = v==='mix' ? MIX_WBANK : WBANKS[v];
+  const prevQs = rounds[v] ? rounds[v].qs : null;
+  const avoid = prevQs ? new Set(prevQs) : null;
+  const mcqs = genRound(bank, 5, avoid);
+  const written = genRound(wbank, 2, null);
+  rounds[v] = {
+    sid:v, mcqs:mcqs, written:written,
+    qs: mcqs.map(m=>m.q),
+    ans: mcqs.map(()=>null), picks: mcqs.map(()=>null), score:0, mcqDone:0,
+    stage:'mcq', wResults:null, wChecked:false
+  };
+  renderQuizArea(v);
+  const qz = $('.quiz');
+  if(qz) qz.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function renderMCQs(v){
+  const r = rounds[v];
+  const area = $('#qArea');
+  const answered = r.ans.filter(x=>x!==null).length;
+  let html =
+    '<div class="progress"><span>已答 ' + answered + ' / 5</span><div class="pbar"><i style="width:'+(answered/5*100)+'%"></i></div><span id="pScore">答对 ' + r.score + '</span></div>';
+  r.mcqs.forEach((mc,i)=>{
+    const st = r.ans[i];
+    const status = st===null ? '<span class="q-status">未作答</span>'
+      : (st ? '<span class="q-status done">已答对</span>' : '<span class="q-status" style="color:var(--bad);border-color:var(--bad)">答错了</span>');
+    html +=
+      '<div class="q-card" data-i="'+i+'">'+
+        '<div class="q-head"><span class="q-num">第 '+(i+1)+' 题</span>'+status+'</div>'+
+        '<div class="q-text">'+mc.q+'</div>'+
+        '<div class="q-opts">'+
+          mc.opts.map((o,j)=>{
+            let cls = 'opt';
+            if(st!==null){
+              if(o.ok) cls += ' right';
+              else if(st===false && r.picks[i]===j) cls += ' wrong';
+            }
+            return '<button class="'+cls+'" data-oi="'+j+'" data-ok="'+(o.ok?1:0)+'"'+(st!==null?' disabled':'')+
+              '><span class="tag">'+'ABCD'[j]+'</span><span>'+o.h+'</span></button>';
+          }).join('')+
+        '</div>'+
+        '<div class="q-explain'+(st===null?' hidden':'')+'">'+mc.explain+'</div>'+
+      '</div>';
+  });
+  if(r.mcqDone===5) html += resultBox(v);
+  area.innerHTML = html;
+  area.querySelectorAll('.opt').forEach(opt=>{
+    opt.addEventListener('click', ()=> answerMCQ(v, +opt.closest('.q-card').dataset.i, +opt.dataset.oi));
+  });
+  if(r.mcqDone===5){
+    const rb = area.querySelector('.res-retry');
+    if(rb) rb.addEventListener('click', ()=>{ newRound(v); });
+  }
+}
+function answerMCQ(v, i, oi){
+  const r = rounds[v];
+  if(r.ans[i]!==null) return;
+  const ok = r.mcqs[i].opts[oi].ok;
+  r.ans[i] = ok;
+  r.picks[i] = oi;
+  if(ok) r.score++;
+  r.mcqDone++;
+  renderMCQs(v);
+  if(r.mcqDone===5 && r.score>=3) renderWritten(v);
+}
+function resultBox(v){
+  const r = rounds[v];
+  const pass = r.score>=3;
+  const res = pass
+    ? '<div class="result good"><div class="res-score">答对 <b>'+r.score+'</b> / 5 题</div>'+
+      '<div class="res-msg">达到 3 题，已解锁下方 2 道作答题：自己输入答案，输入正确才算答对。</div>'+
+      '<button class="btn res-retry">再测一轮（重新随机出题）</button></div>'
+    : '<div class="result keep"><div class="res-score">答对 <b>'+r.score+'</b> / 5 题</div>'+
+      '<div class="res-msg">还差 '+(3-r.score)+' 题才达到 3 题，作答题暂未解锁。建议先回看「知识点」「例题」，再测一轮。</div>'+
+      '<button class="btn res-retry">再测一轮（重新随机出题）</button></div>';
+  return res;
+}
+function renderWritten(v){
+  const r = rounds[v];
+  r.stage = 'written';
+  const area = $('#qArea');
+  let html =
+    '<div class="w-area">'+
+      '<div class="w-title"><span class="lock">作答题</span> 答对 3 题已解锁，请在框内输入答案</div>';
+  r.written.forEach((w,i)=>{
+    const fb = r.wResults ? (r.wResults[i].ok
+        ? '<div class="w-feedback ok">正确</div>'
+        : '<div class="w-feedback no">不正确，正确答案是 '+w.ansDisp+'</div>')
+      : '';
+    html +=
+      '<div class="w-card">'+
+        '<div class="q-text">'+w.q+'</div>'+
+        '<div class="w-row">'+
+          '<label>你的答案：</label>'+
+          '<input id="wi-'+i+'" autocomplete="off" spellcheck="false" placeholder="如 3/4 或 0.75"'+(r.wChecked?' disabled':'')+' value="'+(r.wResults ? r.wResults[i].given : '')+'">'+
+          '<button class="btn primary" id="wChk-'+i+'"'+(r.wChecked?' disabled':'')+'>检查</button>'+
+        '</div>'+
+        '<div class="w-hint">'+w.hint+'</div>'+
+        fb+
+      '</div>';
+  });
+  html += '</div>';
+  area.insertAdjacentHTML('beforeend', html);
+  r.written.forEach((w,i)=>{
+    const chk = document.getElementById('wChk-'+i);
+    if(chk && !r.wChecked) chk.addEventListener('click', ()=> checkWritten(v, i));
+    const inp = document.getElementById('wi-'+i);
+    if(inp && !r.wChecked) inp.addEventListener('keydown', e=>{ if(e.key==='Enter') checkWritten(v, i); });
+  });
+}
+function checkWritten(v, i){
+  const r = rounds[v];
+  if(!r || r.wChecked) return;
+  const input = document.getElementById('wi-'+i);
+  const raw = input ? input.value : '';
+  const w = r.written[i];
+  let ok=false, msg='', given=raw;
+  const rat = parseRational(raw);
+  if(w.mode==='exact'){
+    ok = rat!==null && ratEq(rat, w.ans);
+    msg = ok ? '正确' : '答案应为 ' + frHTML(w.ans[0], w.ans[1]);
+  } else if(w.mode==='mixed'){
+    const m = String(raw).trim().replace(/\s+/g,' ').match(/^(-?\d+)\s+(-?\d+)\s*\/\s*(-?\d+)$/);
+    ok = !!m && rat!==null && ratEq(rat, w.ans);
+    msg = ok ? '正确' : '答案应为带分数 ' + w.ansDisp;
+  } else {
+    ok = rat!==null && ratEq(rat, w.ans);
+    msg = ok ? '正确' : '答案应为 ' + w.ansDisp;
+  }
+  if(!r.wResults) r.wResults = r.written.map(()=>null);
+  r.wResults[i] = {ok:ok, given:given, msg:msg};
+  /* 重新渲染写题区反馈 */
+  const card = input.closest('.w-card');
+  const oldFb = card.querySelector('.w-feedback');
+  if(oldFb) oldFb.remove();
+  card.insertAdjacentHTML('beforeend',
+    ok ? '<div class="w-feedback ok">正确</div>'
+       : '<div class="w-feedback no">不正确，正确答案是 '+w.ansDisp+'</div>');
+  input.disabled = true;
+  const chk = document.getElementById('wChk-'+i);
+  if(chk) chk.disabled = true;
+  if(r.wResults.every(x=>x!==null)){
+    r.wChecked = true;
+    r.stage = 'done';
+    renderDone(v);
+  }
+}
+function renderDone(v){
+  const r = rounds[v];
+  if(!r) return;
+  const area = $('#qArea');
+  let html = '<div class="result '+(r.wResults.filter(x=>x.ok).length>=2?'good':'keep')+'">'+
+    '<div class="res-score">作答题答对 <b>'+r.wResults.filter(x=>x.ok).length+'</b> / 2 题</div>'+
+    '<div class="res-msg">本小节测验完成。点下面的按钮再来一轮全新题目。</div>'+
+    '<button class="btn primary res-retry">再测一轮（重新随机出题）</button></div>';
+  area.insertAdjacentHTML('beforeend', html);
+  const btn = area.lastElementChild ? area.lastElementChild.querySelector('.res-retry') : null;
+  if(btn) btn.addEventListener('click', ()=>{ newRound(v); });
+}
+</script>
+<script>
+/* ===== JS:banks ===== */
+/* ---------- 4.1 概念与基本性质 · 选择题 ---------- */
+const B41 = [
+  () => { const a=R(4,9), b=R(1,a-1);
+    return mkMCQ('把单位“1”平均分成 '+a+' 份，表示这样的 '+b+' 份，用分数表示是？',
+      frHTML(b,a), [frDist(a,b), frDist(a+b,a), frDist(b,a+b)],
+      '平均分成 '+a+' 份，分母是 '+a+'；表示其中的 '+b+' 份，分子是 '+b+'，即 '+frHTML(b,a)+'。'); },
+  () => { const a=R(2,7), b=R(2,9), k=R(2,5);
+    return mkMCQ('分数 '+frHTML(a,b)+' 的分子乘 '+k+'，要使分数大小不变，分母应该怎样变化？',
+      '乘 '+k, ['除以 '+k, '加 '+k, '减 '+k],
+      '分数的基本性质：分子、分母同时乘同一个不为零的数，分数大小不变。'); },
+  () => { const a=R(1,5), b=R(2,7), k=R(2,4); const n=k*a, d=k*b;
+    return mkMCQ(frRaw(n,d)+' 的分子和分母同时除以 '+k+'，得到的分数是？',
+      frHTML(a,b), [frRaw(n,k), frDist(a,k*d), frDist(k*a,b)],
+      '分子、分母同除以 '+k+'：'+frRaw(n,d)+' = '+frHTML(a,b)+'。'); },
+  () => { const a=R(1,4), b=R(2,6), k=R(2,4);
+    return mkMCQ(frHTML(a,b)+' 的分子、分母同乘 '+k+' 后，与原来相比大小关系是？',
+      '大小不变', ['变大 '+k+' 倍', '缩小为原来的 '+k+' 分之一', '无法确定'],
+      '分子、分母同乘同一个不为零的数，分数大小不变。'); },
+  () => { const a=R(1,4), b=R(2,6), k=R(3,5);
+    return mkMCQ('填空：'+frHTML(a,b)+' = '+frQ('?', b*k)+'，问号处应填？',
+      String(a*k), [String(a), String(a+k), String(a*k+1)],
+      '分子、分母同乘 '+k+'：'+a+'×'+k+'='+(a*k)+'，所以问号处填 '+(a*k)+'。'); },
+  () => { const a=R(1,5), b=R(2,7);
+    return mkMCQ('下面与 '+frHTML(a,b)+' 相等的分数是？',
+      frRaw(2*a,2*b), [frDist(a+1,b+1), frDist(a,2*b), frDist(2*a,b)],
+      '分子、分母同乘 2，分数大小不变：'+frHTML(a,b)+' = '+frRaw(2*a,2*b)+'。'); }
+];
+/* ---------- 4.2 分数的比较 · 选择题 ---------- */
+const B42 = [
+  () => { const b=R(5,9), a=R(1,b-2), c=R(a+1,b-1);
+    return mkMCQ(frRaw(a,b)+' 和 '+frRaw(c,b)+'，较大的是？',
+      frRaw(c,b), [frDist(a,b), '一样大', '无法比较'],
+      '同分母分数，分子大的较大：'+c+' > '+a+'。'); },
+  () => { const a=R(1,5), b=R(2,6), c=R(b+1,9);
+    return mkMCQ(frRaw(a,b)+' 和 '+frRaw(a,c)+'（分母 '+b+' < '+c+'），较大的是？',
+      frRaw(a,b), [frDist(a,c), '一样大', '无法比较'],
+      '同分子分数，分母小的较大：分母 '+b+' 更小。'); },
+  () => { let b=R(2,5), d=R(2,5), a=R(1,b-1), c=R(1,d-1), n=0;
+    while((b===d || a*d===c*b) && n<30){ b=R(2,5); d=R(2,5); a=R(1,b-1); c=R(1,d-1); n++; }
+    const leftBig = a*d > c*b;
+    return mkMCQ('比较 '+frRaw(a,b)+' 和 '+frRaw(c,d)+' 的大小，较大的是？',
+      leftBig?frRaw(a,b):frRaw(c,d),
+      [leftBig?frDist(c,d):frDist(a,b), '一样大', '无法比较'],
+      '通分比较（交叉相乘）：'+a+'×'+d+'='+(a*d)+'，'+c+'×'+b+'='+(c*b)+'，所以 '+frRaw(a,b)+(leftBig?' > ':' < ')+frRaw(c,d)+'。'); },
+  () => { const b=R(5,9); const ns=pickN(b-1,3).map(x=>x+1); const [x,y,z]=ns;
+    const smallest=Math.min(x,y,z), largest=Math.max(x,y,z);
+    return mkMCQ('比较 '+frRaw(x,b)+'、'+frRaw(y,b)+'、'+frRaw(z,b)+'，最小的是？',
+      frRaw(smallest,b), [frDist(largest,b), '一样大', '无法比较'],
+      '同分母分数，分子最小的最小：'+smallest+' 最小。'); },
+  () => { const a=R(1,5), b=R(2,6), c=R(b+1,9);
+    return mkMCQ('判断：'+frRaw(a,b)+' 一定大于 '+frRaw(a,c)+' 吗（'+b+' < '+c+'）？',
+      '一定大于', ['一定小于', '相等', '无法确定'],
+      '同分子分数，分母小的较大：'+b+' < '+c+'，所以 '+frRaw(a,b)+' > '+frRaw(a,c)+'。'); },
+  () => { return mkMCQ('两个同分母分数比较大小，分子大的分数较大。这句话（  ）。',
+      '正确', ['错误', '不一定', '无法判断'],
+      '同分母分数，分子大的分数较大，这是比较法则。'); }
+];
+/* ---------- 4.3 分数的种类 · 选择题 ---------- */
+const B43 = [
+  () => { const a=R(1,4), b=R(a+1,9);
+    const p=R(3,7), q=R(2,p-1), d=R(2,6), e=R(1,d-1);
+    return mkMCQ('下列分数中，是真分数的是？',
+      frRaw(a,b), [frRaw(p,q), frRaw(d,e), frRaw(a,a)],
+      '真分数：分子小于分母（'+a+' < '+b+'），真分数小于 1。',
+      [frDist(3,2), frDist(4,3), frDist(5,4), frDist(6,5), frDist(2,1)]); },
+  () => { const p=R(3,8), q=R(2,p-1);
+    const a=R(1,4), b=R(a+1,9), c=R(1,4), d=R(c+1,9);
+    const w=R(1,3), x=R(1,4), y=R(x+1,6);
+    return mkMCQ('下列分数中，是假分数的是？',
+      frRaw(p,q), [frRaw(a,b), frRaw(c,d), mixedHTML(w,x,y)],
+      '假分数：分子大于或等于分母（'+p+' ≥ '+q+'），假分数大于或等于 1。',
+      [frDist(1,2), frDist(1,3), frDist(2,3), frDist(3,4), frDist(1,4)]); },
+  () => { const w=R(1,3), x=R(1,4), y=R(x+1,6);
+    const a=R(1,4), b=R(a+1,9);
+    return mkMCQ('下列各数中，是带分数的是？',
+      mixedHTML(w,x,y), [frDist(a,b), frDist(b,a), frDist(w+1,w)],
+      '带分数：一个正整数与一个真分数相加，如 '+w+' '+frRaw(x,y)+'。'); },
+  () => { let q=R(2,6), p; do{ p=R(q+1, q+7); } while(p%q===0);
+    const w=Math.floor(p/q), r=p%q;
+    return mkMCQ('把假分数 '+frRaw(p,q)+' 化成带分数，结果是？',
+      mixedHTML(w,r,q), [mixedHTML(w+1,r,q), frDist(p,q), w+1],
+      p+' ÷ '+q+' = '+w+' 余 '+r+'，所以 '+frRaw(p,q)+' = '+w+' '+frRaw(r,q)+'。'); },
+  () => { const w=R(2,4), a=R(1,4), b=R(3,7); const n=w*b+a;
+    return mkMCQ('把带分数 '+w+' '+frRaw(a,b)+' 化成假分数，结果是？',
+      frRaw(n,b), [frDist(w*b,b), frDist(w*b-a,b), frDist(w*a+b,b)],
+      w+' '+frRaw(a,b)+' = '+w+' + '+frRaw(a,b)+' = '+frRaw(w*b,b)+' + '+frRaw(a,b)+' = '+frRaw(n,b)+'。'); },
+  () => { return mkMCQ('下列说法正确的是？',
+      '真分数一定小于 1', ['假分数一定小于 1', '带分数一定小于 1', '假分数一定大于 1'],
+      '真分数分子 < 分母，故小于 1；假分数 ≥ 1；带分数 > 1。'); }
+];
+/* ---------- 4.4 分数的加减法 · 选择题 ---------- */
+const B44 = [
+  () => { const b=R(3,9), c=R(1,b-1), a=R(c,b-1);
+    const [n,d]=simp(a+c,b);
+    return mkMCQ('计算：'+frHTML(a,b)+' + '+frHTML(c,b)+' = ?',
+      frHTML(n,d), [frDist(a+c,2*b), frDist(a-c,b), frDist(a+c,b+1)],
+      '同分母分数相加，分母不变，分子相加：'+a+'+'+c+'='+(a+c)+'。'); },
+  () => { const b=R(4,9), c=R(1,b-2), a=R(c+1,b-1);
+    const [n,d]=simp(a-c,b);
+    return mkMCQ('计算：'+frHTML(a,b)+' − '+frHTML(c,b)+' = ?',
+      frHTML(n,d), [frDist(a+c,b), frDist(a-c,2*b), frDist(a-c,b+1)],
+      '同分母分数相减，分母不变，分子相减：'+a+'−'+c+'='+(a-c)+'。'); },
+  () => { const [a,b]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[4,5],[5,6],[2,9]]);
+    const [n,d]=simp(a+b,a*b);
+    return mkMCQ('计算：'+frHTML(1,a)+' + '+frHTML(1,b)+' = ?',
+      frHTML(n,d), [frDist(2,a+b), frDist(1,a*b), frDist(a+b,2*a*b)],
+      '先通分：'+frRaw(b,a*b)+' + '+frRaw(a,a*b)+' = '+frHTML(n,d)+'。'); },
+  () => { const [a,b]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[2,9],[5,6],[4,7]]);
+    const [n,d]=simp(b-a,a*b);
+    return mkMCQ('计算：'+frHTML(1,a)+' − '+frHTML(1,b)+' = ?',
+      frHTML(n,d), [frDist(a+b,a*b), frDist(b-a,2*a*b), frDist(a*b,a+b)],
+      '先通分：'+frRaw(b,a*b)+' − '+frRaw(a,a*b)+' = '+frHTML(n,d)+'。'); },
+  () => { const b=R(3,9), a=R(1,b-1); const [n,d]=simp(b-a,b);
+    return mkMCQ('计算：1 − '+frHTML(a,b)+' = ?',
+      frHTML(n,d), [frDist(a,b), frDist(a+b,b), frDist(a+1,b+1)],
+      '把 1 看作 '+frRaw(b,b)+'，'+frRaw(b,b)+' − '+frHTML(a,b)+' = '+frHTML(n,d)+'。'); },
+  () => { const b=R(2,6), a=R(1,b-1);
+    return mkMCQ('计算：'+frHTML(a,b)+' + '+frHTML(b-a,b)+' = ?',
+      '1', ['0', frDist(2*a,b), frDist(b-a,b+1)],
+      '同分母相加：'+a+'+'+(b-a)+'='+b+'，即 '+frHTML(b,b)+' = 1。'); }
+];
+/* ---------- 4.5 分数的乘法 · 选择题 ---------- */
+const B45 = [
+  () => { const [a,b]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[3,7],[4,5],[5,6],[4,7],[3,8]]);
+    const [c,d]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[3,7],[4,5],[5,6],[4,7],[3,8]]);
+    const [n,dd]=simp(a*c,b*d);
+    return mkMCQ('计算：'+frHTML(a,b)+' × '+frHTML(c,d)+' = ?',
+      frHTML(n,dd), [frDist(a+c,b+d), frDist(a*c,b+d), frDist(a+d,b*c)],
+      '分子乘分子（'+a+'×'+c+'='+(a*c)+'），分母乘分母（'+b+'×'+d+'='+(b*d)+'），再约分。'); },
+  () => { const k=R(2,6), a=R(1,5), b=R(2,8); const [n,d]=simp(k*a,b);
+    return mkMCQ('计算：'+k+' × '+frHTML(a,b)+' = ?',
+      frHTML(n,d), [frDist(k+a,b), frDist(k*a,2*b), frDist(k*a,b+1)],
+      '整数与分子相乘做分子，分母不变：'+k+'×'+a+'='+(k*a)+'。'); },
+  () => { const b=R(2,6), a=R(1,b-1);
+    return mkMCQ('计算：'+frHTML(a,b)+' × '+b+' = ?',
+      String(a), [frDist(a,b), String(a+1), frDist(a,2*b)],
+      '分母与整数约分：'+frHTML(a,b)+' × '+b+' = '+a+'。'); },
+  () => { return mkMCQ('分数乘分数，用（  ）的积做分子，（  ）的积做分母。',
+      '分子；分母', ['分母；分子', '分子；分子', '分母；分母'],
+      '分子相乘的积做分子，分母相乘的积做分母。'); },
+  () => { const a=R(1,4), b=R(a+1,8);
+    return mkMCQ('计算：'+frHTML(a,b)+' × 1 = ?',
+      frHTML(a,b), [frDist(a+1,b+1), frDist(1,a*b), '1'],
+      '任何数与 1 相乘，结果不变。'); },
+  () => { const [a,b]=pick([[2,3],[2,5],[3,4],[3,5],[4,5]]);
+    return mkMCQ('计算：'+frHTML(a,b)+' × '+frHTML(b,a)+' = ?',
+      '1', [frDist(a*a,b*b), frDist(a+b,a*b), '0'],
+      '互为倒数的两个分数相乘等于 1。'); }
+];
+/* ---------- 4.6 分数的除法 · 选择题 ---------- */
+const B46 = [
+  () => { const [a,b]=pick([[2,3],[3,4],[2,5],[3,5],[4,5],[5,6],[2,7],[3,7]]);
+    const [c,d]=pick([[2,3],[3,4],[2,5],[3,5],[4,5],[5,6],[2,7],[3,7]]);
+    const [n,dd]=simp(a*d,b*c);
+    return mkMCQ('计算：'+frHTML(a,b)+' ÷ '+frHTML(c,d)+' = ?',
+      frHTML(n,dd), [frDist(a*c,b*d), frDist(a+b,c+d), frDist(a*d,b+c)],
+      '除以一个分数等于乘它的倒数：'+frHTML(a,b)+' ÷ '+frHTML(c,d)+' = '+frHTML(a,b)+' × '+frHTML(d,c)+'。'); },
+  () => { const k=R(2,6), a=R(1,5), b=R(2,8); const [n,d]=simp(k*b,a);
+    return mkMCQ('计算：'+k+' ÷ '+frHTML(a,b)+' = ?',
+      frHTML(n,d), [frDist(k*a,b), frDist(k,a*b), frDist(k*b,2*a)],
+      k+' ÷ '+frHTML(a,b)+' = '+k+' × '+frHTML(b,a)+' = '+frHTML(n,d)+'。'); },
+  () => { const a=R(1,5), b=R(2,7), k=R(2,5); const [n,d]=simp(a,b*k);
+    return mkMCQ('计算：'+frHTML(a,b)+' ÷ '+k+' = ?',
+      frHTML(n,d), [frDist(k*a,b), frDist(a*k,b*k), frDist(a,b*k+1)],
+      '除以整数 '+k+' 等于乘它的倒数 '+frHTML(1,k)+'：'+frHTML(a,b)+' × '+frHTML(1,k)+'。'); },
+  () => { let a=R(2,8), b=R(2,9), n=0;
+    while(a===b && n<20){ a=R(2,8); b=R(2,9); n++; }
+    return mkMCQ(frHTML(a,b)+' 的倒数是？',
+      frHTML(b,a), [frDist(a,b), frDist(a+1,b), '1'],
+      '乘积为 1 的两个数互为倒数：'+frHTML(a,b)+' × '+frHTML(b,a)+' = 1。'); },
+  () => { const k=R(2,9);
+    return mkMCQ(k+' 的倒数是？',
+      frHTML(1,k), [String(k), '1', frDist(k+1,k)],
+      '整数 '+k+' 的倒数：'+k+' × '+frHTML(1,k)+' = 1。'); },
+  () => { return mkMCQ('两个数互为倒数的条件是？',
+      '它们的乘积为 1', ['它们的和为 1', '它们的差为 1', '它们相等'],
+      '乘积为 1 的两个数互为倒数。'); }
+];
+/* ---------- 4.7 分数与小数的互化 · 选择题 ---------- */
+const B47 = [
+  () => { const d=pick([2,4,5,8,10,20,25]), n=R(1,d-1); const v=n/d;
+    const cand=[v+0.1, v-0.1, v+0.25, v-0.25, 0.5, 1.5].map(x=>Math.max(0.05, Math.min(9.99, Math.round(x*1000)/1000)));
+    return mkMCQ('把 '+frHTML(n,d)+' 化成小数，结果是？',
+      decHTML(v), cand.map(decHTML),
+      '用分子除以分母：'+n+' ÷ '+d+' = '+decHTML(v)+'。'); },
+  () => { const d=pick([10,100]); let n=R(2,d-1); if(d===100){ while(n%10===0){ n=R(2,d-1); } }
+    const [a,b]=simp(n,d);
+    return mkMCQ(decHTML(n/d)+' 化成分数（最简形式），结果是？',
+      frHTML(a,b), [frDist(n+1,d), frDist(n,d+1), frDist(n-1,d)],
+      n+' 是 '+d+' 份中的 '+n+' 份，即 '+frRaw(n,d)+'，约分得 '+frHTML(a,b)+'。'); },
+  () => { return mkMCQ('下列与 0.5 相等的分数是？',
+      frHTML(1,2), [frDist(2,3), frDist(3,4), frDist(1,5)],
+      '0.5 = 5/10，约分得 1/2。'); },
+  () => { return mkMCQ('把 '+frHTML(1,4)+' 化成小数，结果是？',
+      '0.25', ['0.4', '0.125', '2.5'],
+      '1 ÷ 4 = 0.25。'); },
+  () => { return mkMCQ('分数化小数的方法是（  ）除以（  ）。',
+      '分子；分母', ['分母；分子', '分子；分子', '分母；分母'],
+      '分数化小数：用分子除以分母。'); },
+  () => { return mkMCQ('0.625 化成分数（最简形式），结果是？',
+      frHTML(5,8), [frRaw(625,1000), frDist(3,4), frDist(5,6)],
+      '0.625 = 625/1000，约分得 5/8。'); }
+];
+/* ---------- 4.8 应用问题 · 选择题 ---------- */
+const B48 = [
+  () => { const b=pick([3,4,5,6,8,10]), a=R(1,b-1), N=b*R(2,6), val=N*a/b;
+    return mkMCQ('某班有 '+N+' 人，其中 '+frHTML(a,b)+' 是女生。女生有多少人？',
+      val+' 人', [(N-val)+' 人', N+' 人', Math.round(N/b)+' 人'],
+      '求一个数的几分之几用乘法：'+N+' × '+frHTML(a,b)+' = '+val+'（人）。'); },
+  () => { const b=pick([3,4,5,6,8]), a=R(1,b-1), whole=b*R(3,8), part=whole*a/b;
+    return mkMCQ('一本书的 '+frHTML(a,b)+' 是 '+part+' 页。这本书一共有多少页？',
+      whole+' 页', [part+' 页', Math.round(whole/2)+' 页', (part+b)+' 页'],
+      '已知一个数的几分之几是多少，求这个数用除法：'+part+' ÷ '+frHTML(a,b)+' = '+part+' × '+frHTML(b,a)+' = '+whole+'（页）。'); },
+  () => { const b=pick([3,4,5,6]), a=R(1,b-1), L=b*R(2,6), used=L*a/b, left=L-used;
+    return mkMCQ('一根绳子长 '+L+' 米，用去它的 '+frHTML(a,b)+'，还剩多少米？',
+      left+' 米', [used+' 米', (L+used)+' 米', Math.floor(L/b)+' 米'],
+      '先用乘法求用去的：'+L+' × '+frHTML(a,b)+' = '+used+'（米），再求剩余：'+L+' − '+used+' = '+left+'（米）。'); },
+  () => { const [a,b]=pick([[2,3],[3,4],[2,5],[3,5],[4,5]]);
+    const [c,d]=pick([[1,2],[2,3],[1,4],[3,4]]);
+    const [n,dd]=simp(a*c,b*d);
+    return mkMCQ('一瓶饮料 '+frHTML(a,b)+' 升，小明喝了其中的 '+frHTML(c,d)+'。小明喝了多少升？',
+      frHTML(n,dd), [frDist(a*d,b*c), frDist(a*c+1,b*d), frDist(a+b,b+d)],
+      '求一个数的几分之几：'+frHTML(a,b)+' × '+frHTML(c,d)+' = '+frHTML(n,dd)+'（升）。'); },
+  () => { const b=pick([3,4,5,6,8]), a=R(1,b-1), T=b*R(3,7), val=T*a/b;
+    return mkMCQ('果园里有 '+T+' 棵果树，其中 '+frHTML(a,b)+' 是苹果树。苹果树有多少棵？',
+      val+' 棵', [(T-val)+' 棵', T+' 棵', Math.round(T/b)+' 棵'],
+      T+' × '+frHTML(a,b)+' = '+val+'（棵）。'); },
+  () => { return mkMCQ('求一个数的几分之几是多少，用（  ）计算。',
+      '乘法', ['除法', '加法', '减法'],
+      '求一个数的几分之几用乘法；已知几分之几求原数用除法。'); }
+];
+/* ---------- 作答题题库 ---------- */
+const W41 = [
+  () => { let a=R(2,5), b=R(2,7), k=R(2,4), g=0;
+    while((gcd(a,b)>1 || a>=b || b*k>24) && g<50){ a=R(2,5); b=R(2,7); k=R(2,4); g++; }
+    return mkWritten('把 '+frHTML(a,b)+' 的分子和分母都乘 '+k+'，得到的新分数是（用分数表示）',
+      a*k, b*k, 'exact', '分子、分母同乘 '+k+'：'+frRaw(a*k,b*k)+'。', '示例：6/8'); },
+  () => { const m=R(4,9), n=R(1,m-1);
+    return mkWritten('把单位“1”平均分成 '+m+' 份，表示这样的 '+n+' 份，这个分数写作',
+      n, m, 'value', '分母是 '+m+'，分子是 '+n+'。'); },
+  () => { let a=R(2,6), b=R(3,8); while(gcd(a,b)>1 || a>=b){ a=R(2,6); b=R(3,8); }
+    const k=R(2,4);
+    return mkWritten(frRaw(a*k,b*k)+' 的分子和分母同时除以 '+k+'，得到的分数是',
+      a, b, 'exact', '分子、分母同除以 '+k+'：'+frRaw(a,b)+'。'); }
+];
+const W42 = [
+  () => { const b=R(5,9), a=R(1,b-2), c=R(a+1,b-1);
+    return mkWritten('比较 '+frRaw(a,b)+' 与 '+frRaw(c,b)+'，较大的分数是（用分数表示）',
+      c, b, 'value', '同分母分数，分子大的较大：'+c+' > '+a+'。'); },
+  () => { const a=R(1,5), b=R(2,6), c=R(b+1,9);
+    return mkWritten('比较 '+frRaw(a,b)+' 与 '+frRaw(a,c)+'（'+b+' < '+c+'），较大的分数是',
+      a, b, 'value', '同分子分数，分母小的较大：分母 '+b+' 更小。'); },
+  () => { let b=R(2,5), d=R(2,5), a=R(1,b-1), c=R(1,d-1), n=0;
+    while((b===d || a*d===c*b) && n<30){ b=R(2,5); d=R(2,5); a=R(1,b-1); c=R(1,d-1); n++; }
+    const big = a*d > c*b ? [a,b] : [c,d];
+    return mkWritten('比较 '+frRaw(a,b)+' 与 '+frRaw(c,d)+'，较大的分数是',
+      big[0], big[1], 'value',
+      '交叉相乘比较：'+a+'×'+d+'='+(a*d)+'，'+c+'×'+b+'='+(c*b)+'。'); }
+];
+const W43 = [
+  () => { let q=R(2,6), p; do{ p=R(q+1, q+7); } while(p%q===0);
+    const w=Math.floor(p/q), r=p%q;
+    return mkWritten('把假分数 '+frHTML(p,q)+' 化成带分数',
+      p, q, 'mixed', p+' ÷ '+q+' = '+w+' 余 '+r+'，所以是 '+w+' '+frHTML(r,q)+'。',
+      '格式如：2 1/3（整数和分数之间用空格）', mixedHTML(w,r,q)); },
+  () => { const w=R(1,4), a=R(1,4), b=R(2,7); const n=w*b+a;
+    return mkWritten('把带分数 '+w+' '+frHTML(a,b)+' 化成假分数',
+      n, b, 'exact', w+' + '+frHTML(a,b)+' = '+frHTML(w*b,b)+' + '+frHTML(a,b)+' = '+frRaw(n,b)+'。', '示例：9/4'); },
+  () => { const b=R(3,8), a=R(2,b-1);
+    return mkWritten('写出一个真分数：分子是 '+a+'，分母是 '+b+'（'+a+' < '+b+'），写作',
+      a, b, 'value', '分子小于分母就是真分数。'); }
+];
+const W44 = [
+  () => { const [a,b]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[4,5],[5,6],[2,9]]);
+    const [n,d]=simp(a+b,a*b);
+    return mkWritten('计算：'+frHTML(1,a)+' + '+frHTML(1,b)+' = ?（结果用最简分数）',
+      n, d, 'value', '通分：'+frHTML(b,a*b)+' + '+frHTML(a,a*b)+' = '+frHTML(n,d)+'。'); },
+  () => { let [a,b]=pick([[2,3],[2,5],[3,4],[2,7],[3,5],[2,9],[5,6],[4,7]]);
+    if(a>b){ const t=a; a=b; b=t; }
+    const [n,d]=simp(b-a,a*b);
+    return mkWritten('计算：'+frHTML(1,a)+' − '+frHTML(1,b)+' = ?（结果用最简分数）',
+      n, d, 'value', '通分：'+frHTML(b,a*b)+' − '+frHTML(a,a*b)+' = '+frHTML(n,d)+'。'); },
+  () => { const b=R(3,9), a=R(1,b-1); const [n,d]=simp(b-a,b);
+    return mkWritten('计算：1 − '+frHTML(a,b)+' = ?（结果用最简分数）',
+      n, d, 'value', '把 1 看作 '+frHTML(b,b)+'，'+frHTML(b,b)+' − '+frHTML(a,b)+' = '+frHTML(n,d)+'。'); }
+];
+const W45 = [
+  () => { const [a,b]=pick([[2,3],[3,4],[2,5],[3,5],[5,6],[4,7]]);
+    const [c,d]=pick([[1,2],[2,3],[3,4],[3,5]]);
+    const [n,dd]=simp(a*c,b*d);
+    return mkWritten('计算：'+frHTML(a,b)+' × '+frHTML(c,d)+' = ?（结果用最简分数）',
+      n, dd, 'value', '分子乘分子、分母乘分母：'+frHTML(a*c,b*d)+'，约分得 '+frHTML(n,dd)+'。'); },
+  () => { const k=R(2,6), a=R(1,5), b=R(2,8); const [n,d]=simp(k*a,b);
+    return mkWritten('计算：'+k+' × '+frHTML(a,b)+' = ?（结果用最简分数）',
+      n, d, 'value', k+' × '+a+' = '+(k*a)+' 做分子，分母不变。'); },
+  () => { const b=R(2,6), a=R(1,b-1);
+    return mkWritten('计算：'+frHTML(a,b)+' × '+b+' = ?',
+      a, 1, 'value', '分母与整数约分后得 '+a+'。'); }
+];
+const W46 = [
+  () => { const [a,b]=pick([[2,3],[3,4],[2,5],[4,5],[5,6]]);
+    const [c,d]=pick([[2,3],[3,4],[1,2],[3,5]]);
+    const [n,dd]=simp(a*d,b*c);
+    return mkWritten('计算：'+frHTML(a,b)+' ÷ '+frHTML(c,d)+' = ?（结果用最简分数）',
+      n, dd, 'value', '乘倒数：'+frHTML(a,b)+' × '+frHTML(d,c)+' = '+frHTML(n,dd)+'。'); },
+  () => { const k=R(2,6), a=R(1,5), b=R(2,8); const [n,d]=simp(k*b,a);
+    return mkWritten('计算：'+k+' ÷ '+frHTML(a,b)+' = ?（结果用最简分数）',
+      n, d, 'value', k+' ÷ '+frHTML(a,b)+' = '+k+' × '+frHTML(b,a)+'。'); },
+  () => { const a=R(2,9);
+    return mkWritten(frHTML(a,a+3)+' 的倒数是',
+      a+3, a, 'value', '分子、分母互换位置。'); }
+];
+const W47 = [
+  () => { const d=pick([2,4,5,8,10,20,25]), n=R(1,d-1);
+    return mkWritten('把 '+frHTML(n,d)+' 化成小数',
+      n, d, 'value', n+' ÷ '+d+' = '+decHTML(n/d)+'。', '示例：0.75'); },
+  () => { const d=pick([10,100]); let n=R(2,d-1); if(d===100){ while(n%10===0){ n=R(2,d-1); } }
+    const [a,b]=simp(n,d);
+    return mkWritten(decHTML(n/d)+' 化成分数（最简形式）',
+      a, b, 'value', n+' ÷ '+d+'，即 '+frRaw(n,d)+'，约分得 '+frHTML(a,b)+'。'); },
+  () => { return mkWritten('在 '+frHTML(1,2)+'、'+frHTML(3,4)+'、'+frHTML(1,5)+' 中，与 0.5 相等的是（用分数表示）',
+      1, 2, 'value', '0.5 = 5/10 = 1/2。'); }
+];
+const W48 = [
+  () => { const b=pick([3,4,5,6,8]), a=R(1,b-1), N=b*R(2,6), val=N*a/b;
+    return mkWritten('某班有 '+N+' 人，其中 '+frHTML(a,b)+' 是男生。男生有多少人？',
+      val, 1, 'value', N+' × '+frHTML(a,b)+' = '+val+'（人）。'); },
+  () => { const b=pick([3,4,5,6,8]), a=R(1,b-1), whole=b*R(3,8), part=whole*a/b;
+    return mkWritten('一本书的 '+frHTML(a,b)+' 是 '+part+' 页，这本书一共有多少页？',
+      whole, 1, 'value', part+' ÷ '+frHTML(a,b)+' = '+part+' × '+frHTML(b,a)+' = '+whole+'（页）。'); },
+  () => { const b=pick([3,4,5,6]), a=R(1,b-1), L=b*R(2,6), left=L-L*a/b;
+    return mkWritten('一根彩带长 '+L+' 米，用去它的 '+frHTML(a,b)+'，还剩多少米？',
+      left, 1, 'value', L+' × '+frHTML(b-a,b)+' = '+left+'（米）。'); }
+];
+/* ---------- 汇总 ---------- */
+const BANKS = {'s4-1':B41, 's4-2':B42, 's4-3':B43, 's4-4':B44, 's4-5':B45, 's4-6':B46, 's4-7':B47, 's4-8':B48};
+const WBANKS = {'s4-1':W41, 's4-2':W42, 's4-3':W43, 's4-4':W44, 's4-5':W45, 's4-6':W46, 's4-7':W47, 's4-8':W48};
+const MIX_BANK = [].concat(...Object.keys(BANKS).map(k=>BANKS[k]));
+const MIX_WBANK = [].concat(...Object.keys(WBANKS).map(k=>WBANKS[k]));
+
+render();
+</script>
+</body>
+</html>
