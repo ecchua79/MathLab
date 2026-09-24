@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<!-- 峇株吧辖华仁中学 (Chinese High School, Batu Pahat) | 蔡逸众老师 制作 | ecchua79.github.io/ScienceLab -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="蔡逸众 (ecchua79) - 峇株吧辖华仁中学">
+<title>初一数学 · 第3章 整数 互动学习站</title>
+<style>
+  /* ===== 主题变量 ===== */
+  :root{
+    --bg:#f4f6fb;
+    --bg-soft:#eef1f8;
+    --card-bg:#ffffff;
+    --text:#1f2430;
+    --muted:#5b6472;
+    --primary:#4f46e5;
+    --primary-dark:#4338ca;
+    --primary-soft:#eef0fe;
+    --accent:#059669;
+    --accent-soft:#e6f7ef;
+    --danger:#dc2626;
+    --danger-soft:#fdecec;
+    --border:#e2e5ea;
+    --font-scale:1;
+    --shadow:0 2px 10px rgba(31,36,48,0.06);
+  }
+  body.dark{
+    --bg:#0f121b;
+    --bg-soft:#151a26;
+    --card-bg:#1a2030;
+    --text:#e9ebf2;
+    --muted:#9aa3b8;
+    --primary:#8b93f8;
+    --primary-dark:#a5abf9;
+    --primary-soft:#232a44;
+    --accent:#4ade9c;
+    --accent-soft:#163a2c;
+    --danger:#ff8686;
+    --danger-soft:#3a1f22;
+    --border:#2a3145;
+    --shadow:0 2px 14px rgba(0,0,0,0.4);
+  }
+  html{ font-size: calc(16px * var(--font-scale)); scroll-behavior:smooth; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.7;
+    transition:background .25s,color .25s;
+    padding-bottom:3rem;
+  }
+  a{ color:var(--primary); }
+
+  /* ===== 顶部栏 ===== */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--card-bg);
+    border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow);
+  }
+  .topbar-inner{
+    max-width:960px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:.6rem;
+    padding:.7rem 1rem;
+  }
+  .topbar-title{ font-size:1.15rem; font-weight:800; color:var(--primary-dark); display:flex; align-items:center; gap:.4rem;}
+  .topbar-title .sub{ font-size:.75rem; font-weight:500; color:var(--muted);}
+  .controls{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+  .ctrl-btn{
+    border:1px solid var(--border); background:var(--bg-soft); color:var(--text);
+    padding:.4rem .7rem; border-radius:.6rem; cursor:pointer; font-size:.85rem;
+    font-weight:600; transition:.15s;
+    white-space:nowrap;
+  }
+  .ctrl-btn:hover{ background:var(--primary-soft); border-color:var(--primary); color:var(--primary-dark); }
+  .font-group{ display:flex; align-items:center; gap:.25rem; border:1px solid var(--border); border-radius:.6rem; overflow:hidden; }
+  .font-group button{ border:none; background:var(--bg-soft); color:var(--text); padding:.4rem .6rem; cursor:pointer; font-weight:700; }
+  .font-group button:hover{ background:var(--primary-soft); color:var(--primary-dark); }
+  .font-group button + button{ border-left:1px solid var(--border); }
+
+  /* ===== 目录导航 ===== */
+  nav.toc{
+    max-width:960px; margin:.8rem auto 0; padding:0 1rem;
+    display:flex; gap:.5rem; overflow-x:auto; scrollbar-width:thin;
+  }
+  nav.toc a{
+    flex:0 0 auto; text-decoration:none;
+    background:var(--card-bg); color:var(--text);
+    border:1px solid var(--border); padding:.4rem .8rem;
+    border-radius:999px; font-size:.82rem; font-weight:600;
+    box-shadow:var(--shadow);
+  }
+  nav.toc a:hover{ color:var(--primary-dark); border-color:var(--primary); }
+
+  main{ max-width:960px; margin:1rem auto; padding:0 1rem; }
+
+  /* ===== 区块卡片 ===== */
+  .intro-card{
+    background:linear-gradient(135deg,var(--primary-soft),var(--card-bg));
+    border:1px solid var(--border); border-radius:1rem; padding:1.2rem 1.4rem;
+    margin-bottom:1.5rem; box-shadow:var(--shadow);
+  }
+  .intro-card h1{ margin:0 0 .5rem; font-size:1.4rem; color:var(--primary-dark);}
+  .intro-card ul{ margin:.4rem 0 0; padding-left:1.3rem;}
+  .intro-card li{ margin:.15rem 0; }
+  .intro-note{ margin-top:.7rem; font-size:.88rem; color:var(--muted); }
+
+  section.chapter{
+    background:var(--card-bg); border:1px solid var(--border);
+    border-radius:1rem; padding:1.3rem 1.4rem; margin-bottom:1.4rem;
+    box-shadow:var(--shadow); scroll-margin-top:5.5rem;
+  }
+  section.chapter h2{
+    margin:0 0 .6rem; font-size:1.2rem; color:var(--primary-dark);
+    display:flex; align-items:center; gap:.4rem;
+  }
+  .content p{ margin:.5rem 0; }
+  .rule-box{
+    background:var(--bg-soft); border-left:4px solid var(--primary);
+    padding:.6rem .9rem; border-radius:.5rem; margin:.6rem 0; font-weight:600;
+  }
+  .example-box{
+    background:var(--accent-soft); border:1px dashed var(--accent);
+    border-radius:.7rem; padding:.7rem .9rem; margin:.6rem 0;
+  }
+  .example-box .ex-title{ font-weight:800; color:var(--accent); margin-bottom:.3rem; }
+  .example-box .ex-solution{ color:var(--muted); margin-top:.3rem; }
+
+  /* ===== 测验区 ===== */
+  .quiz-block{ margin-top:1rem; border-top:1px dashed var(--border); padding-top:1rem; }
+  .quiz-start-btn{
+    background:var(--primary); color:#fff; border:none;
+    padding:.65rem 1.1rem; border-radius:.7rem; font-size:.95rem; font-weight:700;
+    cursor:pointer; transition:.15s; box-shadow:var(--shadow);
+  }
+  .quiz-start-btn:hover{ background:var(--primary-dark); }
+  .quiz-hint{ font-size:.8rem; color:var(--muted); margin:.4rem 0 0; }
+
+  .question-card, .fr-question-card{
+    background:var(--bg-soft); border:1px solid var(--border);
+    border-radius:.8rem; padding:.8rem 1rem; margin-top:.8rem;
+  }
+  .q-stem{ margin:0 0 .6rem; font-size:.98rem; }
+  .options{ display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+  @media (max-width:480px){ .options{ grid-template-columns:1fr; } }
+  .opt-btn{
+    background:var(--card-bg); border:1px solid var(--border); color:var(--text);
+    padding:.55rem .7rem; border-radius:.6rem; cursor:pointer; font-size:.92rem;
+    text-align:left; transition:.15s; font-weight:600;
+  }
+  .opt-btn:hover:not(:disabled){ border-color:var(--primary); color:var(--primary-dark); }
+  .opt-btn:disabled{ cursor:default; opacity:.85; }
+  .opt-btn.correct{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .opt-btn.wrong{ background:var(--danger-soft); border-color:var(--danger); color:var(--danger); }
+  .feedback{ margin-top:.5rem; font-size:.85rem; font-weight:700; min-height:1.1em; }
+  .fb-correct{ color:var(--accent); }
+  .fb-wrong{ color:var(--danger); }
+
+  .fr-input-row{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+  .fr-input{
+    flex:1 1 140px; padding:.5rem .7rem; border-radius:.6rem;
+    border:1px solid var(--border); background:var(--card-bg); color:var(--text); font-size:.95rem;
+  }
+  .fr-submit-btn{
+    background:var(--accent); color:#fff; border:none; padding:.5rem .9rem;
+    border-radius:.6rem; font-weight:700; cursor:pointer;
+  }
+  .fr-submit-btn:disabled{ opacity:.6; cursor:default; }
+  .fr-feedback{ font-size:.85rem; font-weight:700; }
+
+  .result-area{ margin-top:.8rem; }
+  .score-line{ font-weight:800; font-size:1rem; }
+  .unlock-msg{ color:var(--accent); font-weight:700; }
+  .retry-msg{ color:var(--muted); }
+  .retry-btn{
+    margin-top:.4rem; background:var(--bg-soft); border:1px solid var(--border);
+    color:var(--text); padding:.5rem .9rem; border-radius:.6rem; cursor:pointer; font-weight:700;
+  }
+  .retry-btn:hover{ border-color:var(--primary); color:var(--primary-dark); }
+  .fr-result{ margin-top:.6rem; padding-top:.5rem; border-top:1px dashed var(--border); }
+
+  footer{
+    max-width:960px; margin:2rem auto 0; padding:1rem; text-align:center;
+    color:var(--muted); font-size:.8rem; border-top:1px solid var(--border);
+  }
+  footer b{ color:var(--text); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title">📐 第3章 · 整数
+      <span class="sub">初一数学互动学习站</span>
+    </div>
+    <div class="controls">
+      <div class="font-group">
+        <button id="fontDec" title="缩小字体">A－</button>
+        <button id="fontReset" title="恢复默认">A</button>
+        <button id="fontInc" title="放大字体">A＋</button>
+      </div>
+      <button id="themeToggle" class="ctrl-btn">🌙 深色模式</button>
+    </div>
+  </div>
+  <nav class="toc">
+    <a href="#sec3-1">3.1 正负数</a>
+    <a href="#sec3-2">3.2 数线</a>
+    <a href="#sec3-3">3.3 比较大小</a>
+    <a href="#sec3-4">3.4 相反数/绝对值</a>
+    <a href="#sec3-5">3.5 加法</a>
+    <a href="#sec3-6">3.6 减法</a>
+    <a href="#sec3-7">3.7 乘法</a>
+    <a href="#sec3-8">3.8 除法</a>
+    <a href="#sec3-9">3.9 乘方</a>
+    <a href="#sec3-10">3.10 数列</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="intro-card">
+    <h1>学习目标</h1>
+    <ul>
+      <li>理解正整数与负整数</li>
+      <li>能进行整数的加、减、乘、除及乘方的运算</li>
+      <li>理解相反数与绝对值</li>
+      <li>了解数列的规律</li>
+    </ul>
+    <p class="intro-note">💡 每个小节读完内容后，点击「开始随机测验」挑战 5 道选择题（题目与选项每次都会重新随机生成）。答对 3 题或以上即可解锁 2 道进阶作答题，需要自己输入正确答案才算过关！</p>
+  </div>
+
+  <!-- 3.1 -->
+  <section class="chapter" id="sec3-1">
+    <h2>3.1 正整数与负整数</h2>
+    <div class="content">
+      <p>在日常生活中，我们常遇到具有相反意义的量。例如：小明去银行<b>存款</b>RM100，小芳去银行<b>提款</b>RM100。虽然数额相同，但意义相反。</p>
+      <p>具有相反意义的量，可用符号 <b>"+"</b>（读作正）与 <b>"－"</b>（读作负）表示。像 3、5、12 这些数叫做<b>正数</b>；像 -3、-5、-10 这些在正数前加上负号的数叫做<b>负数</b>。</p>
+      <p>赚与赔、上与下、东与西、前进与后退、收入与支出、左与右、胜与负等，在数学上都可以用 "+" 与 "－" 来区别。</p>
+      <div class="rule-box">注意：正数的正号常省略不写，例如 +15 可写成 15；但负数的负号一定要写，不可省略。</div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        早餐店上个月赚了 RM10000，记作 +RM10000，那么这个月亏了 RM5000 记作什么？
+        <div class="ex-solution">解：亏了 RM5000 记作 －RM5000。</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c1">
+      <button class="quiz-start-btn" onclick="startMC('c1')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c1"></div>
+      <div class="result-area" id="result-c1"></div>
+      <div class="fr-area" id="fr-c1" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.2 -->
+  <section class="chapter" id="sec3-2">
+    <h2>3.2 数线</h2>
+    <div class="content">
+      <p>我们可以用数线来表示正数与负数。画一条直线，取一定点作为基准点，称为<b>原点</b>，表示 "0"。规定由原点往右为<b>正向</b>，往左为<b>负向</b>。</p>
+      <p>自原点向右每隔一单位长取一点，依次表示正数 1, 2, 3, 4, …；自原点向左每隔一单位长取一点，依次表示负数 -1, -2, -3, -4, …。这条表示数的直线叫做<b>数线（数轴）</b>。</p>
+      <div class="rule-box">1, 2, 3, 4, … 称为<b>正整数</b>（也称自然数）；-1, -2, -3, -4, … 称为<b>负整数</b>。正整数、负整数与零统称为<b>整数</b>。</div>
+    </div>
+    <div class="quiz-block" data-chapter="c2">
+      <button class="quiz-start-btn" onclick="startMC('c2')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c2"></div>
+      <div class="result-area" id="result-c2"></div>
+      <div class="fr-area" id="fr-c2" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.3 -->
+  <section class="chapter" id="sec3-3">
+    <h2>3.3 整数的比较</h2>
+    <div class="content">
+      <p>5 比 1 大，而数线上的 5 在 1 的右边。对于任意两数 a 与 b，若在数线上 a 的对应点在 b 的对应点右边，就说 a 比 b 大，记作 "a &gt; b"；也可记作 "b &lt; a"，读作 "b 小于 a"。</p>
+      <div class="rule-box">正数大于 0，负数小于 0，正数大于一切负数。</div>
+      <div class="example-box">
+        <div class="ex-title">例题：比较大小</div>
+        (a) 3 与 -5　(b) -2 与 -7　(c) 0 与 -4
+        <div class="ex-solution">解：(a) 3 &gt; -5　(b) -2 &gt; -7　(c) 0 &gt; -4</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c3">
+      <button class="quiz-start-btn" onclick="startMC('c3')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c3"></div>
+      <div class="result-area" id="result-c3"></div>
+      <div class="fr-area" id="fr-c3" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.4 -->
+  <section class="chapter" id="sec3-4">
+    <h2>3.4 相反数与绝对值</h2>
+    <div class="content">
+      <p>如果两个数只有符号不同，那么其中一个数叫做另一个数的<b>相反数</b>，两数互为相反数。例如，3 的相反数是 -3；-5 的相反数是 5；0 的相反数是 0。</p>
+      <p>在数线上，一个数所对应的点与原点的距离，叫做该数的<b>绝对值</b>。</p>
+      <div class="rule-box">正数的绝对值是它本身；负数的绝对值是它的相反数；0 的绝对值是 0。</div>
+      <div class="example-box">
+        <div class="ex-title">例题：求绝对值</div>
+        (a) |+5|　(b) |-3|　(c) |0|
+        <div class="ex-solution">解：(a) |+5| = 5　(b) |-3| = 3　(c) |0| = 0</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c4">
+      <button class="quiz-start-btn" onclick="startMC('c4')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c4"></div>
+      <div class="result-area" id="result-c4"></div>
+      <div class="fr-area" id="fr-c4" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.5 -->
+  <section class="chapter" id="sec3-5">
+    <h2>3.5 整数的加法</h2>
+    <div class="content">
+      <div class="rule-box">
+        同号两数相加：取相同的符号，把绝对值相加。<br>
+        异号两数相加：取绝对值较大的数的符号，用较大的绝对值减去较小的绝对值。<br>
+        一个数同 0 相加，仍得这个数。
+      </div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        (a) (+3) + (+5)　(b) (-2) + (-7)　(c) (+6) + (-4)　(d) (-8) + (+5)
+        <div class="ex-solution">解：(a) +8　(b) -9　(c) +2　(d) -3</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c5">
+      <button class="quiz-start-btn" onclick="startMC('c5')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c5"></div>
+      <div class="result-area" id="result-c5"></div>
+      <div class="fr-area" id="fr-c5" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.6 -->
+  <section class="chapter" id="sec3-6">
+    <h2>3.6 整数的减法</h2>
+    <div class="content">
+      <div class="rule-box">减去一个数，等于加上这个数的相反数。即　a － b = a + (－b)</div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        (a) 5 － 8　(b) (-3) － (-5)　(c) 4 － (-6)　(d) (-2) － 3
+        <div class="ex-solution">解：(a) -3　(b) +2　(c) +10　(d) -5</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c6">
+      <button class="quiz-start-btn" onclick="startMC('c6')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c6"></div>
+      <div class="result-area" id="result-c6"></div>
+      <div class="fr-area" id="fr-c6" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.7 -->
+  <section class="chapter" id="sec3-7">
+    <h2>3.7 整数的乘法</h2>
+    <div class="content">
+      <div class="rule-box">
+        两数相乘：同号得正，异号得负，把绝对值相乘。任何数与 0 相乘，积仍为 0。<br>
+        多个不为 0 的数相乘：负因数有<b>奇数</b>个时，积为负；负因数有<b>偶数</b>个时，积为正。
+      </div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        (a) (-3) × (-4)　(b) 5 × (-6)　(c) (-2) × (-3) × (-4)
+        <div class="ex-solution">解：(a) +12　(b) -30　(c) -24</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c7">
+      <button class="quiz-start-btn" onclick="startMC('c7')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c7"></div>
+      <div class="result-area" id="result-c7"></div>
+      <div class="fr-area" id="fr-c7" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.8 -->
+  <section class="chapter" id="sec3-8">
+    <h2>3.8 整数的除法</h2>
+    <div class="content">
+      <div class="rule-box">
+        两数相除：同号得正，异号得负，把绝对值相除。0 除以任何一个不等于 0 的数都得 0。<br>
+        注意：0 不能作为除数。
+      </div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        (a) (-12) ÷ (-3)　(b) 18 ÷ (-6)　(c) (-20) ÷ 5
+        <div class="ex-solution">解：(a) +4　(b) -3　(c) -4</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c8">
+      <button class="quiz-start-btn" onclick="startMC('c8')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c8"></div>
+      <div class="result-area" id="result-c8"></div>
+      <div class="fr-area" id="fr-c8" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.9 -->
+  <section class="chapter" id="sec3-9">
+    <h2>3.9 乘方</h2>
+    <div class="content">
+      <p>求 n 个相同因数 a 的积的运算叫做<b>乘方</b>，结果叫做<b>幂</b>。a<sup>n</sup> 中，a 叫做<b>底数</b>，n 叫做<b>指数</b>。</p>
+      <div class="rule-box">正数的任何次幂都是正数；负数的<b>奇次幂</b>是负数，负数的<b>偶次幂</b>是正数。</div>
+      <div class="example-box">
+        <div class="ex-title">例题</div>
+        (a) 2³　(b) (-3)²　(c) (-2)³
+        <div class="ex-solution">解：(a) 8　(b) 9　(c) -8</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c9">
+      <button class="quiz-start-btn" onclick="startMC('c9')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c9"></div>
+      <div class="result-area" id="result-c9"></div>
+      <div class="fr-area" id="fr-c9" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- 3.10 -->
+  <section class="chapter" id="sec3-10">
+    <h2>3.10 数列</h2>
+    <div class="content">
+      <p>按一定次序排列的一列数称为<b>数列</b>。数列中的每一个数都叫做这个数列的<b>项</b>。找数列的规律，通常从相邻两项的差或倍数关系入手。</p>
+      <div class="example-box">
+        <div class="ex-title">例题：找规律</div>
+        (a) 2, 4, 6, 8, ___, 12　(b) 1, 3, 6, 10, ___, 21
+        <div class="ex-solution">解：(a) 10（偶数数列）　(b) 15（三角形数）</div>
+      </div>
+    </div>
+    <div class="quiz-block" data-chapter="c10">
+      <button class="quiz-start-btn" onclick="startMC('c10')">🎲 开始随机测验（5题选择题）</button>
+      <p class="quiz-hint">答对 3 题或以上，解锁 2 道进阶作答题！</p>
+      <div class="mc-area" id="mc-c10"></div>
+      <div class="result-area" id="result-c10"></div>
+      <div class="fr-area" id="fr-c10" style="display:none"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><b>峇株吧辖华仁中学出品</b><br>蔡逸众老师 制作　|　ecchua79.github.io/ScienceLab</p>
+</footer>
+
+<script>
+console.log('%c第3章 整数 互动学习站 - 峇株吧辖华仁中学 蔡逸众老师 制作 (ecchua79)','color:#4f46e5;font-weight:bold;font-size:12px;');
+
+/* ============ 通用工具函数 ============ */
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function randNonZero(min,max){ let n; do{ n = randInt(min,max); }while(n===0); return n; }
+function randChoice(arr){ return arr[randInt(0,arr.length-1)]; }
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function fmtSigned(n){ return n>=0 ? ('+'+n) : (''+n); }
+function randDistinctInts(count,min,max){
+  const s = new Set();
+  while(s.size<count){ s.add(randInt(min,max)); }
+  return [...s];
+}
+function makeOptionsAround(correct, spread){
+  const set = new Set([correct]);
+  let guard = 0;
+  while(set.size<4 && guard<200){
+    guard++;
+    const delta = randInt(-spread, spread);
+    if(delta===0) continue;
+    set.add(correct+delta);
+  }
+  let extra = 1;
+  while(set.size<4){ set.add(correct+extra*11); extra++; }
+  return shuffle([...set].map(String));
+}
+/* 从候选干扰项数组中挑出与正确答案不同的前3个，不够则用随机偏移补足，最后打乱顺序 */
+function buildOptions(correct, otherCandidates){
+  const seen = new Set([correct]);
+  const uniqueOthers = [];
+  shuffle(otherCandidates).forEach(v => {
+    if(!seen.has(v)){ seen.add(v); uniqueOthers.push(v); }
+  });
+  let guard = 0;
+  while(uniqueOthers.length<3 && guard<200){
+    guard++;
+    const delta = randInt(-9,9);
+    if(delta===0) continue;
+    const v = correct+delta;
+    if(!seen.has(v)){ seen.add(v); uniqueOthers.push(v); }
+  }
+  const final = [correct, ...uniqueOthers.slice(0,3)];
+  return shuffle(final.map(String));
+}
+/* 生成 |值1|,|值2|,... 所有正负号排列组合的和，用于加减法"符号混淆"干扰项 */
+function signCombos(mags){
+  const n = mags.length;
+  const set = new Set();
+  for(let mask=0; mask<(1<<n); mask++){
+    let sum = 0;
+    for(let i=0;i<n;i++){
+      const neg = (mask>>i)&1;
+      sum += (neg? -1:1)*mags[i];
+    }
+    set.add(sum);
+  }
+  return set;
+}
+const SUP = {2:'²',3:'³'};
+function powStem(base, exp){ return '('+fmtSigned(base)+')'+(SUP[exp]||('^'+exp)); }
+
+function normalizeAnswer(str){
+  if(str===undefined || str===null) return '';
+  let s = String(str).trim();
+  s = s.replace(/[\uFF10-\uFF19]/g, ch => String.fromCharCode(ch.charCodeAt(0)-0xFEE0));
+  s = s.replace(/[＋]/g,'+').replace(/[－—–−]/g,'-');
+  s = s.replace(/\s+/g,'');
+  if(s==='') return '';
+  if(/^\+/.test(s)) s = s.slice(1);
+  if(/^-?\d+(\.\d+)?$/.test(s)){
+    return String(parseFloat(s));
+  }
+  return s.toLowerCase();
+}
+
+/* ============ 3.1 正负数 情境模板 ============ */
+const CTX31 = [
+  {pos:'向前走', neg:'向后退', unit:'步'},
+  {pos:'向东走', neg:'向西走', unit:'m'},
+  {pos:'盈利', neg:'亏损', unit:'元'},
+  {pos:'存款', neg:'提款', unit:'元'},
+  {pos:'上升', neg:'下降', unit:'m'},
+  {pos:'向北走', neg:'向南走', unit:'km'}
+];
+function c1_t1(){
+  const ctx = randChoice(CTX31);
+  const a = randInt(1,50);
+  let b = randInt(1,50); while(b===a) b = randInt(1,50);
+  const stem = '如果'+ctx.pos+a+ctx.unit+'记作 +'+a+ctx.unit+'，那么'+ctx.neg+b+ctx.unit+'记作什么？';
+  const correct = '-'+b+ctx.unit;
+  const options = shuffle([correct, '+'+b+ctx.unit, '-'+a+ctx.unit, '+'+a+ctx.unit]);
+  return {stem, correct, options};
+}
+function c1_t2(){
+  const ctx = randChoice(CTX31);
+  const a = randInt(1,50);
+  let b = randInt(1,50); while(b===a) b = randInt(1,50);
+  const stem = '如果'+ctx.pos+a+ctx.unit+'记作 +'+a+ctx.unit+'，那么 -'+b+ctx.unit+' 表示什么？';
+  const correct = ctx.neg+b+ctx.unit;
+  const options = shuffle([correct, ctx.pos+b+ctx.unit, ctx.neg+a+ctx.unit, ctx.pos+a+ctx.unit]);
+  return {stem, correct, options};
+}
+function c1_fr1(){
+  const ctx = randChoice(CTX31);
+  const a = randInt(1,50);
+  let b = randInt(1,50); while(b===a) b = randInt(1,50);
+  const stem = '如果'+ctx.pos+a+ctx.unit+'记作 +'+a+'，那么'+ctx.neg+b+ctx.unit+'记作多少？（只需输入数字，例如 -8）';
+  return {stem, answer:-b};
+}
+function c1_fr2(){
+  const ctx = randChoice(CTX31);
+  const a = randInt(1,50);
+  let b = randInt(1,50); while(b===a) b = randInt(1,50);
+  const stem = '如果'+ctx.neg+a+ctx.unit+'记作 -'+a+'，那么'+ctx.pos+b+ctx.unit+'记作多少？（只需输入数字）';
+  return {stem, answer:b};
+}
+
+/* ============ 3.2 数线 ============ */
+function c2_t1(){
+  const a = randInt(1,20);
+  const correct = -a;
+  const stem = '在数轴上，到原点的距离为 '+a+' 个单位，且位于原点左侧的数是？';
+  const options = buildOptions(correct, [-correct, correct+1, correct-1, correct+2]);
+  return {stem, correct:String(correct), options};
+}
+function c2_t2(){
+  const a = randNonZero(-20,20);
+  const correct = Math.abs(a);
+  const stem = '数轴上点A表示的数是 '+a+'，那么点A到原点的距离是？';
+  const options = buildOptions(correct, [-correct, correct+1, correct-1, correct+2]);
+  return {stem, correct:String(correct), options};
+}
+function c2_fr1(){
+  const a = randInt(1,20);
+  const stem = '数轴上到原点距离为 '+a+' 个单位，且位于原点左侧的数是多少？（输入数字，如 -5）';
+  return {stem, answer:-a};
+}
+function c2_fr2(){
+  const a = randNonZero(-20,20);
+  const stem = '数轴上点B表示的数是 '+a+'，则点B到原点的距离是多少？';
+  return {stem, answer:Math.abs(a)};
+}
+
+/* ============ 3.3 整数的比较 ============ */
+function c3_t1(){
+  const nums = randDistinctInts(4,-30,30);
+  const correct = Math.max(...nums);
+  const stem = '在整数 '+nums.join('、')+' 中，最大的数是？';
+  return {stem, correct:String(correct), options:shuffle(nums.map(String))};
+}
+function c3_t2(){
+  const nums = randDistinctInts(4,-30,30);
+  const correct = Math.min(...nums);
+  const stem = '在整数 '+nums.join('、')+' 中，最小的数是？';
+  return {stem, correct:String(correct), options:shuffle(nums.map(String))};
+}
+function c3_t3(){
+  let p = randInt(1,20), q = randInt(1,20);
+  while(p===q) q = randInt(1,20);
+  if(p>q){ const tmp=p; p=q; q=tmp; } // 确保 p < q
+  const options = shuffle([
+    p+' > '+q,
+    q+' > '+p,
+    '-'+p+' > '+q,
+    '-'+q+' > -'+p
+  ]);
+  const correct = q+' > '+p;
+  const stem = '以下哪一个是正确的？';
+  return {stem, correct, options};
+}
+function c3_fr1(){
+  const nums = randDistinctInts(4,-30,30);
+  const stem = '在整数 '+nums.join('、')+' 中，最大的数是多少？';
+  return {stem, answer:Math.max(...nums)};
+}
+function c3_fr2(){
+  const nums = randDistinctInts(4,-30,30);
+  const stem = '在整数 '+nums.join('、')+' 中，最小的数是多少？';
+  return {stem, answer:Math.min(...nums)};
+}
+
+/* ============ 3.4 相反数与绝对值 ============ */
+function c4_t1(){
+  const n = randNonZero(-30,30);
+  const correct = -n;
+  const stem = n+' 的相反数是？';
+  const options = buildOptions(correct, [-correct, correct+1, correct-1, correct+2]);
+  return {stem, correct:String(correct), options};
+}
+function c4_t2(){
+  const n = randNonZero(-30,30);
+  const correct = Math.abs(n);
+  const stem = '| '+n+' | = ?';
+  const options = buildOptions(correct, [-correct, correct+1, correct-1, correct+2]);
+  return {stem, correct:String(correct), options};
+}
+function c4_fr1(){
+  const n = randNonZero(-30,30);
+  const stem = n+' 的相反数是多少？';
+  return {stem, answer:-n};
+}
+function c4_fr2(){
+  const n = randNonZero(-30,30);
+  const stem = '| '+n+' | 等于多少？';
+  return {stem, answer:Math.abs(n)};
+}
+
+/* ============ 3.5 整数的加法 ============ */
+function c5_t1(){
+  const a = randNonZero(-20,20), b = randNonZero(-20,20);
+  const correct = a+b;
+  const stem = '计算：('+fmtSigned(a)+') + ('+fmtSigned(b)+') = ?';
+  const combos = [...signCombos([Math.abs(a),Math.abs(b)])];
+  const options = buildOptions(correct, combos);
+  return {stem, correct:String(correct), options};
+}
+function c5_t2(){
+  const a = randNonZero(-15,15), b = randNonZero(-15,15), c = randNonZero(-15,15);
+  const correct = a+b+c;
+  const stem = '计算：('+fmtSigned(a)+') + ('+fmtSigned(b)+') + ('+fmtSigned(c)+') = ?';
+  const combos = [...signCombos([Math.abs(a),Math.abs(b),Math.abs(c)])];
+  const options = buildOptions(correct, combos);
+  return {stem, correct:String(correct), options};
+}
+function c5_fr1(){
+  const a = randNonZero(-20,20), b = randNonZero(-20,20);
+  const stem = '计算：('+fmtSigned(a)+') + ('+fmtSigned(b)+') = ?（直接输入数字）';
+  return {stem, answer:a+b};
+}
+function c5_fr2(){
+  const a = randNonZero(-15,15), b = randNonZero(-15,15), c = randNonZero(-15,15);
+  const stem = '计算：('+fmtSigned(a)+') + ('+fmtSigned(b)+') + ('+fmtSigned(c)+') = ?（直接输入数字）';
+  return {stem, answer:a+b+c};
+}
+
+/* ============ 3.6 整数的减法 ============ */
+function c6_t1(){
+  const a = randNonZero(-20,20), b = randNonZero(-20,20);
+  const correct = a-b;
+  const stem = '计算：'+fmtSigned(a)+' － ('+fmtSigned(b)+') = ?';
+  const combos = [...signCombos([Math.abs(a),Math.abs(b)])];
+  const options = buildOptions(correct, combos);
+  return {stem, correct:String(correct), options};
+}
+function c6_t2(){
+  const a = randNonZero(-15,15), b = randInt(-15,-1);
+  const correct = a-b;
+  const stem = '计算：'+fmtSigned(a)+' － ('+b+') = ?';
+  const combos = [...signCombos([Math.abs(a),Math.abs(b)])];
+  const options = buildOptions(correct, combos);
+  return {stem, correct:String(correct), options};
+}
+function c6_fr1(){
+  const a = randNonZero(-20,20), b = randNonZero(-20,20);
+  const stem = '计算：'+fmtSigned(a)+' － ('+fmtSigned(b)+') = ?（直接输入数字）';
+  return {stem, answer:a-b};
+}
+function c6_fr2(){
+  const a = randNonZero(-15,15), b = randInt(-15,-1);
+  const stem = '计算：'+fmtSigned(a)+' － ('+b+') = ?（直接输入数字）';
+  return {stem, answer:a-b};
+}
+
+/* ============ 3.7 整数的乘法 ============ */
+function c7_t1(){
+  const a = randNonZero(-12,12), b = randNonZero(-12,12);
+  const correct = a*b;
+  const stem = '计算：('+fmtSigned(a)+') × ('+fmtSigned(b)+') = ?';
+  // 干扰项：符号弄反、误当成加法/减法来算
+  const options = buildOptions(correct, [-correct, a+b, a-b, b-a]);
+  return {stem, correct:String(correct), options};
+}
+function c7_t2(){
+  const a = randNonZero(-9,9), b = randNonZero(-9,9), c = randNonZero(-9,9);
+  const correct = a*b*c;
+  const stem = '计算：('+fmtSigned(a)+') × ('+fmtSigned(b)+') × ('+fmtSigned(c)+') = ?';
+  // 干扰项：符号弄反、漏乘其中一个因数
+  const options = buildOptions(correct, [-correct, a*b, a*c, b*c]);
+  return {stem, correct:String(correct), options};
+}
+function c7_fr1(){
+  const a = randNonZero(-12,12), b = randNonZero(-12,12);
+  const stem = '计算：('+fmtSigned(a)+') × ('+fmtSigned(b)+') = ?（直接输入数字）';
+  return {stem, answer:a*b};
+}
+function c7_fr2(){
+  const a = randNonZero(-9,9), b = randNonZero(-9,9), c = randNonZero(-9,9);
+  const stem = '计算：('+fmtSigned(a)+') × ('+fmtSigned(b)+') × ('+fmtSigned(c)+') = ?（直接输入数字）';
+  return {stem, answer:a*b*c};
+}
+
+/* ============ 3.8 整数的除法 ============ */
+function c8_t1(){
+  const d = randNonZero(-12,12), q = randNonZero(-12,12);
+  const dividend = d*q;
+  const stem = '计算：('+fmtSigned(dividend)+') ÷ ('+fmtSigned(d)+') = ?';
+  // 干扰项：符号弄反、商多一/少一
+  const options = buildOptions(q, [-q, q+1, q-1, -q+1]);
+  return {stem, correct:String(q), options};
+}
+function c8_t2(){
+  const d = randNonZero(-9,9), q = randNonZero(-9,9);
+  const dividend = d*q;
+  const stem = '计算：('+fmtSigned(dividend)+') ÷ ('+fmtSigned(d)+') = ?';
+  const options = buildOptions(q, [-q, q+1, q-1, -q-1]);
+  return {stem, correct:String(q), options};
+}
+function c8_fr1(){
+  const d = randNonZero(-12,12), q = randNonZero(-12,12);
+  const dividend = d*q;
+  const stem = '计算：('+fmtSigned(dividend)+') ÷ ('+fmtSigned(d)+') = ?（直接输入数字）';
+  return {stem, answer:q};
+}
+function c8_fr2(){
+  const d = randNonZero(-9,9), q = randNonZero(-9,9);
+  const dividend = d*q;
+  const stem = '计算：('+fmtSigned(dividend)+') ÷ ('+fmtSigned(d)+') = ?（直接输入数字）';
+  return {stem, answer:q};
+}
+
+/* ============ 3.9 乘方 ============ */
+function c9_t1(){
+  const base = randNonZero(-9,9);
+  const correct = Math.pow(base,2);
+  const stem = '计算：'+powStem(base,2)+' = ?';
+  const options = makeOptionsAround(correct, Math.max(8, Math.round(correct*0.4)));
+  return {stem, correct:String(correct), options};
+}
+function c9_t2(){
+  const base = randNonZero(-6,6);
+  const correct = Math.pow(base,3);
+  const stem = '计算：'+powStem(base,3)+' = ?';
+  const options = makeOptionsAround(correct, Math.max(10, Math.round(Math.abs(correct)*0.4)));
+  return {stem, correct:String(correct), options};
+}
+function c9_t3(){
+  const base = randInt(2,9);
+  const exp = randChoice([2,3]);
+  const correct = Math.pow(base, exp);
+  const expWord = exp===2 ? '2次方（平方）' : '3次方（立方）';
+  const stem = base+' 的 '+expWord+' 是多少？';
+  const options = buildOptions(correct, [-correct, correct+base, correct-base]);
+  return {stem, correct:String(correct), options};
+}
+function c9_t4(){
+  const base = randInt(2,9);
+  const exp = randChoice([2,3]);
+  const correct = Math.pow(-base, exp);
+  const expWord = exp===2 ? '2次方（平方）' : '3次方（立方）';
+  const stem = '负'+base+' 的 '+expWord+' 是多少？';
+  // 干扰项：忘记负号的正数结果、符号弄反等
+  const options = buildOptions(correct, [Math.pow(base,exp), -Math.pow(base,exp), -correct]);
+  return {stem, correct:String(correct), options};
+}
+function c9_fr1(){
+  const base = randNonZero(-9,9);
+  const stem = '计算：'+powStem(base,2)+' = ?（直接输入数字）';
+  return {stem, answer:Math.pow(base,2)};
+}
+function c9_fr2(){
+  const base = randNonZero(-6,6);
+  const stem = '计算：'+powStem(base,3)+' = ?（直接输入数字）';
+  return {stem, answer:Math.pow(base,3)};
+}
+
+/* ============ 3.10 数列 ============ */
+function c10_t1(){
+  const start = randInt(-10,10), d = randNonZero(-6,6);
+  const terms = [start, start+d, start+2*d, start+3*d];
+  const correct = start+4*d;
+  const confirm = start+5*d;
+  const stem = '观察数列的规律，找出空格处应填的数：'+terms.join(', ')+', ___, '+confirm;
+  const options = makeOptionsAround(correct, Math.max(6, Math.abs(d)*3));
+  return {stem, correct:String(correct), options};
+}
+function c10_t2(){
+  const start = randInt(1,6);
+  const terms = [start, start*2, start*4, start*8];
+  const correct = start*16;
+  const stem = '观察数列的规律，找出空格处应填的数：'+terms.join(', ')+', ___';
+  const options = makeOptionsAround(correct, Math.max(10, Math.round(correct*0.3)));
+  return {stem, correct:String(correct), options};
+}
+function c10_fr1(){
+  const start = randInt(-10,10), d = randNonZero(-6,6);
+  const terms = [start, start+d, start+2*d, start+3*d];
+  const correct = start+4*d;
+  const confirm = start+5*d;
+  const stem = '观察数列的规律，空格处应填的数是多少？'+terms.join(', ')+', ___, '+confirm;
+  return {stem, answer:correct};
+}
+function c10_fr2(){
+  const start = randInt(1,6);
+  const terms = [start, start*2, start*4, start*8];
+  const correct = start*16;
+  const stem = '观察数列的规律，空格处应填的数是多少？'+terms.join(', ')+', ___';
+  return {stem, answer:correct};
+}
+
+/* ============ 章节数据表 ============ */
+const CHAPTERS = {
+  c1:{ mc:[c1_t1,c1_t2], fr:[c1_fr1,c1_fr2] },
+  c2:{ mc:[c2_t1,c2_t2], fr:[c2_fr1,c2_fr2] },
+  c3:{ mc:[c3_t1,c3_t2,c3_t3], fr:[c3_fr1,c3_fr2] },
+  c4:{ mc:[c4_t1,c4_t2], fr:[c4_fr1,c4_fr2] },
+  c5:{ mc:[c5_t1,c5_t2], fr:[c5_fr1,c5_fr2] },
+  c6:{ mc:[c6_t1,c6_t2], fr:[c6_fr1,c6_fr2] },
+  c7:{ mc:[c7_t1,c7_t2], fr:[c7_fr1,c7_fr2] },
+  c8:{ mc:[c8_t1,c8_t2], fr:[c8_fr1,c8_fr2] },
+  c9:{ mc:[c9_t1,c9_t2,c9_t3,c9_t4], fr:[c9_fr1,c9_fr2] },
+  c10:{ mc:[c10_t1,c10_t2], fr:[c10_fr1,c10_fr2] }
+};
+const STATE = {};
+
+/* ============ 测验引擎 ============ */
+function startMC(chId){
+  const ch = CHAPTERS[chId];
+  const qs = [];
+  for(let i=0;i<5;i++){
+    const tmpl = randChoice(ch.mc);
+    const q = tmpl();
+    q.options = shuffle(q.options);
+    q.chosen = null;
+    qs.push(q);
+  }
+  STATE[chId] = { mc: qs, fr: null };
+  renderMC(chId);
+  document.getElementById('result-'+chId).innerHTML = '';
+  const frBox = document.getElementById('fr-'+chId);
+  frBox.style.display = 'none';
+  frBox.innerHTML = '';
+}
+
+function renderMC(chId){
+  const container = document.getElementById('mc-'+chId);
+  const s = STATE[chId];
+  container.innerHTML = '';
+  s.mc.forEach((q, idx) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'question-card';
+    const stemP = document.createElement('p');
+    stemP.className = 'q-stem';
+    stemP.innerHTML = '<b>第'+(idx+1)+'题：</b>'+q.stem;
+    qDiv.appendChild(stemP);
+    const optsDiv = document.createElement('div');
+    optsDiv.className = 'options';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'opt-btn';
+      btn.textContent = opt;
+      btn.addEventListener('click', function(){ selectMC(chId, idx, opt, qDiv); });
+      optsDiv.appendChild(btn);
+    });
+    qDiv.appendChild(optsDiv);
+    const fb = document.createElement('div');
+    fb.className = 'feedback';
+    fb.id = 'fb-'+chId+'-'+idx;
+    qDiv.appendChild(fb);
+    container.appendChild(qDiv);
+  });
+}
+
+function selectMC(chId, idx, opt, qDiv){
+  const s = STATE[chId];
+  const q = s.mc[idx];
+  if(q.chosen !== null) return;
+  q.chosen = opt;
+  const isCorrect = (opt === q.correct);
+  const btns = qDiv.querySelectorAll('.opt-btn');
+  btns.forEach(b => {
+    b.disabled = true;
+    if(b.textContent === q.correct) b.classList.add('correct');
+    else if(b.textContent === opt && !isCorrect) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb-'+chId+'-'+idx);
+  fb.textContent = isCorrect ? '✅ 正确！' : ('❌ 错误，正确答案是 '+q.correct);
+  fb.className = 'feedback ' + (isCorrect ? 'fb-correct' : 'fb-wrong');
+  checkAllAnswered(chId);
+}
+
+function checkAllAnswered(chId){
+  const s = STATE[chId];
+  if(!s.mc.every(q => q.chosen !== null)) return;
+  const correctCount = s.mc.filter(q => q.chosen === q.correct).length;
+  const resultDiv = document.getElementById('result-'+chId);
+  resultDiv.innerHTML = '';
+  const scoreP = document.createElement('p');
+  scoreP.className = 'score-line';
+  scoreP.textContent = '选择题得分：'+correctCount+' / 5';
+  resultDiv.appendChild(scoreP);
+  if(correctCount >= 3){
+    const msg = document.createElement('p');
+    msg.className = 'unlock-msg';
+    msg.textContent = '🎉 恭喜解锁挑战题！请完成以下 2 道作答题（需自己输入答案）。';
+    resultDiv.appendChild(msg);
+    startFR(chId);
+  } else {
+    const msg = document.createElement('p');
+    msg.className = 'retry-msg';
+    msg.textContent = '再接再厉！答对 3 题或以上即可挑战进阶作答题。';
+    resultDiv.appendChild(msg);
+  }
+  const retryBtn = document.createElement('button');
+  retryBtn.className = 'retry-btn';
+  retryBtn.textContent = '🔄 重新出题挑战';
+  retryBtn.addEventListener('click', function(){ startMC(chId); });
+  resultDiv.appendChild(retryBtn);
+}
+
+function startFR(chId){
+  const ch = CHAPTERS[chId];
+  const idxList = shuffle(Array.from({length: ch.fr.length}, (_,i)=>i)).slice(0,2);
+  const qs = idxList.map(i => {
+    const q = ch.fr[i]();
+    q.checked = false;
+    q.isCorrect = false;
+    return q;
+  });
+  STATE[chId].fr = qs;
+  renderFR(chId);
+}
+
+function renderFR(chId){
+  const container = document.getElementById('fr-'+chId);
+  container.style.display = 'block';
+  container.innerHTML = '<h4>✏️ 挑战作答题（输入你的答案）</h4>';
+  const s = STATE[chId];
+  s.fr.forEach((q, idx) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'fr-question-card';
+    const stemP = document.createElement('p');
+    stemP.className = 'q-stem';
+    stemP.innerHTML = '<b>挑战题'+(idx+1)+'：</b>'+q.stem;
+    qDiv.appendChild(stemP);
+    const row = document.createElement('div');
+    row.className = 'fr-input-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fr-input';
+    input.placeholder = '输入答案';
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'button';
+    submitBtn.className = 'fr-submit-btn';
+    submitBtn.textContent = '提交';
+    const fb = document.createElement('span');
+    fb.className = 'fr-feedback';
+    submitBtn.addEventListener('click', function(){
+      if(q.checked) return;
+      const userVal = normalizeAnswer(input.value);
+      const correctVal = normalizeAnswer(String(q.answer));
+      const isCorrect = (userVal !== '' && userVal === correctVal);
+      q.checked = true;
+      q.isCorrect = isCorrect;
+      input.disabled = true;
+      submitBtn.disabled = true;
+      fb.textContent = isCorrect ? '✅ 正确！' : ('❌ 错误，正确答案是 '+q.answer);
+      fb.className = 'fr-feedback ' + (isCorrect ? 'fb-correct' : 'fb-wrong');
+      checkFRDone(chId);
+    });
+    input.addEventListener('keydown', function(e){ if(e.key === 'Enter') submitBtn.click(); });
+    row.appendChild(input);
+    row.appendChild(submitBtn);
+    row.appendChild(fb);
+    qDiv.appendChild(row);
+    container.appendChild(qDiv);
+  });
+}
+
+function checkFRDone(chId){
+  const s = STATE[chId];
+  if(!s.fr.every(q => q.checked)) return;
+  const correctCount = s.fr.filter(q => q.isCorrect).length;
+  const div = document.createElement('div');
+  div.className = 'fr-result';
+  const scoreP = document.createElement('p');
+  scoreP.className = 'score-line';
+  scoreP.textContent = '挑战题得分：'+correctCount+' / 2';
+  div.appendChild(scoreP);
+  const msg = document.createElement('p');
+  if(correctCount === 2){
+    msg.className = 'unlock-msg';
+    msg.textContent = '🏆 太棒了，全部正确！本节挑战完成！';
+  } else {
+    msg.className = 'retry-msg';
+    msg.textContent = '继续加油！可点击上方「重新出题挑战」再试一次。';
+  }
+  div.appendChild(msg);
+  document.getElementById('fr-'+chId).appendChild(div);
+}
+
+/* ============ 主题与字体控制 ============ */
+const themeBtn = document.getElementById('themeToggle');
+function setTheme(mode){
+  if(mode === 'dark'){
+    document.body.classList.add('dark');
+    themeBtn.textContent = '☀️ 浅色模式';
+  } else {
+    document.body.classList.remove('dark');
+    themeBtn.textContent = '🌙 深色模式';
+  }
+  try{ localStorage.setItem('ch3-theme', mode); }catch(e){}
+}
+themeBtn.addEventListener('click', function(){
+  const isDark = document.body.classList.contains('dark');
+  setTheme(isDark ? 'light' : 'dark');
+});
+let savedTheme = 'light';
+try{ savedTheme = localStorage.getItem('ch3-theme') || 'light'; }catch(e){}
+setTheme(savedTheme);
+
+let fontScale = 1;
+try{ fontScale = parseFloat(localStorage.getItem('ch3-font') || '1'); }catch(e){}
+if(isNaN(fontScale)) fontScale = 1;
+function applyFontScale(){
+  document.documentElement.style.setProperty('--font-scale', fontScale);
+  try{ localStorage.setItem('ch3-font', String(fontScale)); }catch(e){}
+}
+document.getElementById('fontInc').addEventListener('click', function(){
+  fontScale = Math.min(1.6, Math.round((fontScale+0.1)*10)/10);
+  applyFontScale();
+});
+document.getElementById('fontDec').addEventListener('click', function(){
+  fontScale = Math.max(0.75, Math.round((fontScale-0.1)*10)/10);
+  applyFontScale();
+});
+document.getElementById('fontReset').addEventListener('click', function(){
+  fontScale = 1;
+  applyFontScale();
+});
+applyFontScale();
+</script>
+</body>
+</html>
