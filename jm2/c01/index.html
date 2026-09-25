@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<!-- 制作：蔡逸众老师 (ecchua79) · 峇株吧辖华仁中学 (Chinese High School) -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="蔡逸众 ecchua79 峇株吧辖华仁中学 Chinese High School" />
+<title>初二数学 第一章：多项式 · 互动学习站</title>
+<style>
+  :root{
+    --bg:#f3f5fb;
+    --panel:#ffffff;
+    --panel2:#f8f9fe;
+    --text:#1f2430;
+    --muted:#6b7280;
+    --accent:#4f46e5;
+    --accent2:#7c3aed;
+    --border:#e2e5ee;
+    --correct:#16a34a;
+    --correct-bg:#dcfce7;
+    --wrong:#dc2626;
+    --wrong-bg:#fee2e2;
+    --shadow: 0 4px 16px rgba(30,41,59,0.08);
+  }
+  html[data-theme="dark"]{
+    --bg:#0f1420;
+    --panel:#1a2032;
+    --panel2:#212840;
+    --text:#e7e9f3;
+    --muted:#9aa1b5;
+    --accent:#8b8cf7;
+    --accent2:#c084fc;
+    --border:#2c3350;
+    --correct:#4ade80;
+    --correct-bg:#12351f;
+    --wrong:#f87171;
+    --wrong-bg:#3a1414;
+    --shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  *{box-sizing:border-box;}
+  html{font-size:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,sans-serif;
+    line-height:1.7; transition:background .25s,color .25s; padding-bottom:60px;
+  }
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px;
+    padding:12px 18px; background:var(--panel); border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:1.15rem; margin:0; color:var(--accent);}
+  .controls{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .controls button{
+    cursor:pointer; border:1px solid var(--border); background:var(--panel2); color:var(--text);
+    padding:7px 12px; border-radius:8px; font-size:0.9rem; font-weight:600;
+  }
+  .controls button:hover{border-color:var(--accent); color:var(--accent);}
+  #fontLabel{font-size:0.85rem; color:var(--muted); min-width:38px; text-align:center;}
+  .tabs{
+    display:flex; gap:6px; flex-wrap:wrap; padding:12px 18px 0 18px; max-width:960px; margin:0 auto;
+  }
+  .tab{
+    cursor:pointer; border:1px solid var(--border); background:var(--panel);
+    color:var(--muted); padding:10px 16px; border-radius:10px 10px 0 0; font-weight:700; font-size:0.95rem;
+  }
+  .tab.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+  main{max-width:960px; margin:0 auto; padding:0 18px;}
+  .panel{display:none; background:var(--panel); border:1px solid var(--border); border-radius:0 12px 12px 12px; padding:22px 24px; box-shadow:var(--shadow);}
+  .panel.active{display:block;}
+  h2.section-title{color:var(--accent); border-left:6px solid var(--accent); padding-left:12px; margin-top:4px;}
+  h3.sub-title{color:var(--accent2); margin-top:28px;}
+  .def-box{
+    background:var(--panel2); border:1px solid var(--border); border-left:5px solid var(--accent);
+    border-radius:8px; padding:14px 16px; margin:14px 0;
+  }
+  .def-box b{color:var(--accent);}
+  .example-box{
+    background:var(--panel2); border:1px dashed var(--border); border-radius:8px; padding:14px 16px; margin:14px 0;
+  }
+  .example-box .tag{display:inline-block; background:var(--accent2); color:#fff; font-size:0.78rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-bottom:8px;}
+  .formula-box{
+    background:linear-gradient(135deg, var(--accent), var(--accent2)); color:#fff;
+    border-radius:10px; padding:14px 18px; margin:12px 0; font-size:1.05rem; font-weight:700; text-align:center;
+  }
+  sup{font-size:0.7em;}
+  .quiz-block{margin-top:30px; border-top:2px dashed var(--border); padding-top:20px;}
+  .quiz-intro{color:var(--muted); font-size:0.92rem; margin-bottom:12px;}
+  .start-btn, .regen-btn, .check-btn{
+    cursor:pointer; border:none; background:var(--accent); color:#fff; font-weight:700;
+    padding:10px 20px; border-radius:8px; font-size:0.95rem; margin:6px 6px 6px 0;
+  }
+  .start-btn:hover, .regen-btn:hover, .check-btn:hover{background:var(--accent2);}
+  .mc-card{
+    background:var(--panel2); border:1px solid var(--border); border-radius:10px;
+    padding:14px 16px; margin-bottom:14px;
+  }
+  .mc-stem{font-weight:700; margin-bottom:10px;}
+  .mc-options{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  @media (max-width:600px){ .mc-options{grid-template-columns:1fr;} .controls{width:100%; justify-content:space-between;} }
+  .opt-btn{
+    text-align:left; cursor:pointer; border:1px solid var(--border); background:var(--panel);
+    color:var(--text); padding:9px 12px; border-radius:8px; font-size:0.95rem;
+  }
+  .opt-btn:hover:not(:disabled){border-color:var(--accent);}
+  .opt-btn:disabled{cursor:default;}
+  .opt-btn.correct{background:var(--correct-bg); border-color:var(--correct); color:var(--correct); font-weight:700;}
+  .opt-btn.wrong{background:var(--wrong-bg); border-color:var(--wrong); color:var(--wrong); font-weight:700;}
+  .mc-explain{margin-top:10px; font-size:0.9rem; color:var(--muted); background:var(--panel); border-radius:8px; padding:8px 12px;}
+  .result-box{padding:12px 16px; border-radius:8px; font-weight:700; margin:14px 0;}
+  .result-box.pass{background:var(--correct-bg); color:var(--correct);}
+  .result-box.fail{background:var(--wrong-bg); color:var(--wrong);}
+  .fill-card{background:var(--panel2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:14px;}
+  .fill-stem{font-weight:700; margin-bottom:10px;}
+  .fill-input{
+    padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:var(--panel); color:var(--text);
+    font-size:0.95rem; width:220px; max-width:100%; margin-right:8px;
+  }
+  .fill-feedback{margin-top:10px; font-size:0.9rem; padding:8px 12px; border-radius:8px;}
+  .fill-feedback.ok{background:var(--correct-bg); color:var(--correct); font-weight:700;}
+  .fill-feedback.bad{background:var(--wrong-bg); color:var(--wrong); font-weight:700;}
+  .score-badge{display:inline-block; font-size:1.4rem; font-weight:800; color:var(--accent);}
+  footer{text-align:center; color:var(--muted); font-size:0.82rem; margin-top:30px;}
+  .hint{font-size:0.82rem; color:var(--muted); margin-top:4px;}
+</style>
+</head>
+<body data-theme="light">
+<div class="topbar">
+  <h1>📘 初二数学 · 第一章：多项式</h1>
+  <div class="controls">
+    <button id="themeBtn" onclick="toggleTheme()">🌙 深色模式</button>
+    <button onclick="changeFont(-10)">A−</button>
+    <span id="fontLabel">100%</span>
+    <button onclick="changeFont(10)">A+</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="s11" onclick="showTab('s11')">1.1 单项式与多项式</div>
+  <div class="tab" data-tab="s12" onclick="showTab('s12')">1.2 四则运算</div>
+  <div class="tab" data-tab="s13" onclick="showTab('s13')">1.3 乘法公式</div>
+  <div class="tab" data-tab="final" onclick="showTab('final')">🏆 本章测验</div>
+</div>
+
+<main>
+
+<!-- ================= 1.1 ================= -->
+<section id="s11" class="panel active">
+  <h2 class="section-title">1.1 多项式</h2>
+  <p>我们在初一学过，将一个数连乘几次，可用指数式来表达。例如，5×5 可写成 5<sup>2</sup>，读作 5 的平方或 5 的二次方。相同的，a×a×a 也可写成 a<sup>3</sup>，读作 a 的立方或 a 的三次方。5<sup>2</sup>、a<sup>3</sup> 就叫做<b>幂</b>。</p>
+
+  <h3 class="sub-title">单项式与多项式</h3>
+  <div class="def-box">在一个代数式中，若其分母不含变数，则此代数式就叫做<b>整式</b>。这些式子都是数字与变数的乘积，像这样的代数式叫做<b>单项式</b>。单项式的数字与变数相乘时，通常把数字写在前面，这个数字就叫做单项式的<b>系数</b>。在一个单项式中，所有变数的指数的和叫做这个单项式的<b>次数</b>。若单项式中不含变数，则其次数为 0。注意：单独一个数或是一个变数也是单项式。</div>
+
+  <div class="example-box">
+    <span class="tag">例题 1</span><br>
+    下列的代数式中，哪些是单项式？ −2x<sup>2</sup>，a<sup>2</sup>b+c，4x+5，4xy/5，3x<sup>2</sup>−x+7<br>
+    解：−2x<sup>2</sup> 及 4xy/5 是单项式（其余都是几个单项式相加，属于多项式）。
+  </div>
+  <div class="example-box">
+    <span class="tag">例题 2</span><br>
+    写出下列各单项式的系数与次数：(a) 9x (b) −2ab<sup>2</sup>c (c) xy (d) 3x<sup>2</sup>y/10 (e) −7 (f) −2/5 pqr<sup>3</sup><br>
+    解：(a) 系数9，次数1；(b) 系数−2，次数4；(c) 系数1，次数2；(d) 系数3/10，次数3；(e) 系数−7，次数0；(f) 系数−2/5，次数5。
+  </div>
+
+  <h3 class="sub-title">多项式的定义</h3>
+  <div class="def-box">一个单项式或几个单项式的和叫做<b>多项式</b>。多项式中的每个单项式都叫做多项式的<b>项</b>，不含变数的项叫做<b>常数项</b>。两个单项式的和叫做二项式，三个叫做三项式，依此类推。在写只含一个变数的多项式时，按该变数的指数从大到小排列叫做<b>降幂排列</b>，从小到大排列叫做<b>升幂排列</b>。</div>
+
+  <h3 class="sub-title">同类项</h3>
+  <div class="def-box">两个或以上的单项式中，若所含的变数相同，且相同变数的指数也分别相同，则这些单项式就叫做<b>同类项</b>。例如 2ab<sup>2</sup> 与 3ab<sup>2</sup> 是同类项，而 5x<sup>2</sup>y 与 4xy<sup>2</sup> 就不是同类项（字母指数不同）。</div>
+
+  <div class="quiz-block">
+    <div class="quiz-intro">📝 完成 5 道选择题练习。答对 <b>3 题或以上</b>，将解锁 2 道需要自己计算作答的填空题！每次点击都会出现全新题目。</div>
+    <button class="start-btn" onclick="startQuiz('s11')">🎲 开始练习（5 道选择题）</button>
+    <div id="mcArea-s11"></div>
+    <div id="resultArea-s11"></div>
+    <div id="fillArea-s11"></div>
+  </div>
+</section>
+
+<!-- ================= 1.2 ================= -->
+<section id="s12" class="panel">
+  <h2 class="section-title">1.2 多项式的四则运算</h2>
+  <div class="def-box">多项式的相加与相减，就是将各式中<b>同类项的系数相加减</b>，字母部分不变。</div>
+  <div class="example-box">
+    <span class="tag">例题 1</span><br>
+    化简：(a) 3a+5a (b) 6ab−10ab<br>
+    解：(a) 8a；(b) −4ab。
+  </div>
+  <div class="example-box">
+    <span class="tag">例题 2</span><br>
+    化简：5x<sup>2</sup>+3xy+y<sup>2</sup>−(2x<sup>2</sup>−xy+8y<sup>2</sup>)<br>
+    解：3x<sup>2</sup>+4xy−7y<sup>2</sup>。
+  </div>
+
+  <h3 class="sub-title">多项式的乘法</h3>
+  <div class="formula-box">同底数幂的乘法： a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></div>
+  <div class="def-box">
+    <b>单项式乘以单项式</b>：把它们的系数、相同字母的幂分别相乘。<br>
+    <b>单项式乘以多项式</b>：用单项式去乘多项式的每一项，再把所得的积相加。 m(a+b+c) = ma+mb+mc<br>
+    <b>多项式乘以多项式</b>：先用一个多项式的每一项乘以另一个多项式的每一项，再把所得的积相加。 (a+b)(m+n) = am+an+bm+bn
+  </div>
+
+  <h3 class="sub-title">多项式的除法</h3>
+  <div class="formula-box">同底数幂的除法： a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup>（a≠0）</div>
+  <div class="def-box">单项式除以单项式：把系数、同底数幂分别相除。</div>
+
+  <div class="quiz-block">
+    <div class="quiz-intro">📝 完成 5 道选择题练习。答对 <b>3 题或以上</b>，将解锁 2 道需要自己计算作答的填空题！每次点击都会出现全新题目。</div>
+    <button class="start-btn" onclick="startQuiz('s12')">🎲 开始练习（5 道选择题）</button>
+    <div id="mcArea-s12"></div>
+    <div id="resultArea-s12"></div>
+    <div id="fillArea-s12"></div>
+  </div>
+</section>
+
+<!-- ================= 1.3 ================= -->
+<section id="s13" class="panel">
+  <h2 class="section-title">1.3 乘法公式</h2>
+  <div class="formula-box">平方差公式： (a+b)(a−b) = a<sup>2</sup> − b<sup>2</sup></div>
+  <div class="formula-box">完全平方公式： (a+b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></div>
+  <div class="formula-box">完全平方公式： (a−b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup></div>
+  <div class="formula-box">立方和公式： (a+b)(a<sup>2</sup>−ab+b<sup>2</sup>) = a<sup>3</sup> + b<sup>3</sup></div>
+  <div class="formula-box">立方差公式： (a−b)(a<sup>2</sup>+ab+b<sup>2</sup>) = a<sup>3</sup> − b<sup>3</sup></div>
+  <div class="def-box">⚠️ 常见错误提醒：很多同学在展开完全平方公式时会<b>漏掉中间的 2ab 项</b>（误以为 (a+b)<sup>2</sup>=a<sup>2</sup>+b<sup>2</sup>），或在平方差与完全平方之间<b>搞混正负号</b>。做题时请特别小心！</div>
+
+  <div class="quiz-block">
+    <div class="quiz-intro">📝 完成 5 道选择题练习。答对 <b>3 题或以上</b>，将解锁 2 道需要自己计算作答的填空题！每次点击都会出现全新题目。</div>
+    <button class="start-btn" onclick="startQuiz('s13')">🎲 开始练习（5 道选择题）</button>
+    <div id="mcArea-s13"></div>
+    <div id="resultArea-s13"></div>
+    <div id="fillArea-s13"></div>
+  </div>
+</section>
+
+<!-- ================= 本章测验 ================= -->
+<section id="final" class="panel">
+  <h2 class="section-title">🏆 第一章 综合测验</h2>
+  <p class="quiz-intro">从 1.1、1.2、1.3 三节中随机抽取 10 道选择题，题目与选项每次都会重新随机排列。测试你对整章内容的掌握程度！</p>
+  <button class="start-btn" onclick="startFinalTest()">🎲 开始随机测验（10 题）</button>
+  <div id="mcArea-final"></div>
+  <div id="resultArea-final"></div>
+</section>
+
+</main>
+
+<footer>
+  <p>初二数学 · 第一章：多项式 互动学习站　|　峇株吧辖华仁中学 (Chinese High School)　|　制作：蔡逸众老师 (ecchua79)</p>
+</footer>
+
+<script>
+/* ===================== 主题与字体控制 ===================== */
+function toggleTheme(){
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeBtn').textContent = isDark ? '🌙 深色模式' : '☀️ 浅色模式';
+}
+let fontPct = 100;
+function changeFont(delta){
+  fontPct = Math.max(80, Math.min(160, fontPct + delta));
+  document.documentElement.style.fontSize = fontPct + '%';
+  document.getElementById('fontLabel').textContent = fontPct + '%';
+}
+function showTab(tabId){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tabId));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===tabId));
+}
+
+/* ===================== 通用工具函数 ===================== */
+function ri(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function rnz(min,max){ let n; do{ n = ri(min,max); }while(n===0); return n; }
+function pick(arr){ return arr[ri(0,arr.length-1)]; }
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j = ri(0,i); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function sup(exp){ return exp===1 ? '' : ('<sup>'+exp+'</sup>'); }
+function vp(v, e){ return e===1 ? v : (v+'^'+e); }
+function coefStr(c){ if(c===1) return ''; if(c===-1) return '-'; return String(c); }
+function pretty(str){
+  let out = String(str).replace(/\^(\d+)/g, '<sup>$1</sup>');
+  out = out.replace(/\+/g, ' + ').replace(/-/g, ' − ').trim();
+  if(out.startsWith('+ ')) out = out.slice(2);
+  if(out.startsWith('− ')) out = '−' + out.slice(2);
+  return out;
+}
+function termCanon(sign, absCoeff, varStr){
+  const coefPart = varStr==='' ? String(absCoeff) : (absCoeff===1 ? '' : String(absCoeff));
+  return sign + coefPart + varStr;
+}
+
+/* ===================== 多项式代数等价判断（用于自填题） ===================== */
+function parsePoly(str){
+  if(typeof str !== 'string') return null;
+  str = str.toLowerCase();
+  str = str.replace(/²/g,'^2').replace(/³/g,'^3').replace(/⁴/g,'^4');
+  str = str.replace(/\*\*/g,'^');
+  str = str.replace(/[^a-z0-9\^\+\-\.]/g,'');
+  if(str==='') return null;
+  if(str[0] !== '+' && str[0] !== '-') str = '+' + str;
+  const terms = str.match(/[+-][^+-]*/g);
+  if(!terms) return null;
+  const parsed = [];
+  for(const t of terms){
+    if(t.length<=1) continue;
+    const sign = t[0]==='-' ? -1 : 1;
+    let rest = t.slice(1);
+    const numMatch = rest.match(/^(\d+\.?\d*)/);
+    let coeff = 1;
+    if(numMatch){ coeff = parseFloat(numMatch[1]); rest = rest.slice(numMatch[0].length); }
+    coeff *= sign;
+    const vars = {};
+    const varRegex = /([a-z])\^?(\d+)?/g;
+    let m;
+    while((m = varRegex.exec(rest)) !== null){
+      const v = m[1];
+      const exp = m[2] ? parseInt(m[2],10) : 1;
+      vars[v] = (vars[v]||0) + exp;
+    }
+    parsed.push({coeff, vars});
+  }
+  return parsed;
+}
+function evalPoly(terms, values){
+  let total = 0;
+  for(const term of terms){
+    let v = term.coeff;
+    for(const vn in term.vars){
+      const base = values[vn];
+      if(base === undefined) return NaN;
+      v *= Math.pow(base, term.vars[vn]);
+    }
+    total += v;
+  }
+  return total;
+}
+function polyEquivalent(userStr, correctStr, varNames){
+  const up = parsePoly(userStr);
+  const cp = parsePoly(correctStr);
+  if(!up || !cp || up.length===0) return false;
+  for(let trial=0; trial<5; trial++){
+    const values = {};
+    (varNames && varNames.length ? varNames : ['x']).forEach(v => values[v] = ri(2,9));
+    const uv = evalPoly(up, values);
+    const cv = evalPoly(cp, values);
+    if(isNaN(uv) || isNaN(cv) || Math.abs(uv-cv) > 1e-6) return false;
+  }
+  return true;
+}
+
+/* ===================== 1.1 题目生成器 ===================== */
+function gen11_coeffDegree(){
+  const vars = ['x','y','a','b','m','n'];
+  const v1 = pick(vars);
+  const v2 = pick(vars.filter(v=>v!==v1));
+  const c = rnz(-9,9);
+  const p = ri(1,4);
+  const hasSecond = Math.random() < 0.6;
+  const q = hasSecond ? ri(1,3) : 0;
+  const deg = p+q;
+  const termDisplay = pretty(coefStr(c) + vp(v1,p) + (hasSecond?vp(v2,q):''));
+  const correct = `系数为 ${c}，次数为 ${deg}`;
+  const distractors = [
+    `系数为 ${Math.abs(c)}，次数为 ${deg}`,
+    `系数为 ${c}，次数为 ${p}`,
+    hasSecond ? `系数为 ${c}，次数为 ${deg+1}` : `系数为 ${c}，次数为 ${p*2}`
+  ];
+  return {
+    stem: `单项式 <b>${termDisplay}</b> 的系数与次数分别是：`,
+    correct, distractors,
+    explain: `系数是数字部分（含正负号）：${c}；次数是所有字母指数之和：${hasSecond? p+'+'+q : p} = ${deg}。`
+  };
+}
+function gen11_likeTerm(){
+  const varsPool = ['a','b','x','y','m','n'];
+  const v1 = pick(varsPool);
+  const v2 = pick(varsPool.filter(v=>v!==v1));
+  const p = ri(2,4), q = ri(1,3);
+  const c1 = rnz(2,9), c2 = rnz(2,9);
+  const baseDisplay = pretty(vp(v1,p)+vp(v2,q));
+  const stemTermDisplay = pretty(String(c1)+vp(v1,p)+vp(v2,q));
+  const correct = pretty(String(c2)+vp(v1,p)+vp(v2,q));
+  const distractors = [
+    pretty(String(c2)+vp(v1,q)+vp(v2,p)),
+    pretty(String(c2)+vp(v1,p)+vp(v2,q+1)),
+    pretty(String(c2)+vp(v1,p))
+  ];
+  return {
+    stem: `与单项式 <b>${stemTermDisplay}</b> 是同类项的是：`,
+    correct, distractors,
+    explain: `同类项要求所含字母相同，且相同字母的指数也分别相同。只有 ${correct} 符合 ${baseDisplay} 的字母与指数。`
+  };
+}
+function gen11_constTermCount(){
+  const nTerms = pick([3,4]);
+  let degs = shuffle([0,1,2,3]).slice(0,nTerms);
+  if(!degs.includes(0)) degs[degs.length-1]=0;
+  const coeffs = degs.map(()=>rnz(-9,9));
+  function tStr(d,c){ if(d===0) return termCanon(c<0?'-':'+', Math.abs(c), ''); return termCanon(c<0?'-':'+', Math.abs(c), vp('x',d)); }
+  let canon = degs.map((d,i)=>tStr(d,coeffs[i])).join('');
+  if(canon.startsWith('+')) canon = canon.slice(1);
+  const display = pretty(canon);
+  const constIdx = degs.indexOf(0);
+  const constVal = coeffs[constIdx];
+  const otherCoeff = coeffs[(constIdx+1)%nTerms];
+  const correct = `常数项是 ${constVal}，共 ${nTerms} 项`;
+  const distractors = [
+    `常数项是 ${otherCoeff}，共 ${nTerms} 项`,
+    `常数项是 ${constVal}，共 ${nTerms-1} 项`,
+    `常数项是 0，共 ${nTerms} 项`
+  ];
+  return {
+    stem: `多项式 <b>${display}</b> 的常数项和项数分别是：`,
+    correct, distractors,
+    explain: `不含字母的项就是常数项，这里是 ${constVal}；多项式由 ${nTerms} 个单项式相加组成，所以是 ${nTerms} 项。`
+  };
+}
+function gen11_arrange(){
+  const degs = shuffle([0,1,2,3]);
+  const coeffs = degs.map(()=>rnz(-9,9));
+  const items = degs.map((d,i)=>({d, c:coeffs[i]}));
+  function tStr(it){ if(it.d===0) return termCanon(it.c<0?'-':'+', Math.abs(it.c), ''); return termCanon(it.c<0?'-':'+', Math.abs(it.c), vp('x',it.d)); }
+  function toCanon(arr){ let s = arr.map(tStr).join(''); if(s.startsWith('+')) s = s.slice(1); return s; }
+  const shuffledItems = shuffle(items);
+  const stemDisplay = pretty(toCanon(shuffledItems));
+  const descSorted = [...items].sort((a,b)=>b.d-a.d);
+  const ascSorted = [...items].sort((a,b)=>a.d-b.d);
+  const byCoeff = [...items].sort((a,b)=>b.c-a.c);
+  const moved = [...descSorted];
+  const ci = moved.findIndex(it=>it.d===0);
+  const [constItem] = moved.splice(ci,1);
+  moved.unshift(constItem);
+  return {
+    stem: `将多项式 <b>${stemDisplay}</b> 按 x 降幂排列，正确的是：`,
+    correct: pretty(toCanon(descSorted)),
+    distractors: [pretty(toCanon(ascSorted)), pretty(toCanon(byCoeff)), pretty(toCanon(moved))],
+    explain: `降幂排列是把各项按变量指数从大到小排列，这里指数依次为 ${descSorted.map(i=>i.d).join('、')}。`
+  };
+}
+function gen11_classify(){
+  const v = pick(['x','y','a','b']);
+  const c = rnz(2,9);
+  const monoDisplay = pretty(String(c)+vp(v,ri(2,4)));
+  function randPolyDisplay(nt){
+    let degsAll = shuffle([0,1,2,3]).slice(0,nt);
+    const coeffsAll = degsAll.map(()=>rnz(-9,9));
+    function tStr(d,c2){ if(d===0) return termCanon(c2<0?'-':'+', Math.abs(c2), ''); return termCanon(c2<0?'-':'+', Math.abs(c2), vp(v,d)); }
+    let s = degsAll.map((d,i)=>tStr(d,coeffsAll[i])).join('');
+    if(s.startsWith('+')) s = s.slice(1);
+    return pretty(s);
+  }
+  return {
+    stem: `下列代数式中，属于单项式的是：`,
+    correct: monoDisplay,
+    distractors: [randPolyDisplay(2), randPolyDisplay(2), randPolyDisplay(3)],
+    explain: `单项式是数字与字母的乘积（只有一项）。其余选项都是几个单项式的和，属于多项式而非单项式。`
+  };
+}
+function fill11_degree(){
+  const v1 = pick(['x','y','a','b']);
+  const v2 = pick(['m','n','p'].filter(x=>x!==v1));
+  const p = ri(1,4), q = ri(0,3);
+  const c = rnz(-9,9);
+  const display = pretty(coefStr(c)+vp(v1,p)+(q>0?vp(v2,q):''));
+  return {
+    stem: `单项式 <b>${display}</b> 的次数是：`,
+    answer: String(p+q), checkType:'number',
+    explain: `次数 = 各字母指数之和 = ${q>0? p+'+'+q : p} = ${p+q}。`
+  };
+}
+function fill11_constTerm(){
+  const nTerms = pick([3,4]);
+  let degs = shuffle([0,1,2,3]).slice(0,nTerms);
+  if(!degs.includes(0)) degs[degs.length-1]=0;
+  const coeffs = degs.map(()=>rnz(-9,9));
+  function tStr(d,c){ if(d===0) return termCanon(c<0?'-':'+', Math.abs(c), ''); return termCanon(c<0?'-':'+', Math.abs(c), vp('x',d)); }
+  let canon = degs.map((d,i)=>tStr(d,coeffs[i])).join('');
+  if(canon.startsWith('+')) canon = canon.slice(1);
+  const display = pretty(canon);
+  const answer = String(coeffs[degs.indexOf(0)]);
+  return {
+    stem: `多项式 <b>${display}</b> 的常数项是：`,
+    answer, checkType:'number',
+    explain: `不含字母的项就是常数项，为 ${answer}。`
+  };
+}
+
+/* ===================== 1.2 题目生成器 ===================== */
+function gen12_combine(){
+  const v = pick(['a','x','m']);
+  const k = ri(1,3);
+  const baseCanon = vp(v,k);
+  const baseDisplay = pretty(baseCanon);
+  const m = ri(2,15), n = ri(2,15);
+  const op = pick(['+','-']);
+  let result = op==='+' ? m+n : m-n;
+  let tries=0;
+  while(result===0 && tries<10){ result = op==='+'? m+ri(2,15) : m-ri(2,15); tries++; }
+  const stemDisplay = `${m}${baseDisplay} ${op==='+'?'+':'−'} ${n}${baseDisplay}`;
+  const correct = pretty(coefStr(result)+baseCanon);
+  const flipped = op==='+' ? (m-n) : (m+n);
+  const d1 = pretty(String(m*n)+baseCanon);
+  const d2 = pretty(coefStr(flipped)+baseCanon);
+  const d3base = vp(v,k+1);
+  const d3 = pretty(String(Math.abs(result))+d3base);
+  return {
+    stem: `化简：<b>${stemDisplay}</b> = ？`,
+    correct, distractors: [d1, d2, d3],
+    explain: `同类项相加减，只需将系数相加减，字母部分不变：${m} ${op} ${n} = ${result}，结果为 ${pretty(coefStr(result)+baseCanon)}。`
+  };
+}
+function gen12_powerMul(){
+  const c1 = ri(2,9), c2 = ri(2,9);
+  const m = ri(2,6), n = ri(2,6);
+  const correctCoef = c1*c2, correctExp = m+n;
+  const stemDisplay = `${c1}a<sup>${m}</sup> × ${c2}a<sup>${n}</sup>`;
+  const correct = pretty(String(correctCoef)+vp('a',correctExp));
+  const d1 = pretty(String(correctCoef)+vp('a',m*n));
+  const d2 = pretty(String(c1+c2)+vp('a',correctExp));
+  const d3 = pretty(String(correctCoef)+vp('a',m));
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors: [d1,d2,d3],
+    explain: `系数相乘：${c1}×${c2}=${correctCoef}；同底数幂相乘，指数相加：${m}+${n}=${correctExp}。`
+  };
+}
+function gen12_powerDiv(){
+  const n = ri(2,6);
+  const m = n + ri(1,5);
+  const c2 = ri(2,9);
+  const c1 = c2 * ri(2,6);
+  const correctCoef = c1/c2, correctExp = m-n;
+  const stemDisplay = `${c1}a<sup>${m}</sup> ÷ ${c2}a<sup>${n}</sup>`;
+  const correct = pretty(String(correctCoef)+vp('a',correctExp));
+  const d1 = pretty(String(correctCoef)+vp('a',m+n));
+  const d2 = pretty(String(c1-c2)+vp('a',correctExp));
+  const d3 = pretty(String(correctCoef)+vp('a',m));
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors: [d1,d2,d3],
+    explain: `系数相除：${c1}÷${c2}=${correctCoef}；同底数幂相除，指数相减：${m}−${n}=${correctExp}。`
+  };
+}
+function gen12_monoTimesPoly(){
+  const m = rnz(-9,9);
+  const a = rnz(-9,9), b = rnz(-9,9);
+  const stemDisplay = `${m<0?'−':''}${Math.abs(m)}x(${a<0?'−':''}${Math.abs(a)}x ${b<0?'−':'+'} ${Math.abs(b)})`;
+  const t1 = m*a, t2 = m*b;
+  const correct = pretty(coefStr(t1)+vp('x',2)+ (t2<0?'':'+') + t2 + 'x');
+  const d1 = pretty(coefStr(t1)+vp('x',2) + (b<0?'':'+') + b + 'x');
+  const d2 = pretty(coefStr(-t1)+vp('x',2) + (t2<0?'':'+') + t2 + 'x');
+  const mistakeSum = t1+t2;
+  const d3 = pretty(String(mistakeSum===0? mistakeSum+1 : mistakeSum) + 'x');
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors: [d1,d2,d3],
+    explain: `单项式乘多项式：用 ${m}x 分别乘括号内每一项：${m}x × ${a}x = ${t1}x²，${m}x × ${b} = ${t2}x。`
+  };
+}
+function gen12_polyTimesPoly(){
+  const a = rnz(-9,9), b = rnz(-9,9);
+  const stemDisplay = `(x ${a<0?'−':'+'} ${Math.abs(a)})(x ${b<0?'−':'+'} ${Math.abs(b)})`;
+  const linCoef = a+b, constCoef = a*b;
+  const correct = pretty(vp('x',2) + (linCoef<0?'':'+') + linCoef + 'x' + (constCoef<0?'':'+') + constCoef);
+  const d1 = pretty(vp('x',2) + (constCoef<0?'':'+') + constCoef);
+  const negLin = -linCoef;
+  const d2 = pretty(vp('x',2) + (negLin<0?'':'+') + negLin + 'x' + (constCoef<0?'':'+') + constCoef);
+  const wrongLin = a-b;
+  const d3 = pretty(vp('x',2) + (wrongLin<0?'':'+') + wrongLin + 'x' + (constCoef<0?'':'+') + constCoef);
+  return {
+    stem: `展开：<b>${stemDisplay}</b> = ？`,
+    correct, distractors: [d1,d2,d3],
+    explain: `多项式乘多项式要把每一项都相乘：x²+(${a}+${b})x+(${a})×(${b})，即 x²${linCoef<0?'':'+'}${linCoef}x${constCoef<0?'':'+'}${constCoef}。`
+  };
+}
+function fill12_combine(){
+  const v = pick(['x','m','p','y']);
+  const k = ri(1,3);
+  const baseCanon = vp(v,k);
+  const baseDisplay = pretty(baseCanon);
+  const m = ri(3,20), n = ri(3,20), p = ri(3,20);
+  const result = m+n-p;
+  const stemDisplay = `${m}${baseDisplay} + ${n}${baseDisplay} − ${p}${baseDisplay}`;
+  const answer = coefStr(result)+baseCanon;
+  return {
+    stem: `化简：<b>${stemDisplay}</b> = ____　（请输入化简后的结果，例如 5${v}${k>1?'^'+k:''}）`,
+    answer, checkType:'poly', vars:[v],
+    explain: `合并同类项，只需把系数相加减：${m}+${n}−${p} = ${result}，结果为 ${pretty(coefStr(result)+baseCanon)}。`
+  };
+}
+function fill12_expand(){
+  const a = rnz(-9,9), b = rnz(-9,9);
+  const stemDisplay = `(x ${a<0?'−':'+'} ${Math.abs(a)})(x ${b<0?'−':'+'} ${Math.abs(b)})`;
+  const linCoef = a+b, constCoef = a*b;
+  const answer = vp('x',2) + (linCoef<0?'':'+') + linCoef + 'x' + (constCoef<0?'':'+') + constCoef;
+  return {
+    stem: `展开并化简：<b>${stemDisplay}</b> = ____　（例如 x^2+3x-4）`,
+    answer, checkType:'poly', vars:['x'],
+    explain: `x² + (${a}+${b})x + ${a}×${b} = ${pretty(answer)}。`
+  };
+}
+
+/* ===================== 1.3 题目生成器 ===================== */
+function gen13_diffSquares(){
+  const p = ri(2,5), q = ri(2,9);
+  const stemDisplay = `(${p}x + ${q})(${p}x − ${q})`;
+  const p2=p*p, q2=q*q;
+  const correct = pretty(String(p2)+vp('x',2)+'-'+q2);
+  const d1 = pretty(String(p)+vp('x',2)+'-'+q2);
+  const d2 = pretty(String(p2)+vp('x',2)+'+'+q2);
+  const d3 = pretty(String(p2)+vp('x',2)+'-'+q);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors:[d1,d2,d3],
+    explain: `平方差公式：(a+b)(a−b)=a²−b²，此处 a=${p}x，b=${q}：(${p}x)²−${q}² = ${p2}x²−${q2}。`
+  };
+}
+function gen13_perfectSquareSum(){
+  const p = ri(2,5), q = ri(2,9);
+  const stemDisplay = `(${p}x + ${q})²`;
+  const p2=p*p, q2=q*q, mid=2*p*q;
+  const correct = pretty(String(p2)+vp('x',2)+'+'+mid+'x+'+q2);
+  const d1 = pretty(String(p2)+vp('x',2)+'+'+q2);
+  const d2 = pretty(String(p2)+vp('x',2)+'+'+(p*q)+'x+'+q2);
+  const d3 = pretty(String(p2)+vp('x',2)+'-'+mid+'x+'+q2);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors:[d1,d2,d3],
+    explain: `完全平方公式：(a+b)²=a²+2ab+b²，a=${p}x，b=${q}：a²=${p2}x²，2ab=${mid}x，b²=${q2}。`
+  };
+}
+function gen13_perfectSquareDiff(){
+  const p = ri(2,5), q = ri(2,9);
+  const stemDisplay = `(${p}x − ${q})²`;
+  const p2=p*p, q2=q*q, mid=2*p*q;
+  const correct = pretty(String(p2)+vp('x',2)+'-'+mid+'x+'+q2);
+  const d1 = pretty(String(p2)+vp('x',2)+'-'+q2);
+  const d2 = pretty(String(p2)+vp('x',2)+'-'+(p*q)+'x+'+q2);
+  const d3 = pretty(String(p2)+vp('x',2)+'+'+mid+'x+'+q2);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors:[d1,d2,d3],
+    explain: `完全平方公式：(a−b)²=a²−2ab+b²，a=${p}x，b=${q}：a²=${p2}x²，−2ab=−${mid}x，b²=${q2}。`
+  };
+}
+function gen13_sumCubes(){
+  const q = ri(2,6);
+  const stemDisplay = `(x + ${q})(x² − ${q}x + ${q}²)`;
+  const q3 = q*q*q;
+  const correct = pretty(vp('x',3)+'+'+q3);
+  const d1 = pretty(vp('x',3)+'-'+q3);
+  const d2 = pretty(vp('x',3)+'+'+(q*q)+'x+'+q3);
+  const d3 = pretty(vp('x',3)+'+'+(3*q)+vp('x',2)+'+'+(3*q*q)+'x+'+q3);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors:[d1,d2,d3],
+    explain: `立方和公式：(a+b)(a²−ab+b²)=a³+b³，a=x，b=${q}，结果是 x³+${q3}。`
+  };
+}
+function gen13_diffCubes(){
+  const q = ri(2,6);
+  const stemDisplay = `(x − ${q})(x² + ${q}x + ${q}²)`;
+  const q3 = q*q*q;
+  const correct = pretty(vp('x',3)+'-'+q3);
+  const d1 = pretty(vp('x',3)+'+'+q3);
+  const d2 = pretty(vp('x',3)+'-'+(q*q)+'x-'+q3);
+  const d3 = pretty(vp('x',3)+'-'+(3*q)+vp('x',2)+'+'+(3*q*q)+'x-'+q3);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ？`,
+    correct, distractors:[d1,d2,d3],
+    explain: `立方差公式：(a−b)(a²+ab+b²)=a³−b³，a=x，b=${q}，结果是 x³−${q3}。`
+  };
+}
+function fill13_diffSquares(){
+  const p = ri(2,5), q = ri(2,9);
+  const stemDisplay = `(${p}x + ${q})(${p}x − ${q})`;
+  const answer = String(p*p)+vp('x',2)+'-'+(q*q);
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ____　（例如 4x^2-9）`,
+    answer, checkType:'poly', vars:['x'],
+    explain: `= (${p}x)² − ${q}² = ${pretty(answer)}。`
+  };
+}
+function fill13_perfectSquare(){
+  const p = ri(2,5), q = ri(2,9);
+  const sign = pick(['+','-']);
+  const stemDisplay = `(${p}x ${sign} ${q})²`;
+  const mid = 2*p*q;
+  const answer = sign==='+' ? (String(p*p)+vp('x',2)+'+'+mid+'x+'+(q*q)) : (String(p*p)+vp('x',2)+'-'+mid+'x+'+(q*q));
+  return {
+    stem: `计算：<b>${stemDisplay}</b> = ____　（请输入展开化简后的完整表达式）`,
+    answer, checkType:'poly', vars:['x'],
+    explain: `按公式展开得 ${pretty(answer)}。`
+  };
+}
+
+/* ===================== 题目配置与去重保护 ===================== */
+const SECTION_CONFIG = {
+  s11: { mcPool: [gen11_coeffDegree, gen11_likeTerm, gen11_constTermCount, gen11_arrange, gen11_classify],
+         fillPool: [fill11_degree, fill11_constTerm] },
+  s12: { mcPool: [gen12_combine, gen12_powerMul, gen12_powerDiv, gen12_monoTimesPoly, gen12_polyTimesPoly],
+         fillPool: [fill12_combine, fill12_expand] },
+  s13: { mcPool: [gen13_diffSquares, gen13_perfectSquareSum, gen13_perfectSquareDiff, gen13_sumCubes, gen13_diffCubes],
+         fillPool: [fill13_diffSquares, fill13_perfectSquare] }
+};
+function makeUniqueQ(fn){
+  for(let i=0;i<6;i++){
+    const q = fn();
+    const plain = [q.correct, ...q.distractors].map(s=>String(s).replace(/<[^>]*>/g,''));
+    if(new Set(plain).size === plain.length) return q;
+  }
+  return fn();
+}
+
+/* ===================== 出题与作答引擎 ===================== */
+const state = {};
+
+function startQuiz(sectionId){
+  const pool = SECTION_CONFIG[sectionId].mcPool;
+  const qs = shuffle(pool).map(fn => makeUniqueQ(fn));
+  qs.forEach(q=>{
+    q._opts = shuffle([{html:q.correct, correct:true}, ...q.distractors.map(d=>({html:d, correct:false}))]);
+    q._answered = false;
+  });
+  state[sectionId] = { mcQuestions: qs, correctCount:0, doneCount:0 };
+  renderMCArea(sectionId);
+  document.getElementById('resultArea-'+sectionId).innerHTML = '';
+  document.getElementById('fillArea-'+sectionId).innerHTML = '';
+}
+
+function renderMCArea(sectionId){
+  const container = document.getElementById('mcArea-'+sectionId);
+  const qs = state[sectionId].mcQuestions;
+  container.innerHTML = qs.map((q,qi)=>{
+    const optsHtml = q._opts.map((o,oi)=>
+      `<button class="opt-btn" id="opt-${sectionId}-${qi}-${oi}" onclick="selectOption('${sectionId}',${qi},${oi})">${String.fromCharCode(65+oi)}. ${o.html}</button>`
+    ).join('');
+    return `<div class="mc-card" id="mc-${sectionId}-${qi}">
+      <div class="mc-stem">第 ${qi+1} 题（选择题）. ${q.stem}</div>
+      <div class="mc-options">${optsHtml}</div>
+      <div class="mc-explain" id="explain-${sectionId}-${qi}" style="display:none;"></div>
+    </div>`;
+  }).join('');
+}
+
+function selectOption(sectionId, qi, oi){
+  const st = state[sectionId];
+  const q = st.mcQuestions[qi];
+  if(q._answered) return;
+  q._answered = true;
+  const chosen = q._opts[oi];
+  st.doneCount++;
+  if(chosen.correct) st.correctCount++;
+  q._opts.forEach((o,idx)=>{
+    const btn = document.getElementById(`opt-${sectionId}-${qi}-${idx}`);
+    btn.disabled = true;
+    if(o.correct) btn.classList.add('correct');
+    else if(idx===oi) btn.classList.add('wrong');
+  });
+  const ex = document.getElementById(`explain-${sectionId}-${qi}`);
+  ex.style.display = 'block';
+  ex.innerHTML = (chosen.correct ? '✅ 回答正确！' : '❌ 回答错误。') + ' ' + q.explain;
+  if(st.doneCount === st.mcQuestions.length && sectionId !== 'final'){
+    finishSectionMC(sectionId);
+  }
+  if(sectionId === 'final' && st.doneCount === st.mcQuestions.length){
+    finishFinalTest();
+  }
+}
+
+function finishSectionMC(sectionId){
+  const st = state[sectionId];
+  const resultDiv = document.getElementById('resultArea-'+sectionId);
+  if(st.correctCount >= 3){
+    resultDiv.innerHTML = `<div class="result-box pass">本轮选择题得分：${st.correctCount}/5 ✅ 已达标！请完成下方 2 道自填题，需要自己计算作答。</div>`;
+    renderFillArea(sectionId);
+  } else {
+    resultDiv.innerHTML = `<div class="result-box fail">本轮选择题得分：${st.correctCount}/5 ❌ 未达到 3 题，请重新挑战。</div>`;
+    resultDiv.innerHTML += `<button class="regen-btn" onclick="startQuiz('${sectionId}')">🔄 重新出题</button>`;
+  }
+}
+
+function renderFillArea(sectionId){
+  const pool = SECTION_CONFIG[sectionId].fillPool;
+  const qs = shuffle(pool).slice(0,2).map(fn=>fn());
+  state[sectionId].fillQuestions = qs;
+  const container = document.getElementById('fillArea-'+sectionId);
+  container.innerHTML = qs.map((q,qi)=>`
+    <div class="fill-card">
+      <div class="fill-stem">自填题 ${qi+1}. ${q.stem}</div>
+      <input type="text" id="fillInput-${sectionId}-${qi}" class="fill-input" placeholder="请输入答案" />
+      <button class="check-btn" onclick="checkFill('${sectionId}',${qi})">检查答案</button>
+      <div class="fill-feedback" id="fillFeedback-${sectionId}-${qi}"></div>
+    </div>
+  `).join('') + `<button class="regen-btn" onclick="startQuiz('${sectionId}')">🔄 再挑战一轮选择题</button>`;
+}
+
+function checkFill(sectionId, qi){
+  const st = state[sectionId];
+  const q = st.fillQuestions[qi];
+  const inputEl = document.getElementById(`fillInput-${sectionId}-${qi}`);
+  const val = inputEl.value.trim();
+  let ok = false;
+  if(val !== ''){
+    if(q.checkType === 'number'){
+      const n = parseInt(val,10);
+      ok = !isNaN(n) && n === parseInt(q.answer,10);
+    } else if(q.checkType === 'poly'){
+      ok = polyEquivalent(val, q.answer, q.vars);
+    }
+  }
+  const fb = document.getElementById(`fillFeedback-${sectionId}-${qi}`);
+  if(ok){
+    fb.className = 'fill-feedback ok';
+    fb.innerHTML = `✅ 回答正确！${q.explain}`;
+  } else {
+    fb.className = 'fill-feedback bad';
+    fb.innerHTML = `❌ 还不对，请再算一次。参考解析：${q.explain}　（正确答案：${pretty(q.answer)}）`;
+  }
+}
+
+/* ===================== 本章综合测验 ===================== */
+function startFinalTest(){
+  const allPools = [...SECTION_CONFIG.s11.mcPool, ...SECTION_CONFIG.s12.mcPool, ...SECTION_CONFIG.s13.mcPool];
+  const chosenFns = shuffle(allPools).slice(0,10);
+  const qs = chosenFns.map(fn => makeUniqueQ(fn));
+  qs.forEach(q=>{
+    q._opts = shuffle([{html:q.correct, correct:true}, ...q.distractors.map(d=>({html:d, correct:false}))]);
+    q._answered = false;
+  });
+  state['final'] = { mcQuestions: qs, correctCount:0, doneCount:0 };
+  renderMCArea('final');
+  document.getElementById('resultArea-final').innerHTML = '';
+}
+function finishFinalTest(){
+  const st = state['final'];
+  const resultDiv = document.getElementById('resultArea-final');
+  let grade = '继续加油 💪';
+  if(st.correctCount >= 9) grade = '太棒了，满分水平！🌟';
+  else if(st.correctCount >= 7) grade = '优秀！👍';
+  else if(st.correctCount >= 5) grade = '良好，再巩固一下～';
+  resultDiv.innerHTML = `<div class="result-box pass">
+    最终得分：<span class="score-badge">${st.correctCount} / 10</span><br>${grade}
+  </div>
+  <button class="regen-btn" onclick="startFinalTest()">🔄 重新测验（全新题目）</button>`;
+}
+
+/* 控制台与页面水印 */
+console.log('%c初二数学 第一章：多项式 互动学习站 | 制作：蔡逸众老师 (ecchua79) · 峇株吧辖华仁中学 (Chinese High School)', 'color:#4f46e5;font-weight:bold;');
+</script>
+</body>
+</html>
