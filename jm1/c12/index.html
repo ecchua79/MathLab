@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<!--
+  第十二章：几何的基本概念 - 互动学习网页
+  制作：蔡逸众老师 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School, Batu Pahat
+  用途：初一数学 第12章 几何的基本概念 互动教学与随机测验
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="蔡逸众老师 / ecchua79 / 峇株吧辖华仁中学 Chinese High School">
+<meta name="generator" content="ScienceLab / MathLab - Chinese High School Batu Pahat - ecchua79">
+<title>第十二章 几何的基本概念 ｜ 互动学习</title>
+<style>
+  :root{
+    --bg:#eef2f8;
+    --bg-grid:#dfe8f3;
+    --panel:#ffffff;
+    --panel-2:#f6f9fd;
+    --text:#1b2733;
+    --muted:#5b6b7c;
+    --accent:#2554e0;
+    --accent-2:#0d9488;
+    --danger:#dc2626;
+    --success:#16a34a;
+    --border:#ccd7e6;
+    --shadow: 0 2px 10px rgba(30,41,59,0.08);
+    --radius: 14px;
+    --fs: 100%;
+  }
+  [data-theme="dark"]{
+    --bg:#0a0f1c;
+    --bg-grid:#121c30;
+    --panel:#101a2c;
+    --panel-2:#0c1424;
+    --text:#e7edf5;
+    --muted:#93a3b8;
+    --accent:#5b8cff;
+    --accent-2:#34d0c0;
+    --danger:#f87171;
+    --success:#4ade80;
+    --border:#233151;
+    --shadow: 0 2px 16px rgba(0,0,0,0.45);
+  }
+  *{box-sizing:border-box;}
+  html{font-size:var(--fs);}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/28px 28px,
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0/28px 28px,
+      var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.65;
+    transition:background .3s, color .3s;
+    padding-bottom:60px;
+  }
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:10px;
+    padding:14px 20px;
+    background:var(--panel);
+    border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow);
+  }
+  header.topbar h1{
+    font-size:1.15rem;
+    margin:0;
+    display:flex; align-items:center; gap:10px;
+  }
+  header.topbar h1 .badge{
+    display:inline-block; padding:2px 10px; border-radius:999px;
+    background:var(--accent); color:#fff; font-size:0.72rem; font-weight:600;
+    letter-spacing:0.5px;
+  }
+  .controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .controls button{
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    color:var(--text);
+    padding:8px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:0.9rem;
+    transition:all .15s;
+  }
+  .controls button:hover{ border-color:var(--accent); color:var(--accent); }
+  .fontctl{display:flex; align-items:center; gap:6px; border:1px solid var(--border); border-radius:10px; padding:2px 6px; background:var(--panel-2);}
+  .fontctl button{border:none; background:transparent; padding:6px 10px; font-weight:700;}
+  .fontctl span{font-size:0.8rem; color:var(--muted); min-width:42px; text-align:center;}
+
+  nav.tabs{
+    display:flex; gap:6px; overflow-x:auto;
+    padding:12px 16px; background:var(--panel-2);
+    border-bottom:1px solid var(--border);
+    position:sticky; top:64px; z-index:40;
+  }
+  nav.tabs button{
+    white-space:nowrap;
+    padding:9px 16px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--text);
+    cursor:pointer;
+    font-size:0.88rem;
+    transition:all .15s;
+  }
+  nav.tabs button.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+    font-weight:600;
+  }
+  nav.tabs button:not(.active):hover{ border-color:var(--accent); color:var(--accent); }
+
+  main{max-width:920px; margin:0 auto; padding:22px 16px 60px;}
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px 22px;
+    margin-bottom:22px;
+  }
+  .card h2{
+    margin-top:0;
+    font-size:1.3rem;
+    color:var(--accent);
+    border-bottom:2px solid var(--border);
+    padding-bottom:10px;
+  }
+  .card h3{ font-size:1.05rem; color:var(--accent-2); margin-top:22px; }
+  .card h4{ font-size:0.98rem; margin-bottom:6px; }
+  .content p{ margin:8px 0; }
+  .content ul{ padding-left:22px; }
+  .box{
+    background:var(--panel-2);
+    border:1px dashed var(--border);
+    border-radius:10px;
+    padding:12px 16px;
+    margin:12px 0;
+  }
+  .example{
+    background:var(--panel-2);
+    border-left:4px solid var(--accent-2);
+    border-radius:6px;
+    padding:10px 16px;
+    margin:12px 0;
+  }
+  .example b{ color:var(--accent-2); }
+  .think{
+    background:var(--panel-2);
+    border-left:4px solid #f59e0b;
+    border-radius:6px;
+    padding:10px 16px;
+    margin:12px 0;
+    font-style:italic;
+  }
+  table.datatab{ border-collapse:collapse; width:100%; margin:10px 0; font-size:0.92rem; }
+  table.datatab th, table.datatab td{
+    border:1px solid var(--border); padding:7px 10px; text-align:center;
+  }
+  table.datatab th{ background:var(--panel-2); }
+
+  svg.diagram{ display:block; margin:10px auto; max-width:100%; }
+  .diagram-wrap{ text-align:center; }
+  .diagram-wrap .cap{ font-size:0.82rem; color:var(--muted); margin-top:4px; }
+
+  /* Quiz styles */
+  .quiz-section{ margin-top:10px; }
+  .quiz-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .quiz-header .scorepill{
+    font-size:0.85rem; padding:5px 12px; border-radius:999px;
+    background:var(--panel-2); border:1px solid var(--border); color:var(--muted);
+  }
+  .btn{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:10px;
+    border:1px solid var(--accent);
+    background:var(--accent);
+    color:#fff;
+    cursor:pointer;
+    font-size:0.92rem;
+    font-weight:600;
+    transition:opacity .15s, transform .1s;
+  }
+  .btn:hover{ opacity:0.88; }
+  .btn:active{ transform:scale(0.97); }
+  .btn.secondary{ background:var(--panel-2); color:var(--accent); border-color:var(--accent); }
+  .btn.disabled{ opacity:0.4; pointer-events:none; }
+
+  .qcard{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:var(--panel-2);
+  }
+  .qcard .qstem{ font-weight:600; margin-bottom:10px; }
+  .qcard .qnum{ color:var(--accent); font-weight:700; margin-right:6px; }
+  .opts{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  @media (max-width:520px){ .opts{ grid-template-columns:1fr; } }
+  .opt-btn{
+    text-align:left;
+    padding:10px 12px;
+    border-radius:9px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:var(--text);
+    cursor:pointer;
+    font-size:0.9rem;
+    transition:all .12s;
+  }
+  .opt-btn:hover:not(:disabled){ border-color:var(--accent); }
+  .opt-btn.correct{ background:rgba(22,163,74,0.15); border-color:var(--success); color:var(--success); font-weight:700; }
+  .opt-btn.wrong{ background:rgba(220,38,38,0.15); border-color:var(--danger); color:var(--danger); font-weight:700; }
+  .opt-btn:disabled{ cursor:default; opacity:0.85; }
+  .explain{
+    margin-top:10px; font-size:0.86rem; color:var(--muted);
+    background:var(--panel); border-radius:8px; padding:8px 12px; display:none;
+    border:1px dashed var(--border);
+  }
+  .explain.show{ display:block; }
+
+  .fillin-box{ margin:14px 0; }
+  .fillin-box input[type=text]{
+    padding:9px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--panel); color:var(--text); font-size:0.95rem; width:140px;
+  }
+  .fillin-box .fresult{ margin-left:10px; font-weight:700; }
+  .fresult.ok{ color:var(--success); }
+  .fresult.no{ color:var(--danger); }
+
+  .summary{
+    text-align:center; padding:18px; border-radius:12px;
+    background:var(--panel-2); border:1px solid var(--border); margin:16px 0;
+  }
+  .summary .big{ font-size:1.7rem; font-weight:800; color:var(--accent); }
+
+  footer{
+    text-align:center; color:var(--muted); font-size:0.8rem; padding:26px 10px 10px;
+  }
+  footer .credit{ margin-top:4px; opacity:0.75; }
+  .locked-note{ color:var(--muted); font-size:0.85rem; }
+</style>
+</head>
+<body data-theme="light">
+
+<header class="topbar">
+  <h1>📐 第十二章 几何的基本概念 <span class="badge">互动学习</span></h1>
+  <div class="controls">
+    <button id="themeBtn" onclick="toggleTheme()">🌙 深色模式</button>
+    <div class="fontctl">
+      <button onclick="changeFont(-10)">A－</button>
+      <span id="fontLabel">100%</span>
+      <button onclick="changeFont(10)">A＋</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabsNav"></nav>
+
+<main id="app"></main>
+
+<footer>
+  第十二章 几何的基本概念 · 互动学习系统 · 每次练习题目与选项均随机生成
+  <div class="credit">峇株吧辖华仁中学出品 Chinese High School, Batu Pahat ｜ 蔡逸众老师 制作 (ecchua79)</div>
+</footer>
+
+<script>
+/* ===================== 基础工具函数 ===================== */
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+function roundN(x,d=2){ const p=Math.pow(10,d); return Math.round(x*p)/p; }
+
+function makeOptions(correct, candidates){
+  let vals = [];
+  for(const c of candidates){
+    if(c===undefined || c===null || Number.isNaN(c)) continue;
+    const cv = roundN(c);
+    if(Math.abs(cv-correct) < 0.001) continue;
+    if(!vals.some(v=>Math.abs(v-cv)<0.001)) vals.push(cv);
+  }
+  vals = shuffle(vals).slice(0,3);
+  let guard = 0;
+  while(vals.length < 3 && guard < 30){
+    guard++;
+    const delta = randInt(4,18) * (Math.random()<0.5?-1:1);
+    let perturb = roundN(correct + delta);
+    if(perturb < 0) perturb = Math.abs(perturb) + 1;
+    if(Math.abs(perturb-correct)>0.001 && !vals.some(v=>Math.abs(v-perturb)<0.001)){
+      vals.push(perturb);
+    }
+  }
+  return shuffle([correct, ...vals]);
+}
+
+/* ===================== SVG 小图 ===================== */
+function svgClock(H,M){
+  const Heff = H%12;
+  const minuteAngle = M*6;                 // 分针角度 (从12点方向顺时针)
+  const hourAngle = (Heff*30) + (M*0.5);    // 时针角度
+  function pt(cx,cy,r,deg){
+    const rad = (deg-90) * Math.PI/180;
+    return [cx + r*Math.cos(rad), cy + r*Math.sin(rad)];
+  }
+  const cx=90, cy=90;
+  const [hx,hy] = pt(cx,cy,42,hourAngle);
+  const [mx,my] = pt(cx,cy,62,minuteAngle);
+  let ticks = '';
+  for(let i=0;i<12;i++){
+    const [x1,y1] = pt(cx,cy,72,i*30);
+    const [x2,y2] = pt(cx,cy,64,i*30);
+    ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--muted)" stroke-width="2"/>`;
+  }
+  return `<svg class="diagram" width="180" height="180" viewBox="0 0 180 180">
+    <circle cx="${cx}" cy="${cy}" r="76" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    ${ticks}
+    <line x1="${cx}" y1="${cy}" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="var(--text)" stroke-width="5" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${mx.toFixed(1)}" y2="${my.toFixed(1)}" stroke="var(--accent-2)" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="4" fill="var(--danger)"/>
+  </svg>`;
+}
+
+/* 通用：用采样多段线绘制圆弧，避免SVG椭圆弧命令的大弧/方向标志混淆
+   角度约定：0°=正右方，角度增大＝顺时针方向（与屏幕y轴向下一致） */
+function arcPoly(cx,cy,r,startDeg,endDeg,steps){
+  steps = steps || 24;
+  let pts=[];
+  for(let i=0;i<=steps;i++){
+    const d = startDeg + (endDeg-startDeg)*i/steps;
+    const rad = d*Math.PI/180;
+    pts.push(`${(cx+r*Math.cos(rad)).toFixed(1)},${(cy+r*Math.sin(rad)).toFixed(1)}`);
+  }
+  return `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--accent-2)" stroke-width="2.5"/>`;
+}
+
+function svgParallel(){
+  const cy1=90, cy2=210;               // AB、CD两条水平线的高度
+  const cx1=122.5, cx2=212.5;          // 截线与两条直线的交点
+  const ang=53.13;                     // 截线与水平线的夹角（3-4-5三角形，角度干净）
+  const r=22, lr=38;                   // 弧线半径／数字标示半径
+  // 8个角的角度区间：按真实几何计算，确保同位角、内错角、同旁内角关系与课文一致，
+  // 且每个角有各自独立的扇形区间，绝不会与相邻角重叠
+  const sectors=[
+    {pos:1, cx:cx1, cy:cy1, s:180,      e:180+ang},
+    {pos:2, cx:cx1, cy:cy1, s:180+ang,  e:360},
+    {pos:3, cx:cx1, cy:cy1, s:0,        e:ang},
+    {pos:4, cx:cx1, cy:cy1, s:ang,      e:180},
+    {pos:5, cx:cx2, cy:cy2, s:180,      e:180+ang},
+    {pos:6, cx:cx2, cy:cy2, s:180+ang,  e:360},
+    {pos:7, cx:cx2, cy:cy2, s:0,        e:ang},
+    {pos:8, cx:cx2, cy:cy2, s:ang,      e:180},
+  ];
+  let arcsSvg='', labelsSvg='';
+  sectors.forEach(sec=>{
+    arcsSvg += arcPoly(sec.cx, sec.cy, r, sec.s, sec.e);
+    const mid = (sec.s+sec.e)/2;
+    const rad = mid*Math.PI/180;
+    const lx = sec.cx + lr*Math.cos(rad);
+    const ly = sec.cy + lr*Math.sin(rad);
+    labelsSvg += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" fill="var(--muted)" text-anchor="middle" dominant-baseline="middle">${sec.pos}</text>`;
+  });
+  return `<div class="diagram-wrap"><svg class="diagram" width="320" height="300" viewBox="0 0 320 300">
+    <line x1="30" y1="${cy1}" x2="285" y2="${cy1}" stroke="var(--accent)" stroke-width="3"/>
+    <line x1="30" y1="${cy2}" x2="285" y2="${cy2}" stroke="var(--accent)" stroke-width="3"/>
+    <line x1="70" y1="20" x2="250" y2="260" stroke="var(--danger)" stroke-width="3"/>
+    <text x="16" y="${cy1+5}" font-size="14" fill="var(--text)">A</text>
+    <text x="291" y="${cy1+5}" font-size="14" fill="var(--text)">B</text>
+    <text x="16" y="${cy2+5}" font-size="14" fill="var(--text)">C</text>
+    <text x="291" y="${cy2+5}" font-size="14" fill="var(--text)">D</text>
+    <text x="62" y="14" font-size="14" fill="var(--text)">E</text>
+    <text x="248" y="278" font-size="14" fill="var(--text)">F</text>
+    ${arcsSvg}
+    ${labelsSvg}
+  </svg><div class="cap">AB∥CD，EF为截线；内角为∠3∠4∠5∠6，外角为∠1∠2∠7∠8（每个角均按实际几何角度独立标示，不重叠）</div></div>`;
+}
+
+/* ---- 12.1 三角形辅助图：点、线、顶点、边 ---- */
+function svgTrianglePLF(){
+  return `<div class="diagram-wrap"><svg class="diagram" width="260" height="210" viewBox="0 0 260 210">
+    <polygon points="130,20 40,180 220,180" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <circle cx="130" cy="20" r="4" fill="var(--danger)"/>
+    <circle cx="40" cy="180" r="4" fill="var(--danger)"/>
+    <circle cx="220" cy="180" r="4" fill="var(--danger)"/>
+    <text x="130" y="12" font-size="14" text-anchor="middle" fill="var(--text)">A（顶点）</text>
+    <text x="8" y="198" font-size="14" fill="var(--text)">B（顶点）</text>
+    <text x="188" y="198" font-size="14" fill="var(--text)">C（顶点）</text>
+    <text x="52" y="100" font-size="13" fill="var(--accent-2)" transform="rotate(-63 52 100)">边AB</text>
+    <text x="178" y="100" font-size="13" fill="var(--accent-2)" transform="rotate(63 178 100)">边AC</text>
+    <text x="115" y="196" font-size="13" fill="var(--accent-2)">边BC</text>
+  </svg><div class="cap">三角形ABC：A、B、C是点（也是顶点）；AB、BC、CA是边（也是线段）</div></div>`;
+}
+function svgLineTypes(){
+  return `<div class="diagram-wrap"><svg class="diagram" width="300" height="130" viewBox="0 0 300 130">
+    <defs>
+      <marker id="arwR" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--accent)"/></marker>
+      <marker id="arwL" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 Z" fill="var(--accent)"/></marker>
+    </defs>
+    <line x1="24" y1="25" x2="276" y2="25" stroke="var(--accent)" stroke-width="3" marker-start="url(#arwL)" marker-end="url(#arwR)"/>
+    <text x="150" y="15" font-size="12" text-anchor="middle" fill="var(--muted)">直线：两端可无限延伸</text>
+    <circle cx="24" cy="65" r="3" fill="var(--danger)"/>
+    <line x1="24" y1="65" x2="276" y2="65" stroke="var(--accent)" stroke-width="3" marker-end="url(#arwR)"/>
+    <text x="150" y="55" font-size="12" text-anchor="middle" fill="var(--muted)">射线：一端为端点，另一端无限延伸</text>
+    <circle cx="24" cy="105" r="3" fill="var(--danger)"/>
+    <circle cx="276" cy="105" r="3" fill="var(--danger)"/>
+    <line x1="24" y1="105" x2="276" y2="105" stroke="var(--accent)" stroke-width="3"/>
+    <text x="150" y="95" font-size="12" text-anchor="middle" fill="var(--muted)">线段：两端都是端点</text>
+  </svg></div>`;
+}
+
+/* ---- 12.2 图形对称性图库（正多边形 / 常见图形都配SVG小图）---- */
+function polyPoints(n,cx,cy,r,rotDeg){
+  let pts=[];
+  for(let i=0;i<n;i++){
+    const a=(rotDeg + i*(360/n))*Math.PI/180;
+    pts.push(`${(cx+r*Math.cos(a)).toFixed(1)},${(cy+r*Math.sin(a)).toFixed(1)}`);
+  }
+  return pts.join(' ');
+}
+function shapeIconSVG(kind){
+  const cx=45, cy=45, r=32;
+  let inner;
+  switch(kind){
+    case 'square': inner = `<polygon points="${polyPoints(4,cx,cy,r,-45)}" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'rect': inner = `<rect x="8" y="24" width="74" height="42" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'rhombus': inner = `<polygon points="45,8 78,45 45,82 12,45" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'parallelogram': inner = `<polygon points="20,18 80,18 65,72 5,72" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'triEq': inner = `<polygon points="${polyPoints(3,cx,cy,r,-90)}" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'triIso': inner = `<polygon points="45,8 78,78 12,78" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'pentagon': inner = `<polygon points="${polyPoints(5,cx,cy,r,-90)}" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'hexagon': inner = `<polygon points="${polyPoints(6,cx,cy,r,0)}" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    case 'circle': inner = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--accent)" stroke-width="3"/>`; break;
+    default: inner = `<text x="${cx}" y="${cy+17}" font-size="50" text-anchor="middle" font-weight="700" fill="var(--accent)">${kind}</text>`;
+  }
+  return `<svg width="90" height="90" viewBox="0 0 90 90">${inner}</svg>`;
+}
+const SYM_ICON = {
+  '正方形':'square', '长方形（非正方形）':'rect', '菱形（非正方形）':'rhombus',
+  '一般平行四边形（非菱形/矩形）':'parallelogram', '等边三角形':'triEq', '等腰三角形（非等边）':'triIso',
+  '正五边形':'pentagon', '正六边形':'hexagon', '圆':'circle',
+  '英文字母 N':'N', '英文字母 H':'H', '英文字母 S':'S', '英文字母 T':'T', '英文字母 A':'A'
+};
+function symGalleryHTML(){
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;margin:14px 0">
+  ${SYM_DATA.map(d=>{
+    const icon = shapeIconSVG(SYM_ICON[d.name] || '?');
+    const axesTxt = d.axes===Infinity ? '无数条对称轴' : (d.axes>0 ? d.axes+'条对称轴' : '没有对称轴');
+    const pointTxt = d.point ? '是点对称图形' : '不是点对称图形';
+    return `<div style="border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center;background:var(--panel-2)">
+      <div>${icon}</div>
+      <div style="font-size:0.82rem;margin-top:4px;font-weight:600">${d.name}</div>
+      <div style="font-size:0.74rem;color:var(--muted)">${axesTxt}<br>${pointTxt}</div>
+    </div>`;
+  }).join('')}
+  </div>`;
+}
+
+/* ---- 12.3 量角器辅助图 ---- */
+function svgProtractor(){
+  const cx=150, cy=140, R=105;
+  let ticks='';
+  for(let d=0; d<=180; d+=10){
+    const rad=(180-d)*Math.PI/180;
+    const len=(d%30===0)?14:8;
+    const x1=cx+R*Math.cos(rad), y1=cy-R*Math.sin(rad);
+    const x2=cx+(R-len)*Math.cos(rad), y2=cy-(R-len)*Math.sin(rad);
+    ticks+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--muted)" stroke-width="${d%30===0?2:1}"/>`;
+    if(d%30===0){
+      const lx=cx+(R-28)*Math.cos(rad), ly=cy-(R-28)*Math.sin(rad);
+      ticks+=`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="11" fill="var(--muted)" text-anchor="middle">${d}°</text>`;
+    }
+  }
+  function rayEnd(deg,len){ const rad=(180-deg)*Math.PI/180; return [cx+len*Math.cos(rad), cy-len*Math.sin(rad)]; }
+  const [ax,ay]=rayEnd(15,120);
+  const [bx,by]=rayEnd(100,120);
+  return `<div class="diagram-wrap"><svg class="diagram" width="300" height="175" viewBox="0 0 300 175">
+    <path d="M ${cx-R} ${cy} A ${R} ${R} 0 0 1 ${cx+R} ${cy}" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--accent)" stroke-width="2"/>
+    ${ticks}
+    <line x1="${cx}" y1="${cy}" x2="${ax.toFixed(1)}" y2="${ay.toFixed(1)}" stroke="var(--danger)" stroke-width="3"/>
+    <line x1="${cx}" y1="${cy}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="var(--danger)" stroke-width="3"/>
+    <circle cx="${cx}" cy="${cy}" r="3" fill="var(--text)"/>
+  </svg><div class="cap">零刻度线未必对齐角的一边——角的度数＝两读数之差（示意：读数约15°与100°，角＝85°）</div></div>`;
+}
+
+/* ---- 12.4 角的分类图库 ---- */
+function svgAngleIcon(deg,label){
+  const cx=55, cy=55, R=42, arcR=20;
+  const rad=-deg*Math.PI/180;
+  const rx=(cx+R*Math.cos(rad)).toFixed(1), ry=(cy+R*Math.sin(rad)).toFixed(1);
+  let inner = `<line x1="${cx}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--text)" stroke-width="2.5"/>`;
+  if(deg<360){
+    inner += `<line x1="${cx}" y1="${cy}" x2="${rx}" y2="${ry}" stroke="var(--text)" stroke-width="2.5"/>`;
+    inner += arcPoly(cx,cy,arcR,0,-deg,30);
+  } else {
+    inner += `<circle cx="${cx}" cy="${cy}" r="${arcR}" fill="none" stroke="var(--accent-2)" stroke-width="2.5"/>`;
+  }
+  return `<div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110">${inner}</svg><div style="font-size:0.78rem;color:var(--muted)">${label}（${deg}°）</div></div>`;
+}
+function svgAngleTypeGallery(){
+  const items=[[45,'锐角'],[90,'直角'],[130,'钝角'],[180,'平角'],[240,'优角'],[360,'周角']];
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:14px 0">
+    ${items.map(([d,l])=>`<div style="border:1px solid var(--border);border-radius:10px;padding:6px;background:var(--panel-2)">${svgAngleIcon(d,l)}</div>`).join('')}
+  </div>`;
+}
+
+/* ---- 12.5 相交线/平行线/垂线 图库 ---- */
+function svgLinesRel(kind){
+  if(kind==='intersect') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <line x1="10" y1="20" x2="100" y2="70" stroke="var(--accent)" stroke-width="2.5"/>
+      <line x1="10" y1="70" x2="100" y2="20" stroke="var(--danger)" stroke-width="2.5"/>
+      <circle cx="55" cy="45" r="3" fill="var(--text)"/>
+      <text x="60" y="40" font-size="12" fill="var(--muted)">O</text>
+    </svg>`;
+  if(kind==='parallel') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <line x1="10" y1="30" x2="100" y2="30" stroke="var(--accent)" stroke-width="2.5"/>
+      <line x1="10" y1="60" x2="100" y2="60" stroke="var(--accent)" stroke-width="2.5"/>
+      <polyline points="50,25 58,30 50,35" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+      <polyline points="50,55 58,60 50,65" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+    </svg>`;
+  if(kind==='perp') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <line x1="10" y1="45" x2="100" y2="45" stroke="var(--accent)" stroke-width="2.5"/>
+      <line x1="55" y1="5" x2="55" y2="85" stroke="var(--danger)" stroke-width="2.5"/>
+      <rect x="55" y="35" width="10" height="10" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+    </svg>`;
+  if(kind==='bisector') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <line x1="10" y1="45" x2="100" y2="45" stroke="var(--accent)" stroke-width="2.5"/>
+      <line x1="55" y1="5" x2="55" y2="85" stroke="var(--danger)" stroke-width="2.5"/>
+      <rect x="55" y="35" width="10" height="10" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="30" y1="41" x2="30" y2="49" stroke="var(--text)" stroke-width="2"/>
+      <line x1="80" y1="41" x2="80" y2="49" stroke="var(--text)" stroke-width="2"/>
+      <circle cx="10" cy="45" r="2.5" fill="var(--text)"/><circle cx="100" cy="45" r="2.5" fill="var(--text)"/>
+      <text x="6" y="60" font-size="11" fill="var(--muted)">A</text><text x="96" y="60" font-size="11" fill="var(--muted)">B</text>
+    </svg>`;
+  return '';
+}
+function svgLinesGallery(){
+  const items=[['intersect','相交线（O为交点）'],['parallel','平行线 AB∥CD'],['perp','垂线 AB⊥CD'],['bisector','垂直平分线（过AB中点且垂直）']];
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:14px 0">
+    ${items.map(([k,label])=>`<div style="text-align:center;border:1px solid var(--border);border-radius:10px;padding:8px;background:var(--panel-2)">${svgLinesRel(k)}<div style="font-size:0.78rem;color:var(--muted);margin-top:4px">${label}</div></div>`).join('')}
+  </div>`;
+}
+
+/* ---- 12.6 余角/补角/对顶角/共轭角 图库 ---- */
+function svgAngleRel(kind){
+  if(kind==='comp') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <line x1="15" y1="80" x2="100" y2="80" stroke="var(--text)" stroke-width="2.5"/>
+      <line x1="15" y1="80" x2="15" y2="10" stroke="var(--text)" stroke-width="2.5"/>
+      <line x1="15" y1="80" x2="65" y2="20" stroke="var(--danger)" stroke-width="2.5"/>
+      <rect x="15" y="70" width="10" height="10" fill="none" stroke="var(--muted)" stroke-width="1.2"/>
+      <text x="45" y="65" font-size="12" fill="var(--accent-2)">∠1</text>
+      <text x="25" y="30" font-size="12" fill="var(--accent-2)">∠2</text>
+    </svg>`;
+  if(kind==='supp') return `<svg width="130" height="80" viewBox="0 0 130 80">
+      <line x1="5" y1="60" x2="125" y2="60" stroke="var(--text)" stroke-width="2.5"/>
+      <line x1="65" y1="60" x2="90" y2="10" stroke="var(--danger)" stroke-width="2.5"/>
+      <text x="35" y="50" font-size="12" fill="var(--accent-2)">∠1</text>
+      <text x="80" y="35" font-size="12" fill="var(--accent-2)">∠2</text>
+      <circle cx="65" cy="60" r="2.5" fill="var(--text)"/>
+    </svg>`;
+  if(kind==='vertical') return `<svg width="110" height="100" viewBox="0 0 110 100">
+      <line x1="10" y1="25" x2="100" y2="75" stroke="var(--text)" stroke-width="2.5"/>
+      <line x1="10" y1="75" x2="100" y2="25" stroke="var(--text)" stroke-width="2.5"/>
+      <circle cx="55" cy="50" r="2.5" fill="var(--text)"/>
+      <text x="55" y="12" font-size="13" fill="var(--accent-2)" text-anchor="middle">∠1</text>
+      <text x="20" y="53" font-size="13" fill="var(--danger)" text-anchor="end">∠2</text>
+      <text x="55" y="94" font-size="13" fill="var(--accent-2)" text-anchor="middle">∠3</text>
+      <text x="90" y="53" font-size="13" fill="var(--danger)" text-anchor="start">∠4</text>
+    </svg>`;
+  if(kind==='conjugate') return `<svg width="110" height="90" viewBox="0 0 110 90">
+      <circle cx="55" cy="45" r="35" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <line x1="55" y1="45" x2="90" y2="45" stroke="var(--text)" stroke-width="2.5"/>
+      <line x1="55" y1="45" x2="30" y2="15" stroke="var(--danger)" stroke-width="2.5"/>
+      <text x="65" y="30" font-size="12" fill="var(--accent-2)">∠1</text>
+      <text x="45" y="65" font-size="12" fill="var(--danger)">∠2（优角）</text>
+    </svg>`;
+  return '';
+}
+function svgAngleRelGallery(){
+  const items=[['comp','余角：∠1+∠2=90°'],['supp','邻补角：∠1+∠2=180°'],['vertical','对顶角：∠1=∠3，∠2=∠4'],['conjugate','共轭角：∠1+∠2=360°']];
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:14px 0">
+    ${items.map(([k,label])=>`<div style="text-align:center;border:1px solid var(--border);border-radius:10px;padding:8px;background:var(--panel-2)">${svgAngleRel(k)}<div style="font-size:0.78rem;color:var(--muted);margin-top:4px">${label}</div></div>`).join('')}
+  </div>`;
+}
+
+/* ===================== 第12.1节：数据与出题函数 ===================== */
+const SOLIDS = [
+  {name:'立方体', f:6, e:12, v:8},
+  {name:'长方体', f:6, e:12, v:8},
+  {name:'四角锥体', f:5, e:8,  v:5},
+  {name:'四面体（三棱锥体）', f:4, e:6,  v:4},
+  {name:'三棱柱体', f:5, e:9,  v:6},
+  {name:'五棱柱体', f:7, e:15, v:10},
+  {name:'正八面体', f:8, e:12, v:6},
+  {name:'正十二面体', f:12, e:30, v:20},
+];
+
+function s1_solidCount(){
+  const s = SOLIDS[randInt(0,SOLIDS.length-1)];
+  const propKey = ['f','e','v'][randInt(0,2)];
+  const propName = {f:'面',e:'边',v:'顶点'}[propKey];
+  const unit = propKey==='e' ? '条' : '个';
+  const correct = s[propKey];
+  const others = SOLIDS.filter(x=>x.name!==s.name);
+  const other = others[randInt(0,others.length-1)];
+  const candidates = [s.f, s.e, s.v, other[propKey], correct+1, correct-1].filter(x=>x>0);
+  const opts = makeOptions(correct, candidates);
+  return {
+    stem: `${s.name}有多少个${propName}？`,
+    options: opts.map(o=>`${o}${unit}`),
+    correctText: `${correct}${unit}`,
+    correctNum: correct,
+    explain: `${s.name}共有 ${s.f} 个面、${s.e} 条边、${s.v} 个顶点，别记混了。`,
+    numeric: true
+  };
+}
+
+function s1_polygonVertex(){
+  const names=[['六边形',6],['七边形',7],['八边形',8],['九边形',9],['十边形',10],['五边形',5]];
+  const pick = names[randInt(0,names.length-1)];
+  const askEdge = Math.random()<0.5;
+  const correct = pick[1];
+  const unit = askEdge?'条':'个';
+  const candidates=[correct-1,correct+1,correct*2,Math.max(1,correct-2)];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`一个${pick[0]}有多少${askEdge?'条边':'个顶点'}？`,
+    options: opts.map(o=>`${o}${unit}`),
+    correctText:`${correct}${unit}`,
+    correctNum: correct,
+    explain:`多边形的边数与顶点数是相等的：${pick[0]}有 ${correct} 条边，也有 ${correct} 个顶点。`,
+    numeric:true
+  };
+}
+
+function s1_notSolid(){
+  const planeShapes=['正方形','三角形','长方形','圆形','梯形','平行四边形'];
+  const solidNames=SOLIDS.map(s=>s.name).concat(['球体','圆柱体','圆锥体']);
+  const plane = planeShapes[randInt(0,planeShapes.length-1)];
+  const chosenSolids = shuffle(solidNames).slice(0,3);
+  const opts = shuffle([plane, ...chosenSolids]);
+  return {
+    stem:`下列图形中，哪一个不是立体图形？`,
+    options: opts,
+    correctText: plane,
+    correctNum: null,
+    explain:`${plane}是平面图形（没有厚度/体积），其余选项都是立体图形（占有空间，由面围成）。`,
+    numeric:false
+  };
+}
+
+function s1_circleVertex(){
+  return {
+    stem:`圆是一种平面图形，请问圆有多少个顶点？`,
+    options: shuffle(['0个（没有顶点）','1个','无数个','2个']),
+    correctText:'0个（没有顶点）',
+    correctNum: 0,
+    explain:`顶点是两条边（直线段）相交所形成的点。圆的边界是一条连续的曲线，不是由直线段围成的，所以圆没有顶点——不要误以为"圆滑无角"就代表"无数个顶点"。`,
+    numeric:true
+  };
+}
+const S1_MC = [s1_solidCount, s1_polygonVertex, s1_notSolid, s1_circleVertex];
+const S1_NUM = [s1_solidCount, s1_polygonVertex, s1_circleVertex];
+
+/* ===================== 第12.2节 ===================== */
+const SYM_DATA = [
+  {name:'正方形', axes:4, point:true},
+  {name:'长方形（非正方形）', axes:2, point:true},
+  {name:'菱形（非正方形）', axes:2, point:true},
+  {name:'一般平行四边形（非菱形/矩形）', axes:0, point:true},
+  {name:'等边三角形', axes:3, point:false},
+  {name:'等腰三角形（非等边）', axes:1, point:false},
+  {name:'正五边形', axes:5, point:false},
+  {name:'正六边形', axes:6, point:true},
+  {name:'圆', axes:Infinity, point:true},
+  {name:'英文字母 N', axes:0, point:true},
+  {name:'英文字母 H', axes:2, point:true},
+  {name:'英文字母 S', axes:0, point:true},
+  {name:'英文字母 T', axes:1, point:false},
+  {name:'英文字母 A', axes:1, point:false},
+];
+
+function s2_symType(){
+  const d = SYM_DATA[randInt(0,SYM_DATA.length-1)];
+  const hasLine = d.axes>0;
+  let correct;
+  if(hasLine && d.point) correct='既是线对称图形，也是点对称图形';
+  else if(hasLine && !d.point) correct='只是线对称图形（不是点对称图形）';
+  else if(!hasLine && d.point) correct='只是点对称图形（不是线对称图形）';
+  else correct='既不是线对称图形，也不是点对称图形';
+  const allOpts=['既是线对称图形，也是点对称图形','只是线对称图形（不是点对称图形）','只是点对称图形（不是线对称图形）','既不是线对称图形，也不是点对称图形'];
+  return {
+    stem:`${d.name}属于下列哪一种情况？`,
+    options: shuffle(allOpts),
+    correctText: correct,
+    correctNum: null,
+    explain:`${d.name}${hasLine? (d.axes===Infinity?'有无数条对称轴':'有'+d.axes+'条对称轴') : '没有对称轴'}；${d.point? '绕中心旋转180°能与自身完全重合，所以是点对称图形':'旋转180°后不能与自身重合，所以不是点对称图形'}。`,
+    numeric:false
+  };
+}
+
+function s2_axesCount(){
+  const filtered = SYM_DATA.filter(d=>d.axes>0 && d.axes!==Infinity);
+  const d = filtered[randInt(0,filtered.length-1)];
+  const correct = d.axes;
+  const candidates=[correct+1,correct-1,correct+2,1].filter(x=>x>=0);
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`${d.name}共有多少条对称轴？`,
+    options: opts.map(o=>`${o}条`),
+    correctText:`${correct}条`,
+    correctNum: correct,
+    explain:`${d.name}的对称轴数目是 ${correct} 条。`,
+    numeric:true
+  };
+}
+
+function s2_pentagonTrap(){
+  return {
+    stem:`正五边形是点对称图形吗？`,
+    options: shuffle(['不是（旋转180°不能与原图重合）','是（旋转180°能重合）','是，因为它是正多边形','不确定，需视图形大小而定']),
+    correctText:'不是（旋转180°不能与原图重合）',
+    correctNum:null,
+    explain:`正五边形有5条对称轴（线对称），但边数是奇数，旋转180°后顶点位置对不上，所以不是点对称图形。切记：并非所有正多边形都同时具备点对称性，只有边数为偶数的正多边形才是点对称图形。`,
+    numeric:false
+  };
+}
+const S2_MC = [s2_symType, s2_axesCount, s2_pentagonTrap];
+const S2_NUM = [s2_axesCount];
+
+/* ===================== 第12.3节 ===================== */
+function s3_protractorOffset(){
+  const a = randInt(5,60);
+  const b = randInt(a+15,175);
+  const correct = b-a;
+  const candidates=[a+b, b, a, 180-correct];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`量角器的零刻度线没有与角的一边重合。角的一边落在 ${a}° 刻度处，另一边落在 ${b}° 刻度处，这个角的度数是多少？`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`,
+    correctNum: correct,
+    explain:`零刻度线未对齐时，角的度数 = 两读数之差 = ${b}° − ${a}° = ${correct}°（不能把两个读数直接相加，也不能只取其中一个读数）。`,
+    numeric:true
+  };
+}
+
+function s3_vertexConcept(){
+  return {
+    stem:`用量角器测量角的度数时，量角器的圆心应该与角的哪个部分重合？`,
+    options: shuffle(['顶点','边的中点','端点','对称轴']),
+    correctText:'顶点',
+    correctNum:null,
+    explain:`量角步骤：①圆心与角的顶点重合 ②零刻度线与角的一边重合 ③读出另一边所对的刻度。`,
+    numeric:false
+  };
+}
+
+function s3_divideStraight(){
+  const divisors=[2,3,4,5,6,9,10,12,15,18,20,30,36,45];
+  const n = divisors[randInt(0,divisors.length-1)];
+  const correct = roundN(180/n);
+  const candidates=[roundN(360/n), n, correct*2];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`把一个平角（180°）平均分成 ${n} 等份，每一份是多少度？`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`,
+    correctNum: correct,
+    explain:`平角＝180°，平均分成 ${n} 份，每份 = 180° ÷ ${n} = ${correct}°。`,
+    numeric:true
+  };
+}
+
+function s3_notationTrap(){
+  return {
+    stem:`若点O是∠AOB、∠BOC、∠AOC共同的顶点，能否直接把∠AOB写成∠O？`,
+    options: shuffle(['不能，会产生歧义','能，两种写法完全相同','能，但只限于锐角','不能，因为∠O这种写法不存在']),
+    correctText:'不能，会产生歧义',
+    correctNum:null,
+    explain:`同一个顶点若同时是多个角的顶点，只写顶点字母（如∠O）无法分辨具体指哪个角，必须用三个字母表示，顶点字母写在中间，例如∠AOB。`,
+    numeric:false
+  };
+}
+const S3_MC = [s3_protractorOffset, s3_vertexConcept, s3_divideStraight, s3_notationTrap];
+const S3_NUM = [s3_protractorOffset, s3_divideStraight];
+
+/* ===================== 第12.4节 ===================== */
+function classifyAngle(x){
+  if(x>0 && x<90) return '锐角';
+  if(x===90) return '直角';
+  if(x>90 && x<180) return '钝角';
+  if(x===180) return '平角';
+  if(x>180 && x<360) return '优角';
+  if(x===360) return '周角';
+  return '未知';
+}
+
+function s4_classify(){
+  const pool=[89,91,179,181,269,271,359,45,120,200,300,90,180,175,185,265,275,10,350];
+  const x = pool[randInt(0,pool.length-1)];
+  const correct = classifyAngle(x);
+  const allCats=['锐角','直角','钝角','平角','优角','周角'];
+  const others = shuffle(allCats.filter(c=>c!==correct));
+  const opts = shuffle([correct, others[0], others[1], others[2]]);
+  return {
+    stem:`${x}° 的角属于下列哪一种角？`,
+    options: opts,
+    correctText: correct,
+    correctNum:null,
+    explain:`锐角：0°~90°之间；直角：等于90°；钝角：90°~180°之间；平角：等于180°；优角：180°~360°之间；周角：等于360°。所以 ${x}° 属于${correct}。`,
+    numeric:false
+  };
+}
+
+function s4_clockSmaller(){
+  const H = randInt(1,12);
+  const M = [0,5,10,15,20,25,30,35,40,45,50,55][randInt(0,11)];
+  const Heff = H%12;
+  let angle = Math.abs(30*Heff - 5.5*M);
+  if(angle>180) angle = 360-angle;
+  angle = roundN(angle);
+  const reflex = roundN(360-angle);
+  const wrongFormula = roundN(Math.abs(30*Heff - 6*M));
+  const rawNoFold = roundN(Math.abs(30*Heff - 5.5*M));
+  const candidates=[reflex, wrongFormula, rawNoFold];
+  const opts = makeOptions(angle,candidates);
+  return {
+    stem:`时钟显示 ${H} 时 ${M===0?'整':M+' 分'}，此时时针与分针所构成的较小角（劣角）是多少度？`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${angle}°`,
+    correctNum: angle,
+    explain:`分针角度 = ${M}×6° = ${M*6}°；时针角度 = ${Heff}×30° + ${M}×0.5° = ${(Heff*30+M*0.5).toFixed(1)}°。两者相减取绝对值，若结果超过180°，须用360°减去才是较小角，最终得 ${angle}°。`,
+    numeric:true,
+    svgClock:[H,M]
+  };
+}
+
+function s4_rotateInterval(){
+  const H = randInt(1,12);
+  const s = randInt(0,45);
+  const e = randInt(s+5,59);
+  const diff = e-s;
+  const minuteRot = roundN(diff*6);
+  const hourRot = roundN(diff*0.5);
+  const askMinute = Math.random()<0.5;
+  const correct = askMinute?minuteRot:hourRot;
+  const candidates = askMinute? [hourRot, diff, roundN(diff*12)] : [minuteRot, roundN(hourRot*12), diff];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`由 ${H} 时 ${s} 分到 ${H} 时 ${e} 分，钟面上的${askMinute?'分针':'时针'}转动了多少度？`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`,
+    correctNum: correct,
+    explain:`经过的时间 = ${diff} 分钟。分针每分钟转动6°，故分针转动 = ${diff}×6° = ${minuteRot}°；分针转一整圈(360°)时，时针只转1/12圈，故时针转动 = ${minuteRot}°÷12 = ${hourRot}°。`,
+    numeric:true
+  };
+}
+const S4_MC = [s4_classify, s4_clockSmaller, s4_rotateInterval];
+const S4_NUM = [s4_clockSmaller, s4_rotateInterval];
+
+/* ===================== 第12.5节 ===================== */
+function s5_intersectCount(){
+  return {
+    stem:`两条不同的直线最多能有多少个交点？`,
+    options: shuffle(['1个','0个','2个','无数个']),
+    correctText:'1个', correctNum:1,
+    explain:`两点确定一条直线。如果两条不同的直线相交，只可能相交于一点，不会有两个或以上的交点。`,
+    numeric:true
+  };
+}
+function s5_parallelAxiom(){
+  return {
+    stem:`经过直线外一点，能画多少条直线与已知直线平行？`,
+    options: shuffle(['1条','0条','2条','无数条']),
+    correctText:'1条', correctNum:1,
+    explain:`这是平行公理：经过直线外一点，有且只有一条直线与已知直线平行。`,
+    numeric:true
+  };
+}
+function s5_perpendicularUnique(){
+  return {
+    stem:`经过一点，能画多少条直线与已知直线垂直？`,
+    options: shuffle(['1条','0条','2条','无数条（视该点位置而定）']),
+    correctText:'1条', correctNum:1,
+    explain:`无论该点在直线上或在直线外，经过一点只能画一条直线与已知直线垂直。`,
+    numeric:true
+  };
+}
+function s5_perpBisectorTrap(){
+  return {
+    stem:`直线CD与线段AB垂直，但只经过AB上靠近A的某一点（不是中点）。CD能称为AB的垂直平分线（中垂线）吗？`,
+    options: shuffle(['不能，因为没有经过AB的中点','能，只要垂直就足够','能，因为它与AB垂直且相交','不能，因为CD不是直线']),
+    correctText:'不能，因为没有经过AB的中点', correctNum:null,
+    explain:`垂直平分线必须同时满足两个条件：①与线段垂直 ②经过该线段的中点。只满足"垂直"而不经过中点，不能称为垂直平分线。`,
+    numeric:false
+  };
+}
+function s5_transitiveParallel(){
+  return {
+    stem:`若直线l₁∥l₂，且l₂∥l₃，则l₁与l₃的关系是？`,
+    options: shuffle(['l₁∥l₃（平行）','l₁⊥l₃（垂直）','l₁与l₃相交','无法确定']),
+    correctText:'l₁∥l₃（平行）', correctNum:null,
+    explain:`平行线具有传递性：与同一条直线平行的两条直线必定互相平行，所以l₁∥l₃。`,
+    numeric:false
+  };
+}
+const S5_MC = [s5_intersectCount, s5_parallelAxiom, s5_perpendicularUnique, s5_perpBisectorTrap, s5_transitiveParallel];
+const S5_NUM = [s5_intersectCount, s5_parallelAxiom, s5_perpendicularUnique];
+
+/* ===================== 第12.6节 ===================== */
+function s6_compSuppConj(){
+  const x = randInt(5,89);
+  const type = ['余角','补角','共轭角'][randInt(0,2)];
+  const base = type==='余角'?90:(type==='补角'?180:360);
+  const correct = base-x;
+  const candidates=[90-x,180-x,360-x,x];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`已知∠A = ${x}°，求∠A的${type}。`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`, correctNum: correct,
+    explain:`余角：两角之和为90°；补角：两角之和为180°；共轭角：两角之和为360°。∠A的${type} = ${base}° − ${x}° = ${correct}°。`,
+    numeric:true
+  };
+}
+function s6_adjacentSupp(){
+  const m = randInt(10,170);
+  const correct = 180-m;
+  const alt = 90-m>0? 90-m : 90+m;
+  const candidates=[alt,360-m,m];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`AOB是一条直线，射线OC把∠AOB分成∠1和∠2。已知∠1 = ${m}°，∠1与∠2互补，求∠2。`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`, correctNum: correct,
+    explain:`AOB是直线，∠1+∠2 = 180°（邻补角之和为平角），所以∠2 = 180° − ${m}° = ${correct}°。`,
+    numeric:true
+  };
+}
+function s6_conjugateLinear(){
+  const a = randInt(1,4), b = randInt(1,4);
+  const xTarget = [10,15,20,25,30,35,40,45,50][randInt(0,8)];
+  const c = 360-(a+b)*xTarget;
+  if(c<=0){ return s6_adjacentSupp(); }
+  const candidates=[xTarget+5, Math.max(1,xTarget-5), roundN((180-c)/(a+b))].filter(v=>v>0 && Number.isFinite(v));
+  const opts = makeOptions(xTarget,candidates);
+  return {
+    stem:`射线OA、OB把一个周角分成∠1和∠2，∠1 = ${a}x°，∠2 = (${b}x + ${c})°，且∠1与∠2互为共轭角（∠1+∠2=360°），求x的值。`,
+    options: opts.map(o=>`${o}`),
+    correctText:`${xTarget}`, correctNum: xTarget,
+    explain:`∠1+∠2 = 360°，即 ${a}x + ${b}x + ${c} = 360，合并同类项得 ${a+b}x = ${360-c}，解得 x = ${xTarget}。`,
+    numeric:true
+  };
+}
+function s6_vertical(){
+  const m = randInt(10,170);
+  const askVertical = Math.random()<0.5;
+  const correct = askVertical? m : 180-m;
+  const candidates=[askVertical?180-m:m, m+10, Math.max(1,180-m-10)];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`直线AB与直线CD相交于点O。∠AOC = ${m}°，求${askVertical?'∠BOD（∠AOC的对顶角）':'∠BOC（∠AOC的邻补角）'}。`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`, correctNum: correct,
+    explain: askVertical? `对顶角相等，∠BOD = ∠AOC = ${m}°。` : `邻补角之和为180°，∠BOC = 180° − ${m}° = ${correct}°。`,
+    numeric:true
+  };
+}
+const S6_MC = [s6_compSuppConj, s6_adjacentSupp, s6_conjugateLinear, s6_vertical];
+const S6_NUM = [s6_compSuppConj, s6_adjacentSupp, s6_conjugateLinear, s6_vertical];
+
+/* ===================== 第12.7节 ===================== */
+function s7_parallelAngle(){
+  const x = randInt(15,165);
+  const pos = randInt(2,8);
+  const correct = (pos%2===1)? x : 180-x;
+  const oppFamily = (pos%2===1)? 180-x : x;
+  const skew = x+10>175? x-10 : x+10;
+  const candidates=[oppFamily, Math.abs(90-x), skew];
+  const opts = makeOptions(correct,candidates);
+  return {
+    stem:`如图，AB∥CD被直线EF所截，形成∠1到∠8共8个角。已知∠1 = ${x}°，求∠${pos}的度数。`,
+    options: opts.map(o=>`${o}°`),
+    correctText:`${correct}°`, correctNum: correct,
+    explain:`两平行线被同一条直线所截，八个角只会出现两种数值：与∠1相等（同位角/对顶角，= ${x}°）或与∠1互补（同旁内角/邻补角，= ${180-x}°）。根据∠${pos}与∠1的位置关系，∠${pos} = ${correct}°。`,
+    numeric:true,
+    svgParallel:true
+  };
+}
+function s7_judgeParallel(){
+  const x = randInt(30,150);
+  const matches = Math.random()<0.5;
+  let y = matches? (180-x) : (180-x + (Math.random()<0.5?15:-15));
+  y = Math.max(10, Math.min(170,y));
+  const sum = x+y;
+  const correct = (sum===180)? '能判断AB∥CD（同旁内角互补）':'不能判断AB与CD是否平行';
+  const opts = shuffle(['能判断AB∥CD（同旁内角互补）','不能判断AB与CD是否平行','能判断AB∥CD（同位角相等）','能判断AB∥CD（内错角相等）']);
+  return {
+    stem:`直线EF截AB、CD于两点，∠3与∠6为同旁内角。已知∠3 = ${x}°，∠6 = ${y}°，能否判断AB∥CD？`,
+    options: opts,
+    correctText: correct, correctNum:null,
+    explain:`判定两直线平行的其中一个依据是"同旁内角互补"。${x}° + ${y}° = ${sum}°，${sum===180? '刚好等于180°，所以能判断AB∥CD。':'并不等于180°，所以不能判断AB与CD平行。'}`,
+    numeric:false
+  };
+}
+const S7_MC = [s7_parallelAngle, s7_judgeParallel];
+const S7_NUM = [s7_parallelAngle];
+
+/* ===================== 内容文本（讲解） ===================== */
+const CONTENT = {
+s1: `
+<div class="content">
+<h3>点、线、面、体</h3>
+<p><b>点</b>：一般用大写英文字母（A、B、P、Q…）表示一个点。</p>
+<p><b>线</b>：可分为<b>直线</b>与<b>曲线</b>。通过不同的两点，只能画出<b>一条</b>直线——这叫做"两点确定一条直线"。</p>
+<ul>
+  <li>直线上相异两点之间的部分，称为<b>线段</b>（有两个端点）。</li>
+  <li>以一点为端点，通过另一点并向一方无限延长的线，称为<b>射线</b>（只有一个端点）。</li>
+</ul>
+${svgLineTypes()}
+<p><b>面</b>：分为<b>平面</b>与<b>曲面</b>。<b>体</b>：占有空间的立体，例如木块、皮球等。</p>
+<div class="box">面与面相交 → 一条直线；线与线相交 → 一个点。</div>
+
+<h3>平面图形与多边形</h3>
+<p>若一个图形完全在一个平面上，称为<b>平面图形</b>。若平面图形是由若干条直线段围成，则称为<b>多边形</b>，围成图形的线段称为<b>边</b>，边与边的交点称为<b>顶点</b>。以三角形为例：</p>
+${svgTrianglePLF()}
+<p>常见的平面图形：长方形、正方形、菱形、平行四边形、三角形、梯形、五边形、圆等。</p>
+<div class="think">思考题：圆有没有顶点？（圆的边界是曲线，不是直线段围成的，所以圆<b>没有顶点</b>。）</div>
+
+<h3>立体图形与多面体</h3>
+<p>若一个立体是由若干个平面围成，则称为<b>多面体</b>。面与面相交的直线叫<b>边</b>，边与边相交的点叫<b>顶点</b>。</p>
+<table class="datatab">
+<tr><th>立体图形</th><th>面数</th><th>边数</th><th>顶点数</th></tr>
+${SOLIDS.map(s=>`<tr><td>${s.name}</td><td>${s.f}</td><td>${s.e}</td><td>${s.v}</td></tr>`).join('')}
+</table>
+<p style="font-size:0.85rem;color:var(--muted)">小提示：面数 − 边数 + 顶点数 恒等于 2（如立方体：8−12+6=2）。</p>
+</div>`,
+
+s2: `
+<div class="content">
+<h3>线对称</h3>
+<p>如果一个平面图形沿着一条直线对折后，直线两旁的部分能够完全重合，我们就说这个图形有<b>线对称</b>，该直线称为<b>对称轴</b>。有些图形拥有一条以上的对称轴。</p>
+
+<h3>点对称</h3>
+<p>如果一个平面图形绕着一个定点旋转<b>半圈（180°）</b>后，能与原图完全重合，我们说这个图形有<b>点对称</b>，该定点称为<b>对称中心</b>。</p>
+
+<h3>常见图形的对称性一览</h3>
+${symGalleryHTML()}
+<div class="think">易错提醒：不是所有"看起来对称"的图形都同时具备线对称和点对称——例如正五边形有5条对称轴（线对称），但<b>不是</b>点对称图形（奇数边的正多边形旋转180°后顶点位置对不上）；而一般的平行四边形没有对称轴，却<b>是</b>点对称图形。</div>
+</div>`,
+
+s3: `
+<div class="content">
+<h3>角的定义与表示</h3>
+<p>由一点A发出的两条射线AB与AC所形成的图形称为<b>角</b>，记作 ∠A 或 ∠BAC 或 ∠CAB。A为角的<b>顶点</b>，AB与AC为角的<b>边</b>（顶点字母必须写在中间）。</p>
+<div class="think">注意：如果同一个顶点是好几个角共同的顶点，就不能只用顶点字母（如∠A）表示，必须用三个字母表示，否则会有歧义。</div>
+
+<h3>角的测量</h3>
+<p>量角器是一个带刻度的半圆形量角工具，O为其圆心。把半圆分成180等份，每一份所对的角为<b>1度</b>，记作 1°。</p>
+<div class="example">
+<b>度量步骤：</b>①令量角器的圆心与角的顶点重合 ②令零刻度线与角的一边重合 ③看角的另一边落在哪一条刻度线上，即为角的度数。
+</div>
+<div class="box">注意：量角器的零刻度线并不在其边缘，使用前要先找到它！</div>
+${svgProtractor()}
+
+<h3>用量角器画角</h3>
+<p>例题：画出一个50°的角 —— ①画射线OA ②将量角器的零度线与OA重合、圆心与O重合 ③在50°处标点B ④连接O、B，得∠AOB=50°。</p>
+</div>`,
+
+s4: `
+<div class="content">
+<h3>角的分类</h3>
+<table class="datatab">
+<tr><th>名称</th><th>度数范围</th></tr>
+<tr><td>锐角</td><td>0° &lt; 度数 &lt; 90°</td></tr>
+<tr><td>直角</td><td>= 90°</td></tr>
+<tr><td>钝角</td><td>90° &lt; 度数 &lt; 180°</td></tr>
+<tr><td>平角</td><td>= 180°</td></tr>
+<tr><td>优角</td><td>180° &lt; 度数 &lt; 360°</td></tr>
+<tr><td>周角</td><td>= 360°</td></tr>
+</table>
+${svgAngleTypeGallery()}
+<p>两条有共同端点的射线把一个圆周分成两个角：较小的角（0°~180°）称为<b>劣角</b>，较大的角（180°~360°）称为<b>优角</b>。</p>
+
+<h3>钟表角度问题</h3>
+<div class="example">
+<b>例：</b>下午4时正，时针与分针所构成的较小角 = 4×360°/12 = 4×30° = 120°。<br>
+<b>例：</b>上午8时半，时针与分针所构成的劣角 = 2½×360°/12 = 5/2×30° = 75°。<br>
+<b>例：</b>由2:30到2:55，分针转动 = (55−30)×6° = 150°；分针转一圈时针只转1/12圈，故时针转动 = 150°÷12 = 12.5°。
+</div>
+<div class="think">思考题：每过一分钟，分针转动6°，时针转动0.5°。</div>
+</div>`,
+
+s5: `
+<div class="content">
+<h3>相交线</h3>
+<p>若两条不同的直线经过同一点O，我们说这两条直线相交于点O。两条不同的直线只可能有<b>一个</b>交点（因为两点确定一条直线）。</p>
+
+<h3>平行线</h3>
+<p>在平面内<b>不相交</b>的两条直线称为<b>平行线</b>，记作 AB∥CD。</p>
+<div class="box">补充：若l₁∥l₂，l₂∥l₃，则l₁∥l₃（平行线的传递性）。</div>
+
+<h3>垂线</h3>
+<p>两条直线相交且所形成的角为直角，称这两条直线互相<b>垂直</b>，记作 AB⊥CD。</p>
+<p>若直线CD垂直于线段AB，且经过AB的<b>中点</b>，则CD称为AB的<b>垂直平分线（中垂线）</b>——注意，垂直 + 经过中点，两个条件缺一不可！</p>
+${svgLinesGallery()}
+
+<h3>重要结论</h3>
+<ul>
+  <li>经过一点，只有一条直线与已知直线垂直。</li>
+  <li>经过一已知直线外的一点，只有一条直线与该已知直线平行（<b>平行公理</b>）。</li>
+</ul>
+</div>`,
+
+s6: `
+<div class="content">
+<h3>余角、补角、共轭角</h3>
+<ul>
+  <li>若两角之和为 <b>90°</b>，这两个角互为<b>余角</b>。</li>
+  <li>若两角之和为 <b>180°</b>，这两个角互为<b>补角</b>；若这两个角还相邻，则称为<b>邻补角</b>。</li>
+  <li>若两角之和为 <b>360°</b>，这两个角互为<b>共轭角</b>。</li>
+</ul>
+${svgAngleRelGallery()}
+<div class="example"><b>例：</b>∠A=36°，则∠A的余角=90°−36°=54°；补角=180°−36°=144°；共轭角=360°−36°=324°。</div>
+
+<h3>对顶角</h3>
+<p>两条直线相交所形成的、位置相对的两个角，称为<b>对顶角</b>。</p>
+<div class="box"><b>对顶角相等</b>（因为它们分别与同一个角互补）。</div>
+<div class="example">
+<b>例：</b>直线AB与CD相交于O，∠AOC=∠AOE，∠COE=80°：<br>
+(a) ∠AOC = 80°÷2 = 40°　(b) ∠BOD=∠AOC=40°（对顶角相等）<br>
+(c) ∠EOD=180°−80°=100°　(d) ∠BOC=180°−40°=140°
+</div>
+</div>`,
+
+s7: `
+<div class="content">
+<h3>截线与八个角</h3>
+${svgParallel()}
+<p>与两条直线都相交的直线称为<b>截线</b>。截线EF与AB、CD相交，共形成8个角：</p>
+<ul>
+  <li><b>同位角</b>：∠1与∠5、∠2与∠6、∠3与∠7、∠4与∠8</li>
+  <li><b>内错角</b>：∠3与∠5、∠4与∠6</li>
+  <li><b>同旁内角</b>：∠3与∠6、∠4与∠5</li>
+</ul>
+
+<h3>平行线的三个重要定理</h3>
+<div class="box">
+定理1：两条直线平行，<b>同位角相等</b>。<br>
+定理2：两条直线平行，<b>内错角相等</b>。<br>
+定理3：两条直线平行，<b>同旁内角互补</b>。
+</div>
+
+<h3>平行线的判定（逆定理）</h3>
+<div class="box">
+内错角相等 → 两直线平行<br>
+同旁内角互补 → 两直线平行<br>
+同位角相等 → 两直线平行
+</div>
+<div class="example">
+<b>例：</b>l₂∥l₁，∠1=58°，求∠2,∠3,∠4,∠5：<br>
+∠2=∠1（对顶角）=58°；∠3=∠1（同位角）=58°；∠3+∠4=180°→∠4=122°；∠5=∠4（对顶角）=122°。
+</div>
+</div>`
+};
+
+/* ===================== 章节配置 ===================== */
+const SECTIONS = [
+  {id:'s1', code:'12.1', title:'平面图形与立体图形', mc:S1_MC, num:S1_NUM},
+  {id:'s2', code:'12.2', title:'线对称与点对称', mc:S2_MC, num:S2_NUM},
+  {id:'s3', code:'12.3', title:'角及其测量', mc:S3_MC, num:S3_NUM},
+  {id:'s4', code:'12.4', title:'角的分类', mc:S4_MC, num:S4_NUM},
+  {id:'s5', code:'12.5', title:'相交线、平行线及垂线', mc:S5_MC, num:S5_NUM},
+  {id:'s6', code:'12.6', title:'与相交线有关的角', mc:S6_MC, num:S6_NUM},
+  {id:'s7', code:'12.7', title:'与平行线有关的角', mc:S7_MC, num:S7_NUM},
+];
+const ALL_MC = SECTIONS.reduce((acc,s)=>acc.concat(s.mc),[]);
+
+/* ===================== 出题辅助：生成不重复模板序列 ===================== */
+function pickQuestions(pool, count){
+  const bag = shuffle(pool);
+  const out = [];
+  for(let i=0;i<count;i++){
+    out.push(bag[i % bag.length]());
+  }
+  return out;
+}
+
+/* ===================== 渲染：单个题卡 ===================== */
+function renderQCard(idx, q, onAnswered){
+  const div = document.createElement('div');
+  div.className = 'qcard';
+  let extra = '';
+  if(q.svgClock) extra = `<div style="text-align:center">${svgClock(q.svgClock[0],q.svgClock[1])}</div>`;
+  if(q.svgParallel) extra = svgParallel();
+  div.innerHTML = `
+    <div class="qstem"><span class="qnum">第${idx+1}题.</span>${q.stem}</div>
+    ${extra}
+    <div class="opts"></div>
+    <div class="explain">💡 ${q.explain}</div>
+  `;
+  const optsWrap = div.querySelector('.opts');
+  q.options.forEach(opt=>{
+    const b = document.createElement('button');
+    b.className='opt-btn';
+    b.textContent = opt;
+    b.onclick = ()=>{
+      const correct = (opt === q.correctText);
+      Array.from(optsWrap.children).forEach(btn=>{
+        btn.disabled = true;
+        if(btn.textContent === q.correctText) btn.classList.add('correct');
+      });
+      if(!correct) b.classList.add('wrong');
+      div.querySelector('.explain').classList.add('show');
+      onAnswered(correct);
+    };
+    optsWrap.appendChild(b);
+  });
+  return div;
+}
+
+/* ===================== 渲染：一节的测验区（5选择 + 2作答） ===================== */
+function renderSectionQuiz(container, sec){
+  container.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'quiz-section';
+  wrap.innerHTML = `
+    <div class="quiz-header">
+      <h3 style="margin:0">📝 ${sec.code} 随堂小测验（5题选择）</h3>
+      <span class="scorepill" id="score_${sec.id}">尚未作答</span>
+    </div>
+    <div id="qlist_${sec.id}"></div>
+    <div id="summary_${sec.id}"></div>
+    <div id="fillin_${sec.id}"></div>
+    <div style="margin-top:14px">
+      <button class="btn secondary" onclick="startSectionQuiz('${sec.id}')">🔄 重新出题（本节）</button>
+    </div>
+  `;
+  container.appendChild(wrap);
+  startSectionQuiz(sec.id);
+}
+
+const quizState = {};
+
+function startSectionQuiz(secId){
+  const sec = SECTIONS.find(s=>s.id===secId);
+  const qlist = document.getElementById(`qlist_${secId}`);
+  const summary = document.getElementById(`summary_${secId}`);
+  const fillin = document.getElementById(`fillin_${secId}`);
+  const scorepill = document.getElementById(`score_${secId}`);
+  qlist.innerHTML = ''; summary.innerHTML=''; fillin.innerHTML='';
+  scorepill.textContent = '尚未作答';
+
+  const questions = pickQuestions(sec.mc, 5);
+  quizState[secId] = { total:5, answered:0, correct:0 };
+
+  questions.forEach((q,idx)=>{
+    const card = renderQCard(idx, q, (isCorrect)=>{
+      const st = quizState[secId];
+      st.answered++;
+      if(isCorrect) st.correct++;
+      scorepill.textContent = `已答 ${st.answered}/${st.total}　答对 ${st.correct}`;
+      if(st.answered === st.total){
+        showSectionSummary(secId, sec);
+      }
+    });
+    qlist.appendChild(card);
+  });
+}
+
+function showSectionSummary(secId, sec){
+  const st = quizState[secId];
+  const summary = document.getElementById(`summary_${secId}`);
+  const fillin = document.getElementById(`fillin_${secId}`);
+  const pass = st.correct >= 3;
+  summary.innerHTML = `
+    <div class="summary">
+      <div>选择题结果</div>
+      <div class="big">${st.correct} / ${st.total}</div>
+      <div style="margin-top:6px">
+        ${pass
+          ? '🎉 答对3题或以上，已解锁挑战：<b>2题作答题</b>（需自行输入答案）'
+          : '再接再厉！答对3题或以上即可解锁作答题，点击下方"重新出题"再试一次吧。'}
+      </div>
+    </div>`;
+  if(pass){
+    renderFillIn(secId, sec);
+  } else {
+    fillin.innerHTML = '';
+  }
+}
+
+function renderFillIn(secId, sec){
+  const fillin = document.getElementById(`fillin_${secId}`);
+  const qs = pickQuestions(sec.num.length? sec.num : sec.mc, 2);
+  let html = `<h3>✍️ 作答题挑战（2题，请自行输入正确答案）</h3>`;
+  qs.forEach((q,idx)=>{
+    html += `
+    <div class="qcard fillin-box" id="fq_${secId}_${idx}">
+      <div class="qstem"><span class="qnum">作答${idx+1}.</span>${q.stem}</div>
+      ${q.svgClock? `<div style="text-align:center">${svgClock(q.svgClock[0],q.svgClock[1])}</div>` : (q.svgParallel? svgParallel() : '')}
+      <div>
+        <input type="text" id="fin_${secId}_${idx}" placeholder="请输入答案">
+        <button class="btn" style="padding:8px 14px" onclick="checkFillIn('${secId}',${idx})">提交</button>
+        <span class="fresult" id="fres_${secId}_${idx}"></span>
+      </div>
+      <div class="explain" id="fexp_${secId}_${idx}">💡 ${q.explain}</div>
+    </div>`;
+  });
+  fillin.innerHTML = html;
+  fillin.dataset.answers = JSON.stringify(qs.map(q=>({num:q.correctNum, text:q.correctText})));
+}
+
+function checkFillIn(secId, idx){
+  const fillin = document.getElementById(`fillin_${secId}`);
+  const answers = JSON.parse(fillin.dataset.answers);
+  const ans = answers[idx];
+  const input = document.getElementById(`fin_${secId}_${idx}`);
+  const resultEl = document.getElementById(`fres_${secId}_${idx}`);
+  const expEl = document.getElementById(`fexp_${secId}_${idx}`);
+  let raw = input.value.trim();
+  let ok = false;
+  if(ans.num !== null && ans.num !== undefined){
+    const cleaned = raw.replace(/[°度个条]/g,'').trim();
+    const val = parseFloat(cleaned);
+    if(!Number.isNaN(val) && Math.abs(val - ans.num) < 0.05){ ok = true; }
+  } else {
+    // 文字型答案：宽松比对，允许包含关键字判断
+    const key = ans.text.replace(/（[^）]*）/g,'').trim();
+    if(raw && key.includes(raw.trim()) === false && raw.trim().length>0 && key.indexOf(raw.trim())>=0){ ok = true; }
+    if(raw.trim() === key) ok = true;
+  }
+  input.disabled = true;
+  resultEl.textContent = ok ? '✅ 答对了！' : `❌ 不正确，正确答案：${ans.text}`;
+  resultEl.className = 'fresult ' + (ok?'ok':'no');
+  expEl.classList.add('show');
+}
+
+/* ===================== 渲染：总复习 ===================== */
+function renderFinalReview(container){
+  container.innerHTML = `
+  <div class="card">
+    <h2>🏆 第十二章 总复习</h2>
+    <p>点击下方按钮，系统将从全章各小节随机抽取 12 道选择题，题目内容、顺序与选项每次都会重新打乱。</p>
+    <button class="btn" onclick="startFinalReview()">🚀 开始总复习</button>
+    <div id="finalQList" style="margin-top:14px"></div>
+    <div id="finalSummary"></div>
+  </div>`;
+}
+
+function startFinalReview(){
+  const qlist = document.getElementById('finalQList');
+  const summary = document.getElementById('finalSummary');
+  qlist.innerHTML = ''; summary.innerHTML = '';
+  const questions = pickQuestions(ALL_MC, 12);
+  const st = {total:12, answered:0, correct:0};
+  questions.forEach((q,idx)=>{
+    const card = renderQCard(idx, q, (isCorrect)=>{
+      st.answered++;
+      if(isCorrect) st.correct++;
+      if(st.answered === st.total){
+        const pct = Math.round(st.correct/st.total*100);
+        let msg = pct>=90 ? '🌟 非常出色！几何基础掌握得很扎实！'
+                 : pct>=70 ? '👍 不错，继续加油，查漏补缺！'
+                 : '📖 再接再厉，建议重新复习课文内容后再挑战一次。';
+        summary.innerHTML = `
+          <div class="summary">
+            <div>总复习成绩</div>
+            <div class="big">${st.correct} / ${st.total}（${pct}%）</div>
+            <div style="margin-top:6px">${msg}</div>
+            <button class="btn secondary" style="margin-top:10px" onclick="startFinalReview()">🔄 重新测试（新题目）</button>
+          </div>`;
+      }
+    });
+    qlist.appendChild(card);
+  });
+}
+
+/* ===================== 主体渲染：标签页 ===================== */
+let activeTab = 's1';
+function buildTabs(){
+  const nav = document.getElementById('tabsNav');
+  nav.innerHTML = '';
+  SECTIONS.forEach(sec=>{
+    const b = document.createElement('button');
+    b.textContent = sec.code + ' ' + sec.title;
+    b.onclick = ()=>switchTab(sec.id);
+    b.id = 'tab_'+sec.id;
+    nav.appendChild(b);
+  });
+  const finalBtn = document.createElement('button');
+  finalBtn.textContent = '总复习';
+  finalBtn.onclick = ()=>switchTab('final');
+  finalBtn.id = 'tab_final';
+  nav.appendChild(finalBtn);
+}
+
+function switchTab(id){
+  activeTab = id;
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab_'+id).classList.add('active');
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+
+  if(id==='final'){
+    renderFinalReview(app);
+    return;
+  }
+  const sec = SECTIONS.find(s=>s.id===id);
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<h2>${sec.code} ${sec.title}</h2>` + CONTENT[sec.id];
+  app.appendChild(card);
+
+  const quizCard = document.createElement('div');
+  quizCard.className = 'card';
+  app.appendChild(quizCard);
+  renderSectionQuiz(quizCard, sec);
+}
+
+/* ===================== 主题 / 字体控制 ===================== */
+function toggleTheme(){
+  const body = document.body;
+  const isDark = body.getAttribute('data-theme') === 'dark';
+  body.setAttribute('data-theme', isDark? 'light':'dark');
+  document.getElementById('themeBtn').textContent = isDark? '🌙 深色模式' : '☀️ 浅色模式';
+  try{ localStorage.setItem('ch12_theme', isDark?'light':'dark'); }catch(e){}
+}
+function changeFont(delta){
+  let cur = parseInt(document.documentElement.style.getPropertyValue('--fs')) || 100;
+  cur = Math.min(160, Math.max(70, cur+delta));
+  document.documentElement.style.setProperty('--fs', cur+'%');
+  document.getElementById('fontLabel').textContent = cur+'%';
+  try{ localStorage.setItem('ch12_fontsize', cur); }catch(e){}
+}
+
+/* ===================== 初始化 ===================== */
+(function init(){
+  try{
+    const savedTheme = localStorage.getItem('ch12_theme');
+    if(savedTheme){
+      document.body.setAttribute('data-theme', savedTheme);
+      document.getElementById('themeBtn').textContent = savedTheme==='dark' ? '☀️ 浅色模式' : '🌙 深色模式';
+    }
+    const savedFs = localStorage.getItem('ch12_fontsize');
+    if(savedFs){
+      document.documentElement.style.setProperty('--fs', savedFs+'%');
+      document.getElementById('fontLabel').textContent = savedFs+'%';
+    }
+  }catch(e){}
+  buildTabs();
+  switchTab('s1');
+})();
+
+console.log('%c第十二章 几何的基本概念 - 互动学习系统','color:#2554e0;font-weight:bold;font-size:14px;');
+console.log('制作：蔡逸众老师 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School, Batu Pahat');
+</script>
+</body>
+</html>
