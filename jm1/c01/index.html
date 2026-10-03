@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<!-- 制作：蔡逸众老师 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School ｜ 第1章 完整数 互动学习网页 -->
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>第1章 完整数｜互动学习站</title>
+<!-- author: 蔡逸众 (ecchua79) | school: Chinese High School, Batu Pahat | project: ScienceLab / MathLab -->
+<style>
+:root{
+  --navy:#12314f;
+  --navy-2:#1b4571;
+  --gold:#d6a94f;
+  --gold-light:#f2d9a3;
+  --cream:#fbf7ee;
+  --paper:#ffffff;
+  --ink:#22303d;
+  --sub:#5c6b78;
+  --good:#2e7d4f;
+  --bad:#c0392b;
+  --line:#e3d9c4;
+  --formula-bg:#eef4fa;
+  --formula-border:#b9d3ea;
+  --example-bg:#fdf9ef;
+  --example-border:#e0c98a;
+  --tips-bg:#eaf6ee;
+  --tips-text:#245c3c;
+  --table-alt:#f7f2e4;
+  --opt-bg:#ffffff;
+  --opt-hover-bg:#f4f8fb;
+  --correct-bg:#e5f6ea;
+  --correct-text:#1e5c37;
+  --wrong-bg:#fbe9e7;
+  --wrong-text:#8f2c20;
+  --result-msg-color:#a97c1f;
+  --shadow-c: rgba(18,49,79,0.05);
+}
+html[data-theme="dark"]{
+  --navy:#0d1b2a;
+  --navy-2:#16324a;
+  --gold:#e3ba72;
+  --gold-light:#f2d9a3;
+  --cream:#111820;
+  --paper:#1b242d;
+  --ink:#e7edf2;
+  --sub:#9fb1c0;
+  --good:#5cc98a;
+  --bad:#e8796e;
+  --line:#324150;
+  --formula-bg:#1b2c3c;
+  --formula-border:#2c4a68;
+  --example-bg:#26221a;
+  --example-border:#5a4c2c;
+  --tips-bg:#16281f;
+  --tips-text:#8fdcae;
+  --table-alt:#222c35;
+  --opt-bg:#212b34;
+  --opt-hover-bg:#26333f;
+  --correct-bg:#173626;
+  --correct-text:#7fdba0;
+  --wrong-bg:#3a2019;
+  --wrong-text:#f0a89c;
+  --result-msg-color:#e3ba72;
+  --shadow-c: rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box;}
+html{font-size:16px;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Heiti SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.75;
+  padding-bottom:60px;
+  transition:background-color .3s, color .3s;
+}
+
+/* ---------- 浮动控制栏：深浅模式 / 字体大小 ---------- */
+.control-bar{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  gap:4px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:5px 6px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.18);
+  transition:.3s;
+}
+.control-bar button{
+  border:none;
+  background:none;
+  cursor:pointer;
+  color:var(--navy);
+  font-weight:700;
+  border-radius:20px;
+  padding:6px 9px;
+  font-size:0.8125rem;
+  line-height:1;
+  transition:.15s;
+}
+.control-bar button:hover{background:var(--opt-hover-bg);}
+.control-bar .divider{width:1px;height:18px;background:var(--line);margin:0 2px;}
+#themeToggle{font-size:1.05rem;padding:5px 8px;}
+#fontLabel{font-size:0.7rem;color:var(--sub);min-width:26px;text-align:center;}
+
+.top-banner{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+  color:#fff;
+  padding:34px 20px 26px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:.3s;
+}
+.top-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(214,169,79,0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(214,169,79,0.14) 0%, transparent 45%);
+  pointer-events:none;
+}
+.top-banner .chapter-tag{
+  display:inline-block;
+  font-size:0.875rem;
+  letter-spacing:3px;
+  color:var(--gold-light);
+  border:1px solid rgba(214,169,79,0.6);
+  padding:4px 16px;
+  border-radius:20px;
+  margin-bottom:14px;
+}
+.top-banner h1{
+  margin:0 0 8px;
+  font-size:clamp(1.625rem,5vw,2.375rem);
+  letter-spacing:2px;
+  position:relative;
+}
+.top-banner p{
+  margin:0;
+  color:#cfe0f0;
+  font-size:0.9375rem;
+  position:relative;
+}
+.goals{
+  max-width:760px;
+  margin:18px auto 0;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:14px;
+  padding:16px 22px;
+  text-align:left;
+  position:relative;
+  font-size:0.90625rem;
+}
+.goals b{color:var(--gold-light);}
+.goals ul{margin:8px 0 0;padding-left:20px;}
+.goals li{margin:3px 0;}
+
+.tabs{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  overflow-x:auto;
+  background:var(--paper);
+  border-bottom:2px solid var(--line);
+  box-shadow:0 2px 8px var(--shadow-c);
+  -webkit-overflow-scrolling:touch;
+  transition:.3s;
+}
+.tabs::-webkit-scrollbar{height:4px;}
+.tab-btn{
+  flex:0 0 auto;
+  padding:14px 18px;
+  border:none;
+  background:none;
+  font-size:0.9375rem;
+  font-weight:600;
+  color:var(--sub);
+  cursor:pointer;
+  white-space:nowrap;
+  border-bottom:3px solid transparent;
+  transition:.2s;
+}
+.tab-btn.active{
+  color:var(--navy);
+  border-bottom-color:var(--gold);
+  background:linear-gradient(to bottom, transparent, rgba(214,169,79,0.08));
+}
+.tab-btn:hover{color:var(--navy);}
+
+.wrap{max-width:840px;margin:0 auto;padding:22px 16px 10px;}
+.panel{display:none;animation:fade .35s ease;}
+.panel.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px 22px;
+  margin-bottom:18px;
+  box-shadow:0 2px 10px var(--shadow-c);
+  transition:.3s;
+}
+.card h2{
+  margin:0 0 14px;
+  font-size:1.25rem;
+  color:var(--navy);
+  border-left:5px solid var(--gold);
+  padding-left:12px;
+}
+.card h3{
+  font-size:1.03125rem;
+  color:var(--navy-2);
+  margin:20px 0 8px;
+}
+.card h3:first-of-type{margin-top:4px;}
+.card p{margin:6px 0;color:var(--ink);font-size:0.9375rem;}
+.small-note{color:var(--sub);font-size:0.84375rem;}
+
+.formula{
+  background:var(--formula-bg);
+  border:1px solid var(--formula-border);
+  border-radius:10px;
+  padding:12px 16px;
+  margin:10px 0;
+  font-size:1.03125rem;
+  font-weight:700;
+  color:var(--navy);
+  text-align:center;
+  letter-spacing:.5px;
+}
+html[data-theme="dark"] .formula{color:var(--gold-light);}
+.formula.small{font-size:0.9375rem;}
+
+.example{
+  background:var(--example-bg);
+  border:1px dashed var(--example-border);
+  border-radius:10px;
+  padding:12px 16px;
+  margin:10px 0 14px;
+  font-size:0.90625rem;
+  transition:.3s;
+}
+.example .tag{
+  display:inline-block;
+  background:var(--gold);
+  color:#12314f;
+  font-size:0.75rem;
+  font-weight:700;
+  padding:2px 10px;
+  border-radius:12px;
+  margin-bottom:6px;
+}
+.example .ans{color:var(--good);font-weight:600;}
+
+table.numtable{
+  width:100%;
+  border-collapse:collapse;
+  margin:10px 0;
+  font-size:0.875rem;
+}
+table.numtable th,table.numtable td{
+  border:1px solid var(--line);
+  padding:8px 6px;
+  text-align:center;
+}
+table.numtable th{background:var(--navy);color:#fff;font-weight:600;}
+table.numtable tr:nth-child(even) td{background:var(--table-alt);}
+
+.tips-box{
+  background:var(--tips-bg);
+  border-left:4px solid var(--good);
+  border-radius:8px;
+  padding:10px 14px;
+  margin:10px 0;
+  font-size:0.90625rem;
+  color:var(--tips-text);
+  transition:.3s;
+}
+
+/* ===== 互动转换工具（数字⇄中文 / 三大定律练习） ===== */
+.tool-box{
+  background:var(--formula-bg);
+  border:1px solid var(--formula-border);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:12px 0;
+  transition:.3s;
+}
+.tool-box .tool-title{
+  font-weight:700;
+  color:var(--navy);
+  font-size:0.9375rem;
+  margin-bottom:8px;
+}
+html[data-theme="dark"] .tool-box .tool-title{color:var(--gold-light);}
+.tool-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:8px;
+}
+.tool-row input[type=text]{
+  flex:1;
+  min-width:150px;
+  padding:10px 12px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  font-size:0.9375rem;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:inherit;
+}
+.tool-row input[type=text]:focus{outline:none;border-color:var(--navy-2);}
+.tool-btn{
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:0.875rem;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:.15s;
+}
+.tool-btn:hover{background:var(--navy-2);}
+.tool-output{
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:700;
+  background:var(--paper);
+  border:1px dashed var(--formula-border);
+  color:var(--navy);
+  min-height:22px;
+  word-break:break-all;
+  transition:.3s;
+}
+html[data-theme="dark"] .tool-output{color:var(--gold-light);}
+.tool-output.err{
+  color:var(--bad);
+  font-weight:600;
+  font-size:0.84375rem;
+  border-color:var(--bad);
+}
+.tool-hint{
+  font-size:0.78125rem;
+  color:var(--sub);
+  margin-top:4px;
+}
+
+/* ===== quiz ===== */
+.quiz-start{text-align:center;padding:20px 6px;}
+.quiz-start p{color:var(--sub);font-size:0.90625rem;}
+.big-btn{
+  background:linear-gradient(135deg,var(--gold) 0%,#c8923a 100%);
+  color:#1a1204;
+  border:none;
+  padding:14px 34px;
+  border-radius:30px;
+  font-size:1rem;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 16px rgba(200,146,58,0.35);
+  margin-top:10px;
+  transition:.15s;
+}
+.big-btn:hover{transform:translateY(-2px);}
+.big-btn:active{transform:translateY(0);}
+.ghost-btn{
+  background:none;
+  border:2px solid var(--navy);
+  color:var(--navy);
+  padding:10px 24px;
+  border-radius:24px;
+  font-size:0.90625rem;
+  font-weight:700;
+  cursor:pointer;
+}
+.progress-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  font-size:0.84375rem;
+  color:var(--sub);
+}
+.progress-bar{
+  flex:1;
+  height:8px;
+  border-radius:5px;
+  background:var(--line);
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--navy-2));
+  width:0%;
+  transition:width .3s;
+}
+.score-pill{
+  font-weight:700;
+  color:var(--navy);
+  white-space:nowrap;
+}
+html[data-theme="dark"] .score-pill{color:var(--gold-light);}
+.q-cat{
+  display:inline-block;
+  font-size:0.75rem;
+  color:var(--navy-2);
+  background:var(--formula-bg);
+  padding:2px 10px;
+  border-radius:10px;
+  margin-bottom:8px;
+  font-weight:600;
+}
+html[data-theme="dark"] .q-cat{color:var(--gold-light);}
+.q-text{
+  font-size:1.0625rem;
+  font-weight:700;
+  color:var(--ink);
+  margin:6px 0 16px;
+  line-height:1.6;
+}
+.options{display:flex;flex-direction:column;gap:10px;}
+.opt-btn{
+  text-align:left;
+  padding:13px 16px;
+  border:2px solid var(--line);
+  background:var(--opt-bg);
+  border-radius:12px;
+  font-size:0.9375rem;
+  cursor:pointer;
+  transition:.15s;
+  color:var(--ink);
+}
+.opt-btn:hover{border-color:var(--navy-2);background:var(--opt-hover-bg);}
+.opt-btn.correct{
+  border-color:var(--good);
+  background:var(--correct-bg);
+  color:var(--correct-text);
+  font-weight:700;
+}
+.opt-btn.wrong{
+  border-color:var(--bad);
+  background:var(--wrong-bg);
+  color:var(--wrong-text);
+  font-weight:700;
+}
+.opt-btn[disabled]{cursor:default;}
+.explain-box{
+  margin-top:14px;
+  padding:12px 16px;
+  border-radius:10px;
+  font-size:0.90625rem;
+  display:none;
+}
+.explain-box.show{display:block;}
+.explain-box.ok{background:var(--correct-bg);color:var(--correct-text);border:1px solid var(--good);}
+.explain-box.no{background:var(--wrong-bg);color:var(--wrong-text);border:1px solid var(--bad);}
+.q-footer{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:16px;
+}
+.next-btn{
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  padding:10px 26px;
+  border-radius:22px;
+  font-size:0.90625rem;
+  font-weight:700;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+.next-btn.show{opacity:1;pointer-events:auto;}
+
+.result-box{text-align:center;padding:10px 6px 4px;}
+.result-score{
+  font-size:3.25rem;
+  font-weight:800;
+  color:var(--navy);
+  margin:6px 0 0;
+}
+html[data-theme="dark"] .result-score{color:var(--gold-light);}
+.result-score span{font-size:1.375rem;color:var(--sub);font-weight:600;}
+.result-msg{font-size:1rem;color:var(--result-msg-color);font-weight:700;margin:6px 0 18px;}
+.result-detail{
+  text-align:left;
+  max-height:340px;
+  overflow-y:auto;
+  border-top:1px solid var(--line);
+  padding-top:10px;
+  margin-top:6px;
+}
+.rd-item{
+  padding:8px 4px;
+  border-bottom:1px dashed var(--line);
+  font-size:0.84375rem;
+}
+.rd-item b{color:var(--navy);}
+html[data-theme="dark"] .rd-item b{color:var(--gold-light);}
+.rd-ok{color:var(--good);font-weight:700;}
+.rd-no{color:var(--bad);font-weight:700;}
+.result-btns{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
+
+footer{
+  text-align:center;
+  padding:26px 16px 10px;
+  color:var(--sub);
+  font-size:0.78125rem;
+}
+footer .brand{color:var(--navy);font-weight:700;font-size:0.84375rem;margin-bottom:2px;}
+html[data-theme="dark"] footer .brand{color:var(--gold-light);}
+</style>
+</head>
+<body>
+
+<div class="control-bar">
+  <button id="themeToggle" title="切换深色/浅色模式">🌙</button>
+  <div class="divider"></div>
+  <button id="fontDec" title="缩小字体">A－</button>
+  <span id="fontLabel">100%</span>
+  <button id="fontInc" title="放大字体">A＋</button>
+</div>
+
+<div class="top-banner">
+  <span class="chapter-tag">CHAPTER 1 ｜ 初一数学</span>
+  <h1>第1章　完整数</h1>
+  <p>Whole Numbers ｜ 认识数的起源、四则运算与三大运算定律</p>
+  <div class="goals">
+    <b>📌 学习目标</b>
+    <ul>
+      <li>理解完整数与自然数的概念</li>
+      <li>掌握完整数的加、减、乘、除运算</li>
+      <li>掌握混合运算的顺序，并熟练地进行四则混合运算</li>
+      <li>理解四则运算中的三大定律</li>
+      <li>能解完整数四则运算的应用问题</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab-btn active" data-panel="p1">1.1 完整数与自然数</button>
+  <button class="tab-btn" data-panel="p2">1.2 四则运算</button>
+  <button class="tab-btn" data-panel="p3">1.3 三大定律</button>
+  <button class="tab-btn" data-panel="p4">1.4 应用问题</button>
+  <button class="tab-btn" data-panel="p5">📝 随堂测验</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ 1.1 ============ -->
+  <div class="panel active" id="p1">
+    <div class="card">
+      <h2>1.1　完整数与自然数的概念</h2>
+
+      <h3>数的起源与发展</h3>
+      <p>远古时期，人类用石子或绳结记录数目，一粒石子表示一只羊。后来因为物物交换的需要，"多与少"的概念逐渐清晰，才慢慢发展出记数的符号与方法。</p>
+
+      <h3>记数法</h3>
+      <p>用一定的文字或符号记数一定数目的方法叫做<b>记数法</b>，所使用的文字或符号叫做<b>数字</b>。</p>
+      <table class="numtable">
+        <tr><th>类型</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+        <tr><td>中国数字（大写）</td><td>零</td><td>壹</td><td>贰</td><td>叁</td><td>肆</td><td>伍</td><td>陆</td><td>柒</td><td>捌</td><td>玖</td><td>拾</td></tr>
+        <tr><td>中国数字（小写）</td><td>零</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td><td>七</td><td>八</td><td>九</td><td>十</td></tr>
+        <tr><td>阿拉伯数字</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><td>罗马数字</td><td>—</td><td>I</td><td>II</td><td>III</td><td>IV</td><td>V</td><td>VI</td><td>VII</td><td>VIII</td><td>IX</td><td>X</td></tr>
+      </table>
+
+      <h3>十进制</h3>
+      <p>十进制即<b>满十进一</b>：十个一是"十"，十个十是"百"，十个百是"千"，十个千是"万"……由于阿拉伯数字书写方便，因此广为世界采用。每个数字依所在的位置有它的<b>位名</b>：个、十、百、千、万、十万、百万、千万、亿……</p>
+
+      <div class="example">
+        <span class="tag">例题</span>
+        <p>在 <b>3765419</b> 这个数中：个位数为 9，数值为 9；十位数为 1，数值为 10；百位数为 4，数值为 400 ……</p>
+        <p class="ans">✔ 每个数字都有自己一定的「数位」及「数值」，数值 = 数字 × 该数位代表的单位。</p>
+      </div>
+
+      <div class="example">
+        <span class="tag">例题</span>
+        <p>以阿拉伯数字写出：三千七百九十二 → <span class="ans">3792</span>；四十万九千八百零四 → <span class="ans">409804</span></p>
+        <p>以文字表示：8723 → <span class="ans">八千七百二十三</span>；4670033 → <span class="ans">四百六十七万零三十三</span></p>
+      </div>
+
+      <h3>🔄 互动练习：数字 ⇄ 中文数字 转换器</h3>
+      <div class="tool-box">
+        <div class="tool-title">① 阿拉伯数字 → 中文数字</div>
+        <div class="tool-row">
+          <input type="text" id="numToCnInput" placeholder="例如：123 或 4670033" inputmode="numeric">
+          <button class="tool-btn" onclick="convertNumToCn()">转换 →</button>
+        </div>
+        <div class="tool-output" id="numToCnOutput">请输入阿拉伯数字</div>
+      </div>
+      <div class="tool-box">
+        <div class="tool-title">② 中文数字 → 阿拉伯数字</div>
+        <div class="tool-row">
+          <input type="text" id="cnToNumInput" placeholder="例如：一百二十三 或 四百六十七万零三十三">
+          <button class="tool-btn" onclick="convertCnToNum()">转换 →</button>
+        </div>
+        <div class="tool-output" id="cnToNumOutput">请输入中文数字</div>
+        <div class="tool-hint">支持「零～玖」等中文数字与「十、百、千、万、亿」等单位</div>
+      </div>
+
+      <h3>自然数与完整数</h3>
+      <div class="formula small">自然数：1, 2, 3, 4, 5, 6, 7, …（从 1 开始，一个一个数下去）</div>
+      <div class="formula small">完整数：0, 1, 2, 3, 4, 5, 6, 7, …（用"零"表示"没有"，比自然数多了 0）</div>
+      <p>从 0 到 9 的数叫做<b>一位数</b>，从 10 到 99 的数叫做<b>二位数</b>，从 100 到 999 的数叫做<b>三位数</b>，依此类推。</p>
+
+      <div class="tips-box">💡 记忆窍门：所有自然数都是完整数，但 <b>0</b> 是完整数，却不是自然数！</div>
+    </div>
+  </div>
+
+  <!-- ============ 1.2 ============ -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <h2>1.2　完整数的四则运算</h2>
+      <p>加、减、乘、除四种运算，称为<b>四则运算</b>，是一切数的运算基础。</p>
+
+      <h3>➕ 加法</h3>
+      <p>符号"+"。将两个或以上的数相加，结果叫做<b>和</b>。竖式运算时按个位、十位、百位……对齐，由个位开始逐位相加，逢十进位。</p>
+      <div class="example"><span class="tag">例</span> 721 + 3260 = <span class="ans">3981</span>　｜　9281 + 653 + 37687 = <span class="ans">47621</span></div>
+
+      <h3>➖ 减法</h3>
+      <p>符号"－"。一个数减去另一个数，结果叫做<b>差</b>。个位开始逐位相减，不够减则须<b>借位</b>。</p>
+      <div class="example"><span class="tag">例</span> 1398 － 264 = <span class="ans">1134</span>　｜　7963 － 6987 － 138 = <span class="ans">838</span></div>
+
+      <h3>✖ 乘法</h3>
+      <p>符号"×"。乘法是几个相同数的连加，例如 7+7+7+7+7 = 5×7。两数相乘所得的结果叫做<b>积</b>。</p>
+      <div class="example"><span class="tag">例</span> 134 × 7 = <span class="ans">938</span>　｜　693 × 37 × 11 = <span class="ans">282051</span></div>
+
+      <h3>➗ 除法</h3>
+      <p>符号"÷"。把数量平分成大小一样的组合。12 ÷ 3 = 4，读作"12 除以 3"。3 是<b>除数</b>，12 是<b>被除数</b>，结果叫<b>商</b>。<b>除数不能是 0！</b></p>
+      <div class="example">
+        <span class="tag">例</span> 63 ÷ 7 = <span class="ans">9</span>（整除）<br>
+        93 ÷ 8 = <span class="ans">11 余 5</span>（商是 11，余数是 5）
+      </div>
+
+      <h3>🔢 四则混合运算</h3>
+      <div class="tips-box">
+        ① 只有加减，或只有乘除 → 由<b>左到右</b>依次运算<br>
+        ② 加减乘除混合 → 先做<b>乘或除</b>，再做<b>加或减</b><br>
+        ③ 含有括号 → <b>先算括号内</b>的运算（顺序：( ) → [ ] → { }）
+      </div>
+      <div class="example">
+        <span class="tag">例</span>
+        <p>14 + 4 × 13 － 72 ÷ 8 = 14 + 52 － 9 = <span class="ans">57</span></p>
+        <p>4 × (8 + 9) = 4 × 17 = <span class="ans">68</span></p>
+        <p>{17 － [48 ÷ (6 + 5×2)]} × 4 = {17 － [48÷16]} × 4 = {17－3} × 4 = <span class="ans">56</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 1.3 ============ -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <h2>1.3　四则运算三大定律</h2>
+
+      <h3>一、交换律</h3>
+      <div class="formula">a + b = b + a</div>
+      <div class="formula">a × b = b × a</div>
+      <p>任意两个数相加或相乘，交换位置，结果不变。例：4 + 5 = 5 + 4 = 9；4 × 5 = 5 × 4 = 20。</p>
+
+      <div class="tool-box">
+        <div class="tool-title">🔄 互动练习：输入算式，自动交换位置</div>
+        <div class="tool-row">
+          <input type="text" id="commInput" placeholder="例如：a+b 或 3×5">
+          <button class="tool-btn" onclick="convertCommutative()">转换 →</button>
+        </div>
+        <div class="tool-output" id="commOutput">结果会显示在这里</div>
+        <div class="tool-hint">支持「加号 +」或「乘号 × / *」连接的两项算式</div>
+      </div>
+
+      <h3>二、结合律</h3>
+      <div class="formula">(a + b) + c = a + (b + c)</div>
+      <div class="formula">(a × b) × c = a × (b × c)</div>
+      <p>三个数相加或相乘，无论先加/乘哪两个数，结果不变。例：(4+5)+6 = 4+(5+6) = 15。</p>
+
+      <div class="tool-box">
+        <div class="tool-title">🔄 互动练习：输入算式，自动转换括号位置</div>
+        <div class="tool-row">
+          <input type="text" id="assocInput" placeholder="例如：(a+b)+c 或 a×(b×c)">
+          <button class="tool-btn" onclick="convertAssociative()">转换 →</button>
+        </div>
+        <div class="tool-output" id="assocOutput">结果会显示在这里</div>
+        <div class="tool-hint">支持 (A+B)+C ⇄ A+(B+C) 或 (A×B)×C ⇄ A×(B×C) 的格式</div>
+      </div>
+
+      <h3>三、分配律</h3>
+      <div class="formula small">(a + b) × c = (a × c) + (b × c)</div>
+      <div class="formula small">(a － b) × c = (a × c) － (b × c)</div>
+      <div class="formula small">(a + b) ÷ c = (a ÷ c) + (b ÷ c)　　(a － b) ÷ c = (a ÷ c) － (b ÷ c)</div>
+
+      <div class="tool-box">
+        <div class="tool-title">🔄 互动练习：输入算式，自动展开 / 合并</div>
+        <div class="tool-row">
+          <input type="text" id="distInput" placeholder="例如：x(j+k) 或 xj+xk">
+          <button class="tool-btn" onclick="convertDistributive()">转换 →</button>
+        </div>
+        <div class="tool-output" id="distOutput">结果会显示在这里</div>
+        <div class="tool-hint">输入 x(j+k) 会展开成 xj+xk；输入 xj+xk 也能反向合并成 x(j+k)</div>
+      </div>
+
+      <div class="example">
+        <span class="tag">灵活应用</span>
+        <p>50 × 87 × 2 = 87 × (50×2) = 87 × 100 = <span class="ans">8700</span>（交换律＋结合律）</p>
+        <p>123 × 67 + 77 × 67 = (123+77) × 67 = 200 × 67 = <span class="ans">13400</span>（分配律）</p>
+        <p>99 × 297 = (100－1) × 297 = 29700 － 297 = <span class="ans">29403</span>（分配律巧算）</p>
+      </div>
+      <div class="tips-box">💡 善用三大定律，可以把复杂的计算变得又快又准！</div>
+    </div>
+  </div>
+
+  <!-- ============ 1.4 ============ -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <h2>1.4　应用问题</h2>
+
+      <div class="example">
+        <span class="tag">例</span>
+        <p>制衣厂 12 位工人，一人一天做 4 套衣服，120 天可做多少套？</p>
+        <p>12 × 4 × 120 = <span class="ans">5760 套</span></p>
+      </div>
+      <div class="example">
+        <span class="tag">例</span>
+        <p>甲有 RM38，乙有 RM26，甲需给乙多少钱，两人的钱才相等？</p>
+        <p>甲比乙多 38－26 = RM12，甲需给乙 12 ÷ 2 = <span class="ans">RM6</span></p>
+      </div>
+
+      <h3>📊 平均数</h3>
+      <div class="formula">平均数 = 总和 ÷ 个数</div>
+      <div class="formula">总和 = 平均数 × 个数</div>
+      <div class="example">
+        <span class="tag">例</span>
+        <p>四个儿子身高 173, 178, 181, 176 cm，平均身高 = (173+178+181+176)÷4 = 708÷4 = <span class="ans">177 cm</span></p>
+      </div>
+
+      <h3>🚗 行程问题</h3>
+      <div class="formula">距离 = 速度 × 时间</div>
+      <div class="formula">速度 = 距离 ÷ 时间　　时间 = 距离 ÷ 速度</div>
+      <div class="example">
+        <span class="tag">例</span>
+        <p>甲乙两地相距 450 公里，车速每小时 50 公里，需要多久到达？</p>
+        <p>450 ÷ 50 = <span class="ans">9 小时</span></p>
+      </div>
+      <div class="example">
+        <span class="tag">例</span>
+        <p>甲、乙两车相向而行，甲车速 60 km/h，乙车速 70 km/h，3 小时后相遇，两地相距多少？</p>
+        <p>60×3 + 70×3 = 180 + 210 = <span class="ans">390 公里</span></p>
+      </div>
+      <div class="tips-box">💡 遇到往返行程时，别忘了：往返距离 = 单程 × 2，平均速度 = 总距离 ÷ 总时间（不是两个速度直接相加除以二！）</div>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div class="panel" id="p5">
+    <div class="card" id="quizCard">
+      <h2>📝 随堂测验</h2>
+
+      <div id="quizStart" class="quiz-start">
+        <p>本测验涵盖 1.1–1.4 全部内容：数字与位值、四则运算、运算定律、应用问题。<br>
+        每次开始，题目与选项顺序都会<b>重新随机调乱</b>，共抽取 <b>12</b> 题，答对越多分数越高！</p>
+        <button class="big-btn" onclick="startQuiz()">🚀 开始测验</button>
+      </div>
+
+      <div id="quizPlay" style="display:none;">
+        <div class="progress-row">
+          <span>第 <span id="qNow">1</span> / <span id="qTotal">12</span> 题</span>
+          <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+          <span class="score-pill">✅ <span id="qScore">0</span></span>
+        </div>
+        <div class="q-cat" id="qCat">分类</div>
+        <div class="q-text" id="qText">题目</div>
+        <div class="options" id="qOptions"></div>
+        <div class="explain-box" id="qExplain"></div>
+        <div class="q-footer">
+          <button class="next-btn" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
+        </div>
+      </div>
+
+      <div id="quizResult" style="display:none;" class="result-box">
+        <div class="result-score"><span id="rScoreNum">0</span><span> / 12</span></div>
+        <div class="result-msg" id="rMsg"></div>
+        <div class="result-btns">
+          <button class="big-btn" onclick="startQuiz()">🔁 重新测验（重新调乱）</button>
+        </div>
+        <div class="result-detail" id="rDetail"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="brand">峇株吧辖华仁中学 Chinese High School</div>
+  蔡逸众老师 制作　｜　初一数学 · 第1章 完整数 互动学习站
+</footer>
+
+<script>
+/* watermark: 蔡逸众 (ecchua79) | 峇株吧辖华仁中学 Chinese High School | 第1章 完整数 互动学习网页 */
+console.log("%c第1章 完整数 · 互动学习站","color:#d6a94f;font-weight:bold;font-size:14px;","｜ 制作：蔡逸众老师 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School");
+
+/* ---------- tab switching ---------- */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.panel).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+/* ---------- 深浅色模式 ---------- */
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+
+function applyTheme(theme){
+  if(theme === 'dark'){
+    root.setAttribute('data-theme','dark');
+    themeBtn.textContent = '☀️';
+  } else {
+    root.removeAttribute('data-theme');
+    themeBtn.textContent = '🌙';
+  }
+  try{ localStorage.setItem('mathTheme', theme); }catch(e){}
+}
+
+function initTheme(){
+  let saved = null;
+  try{ saved = localStorage.getItem('mathTheme'); }catch(e){}
+  if(!saved){
+    saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  applyTheme(saved);
+}
+
+themeBtn.addEventListener('click', ()=>{
+  const now = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(now);
+});
+
+/* ---------- 字体大小调整 ---------- */
+const FONT_MIN = 12;
+const FONT_MAX = 24;
+const FONT_STEP = 2;
+const FONT_BASE = 16;
+const fontLabel = document.getElementById('fontLabel');
+
+function applyFontSize(px){
+  root.style.fontSize = px + 'px';
+  fontLabel.textContent = Math.round(px / FONT_BASE * 100) + '%';
+  try{ localStorage.setItem('mathFontSize', px); }catch(e){}
+}
+
+function initFontSize(){
+  let saved = null;
+  try{ saved = parseInt(localStorage.getItem('mathFontSize'), 10); }catch(e){}
+  if(!saved || isNaN(saved)) saved = FONT_BASE;
+  applyFontSize(saved);
+}
+
+document.getElementById('fontInc').addEventListener('click', ()=>{
+  const cur = parseInt(root.style.fontSize, 10) || FONT_BASE;
+  applyFontSize(Math.min(FONT_MAX, cur + FONT_STEP));
+});
+document.getElementById('fontDec').addEventListener('click', ()=>{
+  const cur = parseInt(root.style.fontSize, 10) || FONT_BASE;
+  applyFontSize(Math.max(FONT_MIN, cur - FONT_STEP));
+});
+fontLabel.addEventListener('dblclick', ()=> applyFontSize(FONT_BASE));
+
+initTheme();
+initFontSize();
+
+/* ---------- 数字 ⇄ 中文数字 转换器 ---------- */
+function numberToChinese(num){
+  num = Math.floor(Math.abs(num));
+  if(num === 0) return '零';
+  const digits = ['零','一','二','三','四','五','六','七','八','九'];
+  const units = ['','十','百','千'];
+  const bigUnits = ['','万','亿','兆'];
+  let numStr = String(num);
+  let groups = [];
+  while(numStr.length > 0){
+    groups.unshift(numStr.slice(-4));
+    numStr = numStr.slice(0,-4);
+  }
+  function groupToStr(g){
+    let value = parseInt(g,10);
+    if(value === 0) return '';
+    let str = '';
+    let localZero = false;
+    let emitted = false;
+    for(let i=0;i<g.length;i++){
+      let d = parseInt(g[i],10);
+      let unitPos = g.length - 1 - i;
+      if(d === 0){
+        if(emitted) localZero = true;
+      } else {
+        if(localZero){ str += '零'; localZero = false; }
+        str += digits[d] + (unitPos>0 ? units[unitPos] : '');
+        emitted = true;
+      }
+    }
+    return str;
+  }
+  let groupInfo = groups.map(g => ({
+    value: parseInt(g,10),
+    str: groupToStr(g),
+    leadingZero: /^0/.test(g) && parseInt(g,10)!==0
+  }));
+  let final = '';
+  let pendingZero = false;
+  for(let i=0;i<groupInfo.length;i++){
+    let gi = groupInfo[i];
+    let unit = bigUnits[groupInfo.length-1-i] || '';
+    if(gi.value === 0){
+      if(final !== '') pendingZero = true;
+      continue;
+    }
+    if(final !== '' && (pendingZero || gi.leadingZero)){
+      final += '零';
+    }
+    final += gi.str + unit;
+    pendingZero = false;
+  }
+  final = final.replace(/^一十/, '十');
+  return final;
+}
+
+function chineseToNumber(cn){
+  cn = cn.trim();
+  if(cn === '') return NaN;
+  if(cn === '零') return 0;
+  const digitMap = {'零':0,'一':1,'壹':1,'二':2,'两':2,'贰':2,'三':3,'叁':3,'四':4,'肆':4,'五':5,'伍':5,'六':6,'陆':6,'七':7,'柒':7,'八':8,'捌':8,'九':9,'玖':9};
+  const unitMap = {'十':10,'拾':10,'百':100,'佰':100,'千':1000,'仟':1000};
+  const bigUnitMap = {'万':10000,'亿':100000000,'兆':1000000000000};
+  let total = 0, section = 0, num = 0;
+  let valid = true;
+  for(const ch of cn){
+    if(ch in digitMap){
+      num = digitMap[ch];
+    } else if(ch in unitMap){
+      if(num === 0) num = 1;
+      section += num * unitMap[ch];
+      num = 0;
+    } else if(ch in bigUnitMap){
+      section += num;
+      total += section * bigUnitMap[ch];
+      section = 0; num = 0;
+    } else {
+      valid = false;
+    }
+  }
+  total += section + num;
+  return valid ? total : NaN;
+}
+
+function convertNumToCn(){
+  const raw = document.getElementById('numToCnInput').value.trim();
+  const out = document.getElementById('numToCnOutput');
+  if(!/^[0-9]+$/.test(raw) || raw.length > 15){
+    out.textContent = '⚠️ 请输入 0 到 15 位的阿拉伯数字（不含小数或负号）';
+    out.classList.add('err');
+    return;
+  }
+  const num = parseInt(raw,10);
+  out.classList.remove('err');
+  out.textContent = raw + ' = ' + numberToChinese(num);
+}
+
+function convertCnToNum(){
+  const raw = document.getElementById('cnToNumInput').value.trim();
+  const out = document.getElementById('cnToNumOutput');
+  const result = chineseToNumber(raw);
+  if(raw === '' || isNaN(result)){
+    out.textContent = '⚠️ 无法识别，请检查是否使用正确的中文数字（如：一、二、十、百、千、万……）';
+    out.classList.add('err');
+    return;
+  }
+  out.classList.remove('err');
+  out.textContent = raw + ' = ' + result.toLocaleString('en-US');
+}
+
+/* ---------- 三大定律 互动转换器 ---------- */
+function normalizeExpr(s){
+  return s.replace(/\s+/g,'').replace(/\*/g,'×').replace(/（/g,'(').replace(/）/g,')').replace(/－/g,'-').replace(/—/g,'-');
+}
+
+function convertCommutative(){
+  const raw = document.getElementById('commInput').value;
+  const out = document.getElementById('commOutput');
+  const s = normalizeExpr(raw);
+  let m = s.match(/^([^()+×]+)\+([^()+×]+)$/);
+  let result = null;
+  if(m) result = `${m[2]}+${m[1]}`;
+  else {
+    m = s.match(/^([^()+×]+)×([^()+×]+)$/);
+    if(m) result = `${m[2]}×${m[1]}`;
+  }
+  if(result === null || s === ''){
+    out.textContent = '⚠️ 请输入像 a+b 或 a×b 这样的两项算式';
+    out.classList.add('err');
+    return;
+  }
+  out.classList.remove('err');
+  out.textContent = s + ' = ' + result;
+}
+
+function convertAssociative(){
+  const raw = document.getElementById('assocInput').value;
+  const out = document.getElementById('assocOutput');
+  const s = normalizeExpr(raw);
+  let result = null;
+  let m = s.match(/^\(([^()]+)\+([^()]+)\)\+([^()]+)$/);
+  if(m) result = `${m[1]}+(${m[2]}+${m[3]})`;
+  if(result===null){ m = s.match(/^([^()]+)\+\(([^()]+)\+([^()]+)\)$/); if(m) result = `(${m[1]}+${m[2]})+${m[3]}`; }
+  if(result===null){ m = s.match(/^\(([^()]+)×([^()]+)\)×([^()]+)$/); if(m) result = `${m[1]}×(${m[2]}×${m[3]})`; }
+  if(result===null){ m = s.match(/^([^()]+)×\(([^()]+)×([^()]+)\)$/); if(m) result = `(${m[1]}×${m[2]})×${m[3]}`; }
+  if(result === null || s === ''){
+    out.textContent = '⚠️ 请输入像 (a+b)+c 或 a×(b×c) 这样含括号的三项算式';
+    out.classList.add('err');
+    return;
+  }
+  out.classList.remove('err');
+  out.textContent = s + ' = ' + result;
+}
+
+function commonPrefixLen(a,b){
+  let i=0;
+  while(i<a.length && i<b.length && a[i]===b[i]) i++;
+  return i;
+}
+
+function convertDistributive(){
+  const raw = document.getElementById('distInput').value;
+  const out = document.getElementById('distOutput');
+  const s = normalizeExpr(raw);
+  let result = null;
+  let m = s.match(/^([A-Za-z0-9]+)\(([^()+\-]+)([+\-])([^()+\-]+)\)$/);
+  if(m){
+    const [,x,j,op,k] = m;
+    result = `${x}${j}${op}${x}${k}`;
+  } else {
+    m = s.match(/^([^()+\-]+)([+\-])([^()+\-]+)$/);
+    if(m){
+      const [,t1,op,t2] = m;
+      const p = commonPrefixLen(t1,t2);
+      if(p>=1 && p<t1.length && p<t2.length){
+        const prefix = t1.slice(0,p);
+        result = `${prefix}(${t1.slice(p)}${op}${t2.slice(p)})`;
+      }
+    }
+  }
+  if(result === null || s === ''){
+    out.textContent = '⚠️ 请输入像 x(j+k) 这样的格式，或输入 xj+xk 尝试反向合并（两项须有共同的开头字母/数字）';
+    out.classList.add('err');
+    return;
+  }
+  out.classList.remove('err');
+  out.textContent = s + ' = ' + result;
+}
+
+/* ---------- quiz question bank ---------- */
+const QUESTION_BANK = [
+  {cat:"数字系统", q:"下列哪一组符号属于「罗马数字」？", opts:["0, 1, 2, 3","壹, 贰, 叁, 肆","I, II, III, IV","零, 一, 二, 三"], ans:2,
+    exp:"I, II, III, IV 是罗马数字；其余分别属于阿拉伯数字、中国数字（大写）、中国数字（小写）。"},
+  {cat:"位值", q:"在 5836 这个数中，数字「8」的数位是？", opts:["十位","百位","千位","万位"], ans:1,
+    exp:"5836：5 在千位，8 在百位，3 在十位，6 在个位。"},
+  {cat:"位值", q:"在 5836 这个数中，数字「8」的数值是多少？", opts:["8","80","800","8000"], ans:2,
+    exp:"8 位于百位，所以数值 = 8 × 100 = 800。"},
+  {cat:"位值", q:"在 14736 这个数中，数字「4」的数值是多少？", opts:["4","40","400","4000"], ans:3,
+    exp:"14736：1 万位，4 千位，7 百位，3 十位，6 个位，所以 4 的数值 = 4000。"},
+  {cat:"自然数与完整数", q:"下列哪一个数「只是」完整数，却不是自然数？", opts:["0","1","5","100"], ans:0,
+    exp:"自然数从 1 开始数起；完整数比自然数多了 0，所以只有 0 符合。"},
+  {cat:"自然数与完整数", q:"从 0 到 9 的数叫做「一位数」，那么从 10 到 99 的数叫做？", opts:["一位数","二位数","三位数","四位数"], ans:1,
+    exp:"10 到 99 共有两个数位（十位与个位），所以叫二位数。"},
+  {cat:"十进制", q:"十进制的意思是？", opts:["满五进一","满八进一","满十进一","满百进一"], ans:2,
+    exp:"十进制即满十进一：十个一是「十」，十个十是「百」……"},
+  {cat:"加法", q:"计算：128 + 356 = ?", opts:["474","484","494","384"], ans:1, exp:"128 + 356 = 484。"},
+  {cat:"减法", q:"计算：705 － 289 = ?", opts:["426","406","416","414"], ans:2, exp:"705 － 289 = 416。"},
+  {cat:"乘法", q:"计算：34 × 27 = ?", opts:["908","936","828","918"], ans:3, exp:"34 × 27 = 918。"},
+  {cat:"除法", q:"计算：483 ÷ 7 = ?", opts:["68","69","70","67"], ans:1, exp:"7 × 69 = 483，483 ÷ 7 = 69（整除）。"},
+  {cat:"除法", q:"计算 93 ÷ 8，余数是多少？", opts:["3","4","5","6"], ans:2, exp:"8 × 11 = 88，93 － 88 = 5，所以商是 11，余数是 5。"},
+  {cat:"混合运算", q:"计算：63 ÷ 9 × 7 = ?", opts:["1","7","49","56"], ans:2, exp:"没有括号时由左到右依次计算：63÷9=7，7×7=49。"},
+  {cat:"混合运算", q:"计算：14 + 4 × 13 － 72 ÷ 8 = ?", opts:["57","66","45","61"], ans:0,
+    exp:"先乘除：4×13=52，72÷8=9 → 14+52－9 = 66－9 = 57。"},
+  {cat:"混合运算", q:"计算：4 × (8 + 9) = ?", opts:["41","68","72","76"], ans:1,
+    exp:"先算括号内：8+9=17，再 4×17=68。"},
+  {cat:"运算定律", q:"下列哪一个算式应用了「加法交换律」？", opts:["4 + 5 = 5 + 4","(4+5)+6 = 4+(5+6)","4×(5+6) = 4×5+4×6","4 + 0 = 4"], ans:0,
+    exp:"a + b = b + a 就是加法交换律；交换两数的位置，和不变。"},
+  {cat:"运算定律", q:"下列哪一个算式应用了「乘法结合律」？", opts:["4 × 5 = 5 × 4","(4×5)×6 = 4×(5×6)","4×(5+6) = 4×5+4×6","4 × 1 = 4"], ans:1,
+    exp:"(a×b)×c = a×(b×c) 是乘法结合律，改变相乘的顺序，积不变。"},
+  {cat:"运算定律", q:"应用「分配律」计算 123×67 + 77×67 最简便的写法是？", opts:["(123+77) × 67","123 × (67+77)","123×67 + 77","200 × 144"], ans:0,
+    exp:"(a×c)+(b×c) = (a+b)×c，所以 = (123+77)×67 = 200×67 = 13400。"},
+  {cat:"运算定律", q:"99 × 297 用分配律巧算，应写成？", opts:["(100+1) × 297","(100－1) × 297","99 × (300－3)","99 × 300 － 3"], ans:1,
+    exp:"99 = 100－1，所以 99×297 = (100－1)×297 = 100×297 － 1×297 = 29700－297 = 29403。"},
+  {cat:"应用问题", q:"甲有 RM50，乙有 RM30，甲需给乙多少钱，两人的钱才相等？", opts:["RM5","RM10","RM15","RM20"], ans:1,
+    exp:"甲比乙多 50－30=RM20，甲需给乙 20÷2 = RM10，之后两人都有 RM40。"},
+  {cat:"应用问题", q:"平均数的公式是？", opts:["总和 ÷ 个数","总和 × 个数","个数 ÷ 总和","总和 － 个数"], ans:0,
+    exp:"平均数 = 总和 ÷ 个数。"},
+  {cat:"应用问题", q:"四个数 73, 68, 75, 80 的平均数是多少？", opts:["73","74","75","76"], ans:1,
+    exp:"总和 = 73+68+75+80 = 296，平均数 = 296÷4 = 74。"},
+  {cat:"应用问题", q:"速度公式是？", opts:["距离 ÷ 时间","距离 × 时间","时间 ÷ 距离","距离 － 时间"], ans:0,
+    exp:"速度 = 距离 ÷ 时间。"},
+  {cat:"应用问题", q:"某车以每小时 60 公里的速度行驶 3 小时，行驶了多少公里？", opts:["170","180","190","200"], ans:1,
+    exp:"距离 = 速度 × 时间 = 60 × 3 = 180 公里。"},
+  {cat:"应用问题", q:"甲、乙两地相距 240 公里，某车 4 小时到达，车速是每小时多少公里？", opts:["40","50","60","80"], ans:2,
+    exp:"速度 = 距离 ÷ 时间 = 240 ÷ 4 = 60 公里/小时。"}
+];
+
+/* ---------- quiz engine ---------- */
+const QUIZ_LEN = 12;
+let currentSet = [];
+let qIndex = 0;
+let score = 0;
+let answered = false;
+let answerLog = [];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function startQuiz(){
+  const pool = shuffle(QUESTION_BANK);
+  const picked = pool.slice(0, Math.min(QUIZ_LEN, pool.length));
+  currentSet = picked.map(item=>{
+    const optionObjs = item.opts.map((text,i)=>({text, correct:i===item.ans}));
+    const shuffledOpts = shuffle(optionObjs);
+    return {cat:item.cat, q:item.q, exp:item.exp, options:shuffledOpts};
+  });
+  qIndex = 0; score = 0; answered = false; answerLog = [];
+  document.getElementById('qTotal').textContent = currentSet.length;
+  document.getElementById('quizStart').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'none';
+  document.getElementById('quizPlay').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const item = currentSet[qIndex];
+  document.getElementById('qNow').textContent = qIndex+1;
+  document.getElementById('qScore').textContent = score;
+  document.getElementById('progFill').style.width = ((qIndex)/currentSet.length*100)+'%';
+  document.getElementById('qCat').textContent = item.cat;
+  document.getElementById('qText').textContent = item.q;
+  const optWrap = document.getElementById('qOptions');
+  optWrap.innerHTML = '';
+  item.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt.text;
+    btn.onclick = ()=>selectAnswer(opt, btn);
+    optWrap.appendChild(btn);
+  });
+  const exBox = document.getElementById('qExplain');
+  exBox.className = 'explain-box';
+  exBox.textContent = '';
+  document.getElementById('nextBtn').classList.remove('show');
+}
+
+function selectAnswer(opt, btn){
+  if(answered) return;
+  answered = true;
+  const isLast = qIndex === currentSet.length-1;
+  const allBtns = document.querySelectorAll('#qOptions .opt-btn');
+  allBtns.forEach(b=>b.disabled = true);
+  allBtns.forEach(b=>{
+    if(b.textContent === currentSet[qIndex].options.find(o=>o.correct).text){
+      b.classList.add('correct');
+    }
+  });
+  if(opt.correct){
+    score++;
+    document.getElementById('qScore').textContent = score;
+  } else {
+    btn.classList.add('wrong');
+  }
+  const exBox = document.getElementById('qExplain');
+  exBox.classList.add('show', opt.correct ? 'ok':'no');
+  exBox.textContent = (opt.correct ? '✔ 答对了！' : '✘ 答错了。') + '　' + currentSet[qIndex].exp;
+
+  answerLog.push({q:currentSet[qIndex].q, correct:opt.correct, correctText: currentSet[qIndex].options.find(o=>o.correct).text});
+
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.textContent = isLast ? '查看成绩 →' : '下一题 →';
+  nextBtn.classList.add('show');
+}
+
+function nextQuestion(){
+  if(qIndex < currentSet.length-1){
+    qIndex++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult(){
+  document.getElementById('progFill').style.width = '100%';
+  document.getElementById('quizPlay').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'block';
+  document.getElementById('rScoreNum').textContent = score;
+  document.querySelector('#quizResult .result-score span:last-child').textContent = ' / ' + currentSet.length;
+
+  const pct = score / currentSet.length;
+  let msg = '';
+  if(pct === 1) msg = '🏆 满分！你已完全掌握本章内容！';
+  else if(pct >= 0.8) msg = '👏 很棒！再复习一下错题就能全对了！';
+  else if(pct >= 0.6) msg = '💪 及格了，继续加油，多做练习！';
+  else msg = '📖 再回去复习一下 1.1–1.4 的内容吧，你可以的！';
+  document.getElementById('rMsg').textContent = msg;
+
+  const detail = document.getElementById('rDetail');
+  detail.innerHTML = '';
+  answerLog.forEach((a,i)=>{
+    const div = document.createElement('div');
+    div.className = 'rd-item';
+    div.innerHTML = (i+1)+'. '+a.q+'　'+
+      (a.correct ? '<span class="rd-ok">✔ 正确</span>' : '<span class="rd-no">✘ 错误</span>（正确答案：<b>'+a.correctText+'</b>）');
+    detail.appendChild(div);
+  });
+}
+</script>
+
+</body>
+</html>
