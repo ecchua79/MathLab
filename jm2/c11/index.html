@@ -34,6 +34,8 @@ svg{width:100%;height:auto;display:block;background:var(--card);border-radius:10
 .num{width:64px;text-align:center;font:inherit;font-weight:700;border:0;border-bottom:2px solid var(--ac);background:transparent;color:var(--ac)}.tools button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 .tb{border-collapse:collapse;width:100%;font-size:.875em;text-align:center}.tb td,.tb th{border-bottom:1px solid var(--line);padding:4px}.tb tr.hit{background:var(--ok);color:#fff}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 3px}.fr i{font-style:normal;padding:0 4px}.fr i:first-child{border-bottom:1.5px solid currentColor}
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='190'%3E%3Ctext x='24' y='110' transform='rotate(-25 140 95)' font-size='18' font-family='sans-serif' fill='gray' fill-opacity='.17'%3Eecchua79 · 蔡逸众%3C/text%3E%3C/svg%3E") repeat}
+footer{max-width:900px;margin:8px auto 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:.8125em;line-height:1.8}footer b{color:var(--ink)}
 .bar{height:16px;background:var(--grid);border-radius:8px;position:relative;margin:8px 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:var(--ac)}.bar u{position:absolute;top:-4px;bottom:-4px;width:3px;background:var(--hot)}
 </style></head><body>
 <header><h1>第11章 一元二次方程式与一元二次函数</h1><p>拖动滑块，观察数值与图形如何一起变化；最后用「随机测验」检查自己。</p><div class="tools"><button id="th">🌙 夜间</button><span class="mut">字体</span><button id="fm">A−</button><button id="f0">默认</button><button id="fp">A+</button></div></header>
@@ -63,6 +65,7 @@ svg{width:100%;height:auto;display:block;background:var(--card);border-radius:10
 
 <section id="s4"><div class="card"><div id="qh" class="mut"></div><div id="q"></div><div id="qx"></div><button class="btn" id="qn" style="display:none">下一题 →</button></div></section>
 </main>
+<footer><div>© 2026 <b>蔡逸众</b>峇株吧辖华仁中学</div><div>初二数学 第11章　一元二次方程式与一元二次函数 · 互动学习</div><div>本网页仅供课堂教学使用，转载请注明出处</div></footer>
 <script>
 const $=id=>document.getElementById(id),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,sh=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]);
 const f2=n=>(Math.round(n*100)/100).toString().replace('-','−');
@@ -119,7 +122,7 @@ const r=Math.sqrt(D),x1=(-b+r)/(2*a),x2=(-b-r)/(2*a),ac=a*c,int=[a,b,c].every(Nu
 let o=S('步骤 1：判别式',`Δ = ${pn(b)}²−4×${pn(a)}×${pn(c)} = ${fn(D)} ${D==0?'（两根相同）':'≥ 0，可以分解'}`);
 if(int&&c==0)return o+S('步骤 2：c = 0，直接提公因式 x',`${co(a,'x²',1)}${co(b,'x')} = x(${lin(a,b)}) = 0`)+S('步骤 3：每个因式分别等于 0',`x = 0　或　${lin(a,b)} = 0`)+fin(x1,x2);
 if(int){const pr=gfp(ac),hit=pr.find(p=>p[0]+p[1]==b);
-o+=S(`步骤 2：找两数 m、n，使 m×n = ac = ${ac}，m+n = b = ${b}`,`<table class="tb"><tr><th>m × n</th><th>m + n</th><th></th></tr>${pr.map(([m,n])=>`<tr class="${m+n==b?'hit':''}"><td>${pn(m)} × ${pn(n)} = ${fn(ac)}</td><td>${fn(m+n)}</td><td>${m+n==b?'✓ 符合':'×'}</td></tr>`).join('')}</table>`);
+o+=S(`步骤 2：找两数 m、n，使 m×n = ac = ${ac}，m+n = b = ${b}`,`<table class="tb"><tr><th>m × n</th><th>m + n</th><th></th></tr>${pr.map(([m,n])=>`<tr class="${m+n==b?'hit':''}"><td>${pn(m)} × ${pn(n)} = ${fn(ac)}</td><td>${fn(m+n)}</td><td>${m+n==b?'✔️ 符合':'❌'}</td></tr>`).join('')}</table>`);
 if(hit){let g=null;for(const[m,n]of[hit,[hit[1],hit[0]]]){const g1=gc(a,m),k=n*g1/a;if(Number.isInteger(k)&&k*a/g1==n&&k*m/g1==c){g={m,n,g1,k};break}}
 if(g){const{m,n,g1,k}=g,Bq=lin(a/g1,m/g1),ks=Math.abs(k)==1?'':fn(Math.abs(k));
 return o+S('步骤 3：拆中项——把 bx 拆成 mx + nx',`${fn(b)}x = ${pn(m)}x + ${pn(n)}x<br>${co(a,'x²',1)}${co(b,'x')}${co(c,'')} = 0 ➜ <b>${co(a,'x²',1)}${co(m,'x')}${co(n,'x')}${co(c,'')} = 0</b>`)
@@ -155,7 +158,7 @@ o.innerHTML=`<p class="big">${TT(a,b,c)}</p>`+M[cm](a,b,c)}
 [['f','因式分解法'],['s','配方法'],['q','公式法']].forEach(([k,t])=>{const b=document.createElement('button');b.textContent=t;b.className=k==cm?'on':'';b.onclick=()=>{cm=k;[...$('ccm').children].forEach(e=>e.classList.toggle('on',e==b));run()};$('ccm').append(b)});
 [[1,-4,-21,'经典 x²−4x−21'],[1,5,6,'x²+5x+6'],[1,-6,9,'相等根 x²−6x+9'],[1,2,5,'无实根 x²+2x+5'],[2,5,-3,'a≠1：2x²+5x−3']].forEach(([a,b,c,t])=>{const e=document.createElement('button');e.textContent=t;e.onclick=()=>{$('cca').value=a;$('ccb').value=b;$('ccc').value=c;run()};$('ccpre').append(e)});
 ['cca','ccb','ccc'].forEach(i=>$(i).oninput=run);run();
-// 2 应用问题
+// 2 应用问题 峇株吧辖华仁中学蔡逸众制作
 const P=[
 {n:'壁画',t:'长方形壁画，长比宽多2公尺，面积24 m²。设长为 x，则面积 = x(x−2)。',lo:2,hi:10,f:x=>x*(x-2),T:24,u:'面积',ans:'x=6（长6，宽4）',d:x=>({w:x,h:x-2})},
 {n:'纸盒',t:'19×15 cm 纸片，四角各剪去边长 x 的正方形，底面积 = (19−2x)(15−2x)，目标 77 cm²。',lo:0.5,hi:7,f:x=>(19-2*x)*(15-2*x),T:77,u:'底面积',ans:'x=4（底 11×7）',d:x=>({w:19-2*x,h:15-2*x})},
@@ -172,7 +175,7 @@ $('px').oninput=drawP;drag($('px'));setP();
 sliders('sl3',[['a',-4,4,.5,1],['h',-5,5,.5,-1],['k',-6,6,.5,2]],o=>{let{a,h,k}=o;if(!a){$('info3').textContent='a≠0';return}
 const b=-2*a*h,c=a*h*h+k;$('info3').innerHTML=`<p>y = ${f2(a)}(x${sg(-h)})²${sg(k)} = <b>${eqs(a,b,c).replace(/(\d)(?=\.)/,'$1')}</b>（展开）</p><p>开口<b>${a>0?'向上，顶点是最低点':'向下，顶点是最高点'}</b>；对称轴 x=${f2(h)}；顶点 (${f2(h)}, ${f2(k)})；${Math.abs(a)>1?'比 y=x² 更窄':Math.abs(a)<1?'比 y=x² 更宽':'与 y=x² 同样宽'}。</p>`;
 plot('g4',a,b,c,[-8,8],[-10,10],[])});
-// 4 随机测验
+// 4 随机测验峇株吧辖华仁中学蔡逸众制作
 const Q={n:0,s:0,i:0,N:10};
 function mk(q,ans,wr,ex){const o=[...new Set([ans,...wr])].slice(0,4);while(o.length<4)o.push(ans+'；'+R(1,9));return{q,ans,o:sh(o),ex}}
 const gen=[
@@ -191,7 +194,7 @@ function newQuiz(){Q.n=1;Q.s=0;Q.i=0;nextQ()}
 function nextQ(){if(Q.i>=Q.N){$('q').innerHTML=`<h2>🎉 完成！得分 ${Q.s} / ${Q.N}</h2><p>${Q.s>=9?'非常棒！':Q.s>=6?'不错，再练一轮会更稳。':'建议回到「探索器」再玩一玩，然后重考。'}</p>`;$('qx').innerHTML='';$('qh').textContent='';$('qn').style.display='';$('qn').textContent='再来一轮 ↻';$('qn').onclick=newQuiz;return}
 const q=gen[R(0,gen.length-1)]();Q.i++;$('qh').textContent=`第 ${Q.i} / ${Q.N} 题　得分 ${Q.s}`;$('qx').textContent='';$('qn').style.display='none';
 $('q').innerHTML=`<h2>${q.q}</h2>`;q.o.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>{[...$('q').querySelectorAll('.opt')].forEach(e=>{e.disabled=true;if(e.textContent==q.ans)e.classList.add('right')});const ok=t==q.ans;if(ok)Q.s++;else b.classList.add('wrong');$('qx').innerHTML=(ok?'✅ 答对了！':'❌ 再想想。')+' '+q.ex;$('qh').textContent=`第 ${Q.i} / ${Q.N} 题　得分 ${Q.s}`;$('qn').style.display='';$('qn').textContent=Q.i>=Q.N?'查看结果':'下一题 →';$('qn').onclick=nextQ};$('q').append(b)})}
-// 日/夜模式 + 字体大小（记住选择）
+// 日/夜模式 + 字体大小（记住选择）Made by ecchua79
 const root=document.documentElement,sm=window.matchMedia('(prefers-color-scheme: dark)');
 let th,fs=1;try{th=localStorage.getItem('c11th');fs=+localStorage.getItem('c11fs')||1}catch(e){}
 function applyUI(){const dk=th?th=='dark':sm.matches;root.setAttribute('data-theme',dk?'dark':'light');root.style.setProperty('--fs',fs);$('th').textContent=dk?'☀️ 白天':'🌙 夜间';try{localStorage.setItem('c11th',th||'');localStorage.setItem('c11fs',fs)}catch(e){}}
