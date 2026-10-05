@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>初二数学 第11章 一元二次方程式与函数 · 互动学习</title>
+<style>
+:root{--fs:1;--bg:#fbf7ee;--card:#fffdf8;--ink:#1d2a44;--mut:#6b7691;--line:#e3dcc8;--ac:#2a5bd7;--hot:#e4572e;--ok:#1f9d6b;--grid:#e9e2cf;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141a2b;--card:#1c2440;--ink:#eef1fa;--mut:#9aa6c6;--line:#2e3a5e;--ac:#7ea2ff;--hot:#ff8a65;--ok:#4cd6a0;--grid:#26304f}}
+:root[data-theme=dark]{--bg:#141a2b;--card:#1c2440;--ink:#eef1fa;--mut:#9aa6c6;--line:#2e3a5e;--ac:#7ea2ff;--hot:#ff8a65;--ok:#4cd6a0;--grid:#26304f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;font-size:calc(16px*var(--fs));line-height:1.6}
+header{padding:20px 16px 4px;max-width:900px;margin:auto}h1{margin:0;font-size:1.375em;font-family:"Songti SC","Noto Serif SC",serif}
+header p{margin:2px 0;color:var(--mut);font-size:.875em}
+nav{display:flex;gap:6px;flex-wrap:wrap;max-width:900px;margin:10px auto;padding:0 16px}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:20px;cursor:pointer;font:inherit;font-size:.875em}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:900px;margin:auto;padding:0 16px 40px}section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+h2{font-size:1.125em;margin:0 0 6px}.mut{color:var(--mut);font-size:.875em}
+.row{display:grid;grid-template-columns:70px 1fr 44px;align-items:center;gap:8px;margin:4px 0}
+.row b{font-family:ui-monospace,Menlo,monospace}input[type=range]{width:100%;accent-color:var(--ac)}
+.big{font-size:1.25em;font-family:ui-monospace,Menlo,monospace}
+svg{width:100%;height:auto;display:block;background:var(--card);border-radius:10px}
+.pill{display:inline-block;padding:2px 10px;border-radius:12px;color:#fff;font-size:.875em}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:inherit;cursor:pointer}
+.opt.right{background:var(--ok);color:#fff}.opt.wrong{background:var(--hot);color:#fff}
+.btn{background:var(--ac);color:#fff;border:0;padding:9px 18px;border-radius:10px;font:inherit;cursor:pointer}
+.two{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:8px}.tools button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit}
+.bar{height:16px;background:var(--grid);border-radius:8px;position:relative;margin:8px 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:var(--ac)}.bar u{position:absolute;top:-4px;bottom:-4px;width:3px;background:var(--hot)}
+</style></head><body>
+<header><h1>第11章 一元二次方程式与一元二次函数</h1><p>拖动滑块，观察数值与图形如何一起变化；最后用「随机测验」检查自己。</p><div class="tools"><button id="th">🌙 夜间</button><span class="mut">字体</span><button id="fm">A−</button><button id="f0">默认</button><button id="fp">A+</button></div></header>
+<nav id="nav"></nav>
+<main>
+<section id="s0"><div class="card"><h2>📘 重点速览</h2>
+<p>一般式：<b>ax²+bx+c=0（a≠0）</b>。三种解法：因式分解法、配方法、公式法 x=(−b±√(b²−4ac))÷2a。</p>
+<p>判别式 <b>Δ=b²−4ac</b>：Δ&gt;0 两个不同实根；Δ=0 两个相同的根；Δ&lt;0 无实数根。</p>
+<p>函数 y=ax²+bx+c 的图像是抛物线：a&gt;0 开口向上（顶点最低），a&lt;0 开口向下（顶点最高）；对称轴与 y 轴平行。</p>
+<p class="mut">提示：x²=4x 不能两边约去 x，因为 x 可能是 0（会漏掉根）；同理 3x(x+2)=5(x+2) 不能约去 (x+2)。请移项后因式分解。</p></div></section>
+
+<section id="s1"><div class="card"><h2>🔍 方程式探索器</h2><p class="mut">改变 a、b、c，看判别式、根与抛物线和 x 轴的交点如何联动。</p>
+<div id="sl1"></div><div class="big" id="eq"></div><div id="info"></div></div><div class="card"><svg id="g1" viewBox="0 0 400 300"></svg></div>
+<div class="card"><h2>🧩 配方法：把 x²+kx 补成完全平方</h2><p class="mut">大正方形边长 x+k/2；要补的小方块面积就是 (k/2)²。</p>
+<div class="row"><b>k</b><input id="k" type="range" min="0" max="12" value="6"><b id="kv"></b></div><svg id="g2" viewBox="0 0 400 190"></svg><div id="cs"></div></div></section>
+
+<section id="s2"><div class="card"><h2>📐 应用问题：拖动 x，找出刚好等于目标的位置</h2>
+<div id="pb" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"></div><div id="ptxt"></div>
+<div class="row"><b>x</b><input id="px" type="range"><b id="pv"></b></div><div class="bar"><i id="pbar"></i><u id="ptar"></u></div><div id="pres" class="big"></div><svg id="g3" viewBox="0 0 400 220"></svg></div></section>
+
+<section id="s3"><div class="card"><h2>🎢 抛物线：y = a(x−h)² + k</h2><p class="mut">a 控制开口方向与宽窄，h 左右移，k 上下移。</p>
+<div id="sl3"></div><div id="info3"></div></div><div class="card"><svg id="g4" viewBox="0 0 400 300"></svg></div></section>
+
+<section id="s4"><div class="card"><div id="qh" class="mut"></div><div id="q"></div><div id="qx"></div><button class="btn" id="qn" style="display:none">下一题 →</button></div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,sh=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]);
+const f2=n=>(Math.round(n*100)/100).toString().replace('-','−');
+const sg=(n,first)=>first?(n<0?'−':'')+Math.abs(n):(n<0?'−':'+')+Math.abs(n);
+const eqs=(a,b,c)=>`${a==1?'':a==-1?'−':a}x²${b?sg(b)+'x':''}${c?sg(c):''}`;
+const tabs=['速览','方程式探索','应用问题','抛物线','随机测验'];
+tabs.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>show(i);$('nav').append(b)});
+function show(i){document.querySelectorAll('section').forEach((s,j)=>s.classList.toggle('on',i==j));[...$('nav').children].forEach((b,j)=>b.classList.toggle('on',i==j));if(i==4&&!Q.n)newQuiz()}
+function sliders(box,defs,cb){const o={};$(box).innerHTML='';defs.forEach(([n,lo,hi,st,v])=>{o[n]=v;const r=document.createElement('div');r.className='row';r.innerHTML=`<b>${n}</b><input type=range min=${lo} max=${hi} step=${st} value=${v}><b>${v}</b>`;const inp=r.children[1],lab=r.children[2];inp.oninput=()=>{o[n]=+inp.value;lab.textContent=f2(o[n]);cb(o)};$(box).append(r)});cb(o)}
+// 通用坐标图 y=ax²+bx+c ; 坐标范围 xr,yr
+function plot(svg,a,b,c,xr,yr,pts){const W=400,H=300,X=x=>(x-xr[0])/(xr[1]-xr[0])*W,Y=y=>H-(y-yr[0])/(yr[1]-yr[0])*H;let s='';
+for(let x=Math.ceil(xr[0]);x<=xr[1];x++)s+=`<line x1=${X(x)} x2=${X(x)} y1=0 y2=${H} stroke="var(--grid)"/>`;for(let y=Math.ceil(yr[0]);y<=yr[1];y++)s+=`<line y1=${Y(y)} y2=${Y(y)} x1=0 x2=${W} stroke="var(--grid)"/>`;
+s+=`<line x1=0 x2=${W} y1=${Y(0)} y2=${Y(0)} stroke="var(--mut)"/><line y1=0 y2=${H} x1=${X(0)} x2=${X(0)} stroke="var(--mut)"/>`;
+let d='';for(let i=0;i<=200;i++){const x=xr[0]+(xr[1]-xr[0])*i/200,y=a*x*x+b*x+c;d+=(i?'L':'M')+X(x)+','+Math.max(-50,Math.min(H+50,Y(y)))}
+s+=`<path d="${d}" fill="none" stroke="var(--ac)" stroke-width=3 />`;
+if(a){const h=-b/(2*a),k=a*h*h+b*h+c;s+=`<line x1=${X(h)} x2=${X(h)} y1=0 y2=${H} stroke="var(--hot)" stroke-dasharray="5 4"/><circle cx=${X(h)} cy=${Y(k)} r=6 fill="var(--hot)"/>`}
+(pts||[]).forEach(p=>s+=`<circle cx=${X(p)} cy=${Y(0)} r=6 fill="var(--ok)"/><text x=${X(p)} y=${Y(0)-9} font-size=12 text-anchor=middle fill="var(--ink)">${f2(p)}</text>`);
+$(svg).innerHTML=s}
+// 1 探索器
+sliders('sl1',[['a',-5,5,1,1],['b',-10,10,1,-2],['c',-10,10,1,-3]],o=>{const{a,b,c}=o;
+if(!a){$('eq').textContent='a=0 时不再是二次方程式！';$('info').innerHTML='';plot('g1',0,b,c,[-8,8],[-10,10]);return}
+const D=b*b-4*a*c,n=D>0?2:D==0?1:0,col=['var(--hot)','var(--ok)','var(--ac)'][n==0?0:n==1?1:2];
+$('eq').textContent=eqs(a,b,c)+' = 0';
+const rt=D>=0?[(-b+Math.sqrt(D))/(2*a),(-b-Math.sqrt(D))/(2*a)]:[];
+const rat=D>=0&&Number.isInteger(Math.sqrt(D));
+$('info').innerHTML=`<p>Δ = b²−4ac = ${b}²−4(${a})(${c}) = <b>${D}</b> <span class="pill" style="background:${col}">${['无实数根','两根相同','两个不同实根'][n]}</span></p>`+
+(D>=0?`<p>x = (${-b} ± √${D}) ÷ ${2*a} ⟹ x = ${n==2?f2(rt[0])+' 或 '+f2(rt[1]):f2(rt[0])}${rat&&n==2?`<br>因式分解：${a==1?'':a}(x${sg(-rt[0])})(x${sg(-rt[1])})=0`:''}</p>`:`<p>√(${D}) 不是实数。抛物线完全不碰 x 轴。</p>`);
+plot('g1',a,b,c,[-8,8],[-10,10],n?[...new Set(rt)]:[])});
+const kk=$('k');function sq(){const k=+kk.value,u=22,x=4*u,h=k/2*u;$('kv').textContent=k;
+$('g2').innerHTML=`<rect x=10 y=10 width=${x} height=${x} fill="var(--ac)" opacity=.8 /><text x=${10+x/2} y=${10+x/2+5} text-anchor=middle fill="#fff">x²</text><rect x=${10+x} y=10 width=${h} height=${x} fill="var(--ac)" opacity=.4 /><rect x=10 y=${10+x} width=${x} height=${h} fill="var(--ac)" opacity=.4 /><rect x=${10+x} y=${10+x} width=${h} height=${h} fill="none" stroke="var(--hot)" stroke-width=3 stroke-dasharray="5 4"/><text x=${10+x+h/2} y=${10+x+h/2+4} font-size=12 text-anchor=middle fill="var(--hot)">${k>1?'(k/2)²':''}</text>`;
+$('cs').innerHTML=`x²+${k}x+<b style="color:var(--hot)">${f2(k*k/4)}</b> = (x+${f2(k/2)})²　（补上的数 = (${k}÷2)² = ${f2(k*k/4)}）`}
+kk.oninput=sq;sq();
+// 2 应用问题
+const P=[
+{n:'壁画',t:'长方形壁画，长比宽多2公尺，面积24 m²。设长为 x，则面积 = x(x−2)。',lo:2,hi:10,f:x=>x*(x-2),T:24,u:'面积',ans:'x=6（长6，宽4）',d:x=>({w:x,h:x-2})},
+{n:'纸盒',t:'19×15 cm 纸片，四角各剪去边长 x 的正方形，底面积 = (19−2x)(15−2x)，目标 77 cm²。',lo:0.5,hi:7,f:x=>(19-2*x)*(15-2*x),T:77,u:'底面积',ans:'x=4（底 11×7）',d:x=>({w:19-2*x,h:15-2*x})},
+{n:'人行道',t:'70×50 m 草场外围筑宽 x 的人行道，面积 = (70+2x)(50+2x)−3500，目标 244 m²。',lo:0.2,hi:5,f:x=>(70+2*x)*(50+2*x)-3500,T:244,u:'人行道面积',ans:'x=1',d:x=>({w:70+2*x,h:50+2*x})}];
+let cp=0;P.forEach((p,i)=>{const b=document.createElement('button');b.className='opt';b.style.width='auto';b.textContent=p.n;b.onclick=()=>{cp=i;setP()};$('pb').append(b)});
+function setP(){const p=P[cp],s=$('px');s.min=p.lo;s.max=p.hi;s.step=.1;s.value=(p.lo+p.hi)/2;$('ptxt').textContent=p.t;drawP()}
+function drawP(){const p=P[cp],x=+$('px').value,v=p.f(x),mx=Math.max(p.T*1.6,1);$('pv').textContent=x.toFixed(1);$('pbar').style.width=Math.min(100,v/mx*100)+'%';$('ptar').style.left=p.T/mx*100+'%';
+const hit=Math.abs(v-p.T)<p.T*.012;$('pres').innerHTML=`${p.u} = ${v.toFixed(1)}　目标 ${p.T}　${hit?'<span style="color:var(--ok)">✓ 命中！'+p.ans+'</span>':v>p.T?'↓ 太大':'↑ 太小'}`;
+const d=p.d(x),sc=cp==2?1.5:cp==1?9:18,w=d.w*sc,h=d.h*sc;let s=`<rect x=10 y=10 width=${w} height=${h} fill="${hit?'var(--ok)':'var(--ac)'}" opacity=.65 />`;
+if(cp==1)s+=`<rect x=10 y=10 width=${19*sc} height=${15*sc} fill="none" stroke="var(--mut)" stroke-dasharray="4"/>`;if(cp==2)s=`<rect x=10 y=10 width=${w} height=${h} fill="var(--mut)" opacity=.4 /><rect x=${10+x*sc} y=${10+x*sc} width=${70*sc} height=${50*sc} fill="var(--ok)" opacity=.7 />`;
+$('g3').innerHTML=s+`<text x=14 y=${Math.min(212,h+28)} font-size=13 fill="var(--ink)">${cp==2?'大':''}长 ${d.w.toFixed(1)} × 宽 ${d.h.toFixed(1)}</text>`}
+$('px').oninput=drawP;setP();
+// 3 抛物线
+sliders('sl3',[['a',-4,4,.5,1],['h',-5,5,.5,-1],['k',-6,6,.5,2]],o=>{let{a,h,k}=o;if(!a){$('info3').textContent='a≠0';return}
+const b=-2*a*h,c=a*h*h+k;$('info3').innerHTML=`<p>y = ${f2(a)}(x${sg(-h)})²${sg(k)} = <b>${eqs(a,b,c).replace(/(\d)(?=\.)/,'$1')}</b>（展开）</p><p>开口<b>${a>0?'向上，顶点是最低点':'向下，顶点是最高点'}</b>；对称轴 x=${f2(h)}；顶点 (${f2(h)}, ${f2(k)})；${Math.abs(a)>1?'比 y=x² 更窄':Math.abs(a)<1?'比 y=x² 更宽':'与 y=x² 同样宽'}。</p>`;
+plot('g4',a,b,c,[-8,8],[-10,10],[])});
+// 4 随机测验
+const Q={n:0,s:0,i:0,N:10};
+function mk(q,ans,wr,ex){const o=[...new Set([ans,...wr])].slice(0,4);while(o.length<4)o.push(ans+'；'+R(1,9));return{q,ans,o:sh(o),ex}}
+const gen=[
+()=>{let p=R(-7,7)||2,q=R(-7,7)||-3;if(p==q)q=p+1;const b=p+q,c=p*q,r=`x=${f2(-p)} 或 x=${f2(-q)}`;
+return mk(`解方程式 ${eqs(1,b,c)}=0`,r,[`x=${f2(p)} 或 x=${f2(q)}`,`x=${f2(-p)} 或 x=${f2(q)}`,`x=${f2(p)} 或 x=${f2(-q)}`],`分解成 (x${sg(p)})(x${sg(q)})=0，所以 ${r}。`)},
+()=>{const a=R(-3,3)||1,b=R(-6,6),c=R(-6,6),D=b*b-4*a*c,n=D>0?'2 个不同实根':D==0?'1 个（两根相同）':'没有实数根';
+return mk(`方程式 ${eqs(a,b,c)}=0 的实数根情况？`,n,['2 个不同实根','1 个（两根相同）','没有实数根'],`Δ=${b}²−4(${a})(${c})=${D}。`)},
+()=>{const a=R(-3,3)||2,h=R(-4,4),k=R(-5,5);const A=`(${h}, ${k})`;
+return mk(`抛物线 y=${a}(x${sg(-h)})²${sg(k)} 的顶点坐标？`,A,[`(${-h}, ${k})`,`(${h}, ${-k})`,`(${k}, ${h})`],`顶点 (h,k)=${A}，对称轴 x=${h}。`)},
+()=>{const a=(R(0,1)?1:-1)*R(1,4),A=a>0?'向上，顶点是最低点':'向下，顶点是最高点';
+return mk(`y=${eqs(a,R(-3,3),R(-3,3))} 的图像开口方向？`,A,['向上，顶点是最低点','向下，顶点是最高点','向上，顶点是最高点','向下，顶点是最低点'],`看 x² 的系数 a=${a}：a${a>0?'>':'<'}0。`)},
+()=>{const w=R(3,9),d=R(1,5);return mk(`长方形长比宽多 ${d}，面积 ${w*(w+d)}。宽是多少？`,w+'',[(w+d)+'',(w-1)+'',(w+2)+'',-(w+d)+''],`设宽 x：x(x+${d})=${w*(w+d)}，得 x=${w}（负根舍去）。`)},
+()=>{const k=2*R(1,6);return mk(`x²+${k}x+（　）是完全平方式，括号内应填？`,(k*k/4)+'',[(k*k/2)+'',k+'',(k/2)+''],`(${k}÷2)²=${k*k/4}。`)},
+()=>{const n=R(3,12);return mk(`两个连续正整数的积是 ${n*(n+1)}，较小的数是？`,n+'',[(n+1)+'',(n-1)+'',(n+2)+''],`n(n+1)=${n*(n+1)}，n=${n}。`)}];
+function newQuiz(){Q.n=1;Q.s=0;Q.i=0;nextQ()}
+function nextQ(){if(Q.i>=Q.N){$('q').innerHTML=`<h2>🎉 完成！得分 ${Q.s} / ${Q.N}</h2><p>${Q.s>=9?'非常棒！':Q.s>=6?'不错，再练一轮会更稳。':'建议回到「探索器」再玩一玩，然后重考。'}</p>`;$('qx').innerHTML='';$('qh').textContent='';$('qn').style.display='';$('qn').textContent='再来一轮 ↻';$('qn').onclick=newQuiz;return}
+const q=gen[R(0,gen.length-1)]();Q.i++;$('qh').textContent=`第 ${Q.i} / ${Q.N} 题　得分 ${Q.s}`;$('qx').textContent='';$('qn').style.display='none';
+$('q').innerHTML=`<h2>${q.q}</h2>`;q.o.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>{[...$('q').querySelectorAll('.opt')].forEach(e=>{e.disabled=true;if(e.textContent==q.ans)e.classList.add('right')});const ok=t==q.ans;if(ok)Q.s++;else b.classList.add('wrong');$('qx').innerHTML=(ok?'✅ 答对了！':'❌ 再想想。')+' '+q.ex;$('qh').textContent=`第 ${Q.i} / ${Q.N} 题　得分 ${Q.s}`;$('qn').style.display='';$('qn').textContent=Q.i>=Q.N?'查看结果':'下一题 →';$('qn').onclick=nextQ};$('q').append(b)})}
+// 日/夜模式 + 字体大小（记住选择）
+const root=document.documentElement,sm=window.matchMedia('(prefers-color-scheme: dark)');
+let th,fs=1;try{th=localStorage.getItem('c11th');fs=+localStorage.getItem('c11fs')||1}catch(e){}
+function applyUI(){const dk=th?th=='dark':sm.matches;root.setAttribute('data-theme',dk?'dark':'light');root.style.setProperty('--fs',fs);$('th').textContent=dk?'☀️ 白天':'🌙 夜间';try{localStorage.setItem('c11th',th||'');localStorage.setItem('c11fs',fs)}catch(e){}}
+$('th').onclick=()=>{th=root.getAttribute('data-theme')=='dark'?'light':'dark';applyUI()};
+const setFs=v=>{fs=Math.max(.8,Math.min(1.6,Math.round(v*100)/100));applyUI()};
+$('fm').onclick=()=>setFs(fs-.1);$('fp').onclick=()=>setFs(fs+.1);$('f0').onclick=()=>setFs(1);applyUI();
+show(1);
+</script></body></html>
