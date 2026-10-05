@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初一数学 · 第4章 分数 互动练习</title>
+<style>
+  :root{
+    --bg:#f5f7fb; --bg-card:#ffffff; --bg-soft:#eef1f8; --text:#1f2430; --text-soft:#5b6472;
+    --primary:#3b6fe0; --primary-dark:#2a53b5; --accent:#e0a93b; --accent-dark:#c08a1f;
+    --correct:#2e9e5b; --correct-bg:#e5f6ec; --wrong:#d64545; --wrong-bg:#fdeaea;
+    --border:#e3e6ee; --shadow:0 2px 10px rgba(30,40,70,.08);
+  }
+  [data-theme="dark"]{
+    --bg:#12151d; --bg-card:#1b2029; --bg-soft:#222836; --text:#eef1f7; --text-soft:#9aa3b5;
+    --primary:#6f93ef; --primary-dark:#4f74d1; --accent:#e8c069; --accent-dark:#c79a3a;
+    --correct:#4bc27d; --correct-bg:#163828; --wrong:#ef6b6b; --wrong-bg:#3a1f22;
+    --border:#2b3344; --shadow:0 2px 16px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;}
+  html{font-size:17px;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    transition:background .25s,color .25s; line-height:1.7; padding-bottom:60px;
+  }
+  header{
+    position:sticky; top:0; z-index:50; background:var(--bg-card); border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow);
+  }
+  .header-inner{max-width:900px; margin:0 auto; padding:.8em 1em; display:flex; flex-wrap:wrap; align-items:center; gap:.6em; justify-content:space-between;}
+  .title-block h1{font-size:1.25em; margin:0; color:var(--primary-dark);}
+  .title-block p{margin:.1em 0 0; font-size:.82em; color:var(--text-soft);}
+  .controls{display:flex; align-items:center; gap:.5em; flex-wrap:wrap;}
+  .btn{
+    border:none; border-radius:10px; padding:.55em 1.1em; font-size:.92em; cursor:pointer; font-weight:600;
+    transition:transform .1s, opacity .2s; white-space:nowrap;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--primary); color:#fff;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-accent{background:var(--accent); color:#3a2a00;}
+  .btn-accent:hover{background:var(--accent-dark);}
+  .btn-ghost{background:transparent; color:var(--primary); border:1.5px solid var(--primary);}
+  .btn-small{padding:.35em .7em; font-size:.85em; border-radius:8px; background:var(--primary); color:#fff;}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+  .icon-btn{background:var(--bg-soft); color:var(--text); border-radius:8px; padding:.4em .8em; font-size:.85em; border:1px solid var(--border); cursor:pointer;}
+  .font-ctrl{display:flex; align-items:center; gap:.3em; background:var(--bg-soft); border-radius:8px; padding:.15em .4em; border:1px solid var(--border);}
+  .font-ctrl button{border:none; background:transparent; color:var(--text); font-size:1em; cursor:pointer; padding:.3em .5em; font-weight:700;}
+  #font-size-label{font-size:.8em; color:var(--text-soft); min-width:3.2em; text-align:center;}
+
+  nav#section-nav{display:flex; gap:.4em; overflow-x:auto; padding:.5em 1em 0.8em; max-width:900px; margin:0 auto;}
+  .nav-pill{
+    flex:0 0 auto; padding:.4em .9em; border-radius:999px; background:var(--bg-soft); color:var(--text-soft);
+    text-decoration:none; font-size:.85em; border:1px solid var(--border); white-space:nowrap;
+  }
+  .nav-pill:hover{background:var(--primary); color:#fff;}
+  .nav-pill-accent{background:var(--accent); color:#3a2a00; font-weight:700;}
+
+  main{max-width:900px; margin:0 auto; padding:0 1em;}
+  .intro-box{background:var(--bg-card); border-radius:14px; padding:1.1em 1.3em; margin:1em 0; box-shadow:var(--shadow); border:1px solid var(--border);}
+  .intro-box h2{margin-top:0; font-size:1.05em; color:var(--primary-dark);}
+
+  .chapter-section{background:var(--bg-card); border-radius:16px; padding:1.3em 1.4em; margin:1.3em 0; box-shadow:var(--shadow); border:1px solid var(--border); scroll-margin-top:7.5em;}
+  .chapter-section h2{margin-top:0; font-size:1.2em; color:var(--primary-dark); border-bottom:2px solid var(--border); padding-bottom:.4em;}
+  .sec-num{display:inline-block; background:var(--primary); color:#fff; border-radius:6px; padding:.1em .5em; font-size:.85em; margin-right:.4em;}
+  .explain ul{padding-left:1.3em;}
+  .example-box{background:var(--bg-soft); border-left:4px solid var(--accent); border-radius:8px; padding:.7em 1em; margin:.8em 0; font-size:.95em;}
+
+  .tool-box{background:var(--bg-soft); border-radius:12px; padding:.9em 1em; margin:1em 0; border:1px dashed var(--border);}
+  .tool-title{font-weight:700; margin-bottom:.5em; color:var(--primary-dark); font-size:.95em;}
+  .tool-row{display:flex; flex-wrap:wrap; align-items:center; gap:.4em; font-size:.95em;}
+  .tool-input{width:4.2em; padding:.35em .4em; border-radius:6px; border:1px solid var(--border); background:var(--bg-card); color:var(--text); font-size:.95em;}
+  .tool-input.tiny{width:3.2em;}
+  .tool-select{padding:.35em .3em; border-radius:6px; border:1px solid var(--border); background:var(--bg-card); color:var(--text); align-self:center;}
+  .tool-out{margin-top:.6em; font-size:1em; min-height:1.4em;}
+
+  /* 分数输入小组件：分子在上、分母在下 */
+  .frac-input{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:.15em .3em;}
+  .fi-box{width:3.4em; text-align:center; padding:.3em .2em; border:1.5px solid var(--border); border-radius:7px; background:var(--bg-card); color:var(--text); font-size:1em; -moz-appearance:textfield;}
+  .fi-box::-webkit-outer-spin-button, .fi-box::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+  .fi-line{width:2.8em; height:2px; background:var(--text); opacity:.65; margin:.25em 0;}
+  .bigfrac-input{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:.3em .4em;}
+  .bfi-top{padding-bottom:.35em; border-bottom:2.4px solid var(--text); margin-bottom:.35em;}
+
+  .quiz-wrap h3{margin-bottom:.2em; font-size:1.05em;}
+  .quiz-intro{font-size:.85em; color:var(--text-soft); margin-top:0;}
+  .q-card{background:var(--bg-soft); border-radius:12px; padding:1em 1.1em; margin:.9em 0; border:1px solid var(--border);}
+  .q-prompt{margin-bottom:.6em; font-size:1em;}
+  .q-num{display:inline-block; background:var(--primary-dark); color:#fff; border-radius:6px; padding:.05em .5em; font-size:.78em; margin-right:.5em; vertical-align:middle;}
+  .q-tag{display:inline-block; background:var(--accent); color:#3a2a00; border-radius:6px; padding:.05em .5em; font-size:.72em; margin-right:.5em; vertical-align:middle;}
+  .q-options{display:flex; flex-direction:column; gap:.5em;}
+  .q-opt{display:flex; align-items:center; gap:.5em; background:var(--bg-card); border:1.5px solid var(--border); border-radius:10px; padding:.55em .8em; cursor:pointer; transition:border-color .15s, background .15s;}
+  .q-opt:hover{border-color:var(--primary);}
+  .q-opt input{accent-color:var(--primary); width:1.1em; height:1.1em; flex:0 0 auto;}
+  .q-opt-label{font-size:.98em;}
+  .q-opt.opt-correct{border-color:var(--correct); background:var(--correct-bg);}
+  .q-opt.opt-wrong{border-color:var(--wrong); background:var(--wrong-bg);}
+  .q-feedback{margin-top:.5em; font-size:.9em; min-height:1.2em;}
+  .fb-ok{color:var(--correct); font-weight:700;}
+  .fb-bad{color:var(--wrong); font-weight:700;}
+  .fill-header{font-weight:700; margin:1em 0 .3em; color:var(--accent-dark);}
+  .fill-input{width:100%; padding:.6em .8em; border-radius:10px; border:1.5px solid var(--border); background:var(--bg-card); color:var(--text); font-size:1em; margin-top:.3em;}
+  .fill-input.inp-correct{border-color:var(--correct); background:var(--correct-bg);}
+  .fill-input.inp-wrong{border-color:var(--wrong); background:var(--wrong-bg);}
+  .score-line{font-size:1.05em; margin:.6em 0;}
+  .unlock-msg{color:var(--correct); font-weight:600;}
+  .retry-msg{color:var(--text-soft);}
+  .quiz-result{margin-top:.8em;}
+
+  .frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 .18em; font-size:.92em; line-height:1.08;}
+  .frac .fnum{padding:0 .32em .08em; border-bottom:1.6px solid currentColor;}
+  .frac .fden{padding:.08em .32em 0;}
+  .fint{font-weight:700;}
+  .fint-join{margin:0 .12em; font-weight:400;}
+  .fsign{margin-right:.08em; font-weight:700;}
+  .bigfrac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:.35em .25em;}
+  .bigfrac .bf-top, .bigfrac .bf-bot{padding:.18em .5em;}
+  .bigfrac .bf-top{border-bottom:2.2px solid currentColor;}
+
+  footer{max-width:900px; margin:2em auto 0; padding:1em; text-align:center; font-size:.78em; color:var(--text-soft);}
+
+  @media (max-width:600px){
+    .header-inner{flex-direction:column; align-items:flex-start;}
+    .controls{width:100%; justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="title-block">
+      <h1>📘 初一数学 · 第4章 分数</h1>
+      <p>4.1 - 4.8 互动练习与随机测验</p>
+    </div>
+    <div class="controls">
+      <div class="font-ctrl">
+        <button id="font-minus" title="缩小字体">A−</button>
+        <span id="font-size-label">17px</span>
+        <button id="font-plus" title="放大字体">A+</button>
+      </div>
+      <button class="icon-btn" id="theme-toggle">🌙 深色模式</button>
+    </div>
+  </div>
+  <nav id="section-nav"></nav>
+</header>
+
+<main>
+  <div class="intro-box">
+    <h2>👋 使用说明</h2>
+    <p>每个小节下方都有 <b>5 题随机选择题</b>，题目与选项每次都会重新生成、打乱顺序，不会重复遇到一样的题目。答对 <b>3 题或以上</b>，就会解锁 <b>2 题自填答案挑战题</b>——这类题目没有选项，必须自己动笔计算后把答案输入方框。完成所有 8 个小节后，可以到最下方的 <b>「全章总复习」</b> 挑战随机抽取的综合测验题！</p>
+  </div>
+
+  <div id="sections-container"></div>
+
+  <section class="chapter-section" id="review">
+    <h2><span class="sec-num">★</span> 第4章 总复习</h2>
+    <p>以下测验会从 4.1 至 4.8 的各小节中随机抽取 10 道选择题，题目与选项顺序每次都会重新打乱，全面考验你对整章「分数」的掌握程度！</p>
+    <button class="btn btn-accent" id="review-start">开始全章总复习</button>
+    <div id="review-quiz"></div>
+  </section>
+</main>
+
+<footer>
+  <p>制作：蔡逸众 (ecchua79) · 华仁中学 Chinese High School · 初一数学 第4章 分数 互动练习工具</p>
+</footer>
+
+<script>
+'use strict';
+/* =========================================================
+   初一数学 第4章 分数 (4.1-4.8) 互动练习
+   作者：蔡逸众 (ecchua79) | 华仁中学
+   ========================================================= */
+
+/* ---------- 基础工具 ---------- */
+function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { const t = a % b; a = b; b = t; } return a || 1; }
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function choice(arr) { return arr[randInt(0, arr.length - 1)]; }
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = randInt(0, i); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+/* ---------- 分数类 ---------- */
+class Frac {
+  constructor(n, d = 1) {
+    if (!Number.isFinite(n) || !Number.isFinite(d)) { n = 0; d = 1; }
+    d = Math.round(d); n = Math.round(n);
+    if (d === 0) d = 1;
+    if (d < 0) { n = -n; d = -d; }
+    const g = gcd(n, d) || 1;
+    this.n = n / g; this.d = d / g;
+  }
+  add(o) { return new Frac(this.n * o.d + o.n * this.d, this.d * o.d); }
+  sub(o) { return new Frac(this.n * o.d - o.n * this.d, this.d * o.d); }
+  mul(o) { return new Frac(this.n * o.n, this.d * o.d); }
+  div(o) { return new Frac(this.n * o.d, this.d * o.n || 1); }
+  neg() { return new Frac(-this.n, this.d); }
+  recip() { return new Frac(this.d, this.n || 1); }
+  abs() { return new Frac(Math.abs(this.n), this.d); }
+  cmp(o) { const diff = this.n * o.d - o.n * this.d; return diff === 0 ? 0 : (diff > 0 ? 1 : -1); }
+  eq(o) { return this.n === o.n && this.d === o.d; }
+  key() { return this.n + '/' + this.d; }
+  isInt() { return this.d === 1; }
+}
+function F(n, d) { return new Frac(n, d); }
+function applyOp(a, b, op) {
+  switch (op) {
+    case '+': return a.add(b);
+    case '-': return a.sub(b);
+    case '×': return a.mul(b);
+    case '÷': return a.div(b);
+    default: return a;
+  }
+}
+
+/* ---------- 渲染 ---------- */
+function fracSpanRaw(absN, absD, neg) {
+  const sign = neg ? '<span class="fsign">-</span>' : '';
+  if (absD === 1) return sign + '<span class="fint">' + absN + '</span>';
+  return sign + '<span class="frac"><span class="fnum">' + absN + '</span><span class="fden">' + absD + '</span></span>';
+}
+function renderFrac(f) { return fracSpanRaw(Math.abs(f.n), f.d, f.n < 0); }
+function rawFracSpan(n, d) { return fracSpanRaw(Math.abs(n), Math.abs(d), (n < 0) !== (d < 0)); }
+function renderMixed(f) {
+  const neg = f.n < 0;
+  const absN = Math.abs(f.n);
+  const whole = Math.floor(absN / f.d);
+  const rem = absN % f.d;
+  const sign = neg ? '<span class="fsign">-</span>' : '';
+  if (rem === 0) return sign + '<span class="fint">' + whole + '</span>';
+  if (whole === 0) return renderFrac(f);
+  return sign + '<span class="fint">' + whole + '</span><span class="frac"><span class="fnum">' + rem + '</span><span class="fden">' + f.d + '</span></span>';
+}
+function renderMoney(f) {
+  if (f.d === 1) return 'RM' + f.n;
+  return 'RM' + (f.n / f.d).toFixed(2);
+}
+function plainFrac(f) {
+  const neg = f.n < 0 ? '-' : '';
+  const absN = Math.abs(f.n);
+  return f.d === 1 ? (neg + absN) : (neg + absN + '/' + f.d);
+}
+function bigFracHTML(topHTML, botHTML) {
+  return '<span class="bigfrac"><span class="bf-top">' + topHTML + '</span><span class="bf-bot">' + botHTML + '</span></span>';
+}
+
+/* ---------- 解析使用者输入 (填空题) ---------- */
+function parseInput(raw) {
+  if (raw == null) return null;
+  let s = String(raw).trim();
+  if (s === '') return null;
+  s = s.replace(/RM|rm|元|，/g, '').replace(/\s+/g, ' ').trim();
+  let neg = false;
+  if (s.startsWith('-')) { neg = true; s = s.slice(1).trim(); }
+  if (s.startsWith('(') && s.endsWith(')')) s = s.slice(1, -1).trim();
+  let m = s.match(/^(\d+)[又_ ](\d+)\/(\d+)$/);
+  if (m) {
+    const whole = parseInt(m[1], 10), num = parseInt(m[2], 10), den = parseInt(m[3], 10);
+    if (den === 0) return null;
+    let f = F(whole * den + num, den);
+    return neg ? f.neg() : f;
+  }
+  m = s.match(/^(\d+)\/(\d+)$/);
+  if (m) {
+    const num = parseInt(m[1], 10), den = parseInt(m[2], 10);
+    if (den === 0) return null;
+    let f = F(num, den);
+    return neg ? f.neg() : f;
+  }
+  m = s.match(/^(\d+)(\.\d+)?$/);
+  if (m) {
+    if (m[2]) {
+      const parts = s.split('.');
+      const dec = parts[1];
+      const den = Math.pow(10, dec.length);
+      const num = parseInt(parts[0] + dec, 10);
+      let f = F(num, den);
+      return neg ? f.neg() : f;
+    }
+    let f = F(parseInt(m[1], 10), 1);
+    return neg ? f.neg() : f;
+  }
+  return null;
+}
+
+/* ---------- 由分数构建 4 选项的 MC 引擎 ---------- */
+function displayFnFor(kind) {
+  if (kind === 'mixed') return renderMixed;
+  if (kind === 'money') return renderMoney;
+  return renderFrac;
+}
+function buildOptionsFromFracs(correct, wrongFracsRaw, dispFn) {
+  const seen = new Set([correct.key()]);
+  const wrongs = [];
+  for (const w of wrongFracsRaw) {
+    if (!w) continue;
+    const k = w.key();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    wrongs.push(w);
+    if (wrongs.length >= 3) break;
+  }
+  let guard = 0;
+  while (wrongs.length < 3 && guard < 60) {
+    guard++;
+    const delta = choice([-3, -2, -1, 1, 2, 3]);
+    const cand = F(correct.n + delta, correct.d);
+    if (!seen.has(cand.key())) { seen.add(cand.key()); wrongs.push(cand); }
+  }
+  const all = shuffle([{ f: correct, isCorrect: true }].concat(wrongs.map(f => ({ f: f, isCorrect: false }))));
+  return all.map(o => ({ label: dispFn(o.f), isCorrect: o.isCorrect }));
+}
+function buildMC(gr) {
+  if (gr.numeric) {
+    const dispFn = displayFnFor(gr.display);
+    const options = buildOptionsFromFracs(gr.correct, gr.wrongFracs || [], dispFn);
+    return { prompt: gr.prompt, options: options };
+  }
+  const options = shuffle(gr.options.map(o => ({ label: o.label, isCorrect: !!o.isCorrect })));
+  return { prompt: gr.prompt, options: options };
+}
+function buildFill(gr) {
+  return {
+    prompt: gr.fillPrompt || gr.prompt,
+    correct: gr.correct,
+    placeholder: gr.fillPlaceholder || '例如：3/4 或 -3/4 或 1又2/5'
+  };
+}
+
+/* =========================================================
+   各小节 生成器
+   ========================================================= */
+
+/* ---- 4.1 分数的概念与基本性质 ---- */
+function gen41_shade() {
+  const N = randInt(4, 15);
+  const M = randInt(1, N - 1);
+  const correct = F(M, N);
+  const prompt = '一个图形被平均分成 <b>' + N + '</b> 等份，其中 <b>' + M + '</b> 份被涂上颜色。涂色部分是整体的几分之几？（答案须化为最简分数）';
+  const wrongFracs = [F(N, M), F(N - M, N), F(M, N - M), F(M + 1, N)];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：3/4' };
+}
+gen41_shade.numeric = true;
+
+function gen41_simplify() {
+  const b = randInt(2, 9);
+  let a = randInt(1, b - 1);
+  while (gcd(a, b) !== 1) a = randInt(1, b - 1);
+  const k = randInt(2, 6);
+  const N = a * k, D = b * k;
+  const correct = F(a, b);
+  const prompt = '化简分数 ' + rawFracSpan(N, D) + '，结果是多少？（化为最简分数）';
+  const wrongFracs = [];
+  const divisors = [2, 3, 4, 5, 6].filter(x => x !== k && N % x === 0 && D % x !== 0);
+  if (divisors.length) { const k2 = choice(divisors); wrongFracs.push(F(N / k2, D)); }
+  wrongFracs.push(F(b, a));
+  wrongFracs.push(F(a, b + 1));
+  wrongFracs.push(F(a + 1, b));
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：3/4' };
+}
+gen41_simplify.numeric = true;
+
+function gen41_expand() {
+  const b = randInt(2, 8);
+  let a = randInt(1, b - 1);
+  while (gcd(a, b) !== 1) a = randInt(1, b - 1);
+  const k = randInt(2, 7);
+  const targetD = b * k;
+  const correctNum = a * k;
+  const correct = F(correctNum, 1);
+  const prompt = '在括号内填入适当的数，使等式成立： ' + rawFracSpan(a, b) + ' = ' + bigFracHTML('(&nbsp;&nbsp;&nbsp;&nbsp;)', String(targetD));
+  const wrongFracs = [F(targetD - a, 1), F(a + k, 1), F(targetD, 1), F(a * (k + 1), 1)];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：12（只填数字）' };
+}
+gen41_expand.numeric = true;
+
+const SEC1_MC = [gen41_shade, gen41_simplify, gen41_expand];
+const SEC1_NUM = [gen41_shade, gen41_simplify, gen41_expand];
+
+/* ---- 4.2 分数的比较 ---- */
+function randReducedFrac(maxD) {
+  const d = randInt(2, maxD);
+  let n = randInt(1, d - 1);
+  while (gcd(n, d) !== 1) n = randInt(1, d - 1);
+  return F(n, d);
+}
+function gen42_choice() {
+  const type = choice(['sameD', 'sameN', 'generic', 'negative']);
+  let f1, f2, label1, label2;
+  if (type === 'sameD') {
+    const d = randInt(4, 15);
+    let a = randInt(1, d - 1), b = randInt(1, d - 1);
+    while (a === b) b = randInt(1, d - 1);
+    f1 = F(a, d); f2 = F(b, d);
+  } else if (type === 'sameN') {
+    const a = randInt(2, 9);
+    let d1 = randInt(a + 1, a + 10), d2 = randInt(a + 1, a + 10);
+    while (d1 === d2) d2 = randInt(a + 1, a + 10);
+    f1 = F(a, d1); f2 = F(a, d2);
+  } else if (type === 'negative') {
+    const base1 = randReducedFrac(12), base2 = randReducedFrac(12);
+    f1 = base1.neg(); f2 = base2.neg();
+    if (f1.eq(f2)) f2 = F(f2.n - 1, f2.d);
+  } else {
+    f1 = randReducedFrac(12); f2 = randReducedFrac(12);
+    if (f1.eq(f2)) f2 = F(f2.n, f2.d + 1);
+  }
+  label1 = renderFrac(f1); label2 = renderFrac(f2);
+  const rel = f1.cmp(f2);
+  const prompt = '比较 ' + label1 + ' 与 ' + label2 + ' 的大小，下列哪一项是正确的？';
+  const options = [
+    { label: label1 + ' &gt; ' + label2, isCorrect: rel === 1 },
+    { label: label1 + ' &lt; ' + label2, isCorrect: rel === -1 },
+    { label: label1 + ' = ' + label2, isCorrect: rel === 0 },
+    { label: '无法比较，需要更多资料', isCorrect: false }
+  ];
+  return { prompt: prompt, numeric: false, options: options };
+}
+
+function gen42_findLarger() {
+  const neg = Math.random() < 0.35;
+  let f1 = randReducedFrac(12), f2 = randReducedFrac(12);
+  if (f1.eq(f2)) f2 = F(f2.n, f2.d + 1);
+  if (neg) { f1 = f1.neg(); f2 = f2.neg(); }
+  const bigger = f1.cmp(f2) >= 0 ? f1 : f2;
+  const smaller = f1.cmp(f2) >= 0 ? f2 : f1;
+  const prompt = '比较 ' + renderFrac(f1) + ' 与 ' + renderFrac(f2) + ' 的大小，较大的分数是？';
+  const wrongAcross = F(f1.n + f2.n, f1.d + f2.d);
+  const wrongFracs = [smaller, F(bigger.d, bigger.n), wrongAcross, bigger.neg()];
+  return { prompt: prompt, numeric: true, correct: bigger, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：5/6 或 -2/3' };
+}
+gen42_findLarger.numeric = true;
+
+const SEC2_MC = [gen42_choice, gen42_findLarger];
+const SEC2_NUM = [gen42_findLarger];
+
+/* ---- 4.3 分数的种类 ---- */
+function gen43_classify() {
+  const kind = choice(['proper', 'improper', 'mixed']);
+  let promptFracHTML, correctLabel;
+  if (kind === 'proper') {
+    const d = randInt(3, 12); let n = randInt(1, d - 1);
+    promptFracHTML = rawFracSpan(n, d); correctLabel = '真分数';
+  } else if (kind === 'improper') {
+    const d = randInt(2, 9); let n = randInt(d, d * 3);
+    if (n === d) n = d + randInt(1, d);
+    promptFracHTML = rawFracSpan(n, d); correctLabel = '假分数';
+  } else {
+    const whole = randInt(1, 6);
+    const d = randInt(2, 9); const n = randInt(1, d - 1);
+    promptFracHTML = whole + '<span class="fint-join">又</span>' + rawFracSpan(n, d);
+    correctLabel = '带分数';
+  }
+  const prompt = promptFracHTML + ' 是下列哪一种分数？';
+  const options = shuffle(['真分数', '假分数', '带分数', '整数']).map(lbl => ({ label: lbl, isCorrect: lbl === correctLabel }));
+  return { prompt: prompt, numeric: false, options: options };
+}
+
+function gen43_improperToMixed() {
+  const d = randInt(2, 9);
+  let n = randInt(d + 1, d * 4);
+  const correct = F(n, d);
+  const whole = Math.floor(n / d), rem = n % d;
+  const prompt = '把假分数 ' + rawFracSpan(n, d) + ' 化为带分数（须化为最简分数部分）。';
+  const wrongFracs = [];
+  if (rem !== 0) {
+    wrongFracs.push(F((whole + 1) * d + rem, d));
+    wrongFracs.push(F(whole * d + (d - rem), d));
+  }
+  wrongFracs.push(F(whole, 1));
+  wrongFracs.push(F((whole - 1 >= 0 ? whole - 1 : whole + 1) * d + rem, d));
+  return { prompt: prompt, numeric: true, correct: correct, display: 'mixed', wrongFracs: wrongFracs, fillPlaceholder: '例如：3又2/5（或直接填等值分数）' };
+}
+gen43_improperToMixed.numeric = true;
+
+function gen43_mixedToImproper() {
+  const whole = randInt(1, 6);
+  const c = randInt(2, 9); let b = randInt(1, c - 1);
+  const correct = F(whole * c + b, c);
+  const prompt = '把带分数 ' + whole + '<span class="fint-join">又</span>' + rawFracSpan(b, c) + ' 化为假分数。';
+  const wrongFracs = [F(whole * c - b, c), F(whole + b, c), F(whole * c + b, c + 1), F(whole * (c + b), c)];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：17/5' };
+}
+gen43_mixedToImproper.numeric = true;
+
+const SEC3_MC = [gen43_classify, gen43_improperToMixed, gen43_mixedToImproper];
+const SEC3_NUM = [gen43_improperToMixed, gen43_mixedToImproper];
+
+/* ---- 4.4 分数的加减法 ---- */
+function randSignedFrac(maxD, allowNeg) {
+  const f = randReducedFrac(maxD);
+  if (allowNeg && Math.random() < 0.45) return f.neg();
+  return f;
+}
+function gen44_addsub() {
+  const op = choice(['+', '-']);
+  const f1 = randSignedFrac(10, true);
+  let f2 = randSignedFrac(10, true);
+  const correct = applyOp(f1, f2, op);
+  const prompt = '计算 ' + renderFrac(f1) + ' ' + op + ' ' + renderFrac(f2) + ' 的值。（答案化为最简分数）';
+  const wrongDenomSum = F((op === '+' ? f1.n * Math.sign(f1.d) + f2.n : f1.n - f2.n), (f1.d + f2.d) || 1);
+  const oppOp = op === '+' ? '-' : '+';
+  const wrongOpposite = applyOp(f1, f2, oppOp);
+  const wrongIgnoreD2 = F(applyOp(F(f1.n, 1), F(f2.n, 1), op).n, f1.d);
+  const wrongFracs = [wrongDenomSum, wrongOpposite, wrongIgnoreD2, correct.neg()];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：7/12 或 -1/6' };
+}
+gen44_addsub.numeric = true;
+
+function gen44_mixedAddsub() {
+  const op = choice(['+', '-']);
+  const w1 = randInt(1, 5), c1 = randInt(2, 8), n1 = randInt(1, c1 - 1);
+  const f1 = F(w1 * c1 + n1, c1);
+  const w2 = randInt(1, 5), c2 = randInt(2, 8), n2 = randInt(1, c2 - 1);
+  const f2 = F(w2 * c2 + n2, c2);
+  const correct = applyOp(f1, f2, op);
+  const prompt = '计算 ' + w1 + '又' + rawFracSpan(n1, c1) + ' ' + op + ' ' + w2 + '又' + rawFracSpan(n2, c2) + ' 的值。（答案化为最简分数或带分数）';
+  const wrongWholeOnly = F(applyOp(F(w1, 1), F(w2, 1), op).n * c1 + n1, c1);
+  const oppOp = op === '+' ? '-' : '+';
+  const wrongOpposite = applyOp(f1, f2, oppOp);
+  const wrongFracPartOnly = applyOp(F(n1, c1), F(n2, c2), op);
+  const wrongFracs = [wrongWholeOnly, wrongOpposite, wrongFracPartOnly, correct.add(F(1, 1))];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'mixed', wrongFracs: wrongFracs, fillPlaceholder: '例如：3又1/4 或 13/4' };
+}
+gen44_mixedAddsub.numeric = true;
+
+const SEC4_MC = [gen44_addsub, gen44_mixedAddsub];
+const SEC4_NUM = [gen44_addsub, gen44_mixedAddsub];
+
+/* ---- 4.5 分数的乘除法 ---- */
+function gen45_muldiv() {
+  const op = choice(['×', '÷']);
+  const f1 = randSignedFrac(9, true);
+  let f2 = randSignedFrac(9, true);
+  while (op === '÷' && f2.n === 0) f2 = randSignedFrac(9, true);
+  const correct = applyOp(f1, f2, op);
+  const prompt = '计算 ' + renderFrac(f1) + ' ' + op + ' ' + renderFrac(f2) + ' 的值。（答案化为最简分数）';
+  const oppOp = op === '×' ? '÷' : '×';
+  const wrongOppOp = applyOp(f1, f2, oppOp);
+  const wrongCross = F(f1.n * f2.n, f1.d * f2.n || 1);
+  const wrongAddInstead = f1.add(f2);
+  const wrongFracs = [wrongOppOp, wrongCross, wrongAddInstead, correct.neg()];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：3/10 或 -5/6' };
+}
+gen45_muldiv.numeric = true;
+
+function gen45_reciprocal() {
+  const asMixed = Math.random() < 0.4;
+  let base;
+  if (asMixed) {
+    const w = randInt(1, 5), c = randInt(2, 8), n = randInt(1, c - 1);
+    base = F(w * c + n, c);
+  } else {
+    base = randSignedFrac(10, true);
+  }
+  const correct = base.recip();
+  const prompt = '求 ' + renderFrac(base) + ' 的倒数。';
+  const wrongFracs = [base, base.neg(), F(base.d, base.n + (base.n >= 0 ? 1 : -1) || 1), correct.neg()];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：4/3 或 -2/5' };
+}
+gen45_reciprocal.numeric = true;
+
+const SEC5_MC = [gen45_muldiv, gen45_reciprocal];
+const SEC5_NUM = [gen45_muldiv, gen45_reciprocal];
+
+/* ---- 4.6 分数的混合运算 ---- */
+function gen46_mixed() {
+  const bracket = Math.random() < 0.5;
+  const f1 = randSignedFrac(8, true), f2 = randSignedFrac(8, true), f3 = randSignedFrac(8, true);
+  const opAdd = choice(['+', '-']);
+  const opMul = choice(['×', '÷']);
+  let correct, wrongLR, prompt;
+  if (!bracket) {
+    correct = applyOp(f1, applyOp(f2, f3, opMul), opAdd);
+    wrongLR = applyOp(applyOp(f1, f2, opAdd), f3, opMul);
+    prompt = '计算 ' + renderFrac(f1) + ' ' + opAdd + ' ' + renderFrac(f2) + ' ' + opMul + ' ' + renderFrac(f3) + ' 的值。（留意运算顺序）';
+  } else {
+    correct = applyOp(applyOp(f1, f2, opAdd), f3, opMul);
+    wrongLR = applyOp(f1, applyOp(f2, f3, opMul), opAdd);
+    prompt = '计算 (' + renderFrac(f1) + ' ' + opAdd + ' ' + renderFrac(f2) + ') ' + opMul + ' ' + renderFrac(f3) + ' 的值。（留意括号）';
+  }
+  const wrongSign = correct.neg();
+  const wrongOnlyFirstTwo = applyOp(f1, f2, opAdd);
+  const wrongFracs = [wrongLR, wrongSign, wrongOnlyFirstTwo, applyOp(f2, f3, opMul)];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：5/6 或 -1/4' };
+}
+gen46_mixed.numeric = true;
+
+const SEC6_MC = [gen46_mixed];
+const SEC6_NUM = [gen46_mixed];
+
+/* ---- 4.7 繁分数 ---- */
+function gen47_complex() {
+  const topIsSum = Math.random() < 0.6;
+  const botIsSum = Math.random() < 0.6;
+  const opT = choice(['+', '-']);
+  const opB = choice(['+', '-']);
+  let top, topHTML;
+  const t1 = randReducedFrac(8);
+  if (topIsSum) {
+    const t2 = randReducedFrac(8);
+    top = applyOp(t1, t2, opT);
+    topHTML = renderFrac(t1) + ' ' + opT + ' ' + renderFrac(t2);
+  } else {
+    top = t1; topHTML = renderFrac(t1);
+  }
+  let bot, botHTML;
+  const b1 = randReducedFrac(8);
+  if (botIsSum) {
+    const b2 = randReducedFrac(8);
+    bot = applyOp(b1, b2, opB);
+    botHTML = renderFrac(b1) + ' ' + opB + ' ' + renderFrac(b2);
+  } else {
+    bot = b1; botHTML = renderFrac(b1);
+  }
+  if (bot.n === 0) bot = F(1, 2);
+  const correct = top.div(bot);
+  const prompt = '化简繁分数 ' + bigFracHTML(topHTML, botHTML) + '（答案化为最简分数）';
+  const wrongFlip = bot.div(top.n === 0 ? F(1, 1) : top);
+  const wrongIgnoreSumTop = (topIsSum ? t1.div(bot) : top.mul(F(2, 1)));
+  const wrongIgnoreSumBot = (botIsSum ? top.div(b1) : bot.mul(F(2, 1)));
+  const wrongFracs = [wrongFlip, wrongIgnoreSumTop, wrongIgnoreSumBot, correct.neg()];
+  return { prompt: prompt, numeric: true, correct: correct, display: 'frac', wrongFracs: wrongFracs, fillPlaceholder: '例如：3/4 或 -5/2' };
+}
+gen47_complex.numeric = true;
+
+const SEC7_MC = [gen47_complex];
+const SEC7_NUM = [gen47_complex];
+
+/* ---- 4.8 应用问题 ---- */
+function gen48_group() {
+  const template = choice(['count', 'money']);
+  if (template === 'count') {
+    const q = randInt(3, 10);
+    const p = randInt(1, q - 1);
+    const g = gcd(p, q);
+    const pr = p / g, qr = q / g;
+    const mult = randInt(2, 6);
+    const T = qr * mult * randInt(1, 3);
+    const Tfinal = Math.max(T, qr);
+    const A = Tfinal * pr * Math.floor(Tfinal / qr) === 0 ? 0 : (Tfinal / qr) * pr;
+    const Afix = (Tfinal % qr === 0) ? (Tfinal / qr) * pr : qr * mult * pr;
+    const Ttrue = (Tfinal % qr === 0) ? Tfinal : qr * mult;
+    const Acount = (Ttrue / qr) * pr;
+    const Bcount = Ttrue - Acount;
+    const correct = F(Bcount, 1);
+    const prompt = '某班有学生 <b>' + Ttrue + '</b> 人，其中男生占全班的 ' + rawFracSpan(pr, qr) + '，问女生有多少人？';
+    const wrongFracs = [F(Acount, 1), F(Math.round(Ttrue * qr / (pr || 1)), 1), F(Ttrue, 1), F(Bcount + mult, 1)];
+    return { prompt: prompt, numeric: true, correct: correct, display: 'money', wrongFracs: wrongFracs, fillPlaceholder: '例如：18（只填数字，不需单位）' };
+  } else {
+    const q1 = randInt(3, 6), q2 = randInt(3, 6);
+    const L = (q1 * q2) / gcd(q1, q2);
+    const mult = randInt(1, 4);
+    const M = L * mult * randInt(1, 2) || L;
+    let p1 = randInt(1, q1 - 1), p2 = randInt(1, q2 - 1);
+    const f1 = F(p1, q1), f2 = F(p2, q2);
+    if (f1.n * (M / f1.d) < 0) { }
+    const Mfix = M - (M % L === 0 ? 0 : (M % L));
+    const Muse = Mfix === 0 ? L * mult : Mfix;
+    const spent1 = f1.mul(F(Muse, 1));
+    const spent2 = f2.mul(F(Muse, 1));
+    if (!spent1.isInt() || !spent2.isInt() || f1.add(f2).cmp(F(1, 1)) >= 0) {
+      return gen48_group();
+    }
+    const correct = F(Muse, 1).sub(spent1).sub(spent2);
+    const prompt = '阿明有零用钱 <b>RM' + Muse + '</b>，他花了其中的 ' + rawFracSpan(p1, q1) + ' 买午餐，又花了 ' + rawFracSpan(p2, q2) + ' 买车票，剩下的钱全部储蓄起来。问他储蓄了多少钱？';
+    const wrongSpentSum = spent1.add(spent2);
+    const wrongIgnoreOne = F(Muse, 1).sub(spent1);
+    const wrongBadCombine = F(Muse, 1).sub(F(p1 + p2, q1 + q2).mul(F(Muse, 1)));
+    const wrongFracs = [wrongSpentSum, wrongIgnoreOne, wrongBadCombine, correct.add(F(mult, 1))];
+    return { prompt: prompt, numeric: true, correct: correct, display: 'money', wrongFracs: wrongFracs, fillPlaceholder: '例如：50（只填数字，不需单位）' };
+  }
+}
+gen48_group.numeric = true;
+
+function workTriple() {
+  const bases = [[6, 3, 2], [4, 12, 3], [9, 18, 6], [10, 15, 6], [12, 4, 3], [18, 9, 6], [8, 8, 4], [15, 30, 10]];
+  const base = choice(bases);
+  const k = randInt(1, 3);
+  return [base[0] * k, base[1] * k, base[2] * k];
+}
+function pipeTriple() {
+  const k2 = choice([2, 3]);
+  let a;
+  if (k2 === 2) a = randInt(2, 10);
+  else a = randInt(1, 6) * 2;
+  const b = k2 * a;
+  const r = k2 === 2 ? 2 * a : Math.round(3 * a / 2);
+  return [a, b, r];
+}
+function gen48_rate() {
+  const template = choice(['work', 'pipe', 'increase']);
+  if (template === 'work') {
+    const [a, b, r] = workTriple();
+    const correct = F(r, 1);
+    const prompt = '甲、乙二人合做一件工程，甲单独做需 <b>' + a + '</b> 天完成，乙单独做需 <b>' + b + '</b> 天完成。若两人合做，需多少天完成？';
+    const wrongFracs = [F(Math.round((a + b) / 2), 1), F(a + b, 1), F(Math.round(Math.abs(a - b)), 1), F(r + randInt(1, 3), 1)];
+    return { prompt: prompt, numeric: true, correct: correct, display: 'money', wrongFracs: wrongFracs, fillPlaceholder: '例如：6（只填数字，单位：天）' };
+  } else if (template === 'pipe') {
+    const [a, b, r] = pipeTriple();
+    const correct = F(r, 1);
+    const prompt = '水槽装有甲、乙两条水管。甲管进水，需 <b>' + a + '</b> 分钟将空槽注满；乙管出水，需 <b>' + b + '</b> 分钟将满槽的水排空。若两管齐开，从空槽到注满需多少分钟？';
+    const wrongFracs = [F(Math.round((a * b) / (a + b)), 1), F(Math.round((a + b) / 2), 1), F(b - a, 1), F(r + randInt(1, 3), 1)];
+    return { prompt: prompt, numeric: true, correct: correct, display: 'money', wrongFracs: wrongFracs, fillPlaceholder: '例如：12（只填数字，单位：分钟）' };
+  } else {
+    const q = randInt(4, 10); const p = randInt(1, q - 1);
+    const origMult = randInt(2, 8);
+    const orig = q * origMult;
+    const newVal = orig + orig * p / q;
+    if (!Number.isInteger(newVal)) return gen48_rate();
+    const correct = F(orig, 1);
+    const prompt = '某商品的售价比原价增加了 ' + rawFracSpan(p, q) + '，涨价后的售价是 <b>RM' + newVal + '</b>，问原价是多少？';
+    const wrongFracs = [F(Math.round(newVal * (1 + p / q)), 1), F(Math.round(newVal - newVal * p / q), 1), F(Math.round(newVal / (1 - p / q || 0.5)), 1), F(orig + origMult, 1)];
+    return { prompt: prompt, numeric: true, correct: correct, display: 'money', wrongFracs: wrongFracs, fillPlaceholder: '例如：80（只填数字，不需单位）' };
+  }
+}
+gen48_rate.numeric = true;
+
+const SEC8_MC = [gen48_group, gen48_rate];
+const SEC8_NUM = [gen48_group, gen48_rate];
+
+/* =========================================================
+   章节配置
+   ========================================================= */
+const SECTIONS = [
+  { id: 's1', num: '4.1', title: '分数的概念与基本性质', mc: SEC1_MC, num_: SEC1_NUM },
+  { id: 's2', num: '4.2', title: '分数的比较', mc: SEC2_MC, num_: SEC2_NUM },
+  { id: 's3', num: '4.3', title: '分数的种类', mc: SEC3_MC, num_: SEC3_NUM },
+  { id: 's4', num: '4.4', title: '分数的加减法', mc: SEC4_MC, num_: SEC4_NUM },
+  { id: 's5', num: '4.5', title: '分数的乘除法', mc: SEC5_MC, num_: SEC5_NUM },
+  { id: 's6', num: '4.6', title: '分数的混合运算', mc: SEC6_MC, num_: SEC6_NUM },
+  { id: 's7', num: '4.7', title: '繁分数', mc: SEC7_MC, num_: SEC7_NUM },
+  { id: 's8', num: '4.8', title: '应用问题', mc: SEC8_MC, num_: SEC8_NUM }
+];
+
+/* =========================================================
+   讲解内容（每小节）
+   ========================================================= */
+const EXPLAIN = {
+  s1: `
+    <p>把 1 个单位平均分成若干份，表示其中一份或几份的数，叫做<b>分数</b>。分数线上面的数叫<b>分子</b>，下面的数叫<b>分母</b>（分母不能为 0）。</p>
+    <div class="example-box"><b>例：</b>一块蛋糕平均分成 4 份，取其中 1 份，就是蛋糕的 ${rawFracSpan(1,4)}。</div>
+    <p><b>分数的基本性质：</b>分数的分子与分母同时乘以或除以同一个不等于 0 的数，分数的值不变。</p>
+    <ul>
+      <li><b>约分</b>：把分子、分母同时除以它们的公因数，化为最简分数。</li>
+      <li><b>扩分</b>：把分子、分母同时乘以同一个大于 1 的整数。</li>
+      <li><b>通分</b>：把几个分母不同的分数，化为分母相同（通常是各分母的最小公倍数 L.C.M.）的分数。</li>
+    </ul>
+    <div class="example-box"><b>例：</b>化简 ${rawFracSpan(36,48)}，36 与 48 的最大公因数是 12，所以 ${rawFracSpan(36,48)} = ${renderFrac(F(3,4))}。</div>
+  `,
+  s2: `
+    <p>比较两个正分数的大小，有三种情况：</p>
+    <ul>
+      <li><b>分母相同</b>：分子较大的，值较大。</li>
+      <li><b>分子相同</b>：分母较小的，值较大。</li>
+      <li><b>分母、分子都不同</b>：先通分，再比较分子的大小。</li>
+    </ul>
+    <p>正分数一定比负分数大；两个负分数比较时，<b>绝对值较大的，反而数值较小</b>。</p>
+    <div class="example-box"><b>例：</b>比较 ${renderFrac(F(-1,2))} 与 ${renderFrac(F(-1,3))}：|${plainFrac(F(-1,2))}| &gt; |${plainFrac(F(-1,3))}|，所以 ${renderFrac(F(-1,2))} &lt; ${renderFrac(F(-1,3))}。</div>
+  `,
+  s3: `
+    <p>分数可分为三类：</p>
+    <ul>
+      <li><b>真分数</b>：分子小于分母，例如 ${rawFracSpan(3,4)}。</li>
+      <li><b>假分数</b>：分子大于或等于分母，例如 ${rawFracSpan(9,5)}。</li>
+      <li><b>带分数</b>：由一个自然数与一个真分数组成，例如 1又${rawFracSpan(2,5)}。</li>
+    </ul>
+    <p>假分数可以化为带分数（用分子除以分母，商作整数部分，余数作分子）；带分数也可以化为假分数（整数 × 分母 + 分子，作新的分子）。</p>
+    <div class="example-box"><b>例：</b>${rawFracSpan(17,5)} = 3又${rawFracSpan(2,5)}（17 ÷ 5 = 3 余 2）。</div>
+  `,
+  s4: `
+    <p><b>同分母</b>分数相加减：分子相加减，分母不变。<b>异分母</b>分数相加减：先通分，化为相同分母，再把分子相加减。</p>
+    <p>带负数的分数运算，须留意符号规则（与整数的加减法相同）。</p>
+    <div class="example-box"><b>例：</b>${renderFrac(F(2,3))} + ${renderFrac(F(1,4))} = ${renderFrac(F(8,12))} + ${renderFrac(F(3,12))} = ${renderFrac(F(11,12))}</div>
+  `,
+  s5: `
+    <p><b>分数乘法</b>：分子与分子相乘，分母与分母相乘。若有公因数应先约简再相乘；带分数须先化为假分数。</p>
+    <p><b>分数除法</b>：把被除数乘以除数的<b>倒数</b>。一个数与它的倒数之积为 1（0 没有倒数）。</p>
+    <div class="example-box"><b>例：</b>${renderFrac(F(2,3))} ÷ ${renderFrac(F(4,5))} = ${renderFrac(F(2,3))} × ${renderFrac(F(5,4))} = ${renderFrac(F(10,12))} = ${renderFrac(F(5,6))}</div>
+  `,
+  s6: `
+    <p>分数的混合运算法则与整数相同：<b>先乘除，后加减；有括号的先算括号内</b>。</p>
+    <div class="example-box"><b>例：</b>${renderFrac(F(1,2))} + ${renderFrac(F(1,3))} × ${renderFrac(F(3,4))} = ${renderFrac(F(1,2))} + ${renderFrac(F(1,4))} = ${renderFrac(F(3,4))}（先算乘法，再算加法）</div>
+  `,
+  s7: `
+    <p>分子或分母本身又含有分数的分数，叫做<b>繁分数</b>。繁分数中最长的那条分数线叫<b>主分数线</b>，它把繁分数分成分子部分与分母部分。</p>
+    <p>化简繁分数时，先把分子部分与分母部分分别化简为一个简单的分数（或整数），再用分子部分除以分母部分。</p>
+    <div class="example-box"><b>例：</b>${bigFracHTML('1 + ' + renderFrac(F(1,2)), renderFrac(F(2,3)))} = ${bigFracHTML(renderFrac(F(3,2)), renderFrac(F(2,3)))} = ${renderFrac(F(3,2))} × ${renderFrac(F(3,2))} = ${renderFrac(F(9,4))}</div>
+  `,
+  s8: `
+    <p>分数应用题常见类型：求总数中某部分占的人数／金钱、花费后剩余的比例、两人合作完工所需的时间、进水排水问题、以及已知涨幅求原价等。</p>
+    <p>解题关键：弄清楚题目中的分数是指<b>整体的几分之几</b>，还是<b>已经发生变化之后</b>的部分，不要把两者混淆（例如：剩余部分应该用 1 减去已用的分数，而不是直接使用已用的分数）。</p>
+    <div class="example-box"><b>例：</b>某班有 40 人，男生占 ${rawFracSpan(3,5)}，则女生有 40 − 40×${rawFracSpan(3,5)} = 40 − 24 = 16 人。</div>
+  `
+};
+
+/* =========================================================
+   状态 与 通用 测验引擎
+   ========================================================= */
+const quizState = {};
+SECTIONS.forEach(s => { quizState[s.id] = { questions: [], submitted: false, score: 0, fillQuestions: [], fillSubmitted: false }; });
+let reviewState = { questions: [], submitted: false, score: 0 };
+
+function pickRandomGen(list) { return choice(list); }
+
+function startSectionQuiz(sectionId) {
+  const sec = SECTIONS.find(s => s.id === sectionId);
+  const st = quizState[sectionId];
+  st.questions = [];
+  for (let i = 0; i < 5; i++) {
+    const gen = pickRandomGen(sec.mc);
+    st.questions.push(buildMC(gen()));
+  }
+  st.submitted = false;
+  st.score = 0;
+  st.fillQuestions = [];
+  st.fillSubmitted = false;
+  renderMCQuiz(sectionId);
+  const fillBox = document.getElementById(sectionId + '-fill');
+  if (fillBox) fillBox.innerHTML = '';
+}
+
+function renderMCQuiz(sectionId) {
+  const st = quizState[sectionId];
+  const box = document.getElementById(sectionId + '-quiz');
+  if (!box) return;
+  let html = '';
+  st.questions.forEach((q, qi) => {
+    html += '<div class="q-card" data-qi="' + qi + '">';
+    html += '<div class="q-prompt"><span class="q-num">第 ' + (qi + 1) + ' 题</span>' + q.prompt + '</div>';
+    html += '<div class="q-options">';
+    q.options.forEach((opt, oi) => {
+      html += '<label class="q-opt"><input type="radio" name="' + sectionId + '-q' + qi + '" value="' + oi + '"><span class="q-opt-label">' + opt.label + '</span></label>';
+    });
+    html += '</div><div class="q-feedback" id="' + sectionId + '-fb' + qi + '"></div></div>';
+  });
+  html += '<button class="btn btn-primary" id="' + sectionId + '-submit">提交答案</button>';
+  html += '<div class="quiz-result" id="' + sectionId + '-result"></div>';
+  box.innerHTML = html;
+  document.getElementById(sectionId + '-submit').addEventListener('click', () => submitMCQuiz(sectionId));
+}
+
+function submitMCQuiz(sectionId) {
+  const st = quizState[sectionId];
+  if (st.submitted) return;
+  let score = 0;
+  let allAnswered = true;
+  st.questions.forEach((q, qi) => {
+    const sel = document.querySelector('input[name="' + sectionId + '-q' + qi + '"]:checked');
+    const fb = document.getElementById(sectionId + '-fb' + qi);
+    const card = document.querySelector('#' + sectionId + '-quiz .q-card[data-qi="' + qi + '"]');
+    const optLabels = card.querySelectorAll('.q-opt');
+    if (!sel) { allAnswered = false; return; }
+    const chosenIdx = parseInt(sel.value, 10);
+    const correctIdx = q.options.findIndex(o => o.isCorrect);
+    optLabels.forEach((lab, oi) => {
+      lab.classList.remove('opt-correct', 'opt-wrong');
+      if (oi === correctIdx) lab.classList.add('opt-correct');
+      else if (oi === chosenIdx) lab.classList.add('opt-wrong');
+    });
+    if (chosenIdx === correctIdx) {
+      score++;
+      fb.innerHTML = '<span class="fb-ok">✓ 答对了！</span>';
+    } else {
+      fb.innerHTML = '<span class="fb-bad">✗ 答错了，正确答案已标示为绿色。</span>';
+    }
+  });
+  if (!allAnswered) {
+    alert('请先完成全部 5 题，再提交答案。');
+    return;
+  }
+  st.submitted = true;
+  st.score = score;
+  document.querySelectorAll('#' + sectionId + '-quiz input[type=radio]').forEach(r => r.disabled = true);
+  document.getElementById(sectionId + '-submit').disabled = true;
+  const resultBox = document.getElementById(sectionId + '-result');
+  let html = '<div class="score-line">本回合得分：<b>' + score + ' / 5</b></div>';
+  if (score >= 3) {
+    html += '<p class="unlock-msg">🎉 恭喜！答对 3 题或以上，解锁「自填答案」挑战题（2 题）。</p>';
+    html += '<button class="btn btn-accent" id="' + sectionId + '-start-fill">开始挑战题</button>';
+  } else {
+    html += '<p class="retry-msg">再接再厉！答对 3 题或以上即可解锁自填答案挑战题。</p>';
+  }
+  html += '<button class="btn btn-ghost" id="' + sectionId + '-retry">🔄 换一组题目再测一次</button>';
+  resultBox.innerHTML = html;
+  if (score >= 3) {
+    document.getElementById(sectionId + '-start-fill').addEventListener('click', () => startFillIn(sectionId));
+  }
+  document.getElementById(sectionId + '-retry').addEventListener('click', () => startSectionQuiz(sectionId));
+}
+
+function startFillIn(sectionId) {
+  const sec = SECTIONS.find(s => s.id === sectionId);
+  const st = quizState[sectionId];
+  st.fillQuestions = [];
+  const used = new Set();
+  let attempts = 0;
+  while (st.fillQuestions.length < 2 && attempts < 20) {
+    attempts++;
+    const gen = pickRandomGen(sec.num_);
+    const gr = gen();
+    const fq = buildFill(gr);
+    const k = fq.correct.key() + '|' + fq.prompt;
+    if (used.has(k)) continue;
+    used.add(k);
+    st.fillQuestions.push(fq);
+  }
+  st.fillSubmitted = false;
+  renderFillIn(sectionId);
+}
+
+function renderFillIn(sectionId) {
+  const st = quizState[sectionId];
+  const box = document.getElementById(sectionId + '-fill');
+  let html = '<div class="fill-header">✏️ 自填答案挑战题（需自行计算，没有选项）</div>';
+  st.fillQuestions.forEach((fq, fi) => {
+    html += '<div class="q-card" data-fi="' + fi + '">';
+    html += '<div class="q-prompt"><span class="q-num">挑战 ' + (fi + 1) + '</span>' + fq.prompt + '</div>';
+    html += '<input type="text" class="fill-input" id="' + sectionId + '-fin' + fi + '" placeholder="' + fq.placeholder + '">';
+    html += '<div class="q-feedback" id="' + sectionId + '-ffb' + fi + '"></div></div>';
+  });
+  html += '<button class="btn btn-primary" id="' + sectionId + '-fsubmit">提交答案</button>';
+  html += '<div class="quiz-result" id="' + sectionId + '-fresult"></div>';
+  box.innerHTML = html;
+  document.getElementById(sectionId + '-fsubmit').addEventListener('click', () => submitFillIn(sectionId));
+}
+
+function submitFillIn(sectionId) {
+  const st = quizState[sectionId];
+  if (st.fillSubmitted) return;
+  let score = 0;
+  let allAnswered = true;
+  st.fillQuestions.forEach((fq, fi) => {
+    const input = document.getElementById(sectionId + '-fin' + fi);
+    const fb = document.getElementById(sectionId + '-ffb' + fi);
+    const raw = input.value;
+    if (!raw || !raw.trim()) { allAnswered = false; return; }
+    const parsed = parseInput(raw);
+    const ok = parsed && parsed.eq(fq.correct);
+    if (ok) {
+      score++;
+      fb.innerHTML = '<span class="fb-ok">✓ 正确！</span>';
+      input.classList.add('inp-correct'); input.classList.remove('inp-wrong');
+    } else {
+      fb.innerHTML = '<span class="fb-bad">✗ 不正确。正确答案：' + renderFrac(fq.correct) + '（或等值分数）</span>';
+      input.classList.add('inp-wrong'); input.classList.remove('inp-correct');
+    }
+  });
+  if (!allAnswered) { alert('请先完成全部挑战题，再提交答案。'); return; }
+  st.fillSubmitted = true;
+  document.getElementById(sectionId + '-fsubmit').disabled = true;
+  document.querySelectorAll('#' + sectionId + '-fill .fill-input').forEach(i => i.disabled = true);
+  const resultBox = document.getElementById(sectionId + '-fresult');
+  resultBox.innerHTML = '<div class="score-line">挑战题得分：<b>' + score + ' / 2</b></div>' +
+    (score === 2 ? '<p class="unlock-msg">🏆 全对！你已完全掌握这一节！</p>' : '<p class="retry-msg">再努力一下，重新测验一次来挑战满分吧！</p>') +
+    '<button class="btn btn-ghost" id="' + sectionId + '-fretry">🔄 重新开始本节测验</button>';
+  document.getElementById(sectionId + '-fretry').addEventListener('click', () => startSectionQuiz(sectionId));
+}
+
+/* ---------- 全章总复习 ---------- */
+const REVIEW_COUNT = 10;
+function startReview() {
+  reviewState.questions = [];
+  for (let i = 0; i < REVIEW_COUNT; i++) {
+    const sec = choice(SECTIONS);
+    const gen = pickRandomGen(sec.mc);
+    const built = buildMC(gen());
+    built.secLabel = sec.num + ' ' + sec.title;
+    reviewState.questions.push(built);
+  }
+  reviewState.submitted = false;
+  reviewState.score = 0;
+  renderReview();
+}
+
+function renderReview() {
+  const box = document.getElementById('review-quiz');
+  let html = '';
+  reviewState.questions.forEach((q, qi) => {
+    html += '<div class="q-card" data-qi="' + qi + '">';
+    html += '<div class="q-prompt"><span class="q-num">第 ' + (qi + 1) + ' 题</span><span class="q-tag">' + q.secLabel + '</span>' + q.prompt + '</div>';
+    html += '<div class="q-options">';
+    q.options.forEach((opt, oi) => {
+      html += '<label class="q-opt"><input type="radio" name="review-q' + qi + '" value="' + oi + '"><span class="q-opt-label">' + opt.label + '</span></label>';
+    });
+    html += '</div><div class="q-feedback" id="review-fb' + qi + '"></div></div>';
+  });
+  html += '<button class="btn btn-primary" id="review-submit">提交全章测验</button>';
+  html += '<div class="quiz-result" id="review-result"></div>';
+  box.innerHTML = html;
+  document.getElementById('review-submit').addEventListener('click', submitReview);
+}
+
+function submitReview() {
+  if (reviewState.submitted) return;
+  let score = 0;
+  let allAnswered = true;
+  reviewState.questions.forEach((q, qi) => {
+    const sel = document.querySelector('input[name="review-q' + qi + '"]:checked');
+    const fb = document.getElementById('review-fb' + qi);
+    const card = document.querySelector('#review-quiz .q-card[data-qi="' + qi + '"]');
+    const optLabels = card.querySelectorAll('.q-opt');
+    if (!sel) { allAnswered = false; return; }
+    const chosenIdx = parseInt(sel.value, 10);
+    const correctIdx = q.options.findIndex(o => o.isCorrect);
+    optLabels.forEach((lab, oi) => {
+      lab.classList.remove('opt-correct', 'opt-wrong');
+      if (oi === correctIdx) lab.classList.add('opt-correct');
+      else if (oi === chosenIdx) lab.classList.add('opt-wrong');
+    });
+    if (chosenIdx === correctIdx) { score++; fb.innerHTML = '<span class="fb-ok">✓ 答对了！</span>'; }
+    else { fb.innerHTML = '<span class="fb-bad">✗ 答错了，正确答案已标示为绿色。</span>'; }
+  });
+  if (!allAnswered) { alert('请先完成全部 ' + REVIEW_COUNT + ' 题，再提交。'); return; }
+  reviewState.submitted = true;
+  reviewState.score = score;
+  document.querySelectorAll('#review-quiz input[type=radio]').forEach(r => r.disabled = true);
+  document.getElementById('review-submit').disabled = true;
+  const pct = Math.round(score / REVIEW_COUNT * 100);
+  let verdict = '继续加油！';
+  if (pct >= 90) verdict = '🏆 太厉害了！你是分数高手！';
+  else if (pct >= 70) verdict = '👍 表现不错，再巩固一下就更稳了！';
+  else if (pct >= 50) verdict = '💪 及格了，建议回去重看讲解部分。';
+  else verdict = '📘 建议重新复习各小节内容后再挑战一次。';
+  document.getElementById('review-result').innerHTML =
+    '<div class="score-line">全章总复习得分：<b>' + score + ' / ' + REVIEW_COUNT + '</b>（' + pct + '%）</div>' +
+    '<p class="unlock-msg">' + verdict + '</p>' +
+    '<button class="btn btn-ghost" id="review-retry">🔄 再测一次（全新题目）</button>';
+  document.getElementById('review-retry').addEventListener('click', startReview);
+}
+
+/* =========================================================
+   主题 / 字体大小
+   ========================================================= */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('frac4_theme', theme);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀️ 浅色模式' : '🌙 深色模式';
+}
+function initTheme() {
+  let theme = localStorage.getItem('frac4_theme');
+  if (!theme) theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  applyTheme(theme);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+}
+const FONT_MIN = 14, FONT_MAX = 24, FONT_STEP = 1;
+function applyFontSize(px) {
+  px = Math.max(FONT_MIN, Math.min(FONT_MAX, px));
+  document.documentElement.style.fontSize = px + 'px';
+  localStorage.setItem('frac4_fontsize', String(px));
+  const label = document.getElementById('font-size-label');
+  if (label) label.textContent = px + 'px';
+}
+function initFontControls() {
+  let px = parseInt(localStorage.getItem('frac4_fontsize'), 10);
+  if (!px || isNaN(px)) px = 17;
+  applyFontSize(px);
+  const minus = document.getElementById('font-minus');
+  const plus = document.getElementById('font-plus');
+  if (minus) minus.addEventListener('click', () => {
+    const cur = parseInt(localStorage.getItem('frac4_fontsize'), 10) || 17;
+    applyFontSize(cur - FONT_STEP);
+  });
+  if (plus) plus.addEventListener('click', () => {
+    const cur = parseInt(localStorage.getItem('frac4_fontsize'), 10) || 17;
+    applyFontSize(cur + FONT_STEP);
+  });
+}
+
+/* =========================================================
+   互动小工具
+   ========================================================= */
+function simplifyLive(numId, denId, outId) {
+  const n = parseInt(document.getElementById(numId).value, 10);
+  const d = parseInt(document.getElementById(denId).value, 10);
+  const out = document.getElementById(outId);
+  if (!Number.isFinite(n) || !Number.isFinite(d) || d === 0) { out.innerHTML = '请输入有效的分子与分母（分母不可为 0）'; return; }
+  const g = gcd(n, d);
+  const f = F(n, d);
+  out.innerHTML = rawFracSpan(n, d) + ' 的最大公因数是 <b>' + g + '</b>，化简后 = ' + renderFrac(f);
+}
+function compareLive(aId, bId, cId, dId, outId) {
+  const a = parseInt(document.getElementById(aId).value, 10);
+  const b = parseInt(document.getElementById(bId).value, 10);
+  const c = parseInt(document.getElementById(cId).value, 10);
+  const d = parseInt(document.getElementById(dId).value, 10);
+  const out = document.getElementById(outId);
+  if (![a, b, c, d].every(Number.isFinite) || b === 0 || d === 0) { out.innerHTML = '请输入四个有效数字（分母不可为 0）'; return; }
+  const f1 = F(a, b), f2 = F(c, d);
+  const rel = f1.cmp(f2);
+  const sym = rel === 1 ? '&gt;' : (rel === -1 ? '&lt;' : '=');
+  out.innerHTML = '通分比较：' + a + '×' + d + ' = ' + (a * d) + '　，　' + c + '×' + b + ' = ' + (c * b) + '<br>所以 ' + renderFrac(f1) + ' ' + sym + ' ' + renderFrac(f2);
+}
+function classifyLive(numId, denId, outId) {
+  const n = parseInt(document.getElementById(numId).value, 10);
+  const d = parseInt(document.getElementById(denId).value, 10);
+  const out = document.getElementById(outId);
+  if (!Number.isFinite(n) || !Number.isFinite(d) || d === 0 || n < 0 || d <= 0) { out.innerHTML = '请输入有效的分子与分母（分母不可为 0）'; return; }
+  const kind = n < d ? '真分数' : '假分数';
+  let mixedHtml = '';
+  if (n >= d) { mixedHtml = '　化为带分数：' + renderMixed(F(n, d)); }
+  out.innerHTML = rawFracSpan(n, d) + ' 是 <b>' + kind + '</b>。' + mixedHtml;
+}
+function calcLive(aId, bId, opId, cId, dId, outId) {
+  const a = parseInt(document.getElementById(aId).value, 10);
+  const b = parseInt(document.getElementById(bId).value, 10);
+  const c = parseInt(document.getElementById(cId).value, 10);
+  const d = parseInt(document.getElementById(dId).value, 10);
+  const op = document.getElementById(opId).value;
+  const out = document.getElementById(outId);
+  if (![a, b, c, d].every(Number.isFinite) || b === 0 || d === 0 || (op === '÷' && c === 0)) { out.innerHTML = '请输入有效数字（分母不可为 0；除法时第二个分数的分子不可为 0）'; return; }
+  const f1 = F(a, b), f2 = F(c, d);
+  const r = applyOp(f1, f2, op);
+  out.innerHTML = renderFrac(f1) + ' ' + op + ' ' + renderFrac(f2) + ' = ' + renderFrac(r) + (r.d !== 1 ? '　（带分数：' + renderMixed(r) + '）' : '');
+}
+function mixedCalcLive(outId) {
+  const a = parseInt(document.getElementById('s6-a').value, 10);
+  const b = parseInt(document.getElementById('s6-b').value, 10);
+  const c = parseInt(document.getElementById('s6-c').value, 10);
+  const d = parseInt(document.getElementById('s6-d').value, 10);
+  const e = parseInt(document.getElementById('s6-e').value, 10);
+  const f = parseInt(document.getElementById('s6-f').value, 10);
+  const op1 = document.getElementById('s6-op1').value;
+  const op2 = document.getElementById('s6-op2').value;
+  const out = document.getElementById(outId);
+  if (![a, b, c, d, e, f].every(Number.isFinite) || b === 0 || d === 0 || f === 0) { out.innerHTML = '请输入六个有效数字（分母不可为 0）'; return; }
+  const f1 = F(a, b), f2 = F(c, d), f3 = F(e, f);
+  const step1 = applyOp(f2, f3, op2);
+  const correct = applyOp(f1, step1, op1);
+  out.innerHTML = '先算：' + renderFrac(f2) + ' ' + op2 + ' ' + renderFrac(f3) + ' = ' + renderFrac(step1) +
+    '<br>再算：' + renderFrac(f1) + ' ' + op1 + ' ' + renderFrac(step1) + ' = ' + renderFrac(correct);
+}
+function complexLive(outId) {
+  const n1 = parseInt(document.getElementById('s7-n1').value, 10);
+  const d1 = parseInt(document.getElementById('s7-d1').value, 10);
+  const n2 = parseInt(document.getElementById('s7-n2').value, 10);
+  const d2 = parseInt(document.getElementById('s7-d2').value, 10);
+  const out = document.getElementById(outId);
+  if (![n1, d1, n2, d2].every(Number.isFinite) || d1 === 0 || d2 === 0 || n2 === 0) { out.innerHTML = '请输入四个有效数字（分母不可为 0；下方分数的分子不可为 0）'; return; }
+  const top = F(n1, d1), bot = F(n2, d2);
+  const r = top.div(bot);
+  out.innerHTML = bigFracHTML(renderFrac(top), renderFrac(bot)) + ' = ' + renderFrac(top) + ' × ' + renderFrac(bot.recip()) + ' = ' + renderFrac(r);
+}
+function totalFracLive(outId) {
+  const total = parseInt(document.getElementById('s8-total').value, 10);
+  const n = parseInt(document.getElementById('s8-n').value, 10);
+  const d = parseInt(document.getElementById('s8-d').value, 10);
+  const out = document.getElementById(outId);
+  if (![total, n, d].every(Number.isFinite) || d === 0) { out.innerHTML = '请输入有效数字（分母不可为 0）'; return; }
+  const f = F(n, d);
+  const part = total * n / d;
+  const rest = total - part;
+  out.innerHTML = '总数 <b>' + total + '</b> 的 ' + rawFracSpan(n, d) + ' = <b>' + (Number.isInteger(part) ? part : part.toFixed(2)) + '</b>　，　其余部分 = <b>' + (Number.isInteger(rest) ? rest : rest.toFixed(2)) + '</b>';
+}
+
+/* =========================================================
+   初始化
+   ========================================================= */
+function buildSectionDOM() {
+  const container = document.getElementById('sections-container');
+  let html = '';
+  SECTIONS.forEach(sec => {
+    html += '<section class="chapter-section" id="' + sec.id + '">';
+    html += '<h2><span class="sec-num">' + sec.num + '</span> ' + sec.title + '</h2>';
+    html += '<div class="explain">' + EXPLAIN[sec.id] + '</div>';
+    html += '<div class="tool-box" id="' + sec.id + '-tool"></div>';
+    html += '<div class="quiz-wrap"><h3>🎯 小测验（5 题选择题）</h3><p class="quiz-intro">每次按「开始 / 换一组题目」都会重新生成题目与选项顺序。答对 3 题或以上即可解锁自填答案挑战题。</p>';
+    html += '<button class="btn btn-primary" id="' + sec.id + '-start">开始测验</button>';
+    html += '<div id="' + sec.id + '-quiz"></div>';
+    html += '<div id="' + sec.id + '-fill"></div>';
+    html += '</div></section>';
+  });
+  container.innerHTML = html;
+  SECTIONS.forEach(sec => {
+    document.getElementById(sec.id + '-start').addEventListener('click', () => startSectionQuiz(sec.id));
+  });
+}
+
+/* 分数输入小组件：分子在上、分母在下，中间一条横线（与题目显示样式一致） */
+function fracInputHTML(numId, denId, numVal, denVal) {
+  return '<span class="frac-input">' +
+    '<input type="number" id="' + numId + '" value="' + numVal + '" class="fi-box">' +
+    '<span class="fi-line"></span>' +
+    '<input type="number" id="' + denId + '" value="' + denVal + '" class="fi-box">' +
+    '</span>';
+}
+
+function buildToolsDOM() {
+  document.getElementById('s1-tool').innerHTML =
+    '<div class="tool-title">🔧 互动约分器</div><div class="tool-row">' +
+    fracInputHTML('t1-n', 't1-d', 36, 48) +
+    ' <button class="btn btn-small" id="t1-go">化简</button></div><div class="tool-out" id="t1-out"></div>';
+
+  document.getElementById('s2-tool').innerHTML =
+    '<div class="tool-title">🔧 互动比较器</div><div class="tool-row">分数① ' +
+    fracInputHTML('t2-a', 't2-b', 2, 3) +
+    ' 分数② ' + fracInputHTML('t2-c', 't2-d', 3, 5) +
+    ' <button class="btn btn-small" id="t2-go">比较</button></div><div class="tool-out" id="t2-out"></div>';
+
+  document.getElementById('s3-tool').innerHTML =
+    '<div class="tool-title">🔧 互动分类/转换器</div><div class="tool-row">' +
+    fracInputHTML('t3-n', 't3-d', 11, 4) +
+    ' <button class="btn btn-small" id="t3-go">判断</button></div><div class="tool-out" id="t3-out"></div>';
+
+  document.getElementById('s4-tool').innerHTML =
+    '<div class="tool-title">🔧 互动加减计算器</div><div class="tool-row">' +
+    fracInputHTML('t4-a', 't4-b', 1, 2) +
+    '<select id="t4-op" class="tool-select"><option value="+">+</option><option value="-">-</option></select>' +
+    fracInputHTML('t4-c', 't4-d', 1, 3) +
+    ' <button class="btn btn-small" id="t4-go">计算</button></div><div class="tool-out" id="t4-out"></div>';
+
+  document.getElementById('s5-tool').innerHTML =
+    '<div class="tool-title">🔧 互动乘除计算器</div><div class="tool-row">' +
+    fracInputHTML('t5-a', 't5-b', 2, 3) +
+    '<select id="t5-op" class="tool-select"><option value="×">×</option><option value="÷">÷</option></select>' +
+    fracInputHTML('t5-c', 't5-d', 4, 5) +
+    ' <button class="btn btn-small" id="t5-go">计算</button></div><div class="tool-out" id="t5-out"></div>';
+
+  document.getElementById('s6-tool').innerHTML =
+    '<div class="tool-title">🔧 互动混合运算演示（先乘除后加减）</div><div class="tool-row">' +
+    fracInputHTML('s6-a', 's6-b', 1, 2) +
+    '<select id="s6-op1" class="tool-select"><option value="+">+</option><option value="-">-</option></select>' +
+    fracInputHTML('s6-c', 's6-d', 1, 3) +
+    '<select id="s6-op2" class="tool-select"><option value="×">×</option><option value="÷">÷</option></select>' +
+    fracInputHTML('s6-e', 's6-f', 3, 4) +
+    ' <button class="btn btn-small" id="s6-go">计算</button></div><div class="tool-out" id="s6-out"></div>';
+
+  document.getElementById('s7-tool').innerHTML =
+    '<div class="tool-title">🔧 互动繁分数化简器</div><div class="tool-row">' +
+    '<span class="bigfrac-input"><span class="bfi-top">' + fracInputHTML('s7-n1', 's7-d1', 3, 2) + '</span><span class="bfi-bot">' + fracInputHTML('s7-n2', 's7-d2', 2, 3) + '</span></span>' +
+    ' <button class="btn btn-small" id="s7-go">化简</button></div><div class="tool-out" id="s7-out"></div>';
+
+  document.getElementById('s8-tool').innerHTML =
+    '<div class="tool-title">🔧 互动「总数 × 分数」计算器</div><div class="tool-row">总数 <input type="number" id="s8-total" value="40" class="tool-input">　占 ' +
+    fracInputHTML('s8-n', 's8-d', 3, 5) +
+    ' <button class="btn btn-small" id="s8-go">计算</button></div><div class="tool-out" id="s8-out"></div>';
+
+  document.getElementById('t1-go').addEventListener('click', () => simplifyLive('t1-n', 't1-d', 't1-out'));
+  document.getElementById('t2-go').addEventListener('click', () => compareLive('t2-a', 't2-b', 't2-c', 't2-d', 't2-out'));
+  document.getElementById('t3-go').addEventListener('click', () => classifyLive('t3-n', 't3-d', 't3-out'));
+  document.getElementById('t4-go').addEventListener('click', () => calcLive('t4-a', 't4-b', 't4-op', 't4-c', 't4-d', 't4-out'));
+  document.getElementById('t5-go').addEventListener('click', () => calcLive('t5-a', 't5-b', 't5-op', 't5-c', 't5-d', 't5-out'));
+  document.getElementById('s6-go').addEventListener('click', () => mixedCalcLive('s6-out'));
+  document.getElementById('s7-go').addEventListener('click', () => complexLive('s7-out'));
+  document.getElementById('s8-go').addEventListener('click', () => totalFracLive('s8-out'));
+}
+
+function buildNavDOM() {
+  const nav = document.getElementById('section-nav');
+  let html = '';
+  SECTIONS.forEach(sec => { html += '<a href="#' + sec.id + '" class="nav-pill">' + sec.num + '</a>'; });
+  html += '<a href="#review" class="nav-pill nav-pill-accent">总复习</a>';
+  nav.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initTheme();
+  initFontControls();
+  buildNavDOM();
+  buildSectionDOM();
+  buildToolsDOM();
+  document.getElementById('review-start').addEventListener('click', startReview);
+});
+
+</script>
+</body>
+</html>
