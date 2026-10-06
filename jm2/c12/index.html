@@ -39,14 +39,21 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .tool{border-top:1px dashed var(--ln);margin-top:.8rem;padding-top:.5rem}.tool h4{margin:.3rem 0}.tool label{display:flex;align-items:center;gap:.4rem}
 .st{margin:.4rem 0;padding:.4rem .8rem;border-left:4px solid var(--ac);background:var(--acs);border-radius:.3rem;font-size:1.1rem;line-height:2.4}
 .wm{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:4}
-.wm div{position:absolute;top:-50%;left:-50%;width:200%;height:200%;transform:rotate(-25deg);color:var(--ink);opacity:.07;font-size:1.1rem;line-height:5;white-space:pre;word-spacing:2rem;user-select:none}
+.wm div{position:absolute;top:-50%;left:-50%;width:200%;height:200%;transform:rotate(-25deg);color:var(--ink);opacity:.07;font-size:0.8rem;line-height:9;white-space:pre;letter-spacing:.12em;user-select:none}
 footer{max-width:60rem;margin:auto;padding:1rem;border-top:2px solid var(--ac);text-align:center;font-size:.85rem;color:var(--mut)}
 footer a{color:var(--ac)}
+.cf{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.6rem;max-width:100%}
+.cfrow{display:flex;align-items:center;gap:.6rem}
+.cfr{display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.cfr i{display:block;width:100%;height:.14rem;background:var(--ink)}
+.cfbar{align-self:stretch;height:.2rem;background:var(--ink)}
+.cfr input{width:4.2rem;min-width:0;text-align:center;font:inherit;color:var(--ink);background:var(--acs);border:2px solid var(--ac);border-radius:.4rem;padding:.25rem}
+.cf select{font:inherit;color:#111;background:#ffe94d;border:2px solid #c9a800;border-radius:.4rem;padding:.3rem}
 </style></head><body>
 <header><div class="bar"><h1>第12章 分式 · 互动学习</h1><div class="ctl">
 <button class="sm" id="th"></button><button class="sm" id="fm" aria-label="缩小字体">A−</button><span id="fv"></span><button class="sm" id="fp" aria-label="放大字体">A+</button></div></div><nav id="nav"></nav></header>
 <main id="main"></main>
-<footer><p>© 2026 蔡逸众 (ecchua79) · 峇株吧辖华仁中学</p><p>《数学》初二下册 第12章 分式 · 互动学习</p></footer>
+<footer><p>© 2026 蔡逸众 (ecchua79) · 峇株吧辖华仁中学</p><p>《数学》初二下册 第12章 分式 · 互动学习 · 更多教学网页:<a href="https://ecchua79.github.io/ScienceLab/" target="_blank" rel="noopener">ecchua79.github.io/ScienceLab</a></p></footer>
 <div class="wm" aria-hidden="true"><div id="wmt"></div></div>
 <script>
 const $=s=>document.querySelector(s),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
@@ -131,7 +138,29 @@ return[`原式 = {1+{1|${P(x)}}|1−{1|${P(x)}}}`,`分子:1 + {1|${P(x)}} = {${x
 if(m==n){o.push(`0 = −${n*a} 不成立,所以原方程无解。`);return o}o.push(`解得 x = {${-n*a}|${m-n}}${eq(-n*a,m-n)}`);o.push(`检验:x 不为 0,也不为 ${a},分母都不为 0,所以这是方程的解。`);return o}},
 5:{h:'甲单独要 a 天,乙单独要 b 天,合作几天?(改变 a、b)',f:[['a','a',6],['b','b',3]],r:({a,b})=>{if(a<1||b<1)return'a、b 请填正整数。';const t=a*b/(a+b);
 return[`设合作需要 t 天:{1|${a}} + {1|${b}} = {1|t}`,`通分:{${b}|${a*b}} + {${a}|${a*b}} = {${a+b}|${a*b}}`,`所以 {1|t} = {${a+b}|${a*b}},两边取倒数:t = {${a*b}|${a+b}}${eq(a*b,a+b)}`,`答:两人合作需要 ${Number.isInteger(t)?t:fq(a*b,a+b)+'(约 '+t.toFixed(2)+')'} 天。`]}}};
-function tool(h,i){const c=TL[i];h.innerHTML=`<h4>互动工具:${R(c.h)}</h4><div class="fi">${c.f.map(([k,l,d])=>`<label>${l} <input data-k="${k}" type="number" step="1" value="${d}" style="min-width:5rem;max-width:7rem"></label>`).join('')}<button class="b">计算</button></div><div class="out" aria-live="polite"></div>`;
+const sim=(n,d)=>{const g=gcd(n,d)||1;n/=g;d/=g;if(d<0){n=-n;d=-d}return[n,d]};
+function part(nm,A,B,o){if(!A||!B){const X=A||B,[n,d]=sim(X[0],X[1]);return{s:[`${nm}:{${X[0]}|${X[1]}}${eq(X[0],X[1])}`],n,d}}
+const[a,b]=A,[c,d]=B,L=`{${a}|${b}}`,Q=`{${c}|${d}}`;let n,m,s;
+if(o=='+'||o=='-'){const sg=o=='+'?'+':'−';n=o=='+'?a*d+c*b:a*d-c*b;m=b*d;s=[`${nm}:${L} ${sg} ${Q}`,`通分,公分母 ${P(b)}×${P(d)}:= {${P(a)}×${P(d)} ${sg} ${P(c)}×${P(b)}|${P(b)}×${P(d)}} = {${n}|${m}}${eq(n,m)}`]}
+else if(o=='*'){n=a*c;m=b*d;s=[`${nm}:${L} × ${Q}`,`= {${P(a)}×${P(c)}|${P(b)}×${P(d)}} = {${n}|${m}}${eq(n,m)}`]}
+else{if(c==0)return{err:`${nm}:除数 ${Q} 的值是 0,不能相除。`};n=a*d;m=b*c;s=[`${nm}:${L} ÷ ${Q}`,`= ${L} × {${d}|${c}} = {${P(a)}×${P(d)}|${P(b)}×${P(c)}} = {${n}|${m}}${eq(n,m)}`]}
+const[x,y]=sim(n,m);return{s,n:x,d:y}}
+function cf(h){const bx=(p,q)=>`<span class="cfr"><input type="number" step="1" data-k="${p}" aria-label="${p}"><i></i><input type="number" step="1" data-k="${q}" aria-label="${q}"></span>`;
+const op=k=>`<select data-k="${k}" aria-label="运算符"><option value="+">+</option><option value="-">−</option><option value="*">×</option><option value="/">÷</option></select>`;
+h.innerHTML=`<h4>互动工具:繁分式化简器</h4><p class="ex">蓝色格填整数,黄色格选 + − × ÷。每个小分式要分子、分母都填;只填了一边的小分式,会被当作空白,不参与计算。</p><div class="cf"><div class="cfrow">${bx('a','b')}${op('o1')}${bx('c','d')}</div><div class="cfbar"></div><div class="cfrow">${bx('e','f')}${op('o2')}${bx('g','h')}</div></div><div><button class="b">计算</button></div><div class="out" aria-live="polite"></div>`;
+const V={a:1,b:2,c:1,d:3,e:1,f:2,g:1,h:3,o1:'+',o2:'-'};for(const k in V)h.querySelector(`[data-k=${k}]`).value=V[k];
+const g=k=>{const e=h.querySelector(`[data-k=${k}]`);return e.value===''?null:Number(e.value)};
+const run=()=>{const notes=[];let err=null;
+const rd=(p,q,nm)=>{const x=g(p),y=g(q);if(x===null&&y===null)return null;if(x===null||y===null){notes.push(`${nm}只填了一边,已当作空白,没有计算。`);return null}if(!Number.isInteger(x)||!Number.isInteger(y)){err='请只填整数。';return null}if(y===0){err=`${nm}的分母不能是 0。`;return null}return[x,y]};
+const A=rd('a','b','分子的第 1 个小分式'),B=rd('c','d','分子的第 2 个小分式'),C=rd('e','f','分母的第 1 个小分式'),D=rd('g','h','分母的第 2 个小分式');let out=[];
+if(!err&&!(A||B))err='分子里至少要填完整的一个小分式。';if(!err&&!(C||D))err='分母里至少要填完整的一个小分式。';
+if(!err){const p=part('分子',A,B,h.querySelector('[data-k=o1]').value),q=part('分母',C,D,h.querySelector('[data-k=o2]').value);
+if(p.err||q.err)err=p.err||q.err;else if(q.n==0)err='分母的值是 0,不能相除。';
+else{const rn=p.n*q.d,rd2=p.d*q.n;out=[...p.s,...q.s,`繁分式 = {{${p.n}|${p.d}}|{${q.n}|${q.d}}} = 分子 ÷ 分母`,`= {${p.n}|${p.d}} × {${q.d}|${q.n}} = {${P(p.n)}×${P(q.d)}|${P(p.d)}×${P(q.n)}} = {${rn}|${rd2}}`,`答案:${fq(rn,rd2)}`]}}
+h.querySelector('.out').innerHTML=notes.map(s=>`<p class="ex">${s}</p>`).join('')+(err?`<div class="st r">${err}</div>`:out.map(s=>`<div class="st">${R(s)}</div>`).join(''))};
+h.querySelector('button').onclick=run;h.querySelectorAll('input,select').forEach(e=>{e.onkeydown=k=>{if(k.key=='Enter')run()}});run()}
+TL[3]={custom:cf};
+function tool(h,i){const c=TL[i];if(c.custom)return c.custom(h);h.innerHTML=`<h4>互动工具:${R(c.h)}</h4><div class="fi">${c.f.map(([k,l,d])=>`<label>${l} <input data-k="${k}" type="number" step="1" value="${d}" style="min-width:5rem;max-width:7rem"></label>`).join('')}<button class="b">计算</button></div><div class="out" aria-live="polite"></div>`;
 const run=()=>{const v={};let bad=0;h.querySelectorAll('input').forEach(e=>{v[e.dataset.k]=Number(e.value);if(e.value===''||!Number.isInteger(v[e.dataset.k]))bad=1});
 const r=bad?['请在每个空格填入整数。']:c.r(v);h.querySelector('.out').innerHTML=(Array.isArray(r)?r:[r]).map(s=>`<div class="st">${R(s)}</div>`).join('')};
 h.querySelector('button').onclick=run;h.querySelectorAll('input').forEach(e=>e.onkeydown=k=>{if(k.key=='Enter')run()});run()}
@@ -146,5 +175,5 @@ function ui(){root.style.fontSize=fs+'px';$('#fv').textContent=fs+'px';$('#th').
 $('#th').onclick=()=>{root.dataset.theme=dark()?'light':'dark';try{localStorage.setItem('th',root.dataset.theme)}catch(e){}ui()};
 const sz=d=>{fs=Math.min(28,Math.max(14,fs+d));try{localStorage.setItem('fs',fs)}catch(e){}ui()};$('#fm').onclick=()=>sz(-2);$('#fp').onclick=()=>sz(2);
 T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>show(i);$('#nav').appendChild(b)});ui();show(0);
-$('#wmt').textContent=Array(60).fill(Array(34).fill('华仁中学蔡逸众制作').join('   ')).join('\n');
+$('#wmt').textContent=Array(30).fill(Array(8).fill('峇株吧辖华仁中学蔡逸众制作').join('        ')).join('\n');
 </script></body></html>
