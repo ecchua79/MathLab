@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- 第5章 小数 互动版 · 制作：蔡逸众 / ecchua79 / Chinese High School (华仁中学) -->
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 制作 / 峇株吧辖华仁中学">
+<title>初一数学 · 第5章 小数（互动版）</title>
+<style>
+:root{--bg:#f6f7fb;--fg:#1d2433;--card:#fff;--bd:#d5dae6;--ac:#2f6fed;--ok:#1b9a55;--bad:#d6393a;--bx:#eaf1ff}
+:root[data-theme=dark]{--bg:#12151d;--fg:#e4e8f2;--card:#1c212d;--bd:#323a4d;--ac:#7aa5ff;--ok:#4cd08a;--bad:#ff6b6c;--bx:#212a40}
+*{box-sizing:border-box}html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);padding:.5rem 1rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+header h1{font-size:1.1rem;margin:0;flex:1}
+button{font:inherit;cursor:pointer;color:var(--fg)}
+.cb{background:var(--bx);border:1px solid var(--bd);border-radius:.5rem;padding:.2rem .7rem}
+nav{display:flex;gap:.4rem;flex-wrap:wrap;padding:.7rem 1rem}
+nav button{background:var(--card);border:1px solid var(--bd);border-radius:2rem;padding:.25rem .9rem}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:860px;margin:0 auto;padding:0 1rem 2rem}
+section{display:none}section.on{display:block}
+h2{margin:.5rem 0}h3{margin:1.2rem 0 .4rem}
+.box{background:var(--bx);border-left:4px solid var(--ac);border-radius:.4rem;padding:.6rem .9rem;margin:.7rem 0}
+details{background:var(--card);border:1px solid var(--bd);border-radius:.5rem;padding:.4rem .8rem;margin:.6rem 0}summary{cursor:pointer;font-weight:600}
+.tool{background:var(--card);border:2px dashed var(--ac);border-radius:.6rem;padding:.7rem .9rem;margin:.9rem 0}
+input,select{font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:.4rem;padding:.2rem .5rem;width:8rem}
+.qz{background:var(--card);border:1px solid var(--bd);border-radius:.7rem;padding:.4rem 1rem 1rem;margin-top:1.2rem}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:.5rem;padding:.4rem 1rem;margin:.3rem 0}.btn:disabled{opacity:.5}
+.card{border:1px solid var(--bd);border-radius:.6rem;padding:.6rem .9rem;margin:.7rem 0}
+.qt{margin:.2rem 0 .5rem;font-weight:600}
+.op{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--bd);border-radius:.5rem;padding:.35rem .7rem;margin:.3rem 0}
+.op:hover:not(:disabled){border-color:var(--ac)}.op.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.op.bad{background:var(--bad);color:#fff;border-color:var(--bad)}
+.ex{margin-top:.5rem;padding:.5rem .7rem;background:var(--bx);border-radius:.4rem;font-size:.95em}
+.sc{font-size:1.2rem;font-weight:700;color:var(--ac)}.fi{width:11rem}
+.f{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .15em}.f i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 .2em}.f b{font-weight:400}
+.dt{position:relative;display:inline-block}.dt::before{content:'•';position:absolute;top:-.85em;left:0;right:0;text-align:center;font-size:.7em;line-height:1}
+body::after{content:"蔡逸众 · Chinese High School 华仁中学";position:fixed;right:.6rem;bottom:.4rem;font-size:.7rem;opacity:.35;pointer-events:none;z-index:9}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;align-items:center;margin:0 .3rem}.fr input{width:4.2rem;text-align:center}.fr u{display:block;width:100%;border-top:2px solid var(--fg);margin:.15rem 0}
+.wi{width:4rem!important;text-align:center}
+footer{text-align:center;font-size:.8rem;opacity:.7;padding:1rem}
+</style></head><body>
+<header><h1>📘 初一上册 · 第5章 小数</h1>
+<button class="cb" id="th">🌙 深色</button><button class="cb" id="fm">A−</button><button class="cb" id="fp">A＋</button></header>
+<nav id="nav"></nav><main id="main"></main>
+<footer><b>峇株吧辖华仁中学出品</b><br>蔡逸众老师 制作<br>Chinese High School · Batu Pahat<br>© 2026 蔡逸众 版权所有</footer>
+<script>
+/*GEN*/
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[R(0,a.length-1)],P=Math.pow;
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const fE=(N,e)=>{const n=N<0;N=Math.abs(N);let s=String(N);if(e>=0)s+='0'.repeat(e);else{const d=-e;s=s.padStart(d+1,'0');s=s.slice(0,-d)+'.'+s.slice(-d)}return(n?'-':'')+s};
+const tr=s=>s.includes('.')?s.replace(/0+$/,'').replace(/\.$/,''):s,T=(N,e)=>tr(fE(N,e));
+const F=(n,d)=>`<span class="f"><i>${n}</i><b>${d}</b></span>`,CN='零一二三四五六七八九';
+const rd=(N,e,u,t)=>{if(u<=e)return fE(N*P(10,e-u),u);const p=P(10,u-e);return fE(t?Math.floor(N/p):Math.floor((N+p/2)/p),u)};
+const nz=(a,b)=>{let x;do x=R(a,b);while(x%10==0);return x};
+const dig=(a,b)=>{let ip=Math.floor(a/b),r=a%b,sn={},ds=[];while(r&&sn[r]===undefined){sn[r]=ds.length;r*=10;ds.push(Math.floor(r/b));r%=b}return r?{ip,nr:ds.slice(0,sn[r]).join(''),rp:ds.slice(sn[r]).join('')}:{ip,nr:ds.join(''),rp:''}};
+const dt=c=>`<span class="dt">${c}</span>`,rr=(ip,D,s,e)=>ip+'.'+[...D].map((c,i)=>i==s||i==e?dt(c):c).join('');
+const ex=(D,s,e,n=24)=>{let o='';for(let i=0;i<n;i++)o+=i<=e?D[i]:D[s+(i-s)%(e-s+1)];return o};
+const kx=x=>/^-?[\d.]+$/.test(x)?+x:x;
+const BM=(a,ws)=>{const s=new Set([kx(a)]),o=[];for(const w of sh(ws)){if(!w)continue;const k=kx(w);if(!s.has(k)){s.add(k);o.push(w)}}return o.length<3?null:sh([a,...o.slice(0,3)])};
+const pn=s=>{s=s.replace(/\s|RM|rm|米|位|个/g,'').replace(/[−－]/g,'-');let m=s.match(/^(-?)(\d+)又(\d+)\/(\d+)$/);if(m)return(m[1]?-1:1)*(+m[2]+m[3]/m[4]);m=s.match(/^(-?\d+)\/(\d+)$/);if(m)return m[1]/m[2];return /^-?\d*\.?\d+$/.test(s)?+s:NaN};
+const S=[];
+S[0]=[
+[()=>{const ip=R(0,9),neg=R(0,2)==0,k=R(2,4),f=[R(0,1)?0:R(1,9)];for(let i=1;i<k-1;i++)f.push(R(0,9));f.push(R(1,9));
+ const fs=f.join(''),sg=neg?'-':'',W=(neg?'负':'')+CN[ip]+'点'+f.map(d=>CN[d]).join(''),Z=x=>sg+ip+'.'+x,sw=fs[1]+fs[0]+fs.slice(2);
+ return{q:`以阿拉伯数字表示：${W}`,a:Z(fs),w:[Z(fs.replace(/^0/,'')),Z('0'+fs),Z(fs.slice(0,-1)),Z(sw),Z(fs[0]+'0'+fs.slice(1))],x:`“点”后面的数字按顺序逐位写出，零也要照写：${Z(fs)}`}},3],
+[()=>{const ip=R(0,4),k=R(1,3),d=P(10,k),n=nz(1,d-1),g=gcd(n,d),r=n/g,s=d/g,H=(i,a,b)=>(i?i:'')+F(a,b),c=H(ip,r,s),dc=fE(ip*d+n,-k);
+ return{q:`把 ${dc} 化为最简分数`,h:'（分数写成 3/25，带分数写成 1又3/5）',a:c,v:ip+n/d,w:[H(ip,n,d),H(ip,r,s*10),d>=10?H(ip,n,d/10):0,g>2&&g%2==0?H(ip,n/2,d/2):H(ip,r+1,s),H(ip,s,r)],x:`${dc} = ${H(ip,n,d)}，分子分母同除以 ${g}：${c}`}},3],
+[()=>{const k=R(1,3),d=P(10,k),N=nz(11,999),c=T(N,-k),z=fE(N,-k).replace('.','.0');
+ return{q:`${F(N,d)} 化为小数是`,a:c,w:[T(N,-k-1),T(N,-k+1),z,T(N,-k-2)],x:`分母是 1 后面 ${k} 个 0，小数点向左移 ${k} 位（不够补 0）：${c}`}},3],
+[()=>{const ip=R(0,99),k=R(1,4);let f='';for(let i=0;i<k-1;i++)f+=R(0,9);f+=R(0,1)?'0':R(1,9);const W=x=>x+' 位';
+ return{q:`${ip}.${f} 是几位小数？`,a:W(k),w:[W(k-1),W(k+1),W(String(ip).length+k),W(k+2),W(Math.max(1,k-2))],x:`小数点后有几个数字（包括末尾的 0），就是几位小数：${k} 位`}},3],
+[()=>{const a=R(1,9);let b;do b=R(1,9);while(b==a);const p=sh([`0.${a}${b}`,`0.${a}0${b}`,`0.0${a}${b}`,`0.${b}${a}`,`0.${a}${b}${a}`,`0.${a}${b}0${b}`]).slice(0,4),neg=R(0,1),d=p.map(s=>(neg?'-':'')+s),v=p.map(Number),ci=v.indexOf(Math.max(...v));
+ return{q:`在 ${d.join('，')} 中，${neg?'最小':'最大'}的是`,a:d[ci],w:d.filter((_,i)=>i!=ci),x:neg?`负数比较：绝对值越大的数反而越小。先比较 ${p.join('，')}，最大的是 ${p[ci]}，所以最小的是 ${d[ci]}`:`从十分位起逐位比较（可补 0 对齐位数），最大的是 ${d[ci]}`}},3]];
+S[1]=[
+[()=>{const A=R(1000,19999),B=R(100,3999),op=pick(['+','-']),s=op=='+'?1:-1,c=A+s*10*B,a=fE(A,-3),b=fE(B,-2);
+ return{q:`计算 ${a} ${op=='-'?'−':'+'} ${b}`,a:T(c,-3),w:[T(A+s*B,-3),T(-c,-3),T(A-s*10*B,-3),T(c+10,-3),T(c-10,-3),T(c+100,-3)],x:`小数点对齐，位数不够的补 0：${a} ${op} ${fE(B*10,-3)} = ${T(c,-3)}`}},3],
+[()=>{const d=R(0,3),k=R(1,3),m=R(0,1),N=nz(11,99999),e=m?-d+k:-d-k,sg=R(0,1)?'-':'';
+ return{q:`计算 ${sg}${T(N,-d)} ${m?'×':'÷'} ${P(10,k)}`,a:sg+T(N,e),w:[T(N,e+1),T(N,e-1),T(N,m?-d-k:-d+k),T(N,e+2),T(N,e-2)].map(x=>sg+x),x:`${m?'乘以':'除以'} ${P(10,k)}，小数点向${m?'右':'左'}移 ${k} 位（不够补 0）：${sg}${T(N,e)}`}},3],
+[()=>{const da=R(1,2),db=R(1,2),A=nz(11,99),B=nz(11,99),s=da+db,neg=R(0,2)==0,sg=neg?'-':'',M=A*B;
+ return{q:`计算 ${neg?'(−'+T(A,-da)+')':T(A,-da)} × ${T(B,-db)}`,a:sg+T(M,-s),w:[T(M,-s+1),T(M,-s-1),T(M,-Math.max(da,db)),T(M,-s+2),T(M,-s-2)].map(x=>sg+x),x:`先当作整数：${A}×${B}=${M}；两个乘数共有 ${da}+${db}=${s} 位小数，所以积有 ${s} 位小数（不够补 0，末尾的 0 可省略）：${sg}${T(M,-s)}`}},3],
+[()=>{const dd=R(1,2),qd=R(0,2),Dn=pick([2,3,4,5,6,8,12,14,25]),Q=nz(11,999),a=T(Dn*Q,-(dd+qd)),b=T(Dn,-dd);
+ return{q:`计算 ${a} ÷ ${b}`,a:T(Q,-qd),w:[T(Q,-qd-dd),T(Q,-qd+dd),T(Q,-qd+1),T(Q,-qd-1)],x:`被除数、除数的小数点同时向右移 ${dd} 位，商不变，变成整数除法：${T(Dn*Q,-qd)} ÷ ${Dn} = ${T(Q,-qd)}`}},3],
+[()=>{const X=R(11,999),Y=R(2,19),Z=R(2,19),op=pick(['+','-']),s=op=='+'?1:-1,c=100*X+s*10*Y*Z;
+ return{q:`计算 ${T(X,-1)} ${op=='-'?'−':'+'} ${T(Y,-1)} × ${T(Z,-1)}`,a:T(c,-3),w:[T((X+s*Y)*Z*10,-3),T(100*X+s*100*Y*Z,-3),T(100*X+s*Y*Z,-3),T(100*X-s*10*Y*Z,-3)],x:`先乘后${op=='+'?'加':'减'}：${T(Y,-1)}×${T(Z,-1)}=${T(Y*Z,-2)}，再 ${T(X,-1)} ${op} ${T(Y*Z,-2)} = ${T(c,-3)}`}},3]];
+S[2]=[
+[()=>{const b=pick([3,6,7,9,11,12,13,15,18,22,24,30,33,36,45]),a=R(1,b-1),{ip,nr,rp}=dig(a,b);if(!rp)return null;const s=nr.length,e=s+rp.length-1,D=nr+rp.repeat(3),cor=rr(ip,nr+rp,s,e),ref=ex(D,s,e),cs=[];
+ for(let s2=0;s2<=s+1;s2++)for(let e2=s2;e2<=e+2&&e2<D.length;e2++)if(ex(D,s2,e2)!=ref)cs.push([Math.abs(s-s2)+Math.abs(e-e2),Math.random(),s2,e2]);
+ cs.sort((p,q)=>p[0]-q[0]||p[1]-q[1]);
+ return{q:`${F(a,b)} 化为循环小数，正确的写法是`,a:cor,w:cs.slice(0,6).map(c=>rr(ip,D.slice(0,c[3]+1),c[2],c[3])),x:`长除法：${a}÷${b}=${ip}.${nr}${rp}${rp}…，循环节是 ${rp}，只在循环节的第一个和最后一个数字上加点：${cor}`}},1],
+[()=>{const c=pick(['5/12','7/15','4/9','5/6','7/30','2/11','1/7','10/33','5/18','7/12']),ds=sh(['3/12','9/15','6/24','12/30','21/60','18/45','9/36','15/75','4/16','6/30']).slice(0,3),f=s=>{const[a,b]=s.split('/');return F(a,b)};
+ return{q:'下列哪一个分数化为小数后是循环小数？',a:f(c),w:ds.map(f),x:`先约分再判断：最简分母只含质因数 2、5 的是有限小数（如 ${ds[0]} 约分后分母是 ${ds[0].split('/')[1]/gcd(...ds[0].split('/').map(Number))}）；${c} 约分后分母还含有别的质因数，所以是循环小数`}},1],
+[()=>{const b=pick([6,12,15,18,22,24,30,36,45]),a=R(1,b-1),{ip,nr,rp}=dig(a,b);if(!rp||!nr)return null;
+ return{q:`${F(a,b)} = ${ip}.${nr}${rp}${rp}${rp}…，它的循环节是`,a:rp,w:[nr.slice(-1)+rp,nr+rp,rp.length>1?rp.slice(0,-1):nr.slice(-1),nr[0]+rp],x:`从小数部分“开始重复”的那一位起，接连重复出现的数字就是循环节：${rp}（${nr} 只出现一次，不循环）`}},1],
+[()=>{const b=pick([8,16,20,25,40,50,125]),a=R(1,b*2-1),{ip,nr,rp}=dig(a,b);if(rp||!nr)return null;const N=+(String(ip)+nr),k=nr.length,c=T(N,-k);
+ return{q:`${F(a,b)} 化为小数是`,a:c,w:[T(N,-k-1),T(N,-k+1),T(N,-k-2),T(a*b,-k)],x:`${a}÷${b}=${c}，除到余数为 0，是有限小数`}},3],
+[()=>{const b=pick([7,11,12,13,15,18,22,6,3,9]),a=R(1,b-1),{ip,nr,rp}=dig(a,b);if(!rp)return null;const n=R(15,60),L=rp.length,d=n<=nr.length?nr[n-1]:rp[(n-nr.length-1)%L];
+ return{q:`${F(a,b)} 化为小数后，小数点后第 ${n} 位数字是几？`,a:d,x:`${a}÷${b}=${ip}.${nr}${rp}${rp}…，不循环部分 ${nr.length} 位，循环节 ${rp} 有 ${L} 位，推算得第 ${n} 位是 ${d}`}},2],
+[()=>{const b=pick([3,7,9,11,13,27,33,37]),{rp}=dig(1,b);return{q:`${F(1,b)} 化为循环小数，循环节有几个数字？`,a:String(rp.length),x:`长除法中余数重复出现时就开始循环，循环节 ${rp} 共 ${rp.length} 位`}},2]];
+S[3]=[
+[()=>{const k=R(1,3),dg=[R(1,9)];for(let i=0;i<4;i++)dg.push(pick([0,0,4,5,9,9,9,8,1,6]));const N=+dg.join('');if(N%10==0)return null;const u=P(10,4-k),ci=Math.floor((N+u/2)/u),c=fE(ci,-k);
+ return{q:`${fE(N,-4)} 准确至${CN[k]}位小数，近似值是`,a:c,w:[rd(N,-4,-k,1),fE(ci+1,-k),fE(ci-1,-k),rd(N,-4,-k-1),rd(N,-4,-k+1)],x:`看第 ${k+1} 位小数 ${dg[k+1]}：${dg[k+1]>=5?'是 5 或大于 5，进 1':'是 4 或小于 4，舍去'}，得 ${c}`}},3],
+[()=>{const j=R(1,3),p=P(10,j),N=R(1000,999999),c=Math.floor((N+p/2)/p)*p,nm=['','十','百','千'][j];if(N%p==0)return null;
+ return{q:`${N} 准确至${nm}位数，近似值是`,a:String(c),w:[String(Math.floor(N/p)*p),String(c+p),String(c-p),String(Math.floor((N+p/20)/(p/10))*(p/10))],x:`看${nm}位右边的一位数字，≥5 进 1，≤4 舍去，其后数位都变成 0：${c}`}},3],
+[()=>{const L=R(3,5),c=[R(1,9)];for(let i=1;i<L-1;i++)c.push(pick([0,0,R(1,9)]));c.push(R(0,1)?0:R(1,9));const s=c.join('');let t,ex=0;
+ if(R(0,1)){const z=R(1,3);t='0.'+'0'.repeat(z)+s;ex=z}else{const p=R(1,L-1);t=s.slice(0,p)+'.'+s.slice(p)}
+ const zs=(s.match(/0/g)||[]).length,W=x=>x+' 个';
+ return{q:`${t} 有几个有效数字？`,a:W(L),w:[W(L-1),W(L+1),W(L+ex),W(L-zs),W(L+2)],x:`从第一个非零数字起，到最后一位的所有数字都是有效数字（中间的 0、小数部分末尾的 0 都算）：共 ${L} 个`}},3],
+[()=>{const m=R(5,7),dg=[R(1,9)];for(let i=1;i<m;i++)dg.push(pick([0,0,4,5,9,9,1,6,7,3]));const N=+dg.join(''),e=R(0,1)?0:-R(1,m+2),s=R(2,4),u=e+m-s;if(N%10==0)return null;const c=rd(N,e,u);
+ return{q:`${fE(N,e)} 准确至${CN[s]}个有效数字，近似值是`,a:c,w:[rd(N,e,u,1),rd(N,e,u+1),rd(N,e,u-1),rd(N,e,-s),e==0?c.replace(/0+$/,''):0],x:`从第一个非零数字起数 ${s} 个有效数字，看第 ${s+1} 个有效数字（${dg[s]}）：${dg[s]>=5?'进 1':'舍去'}，得 ${c}`}},3],
+[()=>{const m=R(6,9),dg=[R(1,9)];for(let i=1;i<m;i++)dg.push(pick([0,0,1,2,3,5,6,7,9,9]));const N=+dg.join(''),e=R(0,1)?R(0,2):-(m+R(1,4));if(N%10==0)return null;const x0=e+m-1,p=P(10,m-3);let r=Math.floor((N+p/2)/p),xx=x0;if(r>=1000){r/=10;xx++}
+ const S_=(mm,x)=>`${mm}×10<sup>${x}</sup>`,mt=fE(r,-2);
+ return{q:`用科学记数法表示 ${fE(N,e)}（准确至三个有效数字）`,a:S_(mt,xx),w:[S_(mt,xx+1),S_(mt,xx-1),S_(mt,-xx),S_(fE(r+1,-2),xx),S_(fE(Math.floor(N/p),-2),xx)],x:`把小数点移到第一个非零数字后面，得 a=${mt}（1≤a<10，三个有效数字），再用 10 的幂补回位置：${S_(mt,xx)}`}},1]];
+S[4]=[
+[()=>{const X=R(100,299),Y=R(60,199),m=R(2,5),n=R(2,4),c=X*m+Y*n,u=x=>T(x,-2)+' 米';
+ return{q:`红色彩带每卷长 ${T(X,-2)} 米，蓝色彩带每卷长 ${T(Y,-2)} 米。妈妈有 ${m} 卷红色、${n} 卷蓝色彩带，一共有多少米？`,a:u(c),w:[u(X*n+Y*m),u(X*m+Y),u((X+Y)*(m+n)),T(c,-1)+' 米',u(c+90)],x:`${T(X,-2)}×${m}+${T(Y,-2)}×${n}=${T(X*m,-2)}+${T(Y*n,-2)}=${T(c,-2)} 米`}},3],
+[()=>{const A=5*R(250,500),C=5*R(150,300),m=R(1,3),n=R(1,3),t=A*m+C*n;if(t%10)return null;const k=Math.ceil(t*1.1/100),B=100*R(k+5,k+60),f=t/10,c=B-t-f,u=x=>'RM'+fE(x,-2);
+ return{q:`小杰有 RM${B/100}。成人套餐每份 ${u(A)}，儿童套餐每份 ${u(C)}，共点了 ${m} 份成人套餐和 ${n} 份儿童套餐，餐厅另收总花费的 10% 作服务费。他还剩多少钱？`,a:u(c),w:[u(B-t),u(B-t-2*f),u(B-f),u(B-t+f),u(c+f)],x:`总花费 ${u(t)}；服务费 = ${u(t)}×10% = ${u(f)}；共付 ${u(t+f)}；还剩 ${u(B)} − ${u(t+f)} = ${u(c)}`}},3],
+[()=>{const[p1,p2,p3]=pick([[44,51,60],[21,23,28],[24,30,38]]),big=R(0,1),U=big?R(1150,1600):R(300,1000),c=big?200*p1+900*p2+(U-1100)*p3:200*p1+(U-200)*p2,u=x=>'RM'+fE(x,-2);
+ return{q:`电费：首 200 个单位每单位 ${u(p1)}，次 900 个单位每单位 ${u(p2)}，余下每单位 ${u(p3)}。某月用电 ${U} 个单位，电费是多少？`,a:u(c),w:[u(U*p2),u(200*p1+U*p2),u(200*p2+(U-200)*p1),u(big?200*p1+(U-200)*p2:U*p1),big?u(U*p3):u(200*p1+(U-200)*p3)],x:big?`200×${u(p1)}+900×${u(p2)}+${U-1100}×${u(p3)} = ${u(c)}`:`首 200 个：200×${u(p1)}=${u(200*p1)}；另 ${U-200} 个：${U-200}×${u(p2)}=${u((U-200)*p2)}；合计 ${u(c)}`}},3],
+[()=>{const D=nz(21,99),W=nz(21,99);if(D==W)return null;
+ if(R(0,1)){const Q=R(11,299),c=100*W*Q/D;if(!Number.isInteger(c))return null;
+  return{q:`敏丽做除法时，把除数 ${T(D,-1)} 误看成 ${T(W,-1)}，得到商 ${T(Q,-1)}。正确的商是多少？`,a:T(c,-3),w:[T(W*Q,-2),T(Q,-1),T(c,-2),T(c,-4),T(Q*D,-2)],x:`被除数 = ${T(W,-1)}×${T(Q,-1)} = ${T(W*Q,-2)}；正确的商 = ${T(W*Q,-2)} ÷ ${T(D,-1)} = ${T(c,-3)}`}}
+ const M=R(11,299),c=M*D;
+ return{q:`明杰做乘法时，把乘数 ${T(D,-1)} 误看成 ${T(W,-1)}，所得的积为 ${T(M*W,-2)}。正确的积是多少？`,a:T(c,-2),w:[T(M,-1),T(M*W,-2),T(M*W+10*(D-W),-2),T(c,-1),T(c,-3)],x:`另一个乘数 = ${T(M*W,-2)} ÷ ${T(W,-1)} = ${T(M,-1)}；正确的积 = ${T(M,-1)} × ${T(D,-1)} = ${T(c,-2)}`}},3],
+[()=>{const av=R(700,950),v=[0,0,0,0].map(()=>R(600,990)),sm=v.reduce((p,q)=>p+q,0),Sx=av*5-sm;if(Sx<300||Sx>1000)return null;
+ return{q:`凯欣五个科目的平均分数是 ${T(av,-1)}，其中四个科目的分数分别为 ${v.map(x=>T(x,-1)).join('、')}，求第五个科目的分数。`,a:T(Sx,-1),w:[T(av*5,-1),T(av*4-sm,-1),T(Sx+10,-1),T(Sx-10,-1),T(Sx,-2)],x:`总分 = ${T(av,-1)}×5 = ${T(av*5,-1)}；第五科 = ${T(av*5,-1)} − ${T(sm,-1)} = ${T(Sx,-1)}`}},3]];
+/*END*/
+const parseDec=s=>{s=s.trim().replace('−','-');const m=s.match(/^(-?)(\d*)\.?(\d*)$/);if(!m||!(m[2]+m[3]))return null;return{neg:!!m[1],N:+(m[2]+m[3]),e:-m[3].length}};
+const mcOf=g=>{let r;try{r=g()}catch(e){return null}if(!r||!r.w)return null;const o=BM(r.a,r.w);return o&&{...r,o}};
+const fillOf=g=>{let r;try{r=g()}catch(e){return null}if(!r)return null;if(r.v===undefined)r.v=pn(r.a.replace(/<[^>]*>/g,''));return r};
+const seen={},mp=S.map(s=>s.filter(x=>x[1]&1).map(x=>x[0])),fz=S.map(s=>s.filter(x=>x[1]&2).map(x=>x[0]));
+const cyc=(p,n)=>{let o=[];while(o.length<n)o=o.concat(sh(p));return o.slice(0,n)};
+function mk(plan,pool,fill,id){const sn=seen[id]||(seen[id]=new Set()),f=fill?fillOf:mcOf,out=[];
+ plan.forEach(g=>{let r=null;for(let t=0;t<80&&!r;t++){const c=f(t<40?g:pick(pool));if(c&&!sn.has(c.q)&&!out.some(o=>o.q==c.q))r=c}
+  for(let t=0;t<80&&!r;t++){const c=f(pick(pool));if(c&&!out.some(o=>o.q==c.q))r=c}
+  if(r){sn.add(r.q);out.push(r)}});return out}
+function Quiz(el,mkset,fp,gate,title){
+ el.innerHTML=`<h3>${title}</h3><button class="btn">🎲 开始 / 重新出题</button><div class="qs"></div><div class="res"></div><div class="fl"></div>`;
+ const[qs,res,fl]=['.qs','.res','.fl'].map(s=>el.querySelector(s));
+ el.querySelector('button').onclick=()=>{const items=mkset();let done=0,ok=0;qs.innerHTML=res.innerHTML=fl.innerHTML='';
+  const fin=()=>{res.innerHTML=`<div class="sc">得分：${ok} / ${items.length}</div>`;
+   if(gate==null){res.innerHTML+=`<p>${ok>=items.length*.8?'🏆 非常棒！':ok>=items.length*.6?'👍 不错，看看解析再试一次':'💪 回去再复习课文，然后重新出题'}</p>`;return}
+   if(ok>=gate){res.innerHTML+='<p>🔓 答对 3 题或以上，已解锁 2 道作答题（要自己输入答案）</p>';fillQ()}else res.innerHTML+=`<p>🔒 需答对 ${gate} 题或以上才能解锁作答题，请重新出题再试。</p>`};
+  items.forEach((it,i)=>{const d=document.createElement('div'),ci=it.o.indexOf(it.a);d.className='card';d.innerHTML=`<p class="qt">${i+1}. ${it.q}</p><div class="ops"></div><div class="ex" hidden></div>`;
+   const ops=d.querySelector('.ops'),xx=d.querySelector('.ex');
+   it.o.forEach((t,j)=>{const b=document.createElement('button');b.className='op';b.innerHTML='ABCD'[j]+'. '+t;
+    b.onclick=()=>{if(d.dataset.k)return;d.dataset.k=1;[...ops.children].forEach((x,n)=>{x.disabled=true;if(n==ci)x.classList.add('ok')});const g=j==ci;if(!g)b.classList.add('bad');xx.hidden=false;xx.innerHTML=(g?'✅ 正确！':'❌ 正确答案：'+it.a)+'<br>'+it.x;done++;if(g)ok++;if(done==items.length)fin()};ops.appendChild(b)});qs.appendChild(d)});
+  function fillQ(){const its=fp();let n=0,k=0;fl.innerHTML='<h4>✍️ 作答题</h4>';
+   its.forEach((it,i)=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<p class="qt">作答${i+1}. ${it.q}${it.h||''}</p><input class="fi" placeholder="输入答案"> <button class="btn">提交</button><div class="ex" hidden></div>`;
+    const inp=d.querySelector('input'),b=d.querySelector('button'),xx=d.querySelector('.ex');
+    b.onclick=()=>{if(b.disabled)return;const v=pn(inp.value);xx.hidden=false;if(isNaN(v)){xx.textContent='请输入数字（分数可写 3/25 或 1又3/5）';return}
+     const g=Math.abs(v-it.v)<1e-6;b.disabled=inp.disabled=true;if(g)k++;n++;xx.innerHTML=(g?'✅ 正确！':'❌ 不对，正确答案：'+it.a)+'<br>'+it.x;if(n==its.length)xx.innerHTML+=`<p class="sc">作答题得分 ${k} / ${its.length}</p>`};
+    inp.onkeydown=e=>{if(e.key=='Enter')b.click()};fl.appendChild(d)})}}}
+const $=id=>document.getElementById(id);
+function t1(){const p=parseDec($('i1').value),o=$('o1');if(!p||String(p.N).length>12){o.textContent='请输入小数，例如 -4.55';return}const k=-p.e,d=P(10,k),ip=Math.floor(p.N/d),n=p.N%d,g=gcd(n,d)||1,sg=p.neg?'-':'';
+ o.innerHTML=`${k} 位小数 ；化为最简分数：`+(n?sg+(ip||'')+F(n/g,d/g):sg+ip)}
+function t6(){const sg=$('s6').value,w=$('w6').value.trim()||'0',n=$('n6').value.trim(),d=$('d6').value.trim(),o=$('o6'),p=$('p6');
+ if(![w,n,d].every(x=>/^\d+$/.test(x))||+d<1||+d>9999||w.length>6||n.length>6){o.textContent='= 请输入正整数（分母 1–9999）';p.textContent='';return}
+ const W=+w,N=+n,D=+d,{ip,nr,rp}=dig(W*D+N,D),fr=(W?W:'')+(N?F(N,D):''),pw=/^10*$/.test(d);
+ o.innerHTML='= '+sg+fr+' = '+sg+(rp?rr(ip,nr+rp,nr.length,nr.length+rp.length-1):ip+(nr?'.'+nr:''))+(rp?'（循环小数）':'（有限小数）');
+ p.innerHTML=pw?`分母是 1 后面 ${d.length-1} 个 0：小数点向左移 ${d.length-1} 位。`:`${W?'带分数先化成假分数 '+F(W*D+N,D)+'，再':'用'}分子 ÷ 分母（长除法）：${W*D+N} ÷ ${D} = ${ip}${nr||rp?'.'+nr+rp+(rp?rp+'…':''):''}`}
+function t2(){const p=parseDec($('i2').value),k=+$('k2').value,o=$('o2');if(!p||isNaN(k)){o.textContent='请输入数字';return}o.textContent=`${$('i2').value} × 10^${k} = `+(p.neg?'-':'')+T(p.N,p.e+k)}
+function t3(){const a=+$('a3').value,b=+$('b3').value,o=$('o3');if(!(b>0&&b<=9999&&a>=0&&a<1e6)||!Number.isInteger(a)||!Number.isInteger(b)){o.textContent='请输入整数（除数 1–9999）';return}const{ip,nr,rp}=dig(a,b);
+ o.innerHTML=rp?`${a}÷${b} = ${rr(ip,nr+rp,nr.length,nr.length+rp.length-1)}，循环节 ${rp}（${rp.length} 位）`:`${a}÷${b} = ${ip}${nr?'.'+nr:''}（有限小数）`}
+function t4(){const p=parseDec($('i4').value),n=+$('n4').value,md=$('m4').value,o=$('o4');if(!p||!p.N||isNaN(n)||n<0){o.textContent='请输入正数与位数';return}const m=String(p.N).length,u=md=='d'?-n:p.e+m-n;o.textContent=(p.neg?'-':'')+rd(p.N,p.e,u)}
+const SEC=[
+['5.1 小数的概念',`<h2>5.1 小数的概念</h2>
+<div class="box"><b>位名：</b>每向左移一位，值扩大 10 倍；每向右移一位，值缩小为原来的 1/10。个位右边依次是<b>十分位</b>(1/10)、<b>百分位</b>(1/100)、<b>千分位</b>(1/1000)。<br>例：5 在十分位 → 0.5（零点五）；5 在百分位 → 0.05；2、3 分别在十分位、百分位 → 0.23。</div>
+<div class="box">小数是分母为 10、100、1000…的分数的另一种写法，也有正负。<b>小数末尾添上或去掉任意个 0，值不变</b>（0.03=0.0300），但<b>位数</b>不同：0.03 是两位小数，0.0300 是四位小数。小数点左边是整数部分，右边是小数部分。</div>
+<div class="box"><b>比较大小：</b>小数在数线上对应一点，在右边的比在左边的大。例：-3.142 &lt; -1.58 &lt; 1.1 &lt; 2.13 &lt; 4.315。</div>
+<details><summary>📖 例题：小数 ↔ 分数</summary>0.08 = ${F(8,100)} = ${F(2,25)}；-0.12 = -${F(3,25)}；1.6 = 1${F(3,5)}；-4.55 = -4${F(11,20)}<br>${F(33,100)} = 0.33；${F(108,1000)} = 0.108；${F(27,10)} = 2.7；-${F(321,100)} = -3.21</details>
+<div class="tool"><b>🔧 小数 → 最简分数：</b><input id="i1" value="-4.55" oninput="t1()"> <span id="o1"></span></div>
+<div class="tool"><b>🔧 分数 → 小数（支持带分数）：</b><br>
+<select id="s6" onchange="t6()"><option value="">＋</option><option value="-">－</option></select>
+<input id="w6" class="wi" placeholder="整数" value="3" oninput="t6()"><span class="fr"><input id="n6" value="1" oninput="t6()"><u></u><input id="d6" value="6" oninput="t6()"></span>
+<span id="o6"></span><div id="p6" style="margin-top:.4rem"></div><small>整数部分留空就是真分数；例如 3又1/6，整数填 3、分子填 1、分母填 6。</small></div>`],
+['5.2 小数的四则运算',`<h2>5.2 小数的四则运算</h2>
+<div class="box"><b>加减法：</b>小数点对齐，位数不够的补 0，从低位算起；结果的小数点也要对齐。例：1.839 − 2.19 = −(2.19 − 1.839) = −0.351。</div>
+<div class="box"><b>乘以 10、100、1000…：</b>小数点向右移 1、2、3…位。例：0.47×10=4.7；−18.036×100=−1803.6；5.9×1000=5900。<br><b>除以 10、100、1000…：</b>小数点向左移，不够补 0。例：−9.05÷100=−0.0905。</div>
+<div class="box"><b>小数乘小数：</b>先当整数相乘，积的小数位数 = 两个乘数的小数位数之和（不够补 0）。例：0.19×0.22=0.0418（4 位小数）；−10.27×3.4=−34.918。</div>
+<div class="box"><b>小数除法：</b>小数除以整数，商的小数点与被除数对齐；除数是小数时，被除数与除数的小数点<b>同时右移相同位数</b>，商不变。例：2.38÷1.4=23.8÷14=1.7；−9÷0.045=−9000÷45=−200。</div>
+<div class="box"><b>混合运算：</b>法则与整数相同——先乘除，后加减，有括号先算括号。例：45.3 − 0.7×0.9 = 45.3 − 0.63 = 44.67。</div>
+<div class="tool"><b>🔧 小数点移位器：</b><input id="i2" value="0.47" oninput="t2()"> × 10<sup>k</sup>，k = <input id="k2" type="number" value="2" min="-6" max="6" style="width:4rem" oninput="t2()"> <span id="o2"></span></div>`],
+['5.3 循环小数',`<h2>5.3 循环小数</h2>
+<div class="box">两个整数相除，商可能是<b>有限小数</b>（如 17÷40=0.425，除到余数为 0），也可能是<b>无限小数</b>。小数部分从某一位起，由一个或几个数字依次重复出现的无限小数叫<b>循环小数</b>，重复的部分叫<b>循环节</b>。</div>
+<div class="box"><b>记法：</b>只写不循环部分和第一个循环节，并在循环节的第一个和最后一个数字上各加一点。<br>${F(1,9)} = 0.<span class="dt">1</span>　${F(13,6)} = 2.1<span class="dt">6</span>　${F(41,11)} = 3.<span class="dt">7</span><span class="dt">2</span>　${F(2,7)} = 0.<span class="dt">2</span>8571<span class="dt">4</span><br>⚠ 循环节不唯一：3.7272… 的循环节可以是 72，也可以是 27。</div>
+<div class="tool"><b>🔧 长除法：</b><input id="a3" value="41" style="width:5rem" oninput="t3()"> ÷ <input id="b3" value="11" style="width:5rem" oninput="t3()"> <span id="o3"></span></div>`],
+['5.4 近似值',`<h2>5.4 近似值、有效数字、科学记数法</h2>
+<div class="box"><b>四舍五入：</b>看指定位数的右一位——是 4 或小于 4 就舍去，是 5 或大于 5 就向指定位进 1，其右边的数全部舍去。例：0.3744≈0.4（一位小数）；2.4899≈2.490（三位小数）；599.46≈599；43.7849 公里≈40 公里（十公里）。</div>
+<div class="box"><b>有效数字：</b>从第一个非零数字起到指定位数的所有数字。<br>① 非零数字都是有效数字 ② 非零数字之间的 0 是有效数字 ③ 第一个非零数字前的 0 不是 ④ 小数部分非零数字后的 0 是有效数字 ⑤ 整数末尾的 0 不一定是。<br>例：109.72≈110（三个有效数字）；0.02547≈0.0255。</div>
+<div class="box"><b>科学记数法：</b>写成 a×10<sup>n</sup>（1≤a&lt;10，n 为整数）。例：3800000000=3.8×10<sup>9</sup>；0.000000174=1.74×10<sup>-7</sup>；100491370≈1.005×10<sup>8</sup>（四个有效数字）。</div>
+<div class="tool"><b>🔧 近似值计算器：</b><input id="i4" value="2.4899" oninput="t4()"> 准确至 <input id="n4" type="number" value="3" min="0" max="10" style="width:4rem" oninput="t4()"> <select id="m4" onchange="t4()"><option value="d">位小数</option><option value="s">个有效数字</option></select> → <b id="o4"></b></div>`],
+['5.5 应用问题',`<h2>5.5 小数的应用问题</h2>
+<div class="box"><b>解题步骤：</b>① 读题，圈出数量与单位 ② 列算式（先想每一步求什么）③ 按运算顺序计算 ④ 检查：单位、小数点位置、答案是否合理。</div>
+<details open><summary>📖 例：彩带</summary>红色一卷 1.55 米，蓝色一卷 0.85 米，3 卷红 + 2 卷蓝：1.55×3 + 0.85×2 = 4.65 + 1.7 = <b>6.35 米</b></details>
+<details><summary>📖 例：分段电费</summary>用电 955 度：首 200 度每度 RM0.44，其余每度 RM0.51。<br>0.44×200 = 88.00；0.51×755 = 385.05；合计 <b>RM473.05</b>（先分段，再相加）</details>
+<details><summary>📖 例：加收服务费</summary>总花费 RM59.50，加收 ${F(1,10)} 服务费：59.50 + 5.95 = RM65.45，RM100 还剩 <b>RM34.55</b></details>
+<div class="box">💡 常见陷阱：误看数字题（先求被除数/另一个乘数）；分段计费别把全部单位都乘同一个单价；平均数 = 总和 ÷ 个数，反求时用 平均数×个数 − 已知和。</div>`]];
+const nav=$('nav'),main=$('main');
+SEC.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s[0];b.title=s[0];b.dataset.i=i;nav.appendChild(b);
+ const e=document.createElement('section');e.id='s'+i;e.innerHTML=s[1]+`<div class="qz" id="q${i}"></div>`;main.appendChild(e);
+ Quiz($('q'+i),()=>mk(cyc(mp[i],5),mp[i],0,'s'+i),()=>mk(sh(fz[i]).slice(0,2),fz[i],1,'f'+i),3,`📝 ${s[0]} · 5 道选择题`)});
+{const b=document.createElement('button');b.textContent='🏁 总测试';b.dataset.i=SEC.length;nav.appendChild(b);
+ const e=document.createElement('section');e.id='s'+SEC.length;e.innerHTML='<h2>🏁 第5章 综合测试</h2><p>10 题选择题，覆盖 5.1–5.5，题目与选项每次随机，错误选项都是常见的算错结果。</p><div class="qz" id="qt"></div>';main.appendChild(e);
+ const all=mp.flat();Quiz($('qt'),()=>mk(sh(mp.flatMap(p=>sh(p).slice(0,2))),all,0,'test'),null,null,'章节综合测试 · 10 题')}
+function show(i){document.querySelectorAll('section').forEach((s,j)=>s.classList.toggle('on',j==i));[...nav.children].forEach((b,j)=>b.classList.toggle('on',j==i));scrollTo(0,0)}
+nav.onclick=e=>{if(e.target.dataset.i!=null)show(+e.target.dataset.i)};show(0);t1();t6();t2();t3();t4();
+const H=document.documentElement;let fs=16;
+const st=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},ld=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const setT=t=>{H.dataset.theme=t;$('th').textContent=t=='dark'?'☀️ 浅色':'🌙 深色';st('c5t',t)},setF=n=>{fs=Math.max(12,Math.min(26,n));H.style.fontSize=fs+'px';st('c5f',fs)};
+setT(ld('c5t')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));setF(+ld('c5f')||16);
+$('th').onclick=()=>setT(H.dataset.theme=='dark'?'light':'dark');$('fm').onclick=()=>setF(fs-2);$('fp').onclick=()=>setF(fs+2);
+console.log('第5章 小数 互动版 · 蔡逸众 / ecchua79 / Chinese High School');
+</script></body></html>
