@@ -38,10 +38,16 @@ details{margin:.5rem 0}summary{cursor:pointer;color:var(--ac);font-weight:500}
 button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .tool{border-top:1px dashed var(--ln);margin-top:.8rem;padding-top:.5rem}.tool h4{margin:.3rem 0}.tool label{display:flex;align-items:center;gap:.4rem}
 .st{margin:.4rem 0;padding:.4rem .8rem;border-left:4px solid var(--ac);background:var(--acs);border-radius:.3rem;font-size:1.1rem;line-height:2.4}
+.wm{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:4}
+.wm div{position:absolute;top:-50%;left:-50%;width:200%;height:200%;transform:rotate(-25deg);color:var(--ink);opacity:.07;font-size:1.1rem;line-height:5;white-space:pre;word-spacing:2rem;user-select:none}
+footer{max-width:60rem;margin:auto;padding:1rem;border-top:2px solid var(--ac);text-align:center;font-size:.85rem;color:var(--mut)}
+footer a{color:var(--ac)}
 </style></head><body>
 <header><div class="bar"><h1>第12章 分式 · 互动学习</h1><div class="ctl">
 <button class="sm" id="th"></button><button class="sm" id="fm" aria-label="缩小字体">A−</button><span id="fv"></span><button class="sm" id="fp" aria-label="放大字体">A+</button></div></div><nav id="nav"></nav></header>
 <main id="main"></main>
+<footer><p>© 2026 蔡逸众 (ecchua79) · 峇株吧辖华仁中学</p><p>《数学》初二下册 第12章 分式 · 互动学习</p></footer>
+<div class="wm" aria-hidden="true"><div id="wmt"></div></div>
 <script>
 const $=s=>document.querySelector(s),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -140,4 +146,5 @@ function ui(){root.style.fontSize=fs+'px';$('#fv').textContent=fs+'px';$('#th').
 $('#th').onclick=()=>{root.dataset.theme=dark()?'light':'dark';try{localStorage.setItem('th',root.dataset.theme)}catch(e){}ui()};
 const sz=d=>{fs=Math.min(28,Math.max(14,fs+d));try{localStorage.setItem('fs',fs)}catch(e){}ui()};$('#fm').onclick=()=>sz(-2);$('#fp').onclick=()=>sz(2);
 T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>show(i);$('#nav').appendChild(b)});ui();show(0);
+$('#wmt').textContent=Array(60).fill(Array(34).fill('华仁中学蔡逸众制作').join('   ')).join('\n');
 </script></body></html>
