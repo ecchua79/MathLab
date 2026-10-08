@@ -3,758 +3,1461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一元二次方程式探索</title>
+    <title>初一数学 第6章 度量衡 - 互动探索与动态测验课件</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- MathJax for rendering professional math formulas -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'sans-serif'],
+                    }
+                }
+            }
+        }
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #f8fafc;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-        .math-input {
-            width: 70px;
-            text-align: center;
-            border-bottom: 2px solid #3b82f6;
-            transition: all 0.2s ease;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        .math-input:focus {
-            outline: none;
-            border-bottom-color: #1d4ed8;
-            background-color: #eff6ff;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        .step-card {
-            border-left: 4px solid #3b82f6;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+        .math-font {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
         }
     </style>
 </head>
-<body class="min-h-screen text-slate-800 pb-12">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-8 px-4 shadow-lg mb-8">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="inline-block bg-white/20 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
-                <i class="fa-solid font-bold fa-calculator mr-1"></i> 交互式数学学习工具
-            </span>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2">一元二次方程式探索</h1>
-            <p class="text-blue-100 text-sm md:text-base max-w-2xl mx-auto">
-                深入理解一元二次方程 $a x^2 + b x + c = 0$ ($a \neq 0$) 的三种核心解法，查看一步步详细推导过程。
-            </p>
+    <!-- Navigation Bar -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 p-2 rounded-lg text-white font-bold text-xl flex items-center justify-center w-10 h-10">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">初一数学 · 第6章 度量衡</h1>
+                        <p class="text-xs text-indigo-200">独中统一课程 | 互动多媒体与智能刷题系统</p>
+                    </div>
+                </div>
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex space-x-1 text-sm font-medium">
+                    <button onclick="switchTab('overview')" id="tab-overview" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition">知识图谱</button>
+                    <button onclick="switchTab('length')" id="tab-length" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition">6.1 长度</button>
+                    <button onclick="switchTab('mass')" id="tab-mass" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition">6.2 质量</button>
+                    <button onclick="switchTab('capacity')" id="tab-capacity" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition">6.3 容量</button>
+                    <button onclick="switchTab('time')" id="tab-time" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition">6.4 时间与历法</button>
+                    <button onclick="switchTab('solver')" id="tab-solver" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition bg-indigo-800/60"><i class="fa-solid fa-calculator mr-1"></i>双单位计算器</button>
+                    <button onclick="switchTab('quiz')" id="tab-quiz" class="nav-btn px-3 py-2 rounded-md hover:bg-indigo-800 transition bg-emerald-600 text-white"><i class="fa-solid fa-pen-to-square mr-1"></i>智能刷题测验</button>
+                </nav>
+                <!-- Mobile menu button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md hover:bg-indigo-800">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-950 px-4 pt-2 pb-4 space-y-1 text-sm border-t border-indigo-800">
+            <button onclick="switchTab('overview')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800">知识图谱</button>
+            <button onclick="switchTab('length')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800">6.1 长度单位</button>
+            <button onclick="switchTab('mass')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800">6.2 质量单位</button>
+            <button onclick="switchTab('capacity')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800">6.3 容量单位</button>
+            <button onclick="switchTab('time')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800">6.4 时间单位</button>
+            <button onclick="switchTab('solver')" class="w-full text-left px-3 py-2 rounded-md hover:bg-indigo-800 font-semibold text-indigo-300">双单位进退位计算器</button>
+            <button onclick="switchTab('quiz')" class="w-full text-left px-3 py-2 rounded-md bg-emerald-600 text-white font-semibold">智能刷题测验系统</button>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 space-y-8">
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
 
-        <!-- Quick Presets Bar -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-3">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-lightbulb text-amber-500"></i> 快速载入经典例题：
-            </span>
-            <div class="flex flex-wrap gap-2 text-xs">
-                <button onclick="loadPreset(1, -4, -21)" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold px-3 py-1.5 rounded-lg border border-blue-200 transition">
-                    经典解法：$x^2 - 4x - 21 = 0$
-                </button>
-                <button onclick="loadPreset(1, 5, 6)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-                    正数根：$x^2 + 5x + 6 = 0$
-                </button>
-                <button onclick="loadPreset(1, -6, 9)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-                    相等实根：$x^2 - 6x + 9 = 0$
-                </button>
-                <button onclick="loadPreset(1, 2, 5)" class="bg-slate-100 hover:bg-rose-50 hover:text-rose-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-                    无实数解：$x^2 + 2x + 5 = 0$
-                </button>
-                <button onclick="loadPreset(2, 5, -3)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-                    二次项系数不为1：$2x^2 + 5x - 3 = 0$
-                </button>
-            </div>
-        </div>
-
-        <!-- Tab Navigation -->
-        <div class="flex border-b border-slate-200 bg-white rounded-t-xl overflow-x-auto shadow-sm">
-            <button id="tab-btn-factor" onclick="switchTab('factor')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-blue-600 border-b-2 border-blue-600 flex items-center justify-center gap-2 transition">
-                <i class="fa-solid fa-puzzle-piece"></i> 第一部分：因式分解法
-            </button>
-            <button id="tab-btn-square" onclick="switchTab('square')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition">
-                <i class="fa-solid fa-shapes"></i> 第二部分：配方法
-            </button>
-            <button id="tab-btn-formula" onclick="switchTab('formula')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition">
-                <i class="fa-solid fa-square-root-variable"></i> 第三部分：公式法
-            </button>
-        </div>
-
-        <!-- SECTION 1: 因式分解法 -->
-        <section id="section-factor" class="bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
-            <div class="border-b pb-4">
-                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-                    <span class="bg-blue-100 text-blue-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-puzzle-piece"></i></span>
-                    因式分解法 (Factorization Method)
-                </h2>
-                <p class="text-slate-500 text-sm mt-1">
-                    原理：找到满足乘积为 $ac$、和为 $b$ 的数字组合，将二次多项式转化为 $(p_1 x + q_1)(p_2 x + q_2) = 0$ 的乘积形式求解。
-                </p>
-            </div>
-
-            <!-- Calculator Form -->
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
-                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="factor-a" value="1" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="a">
-                    <span class="text-slate-400">)</span>
-                    <span>x²</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="factor-b" value="-4" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="b">
-                    <span class="text-slate-400">)</span>
-                    <span>x</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="factor-c" value="-21" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="c">
-                    <span class="text-slate-400">)</span>
-                    <span>= 0</span>
+        <!-- TAB 1: OVERVIEW -->
+        <section id="content-overview" class="tab-content space-y-6">
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-6 text-white shadow-xl flex flex-col md:flex-row items-center justify-between">
+                <div class="space-y-3 max-w-2xl">
+                    <span class="bg-indigo-800/80 text-indigo-200 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">学习目标 Overview</span>
+                    <h2 class="text-3xl font-extrabold">第6章 度量衡 (Metrics & Units)</h2>
+                    <p class="text-indigo-100 text-sm leading-relaxed">
+                        度量衡是指日常生活中用于计量物体长短（长度）、容积（容量）、轻重（质量）及时间单位的统演。我国自1982年起全面采用**公制（Metric System）**，以十进法为基础，计算极为便捷。
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="bg-white/20 text-xs px-3 py-1 rounded-md">✓ 长度 (km, m, cm, mm)</span>
+                        <span class="bg-white/20 text-xs px-3 py-1 rounded-md">✓ 质量 (t, kg, g, mg)</span>
+                        <span class="bg-white/20 text-xs px-3 py-1 rounded-md">✓ 容量 (m³, L, mL)</span>
+                        <span class="bg-white/20 text-xs px-3 py-1 rounded-md">✓ 时间与历法 (h, min, s, 24小时制)</span>
+                    </div>
                 </div>
-
-                <div class="mt-6 flex justify-center gap-3">
-                    <button onclick="calculateFactor()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
-                    </button>
-                    <button onclick="resetInputs('factor')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
-                        重置
-                    </button>
+                <div class="mt-6 md:mt-0 bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur-sm text-center min-w-[220px]">
+                    <div class="text-4xl font-black text-amber-300">1982年</div>
+                    <div class="text-xs text-indigo-100 mt-1">马来西亚全面推行公制</div>
+                    <div class="mt-3 text-xs bg-amber-400 text-indigo-950 font-bold py-1 px-2 rounded">创于 1795年 法国</div>
                 </div>
             </div>
 
-            <!-- Output Steps -->
-            <div id="factor-output" class="hidden space-y-4"></div>
+            <!-- Unit Conversion Knowledge Map Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Length Card -->
+                <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-lg transition">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-ruler"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800">6.1 长度单位</h3>
+                            <p class="text-xs text-slate-500">基本单位：公尺 (m)</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        <div class="flex justify-between items-center bg-blue-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公里 (km)</span>
+                            <span class="text-blue-600 font-mono font-bold">= 1000 m</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-blue-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公尺 (m)</span>
+                            <span class="text-blue-600 font-mono font-bold">= 100 cm</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-blue-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公分 (cm)</span>
+                            <span class="text-blue-600 font-mono font-bold">= 10 mm</span>
+                        </div>
+                    </div>
+                    <button onclick="switchTab('length')" class="mt-4 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 py-1.5 border border-blue-200 rounded-lg hover:bg-blue-50 transition">进入长度模块 →</button>
+                </div>
+
+                <!-- Mass Card -->
+                <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-lg transition">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-weight-hanging"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800">6.2 质量单位</h3>
+                            <p class="text-xs text-slate-500">基本单位：克 (g)</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        <div class="flex justify-between items-center bg-emerald-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公吨 (t)</span>
+                            <span class="text-emerald-600 font-mono font-bold">= 1000 kg</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-emerald-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公斤 (kg)</span>
+                            <span class="text-emerald-600 font-mono font-bold">= 1000 g</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-emerald-50/50 p-2 rounded">
+                            <span class="font-semibold">1 克 (g)</span>
+                            <span class="text-emerald-600 font-mono font-bold">= 1000 mg</span>
+                        </div>
+                    </div>
+                    <button onclick="switchTab('mass')" class="mt-4 w-full text-center text-xs font-semibold text-emerald-600 hover:text-emerald-800 py-1.5 border border-emerald-200 rounded-lg hover:bg-emerald-50 transition">进入质量模块 →</button>
+                </div>
+
+                <!-- Capacity Card -->
+                <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-lg transition">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800">6.3 容量单位</h3>
+                            <p class="text-xs text-slate-500">常用单位：公升 (L)</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        <div class="flex justify-between items-center bg-cyan-50/50 p-2 rounded">
+                            <span class="font-semibold">1 立方米 (m³)</span>
+                            <span class="text-cyan-600 font-mono font-bold">= 1000 L</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-cyan-50/50 p-2 rounded">
+                            <span class="font-semibold">1 公升 (L)</span>
+                            <span class="text-cyan-600 font-mono font-bold">= 1000 mL</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-cyan-50/50 p-2 rounded">
+                            <span class="font-semibold">1 mL</span>
+                            <span class="text-cyan-600 font-mono font-bold">= 1 cc = 1 cm³</span>
+                        </div>
+                    </div>
+                    <button onclick="switchTab('capacity')" class="mt-4 w-full text-center text-xs font-semibold text-cyan-600 hover:text-cyan-800 py-1.5 border border-cyan-200 rounded-lg hover:bg-cyan-50 transition">进入容量模块 →</button>
+                </div>
+
+                <!-- Time Card -->
+                <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 hover:shadow-lg transition">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800">6.4 时间与历法</h3>
+                            <p class="text-xs text-slate-500">非十进制单位</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        <div class="flex justify-between items-center bg-amber-50/50 p-2 rounded">
+                            <span class="font-semibold">1 小时 / 1 分钟</span>
+                            <span class="text-amber-600 font-mono font-bold">= 60分 / 60秒</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-amber-50/50 p-2 rounded">
+                            <span class="font-semibold">1 天 / 1 年</span>
+                            <span class="text-amber-600 font-mono font-bold">= 24小时 / 12月</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-amber-50/50 p-2 rounded">
+                            <span class="font-semibold">1 世纪 / 1 刻</span>
+                            <span class="text-amber-600 font-mono font-bold">= 100年 / 15分钟</span>
+                        </div>
+                    </div>
+                    <button onclick="switchTab('time')" class="mt-4 w-full text-center text-xs font-semibold text-amber-600 hover:text-amber-800 py-1.5 border border-amber-200 rounded-lg hover:bg-amber-50 transition">进入时间模块 →</button>
+                </div>
+            </div>
+
+            <!-- Interactive Conversion Tool Card -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+                        <i class="fa-solid fa-arrows-rotate text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800">全能度量衡单位即时换算器 (Universal Converter)</h3>
+                        <p class="text-xs text-slate-500">输入数值与单位，即时显示换算结果与换算推导公式</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">测量类型 Category</label>
+                        <select id="conv-type" onchange="updateConvUnits()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <option value="length">长度 Length</option>
+                            <option value="mass">质量 Mass</option>
+                            <option value="capacity">容量 Capacity</option>
+                            <option value="time">时间 Time</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">数值 Input Value</label>
+                        <input type="number" id="conv-input" value="2.5" step="any" oninput="doConversion()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">原单位 From Unit</label>
+                        <select id="conv-from" onchange="doConversion()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">目标单位 To Unit</label>
+                        <select id="conv-to" onchange="doConversion()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"></select>
+                    </div>
+                </div>
+
+                <!-- Result & Step Breakdown -->
+                <div class="mt-4 p-4 rounded-xl bg-indigo-50 border border-indigo-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs text-indigo-600 font-semibold uppercase tracking-wider">换算结果 Result</span>
+                        <div class="text-2xl font-black text-indigo-900 font-mono mt-0.5" id="conv-result">2500 m</div>
+                    </div>
+                    <div class="bg-white px-4 py-2 rounded-lg border border-indigo-200 text-xs text-slate-600 max-w-md w-full">
+                        <span class="font-bold text-indigo-700">计算推导过程 Step:</span>
+                        <p id="conv-steps" class="font-mono mt-1 text-slate-700">2.5 km × 1000 = 2500 m</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- SECTION 2: 配方法 -->
-        <section id="section-square" class="hidden bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
-            <div class="border-b pb-4">
-                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-                    <span class="bg-indigo-100 text-indigo-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-shapes"></i></span>
-                    配方法 (Completing the Square)
-                </h2>
-                <p class="text-slate-500 text-sm mt-1">
-                    原理：通过两边同时加上一次项系数一半的平方，将二次式转化为完全平方式 $(x + m)^2 = n$ 后开平方求解。
-                </p>
-            </div>
-
-            <!-- Calculator Form -->
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
-                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="square-a" value="1" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="a">
-                    <span class="text-slate-400">)</span>
-                    <span>x²</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="square-b" value="-4" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="b">
-                    <span class="text-slate-400">)</span>
-                    <span>x</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="square-c" value="-21" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="c">
-                    <span class="text-slate-400">)</span>
-                    <span>= 0</span>
+        <!-- TAB 2: LENGTH (6.1) -->
+        <section id="content-length" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-800">6.1 长度单位 (Length Units)</h2>
+                        <p class="text-xs text-slate-500">公制长度单位基本单位为公尺 (metre, m)</p>
+                    </div>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">课本 P.204-210</span>
                 </div>
 
-                <div class="mt-6 flex justify-center gap-3">
-                    <button onclick="calculateSquare()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
-                    </button>
-                    <button onclick="resetInputs('square')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
-                        重置
-                    </button>
+                <!-- Length Unit Chart Visualizer -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-blue-700 mb-4 text-center">长度单位关系与换算乘除图解</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-center">
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm w-28">
+                            <div class="text-lg font-black text-blue-700">km</div>
+                            <div class="text-xs text-slate-600">公里 / 仟米</div>
+                        </div>
+                        <div class="flex flex-col items-center text-xs text-blue-600 font-mono">
+                            <span>× 1000 →</span>
+                            <span class="text-slate-400">← ÷ 1000</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm w-28">
+                            <div class="text-lg font-black text-blue-700">m</div>
+                            <div class="text-xs text-slate-600">公尺 / 米</div>
+                        </div>
+                        <div class="flex flex-col items-center text-xs text-blue-600 font-mono">
+                            <span>× 100 →</span>
+                            <span class="text-slate-400">← ÷ 100</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm w-28">
+                            <div class="text-lg font-black text-blue-700">cm</div>
+                            <div class="text-xs text-slate-600">公分 / 厘米</div>
+                        </div>
+                        <div class="flex flex-col items-center text-xs text-blue-600 font-mono">
+                            <span>× 10 →</span>
+                            <span class="text-slate-400">← ÷ 10</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm w-28">
+                            <div class="text-lg font-black text-blue-700">mm</div>
+                            <div class="text-xs text-slate-600">公厘 / 毫米</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Ruler Sandbox -->
+                <div class="bg-slate-900 text-white p-6 rounded-xl shadow-inner mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-bold text-blue-400"><i class="fa-solid fa-sliders mr-2"></i>互动刻度尺模拟器 (Dynamic Ruler)</h3>
+                        <span class="text-xs text-slate-400">拖动滑块查看各单位变化</span>
+                    </div>
+                    <input type="range" id="ruler-slider" min="1" max="1000" value="350" oninput="updateRulerVisual()" class="w-full accent-blue-500 cursor-pointer mb-4">
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-4">
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-xs text-slate-400">毫米 (mm)</div>
+                            <div class="text-lg font-mono text-blue-300 font-bold" id="ruler-mm">350 mm</div>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-xs text-slate-400">厘米 (cm)</div>
+                            <div class="text-lg font-mono text-blue-300 font-bold" id="ruler-cm">35 cm</div>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-xs text-slate-400">米 (m)</div>
+                            <div class="text-lg font-mono text-blue-300 font-bold" id="ruler-m">0.35 m</div>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                            <div class="text-xs text-slate-400">公里 (km)</div>
+                            <div class="text-lg font-mono text-blue-300 font-bold" id="ruler-km">0.00035 km</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Output Steps -->
-            <div id="square-output" class="hidden space-y-4"></div>
         </section>
 
-        <!-- SECTION 3: 公式法 -->
-        <section id="section-formula" class="hidden bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
-            <div class="border-b pb-4">
-                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-                    <span class="bg-purple-100 text-purple-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-square-root-variable"></i></span>
-                    公式法 (Quadratic Formula)
-                </h2>
-                <p class="text-slate-500 text-sm mt-1">
-                    原理：直接代入求根公式 $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$，通用性最强，适用于所有一元二次方程。
-                </p>
-            </div>
-
-            <!-- Calculator Form -->
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
-                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="formula-a" value="1" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="a">
-                    <span class="text-slate-400">)</span>
-                    <span>x²</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="formula-b" value="-4" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="b">
-                    <span class="text-slate-400">)</span>
-                    <span>x</span>
-                    <span>+</span>
-                    <span class="text-slate-400">(</span>
-                    <input type="number" id="formula-c" value="-21" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="c">
-                    <span class="text-slate-400">)</span>
-                    <span>= 0</span>
+        <!-- TAB 3: MASS (6.2) -->
+        <section id="content-mass" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-800">6.2 质量单位 (Mass Units)</h2>
+                        <p class="text-xs text-slate-500">质量是物体所含物质的量，公制基本单位为克 (gram, g)</p>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full">课本 P.211-217</span>
                 </div>
 
-                <div class="mt-6 flex justify-center gap-3">
-                    <button onclick="calculateFormula()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
-                    </button>
-                    <button onclick="resetInputs('formula')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
-                        重置
-                    </button>
+                <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100 mb-6 text-center">
+                    <p class="text-xs font-bold text-emerald-800 mb-2">质量单位千进制换算关系（×1000 与 ÷1000）</p>
+                    <div class="flex flex-wrap justify-center items-center gap-3 font-mono text-sm">
+                        <span class="bg-white px-3 py-1.5 rounded-lg border border-emerald-200 font-bold text-emerald-700">1 公吨 (t)</span>
+                        <span class="text-slate-400">= 1000 =</span>
+                        <span class="bg-white px-3 py-1.5 rounded-lg border border-emerald-200 font-bold text-emerald-700">1000 公斤 (kg)</span>
+                        <span class="text-slate-400">= 1000 =</span>
+                        <span class="bg-white px-3 py-1.5 rounded-lg border border-emerald-200 font-bold text-emerald-700">1,000,000 克 (g)</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Practical Lab: Truck Bridge Weight Limit -->
+                <div class="bg-slate-900 text-white rounded-xl p-6 shadow-inner">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-truck-front text-amber-400 text-xl"></i>
+                            <h3 class="font-bold text-sm text-slate-200">互动实验：货车过桥限重检测器 (Bridge Limit Challenge)</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="space-y-3 bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <div>
+                                <label class="text-xs text-slate-400">货车空重 (公吨 t)</label>
+                                <input type="number" id="truck-base" value="2.5" step="0.1" oninput="calculateTruckBridge()" class="w-full bg-slate-900 border border-slate-600 rounded p-1.5 text-sm text-emerald-400 font-mono mt-1">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400">机器台数 (台)</label>
+                                <input type="number" id="truck-count" value="4" min="0" oninput="calculateTruckBridge()" class="w-full bg-slate-900 border border-slate-600 rounded p-1.5 text-sm text-emerald-400 font-mono mt-1">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400">每台机器质量 (公斤 kg)</label>
+                                <input type="number" id="truck-machine" value="1750" step="50" oninput="calculateTruckBridge()" class="w-full bg-slate-900 border border-slate-600 rounded p-1.5 text-sm text-emerald-400 font-mono mt-1">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400">大桥限制总重 (公吨 t)</label>
+                                <input type="number" id="truck-limit" value="10" step="0.5" oninput="calculateTruckBridge()" class="w-full bg-slate-900 border border-slate-600 rounded p-1.5 text-sm text-amber-400 font-mono mt-1">
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 space-y-4">
+                            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 text-center relative overflow-hidden">
+                                <div class="text-xs text-slate-400 mb-1">车辆总重量计算解析：</div>
+                                <div id="truck-calc-text" class="font-mono text-sm text-slate-200">
+                                    2.5t + (4 × 1750kg) = 2.5t + 7.0t = <span class="text-emerald-400 font-bold">9.5 公吨</span>
+                                </div>
+                                <div id="truck-status-badge" class="mt-3 inline-block px-4 py-2 rounded-lg font-bold text-base shadow">
+                                    ALLOW: 可以安全通过大桥 (9.5t ≤ 10t)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Output Steps -->
-            <div id="formula-output" class="hidden space-y-4"></div>
+        <!-- TAB 4: CAPACITY (6.3) -->
+        <section id="content-capacity" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-800">6.3 容量与体积单位 (Capacity Units)</h2>
+                        <p class="text-xs text-slate-500">常用单位为公升 (L) 与 毫升 (mL)</p>
+                    </div>
+                    <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">课本 P.218-223</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
+                        <div class="font-bold text-cyan-900 text-sm mb-1">1 立方米 (m³)</div>
+                        <div class="text-2xl font-black font-mono text-cyan-600 mb-1">= 1000 L</div>
+                    </div>
+                    <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
+                        <div class="font-bold text-cyan-900 text-sm mb-1">1 公升 (L)</div>
+                        <div class="text-2xl font-black font-mono text-cyan-600 mb-1">= 1000 mL</div>
+                    </div>
+                    <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
+                        <div class="font-bold text-cyan-900 text-sm mb-1">1 毫升 (mL) 等价关系</div>
+                        <div class="text-2xl font-black font-mono text-cyan-600 mb-1">= 1 cc = 1 cm³</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Beaker Liquid Simulator -->
+                <div class="bg-slate-900 text-white rounded-xl p-6 shadow-inner">
+                    <h3 class="font-bold text-sm text-cyan-300 mb-4"><i class="fa-solid fa-glass-water mr-2"></i>液体倒水与容量叠加模拟 (Beaker Simulator)</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs text-slate-300">锅中原本水量 (L):</label>
+                                <input type="number" id="pot-initial" value="2.05" step="0.05" oninput="updateBeakerLiquid()" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-sm text-cyan-400 font-mono mt-1">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300">倒入水杯数量与单杯容量 (mL):</label>
+                                <div class="flex space-x-2 mt-1">
+                                    <input type="number" id="cup-count" value="2" min="0" oninput="updateBeakerLiquid()" class="w-1/3 bg-slate-800 border border-slate-700 rounded p-2 text-sm text-cyan-400 font-mono" placeholder="杯数">
+                                    <input type="number" id="cup-size" value="450" step="50" oninput="updateBeakerLiquid()" class="w-2/3 bg-slate-800 border border-slate-700 rounded p-2 text-sm text-cyan-400 font-mono" placeholder="单杯mL">
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 font-mono text-xs">
+                                <div class="text-slate-400">总容量推算公式：</div>
+                                <div class="text-cyan-300 font-bold mt-1" id="beaker-formula-text">2050 mL + (2 × 450 mL) = 2950 mL</div>
+                                <div class="text-amber-400 font-bold mt-1" id="beaker-result-text">最终容量 = 2.95 L</div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <div class="relative w-40 h-64 border-4 border-t-0 border-slate-400 rounded-b-2xl bg-slate-800/80 overflow-hidden flex flex-col justify-end">
+                                <div id="beaker-water" class="bg-gradient-to-t from-cyan-600 to-blue-400 w-full transition-all duration-500 relative flex items-center justify-center text-white font-mono text-xs font-bold" style="height: 73.75%;">
+                                    <span id="beaker-water-label" class="bg-slate-900/60 px-2 py-0.5 rounded">2.95 L</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: TIME (6.4) -->
+        <section id="content-time" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-800">6.4 时间单位与历法 (Time & Calendar)</h2>
+                        <p class="text-xs text-slate-500">非十进制单位换算与闰年判断</p>
+                    </div>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">课本 P.223-234</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 shadow-md">
+                        <h3 class="text-sm font-bold text-amber-400 mb-3"><i class="fa-solid fa-clock-rotate-left mr-2"></i>时间相隔计算器 (Elapsed Time)</h3>
+                        <div class="space-y-3">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="text-[11px] text-slate-400">出发/开始时刻 Start Time</label>
+                                    <input type="time" id="time-start" value="08:20" onchange="calculateElapsed()" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-sm text-amber-300 font-mono">
+                                </div>
+                                <div>
+                                    <label class="text-[11px] text-slate-400">到达/结束时刻 End Time</label>
+                                    <input type="time" id="time-end" value="16:35" onchange="calculateElapsed()" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-sm text-amber-300 font-mono">
+                                </div>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700 text-xs">
+                                <div id="time-elapsed-result" class="text-emerald-400 font-bold text-sm">相隔时间：8 小时 15 分钟</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 shadow-md">
+                        <h3 class="text-sm font-bold text-amber-400 mb-3"><i class="fa-solid fa-calendar-check mr-2"></i>平年与闰年判断器 (Leap Year)</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <input type="number" id="year-input" value="2020" oninput="checkLeapYear()" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-sm text-amber-300 font-mono">
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded border border-slate-700 text-xs">
+                                <div id="leap-result-title" class="font-bold text-sm text-emerald-400">公元 2020 年是：闰年</div>
+                                <div id="leap-result-reason" class="text-slate-300 mt-1">原因：能被 4 整除。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: DUAL-UNIT SOLVER -->
+        <section id="content-solver" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-800"><i class="fa-solid fa-calculator text-indigo-600 mr-2"></i>双单位进退位列式演算器</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <div>
+                            <label class="text-xs font-bold text-slate-700">度量类型</label>
+                            <select id="calc-cat" class="w-full bg-white border border-slate-300 rounded p-2 text-xs">
+                                <option value="length_m_cm">长度 (m - cm)</option>
+                                <option value="length_cm_mm">长度 (cm - mm)</option>
+                                <option value="mass_kg_g">质量 (kg - g)</option>
+                                <option value="capacity_l_ml">容量 (L - mL)</option>
+                                <option value="time_h_m">时间 (小时 - 分钟)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700">运算符号</label>
+                            <select id="calc-op" class="w-full bg-white border border-slate-300 rounded p-2 text-xs">
+                                <option value="+">加法 (+)</option>
+                                <option value="-">减法 (-)</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="number" id="v1-u1" value="8" class="w-1/2 border p-1 text-xs">
+                            <input type="number" id="v1-u2" value="36" class="w-1/2 border p-1 text-xs">
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="number" id="v2-u1" value="3" class="w-1/2 border p-1 text-xs">
+                            <input type="number" id="v2-u2" value="70" class="w-1/2 border p-1 text-xs">
+                        </div>
+                        <button onclick="runDualCalc()" class="w-full bg-indigo-600 text-white font-bold py-2 rounded text-xs">演算推导</button>
+                    </div>
+
+                    <div class="md:col-span-2 bg-slate-900 text-white p-5 rounded-xl font-mono text-sm">
+                        <div id="dual-calc-board" class="space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: SMART DYNAMIC QUIZ SYSTEM (智能刷题测验系统) -->
+        <section id="content-quiz" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+                
+                <!-- Sub Navigation Bar for Quiz Selection -->
+                <div class="flex flex-wrap items-center justify-between border-b border-slate-200 pb-4 mb-6 gap-3">
+                    <div class="flex flex-wrap gap-2" id="quiz-subnav">
+                        <button onclick="loadChapterQuiz('ch1')" id="quiz-nav-ch1" class="quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white">6.1 长度测验 (5题)</button>
+                        <button onclick="loadChapterQuiz('ch2')" id="quiz-nav-ch2" class="quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">6.2 质量测验 (5题)</button>
+                        <button onclick="loadChapterQuiz('ch3')" id="quiz-nav-ch3" class="quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">6.3 容量测验 (5题)</button>
+                        <button onclick="loadChapterQuiz('ch4')" id="quiz-nav-ch4" class="quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">6.4 时间测验 (5题)</button>
+                        <button onclick="loadFinalExam()" id="quiz-nav-final" class="quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600"><i class="fa-solid fa-trophy mr-1"></i>全章综合终极测验 (10题)</button>
+                    </div>
+                    <button onclick="refreshCurrentQuiz()" class="text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-100 px-3 py-1.5 rounded-lg font-bold border border-indigo-200 transition flex items-center">
+                        <i class="fa-solid fa-rotate mr-1"></i> 重新刷新题目 (数字随机)
+                    </button>
+                </div>
+
+                <!-- Quiz Header Info -->
+                <div class="flex items-center justify-between mb-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <div>
+                        <h2 class="text-lg font-extrabold text-slate-800" id="quiz-mode-title">6.1 长度单位 随堂测评</h2>
+                        <p class="text-xs text-slate-500" id="quiz-mode-desc">题目数字随机生成（不含无限循环小数，最多2位小数）。答对 3 题以上可解锁进阶手写填空挑战！</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400">答对得分 Score:</span>
+                        <div id="quiz-score-display" class="text-2xl font-black text-indigo-600 font-mono">0 / 5</div>
+                    </div>
+                </div>
+
+                <!-- Multiple Choice Questions Container (选择题) -->
+                <div id="mcq-questions-container" class="space-y-6"></div>
+
+                <!-- MCQ Submit & Reset Controls -->
+                <div class="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center">
+                    <button onclick="refreshCurrentQuiz()" class="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-300 rounded-lg">重置 / 换一批新题</button>
+                    <button onclick="submitMCQQuiz()" id="btn-submit-mcq" class="px-6 py-2.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow transition">提交选择题答案</button>
+                </div>
+
+                <!-- UNLOCKED CHALLENGE SECTION (挑战题：答对3题及以上解锁) -->
+                <div id="challenge-section" class="hidden mt-10 pt-8 border-t-2 border-dashed border-indigo-200">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-5 rounded-2xl border border-amber-200 mb-6 flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-amber-500 text-white rounded-xl flex items-center justify-center text-2xl shadow">
+                            <i class="fa-solid fa-unlock"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-extrabold text-amber-900">🎉 恭喜！您已在选择题中取得优异成绩，成功解锁“进阶计算填空挑战”！</h3>
+                            <p class="text-xs text-amber-700 mt-0.5">请在方框中直接填写您的最终计算数值（无需输入单位，保留最多2位小数），考验你的真实动手能力！</p>
+                        </div>
+                    </div>
+
+                    <!-- Fill in Questions Container -->
+                    <div id="challenge-questions-container" class="space-y-6"></div>
+
+                    <div class="mt-6 flex justify-end">
+                        <button onclick="submitChallengeQuiz()" id="btn-submit-challenge" class="px-6 py-2.5 text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white rounded-lg shadow transition">提交填空挑战答案</button>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
     </main>
 
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p>《初中数学》第一册 第6章 度量衡 教学辅助交互与智能测评课件</p>
+            <p class="text-slate-600">董教总华文独中工委会统一课程委员会 编审内容参考</p>
+        </div>
+    </footer>
+
     <script>
-        // Global Tab Switching Logic
-        function switchTab(tabName) {
-            const tabs = ['factor', 'square', 'formula'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tab-btn-${t}`);
-                const sec = document.getElementById(`section-${t}`);
-                if (t === tabName) {
-                    sec.classList.remove('hidden');
-                    btn.className = "flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-blue-600 border-b-2 border-blue-600 flex items-center justify-center gap-2 transition";
-                } else {
-                    sec.classList.add('hidden');
-                    btn.className = "flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition";
-                }
-            });
-        }
-
-        // Preset Loader
-        function loadPreset(a, b, c) {
-            const prefixes = ['factor', 'square', 'formula'];
-            prefixes.forEach(p => {
-                document.getElementById(`${p}-a`).value = a;
-                document.getElementById(`${p}-b`).value = b;
-                document.getElementById(`${p}-c`).value = c;
+        // --- 1. TAB NAVIGATION ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-800', 'text-white', 'font-bold');
             });
 
-            // Automatically trigger calculate for active tab
-            calculateFactor();
-            calculateSquare();
-            calculateFormula();
+            const targetContent = document.getElementById(`content-${tabId}`);
+            if (targetContent) targetContent.classList.remove('hidden');
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) activeBtn.classList.add('bg-indigo-800', 'text-white', 'font-bold');
+
+            document.getElementById('mobile-menu').classList.add('hidden');
         }
 
-        function resetInputs(prefix) {
-            document.getElementById(`${prefix}-a`).value = 1;
-            document.getElementById(`${prefix}-b`).value = 0;
-            document.getElementById(`${prefix}-c`).value = 0;
-            const output = document.getElementById(`${prefix}-output`);
-            output.classList.add('hidden');
-            output.innerHTML = '';
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        function formatNumber(num) {
-            if (Number.isInteger(num)) return num.toString();
-            return parseFloat(num.toFixed(4)).toString();
+        // --- 2. RANDOM NUMBER HELPERS (Clean decimals, no repeating decimals) ---
+        function randInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function formatCoeff(val, varStr = '', isFirst = false) {
-            if (val === 0) return '';
-            let sign = val > 0 ? (isFirst ? '' : ' + ') : (isFirst ? '-' : ' - ');
-            let absVal = Math.abs(val);
-            let numStr = absVal === 1 && varStr !== '' ? '' : formatNumber(absVal);
-            return `${sign}${numStr}${varStr}`;
+        function randFloat1(min, max) {
+            return parseFloat((Math.random() * (max - min) + min).toFixed(1));
         }
 
-        function formatEq(a, b, c) {
-            let str = formatCoeff(a, 'x^2', true);
-            str += formatCoeff(b, 'x', false);
-            str += formatCoeff(c, '', false);
-            if (str === '' || str.startsWith(' + ')) str = str.replace(' + ', '');
-            return str + ' = 0';
+        function randFloat2(min, max) {
+            return parseFloat((Math.random() * (max - min) + min).toFixed(2));
         }
 
-        // Helper to format linear factor (px + q) without bad signs like (x - -3)
-        function formatLinearFactor(p, q) {
-            let pStr = '';
-            if (p === 1) pStr = 'x';
-            else if (p === -1) pStr = '-x';
-            else pStr = `${formatNumber(p)}x`;
-
-            if (q === 0) return pStr;
-            if (q > 0) return `${pStr} + ${formatNumber(q)}`;
-            return `${pStr} - ${formatNumber(Math.abs(q))}`;
-        }
-
-        function triggerMathJax() {
-            if (window.MathJax && window.MathJax.typesetPromise) {
-                window.MathJax.typesetPromise();
+        function shuffle(array) {
+            let cur = array.length, idx;
+            while (cur != 0) {
+                idx = Math.floor(Math.random() * cur);
+                cur--;
+                [array[cur], array[idx]] = [array[idx], array[cur]];
             }
+            return array;
         }
 
-        function getFactorPairs(ac) {
-            let pairs = [];
-            let absAC = Math.abs(ac);
-            for (let i = 1; i <= Math.sqrt(absAC); i++) {
-                if (absAC % i === 0) {
-                    let j = absAC / i;
-                    if (ac > 0) {
-                        pairs.push([i, j]);
-                        pairs.push([-i, -j]);
-                    } else {
-                        pairs.push([i, -j]);
-                        pairs.push([-i, j]);
-                    }
-                }
-            }
-            // Sort and remove duplicates
-            let unique = [];
-            let seen = new Set();
-            for (let p of pairs) {
-                let sorted = p[0] <= p[1] ? [p[0], p[1]] : [p[1], p[0]];
-                let key = `${sorted[0]},${sorted[1]}`;
-                if (!seen.has(key)) {
-                    seen.add(key);
-                    unique.push(sorted);
-                }
-            }
-            return unique;
+        // --- 3. DYNAMIC QUESTION GENERATORS (Per Chapter & Final) ---
+        
+        // --- Chapter 6.1: Length Generators ---
+        function genCh1Questions() {
+            const mcqs = [
+                // Q1: km to m
+                (() => {
+                    const km = randFloat2(0.15, 8.5);
+                    const ans = parseFloat((km * 1000).toFixed(2));
+                    const options = [
+                        `${ans} m`,
+                        `${(ans / 10).toFixed(2)} m`,
+                        `${(ans * 10).toFixed(2)} m`,
+                        `${(ans / 100).toFixed(2)} m`
+                    ];
+                    return {
+                        q: `请将 ${km} km 换算为 m（米）：`,
+                        options: shuffle([...new Set(options)]),
+                        correctIndex: -1, ansStr: `${ans} m`,
+                        explanation: `因为 1 km = 1000 m，所以 ${km} km = ${km} × 1000 = ${ans} m。`
+                    };
+                })(),
+                // Q2: m cm subtraction
+                (() => {
+                    const m1 = randInt(5, 15);
+                    const cm1 = randInt(10, 40);
+                    const m2 = randInt(1, 4);
+                    const cm2 = randInt(50, 90); // requires borrowing
+                    const totalCm1 = m1 * 100 + cm1;
+                    const totalCm2 = m2 * 100 + cm2;
+                    const diff = totalCm1 - totalCm2;
+                    const ansM = Math.floor(diff / 100);
+                    const ansCm = diff % 100;
+                    const ansStr = `${ansM}m ${ansCm}cm`;
+                    const options = [
+                        ansStr,
+                        `${ansM + 1}m ${ansCm}cm`,
+                        `${ansM}m ${ansCm + 10}cm`,
+                        `${ansM - 1}m ${ansCm}cm`
+                    ];
+                    return {
+                        q: `计算：${m1}m ${cm1}cm - ${m2}m ${cm2}cm`,
+                        options: shuffle([...new Set(options)]),
+                        correctIndex: -1, ansStr,
+                        explanation: `厘米部分 ${cm1}cm 不足减 ${cm2}cm，向米借 1m (100cm)，调整为 ${m1-1}m ${cm1+100}cm。计算得 ${ansM}m ${ansCm}cm。`
+                    };
+                })(),
+                // Q3: Wire remaining problem
+                (() => {
+                    const totalM = randInt(50, 100);
+                    const usedM = randInt(10, 30);
+                    const usedCm = randInt(20, 80);
+                    const remCm = (totalM * 100) - (usedM * 100 + usedCm);
+                    const ansM = Math.floor(remCm / 100);
+                    const ansCm = remCm % 100;
+                    const ansStr = `${ansM}m ${ansCm}cm`;
+                    const options = [
+                        ansStr,
+                        `${ansM + 1}m ${ansCm}cm`,
+                        `${ansM}m ${usedCm}cm`,
+                        `${ansM - 1}m ${ansCm + 10}cm`
+                    ];
+                    return {
+                        q: `一卷铁丝长 ${totalM}m，围篱笆用去了 ${usedM}m ${usedCm}cm，还剩下多少？`,
+                        options: shuffle([...new Set(options)]),
+                        correctIndex: -1, ansStr,
+                        explanation: `剩下的长度 = ${totalM}m - ${usedM}m ${usedCm}cm。将 ${totalM}m 借 1m 变为 ${totalM-1}m 100cm。相减后为 ${ansM}m ${ansCm}cm。`
+                    };
+                })(),
+                // Q4: cm to mm
+                (() => {
+                    const cm = randFloat1(3.5, 25.8);
+                    const ans = parseFloat((cm * 10).toFixed(2));
+                    const options = [
+                        `${ans} mm`,
+                        `${(ans / 10).toFixed(2)} mm`,
+                        `${(ans * 10).toFixed(2)} mm`,
+                        `${(ans + 10).toFixed(2)} mm`
+                    ];
+                    return {
+                        q: `换算单位：${cm} cm 等于多少 mm？`,
+                        options: shuffle([...new Set(options)]),
+                        correctIndex: -1, ansStr: `${ans} mm`,
+                        explanation: `因为 1 cm = 10 mm，所以 ${cm} cm = ${cm} × 10 = ${ans} mm。`
+                    };
+                })(),
+                // Q5: Multiple pieces
+                (() => {
+                    const count = randInt(3, 6);
+                    const pieceM = randInt(2, 5);
+                    const pieceCm = randInt(15, 45);
+                    const totalCm = count * (pieceM * 100 + pieceCm);
+                    const ansM = Math.floor(totalCm / 100);
+                    const ansCm = totalCm % 100;
+                    const ansStr = `${ansM}m ${ansCm}cm`;
+                    const options = [
+                        ansStr,
+                        `${ansM + 1}m ${ansCm}cm`,
+                        `${ansM - 1}m ${ansCm}cm`,
+                        `${ansM}m ${pieceCm}cm`
+                    ];
+                    return {
+                        q: `接连连接 ${count} 根长为 ${pieceM}m ${pieceCm}cm 的木棍，总长度是多少？`,
+                        options: shuffle([...new Set(options)]),
+                        correctIndex: -1, ansStr,
+                        explanation: `总长度 = ${count} × (${pieceM}m ${pieceCm}cm) = ${count * pieceM}m ${count * pieceCm}cm = ${ansM}m ${ansCm}cm (满100cm进位1m)。`
+                    };
+                })()
+            ];
+
+            // Set correctIndex
+            mcqs.forEach(item => {
+                item.correctIndex = item.options.indexOf(item.ansStr);
+            });
+
+            const fillIns = [
+                (() => {
+                    const m = randFloat2(2.5, 12.8);
+                    const cm = parseFloat((m * 100).toFixed(2));
+                    return {
+                        q: `请直接写出数值：${m} m 等于多少 cm？`,
+                        ansValue: cm,
+                        unit: "cm",
+                        explanation: `${m} m × 100 = ${cm} cm。`
+                    };
+                })(),
+                (() => {
+                    const cm1 = randInt(5, 15);
+                    const mm1 = randInt(6, 9);
+                    const cm2 = randInt(1, 4);
+                    const mm2 = randInt(1, 5);
+                    const totalMm = (cm1 * 10 + mm1) - (cm2 * 10 + mm2);
+                    const ansCm = (totalMm / 10).toFixed(1);
+                    return {
+                        q: `计算：${cm1}cm ${mm1}mm - ${cm2}cm ${mm2}mm = ( ____ ) cm（填十进制厘米数）`,
+                        ansValue: parseFloat(ansCm),
+                        unit: "cm",
+                        explanation: `转化为毫米计算：${cm1*10+mm1}mm - ${cm2*10+mm2}mm = ${totalMm}mm = ${ansCm} cm。`
+                    };
+                })()
+            ];
+
+            return { mcqs, fillIns };
         }
 
-        function findCrossMultiplication(a, b, c) {
-            let pPairs = getFactorPairs(a);
-            let qPairs = getFactorPairs(c);
-            for (let [p1, p2] of pPairs) {
-                for (let [q1, q2] of qPairs) {
-                    if (p1 * q2 + p2 * q1 === b) {
-                        return { p1, q1, p2, q2 };
-                    }
-                    if (p1 * q1 + p2 * q2 === b) {
-                        return { p1, q2, p2, q1 };
-                    }
-                }
-            }
-            return null;
+        // --- Chapter 6.2: Mass Generators ---
+        function genCh2Questions() {
+            const mcqs = [
+                // Q1: t to kg
+                (() => {
+                    const t = randFloat2(0.25, 6.75);
+                    const ans = parseFloat((t * 1000).toFixed(2));
+                    const options = [`${ans} kg`, `${(ans/10).toFixed(2)} kg`, `${(ans*10).toFixed(2)} kg`, `${(ans/100).toFixed(2)} kg`];
+                    return {
+                        q: `单位换算：${t} 公吨 (t) 等于多少公斤 (kg)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ans} kg`,
+                        explanation: `1 公吨 (t) = 1000 公斤 (kg)，因此 ${t} × 1000 = ${ans} kg。`
+                    };
+                })(),
+                // Q2: Average weight per item
+                (() => {
+                    const count = randInt(10, 40);
+                    const boxKg = randFloat2(0.2, 0.8);
+                    const eachG = randInt(50, 250);
+                    const itemsTotalG = count * eachG;
+                    const itemsTotalKg = itemsTotalG / 1000;
+                    const totalKg = parseFloat((boxKg + itemsTotalKg).toFixed(2));
+                    const options = [`${eachG} g`, `${eachG + 20} g`, `${eachG - 10} g`, `${(eachG * 10)} g` ];
+                    return {
+                        q: `一个装有 ${count} 粒苹果的箱子总质量为 ${totalKg} kg。已知空箱子质量为 ${boxKg} kg，求每粒苹果平均质量是多少克 (g)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${eachG} g`,
+                        explanation: `苹果总质量 = ${totalKg}kg - ${boxKg}kg = ${itemsTotalKg}kg = ${itemsTotalG}g。每粒苹果 = ${itemsTotalG}g ÷ ${count} = ${eachG}g。`
+                    };
+                })(),
+                // Q3: Dual unit kg g addition
+                (() => {
+                    const kg1 = randInt(3, 12); const g1 = randInt(400, 800);
+                    const kg2 = randInt(2, 8);  const g2 = randInt(500, 900);
+                    const totalG = (kg1 + kg2) * 1000 + (g1 + g2);
+                    const ansKg = Math.floor(totalG / 1000);
+                    const ansG = totalG % 1000;
+                    const ansStr = `${ansKg}kg ${ansG}g`;
+                    const options = [ansStr, `${ansKg+1}kg ${ansG}g`, `${ansKg}kg ${ansG+100}g`, `${ansKg-1}kg ${ansG}g` ];
+                    return {
+                        q: `计算：${kg1}kg ${g1}g + ${kg2}kg ${g2}g`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr,
+                        explanation: `克部分 ${g1}g + ${g2}g = ${g1+g2}g = 1kg ${g1+g2-1000}g，进位到公斤得 ${ansKg}kg ${ansG}g。`
+                    };
+                })(),
+                // Q4: Truck Bridge
+                (() => {
+                    const baseT = randFloat1(1.5, 3.5);
+                    const count = randInt(2, 5);
+                    const machineKg = randInt(1200, 2200);
+                    const totalMachineT = (count * machineKg) / 1000;
+                    const totalT = parseFloat((baseT + totalMachineT).toFixed(2));
+                    const options = [`${totalT} t`, `${(totalT + 1).toFixed(2)} t`, `${(totalT - 0.5).toFixed(2)} t`, `${(totalT * 10).toFixed(2)} t` ];
+                    return {
+                        q: `一辆空货车重 ${baseT} t，车上载有 ${count} 台质量各为 ${machineKg} kg 的设备。货车过桥时的总重为多少公吨 (t)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${totalT} t`,
+                        explanation: `设备总重 = ${count} × ${machineKg}kg = ${count*machineKg}kg = ${totalMachineT}t。总重 = ${baseT}t + ${totalMachineT}t = ${totalT}t。`
+                    };
+                })(),
+                // Q5: g to mg
+                (() => {
+                    const g = randFloat2(0.12, 4.5);
+                    const ans = parseFloat((g * 1000).toFixed(2));
+                    const options = [`${ans} mg`, `${(ans/10).toFixed(2)} mg`, `${(ans*10).toFixed(2)} mg`, `${(ans/100).toFixed(2)} mg` ];
+                    return {
+                        q: `单位换算：${g} 克 (g) 等于多少毫克 (mg)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ans} mg`,
+                        explanation: `1 g = 1000 mg，因此 ${g} × 1000 = ${ans} mg。`
+                    };
+                })()
+            ];
+
+            mcqs.forEach(item => { item.correctIndex = item.options.indexOf(item.ansStr); });
+
+            const fillIns = [
+                (() => {
+                    const kg = randFloat2(1.2, 9.8);
+                    const g = parseFloat((kg * 1000).toFixed(2));
+                    return {
+                        q: `填空：${kg} kg = ( ____ ) g`,
+                        ansValue: g, unit: "g", explanation: `${kg} kg × 1000 = ${g} g。`
+                    };
+                })(),
+                (() => {
+                    const totalKg = randInt(10, 30);
+                    const subKg = randInt(2, 8); const subG = randInt(250, 750);
+                    const remG = (totalKg * 1000) - (subKg * 1000 + subG);
+                    const ansKg = parseFloat((remG / 1000).toFixed(2));
+                    return {
+                        q: `求解：${totalKg} kg - ${subKg} kg ${subG} g = ( ____ ) kg（用小数公斤表示）`,
+                        ansValue: ansKg, unit: "kg",
+                        explanation: `${totalKg}kg - (${subKg}.${subG < 100 ? '0'+subG : subG}kg) = ${ansKg} kg。`
+                    };
+                })()
+            ];
+
+            return { mcqs, fillIns };
         }
 
-        function calculateFactor() {
-            const a = parseFloat(document.getElementById('factor-a').value);
-            const b = parseFloat(document.getElementById('factor-b').value);
-            const c = parseFloat(document.getElementById('factor-c').value);
-            const output = document.getElementById('factor-output');
+        // --- Chapter 6.3: Capacity Generators ---
+        function genCh3Questions() {
+            const mcqs = [
+                // Q1: m3 to L
+                (() => {
+                    const m3 = randFloat2(0.35, 5.25);
+                    const ans = parseFloat((m3 * 1000).toFixed(2));
+                    const options = [`${ans} L`, `${(ans/10).toFixed(2)} L`, `${(ans*10).toFixed(2)} L`, `${(ans/100).toFixed(2)} L` ];
+                    return {
+                        q: `蓄水池容积为 ${m3} m³，其等于多少公升 (L)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ans} L`,
+                        explanation: `1 立方米 (m³) = 1000 公升 (L)，故 ${m3} × 1000 = ${ans} L。`
+                    };
+                })(),
+                // Q2: Pot & Cups
+                (() => {
+                    const potL = randFloat2(1.2, 3.5);
+                    const cupCount = randInt(2, 5);
+                    const cupMl = randInt(200, 500);
+                    const totalMl = (potL * 1000) + (cupCount * cupMl);
+                    const ansL = parseFloat((totalMl / 1000).toFixed(2));
+                    const options = [`${ansL} L`, `${(ansL - 0.5).toFixed(2)} L`, `${(ansL + 0.4).toFixed(2)} L`, `${(ansL * 2).toFixed(2)} L` ];
+                    return {
+                        q: `锅中原本有 ${potL} L 水，再往里面倒入 ${cupCount} 杯 ${cupMl} mL 的水。现在锅中共有水多少 L？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ansL} L`,
+                        explanation: `倒入总水量 = ${cupCount} × ${cupMl}mL = ${cupCount*cupMl}mL = ${(cupCount*cupMl)/1000}L。总水量 = ${potL}L + ${(cupCount*cupMl)/1000}L = ${ansL} L。`
+                    };
+                })(),
+                // Q3: L mL subtraction
+                (() => {
+                    const l1 = randInt(5, 12); const ml1 = randInt(100, 300);
+                    const l2 = randInt(1, 4);  const ml2 = randInt(400, 800);
+                    const remMl = (l1 * 1000 + ml1) - (l2 * 1000 + ml2);
+                    const ansL = Math.floor(remMl / 1000); const ansMl = remMl % 1000;
+                    const ansStr = `${ansL}L ${ansMl}mL`;
+                    const options = [ansStr, `${ansL+1}L ${ansMl}mL`, `${ansL}L ${ansMl+100}mL`, `${ansL-1}L ${ansMl}mL` ];
+                    return {
+                        q: `计算：${l1} L ${ml1} mL - ${l2} L ${ml2} mL`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr,
+                        explanation: `毫升部分 ${ml1}mL 不足减 ${ml2}mL，借 1L (1000mL)，算式为 ${l1-1}L ${ml1+1000}mL - ${l2}L ${ml2}mL = ${ansStr}。`
+                    };
+                })(),
+                // Q4: cc and cm3 equivalence
+                (() => {
+                    const ml = randInt(150, 850);
+                    const options = [`${ml} cm³`, `${ml * 10} cm³`, `${(ml / 10).toFixed(1)} cm³`, `${ml + 100} cm³` ];
+                    return {
+                        q: `容器容量为 ${ml} mL，其等价的体积是多少 cm³ (立方厘米)？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ml} cm³`,
+                        explanation: `根据公制规定，1 mL = 1 cc = 1 cm³，因此 ${ml} mL = ${ml} cm³。`
+                    };
+                })(),
+                // Q5: Sharing bottles
+                (() => {
+                    const totalL = randFloat1(2.4, 6.0);
+                    const bottleMl = randInt(300, 600);
+                    const count = Math.floor((totalL * 1000) / bottleMl);
+                    const remMl = (totalL * 1000) % bottleMl;
+                    const options = [`可装 ${count} 瓶，余 ${remMl} mL`, `可装 ${count+1} 瓶，余 0 mL`, `可装 ${count-1} 瓶，余 ${remMl+100} mL`, `可装 ${count} 瓶，余 ${remMl+50} mL` ];
+                    const ansStr = `可装 ${count} 瓶，余 ${remMl} mL`;
+                    return {
+                        q: `将 ${totalL} L 果汁分装入每瓶容量为 ${bottleMl} mL 的玻璃瓶中，最多可装满多少瓶？还剩多少 mL？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr,
+                        explanation: `${totalL} L = ${totalL*1000} mL。 ${totalL*1000} ÷ ${bottleMl} = ${count} 瓶，余 ${remMl} mL。`
+                    };
+                })()
+            ];
 
-            if (isNaN(a) || isNaN(b) || isNaN(c)) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数字。`;
-                output.classList.remove('hidden');
-                return;
+            mcqs.forEach(item => { item.correctIndex = item.options.indexOf(item.ansStr); });
+
+            const fillIns = [
+                (() => {
+                    const l = randFloat2(0.45, 8.5);
+                    const ml = parseFloat((l * 1000).toFixed(2));
+                    return {
+                        q: `填空：${l} L = ( ____ ) mL`,
+                        ansValue: ml, unit: "mL", explanation: `${l} L × 1000 = ${ml} mL。`
+                    };
+                })(),
+                (() => {
+                    const m3 = randFloat2(1.2, 4.5);
+                    const L = parseFloat((m3 * 1000).toFixed(2));
+                    return {
+                        q: `求解：水箱容量为 ${m3} m³ = ( ____ ) L`,
+                        ansValue: L, unit: "L", explanation: `${m3} m³ × 1000 = ${L} L。`
+                    };
+                })()
+            ];
+
+            return { mcqs, fillIns };
+        }
+
+        // --- Chapter 6.4: Time Generators ---
+        function genCh4Questions() {
+            const mcqs = [
+                // Q1: Time difference
+                (() => {
+                    const sH = randInt(7, 10); const sM = randInt(10, 40);
+                    const durationH = randInt(2, 5); const durationM = randInt(15, 45);
+                    let eM = sM + durationM; let eH = sH + durationH;
+                    if (eM >= 60) { eM -= 60; eH += 1; }
+                    const startStr = `${sH < 10 ? '0'+sH : sH}:${sM < 10 ? '0'+sM : sM}`;
+                    const endStr = `${eH < 10 ? '0'+eH : eH}:${eM < 10 ? '0'+eM : eM}`;
+                    const ansStr = `${durationH}小时${durationM}分钟`;
+                    const options = [ansStr, `${durationH+1}小时${durationM}分钟`, `${durationH}小时${durationM+10}分钟`, `${durationH-1}小时${durationM+15}分钟` ];
+                    return {
+                        q: `火车在 ${startStr} 出发，并在同天 ${endStr} 到达目的地。火车行驶过程历时多久？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr,
+                        explanation: `到达时刻 - 出发时刻：${endStr} - ${startStr} = ${ansStr}。`
+                    };
+                })(),
+                // Q2: Leap year determination
+                (() => {
+                    const leapYears = [1984, 1988, 1992, 1996, 2004, 2008, 2012, 2016, 2024];
+                    const commonYears = [1800, 1900, 1983, 1995, 2001, 2003, 2007, 2011, 2023];
+                    const chosenLeap = leapYears[randInt(0, leapYears.length-1)];
+                    const chosenCommon1 = commonYears[randInt(0, 3)];
+                    const chosenCommon2 = commonYears[randInt(4, 6)];
+                    const chosenCommon3 = commonYears[randInt(7, 8)];
+                    const options = [`${chosenLeap}年`, `${chosenCommon1}年`, `${chosenCommon2}年`, `${chosenCommon3}年` ];
+                    return {
+                        q: `下列年份中，哪一个是闰年（2月有29天）？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${chosenLeap}年`,
+                        explanation: `${chosenLeap} 能被 4 整除（且非世纪年或能被400整除），故为闰年。1800与1900年为世纪年，不能被400整除故为平年。`
+                    };
+                })(),
+                // Q3: Hours and minutes to minutes
+                (() => {
+                    const h = randInt(2, 8); const m = randInt(10, 50);
+                    const ans = h * 60 + m;
+                    const options = [`${ans} 分钟`, `${ans + 60} 分钟`, `${ans - 30} 分钟`, `${h * 100 + m} 分钟` ];
+                    return {
+                        q: `换算单位：${h} 小时 ${m} 分钟 等于多少分钟？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ans} 分钟`,
+                        explanation: `${h} 小时 = ${h} × 60 = ${h*60} 分钟。加上 ${m} 分钟等于 ${ans} 分钟。`
+                    };
+                })(),
+                // Q4: Century to years
+                (() => {
+                    const cent = randFloat1(1.5, 4.5);
+                    const ans = parseFloat((cent * 100).toFixed(1));
+                    const options = [`${ans} 年`, `${ans/10} 年`, `${ans*10} 年`, `${ans - 10} 年` ];
+                    return {
+                        q: `换算：${cent} 世纪等于多少年？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ans} 年`,
+                        explanation: `1 世纪 = 100 年，因此 ${cent} × 100 = ${ans} 年。`
+                    };
+                })(),
+                // Q5: Quarter / Quarter hours
+                (() => {
+                    const quarters = randInt(2, 7);
+                    const ansM = quarters * 15;
+                    const options = [`${ansM} 分钟`, `${quarters * 10} 分钟`, `${quarters * 20} 分钟`, `${ansM + 15} 分钟` ];
+                    return {
+                        q: `古称“1刻钟”为15分钟。那么 ${quarters} 刻钟等于多少分钟？`,
+                        options: shuffle([...new Set(options)]), correctIndex: -1, ansStr: `${ansM} 分钟`,
+                        explanation: `${quarters} × 15 = ${ansM} 分钟。`
+                    };
+                })()
+            ];
+
+            mcqs.forEach(item => { item.correctIndex = item.options.indexOf(item.ansStr); });
+
+            const fillIns = [
+                (() => {
+                    const h = randInt(3, 10);
+                    const mins = h * 60;
+                    return {
+                        q: `填空：${h} 小时 = ( ____ ) 分钟`,
+                        ansValue: mins, unit: "分钟", explanation: `${h} × 60 = ${mins} 分钟。`
+                    };
+                })(),
+                (() => {
+                    const days = randInt(3, 9);
+                    const hours = days * 24;
+                    return {
+                        q: `求解：${days} 天 = ( ____ ) 小时`,
+                        ansValue: hours, unit: "小时", explanation: `${days} 天 × 24 = ${hours} 小时。`
+                    };
+                })()
+            ];
+
+            return { mcqs, fillIns };
+        }
+
+        // --- 4. QUIZ STATE MANAGEMENT ---
+        let currentMode = 'ch1'; // 'ch1', 'ch2', 'ch3', 'ch4', 'final'
+        let currentMCQs = [];
+        let currentFillIns = [];
+        let userMCQAnswers = {};
+        let userFillAnswers = {};
+
+        function loadChapterQuiz(chapterKey) {
+            currentMode = chapterKey;
+            userMCQAnswers = {};
+            userFillAnswers = {};
+
+            // Update subnav styling
+            document.querySelectorAll('.quiz-nav-btn').forEach(btn => {
+                btn.className = "quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+            const activeNav = document.getElementById(`quiz-nav-${chapterKey}`);
+            if (activeNav) {
+                if (chapterKey === 'final') activeNav.className = "quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white";
+                else activeNav.className = "quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white";
             }
-            if (a === 0) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$，否则不是一元二次方程。`;
-                output.classList.remove('hidden');
-                triggerMathJax();
-                return;
+
+            // Hide challenge section by default
+            document.getElementById('challenge-section').classList.add('hidden');
+
+            let title = "", desc = "";
+            let generated;
+
+            if (chapterKey === 'ch1') {
+                title = "6.1 长度单位 随堂测评";
+                desc = "题目数字随机生成（不含无限循环小数，最多2位小数）。答对 3 题以上可解锁进阶手写填空挑战！";
+                generated = genCh1Questions();
+            } else if (chapterKey === 'ch2') {
+                title = "6.2 质量单位 随堂测评";
+                desc = "题目数字随机生成（不含无限循环小数，最多2位小数）。答对 3 题以上可解锁进阶手写填空挑战！";
+                generated = genCh2Questions();
+            } else if (chapterKey === 'ch3') {
+                title = "6.3 容量单位 随堂测评";
+                desc = "题目数字随机生成（不含无限循环小数，最多2位小数）。答对 3 题以上可解锁进阶手写填空挑战！";
+                generated = genCh3Questions();
+            } else if (chapterKey === 'ch4') {
+                title = "6.4 时间与历法 随堂测评";
+                desc = "题目数字随机生成（不含无限循环小数，最多2位小数）。答对 3 题以上可解锁进阶手写填空挑战！";
+                generated = genCh4Questions();
             }
 
-            const delta = b * b - 4 * a * c;
-            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
+            document.getElementById('quiz-mode-title').textContent = title;
+            document.getElementById('quiz-mode-desc').textContent = desc;
+            document.getElementById('quiz-score-display').textContent = `0 / 5`;
 
-            if (delta < 0) {
-                html += `
-                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
-                    <div class="font-bold text-base flex items-center gap-2">
-                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解（实数范围内无法因式分解）
-                    </div>
-                    <p class="text-sm">
-                        计算判别式：$\\Delta = b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${delta} < 0$。
-                    </p>
-                    <p class="text-sm">
-                        因为判别式 $\\Delta < 0$，原方程在实数范围内<strong>无法因式分解</strong>，故<strong>原方程无实数解</strong>。
-                    </p>
-                </div>`;
+            currentMCQs = generated.mcqs;
+            currentFillIns = generated.fillIns;
+
+            renderMCQQuestions();
+        }
+
+        function loadFinalExam() {
+            currentMode = 'final';
+            userMCQAnswers = {};
+            userFillAnswers = {};
+
+            document.querySelectorAll('.quiz-nav-btn').forEach(btn => {
+                btn.className = "quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+            document.getElementById('quiz-nav-final').className = "quiz-nav-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white";
+
+            document.getElementById('challenge-section').classList.add('hidden');
+
+            document.getElementById('quiz-mode-title').textContent = "🏆 第6章 度量衡 全章综合终极测验 (10题)";
+            document.getElementById('quiz-mode-desc').textContent = "从第6章四个章节中随机抽取10道核心题目，检验全章综合掌握程度！";
+            document.getElementById('quiz-score-display').textContent = `0 / 10`;
+
+            // Pick 10 questions across all chapters
+            const q1 = genCh1Questions().mcqs;
+            const q2 = genCh2Questions().mcqs;
+            const q3 = genCh3Questions().mcqs;
+            const q4 = genCh4Questions().mcqs;
+
+            // Pick 2-3 from each
+            currentMCQs = shuffle([
+                q1[0], q1[1], q1[2],
+                q2[0], q2[1], q2[3],
+                q3[0], q3[1],
+                q4[0], q4[1]
+            ]);
+
+            currentFillIns = [];
+            renderMCQQuestions();
+        }
+
+        function refreshCurrentQuiz() {
+            if (currentMode === 'final') {
+                loadFinalExam();
             } else {
-                const sqrtDelta = Math.sqrt(delta);
-                const x1 = (-b + sqrtDelta) / (2 * a);
-                const x2 = (-b - sqrtDelta) / (2 * a);
+                loadChapterQuiz(currentMode);
+            }
+        }
 
-                html += `<div class="space-y-3">`;
+        // --- 5. RENDER MCQ & SUBMIT LOGIC ---
+        function renderMCQQuestions() {
+            const container = document.getElementById('mcq-questions-container');
+            container.innerHTML = '';
+
+            currentMCQs.forEach((qObj, idx) => {
+                const card = document.createElement('div');
+                card.className = "border border-slate-200 rounded-xl p-5 bg-slate-50 space-y-3 shadow-sm";
                 
-                // Step 1: Analyze Delta
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
-                    <div class="font-semibold text-blue-700">步骤 1：判断判别式与分解可行性</div>
-                    <p class="text-sm text-slate-600 mt-1">
-                        $\\Delta = b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${delta}$
-                        ${delta === 0 ? '（等于 0，有两个相等实根）' : '（大于等于 0，可进行实数分解）'}
-                    </p>
-                </div>`;
+                let optsHtml = '';
+                qObj.options.forEach((optText, oIdx) => {
+                    optsHtml += `
+                        <label class="flex items-center space-x-3 p-3 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-indigo-50/50 transition">
+                            <input type="radio" name="mcq_${idx}" value="${oIdx}" onchange="selectMCQOption(${idx}, ${oIdx})" class="accent-indigo-600">
+                            <span class="text-sm font-medium text-slate-700">${optText}</span>
+                        </label>
+                    `;
+                });
 
-                // Step 2: Combination table & Factorization
-                const ac = a * c;
-                const isIntegers = Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c);
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 text-sm flex items-start space-x-2">
+                        <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded font-mono">${idx + 1}</span>
+                        <span>${qObj.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-medium">${optsHtml}</div>
+                    <div id="mcq-explain-${idx}" class="hidden p-3 rounded-lg text-xs mt-2"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
 
-                let factorFormStr = "";
-                let step3FactorStr = "";
+        function selectMCQOption(qIdx, optionIdx) {
+            userMCQAnswers[qIdx] = optionIdx;
+        }
 
-                if (isIntegers) {
-                    const pairs = getFactorPairs(ac);
-                    const crossMatch = findCrossMultiplication(a, b, c);
+        function submitMCQQuiz() {
+            let correctCount = 0;
+            currentMCQs.forEach((qObj, idx) => {
+                const explainEl = document.getElementById(`mcq-explain-${idx}`);
+                explainEl.classList.remove('hidden');
 
-                    let tableRows = "";
-                    let foundPair = false;
-
-                    for (let p of pairs) {
-                        let m = p[0], n = p[1];
-                        let sum = m + n;
-                        let isMatch = (sum === b);
-                        if (isMatch) foundPair = true;
-
-                        tableRows += `
-                        <tr class="${isMatch ? 'bg-emerald-50 text-emerald-900 font-bold' : 'hover:bg-slate-50 text-slate-600'}">
-                            <td class="py-2 px-3 border-b border-slate-200">${m} \\times (${n})</td>
-                            <td class="py-2 px-3 border-b border-slate-200">${ac}</td>
-                            <td class="py-2 px-3 border-b border-slate-200">${m} + (${n}) = ${sum}</td>
-                            <td class="py-2 px-3 border-b border-slate-200">
-                                ${isMatch ? '<span class="text-emerald-600"><i class="fa-solid fa-circle-check"></i> 符合 (b = ' + b + ')</span>' : '<span class="text-slate-400">×</span>'}
-                            </td>
-                        </tr>`;
-                    }
-
-                    if (crossMatch) {
-                        let { p1, q1, p2, q2 } = crossMatch;
-                        let factor1 = formatLinearFactor(p1, q1);
-                        let factor2 = formatLinearFactor(p2, q2);
-                        factorFormStr = `(${factor1})(${factor2}) = 0`;
-                        step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
-                    } else {
-                        // Fallback using roots
-                        let factor1 = formatLinearFactor(1, -x1);
-                        let factor2 = formatLinearFactor(1, -x2);
-                        let aCoeff = a === 1 ? '' : (a === -1 ? '-' : formatNumber(a));
-                        factorFormStr = `${aCoeff}(${factor1})(${factor2}) = 0`;
-                        step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
-                    }
-
-                    html += `
-                    <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
-                        <div class="font-semibold text-blue-700">步骤 2：对方程左边进行因式分解</div>
-                        <p class="text-sm text-slate-600 mt-1">
-                            寻找满足乘积为 $ac\\ (${ac})$、和为 $b\\ (${b})$ 的分解组合：
-                        </p>
-
-                        <!-- Pair Combinations Table -->
-                        <div class="overflow-x-auto my-3">
-                            <table class="min-w-full text-xs text-center border-collapse border border-slate-200 bg-white rounded-lg overflow-hidden shadow-sm">
-                                <thead class="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
-                                    <tr>
-                                        <th class="py-2 px-3">组合 $(m, n)$</th>
-                                        <th class="py-2 px-3">乘积 $m \\times n\\ (ac)$</th>
-                                        <th class="py-2 px-3">加和 $m + n$</th>
-                                        <th class="py-2 px-3">结果匹配</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${tableRows}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <p class="text-sm text-slate-600 mt-2">原方程可化为：</p>
-                        <div class="text-base font-semibold text-slate-800 my-1">
-                            $${factorFormStr}$
-                        </div>
-                    </div>`;
+                const userSelected = userMCQAnswers[idx];
+                if (userSelected === qObj.correctIndex) {
+                    correctCount++;
+                    explainEl.className = "p-3 rounded-lg text-xs mt-2 bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    explainEl.innerHTML = `<strong>✓ 回答正确！</strong> ${qObj.explanation}`;
                 } else {
-                    // Non-integer handling
-                    let factor1 = formatLinearFactor(1, -x1);
-                    let factor2 = formatLinearFactor(1, -x2);
-                    let aCoeff = a === 1 ? '' : (a === -1 ? '-' : formatNumber(a));
-                    factorFormStr = `${aCoeff}(${factor1})(${factor2}) = 0`;
-                    step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
-
-                    html += `
-                    <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
-                        <div class="font-semibold text-blue-700">步骤 2：对方程左边进行因式分解</div>
-                        <p class="text-sm text-slate-600 mt-1">
-                            对于非整数或小数系数，利用求根公式求得根后化为乘积形式：
-                        </p>
-                        <div class="text-base font-semibold text-slate-800 my-2">
-                            $${factorFormStr}$
-                        </div>
-                    </div>`;
+                    explainEl.className = "p-3 rounded-lg text-xs mt-2 bg-rose-100 text-rose-800 border border-rose-200";
+                    explainEl.innerHTML = `<strong>✕ 回答错误。</strong> 正确答案为：<span class="font-bold">${qObj.ansStr}</span>。<br>${qObj.explanation}`;
                 }
+            });
 
-                // Step 3: Solve factor equations
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
-                    <div class="font-semibold text-blue-700">步骤 3：令各个因式分别等于 0</div>
-                    <p class="text-sm text-slate-700 font-medium mt-1">
-                        ${step3FactorStr}
-                    </p>
-                </div>`;
+            document.getElementById('quiz-score-display').textContent = `${correctCount} / ${currentMCQs.length}`;
 
-                // Final Answer
-                html += `
-                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
-                    <div class="font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
-                    </div>
-                    <div class="text-lg font-bold text-emerald-700 mt-1">
-                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
-                    </div>
-                </div>`;
-
-                html += `</div>`;
+            // Check if unlock challenge mode (for chapter quizzes when score >= 3)
+            if (currentMode !== 'final' && correctCount >= 3) {
+                renderChallengeQuestions();
+                document.getElementById('challenge-section').classList.remove('hidden');
+                // Smooth scroll to challenge section
+                document.getElementById('challenge-section').scrollIntoView({ behavior: 'smooth' });
             }
-
-            output.innerHTML = html;
-            output.classList.remove('hidden');
-            triggerMathJax();
         }
 
-        function calculateSquare() {
-            const a = parseFloat(document.getElementById('square-a').value);
-            const b = parseFloat(document.getElementById('square-b').value);
-            const c = parseFloat(document.getElementById('square-c').value);
-            const output = document.getElementById('square-output');
+        // --- 6. CHALLENGE FILL-IN-THE-BLANK RENDER & SUBMIT ---
+        function renderChallengeQuestions() {
+            const container = document.getElementById('challenge-questions-container');
+            container.innerHTML = '';
 
-            if (isNaN(a) || isNaN(b) || isNaN(c)) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数值！`;
-                output.classList.remove('hidden');
-                return;
-            }
-            if (a === 0) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$。`;
-                output.classList.remove('hidden');
-                triggerMathJax();
-                return;
-            }
+            currentFillIns.forEach((fObj, idx) => {
+                const card = document.createElement('div');
+                card.className = "border border-amber-200 rounded-xl p-5 bg-amber-50/50 space-y-3 shadow-sm";
 
-            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
-
-            html += `<div class="space-y-3">`;
-
-            // Step 1: Move constant
-            html += `
-            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
-                <div class="font-semibold text-indigo-700">步骤 1：移项（将常数项移到方程右边）</div>
-                <p class="text-sm text-slate-600 mt-1">
-                    $${formatCoeff(a, 'x^2', true)}${formatCoeff(b, 'x', false)} = ${formatNumber(-c)}$
-                </p>
-            </div>`;
-
-            // Step 2: Divide by a (if a != 1)
-            const b_prime = b / a;
-            const c_prime = -c / a;
-            if (a !== 1) {
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
-                    <div class="font-semibold text-indigo-700">步骤 2：二次项系数化为 1（两边同除以 $a = ${a}$）</div>
-                    <p class="text-sm text-slate-600 mt-1">
-                        $x^2 ${formatCoeff(b_prime, 'x', false)} = ${formatNumber(c_prime)}$
-                    </p>
-                </div>`;
-            }
-
-            // Step 3: Add (b/2a)^2 to both sides
-            const half_b = b_prime / 2;
-            const half_b_sq = half_b * half_b;
-            const rhs = c_prime + half_b_sq;
-
-            html += `
-            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
-                <div class="font-semibold text-indigo-700">步骤 3：配方（两边同时加上一次项系数一半的平方 $\\left(\\frac{b}{2a}\\right)^2$）</div>
-                <p class="text-sm text-slate-600 mt-1">
-                    加上 $\\left(${formatNumber(half_b)}\\right)^2 = ${formatNumber(half_b_sq)}$：
-                </p>
-                <p class="text-sm text-slate-700 font-semibold mt-1">
-                    $x^2 ${formatCoeff(b_prime, 'x', false)} + ${formatNumber(half_b_sq)} = ${formatNumber(c_prime)} + ${formatNumber(half_b_sq)}$
-                </p>
-            </div>`;
-
-            // Step 4: Write as perfect square
-            html += `
-            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
-                <div class="font-semibold text-indigo-700">步骤 4：写成完全平方式并化简右边</div>
-                <p class="text-sm text-slate-700 font-bold mt-1">
-                    $\\left(x ${half_b >= 0 ? '+ ' + formatNumber(half_b) : '- ' + formatNumber(Math.abs(half_b))}\\right)^2 = ${formatNumber(rhs)}$
-                </p>
-            </div>`;
-
-            // Step 5: Solve for x
-            if (rhs < 0) {
-                html += `
-                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
-                    <div class="font-bold text-base flex items-center gap-2">
-                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 text-sm flex items-start space-x-2">
+                        <span class="bg-amber-500 text-white text-xs px-2 py-0.5 rounded font-bold font-mono">挑战 ${idx + 1}</span>
+                        <span>${fObj.q}</span>
                     </div>
-                    <p class="text-sm">
-                        方程右边为 $${formatNumber(rhs)} < 0$。因为任何实数的平方都不可能为负数，所以<strong>原方程无实数解</strong>。
-                    </p>
-                </div>`;
+                    <div class="flex items-center space-x-2 pt-1">
+                        <input type="number" id="fill_input_${idx}" step="any" placeholder="输入计算数值" class="bg-white border border-amber-300 rounded-lg p-2 text-sm font-mono text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none w-48 shadow-sm">
+                        <span class="text-xs font-bold text-amber-900">${fObj.unit}</span>
+                    </div>
+                    <div id="fill-explain-${idx}" class="hidden p-3 rounded-lg text-xs mt-2"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function submitChallengeQuiz() {
+            currentFillIns.forEach((fObj, idx) => {
+                const inputVal = parseFloat(document.getElementById(`fill_input_${idx}`).value);
+                const explainEl = document.getElementById(`fill-explain-${idx}`);
+                explainEl.classList.remove('hidden');
+
+                if (!isNaN(inputVal) && Math.abs(inputVal - fObj.ansValue) < 0.01) {
+                    explainEl.className = "p-3 rounded-lg text-xs mt-2 bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    explainEl.innerHTML = `<strong>✓ 挑战成功！</strong> 你的计算完全正确！${fObj.explanation}`;
+                } else {
+                    explainEl.className = "p-3 rounded-lg text-xs mt-2 bg-rose-100 text-rose-800 border border-rose-200";
+                    explainEl.innerHTML = `<strong>✕ 挑战未成功。</strong> 正确数值为：<span class="font-bold">${fObj.ansValue} ${fObj.unit}</span>。<br>${fObj.explanation}`;
+                }
+            });
+        }
+
+        // --- 7. EXISTING LAB CALCULATORS LOGIC ---
+        const convData = {
+            length: { units: [ { id: 'km', name: '公里 (km)', factor: 1000 }, { id: 'm', name: '公尺 (m)', factor: 1 }, { id: 'cm', name: '公分 (cm)', factor: 0.01 }, { id: 'mm', name: '公厘 (mm)', factor: 0.001 } ] },
+            mass: { units: [ { id: 't', name: '公吨 (t)', factor: 1000 }, { id: 'kg', name: '公斤 (kg)', factor: 1 }, { id: 'g', name: '克 (g)', factor: 0.001 }, { id: 'mg', name: '毫克 (mg)', factor: 0.000001 } ] },
+            capacity: { units: [ { id: 'm3', name: '立方米 (m³)', factor: 1000 }, { id: 'l', name: '公升 (L)', factor: 1 }, { id: 'ml', name: '毫升 (mL)', factor: 0.001 } ] },
+            time: { units: [ { id: 'h', name: '小时 (h)', factor: 3600 }, { id: 'min', name: '分钟 (min)', factor: 60 }, { id: 's', name: '秒 (s)', factor: 1 } ] }
+        };
+
+        function updateConvUnits() {
+            const type = document.getElementById('conv-type').value;
+            const fromSelect = document.getElementById('conv-from');
+            const toSelect = document.getElementById('conv-to');
+            fromSelect.innerHTML = ''; toSelect.innerHTML = '';
+            convData[type].units.forEach((u) => {
+                fromSelect.appendChild(new Option(u.name, u.id));
+                toSelect.appendChild(new Option(u.name, u.id));
+            });
+            if (toSelect.options.length > 1) toSelect.selectedIndex = 1;
+            doConversion();
+        }
+
+        function doConversion() {
+            const type = document.getElementById('conv-type').value;
+            const val = parseFloat(document.getElementById('conv-input').value) || 0;
+            const uFrom = convData[type].units.find(u => u.id === document.getElementById('conv-from').value);
+            const uTo = convData[type].units.find(u => u.id === document.getElementById('conv-to').value);
+            if (!uFrom || !uTo) return;
+            const finalVal = (val * uFrom.factor) / uTo.factor;
+            document.getElementById('conv-result').textContent = `${finalVal.toLocaleString(undefined, {maximumFractionDigits: 6})} ${uTo.id}`;
+            document.getElementById('conv-steps').textContent = `${val} ${uFrom.id} × (${uFrom.factor} ÷ ${uTo.factor}) = ${finalVal} ${uTo.id}`;
+        }
+
+        function updateRulerVisual() {
+            const valMm = parseFloat(document.getElementById('ruler-slider').value);
+            document.getElementById('ruler-mm').textContent = `${valMm} mm`;
+            document.getElementById('ruler-cm').textContent = `${(valMm / 10).toFixed(1)} cm`;
+            document.getElementById('ruler-m').textContent = `${(valMm / 1000).toFixed(3)} m`;
+            document.getElementById('ruler-km').textContent = `${(valMm / 1000000).toFixed(5)} km`;
+        }
+
+        function calculateTruckBridge() {
+            const baseT = parseFloat(document.getElementById('truck-base').value) || 0;
+            const count = parseInt(document.getElementById('truck-count').value) || 0;
+            const machineKg = parseFloat(document.getElementById('truck-machine').value) || 0;
+            const limitT = parseFloat(document.getElementById('truck-limit').value) || 0;
+            const machinesTotalT = (count * machineKg) / 1000;
+            const totalT = baseT + machinesTotalT;
+
+            document.getElementById('truck-calc-text').innerHTML = `${baseT}t + (${count} × ${machineKg}kg ÷ 1000) = ${baseT}t + ${machinesTotalT}t = <span class="text-emerald-400 font-bold">${totalT.toFixed(2)} 公吨</span>`;
+            const badge = document.getElementById('truck-status-badge');
+            if (totalT <= limitT) {
+                badge.className = "mt-3 inline-block px-4 py-2 rounded-lg font-bold text-sm bg-emerald-500 text-slate-950 shadow";
+                badge.textContent = `✓ 安全通过: 总重 ${totalT.toFixed(2)}t ≤ 限重 ${limitT}t`;
             } else {
-                const sqrtRhs = Math.sqrt(rhs);
-                const x1 = -half_b + sqrtRhs;
-                const x2 = -half_b - sqrtRhs;
-
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
-                    <div class="font-semibold text-indigo-700">步骤 5：两边开平方求解</div>
-                    <p class="text-sm text-slate-600 mt-1">
-                        $x ${half_b >= 0 ? '+ ' + formatNumber(half_b) : '- ' + formatNumber(Math.abs(half_b))} = \\pm ${formatNumber(sqrtRhs)}$
-                    </p>
-                </div>`;
-
-                // Final Answer
-                html += `
-                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
-                    <div class="font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
-                    </div>
-                    <div class="text-lg font-bold text-emerald-700 mt-1">
-                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
-                    </div>
-                </div>`;
+                badge.className = "mt-3 inline-block px-4 py-2 rounded-lg font-bold text-sm bg-rose-500 text-white shadow";
+                badge.textContent = `✕ 禁止通行 (超载): 总重 ${totalT.toFixed(2)}t > 限重 ${limitT}t`;
             }
-
-            html += `</div>`;
-            output.innerHTML = html;
-            output.classList.remove('hidden');
-            triggerMathJax();
         }
 
-        function calculateFormula() {
-            const a = parseFloat(document.getElementById('formula-a').value);
-            const b = parseFloat(document.getElementById('formula-b').value);
-            const c = parseFloat(document.getElementById('formula-c').value);
-            const output = document.getElementById('formula-output');
+        function updateBeakerLiquid() {
+            const initialL = parseFloat(document.getElementById('pot-initial').value) || 0;
+            const count = parseInt(document.getElementById('cup-count').value) || 0;
+            const sizeMl = parseFloat(document.getElementById('cup-size').value) || 0;
+            const totalMl = (initialL * 1000) + (count * sizeMl);
+            const totalL = totalMl / 1000;
 
-            if (isNaN(a) || isNaN(b) || isNaN(c)) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数值！`;
-                output.classList.remove('hidden');
-                return;
-            }
-            if (a === 0) {
-                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
-                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$。`;
-                output.classList.remove('hidden');
-                triggerMathJax();
-                return;
-            }
+            document.getElementById('beaker-formula-text').textContent = `${initialL * 1000} mL + (${count} × ${sizeMl} mL) = ${totalMl} mL`;
+            document.getElementById('beaker-result-text').textContent = `最终容量 = ${totalL.toFixed(2)} L`;
+            document.getElementById('beaker-water-label').textContent = `${totalL.toFixed(2)} L`;
+            document.getElementById('beaker-water').style.height = `${Math.min((totalL / 4.0) * 100, 100)}%`;
+        }
 
-            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
-            const delta = b * b - 4 * a * c;
+        function calculateElapsed() {
+            const startVal = document.getElementById('time-start').value;
+            const endVal = document.getElementById('time-end').value;
+            if (!startVal || !endVal) return;
+            const [sH, sM] = startVal.split(':').map(Number);
+            const [eH, eM] = endVal.split(':').map(Number);
+            let startMins = sH * 60 + sM;
+            let endMins = eH * 60 + eM;
+            if (endMins < startMins) endMins += 24 * 60;
+            const diffMins = endMins - startMins;
+            document.getElementById('time-elapsed-result').textContent = `相隔时间：${Math.floor(diffMins / 60)} 小时 ${diffMins % 60} 分钟`;
+        }
 
-            html += `<div class="space-y-3">`;
+        function checkLeapYear() {
+            const year = parseInt(document.getElementById('year-input').value);
+            if (isNaN(year)) return;
+            let isLeap = (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0);
+            document.getElementById('leap-result-title').textContent = `公元 ${year} 年是：${isLeap ? '闰年 (Leap Year)' : '平年 (Common Year)'}`;
+            document.getElementById('leap-result-reason').textContent = isLeap ? "原因：能被4/400整除，2月有29天。" : "原因：不能被4/400整除，2月只有28天。";
+        }
 
-            // Step 1: Coefficients
-            html += `
-            <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
-                <div class="font-semibold text-purple-700">步骤 1：确定各项系数</div>
-                <p class="text-sm text-slate-600 mt-1">
-                    $a = ${a}, \\quad b = ${b}, \\quad c = ${c}$
-                </p>
-            </div>`;
+        function runDualCalc() {
+            const cat = document.getElementById('calc-cat').value;
+            const op = document.getElementById('calc-op').value;
+            const v1u1 = parseInt(document.getElementById('v1-u1').value) || 0;
+            const v1u2 = parseInt(document.getElementById('v1-u2').value) || 0;
+            const v2u1 = parseInt(document.getElementById('v2-u1').value) || 0;
+            const v2u2 = parseInt(document.getElementById('v2-u2').value) || 0;
 
-            // Step 2: Discriminant
-            html += `
-            <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
-                <div class="font-semibold text-purple-700">步骤 2：计算判别式 $\\Delta$ (Delta)</div>
-                <p class="text-sm text-slate-600 mt-1">
-                    $\\Delta = b^2 - 4ac = (${b})^2 - 4 \\times (${a}) \\times (${c}) = ${delta}$
-                </p>
-            </div>`;
+            let rate = 100, u1Name = 'm', u2Name = 'cm';
+            if (cat === 'length_m_cm') { rate = 100; u1Name = 'm'; u2Name = 'cm'; }
+            else if (cat === 'length_cm_mm') { rate = 10; u1Name = 'cm'; u2Name = 'mm'; }
+            else if (cat === 'mass_kg_g') { rate = 1000; u1Name = 'kg'; u2Name = 'g'; }
+            else if (cat === 'capacity_l_ml') { rate = 1000; u1Name = 'L'; u2Name = 'mL'; }
+            else if (cat === 'time_h_m') { rate = 60; u1Name = '小时'; u2Name = '分钟'; }
 
-            // Step 3 & 4: Formula & Roots
-            if (delta < 0) {
-                html += `
-                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
-                    <div class="font-bold text-base flex items-center gap-2">
-                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解（判别式 $\\Delta < 0$）
-                    </div>
-                    <p class="text-sm">
-                        因为 $\\Delta = ${delta} < 0$，在实数范围内负数不能开平方，所以<strong>原方程无实数解</strong>。
-                    </p>
-                </div>`;
+            let html = '';
+            if (op === '+') {
+                let sumU2 = v1u2 + v2u2;
+                let sumU1 = v1u1 + v2u1 + Math.floor(sumU2 / rate);
+                let finalU2 = sumU2 % rate;
+                html = `<div>结果: ${sumU1}${u1Name} ${finalU2}${u2Name}</div>`;
             } else {
-                const sqrtDelta = Math.sqrt(delta);
-                const x1 = (-b + sqrtDelta) / (2 * a);
-                const x2 = (-b - sqrtDelta) / (2 * a);
-
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
-                    <div class="font-semibold text-purple-700">步骤 3：代入求根公式 $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}$</div>
-                    <p class="text-sm text-slate-700 font-semibold mt-1">
-                        $x = \\frac{-(${b}) \\pm \\sqrt{${delta}}}{2 \\times (${a})} = \\frac{${-b} \\pm ${formatNumber(sqrtDelta)}}{${2 * a}}$
-                    </p>
-                </div>`;
-
-                html += `
-                <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
-                    <div class="font-semibold text-purple-700">步骤 4：计算两个根的值</div>
-                    <p class="text-sm text-slate-600 mt-1">
-                        $x_1 = \\frac{${-b} + ${formatNumber(sqrtDelta)}}{${2 * a}} = ${formatNumber(x1)}$
-                    </p>
-                    <p class="text-sm text-slate-600 mt-1">
-                        $x_2 = \\frac{${-b} - ${formatNumber(sqrtDelta)}}{${2 * a}} = ${formatNumber(x2)}$
-                    </p>
-                </div>`;
-
-                // Final Answer
-                html += `
-                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
-                    <div class="font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
-                    </div>
-                    <div class="text-lg font-bold text-emerald-700 mt-1">
-                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
-                    </div>
-                </div>`;
+                let u1 = v1u1, u2 = v1u2;
+                if (u2 < v2u2) { u1 -= 1; u2 += rate; }
+                html = `<div>结果: ${u1 - v2u1}${u1Name} ${u2 - v2u2}${u2Name}</div>`;
             }
-
-            html += `</div>`;
-            output.innerHTML = html;
-            output.classList.remove('hidden');
-            triggerMathJax();
+            document.getElementById('dual-calc-board').innerHTML = html;
         }
 
+        // --- 8. INITIALIZATION ON LOAD ---
         window.onload = function() {
-            calculateFactor();
-            calculateSquare();
-            calculateFormula();
+            updateConvUnits();
+            updateRulerVisual();
+            calculateTruckBridge();
+            updateBeakerLiquid();
+            calculateElapsed();
+            checkLeapYear();
+            runDualCalc();
+            loadChapterQuiz('ch1'); // Default to Chapter 6.1 quiz
         };
     </script>
 </body>
