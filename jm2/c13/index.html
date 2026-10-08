@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>初二数学 · 第13章 公式</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--tx:#1d2433;--mu:#667085;--pr:#3b5bdb;--pl:#e7ecff;--ok:#2b8a3e;--okb:#e6f6ea;--no:#c92a2a;--nob:#fdeaea;--bd:#e3e6ee}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1b2030;--tx:#e8ebf3;--mu:#98a2b8;--pr:#8ea2ff;--pl:#262d4a;--ok:#69db7c;--okb:#17301f;--no:#ff8787;--nob:#3a1d1d;--bd:#2b3248}}
+:root[data-theme="dark"]{--bg:#12151c;--card:#1b2030;--tx:#e8ebf3;--mu:#98a2b8;--pr:#8ea2ff;--pl:#262d4a;--ok:#69db7c;--okb:#17301f;--no:#ff8787;--nob:#3a1d1d;--bd:#2b3248}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:20px 16px 8px;max-width:760px;margin:auto}
+h1{font-size:22px;margin:0}header p{margin:4px 0 0;color:var(--mu);font-size:14px}
+nav{display:flex;gap:6px;max-width:760px;margin:10px auto;padding:0 16px}
+nav button{flex:1;padding:10px 4px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font-size:15px;cursor:pointer}
+nav button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+main{max-width:760px;margin:auto;padding:0 16px 40px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:14px}
+.m{font-family:"Cambria Math","Times New Roman",serif;font-size:19px}
+select,input{font:inherit;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);max-width:100%}
+input{width:90px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0}
+.btn{padding:9px 16px;border:0;border-radius:10px;background:var(--pr);color:#fff;font-size:15px;cursor:pointer}
+.btn.g{background:var(--pl);color:var(--pr)}
+.res{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--pl);font-size:18px}
+.step{padding:8px 12px;margin:6px 0;border-left:4px solid var(--pr);background:var(--pl);border-radius:6px;animation:f .3s}
+.step small{display:block;color:var(--mu)}
+@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:11px 14px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font-size:18px;font-family:"Cambria Math","Times New Roman",serif;cursor:pointer}
+.opt.ok{background:var(--okb);border-color:var(--ok);color:var(--ok)}
+.opt.no{background:var(--nob);border-color:var(--no);color:var(--no)}
+.note{color:var(--mu);font-size:14px}
+.bar{height:8px;background:var(--pl);border-radius:4px;overflow:hidden;margin-bottom:12px}.bar i{display:block;height:100%;background:var(--pr);width:0;transition:width .3s}
+.tip{background:var(--nob);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px}
+.grid{display:flex;gap:8px;margin:12px 0}.cell{width:44px;height:44px;border-radius:10px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font-size:17px;cursor:pointer}
+.cell.cur{border-color:var(--pr)}.cell.ok{background:var(--okb);color:var(--ok);border-color:var(--ok)}.cell.no{background:var(--nob);color:var(--no);border-color:var(--no)}
+.fr{display:inline-block;vertical-align:middle;text-align:center;margin:0 2px;font-size:.95em}.fr i,.fr b{display:block;font-style:normal;font-weight:normal;padding:0 4px;line-height:1.35}.fr i{border-bottom:1.5px solid currentColor}
+</style>
+</head>
+<body>
+<header><h1>第13章 公式</h1><p>初二数学（下册）· 公式代入 · 更换主项</p></header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+const $=s=>document.querySelector(s);
+const tabs=[["① 公式计算器","calc"],["② 换主项演示","steps"],["③ 随堂测验","quiz"]];
+const nav=$("#nav");
+tabs.forEach(([t,k],i)=>{const b=document.createElement("button");b.textContent=t;b.onclick=()=>show(k);b.dataset.k=k;nav.appendChild(b)});
+function show(k){[...nav.children].forEach(b=>b.classList.toggle("on",b.dataset.k==k));({calc,steps,quiz})[k]()}
+
+/* ---------- 通用工具 ---------- */
+const rnd=n=>Math.floor(Math.random()*n),ri=(a,b)=>a+rnd(b-a+1),fmt=r=>Math.round(r*100)/100;
+function ev(s,x){try{
+ s=s.replace(/\s/g,"").replace(/[×·]/g,"*").replace(/÷/g,"/").replace(/[−－–]/g,"-").replace(/π/g,"(3.141592653589793)").replace(/\^/g,"**").replace(/²/g,"**2").replace(/√/g,"sqrt").replace(/sqrt/g,"@");
+ if(!/^[A-Za-z0-9+\-*\/().@]*$/.test(s))return NaN;
+ s=s.replace(/(\d)(?=[A-Za-z@(])/g,"$1*").replace(/\)(?=[A-Za-z@\d(])/g,")*").replace(/([A-Za-z])(?=[A-Za-z@(\d])/g,"$1*").replace(/@/g,"Math.sqrt");
+ return new Function(...Object.keys(x),"return "+s)(...Object.values(x))}catch(e){return NaN}}
+function chkExpr(s,vars,fn){let ok=0;for(let k=0;k<6;k++){const x={};vars.forEach(v=>x[v]=ri(2,9));const a=fn(x);if(!isFinite(a))continue;const b=ev(s,x);if(!isFinite(b)||Math.abs(a-b)>1e-6*Math.max(1,Math.abs(a)))return false;ok++}return ok>0}
+const R=s=>String(s).replace(/\{([^|{}]*)\|([^{}]*)\}/g,'<span class="fr"><i>$1</i><b>$2</b></span>');
+const P=s=>s.replace(/\{([^|{}]*)\|([^{}]*)\}/g,(m,a,b)=>(a.length>1?"("+a+")":a)+"/"+(b.length>1?"("+b+")":b));
+const shf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+
+/* ---------- 习题引擎：5 格 → 答对≥3 题解锁 2 道填充题 ---------- */
+function practice(root,gen){
+ let S,res,cur;
+ const start=()=>{S=gen();res=[null,null,null,null,null];cur=0;draw()};
+ const draw=()=>{
+  const q=S.qs[cur],a=res[cur]!==null,sc=res.filter(r=>r===true).length;
+  root.innerHTML=`<div class="card"><b>📝 巩固练习</b><span class="note">　答对 3 题或以上，可做 2 道填充题</span>
+  <div class="grid">${res.map((r,i)=>`<button class="cell ${r===true?"ok":r===false?"no":""} ${i==cur?"cur":""}" data-i="${i}">${i+1}</button>`).join("")}</div>
+  <p><b>第 ${cur+1} 题　</b>${R(q.p)}</p><div id="qa"></div></div><div id="fl"></div>`;
+  root.querySelectorAll(".cell").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;draw()});
+  const qa=root.querySelector("#qa");
+  const submit=u=>{if(res[cur]!==null)return;q.u=u;res[cur]=q.kind=="mc"?u===q.a:Math.abs(parseFloat(u)-q.a)<0.01;draw()};
+  if(q.kind=="mc"){qa.innerHTML=q.o.map(o=>`<button class="opt ${a&&o===q.a?"ok":a&&o===q.u?"no":""}" data-v="${o}">${R(o)}</button>`).join("");
+   qa.querySelectorAll(".opt").forEach(b=>b.onclick=()=>submit(b.dataset.v))}
+  else{qa.innerHTML=`<div class="row"><input id="ui" type="number" step="any" ${a?"disabled value=\""+q.u+"\"":""}><button class="btn" id="sb" ${a?"disabled":""}>提交</button></div>`;
+   root.querySelector("#sb").onclick=()=>{const v=root.querySelector("#ui").value;if(v!=="")submit(v)}}
+  if(a)qa.insertAdjacentHTML("beforeend",`<div class="tip" style="background:${res[cur]?"var(--okb)":"var(--nob)"}">${res[cur]?"✔ 正确！":"✘ 正确答案："+(q.kind=="mc"?R(q.a):fmt(q.a))}</div>`);
+  if(a&&res.includes(null)){qa.insertAdjacentHTML("beforeend",`<div class="row"><button class="btn" id="nx2">下一题 ▶</button></div>`);root.querySelector("#nx2").onclick=()=>{cur=res.findIndex(r=>r===null);draw()}}
+  if(!res.includes(null)){
+   const fl=root.querySelector("#fl");
+   if(sc>=3){fl.innerHTML=`<div class="card"><b>🎉 答对 ${sc} / 5，解锁填充题！</b><p class="note">乘号用 *，除号用 /，根号用 sqrt( )，例如 2*A/h − b 可写成 2A/h-b</p></div>`+S.fills.map((f,i)=>`<div class="card"><b>✏️ 填充题 ${i+1}</b><p>${R(f.p)}</p>${f.items.map((it,j)=>`<div class="row"><label>${it.lab} <input type="text" data-i="${i}" data-j="${j}" placeholder="${it.ph}" style="width:200px"></label><span id="fb${i}_${j}"></span></div>`).join("")}<button class="btn chk" data-i="${i}">检查</button></div>`).join("")+`<button class="btn g" id="rt">再练一组</button>`;
+    fl.querySelectorAll(".chk").forEach(b=>b.onclick=()=>{const i=b.dataset.i;S.fills[i].items.forEach((it,j)=>{const v=fl.querySelector(`input[data-i="${i}"][data-j="${j}"]`).value;const ok=v.trim()!==""&&it.chk(v);fl.querySelector(`#fb${i}_${j}`).innerHTML=ok?'<span style="color:var(--ok)">✔ 正确</span>':'<span style="color:var(--no)">✘ 答案：'+R(it.ans)+'</span>'})})}
+   else fl.innerHTML=`<div class="card"><b>答对 ${sc} / 5</b><p>还差一点，答对 3 题或以上才可挑战填充题。</p><button class="btn" id="rt">换一组再练</button></div>`;
+   fl.querySelector("#rt").onclick=start}
+ };start()
+}
+
+/* ---------- ① 公式计算器 ---------- */
+const F=[
+{n:"三角形面积",f:"A = {1|2}bh",d:"A 面积，b 底，h 高",s:{A:[x=>x.b*x.h/2,"A = {1|2}bh"],b:[x=>2*x.A/x.h,"b = {2A|h}"],h:[x=>2*x.A/x.b,"h = {2A|b}"]}},
+{n:"梯形面积",f:"A = {1|2}(a + b)h",d:"a 上底，b 下底，h 高",s:{A:[x=>(x.a+x.b)*x.h/2,"A = {1|2}(a + b)h"],a:[x=>2*x.A/x.h-x.b,"a = {2A|h} − b"],b:[x=>2*x.A/x.h-x.a,"b = {2A|h} − a"],h:[x=>2*x.A/(x.a+x.b),"h = {2A|a + b}"]}},
+{n:"n 边形内角和",f:"s = (n − 2) × 180°",d:"n 边数，s 内角和（度）",s:{s:[x=>(x.n-2)*180,"s = (n − 2) × 180°"],n:[x=>x.s/180+2,"n = {s|180°} + 2"]}},
+{n:"行程问题",f:"v = {s|t}",d:"v 速度，s 距离，t 时间",s:{v:[x=>x.s/x.t,"v = {s|t}"],s:[x=>x.v*x.t,"s = vt"],t:[x=>x.s/x.v,"t = {s|v}"]}},
+{n:"毕氏定理",f:"c² = a² + b²",d:"c 斜边，a、b 直角边",s:{c:[x=>Math.sqrt(x.a*x.a+x.b*x.b),"c = √(a² + b²)"],a:[x=>Math.sqrt(x.c*x.c-x.b*x.b),"a = √(c² − b²)"],b:[x=>Math.sqrt(x.c*x.c-x.a*x.a),"b = √(c² − a²)"]}},
+{n:"水箱剩水量",f:"P = m − kt",d:"m 原有水量，k 每小时流出，t 小时，P 剩余",s:{P:[x=>x.m-x.k*x.t,"P = m − kt"],m:[x=>x.P+x.k*x.t,"m = P + kt"],k:[x=>(x.m-x.P)/x.t,"k = {m − P|t}"],t:[x=>(x.m-x.P)/x.k,"t = {m − P|k}"]}},
+{n:"圆柱体积",f:"V = πr²h",d:"V 体积，r 半径，h 高",s:{V:[x=>Math.PI*x.r*x.r*x.h,"V = πr²h"],r:[x=>Math.sqrt(x.V/(Math.PI*x.h)),"r = √({V|πh})"],h:[x=>x.V/(Math.PI*x.r*x.r),"h = {V|πr²}"]}}
+];
+function genOne(used){for(let n=0;n<3000;n++){const f=F[[0,1,2,3,5][rnd(5)]],ks=Object.keys(f.s),t=ks[rnd(ks.length)];
+ if(used.has(f.n+t))continue;const x={};ks.forEach(k=>{if(k!=t)x[k]=ri(2,12)});const r=f.s[t][0](x);
+ if(isFinite(r)&&r>0&&Math.abs(r*100-Math.round(r*100))<1e-6){used.add(f.n+t);return{f,t,x,r}}}}
+const stmt=o=>`${o.f.n}：${o.f.f}（${o.f.d}）。已知 ${Object.keys(o.x).map(k=>k+" = "+o.x[k]).join("，")}，求 ${o.t}。`;
+function genCalc(){const u=new Set(),qs=[],fills=[];
+ for(let i=0;i<5;i++){const o=genOne(u);qs.push({kind:"num",p:stmt(o),a:o.r})}
+ for(let i=0;i<2;i++){const o=genOne(u),vs=Object.keys(o.x);
+  fills.push({p:stmt(o)+"<br>先写出以 "+o.t+" 为主项的公式，再代入求值：",items:[
+   {lab:o.t+" =",ph:"换主项后的式子",chk:s=>chkExpr(s,vs,o.f.s[o.t][0]),ans:o.f.s[o.t][1]},
+   {lab:o.t+" 的值 =",ph:"数值",chk:s=>Math.abs(parseFloat(s)-o.r)<0.01,ans:String(fmt(o.r))}]})}
+ return{qs,fills}}
+function calc(){
+ $("#main").innerHTML=`<div class="card"><b>代入公式，求值</b><p class="note">选公式，再选要求的主项，填入其余各数。</p>
+ <div class="row"><select id="fs">${F.map((f,i)=>`<option value="${i}">${f.n}</option>`).join("")}</select><label>求 <select id="ft"></select></label></div>
+ <div class="m" id="ff"></div><div class="note" id="fd"></div><div class="row" id="fi"></div><button class="btn" id="go">计算</button><div id="fr"></div></div><div id="pr"></div>`;
+ const f=()=>F[$("#fs").value];
+ const drawI=()=>{const t=$("#ft").value;$("#ff").innerHTML=R(f().f);$("#fd").textContent=f().d;
+  $("#fi").innerHTML=Object.keys(f().s).filter(k=>k!=t).map(v=>`<label>${v} = <input type="number" step="any" data-v="${v}"></label>`).join("");$("#fr").innerHTML=""};
+ const drawT=()=>{$("#ft").innerHTML=Object.keys(f().s).map(k=>`<option>${k}</option>`).join("");drawI()};
+ $("#fs").onchange=drawT;$("#ft").onchange=drawI;drawT();
+ $("#go").onclick=()=>{const t=$("#ft").value,x={};let ok=true;
+  document.querySelectorAll("#fi input").forEach(i=>{if(i.value==="")ok=false;x[i.dataset.v]=+i.value});
+  if(!ok){$("#fr").innerHTML='<div class="tip">请把所有数都填上。</div>';return}
+  const r=f().s[t][0](x);
+  $("#fr").innerHTML=isFinite(r)?`<div class="res">换主项：${R(f().s[t][1])}<br>${t} = ${Math.round(r*1000)/1000}</div>`:'<div class="tip">无法计算，请检查数值（如除数不能为 0，根号内不能为负）。</div>'};
+ practice($("#pr"),genCalc)
+}
+
+/* ---------- ② 换主项演示 ---------- */
+const E=[
+{f:"v = u + at",t:{
+ a:[["v = u + at","原公式"],["v − u = at","把 u 移到左边（变号）"],["a = {v − u|t}","两边同除以 t"]],
+ u:[["v = u + at","原公式"],["u + at = v","左右对调，把 u 放在左边"],["u = v − at","把 at 移到右边（变号）"]],
+ t:[["v = u + at","原公式"],["v − u = at","把 u 移到左边（变号）"],["t = {v − u|a}","两边同除以 a"]]}},
+{f:"I = {PRT|100}",t:{
+ R:[["I = {PRT|100}","原公式"],["100I = PRT","两边同乘 100，去掉分母"],["R = {100I|PT}","两边同除以 PT"]],
+ P:[["I = {PRT|100}","原公式"],["100I = PRT","两边同乘 100，去掉分母"],["P = {100I|RT}","两边同除以 RT"]],
+ T:[["I = {PRT|100}","原公式"],["100I = PRT","两边同乘 100，去掉分母"],["T = {100I|PR}","两边同除以 PR"]]}},
+{f:"s = (n − 2) × 180°",t:{n:[["s = (n − 2) × 180°","原公式"],["{s|180°} = n − 2","两边同除以 180°"],["n = {s|180°} + 2","把 −2 移到右边（变号）"]]}},
+{f:"a = √x",t:{x:[["a = √x","原公式"],["a² = x","两边平方，去掉根号"],["x = a²","把主项写在左边"]]}},
+{f:"{1|u} + {1|v} = {1|f}",t:{
+ u:[["{1|u} + {1|v} = {1|f}","原公式"],["{1|u} = {1|f} − {1|v}","移项：把 {1|v} 移到右边"],["{1|u} = {v − f|fv}","右边通分"],["u = {fv|v − f}","两边取倒数 ⚠ 要先通分成一个分数，才能取倒数"]],
+ v:[["{1|u} + {1|v} = {1|f}","原公式"],["{1|v} = {1|f} − {1|u}","移项：把 {1|u} 移到右边"],["{1|v} = {u − f|fu}","右边通分"],["v = {fu|u − f}","两边取倒数"]],
+ f:[["{1|u} + {1|v} = {1|f}","原公式"],["{1|f} = {1|u} + {1|v}","左右对调"],["{1|f} = {v + u|uv}","右边通分"],["f = {uv|u + v}","两边取倒数"]]}},
+{f:"y = {2 − x|3 + 2x}",t:{x:[["y = {2 − x|3 + 2x}","原公式"],["3y + 2xy = 2 − x","两边同乘 (3 + 2x)，去分母"],["2xy + x = 2 − 3y","含 x 的项移到左边，其余移到右边"],["x(2y + 1) = 2 − 3y","提取公因式 x"],["x = {2 − 3y|2y + 1}","两边同除以 (2y + 1)"]]}}
+];
+const FI=[
+{f:"v = u + at",t:"a",vars:["v","u","t"],fn:x=>(x.v-x.u)/x.t,a:"a = {v − u|t}"},
+{f:"I = {PRT|100}",t:"P",vars:["I","R","T"],fn:x=>100*x.I/(x.R*x.T),a:"P = {100I|RT}"},
+{f:"p = 2(l + b)",t:"b",vars:["p","l"],fn:x=>x.p/2-x.l,a:"b = {p|2} − l"},
+{f:"{1|u} + {1|v} = {1|f}",t:"v",vars:["u","f"],fn:x=>x.f*x.u/(x.u-x.f),a:"v = {fu|u − f}"},
+{f:"s = {1|2}t(u + v)",t:"v",vars:["s","t","u"],fn:x=>2*x.s/x.t-x.u,a:"v = {2s|t} − u"},
+{f:"y = {2 − x|3 + 2x}",t:"x",vars:["y"],fn:x=>(2-3*x.y)/(2*x.y+1),a:"x = {2 − 3y|2y + 1}"}];
+function genSteps(){
+ const qs=shf(Q.slice(0,8)).slice(0,5).map(q=>({kind:"mc",p:q.q,o:shf([q.a,...q.w]),a:q.a}));
+ const fills=shf(FI).slice(0,2).map(o=>({p:`把 ${o.f} 换成以 ${o.t} 为主项：`,items:[{lab:o.t+" =",ph:"例：(v-u)/t",chk:s=>chkExpr(s,o.vars,o.fn),ans:o.a}]}));
+ return{qs,fills}}
+function steps(){
+ $("#main").innerHTML=`<div class="card"><b>一步一步看怎么换主项</b><div class="row"><select id="es">${E.map((e,i)=>`<option value="${i}">例 ${i+1}　${P(e.f)}</option>`).join("")}</select><label>换为 <select id="et2"></select> 为主项</label></div>
+ <div class="m" id="et"></div><div id="ss"></div>
+ <div class="row"><button class="btn" id="nx">下一步 ▶</button><button class="btn g" id="rs">重来</button></div></div>
+ <div class="card note">方法：①去分母 / 去根号　②移项（越过等号要变号）　③合并同类项、提公因式　④两边同除以主项的系数。主项必须单独在等号左边，右边不能再出现它。</div><div id="pr"></div>`;
+ let k=0;const e=()=>E[$("#es").value],S=()=>e().t[$("#et2").value];
+ const reset=()=>{k=0;$("#et").innerHTML=R(`${e().f}　（以 ${$("#et2").value} 为主项）`);$("#ss").innerHTML="";$("#nx").disabled=false;$("#nx").textContent="下一步 ▶";add()};
+ const add=()=>{const s=S();if(k>=s.length)return;const d=document.createElement("div");d.className="step";
+  d.innerHTML=`<span class="m">${R(s[k][0])}</span><small>${R(s[k][1])}</small>`;$("#ss").appendChild(d);k++;if(k>=s.length){$("#nx").disabled=true;$("#nx").textContent="✔ 演示完成"}};
+ const drawT=()=>{$("#et2").innerHTML=Object.keys(e().t).map(t=>`<option>${t}</option>`).join("");reset()};
+ $("#es").onchange=drawT;$("#et2").onchange=reset;$("#rs").onclick=reset;$("#nx").onclick=add;drawT();
+ practice($("#pr"),genSteps)
+}
+
+/* ---------- ③ 随堂测验 ---------- */
+const Q=[
+{q:"C = πd，以 d 为主项：",a:"d = {C|π}",w:["d = Cπ","d = {π|C}","d = C − π"]},
+{q:"v = u + at，以 a 为主项：",a:"a = {v − u|t}",w:["a = v − u + t","a = {v + u|t}","a = {t|v − u}"]},
+{q:"V = lbh，以 h 为主项：",a:"h = {V|lb}",w:["h = V − lb","h = {lb|V}","h = Vlb"]},
+{q:"p = 2(l + b)，以 l 为主项：",a:"l = {p|2} − b",w:["l = {p|2} + b","l = 2p − b","l = p − 2b"]},
+{q:"s = {1|2}t(u + v)，以 u 为主项：",a:"u = {2s|t} − v",w:["u = {2s|t} + v","u = {s|2t} − v","u = 2st − v"]},
+{q:"m = x²（x > 0），以 x 为主项：",a:"x = √m",w:["x = m²","x = {m|2}","x = ±m"]},
+{q:"{1|u} + {1|v} = {1|f}，以 u 为主项：",a:"u = {fv|v − f}",w:["u = f − v","u = v − f","u = {1|f − v}"]},
+{q:"y = {2 − x|3 + 2x}，以 x 为主项：",a:"x = {2 − 3y|2y + 1}",w:["x = {2 + 3y|2y + 1}","x = {2 − 3y|2y − 1}","x = 2 − 3y − 2y"]},
+{q:"水箱：P = m − kt。当 m = 2500，k = 15，t = 5 时，P = ？",a:"2425",w:["2575","2485","2500"]},
+{q:"已知 s = {1|2}t(u + v)。当 t = 6，u = 7，v = 13 时，s = ？",a:"60",w:["120","30","26"]}
+];
+const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+function quiz(){
+ let i=0,sc=0,done=false;
+ const qs=Q.map(q=>({...q,o:sh([q.a,...q.w])}));
+ const draw=()=>{
+  if(i>=qs.length){$("#main").innerHTML=`<div class="card"><div class="m" style="font-size:24px">得分：${sc} / ${qs.length}</div>
+   <p>${sc==qs.length?"🎉 太棒了，全对！":sc>=7?"👍 不错，再看看错题的步骤演示。":"💪 回到“换主项演示”再练一练。"}</p><button class="btn" id="again">再测一次</button></div>`;
+   $("#again").onclick=quiz;return}
+  const q=qs[i];done=false;
+  $("#main").innerHTML=`<div class="card"><div class="bar"><i style="width:${i/qs.length*100}%"></i></div>
+   <div class="note">第 ${i+1} / ${qs.length} 题</div><p><b>${R(q.q)}</b></p>
+   ${q.o.map(o=>`<button class="opt" data-v="${o}">${R(o)}</button>`).join("")}<div id="fb"></div></div>`;
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+   if(done)return;done=true;const r=b.dataset.v===q.a;if(r)sc++;
+   document.querySelectorAll(".opt").forEach(x=>{if(x.dataset.v===q.a)x.classList.add("ok")});
+   if(!r)b.classList.add("no");
+   $("#fb").innerHTML=`<div class="tip" style="background:${r?"var(--okb)":"var(--nob)"}">${r?"✔ 正确！":"✘ 正确答案是："+R(q.a)}</div><div class="row"><button class="btn" id="nq">${i+1<qs.length?"下一题 ▶":"看成绩"}</button></div>`;
+   $("#nq").onclick=()=>{i++;draw()}})
+ };draw()
+}
+show("calc");
+</script>
+</body>
+</html>
