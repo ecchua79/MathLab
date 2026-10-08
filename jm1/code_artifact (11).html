@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一元二次方程式探索</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering professional math formulas -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+        }
+        .math-input {
+            width: 70px;
+            text-align: center;
+            border-bottom: 2px solid #3b82f6;
+            transition: all 0.2s ease;
+        }
+        .math-input:focus {
+            outline: none;
+            border-bottom-color: #1d4ed8;
+            background-color: #eff6ff;
+        }
+        .step-card {
+            border-left: 4px solid #3b82f6;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 pb-12">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-8 px-4 shadow-lg mb-8">
+        <div class="max-w-5xl mx-auto text-center">
+            <span class="inline-block bg-white/20 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                <i class="fa-solid font-bold fa-calculator mr-1"></i> 交互式数学学习工具
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2">一元二次方程式探索</h1>
+            <p class="text-blue-100 text-sm md:text-base max-w-2xl mx-auto">
+                深入理解一元二次方程 $a x^2 + b x + c = 0$ ($a \neq 0$) 的三种核心解法，查看一步步详细推导过程。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 space-y-8">
+
+        <!-- Quick Presets Bar -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-lightbulb text-amber-500"></i> 快速载入经典例题：
+            </span>
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="loadPreset(1, -4, -21)" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold px-3 py-1.5 rounded-lg border border-blue-200 transition">
+                    经典解法：$x^2 - 4x - 21 = 0$
+                </button>
+                <button onclick="loadPreset(1, 5, 6)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+                    正数根：$x^2 + 5x + 6 = 0$
+                </button>
+                <button onclick="loadPreset(1, -6, 9)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+                    相等实根：$x^2 - 6x + 9 = 0$
+                </button>
+                <button onclick="loadPreset(1, 2, 5)" class="bg-slate-100 hover:bg-rose-50 hover:text-rose-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+                    无实数解：$x^2 + 2x + 5 = 0$
+                </button>
+                <button onclick="loadPreset(2, 5, -3)" class="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+                    二次项系数不为1：$2x^2 + 5x - 3 = 0$
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-slate-200 bg-white rounded-t-xl overflow-x-auto shadow-sm">
+            <button id="tab-btn-factor" onclick="switchTab('factor')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-blue-600 border-b-2 border-blue-600 flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-puzzle-piece"></i> 第一部分：因式分解法
+            </button>
+            <button id="tab-btn-square" onclick="switchTab('square')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-shapes"></i> 第二部分：配方法
+            </button>
+            <button id="tab-btn-formula" onclick="switchTab('formula')" class="flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-square-root-variable"></i> 第三部分：公式法
+            </button>
+        </div>
+
+        <!-- SECTION 1: 因式分解法 -->
+        <section id="section-factor" class="bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
+            <div class="border-b pb-4">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <span class="bg-blue-100 text-blue-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-puzzle-piece"></i></span>
+                    因式分解法 (Factorization Method)
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">
+                    原理：找到满足乘积为 $ac$、和为 $b$ 的数字组合，将二次多项式转化为 $(p_1 x + q_1)(p_2 x + q_2) = 0$ 的乘积形式求解。
+                </p>
+            </div>
+
+            <!-- Calculator Form -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
+                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="factor-a" value="1" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="a">
+                    <span class="text-slate-400">)</span>
+                    <span>x²</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="factor-b" value="-4" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="b">
+                    <span class="text-slate-400">)</span>
+                    <span>x</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="factor-c" value="-21" step="any" class="math-input py-1 bg-transparent text-blue-600 font-bold" placeholder="c">
+                    <span class="text-slate-400">)</span>
+                    <span>= 0</span>
+                </div>
+
+                <div class="mt-6 flex justify-center gap-3">
+                    <button onclick="calculateFactor()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
+                    </button>
+                    <button onclick="resetInputs('factor')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
+                        重置
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Steps -->
+            <div id="factor-output" class="hidden space-y-4"></div>
+        </section>
+
+        <!-- SECTION 2: 配方法 -->
+        <section id="section-square" class="hidden bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
+            <div class="border-b pb-4">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-shapes"></i></span>
+                    配方法 (Completing the Square)
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">
+                    原理：通过两边同时加上一次项系数一半的平方，将二次式转化为完全平方式 $(x + m)^2 = n$ 后开平方求解。
+                </p>
+            </div>
+
+            <!-- Calculator Form -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
+                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="square-a" value="1" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="a">
+                    <span class="text-slate-400">)</span>
+                    <span>x²</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="square-b" value="-4" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="b">
+                    <span class="text-slate-400">)</span>
+                    <span>x</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="square-c" value="-21" step="any" class="math-input py-1 bg-transparent text-indigo-600 font-bold" placeholder="c">
+                    <span class="text-slate-400">)</span>
+                    <span>= 0</span>
+                </div>
+
+                <div class="mt-6 flex justify-center gap-3">
+                    <button onclick="calculateSquare()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
+                    </button>
+                    <button onclick="resetInputs('square')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
+                        重置
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Steps -->
+            <div id="square-output" class="hidden space-y-4"></div>
+        </section>
+
+        <!-- SECTION 3: 公式法 -->
+        <section id="section-formula" class="hidden bg-white p-6 md:p-8 rounded-b-xl shadow-sm border border-slate-200 space-y-6">
+            <div class="border-b pb-4">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <span class="bg-purple-100 text-purple-700 text-sm p-1.5 rounded-lg"><i class="fa-solid fa-square-root-variable"></i></span>
+                    公式法 (Quadratic Formula)
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">
+                    原理：直接代入求根公式 $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$，通用性最强，适用于所有一元二次方程。
+                </p>
+            </div>
+
+            <!-- Calculator Form -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div class="text-center font-semibold text-slate-700 mb-4 text-sm">输入方程系数：</div>
+                <div class="flex flex-wrap items-center justify-center gap-2 text-lg md:text-2xl font-bold text-slate-800">
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="formula-a" value="1" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="a">
+                    <span class="text-slate-400">)</span>
+                    <span>x²</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="formula-b" value="-4" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="b">
+                    <span class="text-slate-400">)</span>
+                    <span>x</span>
+                    <span>+</span>
+                    <span class="text-slate-400">(</span>
+                    <input type="number" id="formula-c" value="-21" step="any" class="math-input py-1 bg-transparent text-purple-600 font-bold" placeholder="c">
+                    <span class="text-slate-400">)</span>
+                    <span>= 0</span>
+                </div>
+
+                <div class="mt-6 flex justify-center gap-3">
+                    <button onclick="calculateFormula()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> 开始计算
+                    </button>
+                    <button onclick="resetInputs('formula')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-4 py-2.5 rounded-xl transition">
+                        重置
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Steps -->
+            <div id="formula-output" class="hidden space-y-4"></div>
+        </section>
+
+    </main>
+
+    <script>
+        // Global Tab Switching Logic
+        function switchTab(tabName) {
+            const tabs = ['factor', 'square', 'formula'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const sec = document.getElementById(`section-${t}`);
+                if (t === tabName) {
+                    sec.classList.remove('hidden');
+                    btn.className = "flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-blue-600 border-b-2 border-blue-600 flex items-center justify-center gap-2 transition";
+                } else {
+                    sec.classList.add('hidden');
+                    btn.className = "flex-1 min-w-[120px] py-3.5 px-4 text-center font-semibold text-slate-500 hover:text-blue-600 border-b-2 border-transparent flex items-center justify-center gap-2 transition";
+                }
+            });
+        }
+
+        // Preset Loader
+        function loadPreset(a, b, c) {
+            const prefixes = ['factor', 'square', 'formula'];
+            prefixes.forEach(p => {
+                document.getElementById(`${p}-a`).value = a;
+                document.getElementById(`${p}-b`).value = b;
+                document.getElementById(`${p}-c`).value = c;
+            });
+
+            // Automatically trigger calculate for active tab
+            calculateFactor();
+            calculateSquare();
+            calculateFormula();
+        }
+
+        function resetInputs(prefix) {
+            document.getElementById(`${prefix}-a`).value = 1;
+            document.getElementById(`${prefix}-b`).value = 0;
+            document.getElementById(`${prefix}-c`).value = 0;
+            const output = document.getElementById(`${prefix}-output`);
+            output.classList.add('hidden');
+            output.innerHTML = '';
+        }
+
+        function formatNumber(num) {
+            if (Number.isInteger(num)) return num.toString();
+            return parseFloat(num.toFixed(4)).toString();
+        }
+
+        function formatCoeff(val, varStr = '', isFirst = false) {
+            if (val === 0) return '';
+            let sign = val > 0 ? (isFirst ? '' : ' + ') : (isFirst ? '-' : ' - ');
+            let absVal = Math.abs(val);
+            let numStr = absVal === 1 && varStr !== '' ? '' : formatNumber(absVal);
+            return `${sign}${numStr}${varStr}`;
+        }
+
+        function formatEq(a, b, c) {
+            let str = formatCoeff(a, 'x^2', true);
+            str += formatCoeff(b, 'x', false);
+            str += formatCoeff(c, '', false);
+            if (str === '' || str.startsWith(' + ')) str = str.replace(' + ', '');
+            return str + ' = 0';
+        }
+
+        // Helper to format linear factor (px + q) without bad signs like (x - -3)
+        function formatLinearFactor(p, q) {
+            let pStr = '';
+            if (p === 1) pStr = 'x';
+            else if (p === -1) pStr = '-x';
+            else pStr = `${formatNumber(p)}x`;
+
+            if (q === 0) return pStr;
+            if (q > 0) return `${pStr} + ${formatNumber(q)}`;
+            return `${pStr} - ${formatNumber(Math.abs(q))}`;
+        }
+
+        function triggerMathJax() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise();
+            }
+        }
+
+        function getFactorPairs(ac) {
+            let pairs = [];
+            let absAC = Math.abs(ac);
+            for (let i = 1; i <= Math.sqrt(absAC); i++) {
+                if (absAC % i === 0) {
+                    let j = absAC / i;
+                    if (ac > 0) {
+                        pairs.push([i, j]);
+                        pairs.push([-i, -j]);
+                    } else {
+                        pairs.push([i, -j]);
+                        pairs.push([-i, j]);
+                    }
+                }
+            }
+            // Sort and remove duplicates
+            let unique = [];
+            let seen = new Set();
+            for (let p of pairs) {
+                let sorted = p[0] <= p[1] ? [p[0], p[1]] : [p[1], p[0]];
+                let key = `${sorted[0]},${sorted[1]}`;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    unique.push(sorted);
+                }
+            }
+            return unique;
+        }
+
+        function findCrossMultiplication(a, b, c) {
+            let pPairs = getFactorPairs(a);
+            let qPairs = getFactorPairs(c);
+            for (let [p1, p2] of pPairs) {
+                for (let [q1, q2] of qPairs) {
+                    if (p1 * q2 + p2 * q1 === b) {
+                        return { p1, q1, p2, q2 };
+                    }
+                    if (p1 * q1 + p2 * q2 === b) {
+                        return { p1, q2, p2, q1 };
+                    }
+                }
+            }
+            return null;
+        }
+
+        function calculateFactor() {
+            const a = parseFloat(document.getElementById('factor-a').value);
+            const b = parseFloat(document.getElementById('factor-b').value);
+            const c = parseFloat(document.getElementById('factor-c').value);
+            const output = document.getElementById('factor-output');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数字。`;
+                output.classList.remove('hidden');
+                return;
+            }
+            if (a === 0) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$，否则不是一元二次方程。`;
+                output.classList.remove('hidden');
+                triggerMathJax();
+                return;
+            }
+
+            const delta = b * b - 4 * a * c;
+            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
+
+            if (delta < 0) {
+                html += `
+                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
+                    <div class="font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解（实数范围内无法因式分解）
+                    </div>
+                    <p class="text-sm">
+                        计算判别式：$\\Delta = b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${delta} < 0$。
+                    </p>
+                    <p class="text-sm">
+                        因为判别式 $\\Delta < 0$，原方程在实数范围内<strong>无法因式分解</strong>，故<strong>原方程无实数解</strong>。
+                    </p>
+                </div>`;
+            } else {
+                const sqrtDelta = Math.sqrt(delta);
+                const x1 = (-b + sqrtDelta) / (2 * a);
+                const x2 = (-b - sqrtDelta) / (2 * a);
+
+                html += `<div class="space-y-3">`;
+                
+                // Step 1: Analyze Delta
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
+                    <div class="font-semibold text-blue-700">步骤 1：判断判别式与分解可行性</div>
+                    <p class="text-sm text-slate-600 mt-1">
+                        $\\Delta = b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${delta}$
+                        ${delta === 0 ? '（等于 0，有两个相等实根）' : '（大于等于 0，可进行实数分解）'}
+                    </p>
+                </div>`;
+
+                // Step 2: Combination table & Factorization
+                const ac = a * c;
+                const isIntegers = Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c);
+
+                let factorFormStr = "";
+                let step3FactorStr = "";
+
+                if (isIntegers) {
+                    const pairs = getFactorPairs(ac);
+                    const crossMatch = findCrossMultiplication(a, b, c);
+
+                    let tableRows = "";
+                    let foundPair = false;
+
+                    for (let p of pairs) {
+                        let m = p[0], n = p[1];
+                        let sum = m + n;
+                        let isMatch = (sum === b);
+                        if (isMatch) foundPair = true;
+
+                        tableRows += `
+                        <tr class="${isMatch ? 'bg-emerald-50 text-emerald-900 font-bold' : 'hover:bg-slate-50 text-slate-600'}">
+                            <td class="py-2 px-3 border-b border-slate-200">${m} \\times (${n})</td>
+                            <td class="py-2 px-3 border-b border-slate-200">${ac}</td>
+                            <td class="py-2 px-3 border-b border-slate-200">${m} + (${n}) = ${sum}</td>
+                            <td class="py-2 px-3 border-b border-slate-200">
+                                ${isMatch ? '<span class="text-emerald-600"><i class="fa-solid fa-circle-check"></i> 符合 (b = ' + b + ')</span>' : '<span class="text-slate-400">×</span>'}
+                            </td>
+                        </tr>`;
+                    }
+
+                    if (crossMatch) {
+                        let { p1, q1, p2, q2 } = crossMatch;
+                        let factor1 = formatLinearFactor(p1, q1);
+                        let factor2 = formatLinearFactor(p2, q2);
+                        factorFormStr = `(${factor1})(${factor2}) = 0`;
+                        step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
+                    } else {
+                        // Fallback using roots
+                        let factor1 = formatLinearFactor(1, -x1);
+                        let factor2 = formatLinearFactor(1, -x2);
+                        let aCoeff = a === 1 ? '' : (a === -1 ? '-' : formatNumber(a));
+                        factorFormStr = `${aCoeff}(${factor1})(${factor2}) = 0`;
+                        step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
+                    }
+
+                    html += `
+                    <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
+                        <div class="font-semibold text-blue-700">步骤 2：对方程左边进行因式分解</div>
+                        <p class="text-sm text-slate-600 mt-1">
+                            寻找满足乘积为 $ac\\ (${ac})$、和为 $b\\ (${b})$ 的分解组合：
+                        </p>
+
+                        <!-- Pair Combinations Table -->
+                        <div class="overflow-x-auto my-3">
+                            <table class="min-w-full text-xs text-center border-collapse border border-slate-200 bg-white rounded-lg overflow-hidden shadow-sm">
+                                <thead class="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+                                    <tr>
+                                        <th class="py-2 px-3">组合 $(m, n)$</th>
+                                        <th class="py-2 px-3">乘积 $m \\times n\\ (ac)$</th>
+                                        <th class="py-2 px-3">加和 $m + n$</th>
+                                        <th class="py-2 px-3">结果匹配</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tableRows}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="text-sm text-slate-600 mt-2">原方程可化为：</p>
+                        <div class="text-base font-semibold text-slate-800 my-1">
+                            $${factorFormStr}$
+                        </div>
+                    </div>`;
+                } else {
+                    // Non-integer handling
+                    let factor1 = formatLinearFactor(1, -x1);
+                    let factor2 = formatLinearFactor(1, -x2);
+                    let aCoeff = a === 1 ? '' : (a === -1 ? '-' : formatNumber(a));
+                    factorFormStr = `${aCoeff}(${factor1})(${factor2}) = 0`;
+                    step3FactorStr = `$${factor1} = 0 \\quad \\text{或} \\quad ${factor2} = 0$`;
+
+                    html += `
+                    <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
+                        <div class="font-semibold text-blue-700">步骤 2：对方程左边进行因式分解</div>
+                        <p class="text-sm text-slate-600 mt-1">
+                            对于非整数或小数系数，利用求根公式求得根后化为乘积形式：
+                        </p>
+                        <div class="text-base font-semibold text-slate-800 my-2">
+                            $${factorFormStr}$
+                        </div>
+                    </div>`;
+                }
+
+                // Step 3: Solve factor equations
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-blue-500">
+                    <div class="font-semibold text-blue-700">步骤 3：令各个因式分别等于 0</div>
+                    <p class="text-sm text-slate-700 font-medium mt-1">
+                        ${step3FactorStr}
+                    </p>
+                </div>`;
+
+                // Final Answer
+                html += `
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
+                    <div class="font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
+                    </div>
+                    <div class="text-lg font-bold text-emerald-700 mt-1">
+                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
+                    </div>
+                </div>`;
+
+                html += `</div>`;
+            }
+
+            output.innerHTML = html;
+            output.classList.remove('hidden');
+            triggerMathJax();
+        }
+
+        function calculateSquare() {
+            const a = parseFloat(document.getElementById('square-a').value);
+            const b = parseFloat(document.getElementById('square-b').value);
+            const c = parseFloat(document.getElementById('square-c').value);
+            const output = document.getElementById('square-output');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数值！`;
+                output.classList.remove('hidden');
+                return;
+            }
+            if (a === 0) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$。`;
+                output.classList.remove('hidden');
+                triggerMathJax();
+                return;
+            }
+
+            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
+
+            html += `<div class="space-y-3">`;
+
+            // Step 1: Move constant
+            html += `
+            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
+                <div class="font-semibold text-indigo-700">步骤 1：移项（将常数项移到方程右边）</div>
+                <p class="text-sm text-slate-600 mt-1">
+                    $${formatCoeff(a, 'x^2', true)}${formatCoeff(b, 'x', false)} = ${formatNumber(-c)}$
+                </p>
+            </div>`;
+
+            // Step 2: Divide by a (if a != 1)
+            const b_prime = b / a;
+            const c_prime = -c / a;
+            if (a !== 1) {
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
+                    <div class="font-semibold text-indigo-700">步骤 2：二次项系数化为 1（两边同除以 $a = ${a}$）</div>
+                    <p class="text-sm text-slate-600 mt-1">
+                        $x^2 ${formatCoeff(b_prime, 'x', false)} = ${formatNumber(c_prime)}$
+                    </p>
+                </div>`;
+            }
+
+            // Step 3: Add (b/2a)^2 to both sides
+            const half_b = b_prime / 2;
+            const half_b_sq = half_b * half_b;
+            const rhs = c_prime + half_b_sq;
+
+            html += `
+            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
+                <div class="font-semibold text-indigo-700">步骤 3：配方（两边同时加上一次项系数一半的平方 $\\left(\\frac{b}{2a}\\right)^2$）</div>
+                <p class="text-sm text-slate-600 mt-1">
+                    加上 $\\left(${formatNumber(half_b)}\\right)^2 = ${formatNumber(half_b_sq)}$：
+                </p>
+                <p class="text-sm text-slate-700 font-semibold mt-1">
+                    $x^2 ${formatCoeff(b_prime, 'x', false)} + ${formatNumber(half_b_sq)} = ${formatNumber(c_prime)} + ${formatNumber(half_b_sq)}$
+                </p>
+            </div>`;
+
+            // Step 4: Write as perfect square
+            html += `
+            <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
+                <div class="font-semibold text-indigo-700">步骤 4：写成完全平方式并化简右边</div>
+                <p class="text-sm text-slate-700 font-bold mt-1">
+                    $\\left(x ${half_b >= 0 ? '+ ' + formatNumber(half_b) : '- ' + formatNumber(Math.abs(half_b))}\\right)^2 = ${formatNumber(rhs)}$
+                </p>
+            </div>`;
+
+            // Step 5: Solve for x
+            if (rhs < 0) {
+                html += `
+                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
+                    <div class="font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解
+                    </div>
+                    <p class="text-sm">
+                        方程右边为 $${formatNumber(rhs)} < 0$。因为任何实数的平方都不可能为负数，所以<strong>原方程无实数解</strong>。
+                    </p>
+                </div>`;
+            } else {
+                const sqrtRhs = Math.sqrt(rhs);
+                const x1 = -half_b + sqrtRhs;
+                const x2 = -half_b - sqrtRhs;
+
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-indigo-500">
+                    <div class="font-semibold text-indigo-700">步骤 5：两边开平方求解</div>
+                    <p class="text-sm text-slate-600 mt-1">
+                        $x ${half_b >= 0 ? '+ ' + formatNumber(half_b) : '- ' + formatNumber(Math.abs(half_b))} = \\pm ${formatNumber(sqrtRhs)}$
+                    </p>
+                </div>`;
+
+                // Final Answer
+                html += `
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
+                    <div class="font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
+                    </div>
+                    <div class="text-lg font-bold text-emerald-700 mt-1">
+                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
+                    </div>
+                </div>`;
+            }
+
+            html += `</div>`;
+            output.innerHTML = html;
+            output.classList.remove('hidden');
+            triggerMathJax();
+        }
+
+        function calculateFormula() {
+            const a = parseFloat(document.getElementById('formula-a').value);
+            const b = parseFloat(document.getElementById('formula-b').value);
+            const c = parseFloat(document.getElementById('formula-c').value);
+            const output = document.getElementById('formula-output');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>请输入有效的数值！`;
+                output.classList.remove('hidden');
+                return;
+            }
+            if (a === 0) {
+                output.className = "step-card bg-amber-50 p-4 rounded-xl text-amber-800 border-amber-400";
+                output.innerHTML = `<div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 注意：</div>二次项系数 $a$ 不能为 $0$。`;
+                output.classList.remove('hidden');
+                triggerMathJax();
+                return;
+            }
+
+            let html = `<div class="font-bold text-slate-800 text-lg mb-2">标准方程：$${formatEq(a, b, c)}$</div>`;
+            const delta = b * b - 4 * a * c;
+
+            html += `<div class="space-y-3">`;
+
+            // Step 1: Coefficients
+            html += `
+            <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
+                <div class="font-semibold text-purple-700">步骤 1：确定各项系数</div>
+                <p class="text-sm text-slate-600 mt-1">
+                    $a = ${a}, \\quad b = ${b}, \\quad c = ${c}$
+                </p>
+            </div>`;
+
+            // Step 2: Discriminant
+            html += `
+            <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
+                <div class="font-semibold text-purple-700">步骤 2：计算判别式 $\\Delta$ (Delta)</div>
+                <p class="text-sm text-slate-600 mt-1">
+                    $\\Delta = b^2 - 4ac = (${b})^2 - 4 \\times (${a}) \\times (${c}) = ${delta}$
+                </p>
+            </div>`;
+
+            // Step 3 & 4: Formula & Roots
+            if (delta < 0) {
+                html += `
+                <div class="step-card bg-rose-50 p-4 rounded-xl border-rose-400 text-rose-900 space-y-2">
+                    <div class="font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> 无实数解（判别式 $\\Delta < 0$）
+                    </div>
+                    <p class="text-sm">
+                        因为 $\\Delta = ${delta} < 0$，在实数范围内负数不能开平方，所以<strong>原方程无实数解</strong>。
+                    </p>
+                </div>`;
+            } else {
+                const sqrtDelta = Math.sqrt(delta);
+                const x1 = (-b + sqrtDelta) / (2 * a);
+                const x2 = (-b - sqrtDelta) / (2 * a);
+
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
+                    <div class="font-semibold text-purple-700">步骤 3：代入求根公式 $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}$</div>
+                    <p class="text-sm text-slate-700 font-semibold mt-1">
+                        $x = \\frac{-(${b}) \\pm \\sqrt{${delta}}}{2 \\times (${a})} = \\frac{${-b} \\pm ${formatNumber(sqrtDelta)}}{${2 * a}}$
+                    </p>
+                </div>`;
+
+                html += `
+                <div class="step-card bg-slate-50 p-4 rounded-xl border-purple-500">
+                    <div class="font-semibold text-purple-700">步骤 4：计算两个根的值</div>
+                    <p class="text-sm text-slate-600 mt-1">
+                        $x_1 = \\frac{${-b} + ${formatNumber(sqrtDelta)}}{${2 * a}} = ${formatNumber(x1)}$
+                    </p>
+                    <p class="text-sm text-slate-600 mt-1">
+                        $x_2 = \\frac{${-b} - ${formatNumber(sqrtDelta)}}{${2 * a}} = ${formatNumber(x2)}$
+                    </p>
+                </div>`;
+
+                // Final Answer
+                html += `
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-emerald-900">
+                    <div class="font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> 最终求解结果：
+                    </div>
+                    <div class="text-lg font-bold text-emerald-700 mt-1">
+                        ${x1 === x2 ? `$x_1 = x_2 = ${formatNumber(x1)}$` : `$x_1 = ${formatNumber(x1)}, \\quad x_2 = ${formatNumber(x2)}$`}
+                    </div>
+                </div>`;
+            }
+
+            html += `</div>`;
+            output.innerHTML = html;
+            output.classList.remove('hidden');
+            triggerMathJax();
+        }
+
+        window.onload = function() {
+            calculateFactor();
+            calculateSquare();
+            calculateFormula();
+        };
+    </script>
+</body>
+</html>
