@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初二数学 第10章 集合论的应用 - 互动学习课件</title>
+    <meta name="author" content="峇株吧辖华仁中学蔡逸众制作 / Made by ecchua79">
+    <script>
+        (function () {
+            try {
+                var d = document.documentElement;
+                if (localStorage.getItem('jihe10_theme') === 'dark') d.classList.add('dark');
+                var S = { s: '87.5%', l: '118%' }, f = localStorage.getItem('jihe10_fs');
+                if (S[f]) d.style.fontSize = S[f];
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                        },
+                        setA: '#3b82f6',
+                        setB: '#10b981',
+                        setC: '#f59e0b',
+                        setU: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Vue 3 Global Build -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .venn-circle {
+            transition: all 0.3s ease;
+            mix-blend-mode: multiply;
+        }
+        .venn-circle:hover {
+            fill-opacity: 0.45;
+            cursor: pointer;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .tab-btn-active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            font-weight: 600;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* ===== 深色模式（html.dark） ===== */
+        html.dark { color-scheme: dark; }
+        html.dark body { background-color: #0f172a; color: #e2e8f0; }
+        html.dark .bg-white { background-color: #1e293b; }
+        html.dark .bg-slate-50 { background-color: #0f172a; }
+        html.dark .bg-slate-100 { background-color: #334155; }
+        html.dark .bg-slate-200 { background-color: #475569; }
+        html.dark [class*="hover:bg-slate-100"]:hover { background-color: #334155; }
+        html.dark [class*="hover:bg-slate-200"]:hover { background-color: #475569; }
+        html.dark button.bg-slate-900 { background-color: #475569; }
+        html.dark .text-slate-900, html.dark .text-slate-800 { color: #f1f5f9; }
+        html.dark .text-slate-700 { color: #e2e8f0; }
+        html.dark .text-slate-600 { color: #cbd5e1; }
+        html.dark .text-slate-500 { color: #94a3b8; }
+        html.dark .border, html.dark .border-b, html.dark .border-t { border-color: #334155; }
+        html.dark [class*="border-slate-1"], html.dark [class*="border-slate-2"] { border-color: #334155; }
+        html.dark [class*="border-slate-3"] { border-color: #475569; }
+        html.dark input:not([type="range"]):not([type="radio"]), html.dark textarea {
+            background-color: #0f172a !important; color: #e2e8f0 !important; border-color: #475569 !important;
+        }
+        html.dark ::placeholder { color: #64748b; }
+        html.dark .tab-btn-active { color: #60a5fa; border-bottom-color: #60a5fa; }
+        html.dark ::-webkit-scrollbar-track { background: #1e293b; }
+        html.dark ::-webkit-scrollbar-thumb { background: #475569; }
+        html.dark .venn-circle { mix-blend-mode: screen; }
+        html.dark svg rect[fill="#f8fafc"] { fill: #0f172a; }
+        html.dark svg text[fill="#64748b"] { fill: #94a3b8; }
+        html.dark svg rect[fill="#fef3c7"] { fill: rgba(245,158,11,.14); }
+        html.dark svg text[fill="#1d4ed8"], html.dark svg text[fill="#1e40af"] { fill: #93c5fd; }
+        html.dark svg text[fill="#047857"], html.dark svg text[fill="#065f46"], html.dark svg text[fill="#064e3b"] { fill: #6ee7b7; }
+        html.dark svg text[fill="#b45309"], html.dark svg text[fill="#92400e"], html.dark svg text[fill="#78350f"] { fill: #fcd34d; }
+        html.dark svg text[fill="#6b21a8"], html.dark svg text[fill="#7e22ce"], html.dark svg text[fill="#4c1d95"] { fill: #d8b4fe; }
+        html.dark svg text[fill="#dc2626"] { fill: #f87171; }
+        html.dark [class*="bg-blue-50"], html.dark [class*="from-blue-50"], html.dark [class*="to-blue-50"] { background-color: rgba(59,130,246,.14); background-image: none; }
+        html.dark [class*="bg-blue-200"] { background-color: rgba(59,130,246,.30); }
+        html.dark [class*="text-blue-5"], html.dark [class*="text-blue-6"], html.dark [class*="text-blue-7"], html.dark [class*="text-blue-8"], html.dark [class*="text-blue-9"] { color: #93c5fd; }
+        html.dark [class*="border-blue-1"], html.dark [class*="border-blue-2"], html.dark [class*="border-blue-3"] { border-color: rgba(59,130,246,.35); }
+        html.dark [class*="bg-emerald-50"], html.dark [class*="from-emerald-50"], html.dark [class*="to-emerald-50"] { background-color: rgba(16,185,129,.14); background-image: none; }
+        html.dark [class*="bg-emerald-200"] { background-color: rgba(16,185,129,.30); }
+        html.dark [class*="text-emerald-5"], html.dark [class*="text-emerald-6"], html.dark [class*="text-emerald-7"], html.dark [class*="text-emerald-8"], html.dark [class*="text-emerald-9"] { color: #6ee7b7; }
+        html.dark [class*="border-emerald-1"], html.dark [class*="border-emerald-2"], html.dark [class*="border-emerald-3"] { border-color: rgba(16,185,129,.35); }
+        html.dark [class*="bg-amber-50"], html.dark [class*="from-amber-50"], html.dark [class*="to-amber-50"] { background-color: rgba(245,158,11,.14); background-image: none; }
+        html.dark [class*="bg-amber-200"] { background-color: rgba(245,158,11,.30); }
+        html.dark [class*="text-amber-5"], html.dark [class*="text-amber-6"], html.dark [class*="text-amber-7"], html.dark [class*="text-amber-8"], html.dark [class*="text-amber-9"] { color: #fcd34d; }
+        html.dark [class*="border-amber-1"], html.dark [class*="border-amber-2"], html.dark [class*="border-amber-3"] { border-color: rgba(245,158,11,.35); }
+        html.dark [class*="bg-red-50"], html.dark [class*="from-red-50"], html.dark [class*="to-red-50"] { background-color: rgba(239,68,68,.14); background-image: none; }
+        html.dark [class*="bg-red-200"] { background-color: rgba(239,68,68,.30); }
+        html.dark [class*="text-red-5"], html.dark [class*="text-red-6"], html.dark [class*="text-red-7"], html.dark [class*="text-red-8"], html.dark [class*="text-red-9"] { color: #fca5a5; }
+        html.dark [class*="border-red-1"], html.dark [class*="border-red-2"], html.dark [class*="border-red-3"] { border-color: rgba(239,68,68,.35); }
+        html.dark [class*="bg-purple-50"], html.dark [class*="from-purple-50"], html.dark [class*="to-purple-50"] { background-color: rgba(168,85,247,.14); background-image: none; }
+        html.dark [class*="bg-purple-200"] { background-color: rgba(168,85,247,.30); }
+        html.dark [class*="text-purple-5"], html.dark [class*="text-purple-6"], html.dark [class*="text-purple-7"], html.dark [class*="text-purple-8"], html.dark [class*="text-purple-9"] { color: #d8b4fe; }
+        html.dark [class*="border-purple-1"], html.dark [class*="border-purple-2"], html.dark [class*="border-purple-3"] { border-color: rgba(168,85,247,.35); }
+        html.dark [class*="bg-teal-50"], html.dark [class*="from-teal-50"], html.dark [class*="to-teal-50"] { background-color: rgba(20,184,166,.14); background-image: none; }
+        html.dark [class*="bg-teal-200"] { background-color: rgba(20,184,166,.30); }
+        html.dark [class*="text-teal-5"], html.dark [class*="text-teal-6"], html.dark [class*="text-teal-7"], html.dark [class*="text-teal-8"], html.dark [class*="text-teal-9"] { color: #5eead4; }
+        html.dark [class*="border-teal-1"], html.dark [class*="border-teal-2"], html.dark [class*="border-teal-3"] { border-color: rgba(20,184,166,.35); }
+        html.dark [class*="bg-orange-50"], html.dark [class*="from-orange-50"], html.dark [class*="to-orange-50"] { background-color: rgba(249,115,22,.14); background-image: none; }
+        html.dark [class*="bg-orange-200"] { background-color: rgba(249,115,22,.30); }
+        html.dark [class*="text-orange-5"], html.dark [class*="text-orange-6"], html.dark [class*="text-orange-7"], html.dark [class*="text-orange-8"], html.dark [class*="text-orange-9"] { color: #fdba74; }
+        html.dark [class*="border-orange-1"], html.dark [class*="border-orange-2"], html.dark [class*="border-orange-3"] { border-color: rgba(249,115,22,.35); }
+        html.dark [class*="bg-indigo-50"], html.dark [class*="from-indigo-50"], html.dark [class*="to-indigo-50"] { background-color: rgba(99,102,241,.14); background-image: none; }
+        html.dark [class*="bg-indigo-200"] { background-color: rgba(99,102,241,.30); }
+        html.dark [class*="text-indigo-5"], html.dark [class*="text-indigo-6"], html.dark [class*="text-indigo-7"], html.dark [class*="text-indigo-8"], html.dark [class*="text-indigo-9"] { color: #a5b4fc; }
+        html.dark [class*="border-indigo-1"], html.dark [class*="border-indigo-2"], html.dark [class*="border-indigo-3"] { border-color: rgba(99,102,241,.35); }
+
+        /* ===== 字号 / 主题 浮动工具条 ===== */
+        #ui-tools { position: fixed; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 9999;
+            display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 999px;
+            background: rgba(255,255,255,.94); border: 1px solid #cbd5e1; box-shadow: 0 2px 10px rgba(0,0,0,.18); }
+        #ui-tools button { min-width: 34px; height: 34px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent;
+            color: #334155; font: 700 14px/1 system-ui, sans-serif; cursor: pointer; }
+        #ui-tools button:hover { background: #e2e8f0; }
+        #ui-tools button[aria-pressed="true"] { background: #2563eb; color: #fff; }
+        #ui-tools .sep { width: 1px; height: 20px; background: #cbd5e1; margin: 0 3px; }
+        html.dark #ui-tools { background: rgba(30,41,59,.94); border-color: #475569; }
+        html.dark #ui-tools button { color: #e2e8f0; }
+        html.dark #ui-tools button:hover { background: #334155; }
+        html.dark #ui-tools button[aria-pressed="true"] { background: #3b82f6; color: #fff; }
+        html.dark #ui-tools .sep { background: #475569; }
+        @media print { #ui-tools { display: none; } }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col">
+
+    <div id="app" class="flex-1 flex flex-col">
+
+        <!-- Top Navigation Bar -->
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16 items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-blue-200">
+                            ∪
+                        </div>
+                        <div>
+                            <h1 class="text-lg font-bold text-slate-900 leading-tight">初二数学 · 第10章 集合论的应用</h1>
+                            <p class="text-xs text-slate-500">华文独中《数学》初二下册 电子互动课件</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Tabs -->
+                    <nav class="hidden md:flex space-x-1 lg:space-x-4 text-sm font-medium">
+                        <button @click="currentTab = 'sec10_1'" :class="{'tab-btn-active': currentTab === 'sec10_1'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            10.1 两个集合联集
+                        </button>
+                        <button @click="currentTab = 'sec10_2'" :class="{'tab-btn-active': currentTab === 'sec10_2'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            10.2 余集与全集
+                        </button>
+                        <button @click="currentTab = 'sec10_3'" :class="{'tab-btn-active': currentTab === 'sec10_3'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            10.3 三个集合联集
+                        </button>
+                        <button @click="currentTab = 'bounds'" :class="{'tab-btn-active': currentTab === 'bounds'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            <i class="fa-solid fa-sliders mr-1 text-purple-500"></i>极值与范围探究
+                        </button>
+                        <button @click="currentTab = 'practice'" :class="{'tab-btn-active': currentTab === 'practice'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            <i class="fa-solid fa-pen-to-square mr-1 text-emerald-500"></i>例题与随堂练习
+                        </button>
+                        <button @click="currentTab = 'solver'" :class="{'tab-btn-active': currentTab === 'solver'}" class="py-5 px-3 text-slate-600 hover:text-blue-600 transition">
+                            <i class="fa-solid fa-calculator mr-1 text-indigo-500"></i>智能解题器
+                        </button>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-2 rounded-md text-slate-600 hover:text-slate-900 focus:outline-none">
+                            <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div v-if="mobileMenuOpen" class="md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1">
+                <button @click="currentTab = 'sec10_1'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">10.1 两个集合联集</button>
+                <button @click="currentTab = 'sec10_2'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">10.2 余集与全集</button>
+                <button @click="currentTab = 'sec10_3'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">10.3 三个集合联集</button>
+                <button @click="currentTab = 'bounds'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">极值与范围探究</button>
+                <button @click="currentTab = 'practice'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">例题与随堂练习</button>
+                <button @click="currentTab = 'solver'; mobileMenuOpen = false" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">智能解题器</button>
+            </div>
+        </header>
+
+        <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+            <!-- SECTION 10.1: 两个集合联集的基数公式及其应用 -->
+            <section v-if="currentTab === 'sec10_1'" class="space-y-6">
+                <!-- Learning Goal Card -->
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 text-white shadow-lg">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold uppercase tracking-wider mb-2">10.1 知识重点</span>
+                            <h2 class="text-2xl font-bold">两个集合联集的基数公式</h2>
+                            <p class="mt-2 text-blue-100 text-sm max-w-3xl leading-relaxed">
+                                掌握两个有限集合 A 和 B 的交集、联集与各自基数（元素个数）之间的关系。核心公式：<br>
+                                <span class="font-mono text-amber-300 font-semibold text-base sm:text-lg">n(A ∪ B) = n(A) + n(B) - n(A ∩ B)</span>
+                            </p>
+                        </div>
+                        <div class="hidden sm:block text-5xl opacity-30">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Venn Diagram Sandbox (2 Sets) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Left Control Panel -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center border-b pb-3">
+                            <i class="fa-solid fa-sliders text-blue-600 mr-2"></i> 动态参数调控
+                        </h3>
+
+                        <!-- Special Case Toggles -->
+                        <div class="flex space-x-2">
+                            <button @click="setPreset2('standard')" :class="preset2 === 'standard' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'" class="flex-1 py-1.5 px-3 text-xs font-medium rounded-lg transition">一般重叠</button>
+                            <button @click="setPreset2('disjoint')" :class="preset2 === 'disjoint' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'" class="flex-1 py-1.5 px-3 text-xs font-medium rounded-lg transition">相离集 (A ∩ B = ∅)</button>
+                            <button @click="setPreset2('subset')" :class="preset2 === 'subset' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'" class="flex-1 py-1.5 px-3 text-xs font-medium rounded-lg transition">子集 (A ⊂ B)</button>
+                        </div>
+
+                        <!-- Sliders -->
+                        <div class="space-y-4 pt-2">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium text-blue-700">n(A) 集合A元素数:</span>
+                                    <span class="font-bold text-blue-700">{{ set2A }}</span>
+                                </div>
+                                <input type="range" v-model.number="set2A" min="5" max="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" @input="validate2Sets">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium text-emerald-700">n(B) 集合B元素数:</span>
+                                    <span class="font-bold text-emerald-700">{{ set2B }}</span>
+                                </div>
+                                <input type="range" v-model.number="set2B" min="5" max="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600" @input="validate2Sets">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium text-purple-700">n(A ∩ B) 交集元素数:</span>
+                                    <span class="font-bold text-purple-700">{{ set2Intersect }}</span>
+                                </div>
+                                <input type="range" v-model.number="set2Intersect" min="0" :max="Math.min(set2A, set2B)" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600" @input="preset2 = 'custom'">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium text-slate-600">n(ξ) 泛集(全班/全集):</span>
+                                    <span class="font-bold text-slate-800">{{ set2Universal }}</span>
+                                </div>
+                                <input type="range" v-model.number="set2Universal" :min="calculated2Union" max="100" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-600">
+                            </div>
+                        </div>
+
+                        <!-- Math Formula Dynamic Box -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-sm">
+                            <p class="font-semibold text-slate-700 flex items-center">
+                                <i class="fa-solid fa-calculator text-indigo-500 mr-2"></i> 实时计算推导:
+                            </p>
+                            <div class="font-mono space-y-1 text-slate-700">
+                                <p>n(A ∪ B) = n(A) + n(B) - n(A ∩ B)</p>
+                                <p class="text-blue-600 font-bold text-base">
+                                    = {{ set2A }} + {{ set2B }} - {{ set2Intersect }} = {{ calculated2Union }}
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-slate-200 text-xs text-slate-500 flex justify-between">
+                                <span>只属于A: <strong class="text-blue-600">{{ set2A - set2Intersect }}</strong></span>
+                                <span>只属于B: <strong class="text-emerald-600">{{ set2B - set2Intersect }}</strong></span>
+                                <span>两者都不属于: <strong class="text-slate-700">{{ set2Universal - calculated2Union }}</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Venn Diagram Visualization -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center relative min-h-[360px]">
+                        <h4 class="absolute top-4 left-4 text-xs font-bold text-slate-400 uppercase tracking-wider">范恩图示意 (Venn Diagram) · 圆的大小按人数比例</h4>
+                        
+                        <svg class="w-full max-w-md h-72" viewBox="0 0 400 280">
+                            <!-- Universal Set Box -->
+                            <rect x="10" y="10" width="380" height="260" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" />
+                            <text x="25" y="35" font-size="16" font-weight="bold" fill="#64748b">ξ (全集 = {{ set2Universal }})</text>
+                            
+                            <!-- 圆的大小按人数比例画，重叠面积按交集人数计算 -->
+                            <circle :cx="venn1.cxA" :cy="venn1.cy" :r="venn1.rA" fill="#3b82f6" fill-opacity="0.25" stroke="#2563eb" stroke-width="3" class="venn-circle" />
+                            <circle :cx="venn1.cxB" :cy="venn1.cy" :r="venn1.rB" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="3" class="venn-circle" />
+
+                            <g v-if="venn1.mode !== 'nested'">
+                                <g v-if="!venn1.aThin">
+                                    <text :x="venn1.aX" :y="venn1.cy - 6" text-anchor="middle" font-size="18" font-weight="bold" fill="#1d4ed8">A</text>
+                                    <text :x="venn1.aX" :y="venn1.cy + 16" text-anchor="middle" font-size="14" font-weight="600" fill="#1e40af">({{ set2A - set2Intersect }})</text>
+                                </g>
+                                <g v-else>
+                                    <line :x1="venn1.aX" :y1="venn1.cy" :x2="venn1.aLx" :y2="venn1.aLy - 14" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                    <text :x="venn1.aLx" :y="venn1.aLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#1d4ed8">A ({{ set2A - set2Intersect }})</text>
+                                </g>
+                                <g v-if="!venn1.bThin">
+                                    <text :x="venn1.bX" :y="venn1.cy - 6" text-anchor="middle" font-size="18" font-weight="bold" fill="#047857">B</text>
+                                    <text :x="venn1.bX" :y="venn1.cy + 16" text-anchor="middle" font-size="14" font-weight="600" fill="#065f46">({{ set2B - set2Intersect }})</text>
+                                </g>
+                                <g v-else>
+                                    <line :x1="venn1.bX" :y1="venn1.cy" :x2="venn1.bLx" :y2="venn1.bLy + 6" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                    <text :x="venn1.bLx" :y="venn1.bLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#047857">B ({{ set2B - set2Intersect }})</text>
+                                </g>
+                                <g v-if="venn1.mode === 'partial'">
+                                    <g v-if="!venn1.iThin">
+                                        <text :x="venn1.iX" :y="venn1.cy - 6" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">A ∩ B</text>
+                                        <text :x="venn1.iX" :y="venn1.cy + 16" text-anchor="middle" font-size="14" font-weight="bold" fill="#7e22ce">{{ set2Intersect }}</text>
+                                    </g>
+                                    <g v-else>
+                                        <line :x1="venn1.iX" :y1="venn1.cy" :x2="venn1.iLx" :y2="venn1.iLy - 14" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                        <text :x="venn1.iLx" :y="venn1.iLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">A ∩ B ({{ set2Intersect }})</text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g v-else>
+                                <text :x="venn1.sx" :y="venn1.cy - 4" text-anchor="middle" font-size="16" font-weight="bold" fill="#1d4ed8">{{ venn1.eq ? 'A = B' : (venn1.small === 'A' ? 'A ⊂ B' : 'B ⊂ A') }}</text>
+                                <text :x="venn1.sx" :y="venn1.cy + 16" text-anchor="middle" font-size="13" font-weight="bold" fill="#7e22ce">A ∩ B = {{ set2Intersect }}</text>
+                                <g v-if="!venn1.eq">
+                                    <text :x="venn1.lx" :y="venn1.ly" text-anchor="middle" font-size="18" font-weight="bold" fill="#047857">{{ venn1.small === 'A' ? 'B' : 'A' }}</text>
+                                    <text :x="venn1.lx" :y="venn1.ly + 20" text-anchor="middle" font-size="14" font-weight="600" fill="#065f46">({{ venn1.small === 'A' ? set2B - set2Intersect : set2A - set2Intersect }})</text>
+                                </g>
+                            </g>
+
+                            <!-- Outside Complement Count -->
+                            <text x="340" y="250" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">
+                                (A ∪ B)' = {{ set2Universal - calculated2Union }}
+                            </text>
+                        </svg>
+
+                        <!-- Key Takeaway Banner -->
+                        <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 w-full flex items-center space-x-2">
+                            <i class="fa-solid fa-lightbulb text-amber-500 text-lg"></i>
+                            <span><strong>公式避重提示：</strong> 计算 n(A ∪ B) 时，如果直接将 n(A) + n(B)，重叠部分 n(A ∩ B) 被重复加了两次，因此必须减去一次！</span>
+                        </div>
+                    </div>
+                </div>
+
+                <practice-block sec="s1"></practice-block>
+            </section>
+
+            <!-- SECTION 10.2: 余集的基数公式及其应用 -->
+            <section v-if="currentTab === 'sec10_2'" class="space-y-6">
+                <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 text-white shadow-lg">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold uppercase tracking-wider mb-2">10.2 知识重点</span>
+                            <h2 class="text-2xl font-bold">余集（补集）的基数公式与反向思考</h2>
+                            <p class="mt-2 text-slate-300 text-sm max-w-3xl leading-relaxed">
+                                设 ξ 为全集，A 为其子集，则 A 在 ξ 中的余集记作 A'（或 Aᶜ）。<br>
+                                核心公式：<span class="font-mono text-amber-300 font-semibold text-base">n(A') = n(ξ) - n(A)</span><br>
+                                德·摩根定律应用："两样都不喜欢" 的学生人数 n(A' ∩ B') = n((A ∪ B)') = n(ξ) - n(A ∪ B)
+                            </p>
+                        </div>
+                        <div class="hidden sm:block text-5xl opacity-30">
+                            <i class="fa-solid fa-shapes"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Scenario Workbench -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <h3 class="text-lg font-bold text-slate-800 border-b pb-3 flex items-center justify-between">
+                        <span><i class="fa-solid fa-users text-indigo-600 mr-2"></i> 经典场景仿真：调查问卷分析</span>
+                        <span class="text-xs font-normal text-slate-500">华文独中统考常见题型</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                            <label class="block text-xs font-bold text-slate-500 uppercase">调查总人数 n(ξ)</label>
+                            <input type="number" v-model.number="sec2Total" @change="fixSec2" class="w-full text-xl font-bold bg-white border border-slate-300 rounded-lg p-2 text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <p class="text-xs text-slate-500">例如：某班或受调查的总人数</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-blue-50 border border-blue-200 space-y-3">
+                            <label class="block text-xs font-bold text-blue-600 uppercase">喜欢活动A人数 n(A)</label>
+                            <input type="number" v-model.number="sec2CountA" @change="fixSec2" class="w-full text-xl font-bold bg-white border border-blue-300 rounded-lg p-2 text-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <p class="text-xs text-blue-600">例如：喜欢听流行音乐 / 补习英文</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-3">
+                            <label class="block text-xs font-bold text-emerald-600 uppercase">喜欢活动B人数 n(B)</label>
+                            <input type="number" v-model.number="sec2CountB" @change="fixSec2" class="w-full text-xl font-bold bg-white border border-emerald-300 rounded-lg p-2 text-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                            <p class="text-xs text-emerald-600">例如：喜欢听古典音乐 / 补习国文</p>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Mode: Known Neither vs Known Both -->
+                    <div class="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm font-semibold text-indigo-900">已知条件设置：</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" v-model="sec2InputMode" value="neither" class="form-radio text-indigo-600">
+                                <span class="ml-2 text-sm text-slate-700">已知“两者都不爱/都不参加”人数</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" v-model="sec2InputMode" value="both" class="form-radio text-indigo-600">
+                                <span class="ml-2 text-sm text-slate-700">已知“两样都喜欢/都参加”人数</span>
+                            </label>
+                        </div>
+
+                        <div class="w-full md:w-auto">
+                            <div v-if="sec2InputMode === 'neither'" class="flex items-center space-x-2">
+                                <span class="text-xs font-bold text-slate-600">n(A' ∩ B') = </span>
+                                <input type="number" v-model.number="sec2Neither" @change="fixSec2" class="w-24 font-bold border border-slate-300 rounded-lg p-1.5 text-center bg-white">
+                            </div>
+                            <div v-else class="flex items-center space-x-2">
+                                <span class="text-xs font-bold text-slate-600">n(A ∩ B) = </span>
+                                <input type="number" v-model.number="sec2Both" @change="fixSec2" class="w-24 font-bold border border-slate-300 rounded-lg p-1.5 text-center bg-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="sec2Warning" class="p-3 rounded-xl bg-red-50 border border-red-200 text-sm text-red-700">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i>{{ sec2Warning }}
+                    </div>
+
+                    <div v-if="!sec2Warning" class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider self-start mb-1">范恩图示意（圆的大小按人数比例，全集框仅为示意）</h4>
+                        <svg class="w-full max-w-md h-72" viewBox="0 0 400 280">
+                            <rect x="10" y="10" width="380" height="260" rx="12" fill="#fef3c7" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" />
+                            <text x="25" y="35" font-size="16" font-weight="bold" fill="#64748b">ξ (全集 = {{ sec2Total }})</text>
+                            <circle :cx="venn2.cxA" :cy="venn2.cy" :r="venn2.rA" fill="#3b82f6" fill-opacity="0.25" stroke="#2563eb" stroke-width="3" class="venn-circle" />
+                            <circle :cx="venn2.cxB" :cy="venn2.cy" :r="venn2.rB" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="3" class="venn-circle" />
+
+                            <g v-if="venn2.mode !== 'nested'">
+                                <g v-if="!venn2.aThin">
+                                    <text :x="venn2.aX" :y="venn2.cy - 6" text-anchor="middle" font-size="18" font-weight="bold" fill="#1d4ed8">A</text>
+                                    <text :x="venn2.aX" :y="venn2.cy + 16" text-anchor="middle" font-size="14" font-weight="600" fill="#1e40af">({{ calculatedSec2OnlyA }})</text>
+                                </g>
+                                <g v-else>
+                                    <line :x1="venn2.aX" :y1="venn2.cy" :x2="venn2.aLx" :y2="venn2.aLy - 14" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                    <text :x="venn2.aLx" :y="venn2.aLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#1d4ed8">A ({{ calculatedSec2OnlyA }})</text>
+                                </g>
+                                <g v-if="!venn2.bThin">
+                                    <text :x="venn2.bX" :y="venn2.cy - 6" text-anchor="middle" font-size="18" font-weight="bold" fill="#047857">B</text>
+                                    <text :x="venn2.bX" :y="venn2.cy + 16" text-anchor="middle" font-size="14" font-weight="600" fill="#065f46">({{ calculatedSec2OnlyB }})</text>
+                                </g>
+                                <g v-else>
+                                    <line :x1="venn2.bX" :y1="venn2.cy" :x2="venn2.bLx" :y2="venn2.bLy + 6" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                    <text :x="venn2.bLx" :y="venn2.bLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#047857">B ({{ calculatedSec2OnlyB }})</text>
+                                </g>
+                                <g v-if="venn2.mode === 'partial'">
+                                    <g v-if="!venn2.iThin">
+                                        <text :x="venn2.iX" :y="venn2.cy - 6" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">A ∩ B</text>
+                                        <text :x="venn2.iX" :y="venn2.cy + 16" text-anchor="middle" font-size="14" font-weight="bold" fill="#7e22ce">{{ sec2BothVal }}</text>
+                                    </g>
+                                    <g v-else>
+                                        <line :x1="venn2.iX" :y1="venn2.cy" :x2="venn2.iLx" :y2="venn2.iLy - 14" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2" />
+                                        <text :x="venn2.iLx" :y="venn2.iLy" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">A ∩ B ({{ sec2BothVal }})</text>
+                                    </g>
+                                </g>
+                            </g>
+                            <g v-else>
+                                <text :x="venn2.sx" :y="venn2.cy - 4" text-anchor="middle" font-size="16" font-weight="bold" fill="#1d4ed8">{{ venn2.eq ? 'A = B' : (venn2.small === 'A' ? 'A ⊂ B' : 'B ⊂ A') }}</text>
+                                <text :x="venn2.sx" :y="venn2.cy + 16" text-anchor="middle" font-size="13" font-weight="bold" fill="#7e22ce">A ∩ B = {{ sec2BothVal }}</text>
+                                <g v-if="!venn2.eq">
+                                    <text :x="venn2.lx" :y="venn2.ly" text-anchor="middle" font-size="18" font-weight="bold" fill="#047857">{{ venn2.small === 'A' ? 'B' : 'A' }}</text>
+                                    <text :x="venn2.lx" :y="venn2.ly + 20" text-anchor="middle" font-size="14" font-weight="600" fill="#065f46">({{ venn2.small === 'A' ? calculatedSec2OnlyB : calculatedSec2OnlyA }})</text>
+                                </g>
+                            </g>
+
+                            <text x="378" y="258" text-anchor="end" font-size="13" font-weight="bold" fill="#b45309">(A ∪ B)' = {{ sec2NeitherVal }}</text>
+                        </svg>
+                        <p class="text-xs text-slate-500 mt-2 text-center leading-relaxed">
+                            淡黄色背景（圆以外）就是<strong>余集 (A ∪ B)'</strong>：
+                            n(ξ) − n(A ∪ B) = {{ sec2Total }} − {{ sec2CountA + sec2CountB - sec2BothVal }} = <strong class="text-amber-700">{{ sec2NeitherVal }}</strong>
+                        </p>
+                    </div>
+
+                    <!-- Step by Step Calculation Output -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div class="space-y-3 bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm">
+                            <p class="text-amber-400 font-bold border-b border-slate-700 pb-2">【求解步骤解析】</p>
+                            
+                            <template v-if="sec2InputMode === 'neither'">
+                                <p>1. 至少喜欢一种活动的人数：</p>
+                                <p class="text-indigo-300 pl-4">n(A ∪ B) = n(ξ) - n(A' ∩ B')</p>
+                                <p class="text-indigo-300 pl-4">= {{ sec2Total }} - {{ sec2Neither }} = <span class="text-emerald-400 font-bold">{{ sec2Total - sec2Neither }}</span></p>
+
+                                <p class="pt-2">2. 求两种都喜欢的人数 n(A ∩ B)：</p>
+                                <p class="text-indigo-300 pl-4">n(A ∩ B) = n(A) + n(B) - n(A ∪ B)</p>
+                                <p class="text-indigo-300 pl-4">= {{ sec2CountA }} + {{ sec2CountB }} - {{ sec2Total - sec2Neither }} = <span class="text-amber-300 font-bold text-base">{{ calculatedSec2Both }}</span></p>
+                            </template>
+
+                            <template v-else>
+                                <p>1. 至少喜欢一种活动的人数：</p>
+                                <p class="text-indigo-300 pl-4">n(A ∪ B) = n(A) + n(B) - n(A ∩ B)</p>
+                                <p class="text-indigo-300 pl-4">= {{ sec2CountA }} + {{ sec2CountB }} - {{ sec2Both }} = <span class="text-emerald-400 font-bold">{{ calculatedSec2Union }}</span></p>
+
+                                <p class="pt-2">2. 求两者都不喜欢的人数 n(A' ∩ B')：</p>
+                                <p class="text-indigo-300 pl-4">n(A' ∩ B') = n(ξ) - n(A ∪ B)</p>
+                                <p class="text-indigo-300 pl-4">= {{ sec2Total }} - {{ calculatedSec2Union }} = <span class="text-amber-300 font-bold text-base">{{ calculatedSec2Neither }}</span></p>
+                            </template>
+                        </div>
+
+                        <!-- Analysis Summary Cards -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-blue-50 border border-blue-200">
+                                <span class="text-xs text-blue-600 font-bold">只喜欢 A (不爱B)</span>
+                                <p class="text-2xl font-black text-blue-700 mt-1">{{ calculatedSec2OnlyA }} 人</p>
+                                <p class="text-xs text-slate-500 mt-1">n(A) - n(A ∩ B)</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                                <span class="text-xs text-emerald-600 font-bold">只喜欢 B (不爱A)</span>
+                                <p class="text-2xl font-black text-emerald-700 mt-1">{{ calculatedSec2OnlyB }} 人</p>
+                                <p class="text-xs text-slate-500 mt-1">n(B) - n(A ∩ B)</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-purple-50 border border-purple-200">
+                                <span class="text-xs text-purple-600 font-bold">不爱 A 的人数 n(A')</span>
+                                <p class="text-2xl font-black text-purple-700 mt-1">{{ sec2Total - sec2CountA }} 人</p>
+                                <p class="text-xs text-slate-500 mt-1">n(ξ) - n(A)</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+                                <span class="text-xs text-amber-600 font-bold">只喜欢其中一种</span>
+                                <p class="text-2xl font-black text-amber-700 mt-1">{{ calculatedSec2OnlyA + calculatedSec2OnlyB }} 人</p>
+                                <p class="text-xs text-slate-500 mt-1">只A + 只B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <practice-block sec="s2"></practice-block>
+            </section>
+
+            <!-- SECTION 10.3: 三个集合联集的基数公式及其应用 -->
+            <section v-if="currentTab === 'sec10_3'" class="space-y-6">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-800 rounded-2xl p-6 text-white shadow-lg">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold uppercase tracking-wider mb-2">10.3 知识重点</span>
+                            <h2 class="text-2xl font-bold">三个集合联集的基数公式 (容斥原理)</h2>
+                            <p class="mt-2 text-teal-100 text-sm max-w-3xl leading-relaxed">
+                                对任意三个有限集 A, B, C，其联集公式为：<br>
+                                <span class="font-mono text-amber-300 font-semibold text-xs sm:text-sm">n(A ∪ B ∪ C) = n(A) + n(B) + n(C) - n(A ∩ B) - n(A ∩ C) - n(B ∩ C) + n(A ∩ B ∩ C)</span>
+                            </p>
+                        </div>
+                        <div class="hidden sm:block text-5xl opacity-30">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-Set Interactive Venn Explorer -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Venn Diagram Canvas -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center relative">
+                        <div class="w-full flex justify-between items-center mb-2">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">3集合 8区域范恩图分解</h4>
+                            <span class="text-xs text-indigo-600 font-semibold">将鼠标悬停在右侧数据可高亮对应区域</span>
+                        </div>
+
+                        <svg class="w-full max-w-lg h-80" viewBox="0 0 450 360">
+                            <!-- Universal Box -->
+                            <rect x="10" y="10" width="430" height="340" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+                            <text x="25" y="35" font-size="16" font-weight="bold" fill="#64748b">ξ (全集 = {{ set3Total }})</text>
+
+                            <!-- Circle A (Top Center) -->
+                            <circle cx="225" cy="140" r="85" fill="#3b82f6" :fill-opacity="activeHighlight === 'A' || activeHighlight === 'all' ? '0.35' : '0.2'" stroke="#2563eb" stroke-width="2.5" class="venn-circle" />
+                            <!-- Circle B (Bottom Left) -->
+                            <circle cx="170" cy="220" r="85" fill="#10b981" :fill-opacity="activeHighlight === 'B' || activeHighlight === 'all' ? '0.35' : '0.2'" stroke="#059669" stroke-width="2.5" class="venn-circle" />
+                            <!-- Circle C (Bottom Right) -->
+                            <circle cx="280" cy="220" r="85" fill="#f59e0b" :fill-opacity="activeHighlight === 'C' || activeHighlight === 'all' ? '0.35' : '0.2'" stroke="#d97706" stroke-width="2.5" class="venn-circle" />
+
+                            <!-- Circle Labels -->
+                            <text x="225" y="80" text-anchor="middle" font-size="18" font-weight="bold" fill="#1d4ed8">A</text>
+                            <text x="110" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#047857">B</text>
+                            <text x="340" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#b45309">C</text>
+
+                            <!-- Region Numbers -->
+                            <!-- Only A -->
+                            <text x="225" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">{{ regOnlyA }}</text>
+                            <!-- Only B -->
+                            <text x="140" y="240" text-anchor="middle" font-size="14" font-weight="bold" fill="#065f46">{{ regOnlyB }}</text>
+                            <!-- Only C -->
+                            <text x="310" y="240" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">{{ regOnlyC }}</text>
+                            
+                            <!-- Only AB -->
+                            <text x="175" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#4c1d95">{{ regOnlyAB }}</text>
+                            <!-- Only AC -->
+                            <text x="275" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#78350f">{{ regOnlyAC }}</text>
+                            <!-- Only BC -->
+                            <text x="225" y="255" text-anchor="middle" font-size="13" font-weight="bold" fill="#064e3b">{{ regOnlyBC }}</text>
+
+                            <!-- Center ABC -->
+                            <text x="225" y="200" text-anchor="middle" font-size="15" font-weight="black" fill="#dc2626">{{ regAll3 }}</text>
+
+                            <!-- Outside Neither -->
+                            <text x="380" y="330" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">
+                                外围 = {{ regOutside }}
+                            </text>
+                        </svg>
+
+                        <div class="mt-2 text-xs text-slate-500 text-center">
+                            中央红色数字表示 <strong class="text-red-600">三者兼具 n(A ∩ B ∩ C) = {{ regAll3 }}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Right Controls & Region Decomposition -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <h3 class="text-base font-bold text-slate-800 border-b pb-2 flex justify-between items-center">
+                            <span><i class="fa-solid fa-list-check text-emerald-600 mr-2"></i> 区域独立参数设置</span>
+                            <button @click="reset3Sets" class="text-xs text-blue-600 hover:underline">重置例题</button>
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="p-2.5 bg-blue-50/60 rounded-lg border border-blue-100">
+                                <label class="text-blue-900 font-semibold block">只参加 A 队:</label>
+                                <input type="number" v-model.number="regOnlyA" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-emerald-50/60 rounded-lg border border-emerald-100">
+                                <label class="text-emerald-900 font-semibold block">只参加 B 队:</label>
+                                <input type="number" v-model.number="regOnlyB" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-amber-50/60 rounded-lg border border-amber-100">
+                                <label class="text-amber-900 font-semibold block">只参加 C 队:</label>
+                                <input type="number" v-model.number="regOnlyC" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-purple-50/60 rounded-lg border border-purple-100">
+                                <label class="text-purple-900 font-semibold block">只参加 A & B:</label>
+                                <input type="number" v-model.number="regOnlyAB" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-orange-50/60 rounded-lg border border-orange-100">
+                                <label class="text-orange-900 font-semibold block">只参加 A & C:</label>
+                                <input type="number" v-model.number="regOnlyAC" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-teal-50/60 rounded-lg border border-teal-100">
+                                <label class="text-teal-900 font-semibold block">只参加 B & C:</label>
+                                <input type="number" v-model.number="regOnlyBC" class="w-full mt-1 p-1 border rounded bg-white font-bold">
+                            </div>
+
+                            <div class="p-2.5 bg-red-50/60 rounded-lg border border-red-200 col-span-2">
+                                <label class="text-red-900 font-bold block">三项都参加 n(A ∩ B ∩ C):</label>
+                                <input type="number" v-model.number="regAll3" class="w-full mt-1 p-1 border border-red-300 rounded bg-white font-black text-red-600">
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-xs flex items-center justify-between gap-3">
+                            <label class="text-slate-700 font-semibold">全集 n(ξ)（不能小于联集）:</label>
+                            <input type="number" :min="calculated3Union" v-model.number="set3Total" @change="fixSec3Total" class="w-24 p-1 border rounded bg-white font-bold text-center">
+                        </div>
+
+                        <!-- Computed Union Summary -->
+                        <div class="p-4 bg-slate-900 text-white rounded-xl space-y-2 text-xs font-mono">
+                            <div class="flex justify-between items-center text-amber-400 font-bold text-sm">
+                                <span>n(A ∪ B ∪ C) 至少有一项:</span>
+                                <span class="text-lg">{{ calculated3Union }} 人</span>
+                            </div>
+                            <div class="flex justify-between text-slate-300 border-t border-slate-800 pt-2">
+                                <span>n(A) 集合A总数: {{ regOnlyA + regOnlyAB + regOnlyAC + regAll3 }}</span>
+                                <span>n(B) 集合B总数: {{ regOnlyB + regOnlyAB + regOnlyBC + regAll3 }}</span>
+                            </div>
+                            <div class="flex justify-between text-slate-300">
+                                <span>n(C) 集合C总数: {{ regOnlyC + regOnlyAC + regOnlyBC + regAll3 }}</span>
+                                <span>只参加恰好一种: {{ regOnlyA + regOnlyB + regOnlyC }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10.3 完整代入计算过程 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center border-b pb-3">
+                        <i class="fa-solid fa-calculator text-emerald-600 mr-2"></i> 把你输入的数字代入公式：完整计算过程
+                    </h3>
+                    <div class="space-y-2 bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm leading-relaxed">
+                        <p class="text-amber-400 font-bold border-b border-slate-700 pb-2">【求 n(A ∪ B ∪ C) 的步骤】</p>
+
+                        <p>第 1 步：由各区域的人数，求出每个集合和交集的基数</p>
+                        <p class="text-indigo-300 pl-4">n(A) = 只A + 只A∩B + 只A∩C + 三者 = {{ regOnlyA }} + {{ regOnlyAB }} + {{ regOnlyAC }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nA }}</span></p>
+                        <p class="text-indigo-300 pl-4">n(B) = 只B + 只A∩B + 只B∩C + 三者 = {{ regOnlyB }} + {{ regOnlyAB }} + {{ regOnlyBC }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nB }}</span></p>
+                        <p class="text-indigo-300 pl-4">n(C) = 只C + 只A∩C + 只B∩C + 三者 = {{ regOnlyC }} + {{ regOnlyAC }} + {{ regOnlyBC }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nC }}</span></p>
+                        <p class="text-indigo-300 pl-4">n(A ∩ B) = 只A∩B + 三者 = {{ regOnlyAB }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nAB }}</span></p>
+                        <p class="text-indigo-300 pl-4">n(A ∩ C) = 只A∩C + 三者 = {{ regOnlyAC }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nAC }}</span></p>
+                        <p class="text-indigo-300 pl-4">n(B ∩ C) = 只B∩C + 三者 = {{ regOnlyBC }} + {{ regAll3 }} = <span class="text-emerald-400 font-bold">{{ calc3.nBC }}</span></p>
+
+                        <p class="pt-2">第 2 步：写出三个集合的容斥公式</p>
+                        <p class="text-indigo-300 pl-4">n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(A ∩ C) − n(B ∩ C) + n(A ∩ B ∩ C)</p>
+
+                        <p class="pt-2">第 3 步：把数字代入公式</p>
+                        <p class="text-indigo-300 pl-4">n(A ∪ B ∪ C) = {{ calc3.nA }} + {{ calc3.nB }} + {{ calc3.nC }} − {{ calc3.nAB }} − {{ calc3.nAC }} − {{ calc3.nBC }} + {{ regAll3 }}</p>
+
+                        <p class="pt-2">第 4 步：一步一步计算</p>
+                        <p class="text-indigo-300 pl-4">先加：{{ calc3.nA }} + {{ calc3.nB }} + {{ calc3.nC }} = {{ calc3.sum1 }}</p>
+                        <p class="text-indigo-300 pl-4">再减：{{ calc3.sum1 }} − {{ calc3.nAB }} − {{ calc3.nAC }} − {{ calc3.nBC }} = {{ calc3.sum2 }}</p>
+                        <p class="text-indigo-300 pl-4">最后加回三者交集：{{ calc3.sum2 }} + {{ regAll3 }} = <span class="text-amber-300 font-bold text-base">{{ calc3.union }}</span></p>
+
+                        <p class="pt-2">第 5 步：检验（把图中七个区域直接相加）</p>
+                        <p class="text-indigo-300 pl-4">{{ regOnlyA }} + {{ regOnlyB }} + {{ regOnlyC }} + {{ regOnlyAB }} + {{ regOnlyAC }} + {{ regOnlyBC }} + {{ regAll3 }} = {{ calc3.union }}
+                            <span :class="calc3.union === calculated3Union ? 'text-emerald-400' : 'text-red-400'" class="font-bold">{{ calc3.union === calculated3Union ? '✓ 与公式结果相同' : '✗ 与公式结果不同，请检查' }}</span></p>
+
+                        <p class="pt-2">第 6 步：求三者都不属于的人数（余集）</p>
+                        <p class="text-indigo-300 pl-4">n((A ∪ B ∪ C)') = n(ξ) − n(A ∪ B ∪ C) = {{ set3Total }} − {{ calc3.union }} = <span class="text-amber-300 font-bold text-base">{{ set3Total - calc3.union }}</span></p>
+                    </div>
+                    <p class="text-xs text-slate-500">修改上面的任何一个区域人数，这里的每一步都会跟着变化。</p>
+                </div>
+
+                <practice-block sec="s3"></practice-block>
+            </section>
+
+            <!-- SECTION BOUNDS: 极值与范围探究 -->
+            <section v-if="currentTab === 'bounds'" class="space-y-6">
+                <div class="bg-gradient-to-r from-purple-700 to-indigo-900 rounded-2xl p-6 text-white shadow-lg">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold uppercase tracking-wider mb-2">压轴难点突破</span>
+                            <h2 class="text-2xl font-bold">交集与联集的最大值与最小值探究</h2>
+                            <p class="mt-2 text-purple-200 text-sm max-w-3xl leading-relaxed">
+                                课本第 103 页 (练习 10.1a 第 4、5 题) 与 114 页常见考试压轴题：<br>
+                                当只有 n(A) 和 n(B) 给定时，交集 n(A ∩ B) 与联集 n(A ∪ B) 的可能范围界限。
+                            </p>
+                        </div>
+                        <div class="hidden sm:block text-5xl opacity-30">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Controls -->
+                    <div class="md:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                        <h3 class="text-base font-bold text-slate-800 border-b pb-2">设定基本集合大小</h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 flex justify-between">
+                                    <span>全集容量 n(ξ):</span>
+                                    <span class="text-slate-900 font-black">{{ boundsTotal }}</span>
+                                </label>
+                                <input type="range" v-model.number="boundsTotal" min="20" max="100" class="w-full h-2 bg-slate-200 rounded accent-purple-600">
+                            </div>
+
+                            <div>
+                                <label class="text-xs font-bold text-blue-600 flex justify-between">
+                                    <span>n(A) 集合A元素数:</span>
+                                    <span class="font-black">{{ boundsA }}</span>
+                                </label>
+                                <input type="range" v-model.number="boundsA" min="1" :max="boundsTotal" class="w-full h-2 bg-slate-200 rounded accent-blue-600">
+                            </div>
+
+                            <div>
+                                <label class="text-xs font-bold text-emerald-600 flex justify-between">
+                                    <span>n(B) 集合B元素数:</span>
+                                    <span class="font-black">{{ boundsB }}</span>
+                                </label>
+                                <input type="range" v-model.number="boundsB" min="1" :max="boundsTotal" class="w-full h-2 bg-slate-200 rounded accent-emerald-600">
+                            </div>
+                        </div>
+
+                        <!-- Theoretical Formulas Box -->
+                        <div class="p-4 bg-purple-50 border border-purple-200 rounded-xl space-y-2 text-xs text-purple-900">
+                            <p class="font-bold border-b border-purple-200 pb-1">理论公式法则：</p>
+                            <p>1. 交集最大值 max n(A ∩ B) = min(n(A), n(B))（小集合完全包含于大集合中）</p>
+                            <p>2. 交集最小值 min n(A ∩ B) = max(0, n(A) + n(B) - n(ξ))（两集合尽可能拉开）</p>
+                            <p>3. 联集最大值 max n(A ∪ B) = min(n(ξ), n(A) + n(B))</p>
+                            <p>4. 联集最小值 min n(A ∪ B) = max(n(A), n(B))</p>
+                        </div>
+                    </div>
+
+                    <!-- Visual Bounds Display -->
+                    <div class="md:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                        <h3 class="text-base font-bold text-slate-800 border-b pb-2">实时范围计算结果</h3>
+
+                        <!-- Intersection Range Card -->
+                        <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-bold text-blue-900"><i class="fa-solid fa-arrows-left-right text-blue-600 mr-2"></i> 交集 n(A ∩ B) 的取值范围：</span>
+                                <span class="text-xl font-black text-blue-700 font-mono">[{{ minIntersect }} , {{ maxIntersect }}]</span>
+                            </div>
+
+                            <div class="w-full bg-blue-200 h-3 rounded-full overflow-hidden flex">
+                                <div class="bg-blue-600 h-full transition-all duration-300" :style="{ width: (maxIntersect / boundsTotal * 100) + '%' }"></div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-xs text-slate-600">
+                                <div class="p-2 bg-white rounded border border-blue-100">
+                                    <strong class="text-blue-800 block">最小值 = {{ minIntersect }}</strong>
+                                    <span>当集合分散拉开到极限时</span>
+                                </div>
+                                <div class="p-2 bg-white rounded border border-blue-100">
+                                    <strong class="text-blue-800 block">最大值 = {{ maxIntersect }}</strong>
+                                    <span>当较小集合完全属于较大集合时</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Union Range Card -->
+                        <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-bold text-emerald-900"><i class="fa-solid fa-arrows-left-right text-emerald-600 mr-2"></i> 联集 n(A ∪ B) 的取值范围：</span>
+                                <span class="text-xl font-black text-emerald-700 font-mono">[{{ minUnion }} , {{ maxUnion }}]</span>
+                            </div>
+
+                            <div class="w-full bg-emerald-200 h-3 rounded-full overflow-hidden flex">
+                                <div class="bg-emerald-600 h-full transition-all duration-300" :style="{ width: (maxUnion / boundsTotal * 100) + '%' }"></div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-xs text-slate-600">
+                                <div class="p-2 bg-white rounded border border-emerald-100">
+                                    <strong class="text-emerald-800 block">最小值 = {{ minUnion }}</strong>
+                                    <span>当重叠最大 (重叠={{ maxIntersect }}) 时</span>
+                                </div>
+                                <div class="p-2 bg-white rounded border border-emerald-100">
+                                    <strong class="text-emerald-800 block">最大值 = {{ maxUnion }}</strong>
+                                    <span>当重叠最小 (重叠={{ minIntersect }}) 时</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION PRACTICE: 例题与互动随堂练习 -->
+            <section v-if="currentTab === 'practice'" class="space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">课本例题与即时互动测验</h2>
+                        <p class="text-xs text-slate-500 mt-1">选自华文独中初二下册第10章 真实课本习题与解答</p>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="flex space-x-2">
+                        <button @click="quizFilter = 'all'" :class="quizFilter === 'all' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700'" class="px-3 py-1.5 text-xs font-semibold rounded-lg">全部</button>
+                        <button @click="quizFilter = '2sets'" :class="quizFilter === '2sets' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700'" class="px-3 py-1.5 text-xs font-semibold rounded-lg">两个集合</button>
+                        <button @click="quizFilter = '3sets'" :class="quizFilter === '3sets' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700'" class="px-3 py-1.5 text-xs font-semibold rounded-lg">三个集合</button>
+                    </div>
+                </div>
+
+                <!-- Questions List -->
+                <div class="space-y-6">
+                    <div v-for="(item, index) in filteredQuizList" :key="index" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between border-b pb-3">
+                            <span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-md">
+                                题目 {{ index + 1 }} · {{ item.source }}
+                            </span>
+                            <span class="text-xs text-slate-400 font-mono">{{ item.category }}</span>
+                        </div>
+
+                        <p class="text-sm font-medium text-slate-800 leading-relaxed" v-html="item.question"></p>
+
+                        <!-- Interactive Answer Form -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <span class="text-xs font-bold text-slate-600">输入你的答案:</span>
+                                <input type="number" v-model.number="userAnswers[item.id]" class="w-28 p-2 border border-slate-300 rounded-lg text-sm font-bold focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+
+                            <button @click="checkAnswer(item)" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition shadow-sm">
+                                提交核对
+                            </button>
+
+                            <button @click="toggleSolution(item.id)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition">
+                                {{ showSolutions[item.id] ? '隐藏完整解答' : '查看解题步骤' }}
+                            </button>
+
+                            <!-- Answer Result Badge -->
+                            <span v-if="answerStatus[item.id] !== undefined" class="text-xs font-bold px-3 py-1.5 rounded-lg" :class="answerStatus[item.id] ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'">
+                                <i class="fa-solid mr-1" :class="answerStatus[item.id] ? 'fa-circle-check' : 'fa-circle-xmark'"></i>
+                                {{ answerStatus[item.id] ? '回答正确！真棒！' : '答案不正确，再试一次或看解答' }}
+                            </span>
+                        </div>
+
+                        <!-- Solution Box -->
+                        <div v-if="showSolutions[item.id]" class="mt-4 p-4 rounded-xl bg-slate-900 text-slate-200 text-xs font-mono space-y-2 border-l-4 border-amber-400">
+                            <p class="text-amber-400 font-bold">【详细解题步骤与公式推导】</p>
+                            <div v-html="item.solution" class="leading-relaxed whitespace-pre-line text-slate-300"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION SOLVER: 本地智能解题器（无需网络，不用 API Key） -->
+            <section v-if="currentTab === 'solver'" class="space-y-6">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-800 rounded-2xl p-6 text-white shadow-lg">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold uppercase tracking-wider mb-2">本地计算 · 离线可用</span>
+                            <h2 class="text-2xl font-bold">集合应用题解题器</h2>
+                            <p class="mt-2 text-indigo-100 text-sm max-w-3xl leading-relaxed">
+                                把题目里<strong>已知的数字</strong>填进对应格子，<strong>留空的就是要求的</strong>。解题器会按容斥公式，一步一步算出来。
+                            </p>
+                        </div>
+                        <div class="hidden sm:block text-5xl opacity-30">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                    <!-- 模式 -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button @click="setSolverMode('2')" :class="solverMode === '2' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'" class="px-4 py-1.5 text-sm font-semibold rounded-lg transition">两个集合 A、B</button>
+                        <button @click="setSolverMode('3')" :class="solverMode === '3' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'" class="px-4 py-1.5 text-sm font-semibold rounded-lg transition">三个集合 A、B、C</button>
+                        <button @click="clearSolver" class="ml-auto px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600">清空全部</button>
+                    </div>
+
+                    <!-- 快捷例题 -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-semibold text-slate-500">快捷填入例题:</span>
+                        <button v-for="p in solverPresets.filter(x => x.mode === solverMode)" :key="p.label" @click="loadSolverPreset(p)" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs rounded-md">{{ p.label }}</button>
+                    </div>
+                    <p v-if="solverNote" class="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-3 leading-relaxed">{{ solverNote }}</p>
+
+                    <!-- 输入格 -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div v-for="f in solverFields" :key="solverMode + f.key" class="p-3 rounded-xl border" :class="f.cls">
+                            <label class="block text-xs font-bold text-slate-700">{{ f.label }}</label>
+                            <p class="text-[11px] text-slate-500 mb-1">{{ f.hint }}</p>
+                            <input v-if="!f.derived" type="number" min="0" step="1" v-model="solverVals[f.key]" placeholder="留空 = 求" class="w-full p-2 border border-slate-300 rounded-lg text-base font-bold bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            <p v-if="solverResult.solved[f.key] !== undefined" class="mt-1 text-lg font-black text-emerald-600">= {{ solverResult.solved[f.key] }} <span class="text-xs font-semibold">{{ f.derived ? '推得' : '求得' }}</span></p>
+                            <p v-else-if="f.derived" class="mt-1 text-sm text-slate-400">—</p>
+                        </div>
+                    </div>
+
+                    <!-- 提示 / 错误 -->
+                    <div v-for="(e, i) in solverResult.errors" :key="'e' + i" class="p-3 rounded-xl bg-red-50 border border-red-200 text-sm text-red-700">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i>{{ e }}
+                    </div>
+                    <div v-if="solverResult.info && !solverResult.errors.length" class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-800">
+                        <i class="fa-solid fa-circle-info mr-2"></i>{{ solverResult.info }}
+                    </div>
+                    <div v-if="solverResult.answers.length && !solverResult.errors.length" class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
+                        <p class="text-xs font-bold text-emerald-700">求得结果</p>
+                        <p v-for="a in solverResult.answers" :key="a" class="text-base font-black text-emerald-800">{{ a }}</p>
+                    </div>
+
+                    <!-- 步骤 -->
+                    <div v-if="solverResult.steps.length && !solverResult.errors.length" class="space-y-3 bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm">
+                        <p class="text-amber-400 font-bold border-b border-slate-700 pb-2">【求解步骤解析】</p>
+                        <template v-for="(st, i) in solverResult.steps" :key="i">
+                            <p :class="i ? 'pt-2' : ''">{{ i + 1 }}. {{ st.title }}：</p>
+                            <p class="text-indigo-300 pl-4">{{ st.formula }}</p>
+                            <p class="text-indigo-300 pl-4">代入：{{ st.subst }}</p>
+                            <p class="text-amber-300 font-bold pl-4">解得：{{ st.result }}</p>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-auto">
+            <p>初二数学下册 第10章《集合论的应用》电子互动教学课件</p>
+            <p class="mt-1">符合初中数学课程纲要 · 配合 Venn 图辅助解题教学</p>
+            <p class="mt-2">峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted, watch, reactive } = Vue;
+
+
+        // ==================== 范恩图几何：圆面积 ∝ 人数，重叠面积 ∝ 交集人数 ====================
+        const lensArea = (d, r1, r2) => {
+            if (d >= r1 + r2) return 0;
+            if (d <= Math.abs(r1 - r2)) return Math.PI * Math.min(r1, r2) ** 2;
+            const p = r1 * r1 * Math.acos((d * d + r1 * r1 - r2 * r2) / (2 * d * r1));
+            const q = r2 * r2 * Math.acos((d * d + r2 * r2 - r1 * r1) / (2 * d * r2));
+            const w = 0.5 * Math.sqrt((-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2));
+            return p + q - w;
+        };
+        const vennGeom = (nA, nB, nI) => {
+            const A = Math.max(Number(nA) || 0, 0), B = Math.max(Number(nB) || 0, 0);
+            const I = Math.min(Math.max(Number(nI) || 0, 0), A, B);
+            const r1 = Math.sqrt(Math.max(A, 0.5)), r2 = Math.sqrt(Math.max(B, 0.5));
+            let d, mode;
+            if (I <= 0) {                                   // 相离：留出明显的空隙，绝不相交
+                mode = 'apart';
+                d = r1 + r2 + 0.35 * Math.min(r1, r2);
+            } else if (I >= Math.min(A, B)) {               // 子集：小圆完全在大圆里面
+                mode = 'nested';
+                d = 0.4 * Math.abs(r1 - r2);
+            } else {                                        // 一般相交：二分法求圆心距，使重叠面积 = π·交集人数
+                mode = 'partial';
+                let lo = Math.abs(r1 - r2), hi = r1 + r2;
+                const target = Math.PI * I;
+                for (let i = 0; i < 60; i++) {
+                    const mid = (lo + hi) / 2;
+                    if (lensArea(mid, r1, r2) > target) lo = mid; else hi = mid;
+                }
+                d = (lo + hi) / 2;
+            }
+            const left = Math.min(-r1, d - r2), right = Math.max(r1, d + r2);
+            const W0 = right - left, H0 = 2 * Math.max(r1, r2);
+            const k = Math.min(310 / W0, 180 / H0);
+            const shift = 200 - (left + W0 / 2) * k;
+            const cxA = shift, cxB = d * k + shift, rA = r1 * k, rB = r2 * k, cy = 150;
+            const g = { mode, cxA, cxB, rA, rB, cy };
+            if (mode === 'apart') {
+                g.aX = cxA; g.bX = cxB;
+            } else if (mode === 'partial') {
+                g.aX = ((cxA - rA) + (cxB - rB)) / 2;
+                g.bX = ((cxA + rA) + (cxB + rB)) / 2;
+                g.iX = ((cxB - rB) + (cxA + rA)) / 2;
+                // 区域太窄放不下文字时，把标签放到圆外面，用虚线指向该区域
+                const maxR = Math.max(rA, rB);
+                g.aThin = ((cxB - rB) - (cxA - rA)) < 40;
+                g.bThin = ((cxB + rB) - (cxA + rA)) < 40;
+                g.iThin = ((cxA + rA) - (cxB - rB)) < 46;
+                g.aLx = g.aX; g.aLy = cy + maxR + 18;
+                g.bLx = g.bX; g.bLy = cy - maxR - 12;
+                g.iLx = g.iX; g.iLy = cy + maxR + 18;
+            } else {
+                const smallIsA = A <= B;
+                g.small = smallIsA ? 'A' : 'B';
+                g.eq = A === B;
+                g.sx = smallIsA ? cxA : cxB;
+                const big = smallIsA ? rB : rA;
+                const thick = smallIsA ? (cxB + rB) - (cxA + rA) : (cxA - rA) - (cxB - rB);
+                if (thick >= 44) {
+                    g.lx = smallIsA ? ((cxA + rA) + (cxB + rB)) / 2 : ((cxA - rA) + (cxB - rB)) / 2;
+                    g.ly = cy - 4;
+                } else {                                    // 月牙太窄：把大集合的名字放在圆的上方
+                    g.lx = smallIsA ? cxB : cxA;
+                    g.ly = cy - big - 24;
+                }
+            }
+            return g;
+        };
+
+        // ==================== 随堂练习：5 题选择题，答对 3 题以上开启填充题 ====================
+        const PRACTICE = {
+            s1: {
+                title: '10.1 两个集合的联集',
+                mcq: [
+                    { q: '已知 n(A) = 18，n(B) = 12，n(A ∩ B) = 5，则 n(A ∪ B) = ？', opts: ['23', '25', '30', '35'], ans: 1,
+                      exp: 'n(A ∪ B) = n(A) + n(B) − n(A ∩ B) = 18 + 12 − 5 = 25。' },
+                    { q: '若 A ∩ B = ∅，n(A) = 14，n(B) = 9，则 n(A ∪ B) = ？', opts: ['5', '14', '23', '28'], ans: 2,
+                      exp: '两个集合没有公共元素，n(A ∩ B) = 0，所以 n(A ∪ B) = 14 + 9 = 23。' },
+                    { q: '已知 n(A ∪ B) = 40，n(A) = 26，n(B) = 22，则 n(A ∩ B) = ？', opts: ['4', '8', '12', '48'], ans: 1,
+                      exp: 'n(A ∩ B) = n(A) + n(B) − n(A ∪ B) = 26 + 22 − 40 = 8。' },
+                    { q: '若 A ⊂ B，n(A) = 10，n(B) = 25，则 n(A ∪ B) = ？', opts: ['10', '15', '25', '35'], ans: 2,
+                      exp: 'A 是 B 的子集，所以 A ∪ B = B，n(A ∪ B) = 25。（用公式：10 + 25 − 10 = 25）' },
+                    { q: '计算 n(A ∪ B) 时，为什么要减去 n(A ∩ B)？', ans: 1,
+                      opts: ['因为交集的元素不属于 A ∪ B', '因为交集的元素在 n(A) 和 n(B) 中各被数了一次，重复计算了，要减去一次', '因为要把交集的元素全部去掉', '因为这只是一个规定，没有原因'],
+                      exp: '交集里的元素既在 A 中被数一次，又在 B 中被数一次，所以多数了一次，要减去一次。' }
+                ],
+                fill: [
+                    { q: '已知 n(A) = 32，n(B) = 27，n(A ∩ B) = 11，则 n(A ∪ B) =', unit: '', ans: 48, exp: '32 + 27 − 11 = 48。' },
+                    { q: '某班 45 人，每人至少参加足球、羽球其中一项。参加足球 28 人，参加羽球 25 人，则两项都参加的有', unit: '人', ans: 8,
+                      exp: 'n(A ∪ B) = 45，所以 n(A ∩ B) = 28 + 25 − 45 = 8。' },
+                    { q: '已知 n(A ∪ B) = 50，n(B) = 20，n(A ∩ B) = 6，则 n(A) =', unit: '', ans: 36,
+                      exp: '50 = n(A) + 20 − 6，所以 n(A) = 50 − 20 + 6 = 36。' }
+                ]
+            },
+            s2: {
+                title: '10.2 余集与全集',
+                mcq: [
+                    { q: '全集 n(ξ) = 60，n(A) = 22，则 n(A′) = ？', opts: ['38', '42', '82', '22'], ans: 0,
+                      exp: 'n(A′) = n(ξ) − n(A) = 60 − 22 = 38。' },
+                    { q: 'n(ξ) = 50，n(A ∪ B) = 41，则两者都不属于的人数 n((A ∪ B)′) = ？', opts: ['41', '91', '9', '50'], ans: 2,
+                      exp: 'n((A ∪ B)′) = n(ξ) − n(A ∪ B) = 50 − 41 = 9。' },
+                    { q: '全班 40 人，喜欢数学 25 人，喜欢英语 20 人，两科都喜欢 10 人，则两科都不喜欢的有多少人？', opts: ['3', '5', '10', '15'], ans: 1,
+                      exp: '先求 n(A ∪ B) = 25 + 20 − 10 = 35，再求 40 − 35 = 5。' },
+                    { q: 'n((A ∪ B)′) 还可以写成下面哪一个？', opts: ["n(A′ ∩ B′)", "n(A′ ∪ B′)", 'n(A) − n(B)', "n(A′) + n(B′)"], ans: 0,
+                      exp: '德·摩根定律：(A ∪ B)′ = A′ ∩ B′，“两样都不属于”就是“不属于 A 且不属于 B”。' },
+                    { q: 'n(A) = 70，n(B) = 50，n(A ∩ B) = 30，则只属于 A（不属于 B）的人数是？', opts: ['20', '40', '70', '100'], ans: 1,
+                      exp: '只属于 A 的人数 = n(A) − n(A ∩ B) = 70 − 30 = 40。' }
+                ],
+                fill: [
+                    { q: 'n(ξ) = 80，n(A) = 53，则 n(A′) =', unit: '', ans: 27, exp: 'n(A′) = 80 − 53 = 27。' },
+                    { q: '某校 120 人，参加合唱团 70 人，参加舞蹈队 45 人，两者都参加 20 人，则两者都没参加的有', unit: '人', ans: 25,
+                      exp: 'n(A ∪ B) = 70 + 45 − 20 = 95，120 − 95 = 25。' },
+                    { q: 'n(ξ) = 90，n(A′ ∩ B′) = 12，n(A) = 50，n(B) = 40，则 n(A ∩ B) =', unit: '', ans: 12,
+                      exp: 'n(A ∪ B) = 90 − 12 = 78，所以 n(A ∩ B) = 50 + 40 − 78 = 12。' }
+                ]
+            },
+            s3: {
+                title: '10.3 三个集合的联集',
+                mcq: [
+                    { q: '三个集合的容斥公式中，n(A ∩ B ∩ C) 前面是什么符号？', opts: ['减号（−）', '加号（+）', '乘号（×）', '不会出现'], ans: 1,
+                      exp: '先减去三个两两交集后，三者的交集被多减了一次，所以要加回来：+ n(A ∩ B ∩ C)。' },
+                    { q: 'n(A) = 20，n(B) = 21，n(C) = 18，n(A ∩ B) = 10，n(A ∩ C) = 7，n(B ∩ C) = 6，n(A ∩ B ∩ C) = 4，则 n(A ∪ B ∪ C) = ？', opts: ['36', '40', '44', '59'], ans: 1,
+                      exp: '20 + 21 + 18 − 10 − 7 − 6 + 4 = 40。' },
+                    { q: 'n(A) = 15，n(B) = 12，n(C) = 10，且三个集合两两没有公共元素，则 n(A ∪ B ∪ C) = ？', opts: ['15', '25', '37', '47'], ans: 2,
+                      exp: '所有交集都是 0，所以直接相加：15 + 12 + 10 = 37。' },
+                    { q: '只属于 A 和 B（不属于 C）的有 6 人，三者都属于的有 4 人，则 n(A ∩ B) = ？', opts: ['2', '6', '10', '24'], ans: 2,
+                      exp: 'n(A ∩ B) 包括“只属于 A 和 B”与“三者都属于”两部分：6 + 4 = 10。' },
+                    { q: '全体 50 人，n(A ∪ B ∪ C) = 42，则三者都不属于的人数是？', opts: ['8', '42', '92', '0'], ans: 0,
+                      exp: '50 − 42 = 8。' }
+                ],
+                fill: [
+                    { q: 'n(A) = 30，n(B) = 25，n(C) = 20，n(A ∩ B) = 10，n(A ∩ C) = 8，n(B ∩ C) = 6，n(A ∩ B ∩ C) = 3，则 n(A ∪ B ∪ C) =', unit: '', ans: 54,
+                      exp: '30 + 25 + 20 − 10 − 8 − 6 + 3 = 54。' },
+                    { q: '某班 100 人，每人至少参加登山、露营、瑜伽中的一项。n(A) = 50，n(B) = 40，n(C) = 60，n(A ∩ B) = 20，n(B ∩ C) = 18，n(A ∩ C) = 15，则三项都参加的有', unit: '人', ans: 3,
+                      exp: '100 = 50 + 40 + 60 − 20 − 18 − 15 + x = 97 + x，所以 x = 3。' },
+                    { q: '全体 60 人，n(A ∪ B ∪ C) = 47，则三者都不属于的有', unit: '人', ans: 13, exp: '60 − 47 = 13。' }
+                ]
+            }
+        };
+        const PSTATE = reactive({});
+        const PracticeBlock = {
+            props: { sec: String },
+            setup(props) {
+                const data = PRACTICE[props.sec];
+                if (!PSTATE[props.sec]) PSTATE[props.sec] = { picked: {}, fillVals: {}, fillRes: {} };
+                const st = PSTATE[props.sec];
+                const answered = computed(() => Object.keys(st.picked).length);
+                const score = computed(() => data.mcq.filter((q, i) => st.picked[i] === q.ans).length);
+                const done = computed(() => answered.value === data.mcq.length);
+                const unlocked = computed(() => done.value && score.value >= 3);
+                const fillCorrect = computed(() => data.fill.filter((f, i) => st.fillRes[i] === true).length);
+                const choose = (qi, oi) => { if (st.picked[qi] === undefined) st.picked[qi] = oi; };
+                const optClass = (qi, oi) => {
+                    const q = data.mcq[qi], p = st.picked[qi];
+                    if (p === undefined) return 'bg-white border-slate-300 text-slate-700 hover:bg-slate-100';
+                    if (oi === q.ans) return 'bg-emerald-50 border-emerald-300 text-emerald-800';
+                    if (oi === p) return 'bg-red-50 border-red-300 text-red-700';
+                    return 'bg-white border-slate-200 text-slate-400';
+                };
+                const checkFill = (i) => {
+                    const v = String(st.fillVals[i] === undefined ? '' : st.fillVals[i]).trim();
+                    if (v === '') { st.fillRes[i] = null; return; }
+                    st.fillRes[i] = Number(v) === data.fill[i].ans;
+                };
+                const clearFill = (i) => { delete st.fillRes[i]; };
+                const resetAll = () => {
+                    Object.keys(st.picked).forEach(k => delete st.picked[k]);
+                    Object.keys(st.fillVals).forEach(k => delete st.fillVals[k]);
+                    Object.keys(st.fillRes).forEach(k => delete st.fillRes[k]);
+                };
+                return { data, st, answered, score, done, unlocked, fillCorrect, choose, optClass, checkFill, clearFill, resetAll };
+            },
+            template: `
+            <div class="space-y-6">
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
+                  <h3 class="text-lg font-bold text-slate-800">随堂练习 · 选择题（共 5 题）</h3>
+                  <span class="text-xs font-semibold text-slate-500">已答 {{ answered }} / 5　答对 {{ score }} 题</span>
+                </div>
+                <div v-for="(q, qi) in data.mcq" :key="qi" class="space-y-2">
+                  <p class="font-semibold text-slate-800 text-sm leading-relaxed">{{ qi + 1 }}. {{ q.q }}</p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button v-for="(o, oi) in q.opts" :key="oi" type="button" @click="choose(qi, oi)"
+                      :disabled="st.picked[qi] !== undefined" :class="optClass(qi, oi)"
+                      class="text-left px-3 py-2 rounded-lg border text-sm transition">
+                      <span class="font-bold mr-2">{{ 'ABCD'[oi] }}.</span>{{ o }}
+                    </button>
+                  </div>
+                  <p v-if="st.picked[qi] !== undefined" class="text-xs leading-relaxed"
+                     :class="st.picked[qi] === q.ans ? 'text-emerald-700' : 'text-red-600'">
+                    {{ st.picked[qi] === q.ans ? '✓ 答对了！' : '✗ 正确答案是 ' + 'ABCD'[q.ans] + '。' }}{{ q.exp }}
+                  </p>
+                </div>
+
+                <div v-if="!done" class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500">
+                  答完 5 题后，答对 <strong>3 题以上</strong> 就能开启下面的填充题。
+                </div>
+                <div v-else-if="unlocked" class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-800 font-semibold">
+                  答对 {{ score }} / 5 题，填充题已开启！
+                </div>
+                <div v-else class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900 flex flex-wrap items-center justify-between gap-2">
+                  <span>答对 {{ score }} / 5 题，需要答对至少 3 题才能开启填充题。看看每题的解析，再试一次吧。</span>
+                  <button type="button" @click="resetAll" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg">重新作答</button>
+                </div>
+              </div>
+
+              <div v-if="unlocked" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
+                  <h3 class="text-lg font-bold text-slate-800">填充题（共 {{ data.fill.length }} 题）</h3>
+                  <span class="text-xs font-semibold text-slate-500">已答对 {{ fillCorrect }} / {{ data.fill.length }}</span>
+                </div>
+                <div v-for="(f, fi) in data.fill" :key="fi" class="space-y-2">
+                  <p class="font-semibold text-slate-800 text-sm leading-relaxed">{{ fi + 1 }}. {{ f.q }}</p>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <input type="number" v-model="st.fillVals[fi]" @input="clearFill(fi)" @keyup.enter="checkFill(fi)" placeholder="填入答案"
+                      class="w-28 p-2 border border-slate-300 rounded-lg text-center font-bold bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <span v-if="f.unit" class="text-sm text-slate-600">{{ f.unit }}</span>
+                    <button type="button" @click="checkFill(fi)" class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg">检查答案</button>
+                  </div>
+                  <p v-if="st.fillRes[fi] === null" class="text-xs text-amber-700">请先填入答案。</p>
+                  <p v-else-if="st.fillRes[fi] === true" class="text-xs text-emerald-700 leading-relaxed">✓ 答对了！{{ f.exp }}</p>
+                  <p v-else-if="st.fillRes[fi] === false" class="text-xs text-red-600 leading-relaxed">✗ 再算一次看看。提示：{{ f.exp.split('，')[0] }}……</p>
+                </div>
+                <div v-if="fillCorrect === data.fill.length" class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-800 font-semibold">
+                  全部答对！{{ data.title }} 的练习完成了。
+                </div>
+                <div class="text-right"><button type="button" @click="resetAll" class="text-xs text-slate-500 hover:underline">清空，重新做一遍</button></div>
+              </div>
+            </div>`
+        };
+
+        const app = createApp({
+            setup() {
+                // Navigation
+                const currentTab = ref('sec10_1');
+                const mobileMenuOpen = ref(false);
+
+                // ==================== SECTION 10.1 STATE ====================
+                const preset2 = ref('standard');
+                const set2A = ref(25);
+                const set2B = ref(21);
+                const set2Intersect = ref(4);
+                const set2Universal = ref(42);
+
+                const calculated2Union = computed(() => set2A.value + set2B.value - set2Intersect.value);
+
+                const set2CircleACenter = computed(() => {
+                    if (preset2.value === 'disjoint') return 120;
+                    if (preset2.value === 'subset') return 180;
+                    return 160;
+                });
+
+                const set2CircleBCenter = computed(() => {
+                    if (preset2.value === 'disjoint') return 280;
+                    if (preset2.value === 'subset') return 200;
+                    return 240;
+                });
+
+                const validate2Sets = () => {
+                    preset2.value = 'custom';
+                    if (set2Intersect.value > Math.min(set2A.value, set2B.value)) {
+                        set2Intersect.value = Math.min(set2A.value, set2B.value);
+                    }
+                };
+
+                const setPreset2 = (mode) => {
+                    preset2.value = mode;
+                    if (mode === 'standard') {
+                        set2A.value = 25;
+                        set2B.value = 21;
+                        set2Intersect.value = 4;
+                        set2Universal.value = 42;
+                    } else if (mode === 'disjoint') {
+                        set2A.value = 20;
+                        set2B.value = 15;
+                        set2Intersect.value = 0;
+                        set2Universal.value = 40;
+                    } else if (mode === 'subset') {
+                        set2A.value = 12;
+                        set2B.value = 30;
+                        set2Intersect.value = 12;
+                        set2Universal.value = 40;
+                    }
+                };
+
+                // ==================== SECTION 10.2 STATE ====================
+                const sec2Total = ref(120);
+                const sec2CountA = ref(100);
+                const sec2CountB = ref(30);
+                const sec2InputMode = ref('neither'); // 'neither' or 'both'
+                const sec2Neither = ref(15);
+                const sec2Both = ref(25);
+
+                const calculatedSec2Both = computed(() => {
+                    return sec2CountA.value + sec2CountB.value - (sec2Total.value - sec2Neither.value);
+                });
+
+                const calculatedSec2Union = computed(() => {
+                    return sec2CountA.value + sec2CountB.value - sec2Both.value;
+                });
+
+                const calculatedSec2Neither = computed(() => {
+                    return sec2Total.value - calculatedSec2Union.value;
+                });
+
+                const calculatedSec2OnlyA = computed(() => {
+                    const intersect = sec2InputMode.value === 'neither' ? calculatedSec2Both.value : sec2Both.value;
+                    return sec2CountA.value - intersect;
+                });
+
+                const calculatedSec2OnlyB = computed(() => {
+                    const intersect = sec2InputMode.value === 'neither' ? calculatedSec2Both.value : sec2Both.value;
+                    return sec2CountB.value - intersect;
+                });
+
+                // ==================== SECTION 10.3 STATE ====================
+                const set3Total = ref(40);
+                const regOnlyA = ref(7);
+                const regOnlyB = ref(9);
+                const regOnlyC = ref(9);
+                const regOnlyAB = ref(6);
+                const regOnlyAC = ref(3);
+                const regOnlyBC = ref(2);
+                const regAll3 = ref(4);
+
+                const activeHighlight = ref('all');
+
+                const calculated3Union = computed(() => {
+                    return regOnlyA.value + regOnlyB.value + regOnlyC.value + 
+                           regOnlyAB.value + regOnlyAC.value + regOnlyBC.value + regAll3.value;
+                });
+
+                const regOutside = computed(() => set3Total.value - calculated3Union.value);
+
+                const reset3Sets = () => {
+                    regOnlyA.value = 7;
+                    regOnlyB.value = 9;
+                    regOnlyC.value = 9;
+                    regOnlyAB.value = 6;
+                    regOnlyAC.value = 3;
+                    regOnlyBC.value = 2;
+                    regAll3.value = 4;
+                    set3Total.value = 40;
+                };
+
+                // ==================== BOUNDS STATE ====================
+                const boundsTotal = ref(100);
+                const boundsA = ref(75);
+                const boundsB = ref(65);
+
+                const maxIntersect = computed(() => Math.min(boundsA.value, boundsB.value));
+                const minIntersect = computed(() => Math.max(0, boundsA.value + boundsB.value - boundsTotal.value));
+
+                const minUnion = computed(() => Math.max(boundsA.value, boundsB.value));
+                const maxUnion = computed(() => Math.min(boundsTotal.value, boundsA.value + boundsB.value));
+
+                // ==================== PRACTICE & QUIZ ====================
+                const quizFilter = ref('all');
+                const userAnswers = ref({});
+                const answerStatus = ref({});
+                const showSolutions = ref({});
+
+                const quizList = [
+                    {
+                        id: 1,
+                        category: '2sets',
+                        source: '例题 5 (第104页)',
+                        question: '某班 42 名学生都有参与踢足球或打羽球的活动。若踢足球的学生有 25 名，打羽球的学生有 21 名，问两种球类活动都有参与的学生有几名？',
+                        correctAnswer: 4,
+                        solution: `设 F 为踢足球的学生集合，B 为打羽球的学生集合。
+已知：n(F) = 25, n(B) = 21, n(F ∪ B) = 42
+根据公式：n(F ∪ B) = n(F) + n(B) - n(F ∩ B)
+带入数据：42 = 25 + 21 - n(F ∩ B)
+解得：n(F ∩ B) = 25 + 21 - 42 = 4 (名)`
+                    },
+                    {
+                        id: 2,
+                        category: '2sets',
+                        source: '例题 6 (第105页)',
+                        question: '某工厂的工人都喝咖啡或茶，其中 48 人喝咖啡，52 人喝茶，25 人喝咖啡及茶，问该工厂共有多少名工人？',
+                        correctAnswer: 75,
+                        solution: `设 C 为喝咖啡的工人集合，T 为喝茶的工人集合。
+已知：n(C) = 48, n(T) = 52, n(C ∩ T) = 25
+根据公式：n(C ∪ T) = n(C) + n(T) - n(C ∩ T)
+计算：n(C ∪ T) = 48 + 52 - 25 = 75 (名)`
+                    },
+                    {
+                        id: 3,
+                        category: '2sets',
+                        source: '练习 10.2 第1题 (第113页)',
+                        question: '在 80 个小孩中，有 50 个补习英文，53 个孩子补习国文，有 25 个国、英两科都补习，问两科都没补习的小孩有多少人？',
+                        correctAnswer: 2,
+                        solution: `设 E 为补英文，M 为补国文，全集 n(ξ) = 80。
+1. 至少补一科的人数：
+   n(E ∪ M) = n(E) + n(M) - n(E ∩ M) = 50 + 53 - 25 = 78
+2. 两科都没补习的人数 n(E' ∩ M')：
+   n((E ∪ M)') = n(ξ) - n(E ∪ M) = 80 - 78 = 2 (人)`
+                    },
+                    {
+                        id: 4,
+                        category: '3sets',
+                        source: '练习 10.3 第6题 (第124页)',
+                        question: '100 名学生参加登山、露营或瑜伽三项活动，且每人至少须参加一项。50 人参加登山，40 人参加露营，60 人参加瑜伽；20 人参加登山及露营，18 人参加露营及瑜伽，15 人参加登山及瑜伽。求三项活动都参加的人数。',
+                        correctAnswer: 3,
+                        solution: `设 A, B, C 分别为参加登山、露营、瑜伽的集合。
+已知：n(A)=50, n(B)=40, n(C)=60
+n(A ∩ B)=20, n(B ∩ C)=18, n(A ∩ C)=15, n(A ∪ B ∪ C)=100
+代入三集合容斥原理公式：
+100 = 50 + 40 + 60 - (20 + 18 + 15) + n(A ∩ B ∩ C)
+100 = 150 - 53 + n(A ∩ B ∩ C)
+100 = 97 + n(A ∩ B ∩ C)
+解得：n(A ∩ B ∩ C) = 3 (人)`
+                    }
+                ];
+
+                const filteredQuizList = computed(() => {
+                    if (quizFilter.value === 'all') return quizList;
+                    return quizList.filter(item => item.category === quizFilter.value);
+                });
+
+                const checkAnswer = (item) => {
+                    const ans = userAnswers.value[item.id];
+                    if (ans === undefined || ans === null || ans === '') return;
+                    answerStatus.value[item.id] = (Number(ans) === item.correctAnswer);
+                };
+
+                const toggleSolution = (id) => {
+                    showSolutions.value[id] = !showSolutions.value[id];
+                };
+
+                // ==================== INPUT VALIDATION ====================
+                const toInt = (v, lo, hi) => {
+                    let n = Math.round(Number(v));
+                    if (!Number.isFinite(n)) n = lo;
+                    return Math.min(Math.max(n, lo), hi);
+                };
+
+                // 10.1：交集不超过较小集合；全集不小于联集
+                watch([set2A, set2B, set2Intersect], () => {
+                    set2Intersect.value = toInt(set2Intersect.value, 0, Math.min(set2A.value, set2B.value));
+                    if (set2Universal.value < calculated2Union.value) set2Universal.value = calculated2Union.value;
+                });
+
+                // 10.2：失焦/回车时修正；数据不合理时给出提示（输入过程中不打断）
+                const fixSec2 = () => {
+                    sec2Total.value = toInt(sec2Total.value, 1, 100000);
+                    sec2CountA.value = toInt(sec2CountA.value, 0, sec2Total.value);
+                    sec2CountB.value = toInt(sec2CountB.value, 0, sec2Total.value);
+                    sec2Neither.value = toInt(sec2Neither.value, 0, sec2Total.value);
+                    sec2Both.value = toInt(sec2Both.value, 0, Math.min(sec2CountA.value, sec2CountB.value));
+                };
+                const sec2Warning = computed(() => {
+                    const T = Number(sec2Total.value) || 0;
+                    const A = Number(sec2CountA.value) || 0;
+                    const B = Number(sec2CountB.value) || 0;
+                    if (A > T || B > T) return 'n(A)、n(B) 都不能大于总人数 n(ξ)，请检查数据。';
+                    let both, union;
+                    if (sec2InputMode.value === 'neither') {
+                        const N = Number(sec2Neither.value) || 0;
+                        if (N > T) return '“都不”的人数不能大于总人数 n(ξ)。';
+                        union = T - N;
+                        both = A + B - union;
+                    } else {
+                        both = Number(sec2Both.value) || 0;
+                        union = A + B - both;
+                    }
+                    if (both < 0) return `算出的 n(A ∩ B) = ${both}，是负数：n(A) + n(B) 比 n(A ∪ B) 还小，数据不合理。`;
+                    if (both > Math.min(A, B)) return `算出的 n(A ∩ B) = ${both}，比 n(A) 或 n(B) 还大，这是不可能的，请检查数据。`;
+                    if (union > T) return `n(A ∪ B) = ${union}，超过了总人数 n(ξ) = ${T}，请检查数据。`;
+                    return '';
+                });
+
+                // 10.3：各区域不能为负；全集自动不小于联集
+                const regionRefs = [regOnlyA, regOnlyB, regOnlyC, regOnlyAB, regOnlyAC, regOnlyBC, regAll3];
+                watch(regionRefs, (nv, ov) => {
+                    nv.forEach((v, i) => {
+                        if (v !== ov[i]) regionRefs[i].value = toInt(v, 0, 100000);
+                    });
+                    if (set3Total.value < calculated3Union.value) set3Total.value = calculated3Union.value;
+                });
+                const fixSec3Total = () => {
+                    set3Total.value = Math.max(toInt(set3Total.value, 0, 100000), calculated3Union.value);
+                };
+
+                // 极值探究：A、B 不能大于全集
+                watch(boundsTotal, () => {
+                    if (boundsA.value > boundsTotal.value) boundsA.value = boundsTotal.value;
+                    if (boundsB.value > boundsTotal.value) boundsB.value = boundsTotal.value;
+                });
+
+                // ==================== 智能解题器（本地容斥计算） ====================
+                const SOLVER_DEF = {
+                    '2': {
+                        fields: [
+                            { key: 'U', sym: 'n(ξ)', label: 'n(ξ)', hint: '全集（总人数）', cls: 'bg-slate-50 border-slate-200' },
+                            { key: 'A', sym: 'n(A)', label: 'n(A)', hint: '属于集合 A 的个数', cls: 'bg-blue-50 border-blue-200' },
+                            { key: 'B', sym: 'n(B)', label: 'n(B)', hint: '属于集合 B 的个数', cls: 'bg-emerald-50 border-emerald-200' },
+                            { key: 'I', sym: 'n(A∩B)', label: 'n(A ∩ B)', hint: '两者都属于', cls: 'bg-purple-50 border-purple-200' },
+                            { key: 'N', sym: 'n(A∪B)', label: 'n(A ∪ B)', hint: '至少属于其中一个', cls: 'bg-amber-50 border-amber-200' },
+                            { key: 'O', sym: "n((A∪B)′)", label: "n((A ∪ B)′)", hint: '两者都不属于', cls: 'bg-rose-50 border-rose-200' },
+                            { key: 'PA', sym: 'n(只A)', label: 'n(只属于 A)', hint: 'n(A) − n(A∩B)', cls: 'bg-white border-dashed border-slate-300', derived: true },
+                            { key: 'PB', sym: 'n(只B)', label: 'n(只属于 B)', hint: 'n(B) − n(A∩B)', cls: 'bg-white border-dashed border-slate-300', derived: true }
+                        ],
+                        eqs: [
+                            { name: '两个集合的联集公式', tpl: '{N} = {A} + {B} − {I}', terms: { N: 1, A: -1, B: -1, I: 1 } },
+                            { name: '余集公式（求“都不”）', tpl: '{O} = {U} − {N}', terms: { O: 1, U: -1, N: 1 } },
+                            { name: '只属于 A', tpl: '{PA} = {A} − {I}', terms: { PA: 1, A: -1, I: 1 }, optional: true },
+                            { name: '只属于 B', tpl: '{PB} = {B} − {I}', terms: { PB: 1, B: -1, I: 1 }, optional: true }
+                        ],
+                        leq: [['I', 'A'], ['I', 'B'], ['A', 'N'], ['B', 'N'], ['N', 'U']]
+                    },
+                    '3': {
+                        fields: [
+                            { key: 'U', sym: 'n(ξ)', label: 'n(ξ)', hint: '全集（总人数）', cls: 'bg-slate-50 border-slate-200' },
+                            { key: 'A', sym: 'n(A)', label: 'n(A)', hint: '属于集合 A', cls: 'bg-blue-50 border-blue-200' },
+                            { key: 'B', sym: 'n(B)', label: 'n(B)', hint: '属于集合 B', cls: 'bg-emerald-50 border-emerald-200' },
+                            { key: 'C', sym: 'n(C)', label: 'n(C)', hint: '属于集合 C', cls: 'bg-amber-50 border-amber-200' },
+                            { key: 'AB', sym: 'n(A∩B)', label: 'n(A ∩ B)', hint: '同时属于 A 和 B', cls: 'bg-purple-50 border-purple-200' },
+                            { key: 'BC', sym: 'n(B∩C)', label: 'n(B ∩ C)', hint: '同时属于 B 和 C', cls: 'bg-purple-50 border-purple-200' },
+                            { key: 'AC', sym: 'n(A∩C)', label: 'n(A ∩ C)', hint: '同时属于 A 和 C', cls: 'bg-purple-50 border-purple-200' },
+                            { key: 'ABC', sym: 'n(A∩B∩C)', label: 'n(A ∩ B ∩ C)', hint: '三者都属于', cls: 'bg-red-50 border-red-200' },
+                            { key: 'N', sym: 'n(A∪B∪C)', label: 'n(A ∪ B ∪ C)', hint: '至少属于其中一个', cls: 'bg-indigo-50 border-indigo-200' },
+                            { key: 'O', sym: "n((A∪B∪C)′)", label: "n((A ∪ B ∪ C)′)", hint: '三者都不属于', cls: 'bg-rose-50 border-rose-200' }
+                        ],
+                        eqs: [
+                            { name: '三个集合的容斥原理', tpl: '{N} = {A} + {B} + {C} − {AB} − {BC} − {AC} + {ABC}', terms: { N: 1, A: -1, B: -1, C: -1, AB: 1, BC: 1, AC: 1, ABC: -1 } },
+                            { name: '余集公式（求“都不”）', tpl: '{O} = {U} − {N}', terms: { O: 1, U: -1, N: 1 } }
+                        ],
+                        leq: [['AB', 'A'], ['AB', 'B'], ['BC', 'B'], ['BC', 'C'], ['AC', 'A'], ['AC', 'C'],
+                              ['ABC', 'AB'], ['ABC', 'BC'], ['ABC', 'AC'], ['A', 'N'], ['B', 'N'], ['C', 'N'], ['N', 'U']]
+                    }
+                };
+
+                const solverPresets = [
+                    { mode: '2', label: '足球与羽球（例题5）', vals: { N: 42, A: 25, B: 21 },
+                      note: '设 A = 踢足球，B = 打羽球。全班 42 人都参加其中至少一项，所以 n(A ∪ B) = 42；求两种都参加的人数 n(A ∩ B)。' },
+                    { mode: '2', label: '补习国文与英文（练习10.2）', vals: { U: 80, A: 50, B: 53, I: 25 },
+                      note: '设 A = 补习英文，B = 补习国文，全集 n(ξ) = 80。求两科都没补习的人数 n((A ∪ B)′)。' },
+                    { mode: '2', label: '喜欢数学与英语', vals: { U: 40, A: 25, B: 20, I: 10 },
+                      note: '某班 40 人，25 人喜欢数学（A），20 人喜欢英语（B），10 人两科都喜欢。求两科都不喜欢的人数。' },
+                    { mode: '3', label: '登山·露营·瑜伽（练习10.3第6题）', vals: { N: 100, A: 50, B: 40, C: 60, AB: 20, BC: 18, AC: 15 },
+                      note: '100 人参加登山（A）、露营（B）、瑜伽（C），且每人至少参加一项，所以 n(A ∪ B ∪ C) = 100。求三项都参加的人数 n(A ∩ B ∩ C)。' },
+                    { mode: '3', label: '三科调查（自编）', vals: { U: 45, A: 20, B: 21, C: 18, AB: 10, BC: 6, AC: 7, ABC: 4 },
+                      note: '全体 45 人，已知三个集合及交集的人数。先求至少属于一个的人数，再求三者都不属于的人数。' }
+                ];
+
+                const emptyVals = () => ({ U: '', A: '', B: '', C: '', I: '', AB: '', BC: '', AC: '', ABC: '', N: '', O: '' });
+                const solverMode = ref('2');
+                const solverVals = ref(emptyVals());
+                const solverNote = ref('');
+                const solverFields = computed(() => SOLVER_DEF[solverMode.value].fields);
+
+                const loadSolverPreset = (p) => {
+                    solverVals.value = Object.assign(emptyVals(), p.vals);
+                    solverNote.value = p.note;
+                };
+                const setSolverMode = (m) => {
+                    solverMode.value = m;
+                    loadSolverPreset(solverPresets.find(p => p.mode === m));
+                };
+                const clearSolver = () => {
+                    solverVals.value = emptyVals();
+                    solverNote.value = '';
+                };
+                loadSolverPreset(solverPresets[0]);
+
+                const solverResult = computed(() => {
+                    const def = SOLVER_DEF[solverMode.value];
+                    const symOf = {};
+                    def.fields.forEach(f => { symOf[f.key] = f.sym; });
+                    const inputKeys = def.fields.filter(f => !f.derived).map(f => f.key);
+
+                    const vals = {};
+                    const errors = [];
+                    for (const k of inputKeys) {
+                        const raw = solverVals.value[k];
+                        if (raw === '' || raw === null || raw === undefined) continue;
+                        const n = Number(raw);
+                        if (!Number.isInteger(n) || n < 0) { errors.push(`${symOf[k]} 必须是不小于 0 的整数。`); continue; }
+                        vals[k] = n;
+                    }
+                    const given = Object.keys(vals).length;
+                    const solved = {};
+                    const steps = [];
+                    const fmt = (v) => (v < 0 ? `(${v})` : `${v}`);
+                    const fillSym = (tpl) => tpl.replace(/\{(\w+)\}/g, (_, k) => symOf[k]);
+                    const fillVal = (tpl, target) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k === target ? 'x' : fmt(vals[k])));
+
+                    // 反复寻找“只剩一个未知数”的公式并求解
+                    const used = new Set();
+                    let progress = true;
+                    while (progress) {
+                        progress = false;
+                        for (const eq of def.eqs) {
+                            if (used.has(eq)) continue;
+                            const keys = Object.keys(eq.terms);
+                            const unknown = keys.filter(k => vals[k] === undefined);
+                            if (unknown.length !== 1) continue;
+                            const u = unknown[0];
+                            let rest = 0;
+                            keys.forEach(k => { if (k !== u) rest += eq.terms[k] * vals[k]; });
+                            const v = -rest / eq.terms[u];
+                            if (!eq.optional) steps.push({ title: eq.name, formula: fillSym(eq.tpl), subst: fillVal(eq.tpl, u), result: `${symOf[u]} = ${v}` });
+                            vals[u] = v;
+                            solved[u] = v;
+                            used.add(eq);
+                            progress = true;
+                        }
+                    }
+
+                    // 检查：负数、相互矛盾、不可能的大小关系
+                    for (const k of Object.keys(solved)) {
+                        if (solved[k] < 0 && inputKeys.includes(k)) errors.push(`算出 ${symOf[k]} = ${solved[k]}，是负数，不可能。请检查题目数据是否填对。`);
+                    }
+                    for (const eq of def.eqs) {
+                        const keys = Object.keys(eq.terms);
+                        if (keys.every(k => vals[k] !== undefined) && !used.has(eq)) {
+                            const sum = keys.reduce((s, k) => s + eq.terms[k] * vals[k], 0);
+                            if (sum !== 0) errors.push(`数据互相矛盾：按“${fillSym(eq.tpl)}”，等式两边不相等。请检查已填数字。`);
+                        }
+                    }
+                    for (const [small, big] of def.leq) {
+                        if (vals[small] !== undefined && vals[big] !== undefined && vals[small] > vals[big]) {
+                            errors.push(`${symOf[small]} = ${vals[small]} 不能大于 ${symOf[big]} = ${vals[big]}。`);
+                        }
+                    }
+
+                    const answers = inputKeys.filter(k => solved[k] !== undefined).map(k => `${symOf[k]} = ${solved[k]}`);
+                    let info = '';
+                    if (!errors.length && !answers.length) {
+                        info = given === 0 ? '先在上面填入题目给出的数字，或点“快捷填入例题”。'
+                            : '目前的已知数字还算不出新的结果，请再补充一两个已知条件（留空的格子才会被求出来）。';
+                    }
+                    return { solved, steps, errors: errors.slice(0, 2), answers, info };
+                });
+
+
+                // 范恩图几何（10.1 / 10.2 共用）与 10.3 的完整计算
+                const venn1 = computed(() => vennGeom(set2A.value, set2B.value, set2Intersect.value));
+                const sec2BothVal = computed(() => sec2InputMode.value === 'neither' ? calculatedSec2Both.value : (Number(sec2Both.value) || 0));
+                const sec2NeitherVal = computed(() => sec2InputMode.value === 'neither'
+                    ? (Number(sec2Neither.value) || 0)
+                    : (Number(sec2Total.value) || 0) - ((Number(sec2CountA.value) || 0) + (Number(sec2CountB.value) || 0) - sec2BothVal.value));
+                const venn2 = computed(() => vennGeom(sec2CountA.value, sec2CountB.value, sec2BothVal.value));
+                const calc3 = computed(() => {
+                    const a = regOnlyA.value, b = regOnlyB.value, c = regOnlyC.value;
+                    const ab = regOnlyAB.value, ac = regOnlyAC.value, bc = regOnlyBC.value, t = regAll3.value;
+                    const nA = a + ab + ac + t, nB = b + ab + bc + t, nC = c + ac + bc + t;
+                    const nAB = ab + t, nAC = ac + t, nBC = bc + t;
+                    const sum1 = nA + nB + nC;
+                    const sum2 = sum1 - nAB - nAC - nBC;
+                    return { nA, nB, nC, nAB, nAC, nBC, sum1, sum2, union: sum2 + t };
+                });
+
+                return {
+                    currentTab,
+                    mobileMenuOpen,
+                    // 10.1
+                    preset2,
+                    set2A,
+                    set2B,
+                    set2Intersect,
+                    set2Universal,
+                    calculated2Union,
+                    set2CircleACenter,
+                    set2CircleBCenter,
+                    validate2Sets,
+                    setPreset2,
+                    // 10.2
+                    sec2Total,
+                    sec2CountA,
+                    sec2CountB,
+                    sec2InputMode,
+                    sec2Neither,
+                    sec2Both,
+                    calculatedSec2Both,
+                    calculatedSec2Union,
+                    calculatedSec2Neither,
+                    calculatedSec2OnlyA,
+                    calculatedSec2OnlyB,
+                    // 10.3
+                    set3Total,
+                    regOnlyA,
+                    regOnlyB,
+                    regOnlyC,
+                    regOnlyAB,
+                    regOnlyAC,
+                    regOnlyBC,
+                    regAll3,
+                    activeHighlight,
+                    calculated3Union,
+                    regOutside,
+                    reset3Sets,
+                    // Bounds
+                    boundsTotal,
+                    boundsA,
+                    boundsB,
+                    maxIntersect,
+                    minIntersect,
+                    minUnion,
+                    maxUnion,
+                    // Quiz
+                    quizFilter,
+                    filteredQuizList,
+                    userAnswers,
+                    answerStatus,
+                    showSolutions,
+                    checkAnswer,
+                    toggleSolution,
+                    // Venn + 10.3 steps
+                    venn1,
+                    venn2,
+                    sec2BothVal,
+                    sec2NeitherVal,
+                    calc3,
+                    // Validation
+                    sec2Warning,
+                    fixSec2,
+                    fixSec3Total,
+                    // Solver
+                    solverMode,
+                    solverVals,
+                    solverNote,
+                    solverFields,
+                    solverPresets,
+                    solverResult,
+                    setSolverMode,
+                    loadSolverPreset,
+                    clearSolver
+                };
+            }
+        });
+        app.component('practice-block', PracticeBlock);
+        app.mount('#app');
+    </script>
+
+    <!-- 字号 / 深浅色切换 -->
+    <div id="ui-tools" role="toolbar" aria-label="显示设置">
+        <button type="button" data-fs="s" aria-label="字号：小" title="字号：小">A-</button>
+        <button type="button" data-fs="m" aria-label="字号：标准" title="字号：标准">A</button>
+        <button type="button" data-fs="l" aria-label="字号：大" title="字号：大">A+</button>
+        <span class="sep"></span>
+        <button type="button" id="themeBtn" aria-label="切换深色/浅色模式" title="切换深色/浅色模式">☾</button>
+    </div>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var SIZES = { s: '87.5%', m: '100%', l: '118%' };
+            function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+            function put(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+            /* ---------- 字号 ---------- */
+            var fsBtns = document.querySelectorAll('#ui-tools [data-fs]');
+            function setSize(k) {
+                if (!SIZES[k]) k = 'm';
+                root.style.fontSize = k === 'm' ? '' : SIZES[k];
+                fsBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-fs') === k ? 'true' : 'false'); });
+                put('jihe10_fs', k);
+            }
+            fsBtns.forEach(function (b) { b.addEventListener('click', function () { setSize(b.getAttribute('data-fs')); }); });
+            setSize(get('jihe10_fs') || 'm');
+
+            /* ---------- 防盗水印（半透明斜铺，不挡操作；被删/被改会自动恢复） ---------- */
+            var NAMES = ['峇株吧辖华仁中学蔡逸众制作', '峇株吧辖蔡逸众制作', '华仁中学蔡逸众制作', 'Made by ecchua79'];
+            var wm = null, wmCss = '';
+            function wmImage() {
+                var c = root.classList.contains('dark') ? '255,255,255,0.09' : '15,23,42,0.08';
+                var t = NAMES.map(function (n, i) { return '<text x="210" y="' + (60 + i * 55) + '">' + n + '</text>'; }).join('');
+                var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="420" height="300"><g transform="rotate(-25 210 150)" ' +
+                    'font-family="PingFang SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="15" text-anchor="middle" fill="rgba(' + c + ')">' + t + '</g></svg>';
+                return 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
+            }
+            function buildWM() {
+                if (wm && wm.parentNode) wm.parentNode.removeChild(wm);
+                wm = document.createElement('div');
+                wm.id = 'wm-layer';
+                wm.setAttribute('aria-hidden', 'true');
+                wm.style.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:9998;' +
+                    'background-repeat:repeat;background-image:' + wmImage();
+                wmCss = wm.style.cssText;
+                document.body.appendChild(wm);
+            }
+            function checkWM() {
+                if (!wm || !document.body.contains(wm) || wm.style.cssText !== wmCss) buildWM();
+            }
+            buildWM();
+            new MutationObserver(checkWM).observe(document.body, { childList: true });
+            new MutationObserver(checkWM).observe(wm, { attributes: true });
+            setInterval(function () { checkWM(); }, 2000);
+
+            /* ---------- 深色 / 浅色 ---------- */
+            var themeBtn = document.getElementById('themeBtn');
+            function setTheme(dark) {
+                root.classList.toggle('dark', dark);
+                themeBtn.textContent = dark ? '☀' : '☾';
+                themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+                put('jihe10_theme', dark ? 'dark' : 'light');
+                buildWM();
+            }
+            themeBtn.addEventListener('click', function () { setTheme(!root.classList.contains('dark')); });
+            setTheme(root.classList.contains('dark'));
+        })();
+    </script>
+</body>
+</html>
