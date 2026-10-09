@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<!--
+  初二数学 第14章 不等式 · 互动课件
+  制作：蔡逸众老师 (ecchua79) · 峇株吧辖华仁中学 Chinese High School
+  © 蔡逸众 · ecchua79 · Chinese High School
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="蔡逸众 (ecchua79) · Chinese High School 华仁中学">
+<meta name="copyright" content="© 蔡逸众 · ecchua79 · Chinese High School">
+<title>初二数学 · 第14章 不等式 · 互动课件</title>
+<style>
+/* © 蔡逸众 · ecchua79 · Chinese High School — 初二数学第14章 不等式 */
+:root{
+  --bg:#f3efe3;--card:#fffdf6;--ink:#1d2742;--muted:#5b6585;--line:#d8d1ba;--soft:#f7f3e6;
+  --accent:#2c4bd0;--accent-bg:#e8edff;--accent2:#d4501b;
+  --ok:#1b8a5a;--ok-bg:#e1f5ea;--bad:#c4352c;--bad-bg:#fde8e5;--warn:#a85208;--warn-bg:#fff1dc;
+  --c1:#2f6fe0;--c2:#e08a1e;--gold:#b8860b;--gold-bg:#fff6d6;
+  --grid:rgba(44,75,208,.07);--shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px rgba(40,50,90,.07);
+}
+[data-theme="dark"]{
+  --bg:#0f1426;--card:#181f3b;--ink:#e9edff;--muted:#a0aad0;--line:#2c3562;--soft:#1f2748;
+  --accent:#8fa4ff;--accent-bg:#232d5c;--accent2:#ff9a6b;
+  --ok:#4dd9a3;--ok-bg:#16382f;--bad:#ff7b70;--bad-bg:#43211f;--warn:#ffb862;--warn-bg:#42301a;
+  --c1:#6aa2ff;--c2:#ffb04a;--gold:#f2c14e;--gold-bg:#3d3314;
+  --grid:rgba(143,164,255,.07);--shadow:0 1px 0 rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{font-size:15px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5;
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:1.6rem 1.6rem;transition:background-color .25s,color .25s}
+h1,h2,h3{font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;margin:0;line-height:1.3}
+.mv{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-style:italic;padding:0 .04em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 .15em;font-size:.95em}
+.fr>i{font-style:normal;padding:0 .22em}
+.fr>i:first-child{border-bottom:1.5px solid currentColor}
+.sys{display:inline-flex;align-items:center;gap:.15em;vertical-align:middle;margin:.2em 0}
+.sys .brace{font-size:3.1em;font-weight:100;line-height:1;transform:scaleX(.65);margin-right:-.15em;color:var(--muted)}
+.sys .rows{display:flex;flex-direction:column;gap:.3em;align-items:flex-start}
+.warn{color:var(--warn)}
+.hide{display:none!important}
+
+/* 顶栏 */
+.top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;padding:.6rem 1rem;background:var(--card);border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+.logo{font-family:"Noto Serif SC",serif;font-weight:900;font-size:1.5rem;background:var(--ink);color:var(--card);width:2.4rem;height:2.4rem;display:grid;place-items:center;border-radius:.4rem;flex:none}
+.brand h1{font-size:1.15rem}
+.brand p{margin:0;color:var(--muted);font-size:.78rem}
+.ctl{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.ctl button,.btn{font:inherit;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);border-radius:.45rem;padding:.3rem .7rem;font-size:.85rem;transition:transform .08s,background .15s}
+.ctl button:hover,.btn:hover{background:var(--accent-bg)}
+.ctl button:active,.btn:active{transform:translateY(1px)}
+.fsz{display:flex;align-items:center;gap:.3rem;border:1.5px solid var(--ink);border-radius:.45rem;padding:.1rem .3rem;background:var(--card)}
+.fsz button{border:none!important;padding:.2rem .5rem!important;font-weight:700}
+.fsz span{min-width:2.2ch;text-align:center;font-size:.8rem;color:var(--muted)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+[data-theme="dark"] .btn.primary{color:#0f1426}
+.btn.primary:hover{filter:brightness(1.1);background:var(--accent)}
+
+/* 导航 */
+#nav{position:sticky;top:0;z-index:20;display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 1rem;background:var(--bg);border-bottom:1px solid var(--line);scrollbar-width:thin}
+#nav button{flex:none;font:inherit;font-size:.86rem;cursor:pointer;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:2rem;padding:.3rem .85rem;white-space:nowrap}
+#nav button.cur{background:var(--ink);color:var(--card);border-color:var(--ink);font-weight:700}
+#nav .mk{color:var(--gold);font-weight:700}
+#nav button.cur .mk{color:#ffd45e}
+
+main{max-width:62rem;margin:0 auto;padding:.9rem 1rem 2rem}
+.tab{display:none}.tab.on{display:block}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:.8rem;padding:.9rem 1.1rem;margin-bottom:.9rem;box-shadow:var(--shadow)}
+.card>h2{font-size:1.35rem;margin-bottom:.15rem}
+.card>h3,.tool>h3{font-size:1.05rem;margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.85rem;margin:.1rem 0 .5rem}
+p{margin:.35rem 0}
+.hero{background:linear-gradient(135deg,var(--accent),#5b3fd1);color:#fff;border:none}
+.hero h2{font-size:1.7rem}
+.hero p{opacity:.95}
+.grid{display:grid;gap:.7rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
+.prop{border-radius:.7rem;padding:.7rem .9rem;border:1.5px solid}
+.prop h4{margin:0 0 .25rem;font-size:.95rem}
+.prop.p1{background:var(--accent-bg);border-color:var(--accent)}
+.prop.p2{background:var(--ok-bg);border-color:var(--ok)}
+.prop.p3{background:var(--bad-bg);border-color:var(--bad)}
+.formula{font-family:"Cambria Math","Times New Roman",serif;font-size:1.02rem;margin-top:.3rem}
+.steps{counter-reset:s;list-style:none;padding:0;margin:.4rem 0}
+.steps li{counter-increment:s;position:relative;padding:.35rem .6rem .35rem 2.3rem;margin:.3rem 0;background:var(--soft);border-radius:.5rem;border:1px solid var(--line)}
+.steps li::before{content:counter(s);position:absolute;left:.55rem;top:.4rem;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--ink);color:var(--card);font-size:.75rem;font-weight:700;display:grid;place-items:center}
+.callout{border-left:5px solid var(--warn);background:var(--warn-bg);padding:.5rem .8rem;border-radius:.4rem;margin:.6rem 0;font-size:.92rem}
+.callout.info{border-color:var(--accent);background:var(--accent-bg)}
+table.t{border-collapse:collapse;width:100%;font-size:.9rem;margin:.4rem 0}
+table.t th,table.t td{border:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:middle}
+table.t th{background:var(--soft)}
+.chip{display:inline-block;padding:.12rem .6rem;border-radius:2rem;font-size:.78rem;border:1.5px solid var(--line);background:var(--soft);color:var(--muted)}
+.chip.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.chip.gold{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.navcard{display:flex;flex-direction:column;gap:.3rem;text-align:left;font:inherit;color:inherit;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:.7rem;padding:.7rem .9rem}
+.navcard:hover{border-color:var(--accent);background:var(--accent-bg)}
+.navcard b{font-family:"Noto Serif SC",serif;font-size:1.02rem}
+.navcard span.d{font-size:.84rem;color:var(--muted)}
+
+/* 实验台 */
+.tool{background:var(--soft);border:1.5px dashed var(--accent);border-radius:.8rem;padding:.8rem 1rem;margin:.8rem 0}
+.tgrid{display:grid;gap:.8rem;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.tgrid{grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr)}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.65rem .8rem}
+.fld{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.3rem 0;font-size:.9rem}
+.fld label{min-width:5.2em;color:var(--muted)}
+.fld input[type=range]{flex:1;min-width:6rem;accent-color:var(--accent)}
+input[type=text],input[type=number],select,.fin{font:inherit;font-size:.92rem;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:.4rem;padding:.3rem .5rem}
+input[type=number],input.sm{width:5.2rem;text-align:center}
+select{max-width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.eqbox{text-align:center;padding:.5rem;font-size:1.15rem;font-family:"Cambria Math","Times New Roman",serif}
+.eqbox .big{font-size:1.5rem}
+.eqbox .lab{display:block;font-size:.72rem;color:var(--muted);font-family:inherit;text-align:left}
+.rel{color:var(--accent2);font-size:1.1em}
+.rel.big{font-size:1.4em}
+.note{margin:.4rem 0;padding:.4rem .6rem;border-radius:.4rem;font-size:.86rem;background:var(--soft);border:1px solid var(--line)}
+.note.warnbox{background:var(--warn-bg);border-color:var(--warn);color:var(--warn);animation:pulse 1.6s infinite}
+.note.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.8}}
+@media(prefers-reduced-motion:reduce){.note.warnbox{animation:none}}
+.pre{display:flex;flex-wrap:wrap;gap:.35rem;margin:.3rem 0 .5rem}
+.pre button{font:inherit;font-size:.8rem;cursor:pointer;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:2rem;padding:.2rem .65rem}
+.pre button.cur{background:var(--accent);color:#fff;border-color:var(--accent)}
+[data-theme="dark"] .pre button.cur{color:#0f1426}
+.st{padding:.28rem .5rem;margin:.25rem 0;border-radius:.4rem;background:var(--card);border:1px solid var(--line);font-size:.92rem}
+.st.warnrow{border-color:var(--warn);background:var(--warn-bg)}
+.sn{display:inline-block;color:var(--accent);font-weight:700;margin-right:.35rem}
+.resbar{margin-top:.4rem;padding:.45rem .7rem;border-radius:.5rem;background:var(--accent-bg);border:1.5px solid var(--accent);font-size:1rem}
+.resbar .big{font-size:1.2rem}
+.resbar .lab,.resbar .tail{font-size:.8rem;color:var(--muted);margin-left:.5rem}
+.resbar .tail{margin-left:1rem}
+.nlwrap{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.4rem .5rem;margin-top:.5rem}
+svg.nl{width:100%;max-width:23rem;height:auto;display:block;margin:0 auto}
+.nl-axis{stroke:var(--ink);stroke-width:2}
+.nl-arrow{fill:var(--ink)}
+.nl-tick{stroke:var(--ink);stroke-width:1.5}
+.nl-lab{fill:var(--muted);font-size:10.5px}
+.nl-val{fill:var(--ink);font-size:10px;font-weight:700}
+.nl-rowlab{fill:var(--muted);font-size:10px}
+.nl-guide{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3;opacity:.6}
+.nl-empty{fill:var(--bad);font-size:12px}
+.nl-msg{text-align:center;font-size:.85rem;padding:.2rem}
+.nl-msg.ok{color:var(--ok)}.nl-msg.bad{color:var(--bad)}
+#nldemo{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.5rem}
+#nldemo figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.3rem .4rem}
+#nldemo figcaption{font-size:.82rem;text-align:center;color:var(--muted)}
+.badge{display:inline-block;font-family:"Cambria Math","Times New Roman",serif;font-size:1.3rem;font-weight:700;color:var(--ok);background:var(--ok-bg);border:1.5px solid var(--ok);border-radius:.5rem;padding:.1rem .7rem}
+.legend{display:flex;gap:.9rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:.3rem}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;margin-right:.3em;vertical-align:-.05em}
+.app{display:grid;gap:.7rem}
+@media(min-width:820px){.app{grid-template-columns:repeat(3,1fr)}}
+.app .panel h4{margin:0 0 .3rem;font-size:.95rem;font-family:"Noto Serif SC",serif}
+.app .out{margin-top:.5rem;padding:.4rem .55rem;background:var(--accent-bg);border-radius:.45rem;font-size:.9rem;border:1px solid var(--accent)}
+.app .out .big{font-size:1.2rem;color:var(--accent2)}
+
+/* 练习 */
+.quiz{margin-top:.9rem;border:2px solid var(--ink);border-radius:.9rem;padding:.8rem 1rem;background:var(--card);box-shadow:var(--shadow)}
+.qhead{display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem;flex-wrap:wrap;border-bottom:1.5px solid var(--line);padding-bottom:.5rem;margin-bottom:.6rem}
+.qhead h3{font-size:1.1rem}
+.qctl{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.qcard{background:var(--soft);border:1.5px solid var(--line);border-radius:.7rem;padding:.65rem .8rem;margin:.55rem 0}
+.qcard.fill{border-color:var(--gold);background:var(--gold-bg)}
+.qno{font-size:.78rem;color:var(--muted);margin-bottom:.2rem;font-weight:700}
+.tag{display:inline-block;font-weight:400;font-size:.72rem;padding:0 .45rem;border:1px solid var(--line);border-radius:1rem;margin-left:.3rem}
+.tag.gold{border-color:var(--gold);color:var(--gold)}
+.qtext{font-size:1.02rem;margin:.15rem 0 .5rem;line-height:1.75}
+.opts{display:grid;gap:.4rem;grid-template-columns:1fr}
+@media(min-width:620px){.opts{grid-template-columns:1fr 1fr}}
+.opts.nl{grid-template-columns:1fr}
+@media(min-width:760px){.opts.nl{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:.6rem;text-align:left;font:inherit;color:var(--ink);cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:.55rem;padding:.4rem .6rem;min-height:2.6rem}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-bg)}
+.opt:disabled{cursor:default}
+.opt .ltr{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--ink);color:var(--card);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+.opt .otxt{flex:1;min-width:0;font-size:1rem}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.ok .ltr{background:var(--ok);color:#fff}
+.opt.bad{border-color:var(--bad);background:var(--bad-bg)}
+.opt.bad .ltr{background:var(--bad);color:#fff}
+.qex{margin-top:.55rem;padding:.45rem .7rem;border-radius:.5rem;font-size:.9rem;border-left:5px solid}
+.qex.good{background:var(--ok-bg);border-color:var(--ok)}
+.qex.miss{background:var(--bad-bg);border-color:var(--bad)}
+.qresult{margin:.7rem 0;padding:.6rem .85rem;border-radius:.6rem;border:1.5px solid}
+.qresult.pass{background:var(--ok-bg);border-color:var(--ok)}
+.qresult.fail{background:var(--warn-bg);border-color:var(--warn)}
+.qresult .btn{margin-top:.4rem}
+.breakdown{margin:.3rem 0 .3rem 1.1rem;padding:0}
+.miss-t{color:var(--bad);font-size:.85rem}
+.fillzone{margin-top:.5rem}
+.fillzone>h3{font-size:1.05rem;color:var(--gold)}
+.frow{display:flex;gap:.5rem;flex-wrap:wrap}
+.fin{flex:1;min-width:10rem;font-size:1.05rem}
+.pal{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
+.pbtn{font:inherit;font-size:.88rem;cursor:pointer;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:.4rem;padding:.15rem .55rem}
+.pbtn:hover:not(:disabled){background:var(--accent-bg)}
+.hint{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+.fmsg{font-size:.85rem;min-height:0}
+.warnmsg{color:var(--warn);margin-top:.3rem}
+footer{text-align:center;color:var(--muted);font-size:.78rem;padding:1rem;border-top:1px solid var(--line);background:var(--card)}
+@media(max-width:560px){.top{padding:.5rem .7rem}main{padding:.7rem .6rem 1.5rem}.card{padding:.75rem .8rem}}
+@media print{#nav,.ctl,.quiz{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">14</div><div><h1>初二数学 · 第14章 不等式</h1><p>华文独中《初中数学》初二下册 · 互动课件 · 随机练习</p></div></div>
+  <div class="ctl">
+    <button id="btnTheme" type="button" aria-label="切换浅色/深色模式">🌙 深色</button>
+    <div class="fsz" role="group" aria-label="字体大小"><button id="fDown" type="button" aria-label="缩小字体">A−</button><span id="fVal">15</span><button id="fUp" type="button" aria-label="放大字体">A+</button><button id="fReset" type="button" aria-label="恢复默认字体" title="恢复默认">↺</button></div>
+  </div>
+</header>
+<nav id="nav" aria-label="章节导航">
+  <button type="button" data-tab="intro">学习目标</button>
+  <button type="button" data-tab="s1">14.1 基本性质</button>
+  <button type="button" data-tab="s2">14.2 一元一次不等式</button>
+  <button type="button" data-tab="s3">14.3 不等式组</button>
+  <button type="button" data-tab="s4">14.4 应用问题</button>
+  <button type="button" data-tab="final">🏁 章末测验</button>
+</nav>
+<main>
+
+<!-- ============ 学习目标 ============ -->
+<section class="tab" id="tab-intro">
+  <div class="card hero">
+    <h2>第 14 章 不等式</h2>
+    <p>初一学过用不等号表示两个数不相等。这一章要学会：不等式的基本性质、找出满足不等式的所有数（解集）、用不等式解决生活中的“最多／至少”问题。</p>
+  </div>
+  <div class="grid g2">
+    <button class="navcard" data-go="s1" type="button"><b>14.1 基本性质</b><span class="d">加减不变号；乘除正数不变号；乘除<b>负数要变号</b>。</span><span id="prog-s1" class="chip">○ 尚未解锁</span></button>
+    <button class="navcard" data-go="s2" type="button"><b>14.2 一元一次不等式</b><span class="d">移项、系数化为 1，用数轴（空心圈／实心点）表示解集。</span><span id="prog-s2" class="chip">○ 尚未解锁</span></button>
+    <button class="navcard" data-go="s3" type="button"><b>14.3 不等式组</b><span class="d">分别解每个不等式，在数轴上找公共部分（交集）。</span><span id="prog-s3" class="chip">○ 尚未解锁</span></button>
+    <button class="navcard" data-go="s4" type="button"><b>14.4 应用问题</b><span class="d">把“最多／至少／不超过”翻译成不等式，并正确取整。</span><span id="prog-s4" class="chip">○ 尚未解锁</span></button>
+  </div>
+  <div class="card" style="margin-top:.9rem">
+    <h3>📚 怎么学这一章？</h3>
+    <ol class="steps">
+      <li>读每一节的<b>要点</b>，在<b>实验台</b>里拖一拖、改一改，自己观察规律。</li>
+      <li>做<b>随堂练习</b>：5 道选择题，题目和选项每次都随机生成，选项还会打乱。</li>
+      <li>答对 <b>3 题或以上</b>，解锁 <b>2 道作答题</b>，要自己输入答案才算对。</li>
+      <li>学完四节后，到<b>章末测验</b>做综合随机题，看看哪一节还要加强。</li>
+    </ol>
+    <div class="callout info">💡 选择题里的错误选项，都是<b>常见的算错结果</b>（忘记变号、移项没变号、边界值取错……），所以要先自己算出答案再选，不要靠“一眼排除”。页面右上角可以切换深浅色、调整字体大小。</div>
+  </div>
+</section>
+
+<!-- ============ 14.1 ============ -->
+<section class="tab" id="tab-s1">
+  <div class="card">
+    <h2>14.1 不等式的基本性质</h2>
+    <p class="sub">拖动滑块、选择运算，观察不等号什么时候会“翻转”。</p>
+    <div class="grid g3" style="margin-top:.5rem">
+      <div class="prop p1"><h4>性质 1（加、减）</h4><p>两边都加上或减去<b>同一个数</b>，不等号方向<b>不变</b>。</p><div class="formula">若 <i class="mv">a</i> &lt; <i class="mv">b</i>，则 <i class="mv">a</i> ± <i class="mv">c</i> &lt; <i class="mv">b</i> ± <i class="mv">c</i></div></div>
+      <div class="prop p2"><h4>性质 2（乘、除正数）</h4><p>两边都乘以或除以同一个<b>正数</b>，不等号方向<b>不变</b>。</p><div class="formula">若 <i class="mv">a</i> &lt; <i class="mv">b</i>，<i class="mv">c</i> &gt; 0，则 <i class="mv">ac</i> &lt; <i class="mv">bc</i></div></div>
+      <div class="prop p3"><h4>性质 3（乘、除负数）⚠️</h4><p>两边都乘以或除以同一个<b>负数</b>，不等号方向<b>必须改变</b>。</p><div class="formula">若 <i class="mv">a</i> &lt; <i class="mv">b</i>，<i class="mv">c</i> &lt; 0，则 <i class="mv">ac</i> &gt; <i class="mv">bc</i></div></div>
+    </div>
+    <div class="tool">
+      <h3>🔬 实验台：两边同时运算</h3>
+      <div class="tgrid">
+        <div class="panel">
+          <div class="fld"><label>数值 <i class="mv">a</i></label><input type="range" id="t1a" min="-15" max="15" value="-8"><b id="t1ad">−8</b></div>
+          <div class="fld"><label>数值 <i class="mv">b</i></label><input type="range" id="t1b" min="-15" max="15" value="-4"><b id="t1bd">−4</b></div>
+          <div class="fld"><label>两边同时</label>
+            <select id="t1op"><option value="+">加上 (+)</option><option value="-">减去 (−)</option><option value="*" selected>乘以 (×)</option><option value="/">除以 (÷)</option></select>
+            <input type="number" id="t1c" value="-2" step="1"></div>
+          <div id="t1warn" class="note hide"></div>
+        </div>
+        <div class="panel">
+          <div class="eqbox"><span class="lab">初始关系</span><div id="t1init"></div><span class="lab">运算后</span><div id="t1trans"></div><div id="t1eval" style="color:var(--ok)"></div></div>
+          <div class="nlwrap" id="t1svg"></div>
+          <div class="legend"><span><span class="dot" style="background:var(--c1)"></span>变前位置 (a, b)</span><span><span class="dot" style="background:var(--ok)"></span>变后位置 (a′, b′)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">⚠️ <b>三个常见陷阱：</b>① 乘（除）以<b>负数</b>忘记变号；② 乘以 <b>0</b> 时两边变成相等，不再是不等式；③ 只有“乘除”才会变号，“加减”永远不变号（如 <i class="mv">a</i> &lt; <i class="mv">b</i> 推出 3 − <i class="mv">a</i> &gt; 3 − <i class="mv">b</i> 是因为中间乘了 −1）。</div>
+  </div>
+  <div class="quiz" id="quiz-s1"></div>
+</section>
+
+<!-- ============ 14.2 ============ -->
+<section class="tab" id="tab-s2">
+  <div class="card">
+    <h2>14.2 一元一次不等式</h2>
+    <p class="sub">解法和解方程几乎一样，只多了一条：<b>乘除负数要变号</b>。</p>
+    <ol class="steps">
+      <li><b>去分母</b>：两边同乘各分母的最小公倍数，<b>每一项都要乘</b>（包括不含分母的项）。</li>
+      <li><b>去括号</b>：括号前面的数要乘进每一项；括号前是负号，括号内各项都变号。</li>
+      <li><b>移项</b>：含未知数的项移到一边，常数项移到另一边，<b>移项要变号</b>。</li>
+      <li><b>合并同类项</b>，化成 <i class="mv">ax</i> ○ <i class="mv">b</i>。</li>
+      <li><b>系数化为 1</b>：两边除以 <i class="mv">a</i>；若 <i class="mv">a</i> &lt; 0，<b class="warn">不等号改变方向</b>。</li>
+    </ol>
+    <h3 style="margin-top:.6rem">解集在数轴上怎么画？</h3>
+    <div id="nldemo"></div>
+    <div class="callout info">带“=”（≥、≤）→ <b>实心点</b>（边界也是解）；不带“=”（&gt;、&lt;）→ <b>空心圈</b>（边界不是解）。</div>
+    <div class="tool">
+      <h3>🔬 实验台：一元一次不等式解题器</h3>
+      <p class="sub">不等式形式：<i class="mv">ax</i> + <i class="mv">b</i> ○ <i class="mv">cx</i> + <i class="mv">d</i>。可以直接输入数字（支持分数 1/2、小数），或点下面的课本例题。</p>
+      <div class="pre" id="t2pre">
+        <button type="button" data-k="ex1">例1：x − 1 &gt; 2</button><button type="button" data-k="ex2">例2：3x + 1 ≤ 10</button><button type="button" data-k="ex3">例3：3 − 2x ≤ 7（变号）</button><button type="button" data-k="ex5">例5：3(1−x) &lt; 2(x+9)</button><button type="button" data-k="ex7a">例7(a)：x ≥ x − 1</button><button type="button" data-k="ex7b">例7(b)：y &lt; y − 1</button>
+      </div>
+      <div class="tgrid">
+        <div class="panel">
+          <div class="fld"><label>左边</label><input class="sm" type="text" id="t2a" value="-2"><span><i class="mv">x</i> +</span><input class="sm" type="text" id="t2b" value="3"></div>
+          <div class="fld"><label>不等号</label><select id="t2op"><option value="<">&lt;</option><option value="<=">≤</option><option value=">">&gt;</option><option value=">=">≥</option></select></div>
+          <div class="fld"><label>右边</label><input class="sm" type="text" id="t2c" value="0"><span><i class="mv">x</i> +</span><input class="sm" type="text" id="t2d" value="7"></div>
+          <div id="t2note" class="note"></div>
+        </div>
+        <div class="panel"><div id="t2steps"></div><div class="resbar" id="t2res"></div></div>
+      </div>
+      <div class="nlwrap" id="t2svg"></div>
+    </div>
+    <div class="callout">⚠️ <b>特殊情形：</b>当 <i class="mv">x</i> 的项在两边抵消，只剩下 0 ○ 常数：若这个式子<b>永远成立</b>→ 解集是<b>全体实数</b>；若<b>永远不成立</b>→ <b>无解</b>。</div>
+  </div>
+  <div class="quiz" id="quiz-s2"></div>
+</section>
+
+<!-- ============ 14.3 ============ -->
+<section class="tab" id="tab-s3">
+  <div class="card">
+    <h2>14.3 一元一次不等式组</h2>
+    <p class="sub">先分别解出每个不等式，再取它们解集的<b>公共部分（交集）</b>。</p>
+    <table class="t">
+      <tr><th>口诀</th><th>情形</th><th>例子</th><th></th></tr>
+      <tr><td>同大取大</td><td>都是“大于”</td><td><i class="mv">x</i> &gt; 1 且 <i class="mv">x</i> ≥ 4 → <i class="mv">x</i> ≥ 4</td><td><button class="btn" type="button" data-pre3="c2">试试</button></td></tr>
+      <tr><td>同小取小</td><td>都是“小于”</td><td><i class="mv">x</i> &lt; 1 且 <i class="mv">x</i> &lt; 4 → <i class="mv">x</i> &lt; 1</td><td><button class="btn" type="button" data-pre3="c3">试试</button></td></tr>
+      <tr><td>大小小大中间找</td><td>夹在两数之间</td><td><i class="mv">x</i> &gt; 1 且 <i class="mv">x</i> &lt; 4 → 1 &lt; <i class="mv">x</i> &lt; 4</td><td><button class="btn" type="button" data-pre3="c1">试试</button></td></tr>
+      <tr><td>大大小小无处找</td><td>没有重叠</td><td><i class="mv">x</i> ≤ 1 且 <i class="mv">x</i> &gt; 4 → 无解</td><td><button class="btn" type="button" data-pre3="c4">试试</button></td></tr>
+    </table>
+    <div class="callout info">口诀只是帮助记忆，遇到边界值相同（如 <i class="mv">x</i> ≥ 3 且 <i class="mv">x</i> ≤ 3）或一个带“=”一个不带时，一定要<b>在数轴上画出来</b>再判断。</div>
+    <div class="tool" id="t3box">
+      <h3>🔬 实验台：不等式组求交集</h3>
+      <div class="pre" id="t3pre"><button type="button" data-k="c1">中间找</button><button type="button" data-k="c2">同大取大</button><button type="button" data-k="c3">同小取小</button><button type="button" data-k="c4">无解</button></div>
+      <div class="tgrid">
+        <div class="panel">
+          <div class="fld"><label style="color:var(--c1);font-weight:700">不等式 ①</label><i class="mv">x</i>
+            <select id="t3o1"><option value=">">&gt;</option><option value=">=">≥</option><option value="<">&lt;</option><option value="<=">≤</option></select><input class="sm" type="text" id="t3v1" value="1"></div>
+          <div class="fld"><label style="color:var(--c2);font-weight:700">不等式 ②</label><i class="mv">x</i>
+            <select id="t3o2"><option value="<">&lt;</option><option value="<=">≤</option><option value=">">&gt;</option><option value=">=">≥</option></select><input class="sm" type="text" id="t3v2" value="4"></div>
+          <div class="note" id="t3why"></div>
+          <div>公共解集：<span class="badge" id="t3badge"></span></div>
+        </div>
+        <div class="panel"><div class="nlwrap" id="t3svg" style="margin-top:0"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="quiz" id="quiz-s3"></div>
+</section>
+
+<!-- ============ 14.4 ============ -->
+<section class="tab" id="tab-s4">
+  <div class="card">
+    <h2>14.4 应用问题</h2>
+    <p class="sub">把生活里的限制条件翻译成不等式。</p>
+    <table class="t">
+      <tr><th>关键词</th><th>不等号</th></tr>
+      <tr><td>至少、不少于、不低于、达到</td><td>≥</td></tr>
+      <tr><td>最多、不超过、不高于</td><td>≤</td></tr>
+      <tr><td>超过、高于、大于</td><td>&gt;</td></tr>
+      <tr><td>不足、低于、少于</td><td>&lt;</td></tr>
+    </table>
+    <ol class="steps">
+      <li><b>审题</b>：圈出“最多／至少／超过”等关键词，统一单位（如 RM 与仙）。</li>
+      <li><b>设未知数</b>：设要求的量为 <i class="mv">x</i>。</li>
+      <li><b>列不等式</b>：把限制条件写成不等式。</li>
+      <li><b>解不等式</b>，别忘了乘除负数要变号。</li>
+      <li><b>检验并取整</b>：人数、件数等必须是整数。</li>
+    </ol>
+    <div class="callout">⚠️ <b>取整规则：</b>“<b>最多</b>能……”→ 解出 <i class="mv">x</i> ≤ 11.1 时取 11（向下取整）；“<b>至少</b>需要……”→ 解出 <i class="mv">x</i> ≥ 5.6 时取 6（向上取整）。如果是严格不等号（&gt; 或 &lt;）且边界值刚好是整数，边界值本身<b>不能取</b>。</div>
+    <div class="tool">
+      <h3>🔬 实验台：三个生活情境</h3>
+      <div class="app">
+        <div class="panel"><h4>🛒 预算购物</h4><p class="sub">原子笔每支 <b>P</b> 仙，预算 RM <b>M</b>，最多买几支？</p>
+          <div class="fld"><label>单价 (仙)</label><input class="sm" type="text" id="a1p" value="90"></div>
+          <div class="fld"><label>预算 (RM)</label><input class="sm" type="text" id="a1m" value="10"></div>
+          <div class="out" id="a1res"></div></div>
+        <div class="panel"><h4>📈 目标平均分</h4><p class="sub">4 次测验平均分要达到 <b>T</b>，前三次成绩已知，第四次至少考几分？</p>
+          <div class="fld"><label>目标平均</label><input class="sm" type="text" id="a2t" value="60"></div>
+          <div class="fld"><label>前三次</label><input class="sm" type="text" id="a2s1" value="48"><input class="sm" type="text" id="a2s2" value="62"><input class="sm" type="text" id="a2s3" value="53"></div>
+          <div class="out" id="a2res"></div></div>
+        <div class="panel"><h4>📐 图形尺寸</h4><p class="sub">长方形长 (<i class="mv">kx</i> + <i class="mv">m</i>) cm，宽 <b>w</b> cm，面积 ○ <b>A</b>，求整数 <i class="mv">x</i> 的最大值。</p>
+          <div class="fld"><label>长 = k x + m</label><input class="sm" type="text" id="a3k" value="2"><input class="sm" type="text" id="a3m" value="5"></div>
+          <div class="fld"><label>宽 w</label><input class="sm" type="text" id="a3w" value="8"></div>
+          <div class="fld"><label>面积 ○ A</label><select id="a3op"><option value="<">&lt;</option><option value="<=">≤</option></select><input class="sm" type="text" id="a3A" value="78"></div>
+          <div class="out" id="a3res"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="quiz" id="quiz-s4"></div>
+</section>
+
+<!-- ============ 章末测验 ============ -->
+<section class="tab" id="tab-final">
+  <div class="card">
+    <h2>🏁 章末综合测验</h2>
+    <p class="sub">从 14.1–14.4 随机抽 10 道选择题；题目数值、选项内容和顺序每次都不同。错误选项都是常见的算错结果，要自己算清楚再选。</p>
+  </div>
+  <div class="quiz" id="quiz-final"></div>
+</section>
+
+</main>
+<footer>峇株吧辖华仁中学 Chinese High School 出品 · 蔡逸众老师 制作 · ecchua79 · 《初中数学》初二下册 第14章 不等式 互动课件</footer>
+<script>
+'use strict';
+/* ================= 基础工具 ================= */
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const chance=p=>Math.random()<p;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const nz=(a,b)=>{let v;do{v=ri(a,b);}while(v===0);return v;};
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a;};
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const MINUS='−';
+const sgn=n=>n<0?MINUS+Math.abs(n):String(n);
+
+/* ---------- 分数类 ---------- */
+class F{
+  constructor(n,d=1){ if(d<0){n=-n;d=-d;} const g=gcd(n,d)||1; this.n=n/g; this.d=d/g; }
+  add(o){o=toF(o);return new F(this.n*o.d+o.n*this.d,this.d*o.d);}
+  sub(o){o=toF(o);return new F(this.n*o.d-o.n*this.d,this.d*o.d);}
+  mul(o){o=toF(o);return new F(this.n*o.n,this.d*o.d);}
+  div(o){o=toF(o);return new F(this.n*o.d,this.d*o.n);}
+  neg(){return new F(-this.n,this.d);}
+  cmp(o){o=toF(o);return this.n*o.d-o.n*this.d;}
+  eq(o){return this.cmp(o)===0;}
+  isInt(){return this.d===1;}
+  isZero(){return this.n===0;}
+  num(){return this.n/this.d;}
+  floor(){return Math.floor(this.n/this.d);}
+  ceil(){return Math.ceil(this.n/this.d);}
+  key(){return this.n+'/'+this.d;}
+}
+const fr=(n,d=1)=>new F(n,d);
+const toF=x=>x instanceof F?x:new F(x,1);
+
+/* ---------- 显示辅助 ---------- */
+const frac=(a,b)=>`<span class="fr"><i>${a}</i><i>${b}</i></span>`;
+const mv=s=>`<i class="mv">${s}</i>`;
+const OPS=['<','>','<=','>='];
+const OPH={'<':'&lt;','>':'&gt;','<=':'≤','>=':'≥'};
+const flipOp=o=>({'<':'>','>':'<','<=':'>=','>=':'<='}[o]);
+const strictOf=o=>o==='<='?'<':o==='>='?'>':o;
+const looseOf=o=>o==='<'?'<=':o==='>'?'>=':o;
+function fmtF(f){
+  f=toF(f); const neg=f.n<0; const n=Math.abs(f.n);
+  return (neg?MINUS:'')+(f.d===1?String(n):frac(n,f.d));
+}
+/* 一次式 a x + b （a,b 为整数或 F）*/
+function linHTML(a,b,v='x'){
+  a=toF(a); b=toF(b); let s='';
+  if(!a.isZero()){
+    if(a.eq(1)) s+=mv(v);
+    else if(a.eq(-1)) s+=MINUS+mv(v);
+    else s+=fmtF(a)+mv(v);
+  }
+  if(a.isZero()) return fmtF(b);
+  if(!b.isZero()) s+=(b.n<0?` ${MINUS} ${fmtF(b.neg())}`:` + ${fmtF(b)}`);
+  return s;
+}
+/* 把 b 的符号并入：返回 "+ 3" 或 "− 3" */
+const addSub=n=>n<0?`${MINUS} ${-n}`:`+ ${n}`;
+
+/* ================= 区间（解集）================= */
+const EMPTY={empty:true,lo:null,hi:null,loC:false,hiC:false};
+function mkIv(lo,loC,hi,hiC){
+  const iv={lo,loC,hi,hiC,empty:false};
+  if(lo&&hi){const c=lo.cmp(hi); if(c>0||(c===0&&!(loC&&hiC))) return EMPTY;}
+  return iv;
+}
+const FULL=mkIv(null,false,null,false);
+function ivOp(op,v){
+  v=toF(v);
+  return op==='>'?mkIv(v,false,null,false):op==='>='?mkIv(v,true,null,false):op==='<'?mkIv(null,false,v,false):mkIv(null,false,v,true);
+}
+function ivInter(a,b){
+  if(a.empty||b.empty) return EMPTY;
+  let lo,loC,hi,hiC;
+  if(!a.lo){lo=b.lo;loC=b.loC;} else if(!b.lo){lo=a.lo;loC=a.loC;}
+  else{const c=a.lo.cmp(b.lo); if(c>0){lo=a.lo;loC=a.loC;} else if(c<0){lo=b.lo;loC=b.loC;} else {lo=a.lo;loC=a.loC&&b.loC;}}
+  if(!a.hi){hi=b.hi;hiC=b.hiC;} else if(!b.hi){hi=a.hi;hiC=a.hiC;}
+  else{const c=a.hi.cmp(b.hi); if(c<0){hi=a.hi;hiC=a.hiC;} else if(c>0){hi=b.hi;hiC=b.hiC;} else {hi=a.hi;hiC=a.hiC&&b.hiC;}}
+  return mkIv(lo,loC,hi,hiC);
+}
+function ivKey(iv){
+  if(iv.empty) return 'E';
+  return (iv.lo?(iv.loC?'[':'(')+iv.lo.key():'(-inf')+','+(iv.hi?iv.hi.key()+(iv.hiC?']':')'):'+inf)');
+}
+function ivHTML(iv,v='x'){
+  const X=mv(v);
+  if(iv.empty) return '无解';
+  if(!iv.lo&&!iv.hi) return '全体实数';
+  if(iv.lo&&iv.hi){
+    if(iv.lo.eq(iv.hi)) return `${X} = ${fmtF(iv.lo)}`;
+    return `${fmtF(iv.lo)} ${iv.loC?'≤':'&lt;'} ${X} ${iv.hiC?'≤':'&lt;'} ${fmtF(iv.hi)}`;
+  }
+  if(iv.lo) return `${X} ${iv.loC?'≥':'&gt;'} ${fmtF(iv.lo)}`;
+  return `${X} ${iv.hiC?'≤':'&lt;'} ${fmtF(iv.hi)}`;
+}
+/* 解 a x + b OP c x + d */
+function solveLin(a,b,op,c,d){
+  a=toF(a);b=toF(b);c=toF(c);d=toF(d);
+  const k=a.sub(c), r=d.sub(b);
+  if(k.isZero()){
+    const z=fr(0); const cmp=z.cmp(r);
+    const ok=(op==='<'&&cmp<0)||(op==='>'&&cmp>0)||(op==='<='&&cmp<=0)||(op==='>='&&cmp>=0);
+    return ok?FULL:EMPTY;
+  }
+  const o2=k.n<0?flipOp(op):op;
+  return ivOp(o2,r.div(k));
+}
+const cmpOp=(l,op,r)=>{const c=l.cmp(r);return (op==='<'&&c<0)||(op==='>'&&c>0)||(op==='<='&&c<=0)||(op==='>='&&c>=0);};
+/* 区间内整数 */
+function minInt(iv){ if(!iv.lo) return null; return iv.lo.isInt()?(iv.loC?iv.lo.n:iv.lo.n+1):iv.lo.floor()+1; }
+function maxInt(iv){ if(!iv.hi) return null; return iv.hi.isInt()?(iv.hiC?iv.hi.n:iv.hi.n-1):iv.hi.floor(); }
+function intsIn(iv){
+  if(iv.empty||!iv.lo||!iv.hi) return null;
+  const a=minInt(iv), b=maxInt(iv), out=[];
+  for(let i=a;i<=b&&out.length<60;i++) out.push(i);
+  return out;
+}
+const inIv=(iv,x)=>{x=toF(x); if(iv.empty) return false;
+  if(iv.lo){const c=x.cmp(iv.lo); if(c<0||(c===0&&!iv.loC)) return false;}
+  if(iv.hi){const c=x.cmp(iv.hi); if(c>0||(c===0&&!iv.hiC)) return false;}
+  return true;};
+
+/* ================= 学生输入解析 ================= */
+function normStr(s){
+  return String(s).toLowerCase().replace(/\s+/g,'')
+    .replace(/=>/g,'>=').replace(/=</g,'<=')
+    .replace(/[≥⩾≧]/g,'>=').replace(/[≤⩽≦]/g,'<=')
+    .replace(/＜/g,'<').replace(/＞/g,'>').replace(/＝/g,'=')
+    .replace(/[−－–—]/g,'-').replace(/（/g,'(').replace(/）/g,')')
+    .replace(/[，;；。]/g,'');
+}
+function parseNumStr(s){
+  s=s.replace(/^\+/,'');
+  const m=s.match(/^(-?)(\d+(?:\.\d+)?)(?:\/(\d+))?$/); if(!m) return null;
+  let n,d=1; const a=m[2];
+  if(a.includes('.')){const [i,f]=a.split('.'); n=parseInt(i+f,10); d=Math.pow(10,f.length);} else n=parseInt(a,10);
+  if(m[3]) d*=parseInt(m[3],10);
+  if(!d) return null;
+  return fr(m[1]==='-'?-n:n,d);
+}
+function parseIneq(raw){
+  const s=normStr(raw);
+  if(!s) return null;
+  if(/^(无解|无|空集|∅|φ|empty|没有解|无实数解|x无解)$/.test(s)) return {iv:EMPTY,v:null};
+  if(/^(全体实数|任意实数|所有实数|任何实数|r|实数|全部实数)$/.test(s)) return {iv:FULL,v:null};
+  const parts=s.split(/(<=|>=|<|>|=)/);
+  const isVar=t=>/^[a-z]$/.test(t);
+  if(parts.length===3){
+    const [l,op,r]=parts;
+    if(isVar(l)&&parseNumStr(r)){ const n=parseNumStr(r);
+      if(op==='=') return {iv:mkIv(n,true,n,true),v:l};
+      return {iv:ivOp(op,n),v:l}; }
+    if(isVar(r)&&parseNumStr(l)){ const n=parseNumStr(l);
+      if(op==='=') return {iv:mkIv(n,true,n,true),v:r};
+      return {iv:ivOp(flipOp(op),n),v:r}; }
+    return null;
+  }
+  if(parts.length===5){
+    const [a,o1,m,o2,b]=parts; const A=parseNumStr(a), B=parseNumStr(b);
+    if(!isVar(m)||!A||!B) return null;
+    const lt=o=>o==='<'||o==='<=', gt=o=>o==='>'||o==='>=';
+    if(lt(o1)&&lt(o2)) return {iv:mkIv(A,o1==='<=',B,o2==='<='),v:m};
+    if(gt(o1)&&gt(o2)) return {iv:mkIv(B,o2==='>=',A,o1==='>='),v:m};
+    return null;
+  }
+  return null;
+}
+function parseNumAnswer(raw){
+  const s=normStr(raw);
+  const m=s.match(/-?\d+(?:\.\d+)?(?:\/\d+)?/);
+  return m?parseNumStr(m[0]):null;
+}
+function parseSym(raw){
+  const s=normStr(raw);
+  if(/^(>|大于|大)$/.test(s)) return '>';
+  if(/^(<|小于|小)$/.test(s)) return '<';
+  return null;
+}
+
+/* ================= 数轴 SVG ================= */
+function nlSVG(rows,opt={}){
+  const W=opt.w||330, rowH=opt.rowH||28, padL=14, padR=14;
+  const vals=[...(opt.extra||[])];
+  rows.forEach(r=>{const iv=r.iv; if(iv&&!iv.empty){ if(iv.lo) vals.push(iv.lo.num()); if(iv.hi) vals.push(iv.hi.num()); }});
+  let mn=vals.length?Math.min(...vals):-3, mx=vals.length?Math.max(...vals):3;
+  mn=Math.floor(mn)-2; mx=Math.ceil(mx)+2;
+  while(mx-mn<8){mn--;mx++;}
+  const X=v=>padL+(v-mn)/(mx-mn)*(W-padL-padR);
+  const axisY=rows.length*rowH+6, H=axisY+22;
+  let s=`<svg class="nl" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img">`;
+  s+=`<line class="nl-axis" x1="4" y1="${axisY}" x2="${W-6}" y2="${axisY}"/><path class="nl-arrow" d="M${W-3} ${axisY} l-8 -4.5 l0 9z"/>`;
+  const span=mx-mn, step=span>40?5:span>18?2:1;
+  for(let i=Math.ceil(mn);i<=Math.floor(mx);i++){
+    if(i%step!==0) continue;
+    s+=`<line class="nl-tick" x1="${X(i)}" y1="${axisY-4}" x2="${X(i)}" y2="${axisY+4}"/><text class="nl-lab" x="${X(i)}" y="${axisY+16}" text-anchor="middle">${i<0?MINUS+(-i):i}</text>`;
+  }
+  rows.forEach((r,i)=>{
+    const y=i*rowH+rowH/2+4, c=r.color||'var(--accent)', iv=r.iv;
+    if(r.label) s+=`<text class="nl-rowlab" x="6" y="${y-11}">${r.label}</text>`;
+    if(iv.empty){ s+=`<text class="nl-empty" x="${W/2}" y="${y+4}" text-anchor="middle">∅（没有公共部分）</text>`; return; }
+    const x1=iv.lo?X(iv.lo.num()):6, x2=iv.hi?X(iv.hi.num()):W-6;
+    s+=`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${c}" stroke-width="4.5" stroke-linecap="round"/>`;
+    if(!iv.lo) s+=`<path d="M${x1-1} ${y} l9 -5.5 l0 11z" fill="${c}"/>`;
+    if(!iv.hi) s+=`<path d="M${x2+1} ${y} l-9 -5.5 l0 11z" fill="${c}"/>`;
+    const dot=(f,closed)=>{
+      const x=X(f.num());
+      s+=`<line class="nl-guide" x1="${x}" y1="${y+6}" x2="${x}" y2="${axisY}"/>`;
+      s+=closed?`<circle cx="${x}" cy="${y}" r="6.5" fill="${c}" stroke="${c}" stroke-width="2"/>`
+               :`<circle cx="${x}" cy="${y}" r="6.5" fill="var(--card)" stroke="${c}" stroke-width="3"/>`;
+      if(!f.isInt()) s+=`<text class="nl-val" x="${x}" y="${y-10}" text-anchor="middle">${f.n<0?MINUS:''}${Math.abs(f.n)}/${f.d}</text>`;
+    };
+    if(iv.lo) dot(iv.lo,iv.loC);
+    if(iv.hi) dot(iv.hi,iv.hiC);
+  });
+  return s+'</svg>';
+}
+/* 两行点位（14.1 实验台用）*/
+function nlPoints(rowsPts,opt={}){
+  const W=opt.w||330, rowH=34, padL=14, padR=14;
+  const vals=[]; rowsPts.forEach(r=>r.pts.forEach(p=>vals.push(p.v)));
+  let mn=Math.min(...vals,-5), mx=Math.max(...vals,5); mn=Math.floor(mn)-1; mx=Math.ceil(mx)+1;
+  const X=v=>padL+(v-mn)/(mx-mn)*(W-padL-padR);
+  const axisY=rowsPts.length*rowH+4, H=axisY+22;
+  let s=`<svg class="nl" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img">`;
+  s+=`<line class="nl-axis" x1="4" y1="${axisY}" x2="${W-6}" y2="${axisY}"/><path class="nl-arrow" d="M${W-3} ${axisY} l-8 -4.5 l0 9z"/>`;
+  const span=mx-mn, step=span>60?10:span>30?5:span>16?2:1;
+  for(let i=Math.ceil(mn);i<=Math.floor(mx);i++){ if(i%step!==0) continue;
+    s+=`<line class="nl-tick" x1="${X(i)}" y1="${axisY-4}" x2="${X(i)}" y2="${axisY+4}"/><text class="nl-lab" x="${X(i)}" y="${axisY+16}" text-anchor="middle">${i<0?MINUS+(-i):i}</text>`; }
+  rowsPts.forEach((r,i)=>{
+    const y=i*rowH+rowH/2+2;
+    const sorted=r.pts.slice().sort((a,b)=>a.v-b.v);
+    s+=`<line x1="${X(sorted[0].v)}" y1="${y}" x2="${X(sorted[sorted.length-1].v)}" y2="${y}" stroke="${r.color}" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    r.pts.forEach(p=>{
+      const x=X(p.v);
+      s+=`<line class="nl-guide" x1="${x}" y1="${y+6}" x2="${x}" y2="${axisY}"/><circle cx="${x}" cy="${y}" r="6.5" fill="${r.color}"/>`;
+      s+=`<text class="nl-val" x="${x}" y="${y-10}" text-anchor="middle">${p.label}</text>`;
+    });
+  });
+  return s+'</svg>';
+}
+
+/* ================= 出题引擎 ================= */
+/* 选择题对象：{q, opts:[{k,h}], ans:k, ex}  作答题对象：{q, kind, ans, v, ex, hint} */
+function finishMC(q,correct,wrongs,ex,cls){
+  const seen=new Set([correct.k]); const ws=[];
+  for(const w of wrongs){ if(w&&!seen.has(w.k)){seen.add(w.k);ws.push(w);} if(ws.length===3)break; }
+  if(ws.length<3) return null;
+  return {q,opts:shuffle([correct,...ws]),ans:correct.k,ex,cls:cls||''};
+}
+const ivOpt=(iv,v='x')=>({k:ivKey(iv),h:ivHTML(iv,v)});
+const numOpt=n=>({k:'n'+n,h:fmtF(n)});
+const txtOpt=t=>({k:t,h:t});
+const nlOpt=iv=>({k:ivKey(iv),h:nlSVG([{iv}],{w:300,rowH:30})});
+const WARN=t=>`<b class="warn">${t}</b>`;
+
+/* ---------- 一次不等式“形式”生成器：返回 {html,iv,errs,ex,bound} ---------- */
+function formA(o={}){            /* a x + b ○ c */
+  const a=pick([-7,-6,-5,-4,-3,-2,2,3,4,5,6,7]), op=pick(OPS), b=nz(-9,9);
+  const c=o.frac?ri(-12,12):a*ri(-6,6)+b;
+  const r=fr(c-b,a), iv=solveLin(a,b,op,0,c);
+  const badOp=a<0?op:flipOp(op), goodOp=a<0?flipOp(op):op;
+  const errs=[ivOp(badOp,r), solveLin(a,-b,op,0,c), ivOp(badOp,fr(c+b,a)), ivOp(goodOp,r.neg()), ivOp(badOp,r.neg())];
+  const ex=`移项：${linHTML(a,0)} ${OPH[op]} ${sgn(c)} ${b<0?'+ '+(-b):'− '+b} = ${sgn(c-b)}；<br>两边除以 ${sgn(a)}：${a<0?WARN('除以负数，不等号改变方向'):'除以正数，不等号方向不变'}，得 ${ivHTML(iv)}。`;
+  return {html:`${linHTML(a,b)} ${OPH[op]} ${sgn(c)}`,iv,errs,ex,chk:x=>cmpOp(fr(a).mul(x).add(b),op,fr(c))};
+}
+function formB(o={}){            /* a x + b ○ c x + d */
+  let a,c; do{ a=nz(-6,6); c=nz(-6,6);}while(a===c);
+  const op=pick(OPS), b=nz(-9,9);
+  const d=o.frac?ri(-12,12):(a-c)*ri(-6,6)+b;
+  const iv=solveLin(a,b,op,c,d), k=a-c, r=fr(d-b,k);
+  const errs=[ ivOp(k<0?op:flipOp(op),r), solveLin(a,b,op,-c,d), solveLin(a,-b,op,c,d), solveLin(a,-b,op,-c,d), ivOp(k<0?flipOp(op):op,r.neg()), solveLin(a,b,flipOp(op),c,d) ];
+  const ex=`移项（含 ${mv('x')} 的项移到左边，常数移到右边，移项要变号）：${linHTML(a,0)} ${c<0?'+ '+(-c):'− '+c}${mv('x')} ${OPH[op]} ${sgn(d)} ${b<0?'+ '+(-b):'− '+b}；<br>合并：${linHTML(k,0)} ${OPH[op]} ${sgn(d-b)}；<br>两边除以 ${sgn(k)}：${k<0?WARN('不等号改变方向'):'不等号方向不变'}，得 ${ivHTML(iv)}。`;
+  return {html:`${linHTML(a,b)} ${OPH[op]} ${linHTML(c,d)}`,iv,errs,ex,chk:x=>cmpOp(fr(a).mul(x).add(b),op,fr(c).mul(x).add(d))};
+}
+function formC(o={}){            /* k(m − x) ○ n(x + p) */
+  for(let t=0;t<200;t++){
+    const k=ri(2,5), m=ri(-3,6), n=ri(2,5), p=ri(1,9), op=pick(OPS);
+    const iv=solveLin(-k,k*m,op,n,n*p);
+    if(Math.abs((iv.lo||iv.hi).num())>25) continue;
+    if(o.int&&!(iv.lo?iv.lo:iv.hi).isInt()) continue;
+    const kk=-k-n, r=fr(n*p-k*m,kk);
+    const errs=[ solveLin(-1,k*m,op,n,n*p), solveLin(-k,k*m,op,n,p), ivOp(flipOp(iv.lo?(iv.loC?'>=':'>'):(iv.hiC?'<=':'<')),(iv.lo||iv.hi)), solveLin(-k,k*m,op,n,-n*p), solveLin(-k,-k*m,op,n,n*p), solveLin(-k,k*m,op,-n,n*p) ];
+    const ex=`去括号：${k}(${m} − ${mv('x')}) = ${k*m} − ${k}${mv('x')}，${n}(${mv('x')} + ${p}) = ${n}${mv('x')} + ${n*p}；<br>移项合并：${sgn(-k-n)}${mv('x')} ${OPH[op]} ${sgn(n*p-k*m)}；<br>两边除以 ${sgn(kk)}：${WARN('除以负数，不等号改变方向')}，得 ${ivHTML(iv)}。`;
+    return {html:`${k}(${m} − ${mv('x')}) ${OPH[op]} ${n}(${mv('x')} + ${p})`,iv,errs,ex,chk:x=>cmpOp(fr(m).sub(x).mul(k),op,fr(p).add(x).mul(n))};
+  }
+  return null;
+}
+function formD(o={}){            /* (x+p)/m − (x+q)/n ○ t */
+  for(let tr=0;tr<300;tr++){
+    const [m,n]=pick([[2,3],[2,4],[3,4],[3,6],[2,5],[4,6],[3,5],[2,6]]);
+    const p=nz(-5,5), q=nz(-5,5), t=ri(-4,6), op=pick(OPS), L=lcm(m,n), A=L/m, B=L/n;
+    const iv=solveLin(A-B,A*p-B*q,op,0,L*t);
+    if(!iv.lo&&!iv.hi) continue;
+    if(Math.abs((iv.lo||iv.hi).num())>25) continue;
+    if(o.int&&!(iv.lo||iv.hi).isInt()) continue;
+    const xp=(v)=>`${mv('x')} ${v<0?MINUS+' '+(-v):'+ '+v}`;
+    const errs=[ solveLin(A-B,A*p-B*q,op,0,t), solveLin(A-B,A*p+B*q,op,0,L*t), solveLin(A-B,A*p-B*q,flipOp(op),0,L*t), solveLin(A+B,A*p+B*q,op,0,L*t), solveLin(A-B,A*p,op,0,L*t) ];
+    const ex=`去分母（两边同乘最小公倍数 ${L}，每一项都要乘，包括右边的 ${t}）：<br>${A}(${xp(p)}) ${MINUS} ${B}(${xp(q)}) ${OPH[op]} ${L*t}；<br>去括号：${linHTML(A,A*p)} ${MINUS} (${linHTML(B,B*q)}) → ${linHTML(A-B,A*p-B*q)} ${OPH[op]} ${sgn(L*t)}（括号前是负号，括号内各项变号）；<br>得 ${ivHTML(iv)}。`;
+    return {html:`${frac(xp(p),m)} ${MINUS} ${frac(xp(q),n)} ${OPH[op]} ${t<0?MINUS+(-t):t}`,iv,errs,ex,chk:x=>cmpOp(fr(p).add(x).div(m).sub(fr(q).add(x).div(n)),op,fr(t))};
+  }
+  return null;
+}
+const FORMS=[formA,formB,formC,formD];
+function anyForm(o){ for(let i=0;i<20;i++){const f=pick(FORMS)(o); if(f) return f;} return formA(o); }
+
+/* ================= 14.1 基本性质 ================= */
+function g11(){   /* 找出错误/正确的变形 */
+  const [p,q]=pick([['a','b'],['m','n'],['x','y']]), rel=pick(['<','>']);
+  const k=ri(2,7), k1=ri(2,9), k2=ri(2,6);
+  const P=mv(p),Q=mv(q);
+  const T=[
+    {e:v=>`${v} + ${k}`,flip:false},{e:v=>`${v} ${MINUS} ${k}`,flip:false},{e:v=>`${k}${v}`,flip:false},
+    {e:v=>`${MINUS}${k}${v}`,flip:true},{e:v=>frac(v,k),flip:false},{e:v=>`${MINUS}${frac(v,k)}`,flip:true},
+    {e:v=>`${k1} ${MINUS} ${k2}${v}`,flip:true},{e:v=>`${k2}${v} + ${k1}`,flip:false},{e:v=>`${k1} ${MINUS} ${v}`,flip:true},
+    {e:v=>`${MINUS}${k2}${v} ${MINUS} ${k1}`,flip:true}
+  ];
+  const sel=shuffle(T);
+  const flips=sel.filter(t=>t.flip), nofl=sel.filter(t=>!t.flip);
+  const askWrong=chance(.5);
+  const trueRel=t=>t.flip?flipOp(rel):rel, falseRel=t=>t.flip?rel:flipOp(rel);
+  const st=(t,r)=>({k:`${t.e(P)} ${OPH[r]} ${t.e(Q)}`,h:`${t.e(P)} ${OPH[r]} ${t.e(Q)}`});
+  let chosen,ansT;
+  if(askWrong){ ansT=chance(.65)?flips[0]:nofl[0]; chosen=shuffle([ansT,...sel.filter(t=>t!==ansT).slice(0,3)]);
+    var correct=st(ansT,falseRel(ansT)), wrongs=chosen.filter(t=>t!==ansT).map(t=>st(t,trueRel(t))); }
+  else { ansT=chance(.7)?flips[0]:nofl[0]; chosen=[ansT,...sel.filter(t=>t!==ansT).slice(0,3)];
+    var correct=st(ansT,trueRel(ansT)), wrongs=chosen.filter(t=>t!==ansT).map(t=>st(t,falseRel(t))); }
+  const ex=chosen.map(t=>`${t.e(P)} ${OPH[trueRel(t)]} ${t.e(Q)}（${t.flip?'乘/除负数，变向':'方向不变'}）`).join('<br>');
+  return finishMC(`已知 ${P} ${OPH[rel]} ${Q}，则下列不等式中<b>${askWrong?'错误':'正确'}</b>的是（　）`,correct,wrongs,
+    `正确的写法应为：<br>${ex}`);
+}
+function g12(){   /* 系数化为 1 的结果 */
+  const useDiv=chance(.35), k=pick([-9,-8,-6,-5,-4,-3,-2,2,3,4,5,6]), x0=nz(-8,8), op=pick(OPS), v=pick(['x','x','y','a','m']);
+  let lhs,r;
+  if(!useDiv){ r=k*x0; lhs=`${linHTML(k,0,v)}`; } else { r=x0; lhs=`${k<0?MINUS:''}${frac(mv(v),Math.abs(k))}`; }
+  const bound=useDiv?r*k:x0;                       // x 的边界
+  const trueOp=k<0?flipOp(op):op, wrongOp=k<0?op:flipOp(op);
+  const mk=(o,val)=>({k:o+val,h:`${mv(v)} ${OPH[o]} ${sgn(val)}`});
+  const correct=mk(trueOp,bound);
+  const wrongs=[mk(wrongOp,bound), mk(trueOp,-bound), mk(wrongOp,-bound)];
+  const ex=useDiv
+    ? `两边同乘 ${sgn(k)}：${k<0?WARN('乘以负数，不等号改变方向'):'乘以正数，方向不变'}，${mv(v)} ${OPH[trueOp]} ${sgn(r)}×${sgn(k)} = ${sgn(bound)}。`
+    : `两边同除以 ${sgn(k)}：${k<0?WARN('除以负数，不等号改变方向'):'除以正数，方向不变'}，${mv(v)} ${OPH[trueOp]} ${sgn(r)}÷${sgn(k)} = ${sgn(bound)}。`;
+  return finishMC(`解不等式 ${lhs} ${OPH[op]} ${sgn(r)}，得（　）`,correct,wrongs,ex);
+}
+function g13(){   /* 由 ac 与 bc 的关系判断 c 的范围 */
+  const aLess=chance(.5), rel2=pick(['<','>','<=','>=']);
+  // a<b : ac<bc → c>0 ; ac>bc → c<0 ; ac≤bc → c≥0 ; ac≥bc → c≤0
+  const map=aLess?{'<':'>','>':'<','<=':'>=','>=':'<='}:{'<':'<','>':'>','<=':'<=','>=':'>='};
+  // a>b : ac>bc → c>0 ; ac<bc → c<0 ; ac≥bc → c≥0 ; ac≤bc → c≤0
+  let cOp;
+  if(aLess) cOp=({'<':'>','>':'<','<=':'>=','>=':'<='})[rel2];
+  else cOp=rel2;
+  const all=['>','<','>=','<='].map(o=>({k:'c'+o,h:`${mv('c')} ${OPH[o]} 0`}));
+  const correct=all.find(x=>x.k==='c'+cOp), wrongs=shuffle(all.filter(x=>x!==correct));
+  const ex=`${aLess?'已知 a &lt; b':'已知 a &gt; b'}：乘以正数方向不变，乘以负数方向改变，乘以 0 两边相等。<br>要得到 ac ${OPH[rel2]} bc，${rel2.length===2?'因为<b>可以相等</b>，所以 c 可以取 0，':'因为<b>不能相等</b>，所以 c 不能取 0，'}故 ${ivHTML(ivOp(cOp,0),'c')}。`;
+  const [A,B,C]=pick([['a','b','c'],['m','n','k'],['x','y','z'],['p','q','r']]);
+  const fix=h=>h.split('<i class="mv">a</i>').join('<i class="mv">'+A+'</i>').split('<i class="mv">b</i>').join('<i class="mv">'+B+'</i>').split('<i class="mv">c</i>').join('<i class="mv">'+C+'</i>').split('a &lt;').join(A+' &lt;').split('a &gt;').join(A+' &gt;').split('b</i>').join('b</i>');
+  const mkc=o=>({k:'c'+o,h:`${mv(C)} ${OPH[o]} 0`});
+  const all2=['>','<','>=','<='].map(mkc), cor2=all2.find(x=>x.k==='c'+cOp);
+  const ex2=`已知 ${A} ${OPH[aLess?'<':'>']} ${B}：乘以正数方向不变，乘以负数方向改变，乘以 0 两边相等。<br>要得到 ${A}${C} ${OPH[rel2]} ${B}${C}，${rel2.length===2?'因为<b>可以相等</b>，所以 '+C+' 可以取 0，':'因为<b>不能相等</b>，所以 '+C+' 不能取 0，'}故 ${ivHTML(ivOp(cOp,0),C)}。`;
+  return finishMC(`已知 ${mv(A)} ${OPH[aLess?'<':'>']} ${mv(B)}，且 ${mv(A)}${mv(C)} ${OPH[rel2]} ${mv(B)}${mv(C)}，则 ${mv(C)} 的取值范围是（　）`,cor2,all2.filter(x=>x!==cor2),ex2);
+}
+function g14(){   /* 变形依据 */
+  const kinds=[
+    {t:'add',k:'A'},{t:'mulpos',k:'B'},{t:'divneg',k:'C'},{t:'sub',k:'A'},{t:'divpos',k:'B'},{t:'mulneg',k:'C'}];
+  const t=pick(kinds), op=pick(['<','>']), x0=nz(-6,6), v='x';
+  let from,to,k;
+  if(t.t==='add'||t.t==='sub'){ const c=ri(2,9), sh=t.t==='add'?-c:c, r=ri(-3,9);
+    from=`${mv('x')} ${sh<0?MINUS+' '+(-sh):'+ '+sh} ${OPH[op]} ${sgn(r)}`; to=`${mv('x')} ${OPH[op]} ${sgn(r-sh)}`; }
+  else if(t.t==='mulpos'){ const c=ri(2,6), r=ri(-5,6); from=`${frac(mv('x'),c)} ${OPH[op]} ${sgn(r)}`; to=`${mv('x')} ${OPH[op]} ${sgn(r*c)}`; }
+  else if(t.t==='divpos'){ const c=ri(2,6), r=c*ri(-5,6); from=`${c}${mv('x')} ${OPH[op]} ${sgn(r)}`; to=`${mv('x')} ${OPH[op]} ${sgn(r/c)}`; }
+  else if(t.t==='divneg'){ const c=ri(2,6), r=c*ri(-5,6); from=`${MINUS}${c}${mv('x')} ${OPH[op]} ${sgn(r)}`; to=`${mv('x')} ${OPH[flipOp(op)]} ${sgn(-r/c)}`; }
+  else { const c=ri(2,6), r=ri(-5,6); from=`${MINUS}${frac(mv('x'),c)} ${OPH[op]} ${sgn(r)}`; to=`${mv('x')} ${OPH[flipOp(op)]} ${sgn(-r*c)}`; }
+  const D={A:'两边同时加上（或减去）同一个数，不等号方向不变',B:'两边同时乘以（或除以）同一个正数，不等号方向不变',C:'两边同时乘以（或除以）同一个负数，不等号方向改变',D:'两边同时乘以（或除以）同一个负数，不等号方向不变'};
+  const opts=['A','B','C','D'].map(x=>({k:x,h:D[x]}));
+  const correct=opts.find(o=>o.k===t.k), wrongs=opts.filter(o=>o!==correct);
+  return finishMC(`由 ${from} 得到 ${to}，这一步变形的依据是（　）`,correct,wrongs,`正确依据：${D[t.k]}。`);
+}
+function f11(){   /* 作答：解 kx ○ r */
+  const k=pick([-9,-8,-6,-5,-4,-3,-2]), x0=nz(-8,8), op=pick(OPS), v=pick(['x','x','y','a']);
+  const iv=solveLin(k,0,op,0,k*x0);
+  return {q:`解不等式 ${linHTML(k,0,v)} ${OPH[op]} ${sgn(k*x0)}，写出解集。`,kind:'ineq',ans:iv,v,
+    ex:`两边除以 ${sgn(k)}，${WARN('负数，不等号改变方向')}：${ivHTML(iv,v)}。`,hint:`例如：${v}≥-2（≥ 可输入 >= ，≤ 可输入 <=）`};
+}
+function f12(){   /* 作答：分数形式 */
+  const k=pick([-6,-5,-4,-3,-2,2,3,4,5]), r=nz(-6,6), op=pick(OPS), v=pick(['x','a','m','y']);
+  const bound=r*k, iv=ivOp(k<0?flipOp(op):op,bound), shown=`${k<0?MINUS:''}${frac(mv(v),Math.abs(k))} ${OPH[op]} ${sgn(r)}`;
+  return {q:`解不等式 ${shown}，写出解集。`,kind:'ineq',ans:iv,v,
+    ex:`两边同乘 ${sgn(k)}：${k<0?WARN('乘以负数，不等号改变方向'):'方向不变'}，${ivHTML(iv,v)}。`,hint:`例如：${v}>-6`};
+}
+function f13(){   /* 作答：比较大小（填 > 或 <）*/
+  const [p,q]=pick([['a','b'],['m','n']]), rel=pick(['<','>']), k=ri(2,6), s=ri(1,9);
+  const form=pick([0,1]);
+  const E=v=>form?`${s} ${MINUS} ${k}${mv(v)}`:`${MINUS}${k}${mv(v)} + ${s}`;
+  const ans=flipOp(rel);
+  return {q:`已知 ${mv(p)} ${OPH[rel]} ${mv(q)}，比较 ${E(p)} 与 ${E(q)} 的大小。（只填“&gt;”或“&lt;”）`,kind:'sym',ans,
+    ex:`乘以负数 ${MINUS}${k}，不等号改变方向；再加（减）${s} 方向不变，所以 ${E(p)} ${OPH[ans]} ${E(q)}。`,hint:'输入 > 或 <'};
+}
+function g15(){   /* 两边同乘/除 0 或特殊数 + 反例 */
+  const a=ri(-4,2), b=a+ri(1,4), c=pick([0,-1,-2,3]);
+  const ac=a*c, bc=b*c, rel=ac<bc?'<':ac>bc?'>':'=';
+  const wrongs=['<','>','=','≤'].filter(x=>x!=='≤'||false);
+  const mk=o=>({k:o,h:o==='<'?'&lt;':o==='>'?'&gt;':o==='='?'=':o});
+  const correct=mk(rel);
+  const others=['<','>','='].filter(o=>o!==rel);
+  const w=[mk(others[0]),mk(others[1]),{k:'无法比较',h:'无法比较'}];
+  const ex=`${a} &lt; ${b}，两边同乘 ${sgn(c)}：${c===0?'乘以 0，两边都变成 0，不等号变成等号':c<0?WARN('乘以负数，不等号改变方向'):'乘以正数，方向不变'}。${sgn(a)}×${sgn(c)} = ${sgn(ac)}，${sgn(b)}×${sgn(c)} = ${sgn(bc)}，所以 ${sgn(ac)} ${OPH[rel]} ${sgn(bc)}。`;
+  return finishMC(`已知 ${sgn(a)} &lt; ${sgn(b)}，两边同时乘以 ${sgn(c)}，则 ${sgn(a)}×(${sgn(c)}) 与 ${sgn(b)}×(${sgn(c)}) 的关系是（　）`,correct,w,ex);
+}
+
+/* ================= 14.2 一元一次不等式 ================= */
+function intAnswerQ(){   /* 最小/最大整数解 */
+  for(let t=0;t<60;t++){
+    const f=anyForm({frac:chance(.3)});
+    const iv=f.iv; if(iv.empty||(!iv.lo&&!iv.hi)) continue;
+    const askMin=!!iv.lo;
+    const ans=askMin?minInt(iv):maxInt(iv);
+    const r=(iv.lo||iv.hi);
+    const cands=[];
+    const bI=r.isInt()?r.n:null;
+    if(bI!==null&&(askMin?!iv.loC:!iv.hiC)) cands.push(bI);               // 边界本身（严格不等号时不能取）
+    if(bI!==null&&(askMin?iv.loC:iv.hiC)) cands.push(askMin?bI+1:bI-1);   // 把 ≥ 当成 >
+    cands.push(askMin?ans-1:ans+1);                                        // 取到边界另一侧
+    cands.push(askMin?ans+1:ans-1);
+    f.errs.forEach(e=>{ if(e.empty)return; const m=askMin?(e.lo?minInt(e):maxInt(e)):(e.hi?maxInt(e):minInt(e)); if(m!==null) cands.push(m); });
+    if(!r.isInt()) cands.push(askMin?r.floor():r.ceil(), Math.round(r.num()));
+    return {f,ans,askMin,cands,iv};
+  }
+  return null;
+}
+function g21(){ const f=anyForm({frac:chance(.35)});
+  const wrongs=f.errs.map(e=>ivOpt(e)); return finishMC(`解不等式 ${f.html}，其解集为（　）`,ivOpt(f.iv),wrongs,f.ex); }
+function g22(){ const P=intAnswerQ(); if(!P) return null;
+  return finishMC(`不等式 ${P.f.html} 的${P.askMin?'最小':'最大'}整数解是（　）`,numOpt(P.ans),P.cands.map(numOpt),
+    `${P.f.ex}<br>${ivHTML(P.iv)}，其中${P.askMin?'最小':'最大'}整数是 <b>${P.ans}</b>${(P.askMin?(!P.iv.loC):(!P.iv.hiC))?'（严格不等号，边界值本身不能取）':''}。`); }
+function g23(){   /* 数轴表示 */
+  const useSolve=chance(.6); let f,iv,title;
+  if(useSolve){ f=formA({}); iv=f.iv; title=`不等式 ${f.html} 的解集在数轴上表示正确的是（　）`; }
+  else { const op=pick(OPS), v=nz(-5,5); iv=ivOp(op,v); f={errs:[],ex:''}; title=`不等式 ${mv('x')} ${OPH[op]} ${sgn(v)} 的解集在数轴上表示正确的是（　）`; }
+  const v=(iv.lo||iv.hi), o=iv.lo?(iv.loC?'>=':'>'):(iv.hiC?'<=':'<');
+  const swapC=ivOp(o.length===2?strictOf(o):looseOf(o),v);
+  const dirFlip=ivOp(flipOp(o),v);
+  const dirFlipSwap=ivOp(o.length===2?strictOf(flipOp(o)):looseOf(flipOp(o)),v);
+  const negV=ivOp(o,v.neg());
+  const wrongs=[swapC,dirFlip,dirFlipSwap,negV,ivOp(flipOp(o),v.neg())].map(nlOpt);
+  return finishMC(title,nlOpt(iv),wrongs,`${useSolve?f.ex+'<br>':''}解集 ${ivHTML(iv)}：${iv.lo?(iv.loC?'≥':'&gt;'):(iv.hiC?'≤':'&lt;')} 向${iv.lo?'右':'左'}画；带“=”（≥ 或 ≤）画实心点，不带“=”画空心圈。`,'nl');
+}
+function g24(){   /* 特殊解集：全体实数 / 无解 */
+  const a=nz(-5,5), b=nz(-8,8); let d; do{d=nz(-8,8);}while(d===b);
+  const op=pick(OPS), iv=solveLin(a,b,op,a,d);
+  const all={k:'R',h:'全体实数'}, none={k:'E',h:'无解'};
+  const r1=fr(d-b,1), r2=fr(b-d,a), w1=ivOpt(ivOp('>',r2)), w2=ivOpt(ivOp('<',r2)), w3=ivOpt(ivOp(flipOp(op),fr(b-d,1)));
+  const correct=iv.empty?none:all, other=iv.empty?all:none;
+  return finishMC(`不等式 ${linHTML(a,b)} ${OPH[op]} ${linHTML(a,d)} 的解集是（　）`,correct,[other,w1,w2,w3],
+    `两边都含 ${linHTML(a,0)}，移项后 ${mv('x')} 项消失，变成 0 ${OPH[op]} ${sgn(d-b)}。<br>这个式子${iv.empty?'永远不成立，所以<b>无解</b>':'永远成立，所以解集是<b>全体实数</b>'}。`);
+}
+function g25(){   /* 哪个数是解 */
+  for(let t=0;t<40;t++){
+    const f=anyForm({frac:false}); const iv=f.iv; if(iv.empty||(!iv.lo&&!iv.hi)) continue;
+    const r=iv.lo||iv.hi; if(!r.isInt()) continue; const b=r.n;
+    const sol=[],non=[];
+    for(let x=b-4;x<=b+4;x++){ (inIv(iv,x)?sol:non).push(x); }
+    const wantBoundary=(iv.lo?iv.loC:iv.hiC)&&chance(.5);
+    const ans=wantBoundary?b:pick(sol.filter(x=>x!==b)||sol);
+    if(ans===undefined) continue;
+    const wr=shuffle(non.filter(x=>Math.abs(x-b)<=3)); if(wr.length<3) continue;
+    const hasB=!inIv(iv,b); const w=hasB?[b,...wr.filter(x=>x!==b)]:wr;
+    return finishMC(`下列各数中，是不等式 ${f.html} 的解的是（　）`,numOpt(ans),w.map(numOpt),
+      `${f.ex}<br>解集 ${ivHTML(iv)}，其中 ${sgn(ans)} 满足；${hasB?`注意 ${sgn(b)} 是边界值，${iv.lo?'':''}不带“=”时它<b>不是</b>解。`:''}`);
+  }
+  return null;
+}
+function f21(){ const f=pick([formA,formB])({}); return {q:`解不等式 ${f.html}，写出解集。`,kind:'ineq',ans:f.iv,v:'x',ex:f.ex,hint:'例如：x≥-2 或 -2≤x；全体实数/无解 直接写文字'}; }
+function f22(){ const f=formC({int:true}); return {q:`解不等式 ${f.html}，写出解集。`,kind:'ineq',ans:f.iv,v:'x',ex:f.ex,hint:'例如：x<5（注意去括号与变号）'}; }
+function f23(){ const f=formD({int:true}); return {q:`解不等式 ${f.html}，写出解集。`,kind:'ineq',ans:f.iv,v:'x',ex:f.ex,hint:'例如：x≤3'}; }
+function f24(){ for(let t=0;t<50;t++){ const P=intAnswerQ(); if(!P||!(P.iv.lo||P.iv.hi).isInt()) continue;
+  return {q:`求不等式 ${P.f.html} 的${P.askMin?'最小':'最大'}整数解。`,kind:'num',ans:fr(P.ans),
+    ex:`${P.f.ex}<br>${ivHTML(P.iv)}，${P.askMin?'最小':'最大'}整数解为 <b>${P.ans}</b>。`,hint:'只填一个整数'}; } return f21(); }
+
+/* ================= 14.3 不等式组 ================= */
+const sysHTML=rows=>`<span class="sys"><span class="brace">{</span><span class="rows">${rows.map(r=>`<span>${r}</span>`).join('')}</span></span>`;
+function rule(iv1,iv2,iv){
+  if(iv.empty) return '大大小小无处找（无解）';
+  if(iv.lo&&iv.hi&&iv1.lo&&iv2.hi||iv.lo&&iv.hi&&iv1.hi&&iv2.lo) return '大小小大中间找';
+  return iv.lo?'同大取大':'同小取小';
+}
+function sysCandidates(i1,i2,iv){
+  const L=[];
+  const bounds=[i1,i2].map(i=>i.lo||i.hi);
+  const lo=bounds[0].cmp(bounds[1])<=0?bounds[0]:bounds[1], hi=bounds[0].cmp(bounds[1])<=0?bounds[1]:bounds[0];
+  const cl=(x,tog)=>x;
+  L.push(mkIv(lo,false,hi,false), mkIv(lo,true,hi,true), mkIv(lo,true,hi,false), mkIv(lo,false,hi,true));
+  L.push(ivOp('>',lo),ivOp('<',hi),ivOp('>',hi),ivOp('<',lo),ivOp('>=',lo),ivOp('<=',hi),ivOp('>=',hi),ivOp('<=',lo));
+  L.push(EMPTY,FULL);
+  [i1,i2].forEach(i=>L.push(i));
+  if(iv.lo&&iv.hi) L.push(mkIv(iv.lo,!iv.loC,iv.hi,iv.hiC),mkIv(iv.lo,iv.loC,iv.hi,!iv.hiC),mkIv(iv.lo,!iv.loC,iv.hi,!iv.hiC));
+  else if(iv.lo) L.push(ivOp(iv.loC?'>':'>=',iv.lo)); else if(iv.hi) L.push(ivOp(iv.hiC?'<':'<=',iv.hi));
+  return L;
+}
+function sysDirect(){
+  for(let t=0;t<80;t++){
+    const a=ri(-6,7), b=chance(.2)?a:ri(-6,7), o1=pick(OPS), o2=pick(OPS);
+    const i1=ivOp(o1,a), i2=ivOp(o2,b), iv=ivInter(i1,i2);
+    if(t<40&&iv.empty&&chance(.3)) continue;
+    return {html:sysHTML([`${mv('x')} ${OPH[o1]} ${sgn(a)}`,`${mv('x')} ${OPH[o2]} ${sgn(b)}`]),i1,i2,iv,
+      ex:`分别解出：${ivHTML(i1)}；${ivHTML(i2)}。<br>在数轴上找公共部分：${rule(i1,i2,iv)}。<br>解集：<b>${ivHTML(iv)}</b>。`,cands:()=>sysCandidates(i1,i2,iv)};
+  }
+}
+function sysLinear(o={}){
+  for(let t=0;t<200;t++){
+    const f1=formA({}), f2=chance(.5)?formA({}):formB({});
+    const i1=f1.iv, i2=f2.iv; if(i1.empty||i2.empty||(!i1.lo&&!i1.hi)||(!i2.lo&&!i2.hi)) continue;
+    const iv=ivInter(i1,i2);
+    if(o.needNonEmpty&&iv.empty) continue;
+    if(o.int&&!(i1.lo||i1.hi).isInt()||o.int&&!(i2.lo||i2.hi).isInt()) continue;
+    if(!o.noInt&&o.int){ }
+    const cands=()=>{ const L=[];
+      f1.errs.forEach(e=>L.push(ivInter(e,i2))); f2.errs.forEach(e=>L.push(ivInter(i1,e)));
+      f1.errs.slice(0,2).forEach(e=>L.push(e)); L.push(...sysCandidates(i1,i2,iv)); return L; };
+    return {html:sysHTML([f1.html,f2.html]),i1,i2,iv,
+      ex:`解第①个：${f1.ex}<br>解第②个：${f2.ex}<br>取公共部分（${rule(i1,i2,iv)}）：<b>${ivHTML(iv)}</b>。`,cands};
+  }
+}
+function g31(){ const S=sysDirect(); if(!S) return null;
+  return finishMC(`不等式组 ${S.html} 的解集是（　）`,ivOpt(S.iv),shuffle(S.cands()).map(c=>ivOpt(c)),S.ex); }
+function g32(){ const S=sysLinear({}); if(!S) return null;
+  return finishMC(`解不等式组 ${S.html}，其解集是（　）`,ivOpt(S.iv),(()=>{const c=S.cands(); return [...shuffle(c.slice(0,8)),...c.slice(8)];})().map(c=>ivOpt(c)),S.ex); }
+function boundedSys(){ for(let t=0;t<120;t++){ const S=chance(.5)?sysDirect():sysLinear({needNonEmpty:true}); if(!S) continue;
+  const ints=intsIn(S.iv); if(ints&&ints.length>=1&&ints.length<=9&&!S.iv.lo.eq(S.iv.hi)) return {S,ints}; } return null; }
+function g33(){   /* 整数解个数 */
+  const B=boundedSys(); if(!B) return null; const {S,ints}=B, n=ints.length;
+  const iv=S.iv, cnt=x=>{const l=x.lo,h=x.hi;const a=l.isInt()?(x.loC?l.n:l.n+1):l.floor()+1,b=h.isInt()?(x.hiC?h.n:h.n-1):h.floor();return Math.max(0,b-a+1);};
+  const w=[cnt(mkIv(iv.lo,true,iv.hi,true)),cnt(mkIv(iv.lo,false,iv.hi,false)),n+1,n-1,n+2,Math.max(0,n-2)].filter(x=>x>=0);
+  return finishMC(`不等式组 ${S.html} 的整数解共有（　）个`,numOpt(n),w.map(numOpt),
+    `${S.ex}<br>整数解：${ints.map(sgn).join('、')}，共 <b>${n}</b> 个。`);
+}
+function g34(){   /* 整数解之和 */
+  const B=boundedSys(); if(!B) return null; const {S,ints}=B, sum=ints.reduce((a,b)=>a+b,0);
+  const iv=S.iv; const mk=(l,h)=>{let s=0;for(let i=l;i<=h;i++)s+=i;return s;};
+  const a=ints[0], b=ints[ints.length-1];
+  const w=[mk(a-1,b),mk(a,b+1),mk(a+1,b),mk(a,b-1),Math.abs(sum),sum+ints.length];
+  return finishMC(`不等式组 ${S.html} 的所有整数解的和是（　）`,numOpt(sum),w.map(numOpt),
+    `${S.ex}<br>整数解：${ints.map(sgn).join('、')}，和为 <b>${sgn(sum)}</b>。`);
+}
+function g35(){   /* 含参数的有解 / 无解范围 */
+  const a=nz(-5,6), loC=chance(.5), hiC=chance(.5), mUpper=chance(.6), hasSol=chance(.5);
+  const lo=mUpper?a:null, ops=mUpper?[loC?'>=':'>' , hiC?'<=':'<']:[hiC?'<=':'<', loC?'>=':'>'];
+  // m 作上界：{x ○1 a ; x ○2 m}（○1 为下界）；m 作下界：{x ○ m ; x ○ a}（a 为上界）
+  let rows,res,ex;
+  const both=loC&&hiC;
+  if(mUpper){
+    rows=[`${mv('x')} ${OPH[loC?'>=':'>']} ${sgn(a)}`,`${mv('x')} ${OPH[hiC?'<=':'<']} ${mv('m')}`];
+    // 有解：m>a（都带等号时 m≥a）
+    const ok=both?'>=':'>', no=both?'<':'<=';
+    res=hasSol?ok:no; ex=`有解 ⇔ 上界 ${mv('m')} 要比下界 ${a} 大${both?'（两个端点都能取到，相等时 x = '+a+' 也是解，所以可以等于）':'（有一个端点取不到，相等时没有解，所以不能等于）'}。`;
+    var cmp=res;
+  } else {
+    rows=[`${mv('x')} ${OPH[loC?'>=':'>']} ${mv('m')}`,`${mv('x')} ${OPH[hiC?'<=':'<']} ${sgn(a)}`];
+    const ok=both?'<=':'<', no=both?'>':'>=';
+    res=hasSol?ok:no; ex=`有解 ⇔ 下界 ${mv('m')} 要比上界 ${a} 小${both?'（两个端点都能取到，相等时 x = '+a+' 也是解，所以可以等于）':'（有一个端点取不到，相等时没有解，所以不能等于）'}。`;
+    var cmp=res;
+  }
+  const all=['>','<','>=','<='].map(o=>({k:'m'+o,h:`${mv('m')} ${OPH[o]} ${sgn(a)}`}));
+  const correct=all.find(x=>x.k==='m'+cmp);
+  return finishMC(`若关于 ${mv('x')} 的不等式组 ${sysHTML(rows)} <b>${hasSol?'有解':'无解'}</b>，则 ${mv('m')} 的取值范围是（　）`,correct,all.filter(x=>x!==correct),
+    `${ex}<br>所以 ${ivHTML(ivOp(cmp,a),'m')}。`);
+}
+function f31(){ const S=chance(.5)?sysLinear({}):sysDirect(); return {q:`解不等式组 ${S.html}，写出解集。`,kind:'ineq',ans:S.iv,v:'x',ex:S.ex,hint:'例如：1<x≤4 ；无解 请直接写“无解”'}; }
+function f32(){ const B=boundedSys(); return {q:`不等式组 ${B.S.html} 的整数解共有几个？`,kind:'num',ans:fr(B.ints.length),
+  ex:`${B.S.ex}<br>整数解：${B.ints.map(sgn).join('、')}，共 <b>${B.ints.length}</b> 个。`,hint:'只填一个数字'}; }
+function f33(){   /* 作答：m 的范围 */
+  const a=nz(-5,6), loC=chance(.5), hiC=chance(.5), hasSol=chance(.5), both=loC&&hiC;
+  const rows=[`${mv('x')} ${OPH[loC?'>=':'>']} ${sgn(a)}`,`${mv('x')} ${OPH[hiC?'<=':'<']} ${mv('m')}`];
+  const cmp=hasSol?(both?'>=':'>'):(both?'<':'<=');
+  return {q:`若关于 ${mv('x')} 的不等式组 ${sysHTML(rows)} <b>${hasSol?'有解':'无解'}</b>，求 ${mv('m')} 的取值范围。`,kind:'ineq',ans:ivOp(cmp,a),v:'m',
+    ex:`上界 ${mv('m')} 与下界 ${a} 比较：${both?'两个端点都能取到，相等时也有解':'至少一个端点取不到，相等时无解'}。故 ${ivHTML(ivOp(cmp,a),'m')}。`,hint:'例如：m>3 或 m>=3'};
+}
+
+/* ================= 14.4 应用问题 ================= */
+function pBudget(){        /* 带固定费用的“最多买几个” */
+  for(let t=0;t<60;t++){
+    const item=pick([['笔记本','本'],['原子笔','支'],['饭团','个'],['练习簿','本']]), p=ri(3,9), q=ri(4,20), M=ri(40,120);
+    const n=Math.floor((M-q)/p); if(n<3||(M-q)%p===0&&chance(.5)) continue;
+    const exact=(M-q)%p===0;
+    const cands=[Math.ceil((M-q)/p),Math.floor(M/p),Math.floor((M+q)/p),n-1,n+1];
+    return {q:`小明带了 RM${M}，先花 RM${q} 买了一个文件夹，其余的钱全部用来买每${item[1]} RM${p} 的${item[0]}。他最多能买几${item[1]}${item[0]}？`,ans:n,cands,
+      ex:`设买 ${mv('x')} ${item[1]}：${p}${mv('x')} + ${q} ≤ ${M} → ${mv('x')} ≤ ${frac(M-q,p)} ≈ ${((M-q)/p).toFixed(2)}${exact?'':'…'}。<br>“最多”要<b>向下取整</b>，所以最多买 <b>${n}</b> ${item[1]}。`};
+  }
+}
+function pCents(){         /* 仙 ↔ RM 单位换算 */
+  for(let t=0;t<60;t++){
+    const p=pick([60,70,80,90,120,130,150,180,250]), M=ri(5,30), n=Math.floor(M*100/p); if(n<3||(M*100)%p===0) continue;
+    const cands=[Math.ceil(M*100/p),Math.floor(M/p),Math.floor(M*10/p),n-1,n+1];
+    return {q:`每支原子笔 ${p} 仙，小华有 RM${M}，最多能买几支原子笔？`,ans:n,cands,
+      ex:`先统一单位：RM${M} = ${M*100} 仙。<br>设买 ${mv('x')} 支：${p}${mv('x')} ≤ ${M*100} → ${mv('x')} ≤ ${((M*100)/p).toFixed(2)}…，向下取整，最多 <b>${n}</b> 支。`};
+  }
+}
+function pAverage(){       /* 平均分至少 */
+  for(let t=0;t<100;t++){
+    const n=pick([4,5]), T=ri(55,75), s=Array.from({length:n-1},()=>ri(40,80)), sum=s.reduce((a,b)=>a+b,0), need=T*n-sum;
+    if(need<=0||need>100||need<30) continue;
+    const cands=[T*(n-1)-sum,need-1,need+1,T-Math.round(sum/(n-1)),need+T-Math.round(sum/(n-1)),need-T];
+    return {q:`小英 ${n} 次测验的平均分要至少达到 ${T} 分。前 ${n-1} 次成绩分别是 ${s.join('、')} 分，第 ${n} 次她至少要考多少分？`,ans:need,cands,
+      ex:`设第 ${n} 次考 ${mv('x')} 分：${frac(s.join(' + ')+' + '+mv('x'),n)} ≥ ${T} → ${sum} + ${mv('x')} ≥ ${T*n} → ${mv('x')} ≥ ${need}。<br>至少要考 <b>${need}</b> 分（${T*n} 是 ${n} 次的总分，不是 ${T*(n-1)}）。`};
+  }
+}
+function pContest(){       /* 答对得分、答错扣分 */
+  for(let t=0;t<200;t++){
+    const n=pick([10,12,15,20]), a=pick([4,5,6,8,10]), b=pick([1,2,3,4]), S=pick([40,50,60,70,80,90,100]), strict=chance(.5);
+    const r=fr(S+b*n,a+b), ans=strict?(r.isInt()?r.n+1:r.floor()+1):r.ceil();
+    if(ans<1||ans>n) continue;
+    const cands=[strict?r.ceil():r.floor(),ans-1,ans+1,Math.ceil(S/a),Math.ceil(S/a)+1,r.isInt()?r.n:r.floor()];
+    return {q:`某竞赛共 ${n} 题，答对一题得 ${a} 分，答错或不答一题扣 ${b} 分。要使总分${strict?'<b>超过</b>':'<b>不低于</b>'} ${S} 分，至少要答对几题？`,ans,cands,
+      ex:`设答对 ${mv('x')} 题，则答错 (${n} ${MINUS} ${mv('x')}) 题：${a}${mv('x')} ${MINUS} ${b}(${n} ${MINUS} ${mv('x')}) ${strict?'&gt;':'≥'} ${S}。<br>去括号：${a+b}${mv('x')} ${strict?'&gt;':'≥'} ${S+b*n} → ${mv('x')} ${strict?'&gt;':'≥'} ${fmtF(r)}${r.isInt()?'':' ≈ '+r.num().toFixed(2)}。<br>${strict?(r.isInt()?'严格大于，边界值本身不能取，所以最少 <b>'+ans+'</b> 题。':'取比边界大的最小整数，<b>'+ans+'</b> 题。'):'可以等于，边界不是整数时向上取整，最少 <b>'+ans+'</b> 题。'}`};
+  }
+}
+function pPlan(){          /* 方案比较 */
+  for(let t=0;t<200;t++){
+    const u=ri(1,4), w=u+ri(1,4), f=ri(6,60), r=fr(f,w-u), strict=chance(.6);
+    const ans=strict?(r.isInt()?r.n+1:r.floor()+1):r.ceil();
+    if(ans<3||ans>80) continue;
+    const cands=[strict?r.ceil():r.floor(),r.isInt()?r.n:r.floor(),ans-1,ans+1,Math.round(f/w)];
+    return {q:`复印店有两种收费方式：<br>方案甲：先办会员卡 RM${f}，之后每张 RM${u}；<br>方案乙：不办卡，每张 RM${w}。<br>至少复印多少张，方案甲${strict?'<b>比乙更省钱</b>（总费用更少）':'<b>总费用不超过</b>方案乙'}？`,ans,cands,
+      ex:`设复印 ${mv('x')} 张：${u}${mv('x')} + ${f} ${strict?'&lt;':'≤'} ${w}${mv('x')} → ${w-u}${mv('x')} ${strict?'&gt;':'≥'} ${f} → ${mv('x')} ${strict?'&gt;':'≥'} ${fmtF(r)}${r.isInt()?'':' ≈ '+r.num().toFixed(2)}。<br>${strict&&r.isInt()?'相等时两个方案费用一样，不算“更省钱”，所以要多一张：':''}最少 <b>${ans}</b> 张。`};
+  }
+}
+function pShare(){         /* 分配问题（唯一整数解）*/
+  for(let t=0;t<400;t++){
+    const a=ri(3,6), d=ri(1,3), b=a+d, r=ri(2,18);
+    const lo=fr(r,d), hi=fr(r+b,d);               // lo < x < hi（严格）
+    const sols=[]; for(let x=1;x<=60;x++){ if(fr(x).cmp(lo)>0&&fr(x).cmp(hi)<0) sols.push(x); }
+    if(sols.length!==1) continue;
+    const x0=sols[0], items=pick([['学生','本','书'],['同学','颗','糖'],['小朋友','个','苹果']]);
+    const askPeople=chance(.6), total=a*x0+r;
+    const cands=askPeople?[x0-1,x0+1,x0+2,Math.floor(r/d),Math.ceil((r+b)/d)]:[a*(x0-1)+r,a*(x0+1)+r,b*x0,b*(x0-1)+1,total-b];
+    return {q:`把一些${items[2]}分给若干${items[0]}：如果每人分 ${a} ${items[1]}，则剩下 ${r} ${items[1]}；如果每人分 ${b} ${items[1]}，则最后一人分到的不足 ${b} ${items[1]}（但至少有 1 ${items[1]}）。${askPeople?`问一共有多少个${items[0]}？`:`问${items[2]}一共有多少${items[1]}？`}`,
+      ans:askPeople?x0:total,cands,
+      ex:`设有 ${mv('x')} 个${items[0]}，则${items[2]}共 ${a}${mv('x')} + ${r} ${items[1]}。<br>每人 ${b} ${items[1]} 时，前 (${mv('x')} ${MINUS} 1) 人分走 ${b}(${mv('x')} ${MINUS} 1) ${items[1]}，最后一人得 ${a}${mv('x')} + ${r} ${MINUS} ${b}(${mv('x')} ${MINUS} 1) ${items[1]}，且 0 &lt; 该数 &lt; ${b}：<br>0 &lt; ${r+b} ${MINUS} ${d}${mv('x')} &lt; ${b} → ${fmtF(lo)} &lt; ${mv('x')} &lt; ${fmtF(hi)}，唯一整数 ${mv('x')} = <b>${x0}</b>。${askPeople?'':`<br>${items[2]}共 ${a}×${x0} + ${r} = <b>${total}</b> ${items[1]}。`}`};
+  }
+}
+const PROBLEMS=[pBudget,pCents,pAverage,pContest,pPlan,pShare];
+function mcFromProblem(fn){ return ()=>{ const P=fn(); if(!P) return null;
+  return finishMC(P.q,numOpt(P.ans),P.cands.filter(x=>x>=0).map(numOpt),P.ex); }; }
+function fillFromProblem(fn,unit){ return ()=>{ const P=fn(); if(!P) return null;
+  return {q:P.q,kind:'num',ans:fr(P.ans),ex:P.ex,hint:'只填一个整数（不必写单位）'}; }; }
+const g41=mcFromProblem(pBudget), g42=mcFromProblem(pCents), g43=mcFromProblem(pAverage),
+      g44=mcFromProblem(pContest), g45=mcFromProblem(pPlan), g46=mcFromProblem(pShare);
+function g47(){   /* 取整规则判断 */
+  for(let t=0;t<60;t++){
+    const kind=pick(['max','min']);
+    if(kind==='max'){
+      const C=pick([500,800,1000,1200,1500,2000]), u=ri(40,95); if(C%u===0) continue;
+      const v=Math.floor(C/u), item=pick(['货箱','书箱','水桶']);
+      return finishMC(`一部升降机限载 ${C} kg，每个${item}重 ${u} kg，一次最多能运几个${item}？`,numOpt(v),[v+1,Math.round(C/u)===v?v+1:Math.round(C/u),v-1,v+2].map(numOpt),
+        `${u}${mv('x')} ≤ ${C} → ${mv('x')} ≤ ${(C/u).toFixed(2)}…，“最多”要<b>向下取整</b>：<b>${v}</b>。`);
+    }
+    const P=ri(60,220), s=ri(12,45); if(P%s===0) continue;
+    const v=Math.ceil(P/s);
+    return finishMC(`学校要运送 ${P} 位同学，每辆巴士最多坐 ${s} 人，至少需要几辆巴士？`,numOpt(v),[v-1,Math.round(P/s)===v?v+1:Math.round(P/s),v+1,v-2].map(numOpt),
+      `${s}${mv('x')} ≥ ${P} → ${mv('x')} ≥ ${(P/s).toFixed(2)}…，“至少”要<b>向上取整</b>：<b>${v}</b>。（不能只坐 ${v-1} 辆，剩下的人没座位。）`);
+  }
+}
+const f41=fillFromProblem(pCents), f42=fillFromProblem(pAverage), f43=fillFromProblem(pContest), f44=fillFromProblem(pPlan), f45=fillFromProblem(pShare), f46=fillFromProblem(pBudget);
+
+/* ================= 章节配置 ================= */
+const SEC={
+  s1:{name:'14.1 基本性质',gens:[g11,g12,g13,g14,g15],fills:[f11,f12,f13]},
+  s2:{name:'14.2 一元一次不等式',gens:[g21,g22,g23,g24,g25],fills:[f21,f22,f23,f24]},
+  s3:{name:'14.3 不等式组',gens:[g31,g32,g33,g34,g35],fills:[f31,f32,f33]},
+  s4:{name:'14.4 应用问题',gens:[g41,g42,g43,g44,g45,g46,g47],fills:[f41,f42,f43,f44,f45,f46]}
+};
+
+/* ================= 界面与交互 ================= */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+const store={get(k){try{return localStorage.getItem(k);}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
+
+/* ---------- 主题 / 字号 ---------- */
+const FS={min:12,max:22,def:15};
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  const b=$('#btnTheme'); if(b) b.textContent=t==='dark'?'☀️ 浅色':'🌙 深色';
+  store.set('m14-theme',t);
+}
+function applyFont(px){
+  px=Math.max(FS.min,Math.min(FS.max,px));
+  document.documentElement.style.fontSize=px+'px';
+  const v=$('#fVal'); if(v) v.textContent=px;
+  store.set('m14-font',String(px));
+  return px;
+}
+function initControls(){
+  let t=store.get('m14-theme');
+  if(!t) t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  applyTheme(t);
+  let px=parseInt(store.get('m14-font'),10); if(!px) px=FS.def; px=applyFont(px);
+  $('#btnTheme').addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+  $('#fDown').addEventListener('click',()=>{px=applyFont(px-1);});
+  $('#fUp').addEventListener('click',()=>{px=applyFont(px+1);});
+  $('#fReset').addEventListener('click',()=>{px=applyFont(FS.def);});
+}
+
+/* ---------- 标签页 ---------- */
+const PROG={s1:{},s2:{},s3:{},s4:{}};
+function showTab(id){
+  $$('.tab').forEach(t=>t.classList.toggle('on',t.id==='tab-'+id));
+  $$('#nav button').forEach(b=>b.classList.toggle('cur',b.dataset.tab===id));
+  try{history.replaceState(null,'','#'+id);}catch(e){}
+  window.scrollTo({top:0,behavior:'auto'});
+}
+function refreshProgress(){
+  Object.keys(PROG).forEach(id=>{
+    const p=PROG[id], b=$(`#nav button[data-tab="${id}"]`), chip=$(`#prog-${id}`);
+    const mark=p.fillDone?'★':p.unlocked?'✓':'';
+    if(b){ const base=b.dataset.label; b.innerHTML=base+(mark?` <span class="mk">${mark}</span>`:''); }
+    if(chip) chip.textContent=p.fillDone?'★ 已完成作答题':p.unlocked?'✓ 已解锁作答题':'○ 尚未解锁';
+    if(chip) chip.className='chip '+(p.fillDone?'gold':p.unlocked?'ok':'');
+  });
+}
+
+/* ---------- 出题轮 ---------- */
+function genRound(gens,n,tag){
+  const pool=shuffle([...new Set(gens)]); const out=[]; const seen=new Set(); let guard=0;
+  while(out.length<n&&guard++<400){
+    const g=out.length<pool.length?pool[out.length]:pick(pool);
+    let q=null; for(let t=0;t<40&&!q;t++){ try{q=g();}catch(e){q=null;} }
+    if(q&&!seen.has(q.q)){ seen.add(q.q); if(tag) q.sec=tag; out.push(q); }
+  }
+  return out;
+}
+function genFinal(){
+  const quota={s1:2,s2:3,s3:3,s4:2}; let all=[];
+  Object.keys(quota).forEach(id=>{ all=all.concat(genRound(SEC[id].gens,quota[id],id)); });
+  return shuffle(all);
+}
+function genFills(id,n){
+  const pool=shuffle(SEC[id].fills); const out=[]; const seen=new Set();
+  for(let i=0;i<pool.length&&out.length<n;i++){
+    let q=null; for(let t=0;t<40&&!q;t++){ try{q=pool[i]();}catch(e){q=null;} }
+    if(q&&!seen.has(q.q)){seen.add(q.q);out.push(q);}
+  }
+  return out;
+}
+
+/* ---------- 作答题批改 ---------- */
+function gradeFill(q,raw){
+  if(q.kind==='ineq'){
+    const p=parseIneq(raw); if(!p) return {fmt:true};
+    if(p.v&&q.v&&p.v!==q.v) return {ok:false};
+    return {ok:ivKey(p.iv)===ivKey(q.ans)};
+  }
+  if(q.kind==='num'){ const n=parseNumAnswer(raw); if(!n) return {fmt:true}; return {ok:n.eq(q.ans)}; }
+  if(q.kind==='sym'){ const s=parseSym(raw); if(!s) return {fmt:true}; return {ok:s===q.ans}; }
+  return {fmt:true};
+}
+function ansHTML(q){
+  if(q.kind==='ineq') return ivHTML(q.ans,q.v);
+  if(q.kind==='num') return fmtF(q.ans);
+  return OPH[q.ans];
+}
+function insertAtCursor(inp,text){
+  const s=inp.selectionStart??inp.value.length, e=inp.selectionEnd??inp.value.length;
+  inp.value=inp.value.slice(0,s)+text+inp.value.slice(e);
+  const p=s+text.length; inp.focus(); try{inp.setSelectionRange(p,p);}catch(_){}
+}
+
+/* ---------- 题卡渲染 ---------- */
+const LET=['A','B','C','D'];
+function mcCard(q,idx,onDone){
+  const card=el('div','qcard');
+  card.appendChild(el('div','qno',`第 ${idx+1} 题`+(q.sec?` <span class="tag">${SEC[q.sec].name}</span>`:'')));
+  card.appendChild(el('div','qtext',q.q));
+  const box=el('div','opts '+(q.cls||''));
+  q.opts.forEach((o,i)=>{
+    const b=el('button','opt',`<span class="ltr">${LET[i]}</span><span class="otxt">${o.h}</span>`);
+    b.type='button'; b.dataset.k=o.k;
+    b.addEventListener('click',()=>{
+      if(card.dataset.done) return; card.dataset.done='1';
+      const ok=o.k===q.ans;
+      $$('.opt',box).forEach(x=>{ x.disabled=true; if(x.dataset.k===q.ans) x.classList.add('ok'); });
+      if(!ok) b.classList.add('bad');
+      const ex=el('div','qex '+(ok?'good':'miss'),`<b>${ok?'✔ 答对了！':'✘ 答错了。'}</b>${ok?'':' 正确答案是 <b>'+LET[q.opts.findIndex(x=>x.k===q.ans)]+'</b>。'}<br>${q.ex}`);
+      card.appendChild(ex); onDone(ok);
+    });
+    box.appendChild(b);
+  });
+  card.appendChild(box);
+  return card;
+}
+function fillCard(q,idx,total,onDone){
+  const card=el('div','qcard fill');
+  card.appendChild(el('div','qno',`作答题 ${idx+1}/${total} <span class="tag gold">自己输入答案</span>`));
+  card.appendChild(el('div','qtext',q.q));
+  const row=el('div','frow');
+  const inp=el('input','fin'); inp.type='text'; inp.autocomplete='off'; inp.spellcheck=false; inp.placeholder='在此输入答案';
+  inp.setAttribute('inputmode','text');
+  const btn=el('button','btn primary','提交'); btn.type='button';
+  row.appendChild(inp); row.appendChild(btn); card.appendChild(row);
+  if(q.kind==='ineq'){
+    const pal=el('div','pal');
+    ['≥','≤','>','<','无解','全体实数'].forEach(t=>{ const b=el('button','pbtn',t); b.type='button'; b.addEventListener('click',()=>insertAtCursor(inp,t)); pal.appendChild(b); });
+    card.appendChild(pal);
+  }
+  card.appendChild(el('div','hint','提示：'+q.hint));
+  const msg=el('div','fmsg'); card.appendChild(msg);
+  const submit=()=>{
+    if(card.dataset.done) return;
+    const r=gradeFill(q,inp.value);
+    if(r.fmt){ msg.textContent='格式看不懂，请按提示的写法再输入一次（这次不算作答）。'; msg.className='fmsg warnmsg'; return; }
+    card.dataset.done='1'; inp.disabled=true; btn.disabled=true; $$('.pbtn',card).forEach(b=>b.disabled=true);
+    card.appendChild(el('div','qex '+(r.ok?'good':'miss'),`<b>${r.ok?'✔ 回答正确！':'✘ 不正确。'}</b> 标准答案：<b>${ansHTML(q)}</b><br>${q.ex}`));
+    msg.textContent=''; onDone(r.ok);
+  };
+  btn.addEventListener('click',submit);
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); submit(); } });
+  return card;
+}
+
+/* ---------- 小节练习块 ---------- */
+class SectionQuiz{
+  constructor(root,id){ this.root=root; this.id=id; this.count=5; this.pass=3; this.start(); }
+  start(){
+    const r=this.root; r.innerHTML='';
+    this.qs=genRound(SEC[this.id].gens,this.count); this.answered=0; this.correct=0; this.fillDone=0; this.fillOk=0;
+    PROG[this.id]={}; refreshProgress();
+    const head=el('div','qhead');
+    head.innerHTML=`<div><h3>📝 随堂练习 · ${this.count} 道选择题</h3><p class="sub">每题只能选一次，选完立刻显示解析。答对 <b>${this.pass}</b> 题或以上，解锁 2 道作答题。</p></div>`;
+    const right=el('div','qctl'); this.chip=el('span','chip','已答 0/'+this.count+' · 答对 0');
+    const re=el('button','btn','🔄 换一组新题'); re.type='button'; re.addEventListener('click',()=>this.start());
+    right.appendChild(this.chip); right.appendChild(re); head.appendChild(right); r.appendChild(head);
+    this.list=el('div','qlist'); r.appendChild(this.list);
+    this.qs.forEach((q,i)=>this.list.appendChild(mcCard(q,i,ok=>this.onMC(ok))));
+    this.result=el('div','qresult hide'); r.appendChild(this.result);
+    this.zone=el('div','fillzone hide'); r.appendChild(this.zone);
+  }
+  onMC(ok){
+    this.answered++; if(ok) this.correct++;
+    this.chip.textContent=`已答 ${this.answered}/${this.count} · 答对 ${this.correct}`;
+    if(this.answered<this.count) return;
+    this.result.classList.remove('hide');
+    if(this.correct>=this.pass){
+      PROG[this.id]={unlocked:true}; refreshProgress();
+      this.result.className='qresult pass';
+      this.result.innerHTML=`<b>🎉 本组答对 ${this.correct}/${this.count}，解锁作答题！</b><br>接下来 2 道题需要你自己输入答案。`;
+      this.fills=genFills(this.id,2); this.zone.classList.remove('hide');
+      this.zone.innerHTML='<h3>🔓 作答题（自己输入答案）</h3>';
+      this.fills.forEach((q,i)=>this.zone.appendChild(fillCard(q,i,this.fills.length,ok=>this.onFill(ok))));
+    } else {
+      this.result.className='qresult fail';
+      this.result.innerHTML=`<b>本组答对 ${this.correct}/${this.count}</b>，还差一点（需要至少 ${this.pass} 题）。先看看上面的解析，再点「换一组新题」重新挑战 💪`;
+      const b=el('button','btn primary','🔄 换一组新题'); b.type='button'; b.addEventListener('click',()=>this.start());
+      this.result.appendChild(el('div','',''));this.result.lastChild.appendChild(b);
+    }
+  }
+  onFill(ok){
+    this.fillDone++; if(ok) this.fillOk++;
+    if(this.fillDone<this.fills.length) return;
+    PROG[this.id]={unlocked:true,fillDone:true}; refreshProgress();
+    const box=el('div','qresult '+(this.fillOk===this.fills.length?'pass':'fail'));
+    box.innerHTML=`<b>${this.fillOk===this.fills.length?'🏆 作答题全对！':'作答题答对 '+this.fillOk+'/'+this.fills.length+'。'}</b> 想再练？`;
+    const b=el('button','btn primary','🔄 再来一组'); b.type='button'; b.addEventListener('click',()=>{ this.start(); this.root.scrollIntoView({block:'start'}); });
+    box.appendChild(el('div','')); box.lastChild.appendChild(b); this.zone.appendChild(box);
+  }
+}
+
+/* ---------- 章末测验块 ---------- */
+class FinalQuiz{
+  constructor(root){ this.root=root; this.start(); }
+  start(){
+    const r=this.root; r.innerHTML='';
+    this.qs=genFinal(); this.answered=0; this.correct=0; this.bySec={};
+    const head=el('div','qhead');
+    head.innerHTML=`<div><h3>🏁 章末综合测验 · ${this.qs.length} 题</h3><p class="sub">题目从 14.1–14.4 随机抽取，选项顺序每次打乱。全部答完后显示成绩与薄弱环节。</p></div>`;
+    const right=el('div','qctl'); this.chip=el('span','chip',`已答 0/${this.qs.length} · 答对 0`);
+    const re=el('button','btn','🔄 重新抽题'); re.type='button'; re.addEventListener('click',()=>this.start());
+    right.appendChild(this.chip); right.appendChild(re); head.appendChild(right); r.appendChild(head);
+    const list=el('div','qlist'); r.appendChild(list);
+    this.qs.forEach((q,i)=>list.appendChild(mcCard(q,i,ok=>this.onMC(q,ok))));
+    this.res=el('div','qresult hide'); r.appendChild(this.res);
+  }
+  onMC(q,ok){
+    this.answered++; if(ok) this.correct++;
+    const s=this.bySec[q.sec]||(this.bySec[q.sec]={n:0,c:0}); s.n++; if(ok) s.c++;
+    this.chip.textContent=`已答 ${this.answered}/${this.qs.length} · 答对 ${this.correct}`;
+    if(this.answered<this.qs.length) return;
+    const pct=Math.round(this.correct/this.qs.length*100);
+    const grade=pct>=90?'🏆 非常出色！':pct>=70?'👍 掌握得不错':pct>=50?'📘 基础还需巩固':'💪 建议回到各节重新练习';
+    const rows=Object.keys(this.bySec).sort().map(id=>{const s=this.bySec[id];const weak=s.c<s.n;return `<li>${SEC[id].name}：${s.c}/${s.n} ${weak?'<span class="miss-t">← 需要加强</span>':'✓'}</li>`;}).join('');
+    this.res.className='qresult '+(pct>=70?'pass':'fail');
+    this.res.innerHTML=`<b>${grade} 成绩：${this.correct}/${this.qs.length}（${pct}%）</b><ul class="breakdown">${rows}</ul>`;
+    const b=el('button','btn primary','🔄 重新抽题再测'); b.type='button'; b.addEventListener('click',()=>{this.start();this.root.scrollIntoView({block:'start'});});
+    this.res.appendChild(b);
+  }
+}
+
+/* ================= 互动实验台 ================= */
+const rnd=(x,n=2)=>{const v=Math.round(x*Math.pow(10,n))/Math.pow(10,n);return Object.is(v,-0)?0:v;};
+const sg=n=>{n=rnd(n,3);return n<0?MINUS+Math.abs(n):String(n);};
+function readF(id,def){ const p=parseNumStr(normStr($(id).value)); return p||def; }
+
+/* 14.1 实验台 */
+function tool1(){
+  const a=+$('#t1a').value, b=+$('#t1b').value, op=$('#t1op').value; let c=parseFloat($('#t1c').value); if(isNaN(c)) c=0;
+  $('#t1ad').textContent=sg(a); $('#t1bd').textContent=sg(b);
+  const rel=(x,y)=>Math.abs(x-y)<1e-9?'=':x<y?'<':'>';
+  const init=`${sg(a)} <b class="rel">${OPH[rel(a,b)]}</b> ${sg(b)}`;
+  $('#t1init').innerHTML=init;
+  const warn=$('#t1warn'); warn.className='note hide';
+  if(op==='/'&&c===0){ $('#t1trans').innerHTML='—'; $('#t1eval').innerHTML='除数不能为 0！'; $('#t1svg').innerHTML=''; warn.className='note bad'; warn.innerHTML='❌ 除数不能为 0，请换一个数。'; return; }
+  let ra,rb,sym;
+  if(op==='+'){ra=a+c;rb=b+c;sym='+';} else if(op==='-'){ra=a-c;rb=b-c;sym=MINUS;} else if(op==='*'){ra=a*c;rb=b*c;sym='×';} else {ra=a/c;rb=b/c;sym='÷';}
+  const r1=rel(ra,rb);
+  $('#t1trans').innerHTML=`(${sg(a)}) ${sym} (${sg(c)}) <b class="rel big">${OPH[r1]}</b> (${sg(b)}) ${sym} (${sg(c)})`;
+  $('#t1eval').innerHTML=`${sg(ra)} <b class="rel">${OPH[r1]}</b> ${sg(rb)}`;
+  if((op==='*'||op==='/')&&c<0){ warn.className='note warnbox'; warn.innerHTML='⚠️ <b>核心关键点！</b>两边同时乘以或除以一个<b>负数</b>，不等号的方向<b>必须改变</b>！'; }
+  else if(op==='*'&&c===0){ warn.className='note warnbox'; warn.innerHTML='⚠️ 乘以 <b>0</b>：两边都变成 0，不等号变成<b>等号</b>。所以性质 2 要求乘的是<b>正数</b>。'; }
+  else if(rel(a,b)==='=') { warn.className='note'; warn.innerHTML='a 与 b 相等时，两边怎么运算结果仍然相等。'; }
+  $('#t1svg').innerHTML=nlPoints([
+    {color:'var(--c1)',pts:[{v:a,label:'a '+sg(a)},{v:b,label:'b '+sg(b)}]},
+    {color:'var(--ok)',pts:[{v:ra,label:"a' "+sg(ra)},{v:rb,label:"b' "+sg(rb)}]}]);
+}
+
+/* 14.2 解不等式器 */
+const PRE2={
+  ex1:{a:'1',b:'-1',op:'>',c:'0',d:'2',pre:''},
+  ex2:{a:'3',b:'1',op:'<=',c:'0',d:'10',pre:''},
+  ex3:{a:'-2',b:'3',op:'<=',c:'0',d:'7',pre:''},
+  ex5:{a:'-3',b:'3',op:'<',c:'2',d:'18',pre:'去括号：3(1 − <i class="mv">x</i>) = 3 − 3<i class="mv">x</i>，2(<i class="mv">x</i> + 9) = 2<i class="mv">x</i> + 18'},
+  ex7a:{a:'1',b:'0',op:'>=',c:'1',d:'-1',pre:''},
+  ex7b:{a:'1',b:'0',op:'<',c:'1',d:'-1',pre:''}
+};
+let pre2='';
+function loadPre2(key){ const p=PRE2[key]; $('#t2a').value=p.a; $('#t2b').value=p.b; $('#t2op').value=p.op; $('#t2c').value=p.c; $('#t2d').value=p.d; pre2=p.pre; $$('#t2pre button').forEach(b=>b.classList.toggle('cur',b.dataset.k===key)); tool2(); }
+function tool2(){
+  const a=readF('#t2a',fr(1)), b=readF('#t2b',fr(0)), c=readF('#t2c',fr(0)), d=readF('#t2d',fr(0)), op=$('#t2op').value;
+  const k=a.sub(c), r=d.sub(b), iv=solveLin(a,b,op,c,d);
+  const steps=[];
+  steps.push(`<div class="st"><span class="sn">①</span>原式：${linHTML(a,b)} ${OPH[op]} ${linHTML(c,d)}</div>`);
+  if(pre2) steps.push(`<div class="st"><span class="sn">②</span>${pre2}</div>`);
+  steps.push(`<div class="st"><span class="sn">${pre2?'③':'②'}</span>移项（含 ${mv('x')} 的移到左边、常数移到右边，<b>移项要变号</b>）：<br>(${fmtF(a)}${c.n>=0?' − '+fmtF(c):' + '+fmtF(c.neg())})${mv('x')} ${OPH[op]} ${fmtF(d)}${b.n>=0?' − '+fmtF(b):' + '+fmtF(b.neg())}</div>`);
+  steps.push(`<div class="st"><span class="sn">${pre2?'④':'③'}</span>合并同类项：${k.isZero()?'0':linHTML(k,0)} ${OPH[op]} ${fmtF(r)}</div>`);
+  let res,tail='';
+  if(k.isZero()){
+    const ok=!(iv.empty);
+    steps.push(`<div class="st"><span class="sn">${pre2?'⑤':'④'}</span>${ok?`0 ${OPH[op]} ${fmtF(r)} <b>永远成立</b>，与 ${mv('x')} 取什么值无关。`:`0 ${OPH[op]} ${fmtF(r)} <b>永远不成立</b>，没有任何 ${mv('x')} 能满足。`}</div>`);
+    res=ok?'全体实数':'无解（空集）';
+  } else {
+    const neg=k.n<0;
+    steps.push(`<div class="st ${neg?'warnrow':''}"><span class="sn">${pre2?'⑤':'④'}</span>系数化为 1（两边除以 ${fmtF(k)}）：${neg?'<b class="warn">除以负数，不等号改变方向！</b>':'除以正数，不等号方向不变。'}<br>${ivHTML(iv)}</div>`);
+    res=ivHTML(iv);
+    const mi=minInt(iv), ma=maxInt(iv);
+    if(mi!==null) tail=`最小整数解：<b>${sg(mi)}</b>`; else if(ma!==null) tail=`最大整数解：<b>${sg(ma)}</b>`;
+  }
+  $('#t2steps').innerHTML=steps.join('');
+  $('#t2res').innerHTML=`<span class="lab">解集</span> <b class="big">${res}</b>${tail?`<span class="tail">${tail}</span>`:''}`;
+  const rows=iv.empty?[{iv:EMPTY,color:'var(--accent)'}]:[{iv,color:'var(--accent)'}];
+  $('#t2svg').innerHTML=iv.empty?'<div class="nl-msg bad">数轴上没有任何点满足这个不等式</div>':(!iv.lo&&!iv.hi)?'<div class="nl-msg ok">整条数轴都满足！</div>'+nlSVG(rows):nlSVG(rows);
+  $('#t2note').innerHTML=iv.empty||(!iv.lo&&!iv.hi)||(!iv.lo&&!iv.hi)?'':`边界处画<b>${(iv.lo?iv.loC:iv.hiC)?'实心点（包含边界，≥ 或 ≤）':'空心圈（不含边界，&gt; 或 &lt;）'}</b>，射线向${iv.lo?'右':'左'}。`;
+}
+
+/* 14.3 不等式组 */
+const PRE3={c1:['>',1,'<',4],c2:['>',1,'>=',4],c3:['<',1,'<',4],c4:['<=',1,'>',4]};
+function loadPre3(k){ const p=PRE3[k]; $('#t3o1').value=p[0]; $('#t3v1').value=p[1]; $('#t3o2').value=p[2]; $('#t3v2').value=p[3]; $$('#t3pre button').forEach(b=>b.classList.toggle('cur',b.dataset.k===k)); tool3(); }
+function tool3(){
+  const v1=readF('#t3v1',fr(0)), v2=readF('#t3v2',fr(0)), o1=$('#t3o1').value, o2=$('#t3o2').value;
+  const i1=ivOp(o1,v1), i2=ivOp(o2,v2), iv=ivInter(i1,i2);
+  $('#t3svg').innerHTML=nlSVG([{iv:i1,color:'var(--c1)',label:'① '+ivHTML(i1).replace(/<[^>]+>/g,'')},{iv:i2,color:'var(--c2)',label:'② '+ivHTML(i2).replace(/<[^>]+>/g,'')},{iv:iv,color:'var(--ok)',label:'公共部分'}],{w:340,rowH:34});
+  $('#t3badge').innerHTML=iv.empty?'无解':ivHTML(iv);
+  let why;
+  if(iv.empty) why='大大小小无处找：两条射线没有重叠，所以<b>无解</b>。';
+  else if(iv.lo&&iv.hi&&iv.lo.eq(iv.hi)) why='两个端点都能取到，重叠部分只剩<b>一个点</b>。';
+  else if(iv.lo&&iv.hi) why='大小小大中间找：解集夹在两个数之间。';
+  else if(iv.lo) why='同大取大：都是“大于”，取较大的那个。';
+  else why='同小取小：都是“小于”，取较小的那个。';
+  $('#t3why').innerHTML=why;
+}
+
+/* 14.4 应用计算器 */
+function tool4(){
+  // 场景 1
+  const p=readF('#a1p',fr(90)), M=readF('#a1m',fr(10));
+  if(p.n<=0||M.n<0){ $('#a1res').textContent='单价要大于 0'; }
+  else { const cents=M.mul(100), q=cents.div(p), n=q.floor();
+    $('#a1res').innerHTML=`建模：${fmtF(p)}${mv('x')} ≤ ${fmtF(cents)}（先把 RM 换成仙）<br>${mv('x')} ≤ ${rnd(q.num(),3)}… → 最多买 <b class="big">${n}</b> 支`; }
+  // 场景 2
+  const t=readF('#a2t',fr(60)), s1=readF('#a2s1',fr(48)), s2=readF('#a2s2',fr(62)), s3=readF('#a2s3',fr(53));
+  const sum=s1.add(s2).add(s3), need=t.mul(4).sub(sum), nd=need.ceil();
+  $('#a2res').innerHTML=`建模：${frac(fmtF(sum)+' + '+mv('x'),4)} ≥ ${fmtF(t)}<br>${mv('x')} ≥ ${fmtF(need)} → 第四次至少考 <b class="big">${nd}</b> 分${nd>100?'（超过满分 100，不可能达到）':nd<0?'（已经达标）':''}`;
+  // 场景 3
+  const k=readF('#a3k',fr(2)), m=readF('#a3m',fr(5)), w=readF('#a3w',fr(8)), A=readF('#a3A',fr(78)), op=$('#a3op').value;
+  if(k.n<=0||w.n<=0){ $('#a3res').textContent='系数 k 与宽要大于 0'; }
+  else { const bound=A.div(w).sub(m).div(k), iv=ivOp(op,bound), ma=maxInt(iv);
+    $('#a3res').innerHTML=`建模：${fmtF(w)}(${fmtF(k)}${mv('x')} + ${fmtF(m)}) ${OPH[op]} ${fmtF(A)}<br>${mv('x')} ${OPH[op]} ${bound.isInt()?fmtF(bound):rnd(bound.num(),3)+'…'} → 整数 ${mv('x')} 最大值 <b class="big">${sg(ma)}</b>${op==='<'&&bound.isInt()?'（严格小于，边界值本身不能取）':''}`; }
+}
+
+/* ================= 初始化 ================= */
+function initStatic(){
+  const demo=[['x &gt; 3',ivOp('>',3),'空心圈，向右'],['x ≥ 3',ivOp('>=',3),'实心点，向右'],['x &lt; 3',ivOp('<',3),'空心圈，向左'],['x ≤ 3',ivOp('<=',3),'实心点，向左']];
+  const box=$('#nldemo'); if(box) box.innerHTML=demo.map(d=>`<figure><figcaption><b>${d[0]}</b> · ${d[2]}</figcaption>${nlSVG([{iv:d[1]}],{w:240,rowH:30})}</figure>`).join('');
+}
+function init(){
+  initControls();
+  $$('#nav button').forEach(b=>{ b.dataset.label=b.textContent; b.addEventListener('click',()=>showTab(b.dataset.tab)); });
+  $$('[data-go]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.go)));
+  initStatic();
+  ['t1a','t1b','t1op','t1c'].forEach(id=>$('#'+id).addEventListener('input',tool1));
+  ['t2a','t2b','t2op','t2c','t2d'].forEach(id=>$('#'+id).addEventListener('input',()=>{pre2='';$$('#t2pre button').forEach(b=>b.classList.remove('cur'));tool2();}));
+  $$('#t2pre button').forEach(b=>b.addEventListener('click',()=>loadPre2(b.dataset.k)));
+  ['t3o1','t3v1','t3o2','t3v2'].forEach(id=>$('#'+id).addEventListener('input',()=>{$$('#t3pre button').forEach(b=>b.classList.remove('cur'));tool3();}));
+  $$('#t3pre button').forEach(b=>b.addEventListener('click',()=>loadPre3(b.dataset.k)));
+  $$('[data-pre3]').forEach(b=>b.addEventListener('click',()=>{loadPre3(b.dataset.pre3);$('#t3box').scrollIntoView({block:'center'});}));
+  ['a1p','a1m','a2t','a2s1','a2s2','a2s3','a3k','a3m','a3w','a3A','a3op'].forEach(id=>$('#'+id).addEventListener('input',tool4));
+  tool1(); loadPre2('ex3'); loadPre3('c1'); tool4();
+  window.QUIZ={};
+  ['s1','s2','s3','s4'].forEach(id=>{ window.QUIZ[id]=new SectionQuiz($('#quiz-'+id),id); });
+  window.QUIZ.final=new FinalQuiz($('#quiz-final'));
+  refreshProgress();
+  const h=(location.hash||'').replace('#',''); showTab(['intro','s1','s2','s3','s4','final'].includes(h)?h:'intro');
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+console.log('%c初二数学 第14章 不等式 互动课件 · 蔡逸众 (ecchua79) · Chinese High School 华仁中学','color:#2f4fd1;font-weight:bold');
+
+
+</script>
+</body>
+</html>
