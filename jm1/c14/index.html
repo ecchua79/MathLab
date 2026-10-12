@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<!--
+  初一下册 · 第14章 直角坐标系与图解 · 互动课件
+  制作：蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School">
+<meta name="copyright" content="蔡逸众 (ecchua79) · Chinese High School">
+<title>第14章 直角坐标系与图解 · 初一数学互动课件</title>
+<style>
+/* © 蔡逸众 (ecchua79) · Chinese High School — 初一下册 第14章 互动课件 */
+:root{
+  --bg:#f4f1e8;--paper:#fffdf7;--ink:#1d2433;--mute:#5d6678;--line:#ddd6c4;--grid:#d3dcee;
+  --acc:#2b5bd7;--acc-soft:#e6edff;--acc2:#d6453d;--ok:#1f8a4c;--bad:#c4372f;--okbg:#e2f5e9;--badbg:#fde8e6;
+  --gold:#b7791f;--hl:#fff2c2;--shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px -10px rgba(30,40,70,.35);
+}
+:root[data-theme="dark"]{
+  --bg:#10141b;--paper:#19202b;--ink:#e8ecf4;--mute:#9aa6bc;--line:#2d3647;--grid:#2a3550;
+  --acc:#7ea3ff;--acc-soft:#1f2c4d;--acc2:#ff8f84;--ok:#62d68e;--bad:#ff8f84;--okbg:#15332a;--badbg:#3a2024;
+  --gold:#f0b84a;--hl:#3a3319;--shadow:0 1px 0 rgba(0,0,0,.3),0 6px 18px -10px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html{font-size:15px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5;
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",system-ui,sans-serif;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;background-attachment:fixed;transition:background-color .25s,color .25s}
+body::before{content:"";position:fixed;inset:0;background:var(--bg);opacity:.86;z-index:-1}
+i.v,.m{font-family:Georgia,"Times New Roman",serif;font-style:italic}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;margin:0 .15em;font-size:.95em}
+.fr i{font-style:normal;padding:0 .18em}.fr i:first-child{border-bottom:1.5px solid currentColor}
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--ink);box-shadow:var(--shadow)}
+.hd{max-width:1080px;margin:auto;padding:.45rem .8rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.brand{flex:1 1 220px;min-width:0}
+.brand b{font-size:1.15rem;letter-spacing:.02em}.brand small{display:block;color:var(--mute);font-size:.78rem}
+.ctl{display:flex;gap:.35rem;align-items:center}
+.btn,.chip{font:inherit;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:.5rem;padding:.25rem .65rem;transition:transform .08s,background .15s}
+.btn:hover,.chip:hover{background:var(--acc-soft)}.btn:active{transform:translateY(1px)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.pri:hover{filter:brightness(1.1);background:var(--acc)}
+.chip{padding:.15rem .55rem;font-size:.85rem;border-style:dashed}
+#fsVal{min-width:2.2rem;text-align:center;font-variant-numeric:tabular-nums;color:var(--mute);font-size:.85rem}
+nav{max-width:1080px;margin:auto;padding:0 .8rem .4rem;display:flex;gap:.35rem;flex-wrap:wrap}
+nav button{font:inherit;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:2rem;padding:.2rem .8rem}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+main{max-width:1080px;margin:auto;padding:.7rem .8rem 1.5rem}
+section.tab{display:none}section.tab.on{display:block}
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:.7rem;padding:.7rem .9rem;margin:.65rem 0;box-shadow:var(--shadow)}
+.card h2,.card h3{margin:.1rem 0 .4rem}.card h2{font-size:1.25rem}.card h3{font-size:1.05rem}
+.tag{display:inline-block;background:var(--ink);color:var(--paper);border-radius:.3rem;padding:0 .45rem;font-size:.78rem;margin-right:.4rem;vertical-align:.1em}
+.hero{background:var(--acc);color:#fff;border-color:var(--acc)}.hero p{margin:.2rem 0}
+.hero .tag{background:#fff;color:var(--acc)}
+.two{display:grid;grid-template-columns:1fr minmax(210px,300px);gap:.8rem;align-items:center}
+@media(max-width:640px){.two{grid-template-columns:1fr}}
+.key{background:var(--hl);border-left:5px solid var(--gold);border-radius:.4rem;padding:.4rem .7rem;margin:.5rem 0}
+.formula{text-align:center;font-size:1.15rem;padding:.3rem;margin:.4rem 0;background:var(--acc-soft);border-radius:.5rem}
+p{margin:.35rem 0}ul{margin:.3rem 0;padding-left:1.2rem}li{margin:.15rem 0}
+details.rv{border:1.5px dashed var(--mute);border-radius:.5rem;margin:.4rem 0;padding:.2rem .6rem;background:var(--paper)}
+details.rv summary{cursor:pointer;color:var(--acc);font-weight:600}
+details.rv[open]{border-style:solid}
+.ex{border-left:4px solid var(--acc);padding-left:.7rem;margin:.6rem 0}
+.ex h4{margin:.1rem 0 .3rem;font-size:1rem}
+table.t{border-collapse:collapse;margin:.4rem auto;font-size:.95rem}
+table.t td,table.t th{border:1.5px solid var(--ink);padding:.15rem .6rem;text-align:center;min-width:2.4rem}
+table.t th{background:var(--acc-soft)}
+.figbox{max-width:330px;margin:.3rem auto}
+.figs5{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.4rem}
+.figs5 figure{margin:0;text-align:center;font-size:.85rem}
+svg.plot{width:100%;height:auto;aspect-ratio:1;display:block;background:var(--paper);border:1.5px solid var(--ink);border-radius:.4rem;touch-action:manipulation}
+svg.plot .g{stroke:var(--grid);stroke-width:.04}
+svg.plot .ax{stroke:var(--ink);stroke-width:.07}
+svg.plot .arw{fill:var(--ink)}
+svg.plot text{fill:var(--ink);font-family:Georgia,"Times New Roman",serif}
+svg.plot .tk{font-size:.46px;fill:var(--mute)}
+svg.plot .ax-l{font-size:.6px;font-style:italic}
+svg.plot .lb{font-size:.52px;font-weight:700;paint-order:stroke;stroke:var(--paper);stroke-width:.14px}
+svg.plot .ln{stroke-width:.11;stroke-linecap:round}
+svg.plot .sg{stroke-width:.1;stroke-linecap:round}
+svg.plot .gd{stroke:var(--mute);stroke-width:.05;stroke-dasharray:.15 .15}
+.tool{background:var(--acc-soft)}
+.tool .row{display:flex;flex-wrap:wrap;gap:.4rem .8rem;align-items:center;margin:.3rem 0}
+.tool input[type=number],.fillin input{font:inherit;width:4.6rem;padding:.2rem .3rem;border:1.5px solid var(--ink);border-radius:.4rem;background:var(--paper);color:var(--ink);text-align:center}
+.out{background:var(--paper);border:1.5px solid var(--line);border-radius:.5rem;padding:.4rem .7rem;margin:.4rem 0;min-height:3rem}
+.out p{margin:.2rem 0}
+.ok-t{color:var(--ok);font-weight:700}.bad-t{color:var(--bad);font-weight:700}
+.sys{display:inline-block;border-left:2px solid currentColor;padding-left:.45rem;vertical-align:middle;text-align:left;line-height:1.5}
+.qhead{display:flex;justify-content:space-between;gap:.5rem;align-items:center;flex-wrap:wrap}
+.prog{color:var(--mute);font-size:.85rem}
+.q{border:1.5px solid var(--line);border-radius:.6rem;padding:.5rem .7rem;margin:.55rem 0;background:var(--paper)}
+.q .qt{font-weight:600}.q .qn{color:var(--acc);margin-right:.3rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.4rem;margin:.45rem 0}
+.opt{font:inherit;text-align:left;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:.5rem;padding:.3rem .55rem;display:flex;gap:.45rem;align-items:center;min-height:2.2rem}
+.opt:hover:not(:disabled){background:var(--acc-soft)}
+.opt .lt{font-weight:700;color:var(--acc);flex:none}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.exp{border-radius:.5rem;padding:.35rem .6rem;margin-top:.35rem;font-size:.95rem}
+.exp.good{background:var(--okbg)}.exp.miss{background:var(--badbg)}
+.exp .st{margin:.2rem 0}
+.result{background:var(--hl);border:2px solid var(--gold);border-radius:.6rem;padding:.5rem .8rem;margin:.6rem 0}
+.fillzone{border:2px dashed var(--acc);border-radius:.6rem;padding:.4rem .7rem;margin:.6rem 0}
+.fillin{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin:.4rem 0}
+.fillin input{width:11rem;text-align:left}
+.hint{color:var(--mute);font-size:.82rem}
+footer{max-width:1080px;margin:auto;padding:.8rem;text-align:center;color:var(--mute);font-size:.8rem;border-top:1px dashed var(--line)}
+@media print{header,nav,.tool{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="brand"><b>第14章　直角坐标系与图解</b><small>初一下册数学 · 互动课件 · 随机练习</small></div>
+    <div class="ctl" aria-label="字体大小">
+      <button class="btn" id="fsDn" title="缩小字体" aria-label="缩小字体">A−</button>
+      <span id="fsVal">15</span>
+      <button class="btn" id="fsUp" title="放大字体" aria-label="放大字体">A+</button>
+      <button class="btn" id="themeBtn" title="切换浅色/深色模式" aria-label="切换浅色或深色模式">🌙 深色</button>
+    </div>
+  </div>
+  <nav id="nav" role="tablist">
+    <button role="tab" data-t="s1" aria-selected="true">14.1 直角坐标系</button>
+    <button role="tab" data-t="s2" aria-selected="false">14.2 方程式与直线</button>
+    <button role="tab" data-t="s3" aria-selected="false">14.3 方程组的图解</button>
+    <button role="tab" data-t="rv" aria-selected="false">📝 总复习测试</button>
+  </nav>
+</header>
+
+<main>
+<!-- ================= 14.1 ================= -->
+<section class="tab on" id="s1">
+  <div class="card hero"><span class="tag">14.1</span><b style="font-size:1.2rem">直角坐标系与中点公式</b>
+    <p>在平面上用两条互相垂直的数线，就能准确地标示一点的位置。</p></div>
+
+  <div class="card two">
+    <div>
+      <h3>一、直角坐标系的定义</h3>
+      <ul>
+        <li>水平数线叫做 <i class="v">x</i> 轴（横轴），垂直数线叫做 <i class="v">y</i> 轴（纵轴），统称<b>坐标轴</b>。</li>
+        <li>两轴的交点叫做<b>原点</b>，记作 <i class="v">O</i>。</li>
+        <li><i class="v">x</i> 轴由原点向右标 1，2，3，…，向左标 −1，−2，−3，…；<i class="v">y</i> 轴向上为正、向下为负。</li>
+      </ul>
+    </div>
+    <div class="figbox" id="f-axes"></div>
+  </div>
+
+  <div class="card two">
+    <div>
+      <h3>二、点与坐标</h3>
+      <p>由 <i class="v">P</i> 分别作垂线到两轴，垂足 <i class="v">M</i> 在 <i class="v">x</i> 轴的位置是 3，垂足 <i class="v">N</i> 在 <i class="v">y</i> 轴的位置是 2，所以 <i class="v">P</i>(3, 2)。</p>
+      <div class="key"><b>注意：</b><i class="v">x</i> 坐标写在 <i class="v">y</i> 坐标前面。(3, 2) 与 (2, 3) 是<b>两个不同的序偶</b>，对应<b>不同的点</b>。</div>
+      <p><b>象限：</b>第一象限 (+, +)；第二象限 (−, +)；第三象限 (−, −)；第四象限 (+, −)。坐标轴上的点不属于任何象限。</p>
+    </div>
+    <div class="figbox" id="f-pq"></div>
+  </div>
+
+  <div class="card tool">
+    <h3>🔍 互动：坐标探测器</h3>
+    <p class="hint">在坐标平面上移动（手机请手指滑动）会显示最近的整数点及其所在位置；点击可标记／取消标记，看垂线如何对应 <i class="v">x</i>、<i class="v">y</i> 坐标。</p>
+    <div class="two"><div class="out" id="exInfo">把指针移到坐标平面上试试</div><div class="figbox" id="explorer" style="touch-action:none"></div></div>
+    <button class="btn" id="exClear">清除标记</button>
+  </div>
+
+  <div class="card">
+    <h3>三、例题</h3>
+    <div class="ex"><h4>例题 1　写出下图中 A、B、C、D、E 各点的坐标。</h4>
+      <div class="two"><div><details class="rv"><summary>查看解答</summary><p>A(2, 2)，B(1, 4)，C(−3, 0)，D(−2, −3)，E(3, −2)</p></details></div><div class="figbox" id="f-ex1"></div></div></div>
+    <div class="ex"><h4>例题 2　在坐标平面上标出 P(1, 0)，Q(2, 5)，R(0, 4)，S(−3, 3)，T(−2, −1)。</h4>
+      <details class="rv"><summary>查看解答（图）</summary><div class="figbox" id="f-ex2"></div></details></div>
+    <div class="ex"><h4>例题 3　标出 P(0, 6)，Q(−3, 0)，R(−4, 3)，S(2, 0)。连接 P 与 Q、R 与 S，写出直线 PQ 与直线 RS 的交点坐标。</h4>
+      <details class="rv"><summary>查看解答（图）</summary><div class="figbox" id="f-ex3"></div><p>∴ PQ 及 RS 的交点坐标为 <b>(−2, 2)</b>。</p></details></div>
+  </div>
+
+  <div class="card two">
+    <div>
+      <h3>四、中点公式</h3>
+      <p>A(2, 4)，B(8, 8)，C 是线段 AB 的中点，由图得 C(5, 6)。C 的 <i class="v">x</i> 坐标 5 是 2 与 8 的平均数，<i class="v">y</i> 坐标 6 是 4 与 8 的平均数。</p>
+      <div class="formula">若 P(<i class="v">x</i><sub>1</sub>, <i class="v">y</i><sub>1</sub>)，Q(<i class="v">x</i><sub>2</sub>, <i class="v">y</i><sub>2</sub>)，则中点 =
+        ( <span class="fr"><i><i class="v">x</i><sub>1</sub> + <i class="v">x</i><sub>2</sub></i><i>2</i></span> ,
+        <span class="fr"><i><i class="v">y</i><sub>1</sub> + <i class="v">y</i><sub>2</sub></i><i>2</i></span> )</div>
+    </div>
+    <div class="figbox" id="f-mid"></div>
+  </div>
+
+  <div class="card">
+    <div class="ex"><h4>例题 4　求线段 AB 的中点：(a) A(0,0)，B(6,4)　(b) A(2,2)，B(8,0)　(c) A(2,4)，B(6,3)　(d) A(−3,1)，B(−5,−3)</h4>
+      <details class="rv"><summary>查看解答</summary><div id="ex4"></div></details></div>
+    <div class="ex"><h4>例题 5　点 T(−2, 1) 是连接 P(4, 0) 及点 Q 的线段的中点，求 Q 的坐标。</h4>
+      <details class="rv"><summary>查看解答</summary>
+        <p>设 Q 的坐标为 (<i class="v">x</i>, <i class="v">y</i>)。</p>
+        <p><span class="fr"><i>4 + <i class="v">x</i></i><i>2</i></span> = −2 ⇒ 4 + <i class="v">x</i> = −4 ⇒ <i class="v">x</i> = −8</p>
+        <p><span class="fr"><i>0 + <i class="v">y</i></i><i>2</i></span> = 1 ⇒ 0 + <i class="v">y</i> = 2 ⇒ <i class="v">y</i> = 2</p>
+        <p>∴ Q 的坐标为 <b>(−8, 2)</b>。</p></details></div>
+  </div>
+
+  <div class="card tool">
+    <h3>🧮 互动：中点计算器（可拖动端点）</h3>
+    <div class="row">
+      <button class="btn pri" id="mdM1">已知 A、B　求中点 M</button>
+      <button class="btn" id="mdM2">已知 A、M　求端点 B</button>
+    </div>
+    <div class="row"><span>A(</span><input type="number" id="m-ax" value="2"><span>,</span><input type="number" id="m-ay" value="4"><span>)</span>
+      <span id="m-l2">B(</span><input type="number" id="m-bx" value="8"><span>,</span><input type="number" id="m-by" value="8"><span>)</span></div>
+    <p class="hint">也可以直接在图上拖动 A 和 <span id="m-l3">B</span>（会自动对齐整数格点）。</p>
+    <div class="two"><div class="out" id="m-out"></div><div class="figbox" id="m-fig" style="touch-action:none"></div></div>
+  </div>
+
+  <div class="card"><div class="qhead"><h3>✏️ 14.1 随堂测验</h3><button class="btn newq" data-q="q1">🔄 重新抽题</button></div>
+    <div class="hint">每次随机出 5 道选择题；答对 3 题或以上，即开启 2 道作答题（需自己输入答案）。</div>
+    <div id="q1"></div></div>
+</section>
+
+<!-- ================= 14.2 ================= -->
+<section class="tab" id="s2">
+  <div class="card hero"><span class="tag">14.2</span><b style="font-size:1.2rem">二元一次方程式与直线</b>
+    <p>二元一次方程式的图像是一条直线；两点决定一条直线。</p></div>
+
+  <div class="card two">
+    <div>
+      <h3>一、方程式的解与图像</h3>
+      <p>在 <i class="v">y</i> = <i class="v">x</i> + 2 中：</p>
+      <div id="t-y1"></div>
+      <p>序偶 (−2, 0)，(−1, 1)，(0, 2)，(1, 3)，… 都是 <i class="v">y</i> = <i class="v">x</i> + 2 的解。每个解对应坐标平面上的一点，把这些点连起来，就得到方程式的<b>图像</b>——一条直线。</p>
+    </div>
+    <div class="figbox" id="f-y1"></div>
+  </div>
+
+  <div class="card">
+    <div class="ex two"><div><h4>例题 1　作 <i class="v">y</i> = 2<i class="v">x</i> − 1 的图像。</h4><div id="t-y2"></div><p>这些点都在同一条直线上，所以图像是一条直线。</p></div><div class="figbox" id="f-y2"></div></div>
+    <div class="ex two"><div><h4>例题 2　作 3<i class="v">x</i> + 2<i class="v">y</i> = 6 的图像。</h4><div id="t-y3"></div><div class="key">二元一次方程式的图像是<b>一条直线</b>。由于<b>两点决定一条直线</b>，只要求出两个解就能画出图像。</div></div><div class="figbox" id="f-y3"></div></div>
+    <div class="ex two"><div><h4>例题 3　作 <i class="v">y</i> = −3<i class="v">x</i> − 1 的图像。</h4><div id="t-y4"></div></div><div class="figbox" id="f-y4"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="ex"><h4>例题 4　作出下列方程式的图像：(a) <i class="v">x</i> = 2　(b) <i class="v">x</i> = −3　(c) <i class="v">x</i> = 0　(d) <i class="v">y</i> = 1　(e) <i class="v">y</i> = −2</h4>
+      <details class="rv" open><summary>查看解答</summary><div class="figs5" id="figs5"></div>
+        <div class="key"><ul>
+          <li>方程式 <i class="v">x</i> = <i class="v">a</i> 的图像是通过点 (<i class="v">a</i>, 0)，且<b>与 <i class="v">y</i> 轴平行</b>的直线。</li>
+          <li>方程式 <i class="v">y</i> = <i class="v">b</i> 的图像是通过点 (0, <i class="v">b</i>)，且<b>与 <i class="v">x</i> 轴平行</b>的直线。</li>
+          <li><i class="v">x</i> = 0 的图像是 <i class="v">y</i> 轴；<i class="v">y</i> = 0 的图像是 <i class="v">x</i> 轴。</li></ul></div></details></div>
+    <div class="ex"><h4>例题 5　下列哪些点在直线 2<i class="v">x</i> − <i class="v">y</i> = −6 上？(−1, 4)，(4, −1)</h4>
+      <details class="rv"><summary>查看解答</summary>
+        <p>(−1, 4)：2(−1) − 4 = −2 − 4 = −6 ✔ 在直线上。</p>
+        <p>(4, −1)：2(4) − (−1) = 8 + 1 = 9 ≠ −6 ✘ 不在直线上。</p></details></div>
+    <div class="ex"><h4>例题 6　已知点 (<i class="v">a</i>, 1) 在直线 3<i class="v">x</i> + 4<i class="v">y</i> = 1 上，求 <i class="v">a</i>。</h4>
+      <details class="rv"><summary>查看解答</summary><p>3(<i class="v">a</i>) + 4(1) = 1 ⇒ 3<i class="v">a</i> = 1 − 4 = −3 ⇒ <i class="v">a</i> = <b>−1</b></p></details></div>
+  </div>
+
+  <div class="card tool">
+    <h3>📈 互动：直线描绘器　<i class="v">ax</i> + <i class="v">by</i> = <i class="v">c</i></h3>
+    <div class="row" id="lPre"></div>
+    <div class="row"><input type="number" id="l-a" value="3"><span><i class="v">x</i> +</span><input type="number" id="l-b" value="2"><span><i class="v">y</i> =</span><input type="number" id="l-c" value="6"></div>
+    <div class="two"><div class="out" id="l-out"></div><div class="figbox" id="l-fig"></div></div>
+    <div class="row"><b>验证点：</b><span>(</span><input type="number" id="l-px" value="2"><span>,</span><input type="number" id="l-py" value="0"><span>)</span></div>
+    <div class="out" id="l-chk"></div>
+  </div>
+
+  <div class="card"><div class="qhead"><h3>✏️ 14.2 随堂测验</h3><button class="btn newq" data-q="q2">🔄 重新抽题</button></div>
+    <div class="hint">每次随机出 5 道选择题；答对 3 题或以上，即开启 2 道作答题。</div><div id="q2"></div></div>
+</section>
+
+<!-- ================= 14.3 ================= -->
+<section class="tab" id="s3">
+  <div class="card hero"><span class="tag">14.3</span><b style="font-size:1.2rem">二元一次方程组的图解法</b>
+    <p>方程组里每个方程式的图像都是一条直线，两直线的交点同时满足两个方程式——它就是方程组的解。</p></div>
+
+  <div class="card">
+    <div class="key"><b>三种情况：</b>① 两直线<b>相交</b>于一点 → 有唯一解；② 两直线<b>平行</b> → 无解；③ 两直线<b>重合</b> → 有无限多解。</div>
+    <div class="ex two"><div><h4>例题 1　以图解法解 <span class="sys">x − y = 1 …(1)<br>2x + y = −1 …(2)</span></h4>
+      <details class="rv"><summary>查看解答</summary><p>由(1)得 <i class="v">y</i> = <i class="v">x</i> − 1；由(2)得 <i class="v">y</i> = −2<i class="v">x</i> − 1。</p><p>由图，两直线的交点为 (0, −1)，∴ 方程组的解为 <b><i class="v">x</i> = 0，<i class="v">y</i> = −1</b>。</p></details></div><div class="figbox" id="f-s1"></div></div>
+    <div class="ex two"><div><h4>例题 2　以图解法解 <span class="sys">3x + y = 7 …(1)<br>4x + 3y = 6 …(2)</span></h4>
+      <details class="rv"><summary>查看解答</summary><p>由(1)得 <i class="v">y</i> = 7 − 3<i class="v">x</i>；由(2)得 <i class="v">y</i> = (6 − 4<i class="v">x</i>)/3。</p><p>由图，解为 <b><i class="v">x</i> = 3，<i class="v">y</i> = −2</b>。</p></details></div><div class="figbox" id="f-s2"></div></div>
+    <div class="ex two"><div><h4>例题 3　以图解法解 <span class="sys">2x − y = 4 …(1)<br>4x − 2y = −3 …(2)</span></h4>
+      <details class="rv"><summary>查看解答</summary><p>由(1)得 <i class="v">y</i> = 2<i class="v">x</i> − 4；由(2)得 <i class="v">y</i> = 2<i class="v">x</i> + 3/2。</p><p>由图，两直线互相<b>平行</b>，没有交点，∴ 方程组<b>无解</b>。</p></details></div><div class="figbox" id="f-s3"></div></div>
+  </div>
+
+  <div class="card tool">
+    <h3>⚙️ 互动：方程组图解器</h3>
+    <div class="row" id="sPre"></div>
+    <div class="row"><input type="number" id="s-a1" value="1"><span><i class="v">x</i> +</span><input type="number" id="s-b1" value="-1"><span><i class="v">y</i> =</span><input type="number" id="s-c1" value="1"><b style="color:var(--acc)">…(1)</b></div>
+    <div class="row"><input type="number" id="s-a2" value="2"><span><i class="v">x</i> +</span><input type="number" id="s-b2" value="1"><span><i class="v">y</i> =</span><input type="number" id="s-c2" value="-1"><b style="color:var(--acc2)">…(2)</b></div>
+    <div class="two"><div class="out" id="s-out"></div><div class="figbox" id="s-fig"></div></div>
+  </div>
+
+  <div class="card"><div class="qhead"><h3>✏️ 14.3 随堂测验</h3><button class="btn newq" data-q="q3">🔄 重新抽题</button></div>
+    <div class="hint">每次随机出 5 道选择题；答对 3 题或以上，即开启 2 道作答题。</div><div id="q3"></div></div>
+</section>
+
+<!-- ================= 总复习 ================= -->
+<section class="tab" id="rv">
+  <div class="card hero"><span class="tag">总复习</span><b style="font-size:1.2rem">第14章 综合测试</b>
+    <p>10 道选择题随机抽自整章（坐标、中点、直线、方程组），题目与选项每次重新打乱。每道题的错误选项都是常见的计算错误结果，请仔细作答！</p></div>
+  <div class="card"><div class="qhead"><h3>📝 总复习测试</h3><button class="btn newq" data-q="q4">🔄 重新出题</button></div><div id="q4"></div></div>
+</section>
+</main>
+
+<footer>
+  初一下册数学 · 第14章 直角坐标系与图解 · 互动课件<br>
+  制作：蔡逸众 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School
+</footer>
+
+<script>
+console.log('%c第14章 直角坐标系与图解 · 制作：蔡逸众 (ecchua79) · Chinese High School','color:#2b5bd7;font-weight:bold');
+(function(){
+'use strict';
+/* ============ 基础工具 ============ */
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[rnd(0,a.length-1)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(0,i);const t=a[i];a[i]=a[j];a[j]=t}return a};
+const nz=(a,b)=>{let v=0;while(v===0)v=rnd(a,b);return v};
+const EPS=1e-9;
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){const t=a%b;a=b;b=t}return a};
+const frac=(n,d)=>'<span class="fr"><i>'+n+'</i><i>'+d+'</i></span>';
+function fmt(v){
+  if(Math.abs(v-Math.round(v))<EPS){const r=Math.round(v);return r===0?'0':(r<0?'−':'')+Math.abs(r)}
+  for(let d=2;d<=24;d++){const n=v*d;if(Math.abs(n-Math.round(n))<1e-7){const N=Math.round(n);return (N<0?'−':'')+frac(Math.abs(N),d)}}
+  return (Math.round(v*100)/100).toString().replace('-','−');
+}
+function numStr(v){ // 纯文本（用于 SVG 标签）
+  if(Math.abs(v-Math.round(v))<EPS){const r=Math.round(v);return r===0?'0':(r<0?'−':'')+Math.abs(r)}
+  for(let d=2;d<=24;d++){const n=v*d;if(Math.abs(n-Math.round(n))<1e-7){const N=Math.round(n);return (N<0?'−':'')+Math.abs(N)+'/'+d}}
+  return (Math.round(v*100)/100).toString().replace('-','−');
+}
+const paren=v=>v<0?'('+fmt(v)+')':fmt(v);
+const pt=(x,y)=>'('+fmt(x)+', '+fmt(y)+')';
+const ptS=(x,y)=>'('+numStr(x)+', '+numStr(y)+')';
+const X='<i class="v">x</i>',Y='<i class="v">y</i>';
+const sol=(x,y)=>X+' = '+fmt(x)+'，'+Y+' = '+fmt(y);
+const sysH=(e1,e2)=>'<span class="sys">'+e1+'<br>'+e2+'</span>';
+function term(c,v,first){
+  if(Math.abs(c)<EPS)return '';const neg=c<0,ab=Math.abs(c);
+  const s=(Math.abs(ab-1)<EPS?'':fmt(ab))+v;
+  return first?(neg?'−':'')+s:(neg?' − ':' + ')+s;
+}
+function lin(a,b){let s=term(a,X,true);s+=term(b,Y,s==='');return s||'0'}
+const eq=(a,b,c)=>lin(a,b)+' = '+fmt(c);
+function yform(m,k){
+  let s=Y+' = ';const t=term(m,X,true);
+  if(t)s+=t;
+  if(Math.abs(k)>EPS)s+=t?(k<0?' − ':' + ')+fmt(Math.abs(k)):fmt(k);
+  else if(!t)s+='0';
+  return s;
+}
+const names=['第一象限','第二象限','第三象限','第四象限'];
+const quad=(x,y)=>x>0&&y>0?0:x<0&&y>0?1:x<0&&y<0?2:3;
+const where=(x,y)=>(x===0&&y===0)?'原点 O':x===0?'在 y 轴上':y===0?'在 x 轴上':names[quad(x,y)];
+const rr=(...v)=>Math.min(12,Math.max(6,Math.ceil(Math.max(...v.map(Math.abs)))));
+const norm3=(a,b,c)=>{const g=gcd(gcd(a,b),c)||1;a/=g;b/=g;c/=g;if(a<0||(a===0&&b<0)){a=-a;b=-b;c=-c}return [a,b,c]};
+
+/* ============ 坐标图（SVG） ============ */
+const COL={a:'var(--acc)',b:'var(--acc2)',c:'var(--ok)',d:'var(--gold)'};
+function clip(a,b,c,R){
+  const p=[];
+  if(Math.abs(b)>EPS)for(const x of [-R,R]){const y=(c-a*x)/b;if(Math.abs(y)<=R+EPS)p.push([x,y])}
+  if(Math.abs(a)>EPS)for(const y of [-R,R]){const x=(c-b*y)/a;if(Math.abs(x)<=R+EPS)p.push([x,y])}
+  if(p.length<2)return null;
+  const q=p.find(z=>Math.hypot(z[0]-p[0][0],z[1]-p[0][1])>1e-6);
+  return q?[p[0],q]:null;
+}
+function plot(o){
+  o=o||{};const r=o.r||6,V=2*r+2,mn=-r-1,step=r>8?2:1;
+  let s='<svg class="plot" viewBox="'+mn+' '+mn+' '+V+' '+V+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+(o.alt||'坐标平面')+'">';
+  for(let i=-r;i<=r;i++)s+='<line class="g" x1="'+i+'" y1="'+(-r)+'" x2="'+i+'" y2="'+r+'"/><line class="g" x1="'+(-r)+'" y1="'+i+'" x2="'+r+'" y2="'+i+'"/>';
+  s+='<line class="ax" x1="'+(-r-.7)+'" y1="0" x2="'+(r+.7)+'" y2="0"/><line class="ax" x1="0" y1="'+(r+.7)+'" x2="0" y2="'+(-r-.7)+'"/>';
+  s+='<polygon class="arw" points="'+(r+.8)+',0 '+(r+.4)+',-.17 '+(r+.4)+',.17"/><polygon class="arw" points="0,'+(-r-.8)+' -.17,'+(-r-.4)+' .17,'+(-r-.4)+'"/>';
+  s+='<text class="ax-l" x="'+(r+.35)+'" y=".95">x</text><text class="ax-l" x=".3" y="'+(-r-.45)+'">y</text><text class="tk" x="-.42" y=".62">O</text>';
+  for(let i=-r;i<=r;i+=1){if(i===0||i%step)continue;
+    s+='<text class="tk" x="'+i+'" y=".68" text-anchor="middle">'+numStr(i)+'</text><text class="tk" x="-.2" y="'+(-i+.16)+'" text-anchor="end">'+numStr(i)+'</text>';}
+  (o.lines||[]).forEach(L=>{const sg=clip(L.a,L.b,L.c,r+.92);if(!sg)return;
+    s+='<line class="ln" stroke="'+(COL[L.col]||COL.a)+'" x1="'+sg[0][0]+'" y1="'+(-sg[0][1])+'" x2="'+sg[1][0]+'" y2="'+(-sg[1][1])+'"/>';
+    if(L.l){const e=sg[1][0]>=sg[0][0]?sg[1]:sg[0];s+='<text class="lb" fill="'+(COL[L.col]||COL.a)+'" style="fill:'+(COL[L.col]||COL.a)+'" x="'+(e[0]-.1)+'" y="'+(-e[1]-.35)+'" text-anchor="end">'+L.l+'</text>'}});
+  (o.segs||[]).forEach(g=>{s+='<line class="sg" stroke="'+(COL[g.col]||COL.a)+'" x1="'+g.p[0]+'" y1="'+(-g.p[1])+'" x2="'+g.q[0]+'" y2="'+(-g.q[1])+'"'+(g.dash?' stroke-dasharray=".3 .25"':'')+'/>'});
+  (o.pts||[]).forEach(p=>{
+    if(p.g){s+='<line class="gd" x1="'+p.x+'" y1="'+(-p.y)+'" x2="'+p.x+'" y2="0"/><line class="gd" x1="'+p.x+'" y1="'+(-p.y)+'" x2="0" y2="'+(-p.y)+'"/>'}
+    const c=COL[p.c]||COL.a;
+    s+='<circle cx="'+p.x+'" cy="'+(-p.y)+'" r="'+(p.big?.26:.2)+'" fill="'+c+'" stroke="var(--paper)" stroke-width=".06"/>';
+    if(p.l)s+='<text class="lb" style="fill:'+c+'" x="'+(p.x+(p.dx==null?.28:p.dx))+'" y="'+(-p.y+(p.dy==null?-.3:p.dy))+'"'+(p.anc?' text-anchor="'+p.anc+'"':'')+'>'+p.l+'</text>';
+  });
+  return s+'</svg>';
+}
+const figbox=svg=>'<div class="figbox">'+svg+'</div>';
+
+/* ============ 题库生成器 ============ */
+function build(sp){
+  const seen=new Set([sp.ans]),w=[];
+  for(const x of shuffle(sp.wrongs||[])){if(!seen.has(x)){seen.add(x);w.push(x)}if(w.length===3)break}
+  let g=0;while(w.length<3&&g++<80){const x=sp.pad();if(!seen.has(x)){seen.add(x);w.push(x)}}
+  sp.opts=shuffle([{t:sp.ans,ok:true}].concat(w.map(t=>({t:t,ok:false}))));
+  return sp;
+}
+const padPt=()=>pt(rnd(-7,7),rnd(-7,7));
+const padNum=c=>()=>fmt(c+nz(-4,4));
+const padSol=()=>sol(rnd(-6,6),rnd(-6,6));
+const mw=(p,q)=>frac(fmt(p)+' + '+paren(q),2)+' = '+frac(fmt(p+q),2)+' = '+fmt((p+q)/2); // 中点分步
+
+/* ---------- 14.1 ---------- */
+const S1=[
+{id:'q',f(){
+  const r=Math.random();let q,ans,wr,exp;
+  if(r<.25){
+    const onX=Math.random()<.5,v=nz(-6,6),x=onX?v:0,y=onX?0:v;
+    q='点 P'+pt(x,y)+' 在坐标平面上的位置是？';
+    ans=onX?'在 x 轴上':'在 y 轴上';
+    wr=[onX?'在 y 轴上':'在 x 轴上'].concat(onX?(v>0?['第一象限','第四象限']:['第二象限','第三象限']):(v>0?['第一象限','第二象限']:['第三象限','第四象限']));
+    exp='有一个坐标是 0，点在坐标轴上，不属于任何象限。'+(onX?'<i class="v">y</i> = 0，所以在 <i class="v">x</i> 轴上。':'<i class="v">x</i> = 0，所以在 <i class="v">y</i> 轴上。');
+  }else if(r<.6){
+    const x=nz(-7,7),y=nz(-7,7);
+    q='把点 P'+pt(x,y)+' 的横坐标与纵坐标对调，得到点 Q。点 Q 位于哪里？';
+    ans=names[quad(y,x)];wr=names.filter(n=>n!==ans);
+    exp='对调后 Q'+pt(y,x)+'：<i class="v">x</i> '+(y>0?'> 0':'< 0')+'，<i class="v">y</i> '+(x>0?'> 0':'< 0')+'，所以 Q 在'+ans+'。';
+  }else{
+    const x=nz(-7,7),y=nz(-7,7);
+    q='点 P'+pt(x,y)+' 位于哪个象限？';ans=names[quad(x,y)];wr=names.filter(n=>n!==ans);
+    exp='<i class="v">x</i> '+(x>0?'> 0':'< 0')+'，<i class="v">y</i> '+(y>0?'> 0':'< 0')+'，所以位于'+ans+'。';
+  }
+  return build({q:q,ans:ans,wrongs:wr,pad:()=>'原点 O',exp:exp});
+}},
+{id:'order',fill:true,f(){
+  let a=nz(-6,6),b=nz(-6,6);while(Math.abs(a)===Math.abs(b))b=nz(-6,6);
+  return build({q:'在坐标平面上，由点 P 分别作垂线到 '+X+' 轴及 '+Y+' 轴，垂足在 '+X+' 轴上的位置是 '+fmt(a)+'，在 '+Y+' 轴上的位置是 '+fmt(b)+'。点 P 的坐标是？',
+    ans:pt(a,b),wrongs:[pt(b,a),pt(-a,b),pt(a,-b),pt(-a,-b)],pad:padPt,
+    exp:X+' 坐标写在前面，所以 P'+pt(a,b)+'。注意 '+pt(a,b)+' 与 '+pt(b,a)+' 是两个不同的点。',
+    expfig:plot({r:rr(a,b),pts:[{x:a,y:b,l:'P',g:true,c:'b'},{x:a,y:0,l:numStr(a),dy:-.35,c:'c'},{x:0,y:b,l:numStr(b),dy:-.35,c:'c'}]}),
+    fill:{k:'pt',v:[a,b]}});
+}},
+{id:'mid',fill:true,f(){
+  const half=Math.random()<.25;
+  let x1=rnd(-8,8),y1=rnd(-8,8),x2=rnd(-8,8),y2=rnd(-8,8);
+  if(!half){if((x1+x2)%2)x2+=x2<8?1:-1;if((y1+y2)%2)y2+=y2<8?1:-1}
+  if(x1===x2&&y1===y2)x2+=2;
+  const mx=(x1+x2)/2,my=(y1+y2)/2;
+  return build({q:'求线段 AB 的中点：A'+pt(x1,y1)+'，B'+pt(x2,y2)+'。',
+    ans:pt(mx,my),wrongs:[pt(x1+x2,y1+y2),pt((x1-x2)/2,(y1-y2)/2),pt(my,mx),pt(x1+x2/2,y1+y2/2),pt(mx,(y1-y2)/2)],pad:padPt,
+    exp:'中点 = ('+frac(X+'<sub>1</sub> + '+X+'<sub>2</sub>',2)+'，'+frac(Y+'<sub>1</sub> + '+Y+'<sub>2</sub>',2)+')<div class="st">'+X+' = '+mw(x1,x2)+'</div><div class="st">'+Y+' = '+mw(y1,y2)+'</div>',
+    expfig:plot({r:rr(x1,y1,x2,y2),pts:[{x:x1,y:y1,l:'A',c:'a'},{x:x2,y:y2,l:'B',c:'a'},{x:mx,y:my,l:'M',c:'b',big:true}],segs:[{p:[x1,y1],q:[x2,y2],dash:true,col:'d'}]}),
+    fill:{k:'pt',v:[mx,my]}});
+}},
+{id:'end',fill:true,f(){
+  let px,py,tx,ty;do{px=rnd(-6,6);py=rnd(-6,6);tx=rnd(-5,5);ty=rnd(-5,5)}while(px===tx&&py===ty);
+  const qx=2*tx-px,qy=2*ty-py;
+  return build({q:'已知点 T'+pt(tx,ty)+' 是连接点 P'+pt(px,py)+' 及点 Q 的线段的中点。求 Q 的坐标。',
+    ans:pt(qx,qy),wrongs:[pt(tx-px,ty-py),pt(tx+px,ty+py),pt(2*tx+px,2*ty+py),pt(2*px-tx,2*py-ty),pt(px-2*tx,py-2*ty)],pad:padPt,
+    exp:'设 Q('+X+'，'+Y+')。<div class="st">'+frac(fmt(px)+' + '+X,2)+' = '+fmt(tx)+' ⇒ '+fmt(px)+' + '+X+' = '+fmt(2*tx)+' ⇒ '+X+' = '+fmt(2*tx)+' − '+paren(px)+' = '+fmt(qx)+'</div><div class="st">'+frac(fmt(py)+' + '+Y,2)+' = '+fmt(ty)+' ⇒ '+Y+' = '+fmt(2*ty)+' − '+paren(py)+' = '+fmt(qy)+'</div>',
+    expfig:plot({r:rr(px,py,tx,ty,qx,qy),pts:[{x:px,y:py,l:'P',c:'a'},{x:tx,y:ty,l:'T',c:'b',big:true},{x:qx,y:qy,l:'Q',c:'a'}],segs:[{p:[px,py],q:[qx,qy],dash:true,col:'d'}]}),
+    fill:{k:'pt',v:[qx,qy]}});
+}},
+{id:'rect',fill:true,f(){
+  let x1=nz(-5,5),x2=nz(-5,5),y1=nz(-5,5),y2=nz(-5,5);while(x2===x1)x2=nz(-5,5);while(y2===y1)y2=nz(-5,5);
+  return build({q:'ABCD 是长方形，各边平行于坐标轴。点 A、B、C 的坐标分别为 '+pt(x1,y1)+'、'+pt(x2,y1)+'、'+pt(x2,y2)+'。求点 D 的坐标。',
+    ans:pt(x1,y2),wrongs:[pt(x1,-y2),pt(-x1,y2),pt(y2,x1),pt(x1,y1+y2),pt(x2+x1,y2)],pad:padPt,
+    exp:'AB 水平、BC 垂直。D 与 A 的 '+X+' 坐标相同（'+fmt(x1)+'），与 C 的 '+Y+' 坐标相同（'+fmt(y2)+'），所以 D'+pt(x1,y2)+'。',
+    expfig:plot({r:rr(x1,y1,x2,y2),pts:[{x:x1,y:y1,l:'A',c:'a'},{x:x2,y:y1,l:'B',c:'a'},{x:x2,y:y2,l:'C',c:'a'},{x:x1,y:y2,l:'D',c:'b',big:true}],
+      segs:[{p:[x1,y1],q:[x2,y1]},{p:[x2,y1],q:[x2,y2]},{p:[x2,y2],q:[x1,y2]},{p:[x1,y2],q:[x1,y1]}]}),
+    fill:{k:'pt',v:[x1,y2]}});
+}},
+{id:'ab',fill:true,f(){
+  const mx=rnd(-6,6),my=rnd(-6,6),p=nz(-6,6),q=nz(-6,6),a=2*mx-p,b=2*my-q,askA=Math.random()<.5;
+  const txt='已知点 A'+pt(mx,my)+' 是点 B('+'<i class="v">a</i>'+'，'+fmt(q)+') 及点 C('+fmt(p)+'，<i class="v">b</i>) 的中点。求 <i class="v">'+(askA?'a':'b')+'</i> 的值。';
+  if(askA)return build({q:txt,ans:fmt(a),wrongs:[fmt(2*mx+p),fmt(mx-p),fmt(mx),fmt(p-2*mx),fmt(-a)],pad:padNum(a),
+    exp:frac('<i class="v">a</i> + '+paren(p),2)+' = '+fmt(mx)+' ⇒ <i class="v">a</i> + '+paren(p)+' = '+fmt(2*mx)+' ⇒ <i class="v">a</i> = '+fmt(2*mx)+' − '+paren(p)+' = '+fmt(a),fill:{k:'num',v:[a]}});
+  return build({q:txt,ans:fmt(b),wrongs:[fmt(2*my+q),fmt(my-q),fmt(my),fmt(q-2*my),fmt(-b)],pad:padNum(b),
+    exp:frac(paren(q)+' + <i class="v">b</i>',2)+' = '+fmt(my)+' ⇒ '+paren(q)+' + <i class="v">b</i> = '+fmt(2*my)+' ⇒ <i class="v">b</i> = '+fmt(2*my)+' − '+paren(q)+' = '+fmt(b),fill:{k:'num',v:[b]}});
+}},
+{id:'midq',f(){
+  const px=nz(-7,7),py=nz(-7,7),qx=nz(-7,7),qy=nz(-7,7),mx=(px+qx)/2,my=(py+qy)/2;
+  const lab=(x,y)=>where(x,y);
+  const ans=lab(mx,my);
+  return build({q:'线段 PQ 的两个端点是 P'+pt(px,py)+' 与 Q'+pt(qx,qy)+'，中点 M 位于哪里？',
+    ans:ans,wrongs:[lab(px,py),lab(qx,qy),lab(-mx,my),lab(mx,-my),'在 x 轴上','在 y 轴上'],pad:()=>pick(names),
+    exp:'M = '+pt(mx,my)+'（先求平均数，再判断位置），所以 M '+(ans==='原点 O'?'就是':ans.indexOf('在')===0?'':'位于')+ans+'。'});
+}},
+{id:'which',f(){
+  const k=rnd(0,3),sx=[1,-1,-1,1][k],sy=[1,1,-1,-1][k],x=rnd(1,6)*sx,y=rnd(1,6)*sy;
+  const cand=[[-x,y],[x,-y],[-x,-y],[y,x],[x,0],[0,y]].filter(c=>where(c[0],c[1])!==names[k]);
+  return build({q:'下列哪一个点在'+names[k]+'？',ans:pt(x,y),wrongs:cand.map(c=>pt(c[0],c[1])),pad:padPt,
+    exp:names[k]+'的点，'+X+' 坐标'+(sx>0?'为正':'为负')+'、'+Y+' 坐标'+(sy>0?'为正':'为负')+'，所以是 '+pt(x,y)+'。有一个坐标为 0 的点在坐标轴上，不属于任何象限。'});
+}},
+{id:'read',fill:true,f(){
+  let px=nz(-5,5),py=nz(-5,5);while(Math.abs(px)===Math.abs(py))py=nz(-5,5);
+  return build({q:'图中点 P 的坐标是？',qfig:plot({r:5,pts:[{x:px,y:py,l:'P',c:'b'},{x:py,y:px,l:'Q',c:'a'}]}),
+    ans:pt(px,py),wrongs:[pt(py,px),pt(-px,py),pt(px,-py),pt(-px,-py)],pad:padPt,
+    exp:'由 P 向 '+X+' 轴作垂线得 '+fmt(px)+'，向 '+Y+' 轴作垂线得 '+fmt(py)+'，所以 P'+pt(px,py)+'。图中的 Q 是 '+pt(py,px)+'，与 P 不同。',
+    expfig:plot({r:5,pts:[{x:px,y:py,l:'P',g:true,c:'b'},{x:py,y:px,l:'Q',c:'a'}]}),fill:{k:'pt',v:[px,py]}});
+}}
+];
+
+/* ---------- 14.2 ---------- */
+const S2=[
+{id:'on',f(){
+  const x0=rnd(-5,5),y0=rnd(-5,5);let a,b,c,E;
+  if(Math.random()<.5){a=nz(-4,4);b=nz(-4,4);c=a*x0+b*y0;E=eq(a,b,c)}
+  else{const m=nz(-4,4),k=y0-m*x0;a=-m;b=1;c=k;E=yform(m,k)}
+  const on=(x,y)=>Math.abs(a*x+b*y-c)<EPS;
+  const cand=[[y0,x0],[-x0,y0],[x0,-y0],[x0+1,y0],[x0,y0+1],[x0,y0-1],[-x0,-y0]].filter(p=>!on(p[0],p[1])&&!(p[0]===x0&&p[1]===y0));
+  return build({q:'下列哪一个点在直线 '+E+' 上？',ans:pt(x0,y0),wrongs:cand.map(p=>pt(p[0],p[1])),pad:padPt,
+    exp:'逐点代入检验：'+pt(x0,y0)+' 代入得 '+fmt(a)+'·'+paren(x0)+' + '+fmt(b)+'·'+paren(y0)+' = '+fmt(c)+'，等式成立 ✔。其余各点代入后等式不成立。'});
+}},
+{id:'unk',fill:true,f(){
+  const p=nz(-5,5),q=nz(-5,5),x0=rnd(-5,5),y0=rnd(-5,5),r=p*x0+q*y0,E=eq(p,q,r),askX=Math.random()<.5;
+  if(askX)return build({q:'已知点 (<i class="v">a</i>，'+fmt(y0)+') 在直线 '+E+' 上，求 <i class="v">a</i> 的值。',
+    ans:fmt(x0),wrongs:[fmt((r+q*y0)/p),fmt(r-q*y0),fmt((r-y0)/p),fmt(-x0)],pad:padNum(x0),
+    exp:'代入 '+X+' = <i class="v">a</i>，'+Y+' = '+fmt(y0)+'：'+paren(p)+'(<i class="v">a</i>) + '+paren(q)+'('+fmt(y0)+') = '+fmt(r)+'<div class="st">'+paren(p)+'<i class="v">a</i> = '+fmt(r)+' − '+paren(q*y0)+' = '+fmt(r-q*y0)+' ⇒ <i class="v">a</i> = '+fmt(x0)+'</div>',fill:{k:'num',v:[x0]}});
+  return build({q:'已知点 ('+fmt(x0)+'，<i class="v">b</i>) 在直线 '+E+' 上，求 <i class="v">b</i> 的值。',
+    ans:fmt(y0),wrongs:[fmt((r+p*x0)/q),fmt(r-p*x0),fmt((r-x0)/q),fmt(-y0)],pad:padNum(y0),
+    exp:'代入 '+X+' = '+fmt(x0)+'，'+Y+' = <i class="v">b</i>：'+paren(p)+'('+fmt(x0)+') + '+paren(q)+'(<i class="v">b</i>) = '+fmt(r)+'<div class="st">'+paren(q)+'<i class="v">b</i> = '+fmt(r)+' − '+paren(p*x0)+' = '+fmt(r-p*x0)+' ⇒ <i class="v">b</i> = '+fmt(y0)+'</div>',fill:{k:'num',v:[y0]}});
+}},
+{id:'icpt',fill:true,f(){
+  const a=nz(-4,4),b=nz(-4,4),k=nz(-3,3),c=a*b*k,xi=b*k,yi=a*k,askX=Math.random()<.5,E=eq(a,b,c);
+  const fig=plot({r:rr(xi,yi),lines:[{a:a,b:b,c:c}],pts:[{x:xi,y:0,l:ptS(xi,0),c:'b',big:true},{x:0,y:yi,l:ptS(0,yi),c:'b',big:true}]});
+  if(askX)return build({q:'求直线 '+E+' 与 '+X+' 轴的交点坐标。',ans:pt(xi,0),wrongs:[pt(0,yi),pt(yi,0),pt(-xi,0),pt(0,xi)],pad:padPt,
+    exp:'与 '+X+' 轴相交时 '+Y+' = 0：'+paren(a)+X+' = '+fmt(c)+' ⇒ '+X+' = '+fmt(xi)+'，交点 '+pt(xi,0)+'。（令 '+X+' = 0 求得的是与 '+Y+' 轴的交点 '+pt(0,yi)+'。）',expfig:fig,fill:{k:'pt',v:[xi,0]}});
+  return build({q:'求直线 '+E+' 与 '+Y+' 轴的交点坐标。',ans:pt(0,yi),wrongs:[pt(xi,0),pt(0,xi),pt(0,-yi),pt(yi,0)],pad:padPt,
+    exp:'与 '+Y+' 轴相交时 '+X+' = 0：'+paren(b)+Y+' = '+fmt(c)+' ⇒ '+Y+' = '+fmt(yi)+'，交点 '+pt(0,yi)+'。（令 '+Y+' = 0 求得的是与 '+X+' 轴的交点 '+pt(xi,0)+'。）',expfig:fig,fill:{k:'pt',v:[0,yi]}});
+}},
+{id:'axis',f(){
+  const vert=Math.random()<.5,shifted=Math.random()<.6,v=nz(-6,6);
+  const V=vert?X:Y;let E;
+  if(!shifted)E=V+' = '+fmt(v);else E=V+(v>0?' − ':' + ')+Math.abs(v)+' = 0';
+  let ans,wr;
+  if(vert){ans='与 '+Y+' 轴平行，通过点 ('+fmt(v)+'，0)';wr=['与 '+X+' 轴平行，通过点 (0，'+fmt(v)+')','与 '+Y+' 轴平行，通过点 (0，'+fmt(v)+')','与 '+Y+' 轴平行，通过点 ('+fmt(-v)+'，0)']}
+  else{ans='与 '+X+' 轴平行，通过点 (0，'+fmt(v)+')';wr=['与 '+Y+' 轴平行，通过点 ('+fmt(v)+'，0)','与 '+X+' 轴平行，通过点 ('+fmt(v)+'，0)','与 '+X+' 轴平行，通过点 (0，'+fmt(-v)+')']}
+  return build({q:'方程式 '+E+' 的图像是怎样的直线？',ans:ans,wrongs:wr,pad:()=>'与 '+X+' 轴及 '+Y+' 轴都不平行',
+    exp:(shifted?'先移项：'+E+' ⇒ '+V+' = '+fmt(v)+'。':'')+(vert?'方程式 '+X+' = '+fmt(v)+' 的图像是通过 ('+fmt(v)+'，0)、与 '+Y+' 轴平行的直线，直线上每个点的 '+X+' 坐标都是 '+fmt(v)+'。':'方程式 '+Y+' = '+fmt(v)+' 的图像是通过 (0，'+fmt(v)+')、与 '+X+' 轴平行的直线，直线上每个点的 '+Y+' 坐标都是 '+fmt(v)+'。'),
+    expfig:plot({r:6,lines:[vert?{a:1,b:0,c:v}:{a:0,b:1,c:v}]})});
+}},
+{id:'val',fill:true,f(){
+  if(Math.random()<.5){
+    const p=nz(-5,5),q=nz(-9,9),k=nz(-5,5),y=p*k+q;
+    return build({q:'已知 '+yform(p,q)+'，当 '+X+' = '+fmt(k)+' 时，'+Y+' 的值是多少？',ans:fmt(y),wrongs:[fmt(p*k-q),fmt(-p*k+q),fmt(p+k+q),fmt(p*(k+q))],pad:padNum(y),
+      exp:Y+' = '+paren(p)+'×'+paren(k)+' + '+paren(q)+' = '+fmt(p*k)+' + '+paren(q)+' = '+fmt(y),fill:{k:'num',v:[y]}});
+  }
+  const a=nz(-4,4),b=nz(-4,4),x0=rnd(-4,4),y0=rnd(-4,4),c=a*x0+b*y0;
+  return build({q:'已知 '+eq(a,b,c)+'，当 '+X+' = '+fmt(x0)+' 时，'+Y+' 的值是多少？',ans:fmt(y0),wrongs:[fmt((c+a*x0)/b),fmt(c-a*x0),fmt((c-x0)/b),fmt(-y0)],pad:padNum(y0),
+    exp:'代入：'+paren(a)+'×'+paren(x0)+' + '+paren(b)+Y+' = '+fmt(c)+' ⇒ '+paren(b)+Y+' = '+fmt(c)+' − '+paren(a*x0)+' = '+fmt(c-a*x0)+' ⇒ '+Y+' = '+fmt(y0),fill:{k:'num',v:[y0]}});
+}},
+{id:'par',f(){
+  const p=nz(-6,6),q=nz(-6,6);
+  if(Math.random()<.5)return build({q:'通过点 ('+fmt(p)+'，'+fmt(q)+') 且与 '+X+' 轴平行的直线，其方程式是？',ans:Y+' = '+fmt(q),wrongs:[X+' = '+fmt(p),Y+' = '+fmt(p),X+' = '+fmt(q),Y+' = '+fmt(-q)],pad:()=>X+' = '+fmt(rnd(-6,6)),
+    exp:'与 '+X+' 轴平行的直线上，每个点的 '+Y+' 坐标都相同，所以是 '+Y+' = '+fmt(q)+'。',expfig:plot({r:rr(p,q),lines:[{a:0,b:1,c:q}],pts:[{x:p,y:q,l:ptS(p,q),c:'b'}]})});
+  return build({q:'通过点 ('+fmt(p)+'，'+fmt(q)+') 且与 '+Y+' 轴平行的直线，其方程式是？',ans:X+' = '+fmt(p),wrongs:[Y+' = '+fmt(q),X+' = '+fmt(q),Y+' = '+fmt(p),X+' = '+fmt(-p)],pad:()=>Y+' = '+fmt(rnd(-6,6)),
+    exp:'与 '+Y+' 轴平行的直线上，每个点的 '+X+' 坐标都相同，所以是 '+X+' = '+fmt(p)+'。',expfig:plot({r:rr(p,q),lines:[{a:1,b:0,c:p}],pts:[{x:p,y:q,l:ptS(p,q),c:'b'}]})});
+}},
+{id:'zero',f(){
+  const vx=Math.random()<.5,nm=vx?'x = 0':'y = 0';
+  return build({q:'方程式 '+(vx?X:Y)+' = 0 的图像是什么？',ans:vx?Y+' 轴':X+' 轴',wrongs:[vx?X+' 轴':Y+' 轴','原点 O','通过原点的直线 '+Y+' = '+X],pad:()=>'通过原点的直线 '+Y+' = −'+X,
+    exp:vx?X+' = 0 表示所有 '+X+' 坐标为 0 的点，即 '+Y+' 轴。':Y+' = 0 表示所有 '+Y+' 坐标为 0 的点，即 '+X+' 轴。',expfig:plot({r:5,lines:[vx?{a:1,b:0,c:0}:{a:0,b:1,c:0}]})});
+}},
+{id:'figeq',f(){
+  const p=nz(-4,4),q=nz(-4,4);
+  const T=(a,b,c)=>{const n=norm3(a,b,c);return eq(n[0],n[1],n[2])};
+  const ans=T(q,p,p*q);
+  return build({q:'图中直线分别通过 '+X+' 轴上的 ('+numStr(p)+'，0) 与 '+Y+' 轴上的 (0，'+numStr(q)+')。下列哪一个是这条直线的方程式？',
+    qfig:plot({r:5,lines:[{a:q,b:p,c:p*q}],pts:[{x:p,y:0,l:ptS(p,0),c:'b',big:true},{x:0,y:q,l:ptS(0,q),c:'b',big:true}]}),
+    ans:ans,wrongs:[T(p,q,p*q),T(q,-p,-p*q),T(q,p,p+q),T(q,-p,p*q)],pad:()=>eq(nz(-4,4),nz(-4,4),nz(-8,8)),
+    exp:'把 ('+fmt(p)+'，0) 代入：'+paren(norm3(q,p,p*q)[0])+'×'+paren(p)+' = '+fmt(norm3(q,p,p*q)[2])+' ✔；把 (0，'+fmt(q)+') 代入：'+paren(norm3(q,p,p*q)[1])+'×'+paren(q)+' = '+fmt(norm3(q,p,p*q)[2])+' ✔。两点都满足，所以方程式是 '+ans+'。'});
+}}
+];
+
+/* ---------- 14.3 ---------- */
+const eqn=(a,b,c)=>eq(a,b,c);
+const S3=[
+{id:'solve',fill:true,f(){
+  let a1,b1,a2,b2;do{a1=nz(-4,4);b1=nz(-4,4);a2=nz(-4,4);b2=nz(-4,4)}while(a1*b2-a2*b1===0);
+  const x0=rnd(-4,4),y0=rnd(-4,4),c1=a1*x0+b1*y0,c2=a2*x0+b2*y0;
+  const L=[{a:a1,b:b1,c:c1,col:'a',l:'(1)'},{a:a2,b:b2,c:c2,col:'b',l:'(2)'}];
+  return build({q:'以图解法求方程组 '+sysH(eqn(a1,b1,c1)+' …(1)',eqn(a2,b2,c2)+' …(2)')+' 的解。',
+    qfig:Math.random()<.45?plot({r:5,lines:L}):null,
+    ans:sol(x0,y0),wrongs:[sol(y0,x0),sol(-x0,y0),sol(x0,-y0),sol(c1/a1,0),sol(0,c2/b2)],pad:padSol,
+    exp:'两直线的交点同时满足两个方程式，交点是 '+pt(x0,y0)+'。检验：(1) '+paren(a1)+'×'+paren(x0)+' + '+paren(b1)+'×'+paren(y0)+' = '+fmt(c1)+' ✔　(2) '+paren(a2)+'×'+paren(x0)+' + '+paren(b2)+'×'+paren(y0)+' = '+fmt(c2)+' ✔',
+    expfig:plot({r:5,lines:L,pts:[{x:x0,y:y0,l:ptS(x0,y0),c:'c',big:true}]}),fill:{k:'pt',v:[x0,y0]}});
+}},
+{id:'status',f(){
+  const kind=pick(['par','coin','int']);
+  const a=nz(-3,3),b=nz(-3,3),c=nz(-6,6),k=pick([2,3,-1,-2]);
+  let a2=k*a,b2=k*b,c2=k*c;
+  if(kind==='par')c2=k*c+pick([-3,-2,-1,1,2,3]);
+  if(kind==='int'){b2=k*b+pick([1,-1,2,-2]);c2=k*c+rnd(-3,3)}
+  const T1='无解（两直线平行）',T2='有无限多解（两直线重合）',T3='有唯一解（两直线相交于一点）',T4='无解（两直线重合）';
+  const ans=kind==='par'?T1:kind==='coin'?T2:T3;
+  const det=a*b2-a2*b;let pts=[],ex;
+  if(kind==='par')ex='(2) 的系数是 (1) 的 '+fmt(k)+' 倍，但常数项不是 '+fmt(k)+' 倍，两直线斜率相同、截距不同，互相平行，无交点。';
+  else if(kind==='coin')ex='(2) 的各项恰好是 (1) 的 '+fmt(k)+' 倍，是同一条直线，两直线重合，有无限多解。';
+  else{const ix=(c*b2-c2*b)/det,iy=(a*c2-a2*c)/det;ex='两直线的斜率不同，必相交于一点，唯一解 '+X+' = '+fmt(ix)+'，'+Y+' = '+fmt(iy)+'。';if(Math.abs(ix)<=6&&Math.abs(iy)<=6)pts=[{x:ix,y:iy,l:ptS(ix,iy),c:'c',big:true}]}
+  return build({q:'方程组 '+sysH(eqn(a,b,c)+' …(1)',eqn(a2,b2,c2)+' …(2)')+' 的解的情况是？',ans:ans,wrongs:[T1,T2,T3,T4].filter(t=>t!==ans),pad:()=>'有无限多解（两直线平行）',
+    exp:ex,expfig:plot({r:6,lines:[{a:a,b:b,c:c,col:'a',l:'(1)'},{a:a2,b:b2,c:c2,col:'b',l:'(2)'}],pts:pts})});
+}},
+{id:'slope',fill:true,f(){
+  let m1=nz(-4,4),m2=nz(-4,4);while(m2===m1)m2=nz(-4,4);
+  const x0=nz(-4,4),b1=nz(-6,6),y0=m1*x0+b1,b2=y0-m2*x0;
+  const L=[{a:-m1,b:1,c:b1,col:'a',l:'(1)'},{a:-m2,b:1,c:b2,col:'b',l:'(2)'}];
+  return build({q:'方程组 '+sysH(yform(m1,b1)+' …(1)',yform(m2,b2)+' …(2)')+' 的两条直线的交点就是它的解。求这个解。',
+    ans:sol(x0,y0),wrongs:[sol(-x0,m1*(-x0)+b1),sol(x0,m1*x0-b1),sol(y0,x0),sol(x0,m2*x0-b2),sol(x0,y0+(b2-b1))],pad:padSol,
+    exp:'交点处两个 '+Y+' 相等：'+fmt(m1)+X+' + '+paren(b1)+' = '+fmt(m2)+X+' + '+paren(b2)+' ⇒ '+X+' = '+fmt(x0)+'，再代入 (1)：'+Y+' = '+fmt(m1)+'×'+paren(x0)+' + '+paren(b1)+' = '+fmt(y0)+'。',
+    expfig:plot({r:rr(x0,y0),lines:L,pts:[{x:x0,y:y0,l:ptS(x0,y0),c:'c',big:true}]}),fill:{k:'pt',v:[x0,y0]}});
+}},
+{id:'which',f(){
+  const p=rnd(-4,4),q=rnd(-4,4);
+  const mk=()=>{let a,b,c;do{a=nz(-3,3);b=nz(-3,3)}while(false);return [a,b,a*p+b*q]};
+  let L1,L2;do{L1=mk();L2=mk()}while(L1[0]*L2[1]-L2[0]*L1[1]===0);
+  const sh=pick([-2,-1,1,2]),sh2=pick([-2,-1,1,2]);
+  const S=(A,B)=>sysH(eqn(A[0],A[1],A[2]),eqn(B[0],B[1],B[2]));
+  const M1=[L1[0],L1[1],L1[2]+sh],M2=[L2[0],L2[1],L2[2]+sh2];
+  return build({q:'点 P'+pt(p,q)+' 是下列哪一个方程组的解？',ans:S(L1,L2),wrongs:[S(L1,M2),S(M1,L2),S(M1,M2)],pad:()=>S([1,1,rnd(1,6)],[1,-1,rnd(-3,3)]),
+    exp:'点 P 要同时满足两个方程式。把 ('+fmt(p)+'，'+fmt(q)+') 代入：(1) '+fmt(L1[0]*p+L1[1]*q)+' = '+fmt(L1[2])+' ✔　(2) '+fmt(L2[0]*p+L2[1]*q)+' = '+fmt(L2[2])+' ✔。其余各组至少有一个方程式不成立（只满足一个方程式的点只在其中一条直线上，不是交点）。'});
+}},
+{id:'four',fill:true,f(){
+  const dirs=[[1,1],[1,2],[2,1],[1,-1],[1,-2],[2,-1],[0,1],[1,0]];
+  const I=[rnd(-2,2),rnd(-2,2)];let d1,d2;do{d1=pick(dirs);d2=pick(dirs)}while(d1[0]*d2[1]-d1[1]*d2[0]===0);
+  const st=pick([[1,2],[2,1]]),st2=pick([[1,2],[2,1],[1,1]]);
+  const P=[I[0]+st[0]*d1[0],I[1]+st[0]*d1[1]],Q=[I[0]-st[1]*d1[0],I[1]-st[1]*d1[1]];
+  const R=[I[0]+st2[0]*d2[0],I[1]+st2[0]*d2[1]],S=[I[0]-st2[1]*d2[0],I[1]-st2[1]*d2[1]];
+  const mid=(A,B)=>[(A[0]+B[0])/2,(A[1]+B[1])/2];
+  const mPQ=mid(P,Q),mRS=mid(R,S),av=[(P[0]+Q[0]+R[0]+S[0])/4,(P[1]+Q[1]+R[1]+S[1])/4];
+  const ln=(A,B)=>{const a=B[1]-A[1],b=A[0]-B[0];return {a:a,b:b,c:a*A[0]+b*A[1]}};
+  const l1=ln(P,Q),l2=ln(R,S);
+  const lab=[{x:P[0],y:P[1],l:'P',c:'a'},{x:Q[0],y:Q[1],l:'Q',c:'a'},{x:R[0],y:R[1],l:'R',c:'b'},{x:S[0],y:S[1],l:'S',c:'b'}];
+  const segs=[{p:P,q:Q,col:'a'},{p:R,q:S,col:'b'}];
+  return build({q:'在坐标平面上标出 P'+pt(P[0],P[1])+'、Q'+pt(Q[0],Q[1])+'、R'+pt(R[0],R[1])+'、S'+pt(S[0],S[1])+' 四点，连接 P 与 Q、R 与 S。直线 PQ 与直线 RS 的交点坐标是？',
+    qfig:plot({r:6,pts:lab}),ans:pt(I[0],I[1]),wrongs:[pt(mPQ[0],mPQ[1]),pt(mRS[0],mRS[1]),pt(av[0],av[1]),pt(I[1],I[0]),pt(-I[0],I[1])],pad:padPt,
+    exp:'连接 PQ、RS 后，两线段的交点就是 '+pt(I[0],I[1])+'。（线段中点只是线段的中间位置，不一定是交点。）',
+    expfig:plot({r:6,pts:lab.concat([{x:I[0],y:I[1],l:ptS(I[0],I[1]),c:'c',big:true,dy:.7}]),segs:segs}),fill:{k:'pt',v:[I[0],I[1]]}});
+}},
+{id:'sumdiff',fill:true,f(){
+  const x0=rnd(-6,6),y0=rnd(-6,6),a=x0-y0,b=x0+y0,e1=X+' − '+Y+' = '+fmt(a),e2=X+' + '+Y+' = '+fmt(b);
+  const flip=Math.random()<.5;
+  return build({q:'以图解法（或加减消元）解方程组 '+(flip?sysH(e2+' …(1)',e1+' …(2)'):sysH(e1+' …(1)',e2+' …(2)'))+'。',
+    ans:sol(x0,y0),wrongs:[sol(a+b,b-a),sol(x0,-y0),sol(y0,x0),sol(b/2,a/2),sol(-x0,y0)],pad:padSol,
+    exp:'两式相加：2'+X+' = '+fmt(a+b)+' ⇒ '+X+' = '+fmt(x0)+'；代入 '+X+' + '+Y+' = '+fmt(b)+' ⇒ '+Y+' = '+fmt(b)+' − '+paren(x0)+' = '+fmt(y0)+'。',
+    expfig:plot({r:rr(x0,y0),lines:[{a:1,b:-1,c:a,col:'a'},{a:1,b:1,c:b,col:'b'}],pts:[{x:x0,y:y0,l:ptS(x0,y0),c:'c',big:true}]}),fill:{k:'pt',v:[x0,y0]}});
+}}
+];
+const POOLS={q1:S1,q2:S2,q3:S3,q4:S1.concat(S2,S3)};
+
+/* ============ 作答题判分 ============ */
+function nums(str){
+  const t=String(str).replace(/[−–—﹣－]/g,'-').replace(/[，、；;]/g,',').replace(/／/g,'/');
+  const m=t.match(/[-+]?\d+(?:\.\d+)?(?:\/\d+)?/g)||[];
+  return m.map(s=>{if(s.indexOf('/')>=0){const p=s.split('/');return parseFloat(p[0])/parseFloat(p[1])}return parseFloat(s)});
+}
+function gradeFill(sp,str){const v=nums(str);return v.length===sp.fill.v.length&&v.every((e,i)=>Math.abs(e-sp.fill.v[i])<1e-6)}
+const ansText=sp=>sp.fill.k==='pt'?(sp.opts.find(o=>o.ok).t):fmt(sp.fill.v[0]);
+
+/* ============ 测验引擎 ============ */
+const LET='ABCD';
+function makeQuiz(id,nMC,nFill){
+  const root=$('#'+id),pool=POOLS[id];let st;
+  function fresh(){
+    const gens=shuffle(pool).slice(0,nMC);
+    st={mc:gens.map(g=>build(g.f())),ans:[],score:0,answered:0,fill:null,fdone:0,fscore:0};
+    render();
+  }
+  function figH(f){return f?'<div class="figbox">'+f+'</div>':''}
+  function render(){
+    let h='<div class="prog" id="'+id+'-p">已答 0/'+nMC+'　得分 0</div>';
+    st.mc.forEach((q,i)=>{
+      h+='<div class="q" data-i="'+i+'"><div class="qt"><span class="qn">第 '+(i+1)+' 题</span>'+q.q+'</div>'+figH(q.qfig)+'<div class="opts">'+
+        q.opts.map((o,j)=>'<button class="opt" data-i="'+i+'" data-j="'+j+'"><span class="lt">'+LET[j]+'.</span><span>'+o.t+'</span></button>').join('')+'</div><div class="fb"></div></div>';
+    });
+    h+='<div class="rz"></div><div class="fz"></div>';
+    root.innerHTML=h;
+  }
+  function prog(){const p=$('#'+id+'-p');if(p)p.textContent='已答 '+st.answered+'/'+nMC+'　得分 '+st.score}
+  function onOpt(i,j){
+    if(st.ans[i]!=null)return;
+    const q=st.mc[i],ok=q.opts[j].ok;st.ans[i]=j;st.answered++;if(ok)st.score++;
+    const box=$('.q[data-i="'+i+'"]',root);
+    $$('.opt',box).forEach((b,k)=>{b.disabled=true;if(q.opts[k].ok)b.classList.add('ok');else if(k===j)b.classList.add('bad')});
+    const ci=q.opts.findIndex(o=>o.ok);
+    $('.fb',box).innerHTML='<div class="exp '+(ok?'good':'miss')+'"><b>'+(ok?'✔ 答对了！':'✘ 答错了。正确答案：'+LET[ci]+'. ')+'</b>'+(ok?'':q.ans)+'<div class="st">'+q.exp+'</div>'+figH(q.expfig)+'</div>';
+    prog();
+    if(st.answered===nMC)finish();
+  }
+  function finish(){
+    const key='m14-best-'+id,best=parseInt(LS.get(key)||'0',10);if(st.score>best)LS.set(key,String(st.score));
+    const bestS=Math.max(best,st.score);let h='<div class="result"><b>本轮得分：'+st.score+' / '+nMC+'</b>　<span class="hint">（最佳纪录 '+bestS+'）</span>';
+    if(nFill>0){
+      if(st.score>=3){h+='<p class="ok-t">🎉 答对 3 题或以上，已开启 '+nFill+' 道作答题！请自己输入答案。</p>'}
+      else h+='<p class="bad-t">本轮答对不足 3 题，暂时不能开启作答题。看看上面的解析，再点「重新抽题」试试吧！</p>';
+    }else{
+      const p=st.score/nMC;h+='<p>'+(p>=.9?'🏆 太棒了！整章掌握得很扎实。':p>=.7?'👍 不错！再留意一下做错的题目。':p>=.5?'💪 继续努力，建议回看相关小节后再测。':'📖 建议先复习 14.1–14.3 的内容，再重新出题。')+'</p>';
+    }
+    $('.rz',root).innerHTML=h+'</div>';
+    if(nFill>0&&st.score>=3)openFill();
+    const rz=$('.rz',root);if(rz.scrollIntoView)rz.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+  function openFill(){
+    const cand=shuffle(pool.filter(g=>g.fill)).slice(0,nFill);
+    st.fill=cand.map(g=>build(g.f()));
+    let h='<div class="fillzone"><b>✍️ 作答题（'+nFill+' 题）</b><div class="hint">坐标请写成 (x, y)，如 (−8, 2) 或 −8, 2；分数可写成 5/2；只有一个数值的题目直接写数字。</div>';
+    st.fill.forEach((q,i)=>{
+      h+='<div class="q" data-f="'+i+'"><div class="qt"><span class="qn">作答 '+(i+1)+'</span>'+q.q+'</div>'+figH(q.qfig)+
+        '<div class="fillin"><input type="text" data-f="'+i+'" autocomplete="off" placeholder="输入你的答案"><button class="btn pri sub" data-f="'+i+'">提交</button></div><div class="fb"></div></div>';
+    });
+    $('.fz',root).innerHTML=h+'<div class="fsum"></div></div>';
+  }
+  function onSub(i){
+    const q=st.fill[i];if(q.done)return;
+    const inp=$('input[data-f="'+i+'"]',root),val=inp.value.trim();
+    if(!val){inp.focus();return}
+    const ok=gradeFill(q,val);q.done=true;st.fdone++;if(ok)st.fscore++;
+    inp.disabled=true;$('.sub[data-f="'+i+'"]',root).disabled=true;
+    $('.q[data-f="'+i+'"] .fb',root).innerHTML='<div class="exp '+(ok?'good':'miss')+'"><b>'+(ok?'✔ 答对了！':'✘ 答错了。')+'</b>　正确答案：'+ansText(q)+'<div class="st">'+q.exp+'</div>'+figH(q.expfig)+'</div>';
+    if(st.fdone===st.fill.length)$('.fsum',root).innerHTML='<div class="result"><b>作答题得分：'+st.fscore+' / '+st.fill.length+'</b>　'+(st.fscore===st.fill.length?'🌟 全部答对！':'再接再厉，可以点「重新抽题」继续练习。')+'</div>';
+  }
+  root.addEventListener('click',e=>{
+    const o=e.target.closest('.opt');if(o){onOpt(+o.dataset.i,+o.dataset.j);return}
+    const s=e.target.closest('.sub');if(s)onSub(+s.dataset.f);
+  });
+  root.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('input[data-f]'))onSub(+e.target.dataset.f)});
+  const nb=$('.newq[data-q="'+id+'"]');if(nb)nb.addEventListener('click',fresh);
+  fresh();
+  return fresh;
+}
+
+/* ============ 静态图与例题 ============ */
+function tbl(xs,ys){return '<table class="t"><tr><th>'+X+'</th>'+xs.map(v=>'<td>'+fmt(v)+'</td>').join('')+'</tr><tr><th>'+Y+'</th>'+ys.map(v=>'<td>'+fmt(v)+'</td>').join('')+'</tr></table>'}
+function initStatic(){
+  const set=(id,h)=>{const e=$('#'+id);if(e)e.innerHTML=h};
+  set('f-axes',plot({r:4,alt:'直角坐标系'}));
+  set('f-pq',plot({r:4,pts:[{x:3,y:2,l:'P(3, 2)',g:true,c:'b'},{x:3,y:0,l:'M',dy:-.35,dx:-.15,c:'c'},{x:0,y:2,l:'N',dx:-.6,dy:.2,c:'c'},{x:2,y:3,l:'Q(2, 3)',g:true,c:'a',dx:-1.7}]}));
+  set('f-ex1',plot({r:5,pts:[{x:2,y:2,l:'A'},{x:1,y:4,l:'B'},{x:-3,y:0,l:'C'},{x:-2,y:-3,l:'D'},{x:3,y:-2,l:'E'}]}));
+  set('f-ex2',plot({r:6,pts:[{x:1,y:0,l:'P(1, 0)',dy:-.4},{x:2,y:5,l:'Q(2, 5)'},{x:0,y:4,l:'R(0, 4)'},{x:-3,y:3,l:'S(−3, 3)',dx:-2.4},{x:-2,y:-1,l:'T(−2, −1)',dx:-2.7}]}));
+  set('f-ex3',plot({r:6,pts:[{x:0,y:6,l:'P(0, 6)'},{x:-3,y:0,l:'Q',dy:-.4},{x:-4,y:3,l:'R(−4, 3)',dx:-2.5},{x:2,y:0,l:'S',dy:-.4},{x:-2,y:2,l:'(−2, 2)',c:'b',big:true,dx:-2.4,dy:.8}],segs:[{p:[0,6],q:[-3,0],col:'a'},{p:[-4,3],q:[2,0],col:'c'}]}));
+  set('f-mid',plot({r:8,pts:[{x:2,y:4,l:'A(2, 4)'},{x:8,y:8,l:'B(8, 8)',dx:-2.6},{x:5,y:6,l:'C(5, 6)',c:'b',big:true,dx:.4,dy:.8}],segs:[{p:[2,4],q:[8,8],dash:true,col:'d'}]}));
+  // 例4
+  const mwk=(n,x1,y1,x2,y2)=>'<p>('+n+') 中点 = ('+frac(paren(x1)+' + '+paren(x2),2)+'，'+frac(paren(y1)+' + '+paren(y2),2)+') = <b>'+pt((x1+x2)/2,(y1+y2)/2)+'</b></p>';
+  set('ex4',mwk('a',0,0,6,4)+mwk('b',2,2,8,0)+mwk('c',2,4,6,3)+mwk('d',-3,1,-5,-3));
+  // 14.2
+  const xs5=[-2,-1,0,1,2];
+  set('t-y1',tbl(xs5,xs5.map(x=>x+2)));set('t-y2',tbl(xs5,xs5.map(x=>2*x-1)));
+  set('t-y3',tbl([-2,0,2,4],[-2,0,2,4].map(x=>(6-3*x)/2)));set('t-y4',tbl([-1,0,1],[-1,0,1].map(x=>-3*x-1)));
+  const dots=(xs,f)=>xs.map(x=>({x:x,y:f(x),c:'b'}));
+  set('f-y1',plot({r:4,lines:[{a:-1,b:1,c:2}],pts:dots(xs5,x=>x+2)}));
+  set('f-y2',plot({r:5,lines:[{a:-2,b:1,c:-1}],pts:dots(xs5,x=>2*x-1)}));
+  set('f-y3',plot({r:5,lines:[{a:3,b:2,c:6}],pts:[-2,0,2,4].map(x=>({x:x,y:(6-3*x)/2,c:'b'}))}));
+  set('f-y4',plot({r:5,lines:[{a:3,b:1,c:-1}],pts:dots([-1,0,1],x=>-3*x-1)}));
+  const f5=[['(a) x = 2',{a:1,b:0,c:2}],['(b) x = −3',{a:1,b:0,c:-3}],['(c) x = 0（y 轴）',{a:1,b:0,c:0}],['(d) y = 1',{a:0,b:1,c:1}],['(e) y = −2',{a:0,b:1,c:-2}]];
+  set('figs5',f5.map(f=>'<figure>'+plot({r:4,lines:[f[1]]})+'<figcaption>'+f[0]+'</figcaption></figure>').join(''));
+  // 14.3
+  set('f-s1',plot({r:4,lines:[{a:1,b:-1,c:1,col:'a',l:'(1)'},{a:2,b:1,c:-1,col:'b',l:'(2)'}],pts:[{x:0,y:-1,l:'(0, −1)',c:'c',big:true,dx:.4}]}));
+  set('f-s2',plot({r:6,lines:[{a:3,b:1,c:7,col:'a',l:'(1)'},{a:4,b:3,c:6,col:'b',l:'(2)'}],pts:[{x:3,y:-2,l:'(3, −2)',c:'c',big:true,dx:.4}]}));
+  set('f-s3',plot({r:6,lines:[{a:2,b:-1,c:4,col:'a',l:'(1)'},{a:4,b:-2,c:-3,col:'b',l:'(2)'}]}));
+}
+
+/* ============ 工具：坐标探测器 ============ */
+function initExplorer(){
+  const el=$('#explorer'),info=$('#exInfo'),R=6;let marks=[],hover=null;
+  function draw(){
+    const pts=marks.map(m=>({x:m[0],y:m[1],l:ptS(m[0],m[1]),g:true,c:'b'}));
+    if(hover&&!marks.some(m=>m[0]===hover[0]&&m[1]===hover[1]))pts.push({x:hover[0],y:hover[1],l:ptS(hover[0],hover[1]),g:true,c:'a'});
+    el.innerHTML=plot({r:R,pts:pts});
+  }
+  function toXY(e){
+    const svg=el.querySelector('svg'),b=svg.getBoundingClientRect(),V=2*R+2;
+    const x=Math.round(((e.clientX-b.left)/b.width)*V-R-1),y=-Math.round(((e.clientY-b.top)/b.height)*V-R-1);
+    return (Math.abs(x)>R||Math.abs(y)>R)?null:[x,y];
+  }
+  function show(p){info.innerHTML='点 <b>'+pt(p[0],p[1])+'</b>：'+X+' 坐标 '+p[0]+'，'+Y+' 坐标 '+p[1]+'<br>'+where(p[0],p[1])+(p[0]!==p[1]?'<br><span class="hint">对调后的点 '+pt(p[1],p[0])+' 是另一个点</span>':'')}
+  el.addEventListener('pointermove',e=>{const p=toXY(e);hover=p;if(p)show(p);draw()});
+  el.addEventListener('pointerleave',()=>{hover=null;draw()});
+  el.addEventListener('click',e=>{const p=toXY(e);if(!p)return;const i=marks.findIndex(m=>m[0]===p[0]&&m[1]===p[1]);if(i>=0)marks.splice(i,1);else{marks.push(p);if(marks.length>6)marks.shift()}show(p);draw()});
+  $('#exClear').addEventListener('click',()=>{marks=[];hover=null;draw()});
+  draw();
+}
+
+/* ============ 工具：中点计算器 ============ */
+function initMid(){
+  let mode=1,curR=8,drag=null;const el=$('#m-fig'),out=$('#m-out');
+  const rd=id=>{const v=parseFloat($('#'+id).value);return isNaN(v)?null:v};
+  function upd(){
+    const ax=rd('m-ax'),ay=rd('m-ay'),bx=rd('m-bx'),by=rd('m-by');
+    if([ax,ay,bx,by].some(v=>v===null)){out.innerHTML='<p class="bad-t">请把每个格子都填上数字。</p>';return}
+    let Bx,By,Mx,My,h;
+    if(mode===1){Bx=bx;By=by;Mx=(ax+bx)/2;My=(ay+by)/2;
+      h='<p>① 公式：M = ('+frac(X+'<sub>1</sub> + '+X+'<sub>2</sub>',2)+'，'+frac(Y+'<sub>1</sub> + '+Y+'<sub>2</sub>',2)+')</p>'+
+        '<p>② '+X+' = '+mw(ax,bx)+'</p><p>③ '+Y+' = '+mw(ay,by)+'</p><p class="ok-t">∴ 中点 M'+pt(Mx,My)+'</p>';
+    }else{Mx=bx;My=by;Bx=2*Mx-ax;By=2*My-ay;
+      h='<p>① 设 B('+X+'，'+Y+')，由中点公式：'+frac(fmt(ax)+' + '+X,2)+' = '+fmt(Mx)+'，'+frac(fmt(ay)+' + '+Y,2)+' = '+fmt(My)+'</p>'+
+        '<p>② '+X+' = 2×'+paren(Mx)+' − '+paren(ax)+' = '+fmt(Bx)+'</p><p>③ '+Y+' = 2×'+paren(My)+' − '+paren(ay)+' = '+fmt(By)+'</p><p class="ok-t">∴ 另一端点 B'+pt(Bx,By)+'</p>';}
+    out.innerHTML=h;
+    curR=rr(ax,ay,Bx,By,Mx,My,8);
+    const p2=mode===1?{x:bx,y:by,l:'B',c:'a'}:{x:bx,y:by,l:'M',c:'b',big:true};
+    const pts=[{x:ax,y:ay,l:'A '+ptS(ax,ay),c:'a'}];
+    if(mode===1){pts.push({x:Bx,y:By,l:'B '+ptS(Bx,By),c:'a',dx:-2.8},{x:Mx,y:My,l:'M '+ptS(Mx,My),c:'b',big:true,dy:.8})}
+    else{pts.push({x:Mx,y:My,l:'M '+ptS(Mx,My),c:'b',big:true,dy:.8},{x:Bx,y:By,l:'B '+ptS(Bx,By),c:'c',big:true,dx:-2.8})}
+    el.innerHTML=plot({r:curR,pts:pts,segs:[{p:[ax,ay],q:[Bx,By],dash:true,col:'d'}]});
+  }
+  function setMode(m){mode=m;$('#mdM1').className=m===1?'btn pri':'btn';$('#mdM2').className=m===2?'btn pri':'btn';
+    $('#m-l2').textContent=m===1?'B(':'M(';$('#m-l3').textContent=m===1?'B':'M';
+    if(m===2){$('#m-bx').value=5;$('#m-by').value=6;$('#m-ax').value=2;$('#m-ay').value=4}else{$('#m-ax').value=2;$('#m-ay').value=4;$('#m-bx').value=8;$('#m-by').value=8}upd()}
+  $('#mdM1').addEventListener('click',()=>setMode(1));$('#mdM2').addEventListener('click',()=>setMode(2));
+  ['m-ax','m-ay','m-bx','m-by'].forEach(i=>$('#'+i).addEventListener('input',upd));
+  function toXY(e){const svg=el.querySelector('svg'),b=svg.getBoundingClientRect(),V=2*curR+2;
+    return [Math.max(-curR,Math.min(curR,Math.round(((e.clientX-b.left)/b.width)*V-curR-1))),Math.max(-curR,Math.min(curR,-Math.round(((e.clientY-b.top)/b.height)*V-curR-1)))]}
+  el.addEventListener('pointerdown',e=>{
+    const p=toXY(e),A=[rd('m-ax'),rd('m-ay')],B=[rd('m-bx'),rd('m-by')];if(A.concat(B).some(v=>v===null))return;
+    const dA=Math.hypot(p[0]-A[0],p[1]-A[1]),dB=Math.hypot(p[0]-B[0],p[1]-B[1]);
+    drag=dA<=dB?(dA<=1.6?'a':null):(dB<=1.6?'b':null);
+  });
+  el.addEventListener('pointermove',e=>{if(!drag)return;const p=toXY(e);$('#m-'+drag+'x').value=p[0];$('#m-'+drag+'y').value=p[1];upd()});
+  window.addEventListener('pointerup',()=>{drag=null});
+  upd();
+}
+
+/* ============ 工具：直线描绘器 ============ */
+function initLine(){
+  const pre=[['y = x + 2',-1,1,2],['y = 2x − 1',-2,1,-1],['3x + 2y = 6',3,2,6],['y = −3x − 1',3,1,-1],['x = 2',1,0,2],['x = −3',1,0,-3],['y = 1',0,1,1],['y = −2',0,1,-2],['x = 0',1,0,0],['y = 0',0,1,0]];
+  $('#lPre').innerHTML='<span class="hint">范例：</span>'+pre.map((p,i)=>'<button class="chip" data-i="'+i+'">'+p[0]+'</button>').join('');
+  const rd=id=>{const v=parseFloat($('#'+id).value);return isNaN(v)?null:v};
+  function upd(){
+    const a=rd('l-a'),b=rd('l-b'),c=rd('l-c'),out=$('#l-out');
+    if([a,b,c].some(v=>v===null)){out.innerHTML='<p class="bad-t">请填上 a、b、c 三个数。</p>';$('#l-fig').innerHTML='';$('#l-chk').innerHTML='';return}
+    if(a===0&&b===0){out.innerHTML='<p class="bad-t">a、b 不能同时为 0，这样就不是二元一次方程式了。</p>';$('#l-fig').innerHTML=plot({r:6});$('#l-chk').innerHTML='';return}
+    let h='<p>方程式：<b>'+eq(a,b,c)+'</b></p>',pts=[];
+    if(b===0){const v=c/a;h+='<p>相当于 '+X+' = '+fmt(v)+'：与 '+Y+' 轴<b>平行</b>的直线，通过 ('+fmt(v)+'，0)。</p>';pts=[-2,-1,0,1,2].map(y=>({x:v,y:y,c:'b'}))}
+    else if(a===0){const v=c/b;h+='<p>相当于 '+Y+' = '+fmt(v)+'：与 '+X+' 轴<b>平行</b>的直线，通过 (0，'+fmt(v)+')。</p>';pts=[-2,-1,0,1,2].map(x=>({x:x,y:v,c:'b'}))}
+    else{
+      const xs=[-2,-1,0,1,2],ys=xs.map(x=>(c-a*x)/b);
+      h+='<p>令 '+Y+' = 0 ⇒ '+X+' = '+fmt(c/a)+'，交 '+X+' 轴于 <b>'+pt(c/a,0)+'</b>；令 '+X+' = 0 ⇒ '+Y+' = '+fmt(c/b)+'，交 '+Y+' 轴于 <b>'+pt(0,c/b)+'</b>。</p>';
+      if(c===0)h+='<p class="hint">c = 0，直线通过原点，两个交点重合，需再找一个点（见下表）。</p>';
+      h+=tbl(xs,ys)+'<p class="hint">两点决定一条直线 —— 任取两个解就能画出图像。</p>';
+      pts=xs.map((x,i)=>({x:x,y:ys[i],c:'b'}));
+    }
+    out.innerHTML=h;
+    const R=rr(c/(a||1),c/(b||1),6);
+    $('#l-fig').innerHTML=plot({r:Math.min(R,10),lines:[{a:a,b:b,c:c}],pts:pts.filter(p=>Math.abs(p.x)<=10&&Math.abs(p.y)<=10)});
+    chk(a,b,c);
+  }
+  function chk(a,b,c){
+    const px=rd('l-px'),py=rd('l-py'),o=$('#l-chk');if(px===null||py===null){o.innerHTML='请填上点的坐标。';return}
+    const v=a*px+b*py,ok=Math.abs(v-c)<1e-9;
+    o.innerHTML='代入 ('+fmt(px)+'，'+fmt(py)+')：'+paren(a)+'×'+paren(px)+' + '+paren(b)+'×'+paren(py)+' = <b>'+fmt(v)+'</b>，右边是 '+fmt(c)+' → '+(ok?'<span class="ok-t">相等，点在直线上 ✔</span>':'<span class="bad-t">不相等，点不在直线上 ✘</span>');
+  }
+  ['l-a','l-b','l-c','l-px','l-py'].forEach(i=>$('#'+i).addEventListener('input',upd));
+  $('#lPre').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const p=pre[+b.dataset.i];$('#l-a').value=p[1];$('#l-b').value=p[2];$('#l-c').value=p[3];upd()});
+  upd();
+}
+
+/* ============ 工具：方程组图解器 ============ */
+function initSys(){
+  const pre=[['例题 1',1,-1,1,2,1,-1],['例题 2',3,1,7,4,3,6],['例题 3（平行）',2,-1,4,4,-2,-3],['重合',1,1,2,2,2,4],['垂直相交',1,0,2,0,1,1]];
+  $('#sPre').innerHTML='<span class="hint">范例：</span>'+pre.map((p,i)=>'<button class="chip" data-i="'+i+'">'+p[0]+'</button>').join('');
+  const ids=['s-a1','s-b1','s-c1','s-a2','s-b2','s-c2'];
+  function upd(){
+    const v=ids.map(i=>{const n=parseFloat($('#'+i).value);return isNaN(n)?null:n}),out=$('#s-out');
+    if(v.some(x=>x===null)){out.innerHTML='<p class="bad-t">请把六个格子都填上数字。</p>';return}
+    const a1=v[0],b1=v[1],c1=v[2],a2=v[3],b2=v[4],c2=v[5];
+    if((a1===0&&b1===0)||(a2===0&&b2===0)){out.innerHTML='<p class="bad-t">每个方程式的 x、y 系数不能同时为 0。</p>';$('#s-fig').innerHTML=plot({r:6});return}
+    let h='<p>(1) '+eq(a1,b1,c1)+(b1!==0?'　⇒　'+yform(-a1/b1,c1/b1):'')+'</p><p>(2) '+eq(a2,b2,c2)+(b2!==0?'　⇒　'+yform(-a2/b2,c2/b2):'')+'</p>';
+    const det=a1*b2-a2*b1;let pts=[];
+    if(Math.abs(det)<EPS){
+      if(Math.abs(a1*c2-a2*c1)<EPS&&Math.abs(b1*c2-b2*c1)<EPS)h+='<p class="ok-t">两直线重合 → 有无限多解。</p>';
+      else h+='<p class="bad-t">两直线平行 → 无解。</p>';
+    }else{
+      const x=(c1*b2-c2*b1)/det,y=(a1*c2-a2*c1)/det;
+      h+='<p class="ok-t">两直线相交于 '+pt(x,y)+'　→　唯一解：'+sol(x,y)+'</p><p class="hint">检验 (1)：'+fmt(a1*x+b1*y)+' = '+fmt(c1)+'　(2)：'+fmt(a2*x+b2*y)+' = '+fmt(c2)+'</p>';
+      pts=[{x:x,y:y,l:ptS(x,y),c:'c',big:true,dx:.4}];
+    }
+    out.innerHTML=h;
+    const R=pts.length?Math.min(10,Math.max(6,Math.ceil(Math.max(Math.abs(pts[0].x),Math.abs(pts[0].y))))):6;
+    $('#s-fig').innerHTML=plot({r:R,lines:[{a:a1,b:b1,c:c1,col:'a',l:'(1)'},{a:a2,b:b2,c:c2,col:'b',l:'(2)'}],pts:pts});
+  }
+  ids.forEach(i=>$('#'+i).addEventListener('input',upd));
+  $('#sPre').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const p=pre[+b.dataset.i];ids.forEach((id,k)=>{$('#'+id).value=p[k+1]});upd()});
+  upd();
+}
+
+/* ============ 外观：深浅色 / 字号 / 分页 ============ */
+function initUI(){
+  const root=document.documentElement,tb=$('#themeBtn');
+  const mq=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)');
+  function setTheme(t){root.setAttribute('data-theme',t);tb.textContent=t==='dark'?'☀️ 浅色':'🌙 深色';LS.set('m14-theme',t)}
+  setTheme(LS.get('m14-theme')||(mq&&mq.matches?'dark':'light'));
+  tb.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+  let fs=parseInt(LS.get('m14-fs')||'15',10);if(!(fs>=12&&fs<=22))fs=15;
+  function setFs(v){fs=Math.max(12,Math.min(22,v));root.style.fontSize=fs+'px';$('#fsVal').textContent=fs+'px';LS.set('m14-fs',String(fs));$('#fsDn').disabled=fs<=12;$('#fsUp').disabled=fs>=22}
+  setFs(fs);$('#fsDn').addEventListener('click',()=>setFs(fs-1));$('#fsUp').addEventListener('click',()=>setFs(fs+1));
+  $('#nav').addEventListener('click',e=>{
+    const b=e.target.closest('button[data-t]');if(!b)return;
+    $$('#nav button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+    $$('section.tab').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+    if(window.scrollTo)try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){}
+  });
+}
+
+/* ============ 启动 ============ */
+initUI();initStatic();initExplorer();initMid();initLine();initSys();
+makeQuiz('q1',5,2);makeQuiz('q2',5,2);makeQuiz('q3',5,2);makeQuiz('q4',10,0);
+window.__M14={S1:S1,S2:S2,S3:S3,build:build,gradeFill:gradeFill,nums:nums,plot:plot};
+})();
+</script>
+</body>
+</html>
