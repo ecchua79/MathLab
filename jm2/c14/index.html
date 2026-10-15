@@ -44,6 +44,11 @@ h1,h2,h3{font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;margin:
 .warn{color:var(--warn)}
 .hide{display:none!important}
 
+/* 浮水印：颜色跟随主题，极淡 */
+body::after{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;background:var(--ink);opacity:.055;
+  -webkit-mask-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22190%22%3E%3Cg transform=%22rotate%28-24 150 95%29%22 font-family=%22sans-serif%22 fill=%22%23000%22%3E%3Ctext x=%2220%22 y=%2285%22 font-size=%2212%22 letter-spacing=%221%22%3E%E8%94%A1%E9%80%B8%E4%BC%97 %C2%B7 ecchua79%3C/text%3E%3Ctext x=%2220%22 y=%22104%22 font-size=%2210%22 letter-spacing=%22.5%22%3EChinese High School %E5%8D%8E%E4%BB%81%E4%B8%AD%E5%AD%A6%3C/text%3E%3C/g%3E%3C/svg%3E");mask-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22190%22%3E%3Cg transform=%22rotate%28-24 150 95%29%22 font-family=%22sans-serif%22 fill=%22%23000%22%3E%3Ctext x=%2220%22 y=%2285%22 font-size=%2212%22 letter-spacing=%221%22%3E%E8%94%A1%E9%80%B8%E4%BC%97 %C2%B7 ecchua79%3C/text%3E%3Ctext x=%2220%22 y=%22104%22 font-size=%2210%22 letter-spacing=%22.5%22%3EChinese High School %E5%8D%8E%E4%BB%81%E4%B8%AD%E5%AD%A6%3C/text%3E%3C/g%3E%3C/svg%3E");-webkit-mask-size:300px 190px;mask-size:300px 190px;-webkit-mask-repeat:repeat;mask-repeat:repeat}
+[data-theme="dark"] body::after{opacity:.07}
+
 /* 顶栏 */
 .top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;padding:.6rem 1rem;background:var(--card);border-bottom:2px solid var(--ink)}
 .brand{display:flex;align-items:center;gap:.7rem;min-width:0}
