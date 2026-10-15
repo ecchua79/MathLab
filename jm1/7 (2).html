@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初一数学 第7章 百分法 - 互动学习课件</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0284c7', 600: '#0369a1', 700: '#075985' },
+                        accent: { 500: '#f59e0b', 600: '#d97706' },
+                        success: { 500: '#10b981', 600: '#059669' }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            transition: background-color 0.3s, color 0.3s, font-size 0.2s;
+        }
+        .grid-cell {
+            transition: all 0.2s ease;
+        }
+        .grid-cell { transform-box: fill-box; transform-origin: center; }
+        .dark .svg-t { fill: #e2e8f0 !important; }
+        .dark .svg-t2 { fill: #a5b4fc !important; }
+        .grid-cell:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col antialiased text-base">
+
+    <!-- Navbar Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    %
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-blue-700 dark:from-sky-400 dark:to-blue-300">
+                        初一数学 · 第7章 百分法
+                    </h1>
+                    <p class="hidden sm:block text-xs text-slate-500 dark:text-slate-400">董总独中课程 · 互动数理课件</p>
+                </div>
+            </div>
+
+            <!-- Toolbar Controls -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Font size slider / buttons -->
+                <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+                    <button onclick="changeFontSize(-1)" class="w-8 h-8 flex items-center justify-center rounded hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold transition" title="减小字体">
+                        A-
+                    </button>
+                    <span id="font-size-label" class="text-xs px-2 font-medium text-slate-500 dark:text-slate-400">100%</span>
+                    <button onclick="changeFontSize(1)" class="w-8 h-8 flex items-center justify-center rounded hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold transition" title="增大字体">
+                        A+
+                    </button>
+                </div>
+
+                <!-- Dark Mode Switcher -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition flex items-center justify-center w-10 h-10" title="切换深色/浅色模式">
+                    <i id="theme-icon" class="fas me-0 fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+        <!-- Navigation Tabs -->
+        <nav class="flex space-x-1 sm:space-x-2 bg-slate-200/70 dark:bg-slate-800/80 p-1.5 rounded-xl overflow-x-auto border border-slate-200 dark:border-slate-700/60 shadow-inner">
+            <button onclick="switchTab('tab-71')" id="btn-tab-71" class="tab-btn flex-1 min-w-[120px] py-2.5 px-4 rounded-lg font-semibold text-sm transition-all text-sky-600 bg-white dark:bg-slate-700 dark:text-white shadow-sm flex items-center justify-center gap-2">
+                <i class="fas fa-percent"></i> 7.1 百分数概念与互化
+            </button>
+            <button onclick="switchTab('tab-72')" id="btn-tab-72" class="tab-btn flex-1 min-w-[120px] py-2.5 px-4 rounded-lg font-semibold text-sm transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center gap-2">
+                <i class="fas fa-calculator"></i> 7.2 百分法应用问题
+            </button>
+            <button onclick="switchTab('tab-final')" id="btn-tab-final" class="tab-btn flex-1 min-w-[120px] py-2.5 px-4 rounded-lg font-semibold text-sm transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center gap-2">
+                <i class="fas fa-trophy"></i> 总测验
+            </button>
+        </nav>
+
+        <!-- TAB 7.1: CONCEPT AND CONVERSION -->
+        <section id="tab-71" class="tab-content block space-y-6">
+            
+            <!-- Intro Banner -->
+            <div class="bg-gradient-to-r from-sky-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-2 inline-block">7.1 基础概念</span>
+                    <h2 class="text-2xl font-bold mb-2">什么是百分数 (Percentage)?</h2>
+                    <p class="text-sky-100 text-sm leading-relaxed">
+                        分母是 <strong class="text-amber-300">100</strong> 的分数叫做<strong class="text-amber-300">百分数</strong>，也叫百分比或百分率。百分数用符号 <strong class="text-amber-300">%</strong>（巴仙/Percent）来表示。
+                    </p>
+                </div>
+                <div class="absolute -right-6 -bottom-8 opacity-20 text-white text-9xl font-black pointer-events-none select-none">
+                    %
+                </div>
+            </div>
+
+            <!-- Visual Model & Examples Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- SVG Visual Card: 100-Grid Model -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                <i class="fas fa-th text-sky-500"></i> 百分格直观模型 (10×10 Grid)
+                            </h3>
+                            <span class="text-xs bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-2.5 py-1 rounded-md font-medium">
+                                移动滑块观察
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                            百格图共有 100 个小格子，着色格子的数量即代表百分比。
+                        </p>
+
+                        <!-- Dynamic SVG Grid -->
+                        <div class="flex justify-center my-2">
+                            <svg id="svg-grid-71" viewBox="0 0 200 200" class="w-56 h-56 rounded-lg shadow border border-slate-200 dark:border-slate-700 bg-white">
+                                <!-- Grid generated dynamically via JavaScript -->
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Grid Controls -->
+                    <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/60">
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span>着色比例: <span id="grid-val-text" class="text-sky-600 dark:text-sky-400 font-bold">55%</span></span>
+                            <span class="text-slate-500 text-xs">对应分数: <span id="grid-fraction-text" class="font-mono">55/100 = 11/20</span></span>
+                        </div>
+                        <input type="range" id="grid-slider" min="0" max="100" value="55" oninput="updateGridVisual(this.value)" class="w-full accent-sky-500 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Rules for Conversion -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
+                            <i class="fas fa-exchange-alt text-amber-500"></i> 三者互化规则 (Conversions)
+                        </h3>
+                        
+                        <div class="space-y-3">
+                            <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-sky-500">
+                                <span class="font-bold text-sm text-sky-600 dark:text-sky-400 block mb-1">① 百分数 ➔ 最简分数</span>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">去百分号 “%”，写成分母是 100 的分数，再约分为最简分数。</p>
+                                <code class="text-xs bg-white dark:bg-slate-800 px-2 py-0.5 rounded border mt-1 inline-block text-slate-700 dark:text-slate-200 font-mono">例: 25% = 25/100 = 1/4</code>
+                            </div>
+
+                            <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-amber-500">
+                                <span class="font-bold text-sm text-amber-600 dark:text-amber-400 block mb-1">② 分数 ➔ 百分数</span>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">将原分数乘以 100%，或者先化为小数再乘以 100%。</p>
+                                <code class="text-xs bg-white dark:bg-slate-800 px-2 py-0.5 rounded border mt-1 inline-block text-slate-700 dark:text-slate-200 font-mono">例: 3/5 = (3/5 × 100)% = 60%</code>
+                            </div>
+
+                            <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-emerald-500">
+                                <span class="font-bold text-sm text-emerald-600 dark:text-emerald-400 block mb-1">③ 百分数 ⇄ 小数</span>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">百分数化小数：去掉 “%”，小数点向左移动 2 位。<br>小数化百分数：小数点向右移动 2 位，加上 “%”。</p>
+                                <code class="text-xs bg-white dark:bg-slate-800 px-2 py-0.5 rounded border mt-1 inline-block text-slate-700 dark:text-slate-200 font-mono">例: 0.354 = 35.4% | 152% = 1.52</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Cards with SVG Visuals for 7.1 -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                    <i class="fas fa-book-open text-sky-500"></i> 7.1 课本典型例题分析
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 transition hover:shadow-md">
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- SVG Diagram Example 1 -->
+                            <svg viewBox="0 0 280 140" class="w-full max-w-[240px] h-auto bg-sky-50 dark:bg-slate-700/60 rounded-xl p-2 border border-sky-100 dark:border-slate-600">
+                                <!-- Percentage Conversion Diagram -->
+                                <circle cx="70" cy="70" r="45" fill="none" stroke="#0284c7" stroke-width="8" stroke-dasharray="282.7" stroke-dashoffset="212" />
+                                <text x="70" y="72" text-anchor="middle" fill="#0284c7" font-weight="bold" font-size="18">25%</text>
+                                <path d="M 130 70 L 158 70" stroke="#f59e0b" stroke-width="3" /><polygon points="156,63 170,70 156,77" fill="#f59e0b"/>
+                                <rect x="175" y="45" width="80" height="50" rx="8" fill="#0284c7" />
+                                <text x="215" y="75" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="20">1 / 4</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-2">
+                            <span class="bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-bold px-2.5 py-1 rounded">例题 1 (课本 P.238)</span>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">将下列百分数化为最简分数：</h4>
+                            <p class="text-sm font-mono text-slate-600 dark:text-slate-300">(a) 25% &nbsp;&nbsp;&nbsp; (b) 120% &nbsp;&nbsp;&nbsp; (c) 66⅔%</p>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono">
+                                <p><strong class="text-sky-600 dark:text-sky-400">(a) 解：</strong> 25% = 25/100 = <strong>1/4</strong></p>
+                                <p><strong class="text-sky-600 dark:text-sky-400">(b) 解：</strong> 120% = 120/100 = <strong>6/5 = 1⅕</strong></p>
+                                <p><strong class="text-sky-600 dark:text-sky-400">(c) 解：</strong> 66⅔% = (200/3) / 100 = 200/300 = <strong>2/3</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 transition hover:shadow-md">
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- SVG Diagram Example 2 -->
+                            <svg viewBox="0 0 280 140" class="w-full max-w-[240px] h-auto bg-emerald-50 dark:bg-slate-700/60 rounded-xl p-2 border border-emerald-100 dark:border-slate-600">
+                                <rect x="30" y="45" width="90" height="50" rx="8" fill="#10b981" />
+                                <text x="75" y="75" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="18">0.59</text>
+                                <path d="M 130 70 L 160 70" stroke="#10b981" stroke-width="3" />
+                                <text x="145" y="60" text-anchor="middle" fill="#059669" font-size="10" font-weight="bold">×100%</text>
+                                <rect x="170" y="45" width="80" height="50" rx="8" fill="#059669" />
+                                <text x="210" y="75" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="18">59%</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-2">
+                            <span class="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-2.5 py-1 rounded">例题 4 (课本 P.241)</span>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">将下列小数化为百分数：</h4>
+                            <p class="text-sm font-mono text-slate-600 dark:text-slate-300">(a) 0.59 &nbsp;&nbsp;&nbsp; (b) 2.37 &nbsp;&nbsp;&nbsp; (c) 0.046</p>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono">
+                                <p><strong class="text-emerald-600 dark:text-emerald-400">(a) 解：</strong> 0.59 = 0.59 × 100% = <strong>59%</strong></p>
+                                <p><strong class="text-emerald-600 dark:text-emerald-400">(b) 解：</strong> 2.37 = 2.37 × 100% = <strong>237%</strong></p>
+                                <p><strong class="text-emerald-600 dark:text-emerald-400">(c) 解：</strong> 0.046 = 0.046 × 100% = <strong>4.6%</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-2.5 py-1 rounded">例题 2 (课本 P.239)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">将下列分数化为百分数：(a) 3/4 　(b) 7/5</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>(a) 3/4 = 3/4 × 100% = <strong>75%</strong></p><p>(b) 7/5 = 7/5 × 100% = <strong>140%</strong></p></div></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-2.5 py-1 rounded">例题 3 (课本 P.240)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">将下列百分数化为小数：(a) 56% 　(b) 35.4% 　(c) 198% 　(d) 12.6%</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>(a) 56% = 56/100 = <strong>0.56</strong></p><p>(b) 35.4% = <strong>0.354</strong>（小数点左移 2 位）</p><p>(c) 198% = <strong>1.98</strong></p><p>(d) 12.6% = <strong>0.126</strong></p></div></div>
+            </div>
+            <div id="mount-71" class="space-y-6"></div>
+        </section>
+
+        <!-- TAB 7.2: APPLICATION PROBLEMS -->
+        <section id="tab-72" class="tab-content hidden space-y-6">
+            
+            <!-- Banner Section 7.2 -->
+            <div class="bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-2 inline-block">7.2 实际应用</span>
+                    <h2 class="text-2xl font-bold mb-2">百分法的日常应用 (Applications)</h2>
+                    <p class="text-amber-100 text-sm leading-relaxed">
+                        包含：<strong>增量/减量</strong>、<strong>折扣 (Discount)</strong>、<strong>盈亏与利润</strong>、<strong>单利息 (Simple Interest)</strong> 及 <strong>消费税/服务费 (Tax & Fees)</strong>。
+                    </p>
+                </div>
+                <div class="absolute -right-6 -bottom-8 opacity-20 text-white text-9xl font-black pointer-events-none select-none">
+                    <i class="fas fa-tags"></i>
+                </div>
+            </div>
+
+            <!-- Sub-topics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Topic 1: Increments & Decrements -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">增量与减量 (Increments)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            • 增量 = 原量 × 增加百分率<br>
+                            • 变动后数量 = 原量 × (1 ± 变动率)
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-sky-600 dark:text-sky-400">
+                        80kg 增加 20% ➔ 增量 = 16kg
+                    </div>
+                </div>
+
+                <!-- Topic 2: Discounts -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">折扣 (Discount Rate)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            “打七折” 即按原价的 70% 出售；“打七五折” 即照原价 75% 出售。<br>
+                            • 售价 = 定价 × (100% - 折扣率)
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-amber-600 dark:text-amber-400">
+                        RM1200 打七折 ➔ 售价 = RM840
+                    </div>
+                </div>
+
+                <!-- Topic 3: Tax & Interest -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">服务费与利息 (Interest & Tax)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            • 实付总额 = 餐费 + (餐费 × 服务费%)<br>
+                            • 利息 = 本金 × 年利率 × 时间 (I = P × r × t)
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+                        RM15 餐费 + 6% 消费税 = RM15.90
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between"><div><div class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg mb-3"><i class="fas fa-balance-scale"></i></div><h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">盈亏 (Profit & Loss)</h3><p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">• 盈率 = 所赚的钱 ÷ 成本 × 100%<br>• 亏率 = 所亏的钱 ÷ 成本 × 100%<br>• 售价 = 成本 × (100% ± 盈/亏率)</p></div><div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-rose-600 dark:text-rose-400">成本 RM120 赚 25% ➔ 售价 RM150</div></div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between"><div><div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg mb-3"><i class="fas fa-piggy-bank"></i></div><h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">单利息 (Simple Interest)</h3><p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">• 单利息 = 本金 × 利率 × 期数<br>• 本利和 = 本金 + 利息</p></div><div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-amber-600 dark:text-amber-400">RM3000，年利率 5%，3 年 ➔ 本利和 RM3450</div></div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between"><div><div class="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg mb-3"><i class="fas fa-handshake"></i></div><h3 class="font-bold text-slate-800 dark:text-slate-100 mb-2">佣金 (Commission)</h3><p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">• 佣金 = 交易价格 × 佣金百分率<br>• 佣金是付给中间人的酬劳</p></div><div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-mono text-sky-600 dark:text-sky-400">RM4500 × 4% ➔ 佣金 RM180</div></div>
+            </div>
+
+            <!-- Example Cards with SVG Visuals for 7.2 -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                    <i class="fas fa-book-open text-amber-500"></i> 7.2 课本典型例题分析
+                </h3>
+
+                <!-- Example 7.2 - 1: Grid proportion example -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 transition hover:shadow-md">
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- SVG Diagram 40 grids -->
+                            <svg viewBox="0 0 200 120" class="w-full max-w-[220px] h-auto bg-slate-50 dark:bg-slate-700/60 rounded-xl p-2 border border-slate-200 dark:border-slate-600">
+                                <!-- 40 grids visualization (4 rows, 10 cols) -->
+                                <g fill="#0284c7" stroke="#ffffff" stroke-width="1">
+                                    <!-- 22 colored grid cells -->
+                                    <rect x="10" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="28" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="46" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="64" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="82" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="100" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="118" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="136" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="154" y="10" width="16" height="18" rx="2"/>
+                                    <rect x="172" y="10" width="16" height="18" rx="2"/>
+                                    <!-- row 2 -->
+                                    <rect x="10" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="28" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="46" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="64" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="82" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="100" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="118" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="136" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="154" y="30" width="16" height="18" rx="2"/>
+                                    <rect x="172" y="30" width="16" height="18" rx="2"/>
+                                    <!-- row 3 (2 cells) -->
+                                    <rect x="10" y="50" width="16" height="18" rx="2" fill="#f59e0b"/>
+                                    <rect x="28" y="50" width="16" height="18" rx="2" fill="#f59e0b"/>
+                                </g>
+                                <g fill="#cbd5e1" stroke="#ffffff" stroke-width="1">
+                                    <!-- remaining 18 uncolored -->
+                                    <rect x="46" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="64" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="82" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="100" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="118" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="136" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="154" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="172" y="50" width="16" height="18" rx="2"/>
+                                    <rect x="10" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="28" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="46" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="64" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="82" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="100" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="118" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="136" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="154" y="70" width="16" height="18" rx="2"/>
+                                    <rect x="172" y="70" width="16" height="18" rx="2"/>
+                                </g>
+                                <text x="100" y="105" text-anchor="middle" class="svg-t" font-size="11" fill="#334155" font-weight="bold">着色: 22 格 / 全长: 40 格</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-2">
+                            <span class="bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-bold px-2.5 py-1 rounded">例题 1 (课本 P.243)</span>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">图中的格子由相同的小正方形组成，蓝色与黄色的格子共占全部的几巴仙？</h4>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono">
+                                <p><strong class="text-sky-600 dark:text-sky-400">解：</strong> 全部共有 40 格，蓝色与黄色格子共占了 22 格。</p>
+                                <p>占全图百分比 = (22 / 40) × 100% = <strong>55%</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 7.2 - Discount Example -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 transition hover:shadow-md">
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- SVG Discount Tag -->
+                            <svg viewBox="0 0 220 120" class="w-full max-w-[220px] h-auto bg-amber-50 dark:bg-slate-700/60 rounded-xl p-2 border border-amber-100 dark:border-slate-600">
+                                <path d="M 20 60 L 50 20 L 190 20 L 190 100 L 50 100 Z" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                                <circle cx="42" cy="60" r="8" fill="#ffffff"/>
+                                <text x="120" y="52" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="16">原价 RM1200</text>
+                                <text x="120" y="80" text-anchor="middle" fill="#fef3c7" font-weight="bold" font-size="20">打七折 (70%)</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-2">
+                            <span class="bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 text-xs font-bold px-2.5 py-1 rounded">例题 9 (课本 P.249)</span>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">一套百科全书原价 RM1200，书局打七折出售，问售价是多少？</h4>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono">
+                                <p><strong class="text-amber-600 dark:text-amber-400">解：</strong> “七折” 代表照原价的 70% 出售。</p>
+                                <p>售价 = 1200 × (70 / 100) = <strong>RM 840</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 7.2 - Reverse Percentage Example -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 transition hover:shadow-md">
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- SVG Reverse Calculation -->
+                            <svg viewBox="0 0 220 120" class="w-full max-w-[220px] h-auto bg-indigo-50 dark:bg-slate-700/60 rounded-xl p-2 border border-indigo-100 dark:border-slate-600">
+                                <rect x="15" y="35" width="80" height="50" rx="8" fill="#6366f1"/>
+                                <text x="55" y="65" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="14">原价 ?</text>
+                                <path d="M 100 60 L 125 60" stroke="#6366f1" stroke-width="3"/>
+                                <text class="svg-t2" x="112" y="50" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">-25%</text>
+                                <rect x="130" y="35" width="75" height="50" rx="8" fill="#4338ca"/>
+                                <text x="167" y="65" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="13">RM840</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-2">
+                            <span class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-2.5 py-1 rounded">例题 10 (课本 P.250)</span>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">一货物折扣 25% 后，售价是 RM840，求原价。</h4>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono">
+                                <p><strong class="text-indigo-600 dark:text-indigo-400">解：</strong> 折扣 25% 后，售价占原价的 (100% - 25%) = 75%</p>
+                                <p>原价 = 840 ÷ 75% = 840 × (100 / 75) = <strong>RM 1120</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-bold px-2.5 py-1 rounded">例题 5 (课本 P.245)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">(a) 60仙是RM12的百分之几？ (b) 450mm是3m的百分之几？</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>(a) RM12 = 1200仙；60 ÷ 1200 × 100% = <strong>5%</strong></p><p>(b) 3m = 3000mm；450 ÷ 3000 × 100% = <strong>15%</strong></p><p><strong>提醒：先统一单位，再相除。</strong></p></div></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-rose-100 dark:bg-rose-900/60 text-rose-700 dark:text-rose-300 text-xs font-bold px-2.5 py-1 rounded">例题 12 (课本 P.253)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">某商人以RM4800买进一批货物，以RM6000卖出，求赚率。</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>所赚的钱 = 6000 - 4800 = RM1200</p><p>赚率 = 1200 ÷ 4800 × 100% = <strong>25%</strong></p></div></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-2.5 py-1 rounded">例题 15 (课本 P.254)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">某物品以RM234出售，可获利30%，求其成本。</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>获利30%，售价是成本的 130%</p><p>成本 = 234 ÷ 130% = 234 × 100/130 = <strong>RM180</strong></p></div></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 text-xs font-bold px-2.5 py-1 rounded">例题 17 (课本 P.257)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">本金RM3000，年利率5%，单利计算，三年后的本利和？</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>本利和 = 3000 + 3000 × 5% × 3</p><p>= 3000 + 450 = <strong>RM3450</strong></p></div></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-700 space-y-2"><span class="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-2.5 py-1 rounded">例题 21 (课本 P.259)</span><h4 class="font-bold text-slate-800 dark:text-slate-100">林先生售出一批价值RM4500的货品，获得4%佣金，求佣金。</h4><div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-800 font-mono"><p>佣金 = 4500 × 4% = <strong>RM180</strong></p></div></div>
+            </div>
+            <div id="mount-72" class="space-y-6"></div>
+        </section>
+
+        <!-- TAB: FINAL TEST (总测验) -->
+        <section id="tab-final" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-br from-amber-500 to-rose-500 text-white rounded-2xl p-6 shadow-sm">
+                <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-trophy"></i> 第7章 总测验</h2>
+                <p class="text-sm mt-2 opacity-95">从 7.1 与 7.2 各抽取一半题目综合出题：选择题 6 题（7.1 占 3 题、7.2 占 3 题），填充题 4 题（各占 2 题）。每次开始或重做，题目的数字与答案都会重新生成。</p>
+            </div>
+            <div id="mount-final" class="space-y-6"></div>
+        </section>
+
+        <!-- TAB: INTERACTIVE LAB / CALCULATOR -->
+        <section id="lab-card" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 flex items-center justify-center font-bold text-lg">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <div>
+                        <h2 id="lab-title" class="text-xl font-bold text-slate-800 dark:text-slate-100">互动计算实验室</h2>
+                        <p id="lab-sub" class="text-xs text-slate-500 dark:text-slate-400">拖动滑块或输入数值，观察公式演算过程</p>
+                    </div>
+                </div>
+
+                <div id="lab-modes" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-6"></div>
+
+                <!-- Simulator Controls & Formula Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <!-- Controls -->
+                    <div class="space-y-4 bg-slate-50 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lab-input-label-1">剩余 / 已知部分数量 (如 90 粒):</label>
+                            <input type="number" id="lab-val-1" value="84" oninput="calculateLab()" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono text-sm">
+                        </div>
+
+                        <div id="lab-row-2">
+                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                <span id="lab-input-label-2">消耗 / 扣除 / 变动百分比 (%):</span>
+                                <span id="lab-val-2-text" class="text-purple-600 dark:text-purple-400 font-mono">28%</span>
+                            </div>
+                            <input type="range" id="lab-slider-2" min="0" max="99" value="30" oninput="calculateLab()" class="w-full accent-purple-600 cursor-pointer">
+                        </div>
+                        <div id="lab-row-3" class="hidden"><label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lab-input-label-3"></label><input type="number" id="lab-val-3" value="40" oninput="calculateLab()" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono text-sm"></div>
+                    </div>
+
+                    <!-- Visual Output & Dynamic Math Steps -->
+                    <div class="bg-gradient-to-br from-purple-900 to-indigo-900 text-white p-6 rounded-2xl shadow-md space-y-3 font-mono">
+                        <span class="text-xs text-purple-300 font-sans font-semibold tracking-wider uppercase">步骤拆解 Step-by-Step</span>
+                        <div id="lab-step-1" class="text-xs text-purple-200">剩余/对应占比 = 100% - 28% = 72%</div>
+                        <div id="lab-step-2" class="text-xs text-purple-200">原有总量 = 90 ÷ 72% = 90 ÷ 0.72</div>
+                        <div class="pt-3 border-t border-purple-700/60">
+                            <span id="lab-result-label" class="text-xs text-purple-300 font-sans block mb-1">原有总量:</span>
+                            <div id="lab-final-result" class="text-3xl font-bold text-amber-300">125 粒</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: QUIZ & CHALLENGE (章节测试与关卡) -->
+        <section id="quiz-card" class="hidden space-y-6">
+            
+            <!-- Quiz Control & Progress Dashboard -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                            <i class="fas fa-trophy text-amber-500"></i> <span id="quiz-title">章节测试与闯关</span>
+                        </h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            说明：选择题答对 <strong id="need-text" class="text-sky-600 dark:text-sky-400">至少 3 题</strong>，即可解锁第二关 <strong class="text-amber-500">“填充题挑战”</strong>！
+                        </p>
+                    </div>
+
+                    <!-- Section Selector for Quiz -->
+                    <select id="quiz-section-select" onchange="loadQuizSection()" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-semibold text-sm text-slate-700 dark:text-slate-200">
+                        <option value="s71">7.1 节：百分数概念与互化</option>
+                        <option value="s72">7.2 节：百分法应用问题</option>
+                        <option value="s73">7.2 续：盈亏 · 单利息 · 佣金</option>
+                    </select>
+                </div>
+
+                <!-- Level Indicator -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                    <div id="level-1-card" class="p-4 rounded-xl border-2 border-sky-500 bg-sky-50/50 dark:bg-sky-950/30 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">第一关 Level 1</span>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm">选择题 (<span id="n-mcq">5</span> 题)</h3>
+                        </div>
+                        <span id="level-1-status" class="px-2.5 py-1 rounded-full text-xs font-bold bg-sky-500 text-white">进行中</span>
+                    </div>
+
+                    <div id="level-2-card" class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 opacity-60 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">第二关 Level 2</span>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm">填充深度思考题 (<span id="n-fill">2</span> 题)</h3>
+                        </div>
+                        <span id="level-2-status" class="px-2.5 py-1 rounded-full text-xs font-bold bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-lock"></i> 未解锁
+                        </span>
+                    </div>
+                </div>
+
+                <!-- LEVEL 1: MCQ QUESTIONS CONTAINER -->
+                <div id="mcq-container" class="space-y-6">
+                    <!-- Dynamic MCQs loaded by JS -->
+                </div>
+
+                <!-- MCQ Submit Button -->
+                <div class="mt-8 flex justify-end">
+                    <button id="btn-submit-mcq" onclick="submitMCQ()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-sm shadow-md hover:from-sky-600 hover:to-blue-700 transition flex items-center gap-2">
+                        <i class="fas fa-paper-plane"></i> 提交选择题答案
+                    </button>
+                </div>
+
+                <!-- LEVEL 2: FILL-IN-THE-BLANK QUESTIONS (HIDDEN UNTIL UNLOCKED) -->
+                <div id="fill-container" class="mt-12 pt-8 border-t-2 border-dashed border-amber-300 dark:border-amber-600/50 hidden space-y-6">
+                    <div class="bg-amber-50 dark:bg-amber-950/40 p-4 rounded-xl border border-amber-200 dark:border-amber-700/60 flex items-center gap-3">
+                        <i class="fas fa-unlock-alt text-amber-500 text-2xl"></i>
+                        <div>
+                            <h3 class="font-bold text-amber-800 dark:text-amber-300 text-sm">恭喜！第一关达标，第二关“填充题”已成功开启！</h3>
+                            <p class="text-xs text-amber-700 dark:text-amber-400">请输入准确数值（保留必要单位或小数），考验你的真实理解能力。</p>
+                        </div>
+                    </div>
+
+                    <div id="fill-questions-list" class="space-y-6">
+                        <!-- Dynamic Fill Questions loaded by JS -->
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button id="btn-submit-fill" onclick="submitFill()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-sm shadow-md hover:from-amber-600 hover:to-orange-700 transition flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> 提交填充题答案
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>初一上册 第7章《百分法》教学互助课件 · 董总独中教科书对应版</p>
+        <p class="mt-1">峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // State Management
+        let currentFontSize = 100; // %
+        let currentQuizSection = 's71';
+        let mcqPassed = false;
+        let currentQuiz = { mcq: [], fill: [] };
+        let currentLabMode = 'reverse';
+
+        // ===== 自制出题引擎：每次随机生成数字，答案、干扰项与解析全部自动演算 =====
+        const R = { int: (a, b) => Math.floor(Math.random() * (b - a + 1)) + a, pick: a => a[Math.floor(Math.random() * a.length)] };
+        const nf = x => String(+(+x).toFixed(6));
+        const isNice = x => Math.abs(x * 100 - Math.round(x * 100)) < 1e-6;
+        const rm = x => 'RM' + (Number.isInteger(+(+x).toFixed(6)) ? nf(x) : (+x).toFixed(2));
+        const pc = x => nf(x) + '%';
+        const gcd = (a, b) => b ? gcd(b, a % b) : a;
+        const fr = (a, b) => { const g = gcd(a, b); return b / g === 1 ? String(a / g) : `${a / g}/${b / g}`; };
+        const pFrac = p => { let k = 1; while (Math.abs(p * k - Math.round(p * k)) > 1e-9) k *= 10; return [Math.round(p * k), 100 * k]; };
+        const showNum = x => typeof x === 'number' ? nf(x) : String(x);
+
+        // 组装选择题：正确答案 + 由“典型错误算法”得到的干扰项（不足 3 个时自动补齐）
+        function mk(q, right, wrongs, explain, f) {
+            f = f || showNum;
+            const shown = [f(right)];
+            wrongs.forEach(w => {
+                if (w === null || w === undefined) return;
+                if (typeof w === 'number' && !(isFinite(w) && w > 0 && +w.toFixed(5) === +w.toFixed(8))) return;
+                const s = f(w);
+                if (!shown.includes(s) && shown.length < 4) shown.push(s);
+            });
+            if (typeof right === 'number') {
+                [right * 1.1, right * 0.9, right + 10, right * 2, right / 2, right + 1, right - 1, right + 5].forEach(w => {
+                    if (w > 0) { const s = f(w); if (!shown.includes(s) && shown.length < 4) shown.push(s); }
+                });
+            }
+            const opts = shuffle(shown);
+            return { q, options: opts, ans: opts.indexOf(f(right)), explain };
+        }
+
+        // ---------- 7.1 百分数概念与互化 ----------
+        const G71 = [
+            () => { // 百分数 → 最简分数
+                const p = R.pick([5, 15, 25, 35, 40, 45, 60, 75, 80, 12.5, 37.5, 62.5, 0.5, 24, 36, 48, 55, 64, 85, 120, 150, 175, 250, 6, 8, 44]);
+                const [A, B] = pFrac(p), right = fr(A, B);
+                return mk(`将 ${p}% 化为最简分数，结果是：`, right, [fr(A, B * 10), fr(A, B / 10), fr(B, A), gcd(A, B) > 1 ? `${A}/${B}` : null],
+                    `${p}% = ${p}/100` + (B !== 100 ? ` = ${A}/${B}` : '') + `，约简得 ${right}。`, x => x);
+            },
+            () => { // 分数 → 百分数
+                const b = R.pick([4, 5, 8, 10, 20, 25, 40, 50]); let a;
+                do { a = R.int(1, 2 * b - 1); } while (!isNice(100 * a / b) || a === b);
+                const p = 100 * a / b;
+                return mk(`将分数 ${a}/${b} 化为百分数，结果是：`, p, [a / b * 10, a / b, 100 * b / a, a / b * 1000], `${a}/${b} × 100% = ${pc(p)}。`, pc);
+            },
+            () => { // 小数 → 百分数
+                const d = R.pick([R.int(2, 98) / 100, R.int(11, 989) / 1000, R.int(101, 499) / 100, R.int(1, 29) / 1000]);
+                const p = d * 100;
+                return mk(`将小数 ${nf(d)} 化为百分数，结果是：`, p, [d * 10, d * 1000, d, d / 100], `${nf(d)} × 100% = ${pc(p)}（小数点向右移 2 位）。`, pc);
+            },
+            () => { // 百分数 → 小数
+                const p = R.pick([R.int(2, 98), R.int(101, 299), R.int(11, 999) / 10, R.int(11, 99) / 100]);
+                return mk(`将 ${nf(p)}% 化为小数，结果是：`, p / 100, [p / 10, p / 1000, p, p * 10], `${nf(p)}% = ${nf(p)} ÷ 100 = ${nf(p / 100)}（小数点向左移 2 位）。`);
+            },
+            () => { // 比较大小：分数 / 小数 / 百分数混合
+                for (let t = 0; t < 300; t++) {
+                    const forms = shuffle(['p', 'd', 'f', 'p', 'd', 'f']).slice(0, 4), items = [];
+                    forms.forEach(f => {
+                        if (f === 'p') { const v = R.int(4, 36) * 5; items.push({ v: v / 100, s: v + '%' }); }
+                        else if (f === 'd') { const v = R.int(10, 190) / 100; items.push({ v, s: nf(v) }); }
+                        else { const d = R.pick([2, 4, 5, 8, 10, 20]); const n = R.int(Math.ceil(d * 0.2), 2 * d - 1); items.push({ v: n / d, s: `${n}/${d}` }); }
+                    });
+                    const vs = items.map(i => i.v).sort((a, b) => a - b);
+                    if (!vs.every((v, i) => i === 0 || v - vs[i - 1] >= 0.04)) continue;
+                    const max = items.reduce((m, i) => i.v > m.v ? i : m, items[0]);
+                    return { q: '下列四个数中，哪一个最大？', options: items.map(i => i.s), ans: items.indexOf(max),
+                        explain: '全部化为百分数比较：' + items.map(i => `${i.s} = ${pc(i.v * 100)}`).join('；') + `。最大的是 ${max.s}。` };
+                }
+                return G71[0]();
+            }
+        ];
+        const F71 = [
+            () => { // 三种形式相加
+                const b = R.pick([2, 4, 5, 10, 20, 25]), a = R.int(1, b - 1), f = 100 * a / b, dd = R.int(5, 60), p = R.int(1, 20) * 5, tot = f + dd + p;
+                return { q: `把 ${a}/${b}、${nf(dd / 100)} 与 ${p}% 都化为百分数后相加，结果是 ____ %。`, ans: [nf(tot)],
+                    explain: `${a}/${b} = ${nf(f)}%；${nf(dd / 100)} = ${dd}%；${p}%。三者相加 = ${nf(tot)}%。` };
+            },
+            () => { // 分数与百分数的差
+                let b, a, f, p;
+                do { b = R.pick([4, 5, 8, 10, 20, 25, 40, 50]); a = R.int(1, 2 * b - 1); f = 100 * a / b; p = R.int(2, 60) * 5; } while (!isNice(f) || f === p);
+                const d = Math.abs(f - p);
+                return { q: `${a}/${b} 与 ${p}% 的差，用百分数表示是 ____ %。`, ans: [nf(d)], explain: `${a}/${b} = ${nf(f)}%；|${nf(f)}% - ${p}%| = ${nf(d)}%。` };
+            }
+        ];
+
+        // ---------- 7.2 前半：增减、折扣、服务费 ----------
+        const G72 = [
+            () => { // 求没有……的占几巴仙
+                let N, p, K;
+                do { N = R.pick([20, 25, 30, 40, 50, 60, 80, 120, 200]); p = R.pick([5, 10, 15, 20, 25, 30, 35, 40, 45, 60, 70, 75, 80]); K = N * p / 100; } while (!Number.isInteger(K));
+                const th = R.pick([['某校有', '位学生，其中', '位乘搭学校巴士，不乘搭学校巴士的'], ['某班有', '位同学，其中', '位戴眼镜，没有戴眼镜的'], ['某农场有', '只鸡，其中', '只是母鸡，不是母鸡的']]);
+                return mk(`${th[0]} ${N} ${th[1]} ${K} ${th[2]}占全部的几巴仙？`, 100 - p, [p, (N - K) / K * 100, K / (N - K) * 100],
+                    `不是的有 ${N} - ${K} = ${N - K}；${N - K} ÷ ${N} × 100% = ${pc(100 - p)}。`, pc);
+            },
+            () => { // 求某量的 p%
+                let A, p, v;
+                do { A = R.pick([40, 60, 80, 120, 150, 200, 250, 320, 400, 480, 500, 800, 1200]); p = R.pick([5, 8, 12, 15, 20, 25, 30, 35, 40, 45, 60, 75, 120, 150]); v = A * p / 100; } while (!isNice(v));
+                const u = R.pick(['RM', 'kg', 'm']), f = x => u === 'RM' ? rm(x) : nf(x) + u, nm = u === 'RM' ? 'RM' + A : A + u;
+                return mk(`${nm} 的 ${p}% 是多少？`, v, [A * p, A * (100 - p) / 100, A * p / 10, A + v], `${A} × ${p}% = ${A} × ${p}/100 = ${f(v)}。`, f);
+            },
+            () => { // 单位不同：先统一单位
+                const y = R.pick([2, 4, 5, 8, 10, 20, 25, 50]), p = R.pick([5, 10, 15, 20, 25, 40, 50, 60, 75]);
+                if (Math.random() < 0.5) {
+                    const x = y * p;
+                    return mk(`${x}仙是 RM${y} 的百分之几？`, p, [p * 100, p * 10, p / 10], `RM${y} = ${y * 100}仙；${x} ÷ ${y * 100} × 100% = ${pc(p)}。`, pc);
+                }
+                const x = y * 10 * p;
+                return mk(`${x}mm 是 ${y}m 的百分之几？`, p, [p * 100, p * 10, p / 10], `${y}m = ${y * 1000}mm；${x} ÷ ${y * 1000} × 100% = ${pc(p)}。`, pc);
+            },
+            () => { // 增量 / 减量
+                let A, p, v;
+                do { A = R.pick([40, 50, 60, 80, 120, 150, 200, 250, 300, 400, 500]); p = R.pick([5, 10, 12.5, 15, 20, 25, 30, 40, 50, 60]); v = A * p / 100; } while (!isNice(v));
+                const u = R.pick(['kg', 'RM']), f = x => u === 'RM' ? rm(x) : nf(x) + 'kg', nm = u === 'RM' ? 'RM' + A : A + 'kg', mode = R.int(0, 2);
+                if (mode === 0) return mk(`${nm} 增加了 ${p}%，增量是多少？`, v, [A + v, A * p, A + p], `增量 = ${A} × ${p}% = ${f(v)}。`, f);
+                if (mode === 1) return mk(`${nm} 减少了 ${p}%，减少后是多少？`, A - v, [v, A + v, A - p], `减量 = ${A} × ${p}% = ${f(v)}；减少后 = ${A} - ${nf(v)} = ${f(A - v)}。`, f);
+                return mk(`${nm} 增加了 ${p}%，增加后是多少？`, A + v, [v, A - v, A + p], `增量 = ${A} × ${p}% = ${f(v)}；增加后 = ${A} + ${nf(v)} = ${f(A + v)}。`, f);
+            },
+            () => { // 增 / 减百分率
+                let x, p, y, up;
+                do { x = R.pick([20, 25, 40, 50, 60, 80, 100, 120, 150, 200, 250, 320, 400]); p = R.pick([10, 12.5, 20, 25, 30, 40, 50, 60, 75, 80]); up = Math.random() < 0.5; y = up ? x * (1 + p / 100) : x * (1 - p / 100); } while (!Number.isInteger(+y.toFixed(6)) || y <= 0);
+                const u = R.pick(['m', '分钟', '公升', 'kg']), d = Math.abs(y - x), w = up ? '增加' : '减少';
+                return mk(`${x}${u}${w}至 ${y}${u}，${w}的百分率是：`, p, [d / y * 100, y / x * 100, d], `${w}了 |${y} - ${x}| = ${d}${u}；${d} ÷ ${x} × 100% = ${pc(p)}（以原来的数量为基准）。`, pc);
+            },
+            () => { // 折扣 / 打折
+                const A = R.pick([40, 48, 60, 80, 120, 150, 200, 240, 300, 400, 500, 800, 1200]);
+                if (Math.random() < 0.5) {
+                    let p, S;
+                    do { p = R.pick([10, 15, 20, 25, 30, 40, 45, 50]); S = A * (100 - p) / 100; } while (!isNice(S));
+                    return mk(`一件物品定价 ${rm(A)}，折扣 ${p}%，售价是多少？`, S, [A * p / 100, A * (100 + p) / 100, A - p], `售价 = ${A} × (100% - ${p}%) = ${A} × ${100 - p}% = ${rm(S)}。`, rm);
+                }
+                const z = R.pick([['五折', 50], ['六折', 60], ['七折', 70], ['八折', 80], ['九折', 90], ['七五折', 75], ['八五折', 85]]), S = A * z[1] / 100;
+                return mk(`一套商品定价 ${rm(A)}，打${z[0]}出售，售价是多少？`, S, [A * (100 - z[1]) / 100, A * z[1] / 10, A + A * z[1] / 100], `打${z[0]}即按 ${z[1]}% 出售：${A} × ${z[1]}% = ${rm(S)}。`, rm);
+            },
+            () => { // 折扣后求原价
+                let A, p, S;
+                do { A = R.pick([200, 250, 400, 500, 600, 800, 1000, 1200, 1500, 2000]); p = R.pick([10, 20, 25, 30, 40, 50, 60]); S = A * (100 - p) / 100; } while (!Number.isInteger(S));
+                return mk(`一件物品折扣 ${p}% 后，售价是 ${rm(S)}，求原价。`, A, [S * (100 + p) / 100, S * 100 / p, S + p], `售价是原价的 ${100 - p}%；原价 = ${S} ÷ ${100 - p}% = ${S} × 100/${100 - p} = ${rm(A)}。`, rm);
+            },
+            () => { // 服务费 / 税
+                let A, s;
+                do { A = R.pick([20, 30, 40, 50, 60, 80, 120, 150, 200]); s = R.pick([5, 6, 8, 10]); } while (!isNice(A * s / 100));
+                return mk(`餐费 ${rm(A)}，另加 ${s}% 的服务费，共需付多少？`, A * (100 + s) / 100, [A * s / 100, A * (100 - s) / 100, A + s], `服务费 = ${A} × ${s}% = ${rm(A * s / 100)}；共需付 ${A} + ${nf(A * s / 100)} = ${rm(A * (100 + s) / 100)}。`, rm);
+            },
+            () => { // 已知剩余求原量
+                let O, p, K;
+                do { O = R.pick([40, 50, 60, 80, 100, 120, 150, 200, 250, 400, 500]); p = R.pick([10, 20, 25, 30, 40, 50, 60, 75, 80]); K = O * (100 - p) / 100; } while (!Number.isInteger(K) || K <= 0);
+                return mk(`一盒糖果吃掉 ${p}% 后，还剩 ${K} 粒，该盒原有多少粒糖果？`, O, [K * (100 + p) / 100, K * 100 / p, K + p], `还剩 ${100 - p}%；原有 = ${K} ÷ ${100 - p}% = ${O} 粒。`);
+            }
+        ];
+        const F72 = [
+            () => {
+                let A, B, p, qq, r;
+                do { A = R.pick([100, 150, 200, 250, 300, 400, 500, 800]); B = R.pick([100, 120, 150, 200, 250, 300, 400, 600]); p = R.pick([10, 15, 20, 25, 30, 40, 60]); qq = R.pick([5, 10, 15, 20, 25, 30, 35, 40, 45]); r = Math.abs(A * p / 100 - B * qq / 100); } while (!isNice(r) || r === 0);
+                return { q: `计算：RM${A} 的 ${p}% 与 RM${B} 的 ${qq}% 之差是 RM ____。`, ans: [nf(r)], explain: `${A} × ${p}% = ${nf(A * p / 100)}；${B} × ${qq}% = ${nf(B * qq / 100)}；差 = ${nf(r)}。` };
+            },
+            () => {
+                let O, p, qq, K, L;
+                do { O = R.pick([40, 50, 60, 80, 100, 120, 150, 200, 250, 400, 500]); p = R.pick([10, 20, 25, 30, 40]); qq = R.pick([10, 20, 25, 30, 40, 50]); K = O * (100 - p) / 100; L = O * (100 - p - qq) / 100; } while (!Number.isInteger(K) || !Number.isInteger(L) || L <= 0);
+                return { q: `一箱苹果吃掉 ${p}% 后还剩 ${K} 个，若再吃掉原来数量的 ${qq}%，最后还剩 ____ 个。`, ans: [String(L)], explain: `原有 = ${K} ÷ ${100 - p}% = ${O} 个；共吃掉 ${p + qq}%，剩 ${100 - p - qq}%：${O} × ${100 - p - qq}% = ${L} 个。` };
+            },
+            () => {
+                const p = R.pick([10, 20, 25, 30, 40, 50]), d = p * p / 100;
+                return { q: `某数先增加 ${p}%，再减少 ${p}%，结果比原数少了 ____ %。`, ans: [nf(d)], explain: `设原数为 100：增加后是 ${100 + p}，再减少 ${p}%：${100 + p} × ${100 - p}% = ${nf((100 + p) * (100 - p) / 100)}，比 100 少 ${nf(d)}，即 ${nf(d)}%。` };
+            }
+        ];
+
+        // ---------- 7.2 后半：盈亏、单利息、佣金 ----------
+        const G73 = [
+            () => { // 求赚率 / 亏率
+                let C, r, loss, S;
+                do { C = R.pick([200, 250, 400, 500, 800, 1000, 1200, 2000, 2400, 4800]); r = R.pick([10, 12.5, 20, 25, 30, 40, 50]); loss = Math.random() < 0.5; S = C * (100 + (loss ? -r : r)) / 100; } while (!isNice(S));
+                const d = Math.abs(S - C);
+                return mk(`某商人以 ${rm(C)} 买进一批货物，以 ${rm(S)} 卖出，求${loss ? '亏' : '赚'}率。`, r, [d / S * 100, S / C * 100, d], `所${loss ? '亏' : '赚'}的钱 = |${S} - ${C}| = ${rm(d)}；${loss ? '亏' : '赚'}率 = ${nf(d)} ÷ ${C} × 100% = ${pc(r)}（以成本为基准）。`, pc);
+            },
+            () => { // 由成本求售价
+                let C, r, loss, S;
+                do { C = R.pick([100, 120, 150, 200, 240, 300, 400, 500]); r = R.pick([10, 15, 20, 25, 30, 40, 50]); loss = Math.random() < 0.5; S = C * (100 + (loss ? -r : r)) / 100; } while (!isNice(S));
+                return mk(`某物品成本 ${rm(C)}，若要${loss ? '亏' : '赚'} ${r}% 出售，售价应是多少？`, S, [C * r / 100, C * (100 + (loss ? r : -r)) / 100, C + r], `售价 = 成本 × (100% ${loss ? '-' : '+'} ${r}%) = ${C} × ${100 + (loss ? -r : r)}% = ${rm(S)}。`, rm);
+            },
+            () => { // 由售价求成本
+                let C, r, loss, S;
+                do { C = R.pick([100, 120, 150, 160, 180, 200, 240, 250, 300, 400, 500, 800]); r = R.pick([10, 20, 25, 30, 40, 50]); loss = Math.random() < 0.5; S = C * (100 + (loss ? -r : r)) / 100; } while (!Number.isInteger(S));
+                const sg = loss ? -1 : 1;
+                return mk(`某物品以 ${rm(S)} 出售，${loss ? '亏' : '可获利'} ${r}%，求其成本。`, C, [S * (1 - sg * r / 100), S * (1 + sg * r / 100), S - sg * r], `${loss ? '亏' : '赚'} ${r}%，售价是成本的 ${100 + sg * r}%；成本 = ${S} ÷ ${100 + sg * r}% = ${rm(C)}。`, rm);
+            },
+            () => { // 单利息
+                let P, r, t, I;
+                do { P = R.pick([1000, 2000, 2500, 3000, 4000, 5000, 6000, 8000, 10000]); r = R.pick([2, 2.5, 3, 3.5, 4, 4.5, 5, 6]); t = R.int(2, 5); I = P * r * t / 100; } while (!isNice(I));
+                return mk(`本金 ${rm(P)}，年利率 ${r}%，以单利计算，${t} 年后可得利息多少？`, I, [P * r / 100, P + I, P * r * t], `单利息 = 本金 × 利率 × 期数 = ${P} × ${r}% × ${t} = ${rm(I)}。`, rm);
+            },
+            () => { // 本利和
+                let P, r, t, I;
+                do { P = R.pick([1000, 2000, 2500, 3000, 4000, 5000, 6000, 8000, 10000]); r = R.pick([2, 2.5, 3, 3.5, 4, 4.5, 5, 6]); t = R.int(2, 5); I = P * r * t / 100; } while (!isNice(I));
+                return mk(`本金 ${rm(P)}，年利率 ${r}%，以单利计算，${t} 年后的本利和是多少？`, P + I, [I, Math.round(P * Math.pow(1 + r / 100, t) * 100) / 100, P + P * r / 100], `利息 = ${P} × ${r}% × ${t} = ${nf(I)}；本利和 = 本金 + 利息 = ${P} + ${nf(I)} = ${rm(P + I)}。`, rm);
+            },
+            () => { // 月利率
+                let P, m, k, I;
+                do { m = R.pick([0.2, 0.25, 0.4, 0.5]); k = R.pick([6, 8, 10, 12, 15, 18, 24]); P = R.pick([2000, 4000, 5000, 8000, 10000, 20000]); I = P * m * k / 100; } while (!isNice(I));
+                return mk(`本金 ${rm(P)}，月利率 ${m}%，以单利计算，${k} 个月后可得利息多少？`, I, [P * m / 100, P * m * k, P * m * k / 1200], `期数是 ${k} 个月；利息 = ${P} × ${m}% × ${k} = ${rm(I)}。`, rm);
+            },
+            () => { // 求年利率
+                let P, r, t, I;
+                do { P = R.pick([1500, 2000, 2500, 3000, 4000, 5000, 8000]); r = R.pick([2, 2.5, 3, 4, 5, 6, 7, 8]); t = R.int(1, 4); I = P * r * t / 100; } while (!isNice(I));
+                return mk(`某人向银行贷款 ${rm(P)}，以单利计算，${t} 年后的利息是 ${rm(I)}，求年利率。`, r, [I / P * 100, r * t, r / t], `年利率 = 利息 ÷ (本金 × 期数) × 100% = ${I} ÷ (${P} × ${t}) × 100% = ${pc(r)}。`, pc);
+            },
+            () => { // 佣金
+                const V = R.pick([2000, 3500, 4500, 6000, 8000, 12000, 15000, 20000, 28000]), c = R.pick([2, 3, 4, 5, 6, 8]), M = V * c / 100;
+                return mk(`某人售出一批价值 ${rm(V)} 的货品，获得 ${c}% 的佣金，求佣金。`, M, [V * c, V * (100 + c) / 100, V * c / 10], `佣金 = 交易价格 × 佣金百分率 = ${V} × ${c}% = ${rm(M)}。`, rm);
+            },
+            () => { // 佣金率
+                const V = R.pick([8000, 12000, 15000, 20000, 28000, 40000, 78000]), c = R.pick([2, 3, 4, 5, 6, 8]), M = V * c / 100;
+                return mk(`某汽车代理售出价值 ${rm(V)} 的汽车，获得 ${rm(M)} 的佣金，求佣金百分率。`, c, [M / V, V / M * 100, c * 10], `佣金百分率 = ${M} ÷ ${V} × 100% = ${pc(c)}。`, pc);
+            },
+            () => { // 先加价再打折，赚还是亏？
+                let a, b, res;
+                do { a = R.pick([20, 25, 30, 40, 50]); b = R.pick([10, 15, 20, 25]); res = ((100 + a) * (100 - b) - 10000) / 100; } while (Math.abs(res) < 0.01);
+                const dir = x => (x >= 0 ? '赚 ' : '亏 ') + nf(Math.abs(x)) + '%', right = dir(res);
+                const flip = (res >= 0 ? '亏 ' : '赚 ') + nf(Math.abs(res)) + '%';
+                const cand = [dir(a - b), flip, '赚 ' + a + '%', '亏 ' + b + '%'], opts = [right];
+                cand.forEach(c => { if (!opts.includes(c) && opts.length < 4) opts.push(c); });
+                const sh = shuffle(opts);
+                return { q: `某物品的定价比成本高 ${a}%，后来折扣 ${b}% 售出，问是赚还是亏？赚或亏百分之几？`, options: sh, ans: sh.indexOf(right),
+                    explain: `设成本为 100：定价 = ${100 + a}；售价 = ${100 + a} × ${100 - b}% = ${nf((100 + a) * (100 - b) / 100)}；比成本${res >= 0 ? '多' : '少'} ${nf(Math.abs(res))}，所以${right}（不能直接用 ${a}% - ${b}%）。` };
+            }
+        ];
+        const F73 = [
+            () => {
+                let P, r, t, I;
+                do { P = R.pick([2000, 2500, 3000, 4000, 5000, 6000, 8000, 10000]); r = R.pick([2, 2.5, 3, 3.5, 4, 4.5, 5, 6]); t = R.int(2, 5); I = P * r * t / 100; } while (!isNice(I));
+                return { q: `本金 RM${P}，年利率 ${r}%，以单利计算，${t} 年后的本利和是 RM ____。`, ans: [nf(P + I)], explain: `利息 = ${P} × ${r}% × ${t} = RM${nf(I)}；本利和 = ${P} + ${nf(I)} = RM${nf(P + I)}。` };
+            },
+            () => {
+                let C, a, b, pr;
+                do { C = R.pick([200, 300, 400, 500, 800, 1000]); a = R.pick([30, 40, 50, 60]); b = R.pick([10, 20, 25]); pr = C * (100 + a) * (100 - b) / 10000 - C; } while (pr <= 0 || !isNice(pr));
+                return { q: `某物品成本 RM${C}，定价比成本高 ${a}%，后来折扣 ${b}% 卖出，赚了 RM ____。`, ans: [nf(pr)], explain: `定价 = ${C} × ${100 + a}% = ${nf(C * (100 + a) / 100)}；售价 = ${nf(C * (100 + a) / 100)} × ${100 - b}% = ${nf(C * (100 + a) * (100 - b) / 10000)}；赚 ${nf(C * (100 + a) * (100 - b) / 10000)} - ${C} = RM${nf(pr)}。` };
+            },
+            () => {
+                let V, c, qq, sv;
+                do { V = R.pick([8000, 10000, 12000, 15000, 20000, 25000]); c = R.pick([2, 4, 5, 8]); qq = R.pick([20, 25, 40, 50, 60]); sv = V * c / 100 * (100 - qq) / 100; } while (!isNice(sv));
+                return { q: `售出价值 RM${V} 的货品后获得 ${c}% 的佣金，若花掉佣金的 ${qq}%，其余储蓄起来，则储蓄了 RM ____。`, ans: [nf(sv)], explain: `佣金 = ${V} × ${c}% = ${nf(V * c / 100)}；储蓄 ${100 - qq}%：${nf(V * c / 100)} × ${100 - qq}% = RM${nf(sv)}。` };
+            },
+            () => {
+                let P, r, t, I;
+                do { P = R.pick([2000, 2500, 3000, 4000, 5000, 8000]); r = R.pick([2, 2.5, 3, 4, 5, 6, 7, 8]); t = R.int(2, 4); I = P * r * t / 100; } while (!isNice(I));
+                return { q: `某人向银行贷款 RM${P}，以单利计算，${t} 年后共需还 RM${nf(P + I)}，求年利率 ____ %。`, ans: [nf(r)], explain: `利息 = ${nf(P + I)} - ${P} = ${nf(I)}；年利率 = ${nf(I)} ÷ (${P} × ${t}) × 100% = ${nf(r)}%。` };
+            }
+        ];
+
+        // ---------- 引擎：每章 5 题选择 + 2 题填充；总测验 6 题选择 + 4 题填充 ----------
+        function drawN(gens, n) { let order = []; while (order.length < n) order = order.concat(shuffle(gens)); return order.slice(0, n); }
+        function runGen(g, tag) { const o = g(); o.tag = tag || ''; return o; }
+        const QuizEngine = {
+            build(sec) {
+                let mcq, fill;
+                if (sec === 'final') {
+                    const g2 = [R.pick(G72), R.pick(G73)];
+                    g2.push(R.pick(G72.concat(G73).filter(g => !g2.includes(g))));
+                    mcq = drawN(G71, 3).map(g => runGen(g, '7.1')).concat(g2.map(g => runGen(g, '7.2')));
+                    fill = drawN(F71, 2).map(g => runGen(g, '7.1')).concat([R.pick(F72), R.pick(F73)].map(g => runGen(g, '7.2')));
+                } else {
+                    const pool = { s71: [G71, F71], s72: [G72, F72], s73: [G73, F73] }[sec];
+                    mcq = drawN(pool[0], 5).map(g => runGen(g)); fill = drawN(pool[1], 2).map(g => runGen(g));
+                }
+                const num = (o, i) => { o.q = `${i + 1}. ${o.tag ? `〔${o.tag}〕` : ''}${o.q}`; return o; };
+                return { mcq: mcq.map(num), fill: fill.map(num) };
+            }
+        };
+
+        // Initialize Page
+        window.onload = function() {
+            const th = loadP('theme');
+            applyTheme(th ? th === 'dark' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
+            const fs = parseInt(loadP('fs'));
+            if (fs >= 80 && fs <= 130) setFont(fs);
+            updateGridVisual(55);
+            mountTools('tab-71');
+            calculateLab();
+        };
+
+        // Theme & font (remembered across visits)
+        function saveP(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        function loadP(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+        function applyTheme(dark) {
+            document.documentElement.classList.toggle('dark', dark);
+            document.getElementById('theme-icon').className = dark ? 'fas fa-sun text-lg text-amber-400' : 'fas fa-moon text-lg';
+        }
+        function toggleDarkMode() {
+            const dark = !document.documentElement.classList.contains('dark');
+            applyTheme(dark); saveP('theme', dark ? 'dark' : 'light');
+        }
+        // Font size: root font-size, so Tailwind's rem-based text scales too
+        function setFont(n) {
+            currentFontSize = n;
+            document.documentElement.style.fontSize = n + '%';
+            document.getElementById('font-size-label').innerText = n + '%';
+        }
+        function changeFontSize(direction) {
+            setFont(Math.min(130, Math.max(80, currentFontSize + direction * 10)));
+            saveP('fs', currentFontSize);
+        }
+
+        // Each chapter owns its own lab + quiz (moved into the active chapter)
+        const LAB_BTN = {
+            p2f: ['fa-exchange-alt', '百分数 ➔ 分数'], f2p: ['fa-exchange-alt', '分数 ➔ 百分数'],
+            p2d: ['fa-exchange-alt', '百分数 ➔ 小数'], d2p: ['fa-exchange-alt', '小数 ➔ 百分数'],
+            rate: ['fa-divide', '求百分率 (A是B的几巴仙)'], pctchange: ['fa-chart-line', '增 / 减百分率'],
+            change: ['fa-plus-minus', '增量 / 减量'], reverse: ['fa-undo', '已知部分求原量'],
+            discount: ['fa-tag', '折扣 / 售价'], tax: ['fa-receipt', '消费税 / 服务费'],
+            profit: ['fa-balance-scale', '求赚率 / 亏率'], price: ['fa-balance-scale', '由成本求售价'], cost: ['fa-balance-scale', '由售价求成本'],
+            interest: ['fa-piggy-bank', '单利息 / 本利和'], irate: ['fa-piggy-bank', '求年利率'],
+            comm: ['fa-handshake', '佣金'], commrate: ['fa-handshake', '求佣金率']
+        };
+        const chapterTools = {
+            'tab-71': { mount: 'mount-71', def: 'p2f', modes: ['p2f', 'f2p', 'p2d', 'd2p'],
+                title: '7.1 互化计算器', sub: '输入任意数值，自动演算百分数 ⇄ 分数 ⇄ 小数的互化步骤',
+                quizTitle: '7.1 章节测试与闯关', secs: [['s71', '7.1 节：百分数概念与互化']] },
+            'tab-final': { mount: 'mount-final', noLab: true, quizTitle: '总测验：7.1 + 7.2 综合', secs: [['final', '总测验：7.1 + 7.2 综合']] },
+            'tab-72': { mount: 'mount-72', def: 'rate',
+                modes: ['rate', 'pctchange', 'change', 'reverse', 'discount', 'tax', 'profit', 'price', 'cost', 'interest', 'irate', 'comm', 'commrate'],
+                title: '7.2 应用问题实验室', sub: '增减、折扣、盈亏、单利息、佣金：选择题型，拖动滑块观察演算过程',
+                quizTitle: '7.2 章节测试与闯关', secs: [['s72', '7.2 前半：增减 · 折扣 · 服务费'], ['s73', '7.2 后半：盈亏 · 单利息 · 佣金']] }
+        };
+        function mountTools(tabId) {
+            const c = chapterTools[tabId]; if (!c) return;
+            const mount = document.getElementById(c.mount), lab = document.getElementById('lab-card'), quiz = document.getElementById('quiz-card');
+            if (mount.contains(quiz) && (c.noLab || mount.contains(lab))) return;
+            if (!c.noLab && !mount.contains(lab)) {
+                mount.appendChild(lab); lab.classList.remove('hidden');
+                document.getElementById('lab-title').innerText = c.title;
+                document.getElementById('lab-sub').innerText = c.sub;
+                document.getElementById('lab-modes').innerHTML = c.modes.map(m => `<button onclick="setLabMode('${m}')" id="lab-btn-${m}" class="${IDLE_LAB}"><i class="fas ${LAB_BTN[m][0]}"></i> ${LAB_BTN[m][1]}</button>`).join('');
+                setLabMode(c.def);
+            }
+            mount.appendChild(quiz); quiz.classList.remove('hidden');
+            document.getElementById('quiz-title').innerText = c.quizTitle;
+            const sel = document.getElementById('quiz-section-select');
+            sel.innerHTML = c.secs.map(s => `<option value="${s[0]}">${s[1]}</option>`).join('');
+            sel.classList.toggle('hidden', c.secs.length < 2);
+            loadQuizSection();
+        }
+
+        // Navigation Tab Switching
+        function switchTab(tabId) {
+            window.scrollTo(0, 0);
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            mountTools(tabId);
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn flex-1 min-w-[120px] py-2.5 px-4 rounded-lg font-semibold text-sm transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center gap-2';
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.className = 'tab-btn flex-1 min-w-[120px] py-2.5 px-4 rounded-lg font-semibold text-sm transition-all text-sky-600 bg-white dark:bg-slate-700 dark:text-white shadow-sm flex items-center justify-center gap-2';
+        }
+
+        // SECTION 7.1: Interactive Grid Visualizer
+        function updateGridVisual(val) {
+            const svg = document.getElementById('svg-grid-71');
+            document.getElementById('grid-val-text').innerText = val + '%';
+            
+            // Simplest Fraction representation
+            const gcd = (a, b) => b ? gcd(b, a % b) : a;
+            const common = gcd(val, 100);
+            document.getElementById('grid-fraction-text').innerText = `${val}/100 = ${val/common}/${100/common} = ${val/100}`;
+
+            let gridContent = '';
+            let count = 0;
+            for (let row = 0; row < 10; row++) {
+                for (let col = 0; col < 10; col++) {
+                    count++;
+                    const isFilled = count <= val;
+                    const fill = isFilled ? '#0284c7' : '#f1f5f9';
+                    const stroke = isFilled ? '#0369a1' : '#cbd5e1';
+                    gridContent += `<rect x="${col * 19 + 5}" y="${row * 19 + 5}" width="17" height="17" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="1" class="grid-cell"/>`;
+                }
+            }
+            svg.innerHTML = gridContent;
+        }
+
+        // LAB SIMULATION LOGIC
+        const labCfg = {
+            reverse: { l1: '剩余 / 已知部分数量 (如 84 粒):', l2: '消耗 / 扣除百分比 (%):', v1: 84, v2: 30, min: 0, max: 99, step: 1 },
+            discount: { l1: '原价 / 定价 (RM):', l2: '折扣率 (%):', v1: 200, v2: 20, min: 0, max: 99, step: 1 },
+            change: { l1: '初始基准值:', l2: '增加(＋) / 减少(－) 百分比 (%):', v1: 100, v2: 15, min: -99, max: 300, step: 1 },
+            tax: { l1: '餐费 / 消费底价 (RM):', l2: '服务税率 (%):', v1: 50, v2: 6, min: 0, max: 30, step: 1 },
+            rate: { l1: '部分量 A:', l3: '整体量 B (单位须与 A 相同):', v1: 22, v3: 40, no2: true },
+            profit: { l1: '成本 (RM):', l3: '售价 (RM):', v1: 4800, v3: 6000, no2: true },
+            interest: { l1: '本金 (RM):', l2: '年利率 (%):', l3: '期数 (年):', v1: 2500, v2: 4, v3: 3, min: 0, max: 15, step: 0.5 },
+            comm: { l1: '交易价格 (RM):', l2: '佣金率 (%):', v1: 4500, v2: 4, min: 0, max: 20, step: 0.5 },
+            p2f: { l1: '百分数 (%):', v1: 12.5, no2: true },
+            f2p: { l1: '分子:', l3: '分母:', v1: 7, v3: 5, no2: true },
+            p2d: { l1: '百分数 (%):', v1: 35.4, no2: true },
+            d2p: { l1: '小数:', v1: 0.046, no2: true },
+            pctchange: { l1: '原来的数量:', l3: '后来的数量:', v1: 220, v3: 330, no2: true },
+            price: { l1: '成本 (RM):', l2: '赚(＋) / 亏(－) 百分率 (%):', v1: 120, v2: 25, min: -99, max: 100, step: 1 },
+            cost: { l1: '售价 (RM):', l2: '赚(＋) / 亏(－) 百分率 (%):', v1: 234, v2: 30, min: -99, max: 100, step: 1 },
+            irate: { l1: '本金 (RM):', l2: '期数 (年):', l3: '总利息 (RM):', v1: 3000, v2: 1, v3: 210, min: 1, max: 20, step: 1, u2: '年' },
+            commrate: { l1: '交易价格 (RM):', l3: '所得佣金 (RM):', v1: 28000, v3: 1680, no2: true }
+        };
+        const ACTIVE_LAB = 'lab-mode-btn p-3 rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-950/40 font-bold text-xs sm:text-sm text-purple-700 dark:text-purple-300 flex items-center justify-center gap-2';
+        const IDLE_LAB = 'lab-mode-btn p-3 rounded-xl border border-slate-200 dark:border-slate-700 font-bold text-xs sm:text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center justify-center gap-2';
+        function fmt(x) { return Math.round(x * 100) / 100; }
+        function fmtN(x) { return Math.round(x * 1e8) / 1e8; }
+        function gcdN(a, b) { a = Math.abs(a); b = Math.abs(b); return b ? gcdN(b, a % b) : a; }
+
+        function setLabMode(mode) {
+            currentLabMode = mode;
+            document.querySelectorAll('.lab-mode-btn').forEach(b => b.className = IDLE_LAB);
+            document.getElementById('lab-btn-' + mode).className = ACTIVE_LAB;
+            const c = labCfg[mode];
+            const s = document.getElementById('lab-slider-2');
+            document.getElementById('lab-input-label-1').innerText = c.l1;
+            document.getElementById('lab-val-1').value = c.v1;
+            document.getElementById('lab-row-2').classList.toggle('hidden', !!c.no2);
+            document.getElementById('lab-row-3').classList.toggle('hidden', !c.l3);
+            if (!c.no2) {
+                document.getElementById('lab-input-label-2').innerText = c.l2;
+                s.min = c.min; s.max = c.max; s.step = c.step; s.value = c.v2;
+            }
+            if (c.l3) {
+                document.getElementById('lab-input-label-3').innerText = c.l3;
+                document.getElementById('lab-val-3').value = c.v3;
+            }
+            calculateLab();
+        }
+
+        function calculateLab() {
+            const v1 = parseFloat(document.getElementById('lab-val-1').value) || 0;
+            const v2 = parseFloat(document.getElementById('lab-slider-2').value) || 0;
+            const v3 = parseFloat(document.getElementById('lab-val-3').value) || 0;
+            document.getElementById('lab-val-2-text').innerText = v2 + (labCfg[currentLabMode].u2 || '%');
+            const m = currentLabMode;
+            let s1 = '', s2 = '', r = '', lab = '计算结果:';
+            if (m === 'reverse') {
+                const p = 100 - v2;
+                s1 = `剩余/对应占比 = 100% - ${v2}% = ${fmt(p)}%`;
+                s2 = `原有总量 = ${v1} ÷ ${fmt(p)}% = ${v1} ÷ ${fmt(p / 100)}`;
+                r = p > 0 ? fmt(v1 / (p / 100)) : 0; lab = '原有总量:';
+            } else if (m === 'discount') {
+                s1 = `折扣额 = RM ${v1} × ${v2}% = RM ${fmt(v1 * v2 / 100)}`;
+                s2 = `售价 = ${v1} × (100% - ${v2}%) = ${v1} × ${fmt(100 - v2)}%`;
+                r = 'RM ' + fmt(v1 * (1 - v2 / 100)); lab = '售价:';
+            } else if (m === 'change') {
+                const up = v2 >= 0, a = Math.abs(v2);
+                s1 = `${up ? '增量' : '减量'} = ${v1} × ${a}% = ${fmt(v1 * a / 100)}`;
+                s2 = `变动后 = ${v1} × (100% ${up ? '+' : '-'} ${a}%) = ${v1} × ${fmt(100 + v2)}%`;
+                r = fmt(v1 * (1 + v2 / 100)); lab = '变动后的数量:';
+            } else if (m === 'tax') {
+                s1 = `服务费 = RM ${v1} × ${v2}% = RM ${fmt(v1 * v2 / 100)}`;
+                s2 = `实付 = ${v1} × (100% + ${v2}%) = ${v1} × ${fmt(100 + v2)}%`;
+                r = 'RM ' + fmt(v1 * (1 + v2 / 100)); lab = '实付总额:';
+            } else if (m === 'rate') {
+                s1 = `A ÷ B = ${v1} ÷ ${v3}`;
+                s2 = `百分率 = ${v1} ÷ ${v3} × 100%`;
+                r = v3 ? fmt(v1 / v3 * 100) + '%' : '(B 不能为 0)'; lab = 'A 是 B 的:';
+            } else if (m === 'profit') {
+                const d = v3 - v1, a = Math.abs(d);
+                s1 = `${d >= 0 ? '所赚' : '所亏'}的钱 = |${v3} - ${v1}| = RM ${fmt(a)}`;
+                s2 = `${d >= 0 ? '赚率' : '亏率'} = ${fmt(a)} ÷ ${v1} × 100%`;
+                r = v1 ? fmt(a / v1 * 100) + '%' : '(成本不能为 0)'; lab = d >= 0 ? '赚率:' : '亏率:';
+            } else if (m === 'interest') {
+                const i = v1 * v2 / 100 * v3;
+                s1 = `利息 = ${v1} × ${v2}% × ${v3} = RM ${fmt(i)}`;
+                s2 = `本利和 = ${v1} + ${fmt(i)}`;
+                r = 'RM ' + fmt(v1 + i); lab = '本利和:';
+            } else if (m === 'p2f') {
+                const raw = document.getElementById('lab-val-1').value.trim();
+                const dec = (raw.split('.')[1] || '').length, k = Math.pow(10, dec);
+                const num = Math.round(Math.abs(v1) * k), den = 100 * k, g = gcdN(num, den) || 1;
+                const n = num / g, d = den / g;
+                s1 = `${v1}% = ${v1}/100` + (dec ? ` = ${num}/${den}（化为整数分子）` : '');
+                s2 = `约简（分子分母同除以 ${g}）➔ ${n}/${d}`;
+                r = d === 1 ? `${n}` : `${n}/${d}` + (n > d ? ` = ${Math.floor(n / d)} ${n % d}/${d}` : ''); lab = '最简分数:';
+            } else if (m === 'f2p') {
+                s1 = `${v1}/${v3} × 100%`;
+                s2 = v3 ? `= ${fmtN(v1 / v3)} × 100%` : '';
+                r = v3 ? fmtN(v1 / v3 * 100) + '%' : '(分母不能为 0)'; lab = '百分数:';
+            } else if (m === 'p2d') {
+                s1 = `${v1}% = ${v1} ÷ 100`;
+                s2 = '即：去掉 % ，小数点向左移 2 位';
+                r = fmtN(v1 / 100); lab = '小数:';
+            } else if (m === 'd2p') {
+                s1 = `${v1} × 100%`;
+                s2 = '即：小数点向右移 2 位，再加上 %';
+                r = fmtN(v1 * 100) + '%'; lab = '百分数:';
+            } else if (m === 'pctchange') {
+                const d = v3 - v1, a = Math.abs(d), w = d >= 0 ? '增加' : '减少';
+                s1 = `${w}了 |${v3} - ${v1}| = ${fmt(a)}`;
+                s2 = `${w}百分率 = ${fmt(a)} ÷ ${v1} × 100%`;
+                r = v1 ? fmt(a / v1 * 100) + '%' : '(原数不能为 0)'; lab = w + '百分率:';
+            } else if (m === 'price') {
+                const w = v2 >= 0 ? '赚' : '亏', a = Math.abs(v2);
+                s1 = `${w} ${a}%：售价 = 成本 × (100% ${v2 >= 0 ? '+' : '-'} ${a}%)`;
+                s2 = `= ${v1} × ${fmt(100 + v2)}%`;
+                r = 'RM ' + fmt(v1 * (1 + v2 / 100)); lab = '售价:';
+            } else if (m === 'cost') {
+                const w = v2 >= 0 ? '赚' : '亏', a = Math.abs(v2);
+                s1 = `${w} ${a}%，售价是成本的 ${fmt(100 + v2)}%`;
+                s2 = `成本 = ${v1} ÷ ${fmt(100 + v2)}%`;
+                r = (100 + v2) > 0 ? 'RM ' + fmt(v1 / (1 + v2 / 100)) : '—'; lab = '成本:';
+            } else if (m === 'irate') {
+                s1 = '利率 = 利息 ÷ (本金 × 期数)';
+                s2 = `= ${v3} ÷ (${v1} × ${v2})`;
+                r = v1 * v2 ? fmt(v3 / (v1 * v2) * 100) + '%' : '—'; lab = '年利率:';
+            } else if (m === 'commrate') {
+                s1 = '佣金百分率 = 佣金 ÷ 交易价格 × 100%';
+                s2 = `= ${v3} ÷ ${v1} × 100%`;
+                r = v1 ? fmt(v3 / v1 * 100) + '%' : '—'; lab = '佣金率:';
+            } else if (m === 'comm') {
+                s1 = `佣金 = ${v1} × ${v2}%`;
+                s2 = `= RM ${fmt(v1 * v2 / 100)}`;
+                r = 'RM ' + fmt(v1 * v2 / 100); lab = '佣金:';
+            }
+            document.getElementById('lab-step-1').innerText = s1;
+            document.getElementById('lab-step-2').innerText = s2;
+            document.getElementById('lab-result-label').innerText = lab;
+            document.getElementById('lab-final-result').innerText = r;
+        }
+
+        // QUIZ SYSTEM LOGIC
+        let currentMCQ = [];
+        function shuffle(arr) {
+            const b = arr.slice();
+            for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+            return b;
+        }
+        function parseNum(s) {
+            s = String(s).replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 65248)).replace(/[．。]/g, '.').replace(/[％%]/g, '').replace(/RM|rm|元|粒|仙|,|，|\s/g, '');
+            return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : NaN;
+        }
+
+        function loadQuizSection() {
+            currentQuizSection = document.getElementById('quiz-section-select').value;
+            mcqPassed = false;
+            document.getElementById('fill-container').classList.add('hidden');
+            document.getElementById('level-2-card').classList.add('opacity-60');
+            document.getElementById('level-2-status').innerHTML = '<i class="fas fa-lock"></i> 未解锁';
+            document.getElementById('level-2-status').className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-400';
+            document.getElementById('level-1-status').innerText = '进行中';
+            document.getElementById('level-1-status').className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-sky-500 text-white';
+            const btn = document.getElementById('btn-submit-mcq');
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交选择题答案';
+            btn.onclick = submitMCQ;
+
+            currentQuiz = QuizEngine.build(currentQuizSection);
+            currentMCQ = currentQuiz.mcq;
+            document.getElementById('n-mcq').innerText = currentMCQ.length;
+            document.getElementById('n-fill').innerText = currentQuiz.fill.length;
+            document.getElementById('need-text').innerText = `至少 ${Math.ceil(currentMCQ.length * 0.6)} 题`;
+
+            let html = '';
+            currentMCQ.forEach((item, qIdx) => {
+                html += `
+                    <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">${item.q}</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${item.options.map((opt, oIdx) => `
+                                <label class="flex items-center p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700/60 cursor-pointer text-xs font-medium transition">
+                                    <input type="radio" name="mcq-${qIdx}" value="${oIdx}" class="me-2 accent-sky-500">
+                                    <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div id="mcq-explain-${qIdx}" class="hidden p-3 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-xs text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-800"></div>
+                    </div>`;
+            });
+            document.getElementById('mcq-container').innerHTML = html;
+        }
+
+        function submitMCQ() {
+            const qs = currentMCQ;
+            const st = document.getElementById('level-1-status');
+            const unanswered = qs.filter((_, i) => !document.querySelector(`input[name="mcq-${i}"]:checked`)).length;
+            if (unanswered > 0) {
+                st.innerText = `还有 ${unanswered} 题未作答`;
+                st.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500 text-white';
+                return;
+            }
+            let correctCount = 0;
+            qs.forEach((item, qIdx) => {
+                const selected = document.querySelector(`input[name="mcq-${qIdx}"]:checked`);
+                const box = document.getElementById(`mcq-explain-${qIdx}`);
+                box.classList.remove('hidden');
+                document.querySelectorAll(`input[name="mcq-${qIdx}"]`).forEach(r => r.disabled = true);
+                if (parseInt(selected.value) === item.ans) {
+                    correctCount++;
+                    box.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-bold">✓ 回答正确！</span> ${item.explain}`;
+                    box.className = 'p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-xs text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800';
+                } else {
+                    box.innerHTML = `<span class="text-rose-600 dark:text-rose-400 font-bold">✗ 回答错误（正确答案为: ${String.fromCharCode(65 + item.ans)}. ${item.options[item.ans]}）</span><br>${item.explain}`;
+                    box.className = 'p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-xs text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800';
+                }
+            });
+            const btn = document.getElementById('btn-submit-mcq');
+            btn.innerHTML = '<i class="fas fa-redo"></i> 重做（换一套新题）';
+            btn.onclick = loadQuizSection;
+
+            const need = Math.ceil(qs.length * 0.6);
+            if (correctCount >= need) {
+                mcqPassed = true;
+                st.innerText = `已通过 (${correctCount}/${qs.length})`;
+                st.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500 text-white';
+                document.getElementById('fill-container').classList.remove('hidden');
+                document.getElementById('level-2-card').classList.remove('opacity-60');
+                document.getElementById('level-2-status').innerText = '已解锁挑战';
+                document.getElementById('level-2-status').className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500 text-white';
+                loadFillQuestions();
+            } else {
+                st.innerText = `得分 ${correctCount}/${qs.length} (需≥${need}解锁下关，请重做)`;
+                st.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500 text-white';
+            }
+        }
+
+        function loadFillQuestions() {
+            const container = document.getElementById('fill-questions-list');
+            const questions = currentQuiz.fill;
+            const fb = document.getElementById('btn-submit-fill');
+            fb.innerHTML = '<i class="fas fa-check-circle"></i> 提交填充题答案'; fb.onclick = submitFill;
+
+            let html = '';
+            questions.forEach((item, fIdx) => {
+                html += `
+                    <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">${item.q}</h4>
+                        <div class="flex gap-2 max-w-xs">
+                            <input type="text" id="fill-input-${fIdx}" placeholder="请输入你的答案" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono text-sm">
+                        </div>
+                        <div id="fill-explain-${fIdx}" class="hidden p-3 rounded-xl text-xs">
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function submitFill() {
+            const questions = currentQuiz.fill;
+
+            questions.forEach((item, fIdx) => {
+                const userAns = document.getElementById(`fill-input-${fIdx}`).value.trim();
+                const explainBox = document.getElementById(`fill-explain-${fIdx}`);
+                explainBox.classList.remove('hidden');
+
+                const u = parseNum(userAns);
+                const isCorrect = !isNaN(u) && item.ans.some(v => Math.abs(parseNum(v) - u) < 1e-6);
+
+                if (isCorrect) {
+                    explainBox.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-bold">✓ 挑战成功！解答完全正确！</span><br>${item.explain}`;
+                    explainBox.className = 'p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-xs text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800';
+                } else {
+                    explainBox.innerHTML = `<span class="text-rose-600 dark:text-rose-400 font-bold">✗ 答案不匹配（参考答案: ${item.ans[0]}）</span><br>${item.explain}`;
+                    explainBox.className = 'p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-xs text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800';
+                }
+            });
+            const fb = document.getElementById('btn-submit-fill');
+            fb.innerHTML = '<i class="fas fa-redo"></i> 再来一套新题'; fb.onclick = loadQuizSection;
+        }
+    </script>
+</body>
+</html>
