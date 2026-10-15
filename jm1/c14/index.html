@@ -105,6 +105,9 @@ svg.plot .gd{stroke:var(--mute);stroke-width:.05;stroke-dasharray:.15 .15}
 .fillin input{width:11rem;text-align:left}
 .hint{color:var(--mute);font-size:.82rem}
 footer{max-width:1080px;margin:auto;padding:.8rem;text-align:center;color:var(--mute);font-size:.8rem;border-top:1px dashed var(--line)}
+
+.wm{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Ctext x='160' y='104' font-size='12' fill='gray' text-anchor='middle' font-family='sans-serif' transform='rotate(-22 160 100)'%3E蔡逸众 · ecchua79 · Chinese High School%3C/text%3E%3C/svg%3E");background-size:320px 200px}
+:root[data-theme="dark"] .wm{opacity:.12}
 @media print{header,nav,.tool{display:none}}
 </style>
 </head>
@@ -295,6 +298,7 @@ footer{max-width:1080px;margin:auto;padding:.8rem;text-align:center;color:var(--
 </section>
 </main>
 
+<div class="wm" aria-hidden="true"></div>
 <footer>
   初一下册数学 · 第14章 直角坐标系与图解 · 互动课件<br>
   制作：蔡逸众 (ecchua79) ｜ 峇株吧辖华仁中学 Chinese High School
