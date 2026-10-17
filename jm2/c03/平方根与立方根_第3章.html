@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初二数学上册 第3章 平方根与立方根 - 互动学习课件</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --base-font-size: 16px;
+        }
+        html {
+            font-size: var(--base-font-size);
+            transition: font-size 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Math Radical Styling */
+        .radical-symbol {
+            font-family: Cambria, "Times New Roman", serif;
+            font-style: italic;
+        }
+        /* Radical: the sign is an SVG shape stretched to the height of the content and
+           attached to the bar, so the two are always joined (like the textbook). */
+        .sqrt {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .sqrt-symbol {
+            display: inline-block;
+            width: 0;
+            overflow: hidden;
+            font-size: 0;
+        }
+        .sqrt-content {
+            position: relative;
+            display: inline-block;
+            margin-left: 0.8em;
+            padding: 0.05em 0.1em 0 0.06em;
+            border-top: 1.5px solid currentColor;
+        }
+        .sqrt-content::before {
+            content: "";
+            position: absolute;
+            right: 100%;
+            top: -1.5px;
+            bottom: -0.04em;
+            width: 0.8em;
+            background-color: currentColor;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 24' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 14.6L1.8 13.2' stroke-width='.95'/%3E%3Cpath d='M1.8 13.2L4.9 22.6' stroke-width='2.1'/%3E%3Cpath d='M4.9 22.6L10.1 -1.6' stroke-width='.95'/%3E%3C/g%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 24' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 14.6L1.8 13.2' stroke-width='.95'/%3E%3Cpath d='M1.8 13.2L4.9 22.6' stroke-width='2.1'/%3E%3Cpath d='M4.9 22.6L10.1 -1.6' stroke-width='.95'/%3E%3C/g%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+        }
+        .cbrt-symbol {
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .cbrt-index {
+            font-size: 0.72em;
+            font-weight: bold;
+            position: relative;
+            top: -0.55em;
+            margin-left: 0.05em;
+            margin-right: -0.24em;
+        }
+
+        /* Fraction styling */
+        .math-frac {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 4px;
+        }
+        .math-num {
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 1px;
+        }
+        .math-den {
+            padding-top: 1px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #0284c7;
+            color: #0284c7;
+            font-weight: 700;
+        }
+        .dark .tab-btn.active {
+            border-bottom-color: #38bdf8;
+            color: #38bdf8;
+        }
+
+        .no-scrollbar { scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        #wm-float { position: fixed; inset: 0; z-index: 40; pointer-events: none; background-repeat: repeat; user-select: none; }
+        #wm-corner { position: fixed; right: 10px; bottom: 6px; z-index: 41; font-size: 11px; color: #64748b; opacity: .38; pointer-events: none; user-select: none; }
+        html.dark #wm-corner { color: #cbd5e1; opacity: .3; }
+        @media print { #wm-float, #wm-corner { display: block; } }
+
+        .blur-locked {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+    <meta name="author" content="ecchua79">
+    <meta name="copyright" content="© ecchua79 蔡逸众">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+    <!-- © ecchua79 蔡逸众 · ScienceLab · 数学互动课件 · 未经许可请勿转载 -->
+
+    <!-- Header Control Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-500 text-white p-2.5 rounded-xl shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-square-root-variable text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">第3章 平方根与立方根</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">《数学》初二上册 · 交互式学习课件</p>
+                </div>
+            </div>
+
+            <!-- Global Controls: Font Size & Dark Theme -->
+            <div class="flex items-center space-x-4">
+                <!-- Font Size Controls -->
+                <div class="flex items-center bg-slate-100 dark:bg-slate-700 p-1 rounded-lg border border-slate-200 dark:border-slate-600">
+                    <span class="text-xs text-slate-500 dark:text-slate-400 px-2 font-medium">字号</span>
+                    <button onclick="setFontSize('14px')" id="font-sm" class="px-2 py-1 text-xs rounded hover:bg-white dark:hover:bg-slate-600 transition">小</button>
+                    <button onclick="setFontSize('16px')" id="font-md" class="px-2 py-1 text-xs rounded bg-white dark:bg-slate-600 font-bold shadow-sm transition">中</button>
+                    <button onclick="setFontSize('18px')" id="font-lg" class="px-2 py-1 text-xs rounded hover:bg-white dark:hover:bg-slate-600 transition">大</button>
+                    <button onclick="setFontSize('20px')" id="font-xl" class="px-2 py-1 text-xs rounded hover:bg-white dark:hover:bg-slate-600 transition">特大</button>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-500 transition border border-slate-200 dark:border-slate-600 flex items-center justify-center">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-2 sm:space-x-6 overflow-x-auto border-t border-slate-100 dark:border-slate-700/50 text-sm font-medium no-scrollbar">
+            <button onclick="switchTab('sec31')" id="tab-sec31" class="tab-btn active py-3 px-2 border-b-2 border-transparent whitespace-nowrap transition">3.1 平方根与算术平方根</button>
+            <button onclick="switchTab('sec32')" id="tab-sec32" class="tab-btn py-3 px-2 border-b-2 border-transparent whitespace-nowrap transition">3.2 数的立方根</button>
+            <button onclick="switchTab('sec33')" id="tab-sec33" class="tab-btn py-3 px-2 border-b-2 border-transparent whitespace-nowrap transition">3.3 有理数与无理数</button>
+            <button onclick="switchTab('sec34')" id="tab-sec34" class="tab-btn py-3 px-2 border-b-2 border-transparent whitespace-nowrap transition">3.4 二次根式的化简</button>
+            <button onclick="switchTab('sec35')" id="tab-sec35" class="tab-btn py-3 px-2 border-b-2 border-transparent whitespace-nowrap transition">3.5 二次根式的四则运算</button>
+            <button onclick="switchTab('sec36')" id="tab-sec36" class="tab-btn py-3 px-2 border-b-2 border-transparent text-amber-600 dark:text-amber-400 font-bold whitespace-nowrap transition">3.6 章末综合挑战</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Dynamic Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- SECTION 3.1 -->
+        <section id="sec31" class="tab-content block space-y-8">
+            <!-- Learning Objectives & Concept Card -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>3.1 平方根与算术平方根及其性质</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3">
+                        <div class="p-3 bg-sky-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-sky-500">
+                            <h4 class="font-bold text-sky-900 dark:text-sky-300">平方根定义</h4>
+                            <p class="text-sm mt-1">如果 <span class="radical-symbol">x</span><sup>2</sup> = <span class="radical-symbol">a</span> (<span class="radical-symbol">a</span> &ge; 0)，那么 <span class="radical-symbol">x</span> 就叫做 <span class="radical-symbol">a</span> 的<b>平方根</b>（二次方根）。记作 &plusmn;<span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span>。</p>
+                        </div>
+                        <div class="p-3 bg-emerald-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-emerald-900 dark:text-emerald-300">算术平方根</h4>
+                            <p class="text-sm mt-1">正数 <span class="radical-symbol">a</span> 的<b>正平方根</b>叫做算术平方根，记作 <span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span>。0 的算术平方根是 0。</p>
+                        </div>
+                        <div class="p-3 bg-rose-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 dark:text-rose-300">⚠️ 易错警示与核心性质</h4>
+                            <ul class="text-xs space-y-1 mt-1 text-slate-600 dark:text-slate-300 list-disc list-inside">
+                                <li><b>正数有两个平方根</b>，它们互为相反数；<b>负数没有平方根</b>。</li>
+                                <li>（<span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span>）<sup>2</sup> = <span class="radical-symbol">a</span> (<span class="radical-symbol">a</span> &ge; 0)。</li>
+                                <li><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a<sup>2</sup></span></span> = |<span class="radical-symbol">a</span>|（开出来的结果永远是非负数）。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SVG Illustration for 3.1 -->
+                    <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <h5 class="text-xs font-bold text-slate-500 mb-2">几何直观：正方形面积与边长关系</h5>
+                        <svg width="220" height="220" viewBox="0 0 200 200" class="drop-shadow-md">
+                            <rect x="30" y="30" width="140" height="140" fill="#38bdf8" fill-opacity="0.2" stroke="#0284c7" stroke-width="3" rx="4" />
+                            <line x1="30" y1="30" x2="170" y2="170" stroke="#0284c7" stroke-dasharray="4" />
+                            <text x="100" y="105" text-anchor="middle" fill="#0369a1" class="font-bold text-sm dark:fill-sky-300">面积 A = 25</text>
+                            <text x="100" y="22" text-anchor="middle" fill="#075985" class="font-semibold text-xs dark:fill-sky-200">边长 x = &radic;25 = 5</text>
+                            <text x="15" y="105" text-anchor="middle" fill="#075985" class="font-semibold text-xs dark:fill-sky-200" transform="rotate(-90 15 105)">x = 5</text>
+                        </svg>
+                        <p class="text-xs text-slate-500 mt-2 text-center">已知面积求正边长为算术平方根；而平方等于25的数有两个：5 和 -5。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extra-sec31"></div>
+            <div id="calc-sec31"></div>
+
+            <!-- Dynamic Practice Area for 3.1 -->
+            <div id="practice-sec31" class="space-y-6">
+                <!-- Interactive MCQs Section -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="bg-brand-500 text-white text-xs px-2.5 py-1 rounded-full">第一阶段</span>
+                                随机选择题（5题）
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">题目由系统随机生成且具有极强误导性陷阱，答对 &ge; 3 题开启解锁下方填空作答题。</p>
+                        </div>
+                        <button onclick="generateQuiz('sec31')" class="self-start sm:self-auto px-3 py-1.5 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-300 rounded-lg text-xs font-semibold hover:bg-brand-100 dark:hover:bg-slate-600 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> 换一组新题
+                        </button>
+                    </div>
+
+                    <!-- MCQ Quiz Cards Container -->
+                    <div id="mcq-container-sec31" class="mt-6 space-y-6"></div>
+                </div>
+
+                <!-- Unlockable Subjective Questions Section -->
+                <div id="locked-zone-sec31" class="relative bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all">
+                    <!-- Lock Overlay -->
+                    <div id="lock-overlay-sec31" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center text-white p-6 transition-all">
+                        <div class="w-16 h-16 bg-slate-800/90 rounded-full flex items-center justify-center border-2 border-amber-400 mb-3 shadow-xl">
+                            <i class="fa-solid fa-lock text-amber-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">填空作答题已锁定</h4>
+                        <p class="text-sm text-slate-200 mt-1 text-center max-w-md">请先完成上方的 5 道选择题，并取得至少 <span class="text-amber-300 font-bold">3 题正确</span> 即可自动解锁更高阶的填空测试。</p>
+                        <div class="mt-4 px-4 py-1.5 bg-slate-800/80 rounded-full border border-slate-600 text-xs text-slate-300">
+                            当前进度：<span id="lock-progress-sec31">0</span> / 3 正确
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二阶段</span>
+                            进阶填空题（2题）
+                        </h3>
+                        <span id="unlock-badge-sec31" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-unlock mr-1"></i>已解锁</span>
+                    </div>
+
+                    <div id="subjective-container-sec31" class="mt-6 space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.2 -->
+        <section id="sec32" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4">
+                    <i class="fa-solid fa-cube"></i>
+                    <span>3.2 数的立方根及其运算</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3">
+                        <div class="p-3 bg-purple-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-900 dark:text-purple-300">立方根定义</h4>
+                            <p class="text-sm mt-1">如果 <span class="radical-symbol">x</span><sup>3</sup> = <span class="radical-symbol">a</span>，那么 <span class="radical-symbol">x</span> 就叫做 <span class="radical-symbol">a</span> 的<b>立方根</b>（三次方根）。记作 <span class="cbrt-symbol"><span class="cbrt-index">3</span><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span></span>。</p>
+                        </div>
+                        <div class="p-3 bg-indigo-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-900 dark:text-indigo-300">立方根的唯一性与符号性质</h4>
+                            <ul class="text-xs space-y-1 mt-1 text-slate-600 dark:text-slate-300 list-disc list-inside">
+                                <li><b>任何实数都只有一个立方根</b>。</li>
+                                <li>正数的立方根是正数；负数的立方根是负数；0 的立方根是 0。</li>
+                                <li>负号移到根号外：<span class="cbrt-symbol"><span class="cbrt-index">3</span><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">&minus;a</span></span></span> = &minus;<span class="cbrt-symbol"><span class="cbrt-index">3</span><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span></span>。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SVG 3D Cube Graphic -->
+                    <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <h5 class="text-xs font-bold text-slate-500 mb-2">几何直观：正方体体积与棱长</h5>
+                        <svg width="200" height="180" viewBox="0 0 200 180" class="drop-shadow-md">
+                            <!-- Front Face -->
+                            <rect x="40" y="60" width="90" height="90" fill="#a855f7" fill-opacity="0.25" stroke="#7e22ce" stroke-width="2.5" />
+                            <!-- Top Face -->
+                            <polygon points="40,60 80,20 170,20 130,60" fill="#c084fc" fill-opacity="0.3" stroke="#7e22ce" stroke-width="2.5" />
+                            <!-- Right Face -->
+                            <polygon points="130,60 170,20 170,110 130,150" fill="#9333ea" fill-opacity="0.2" stroke="#7e22ce" stroke-width="2.5" />
+                            <text x="85" y="110" text-anchor="middle" fill="#6b21a8" class="font-bold text-sm dark:fill-purple-300">体积 V = 64</text>
+                            <text x="85" y="170" text-anchor="middle" fill="#581c87" class="font-semibold text-xs dark:fill-purple-200">棱长 a = ∛64 = 4</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extra-sec32"></div>
+            <div id="calc-sec32"></div>
+
+            <!-- Dynamic Practice Area 3.2 -->
+            <div id="practice-sec32" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="bg-brand-500 text-white text-xs px-2.5 py-1 rounded-full">第一阶段</span>
+                                随机选择题（5题）
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">注意立方根与平方根在正负号及根个数上的陷阱区别！</p>
+                        </div>
+                        <button onclick="generateQuiz('sec32')" class="self-start sm:self-auto px-3 py-1.5 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-300 rounded-lg text-xs font-semibold hover:bg-brand-100 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> 换一组新题
+                        </button>
+                    </div>
+                    <div id="mcq-container-sec32" class="mt-6 space-y-6"></div>
+                </div>
+
+                <div id="locked-zone-sec32" class="relative bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all">
+                    <div id="lock-overlay-sec32" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center text-white p-6 transition-all">
+                        <div class="w-16 h-16 bg-slate-800/90 rounded-full flex items-center justify-center border-2 border-amber-400 mb-3 shadow-xl">
+                            <i class="fa-solid fa-lock text-amber-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">填空作答题已锁定</h4>
+                        <p class="text-sm text-slate-200 mt-1 text-center max-w-md">请先完成上方的 5 道选择题，答对至少 <span class="text-amber-300 font-bold">3 题</span> 解锁。</p>
+                        <div class="mt-4 px-4 py-1.5 bg-slate-800/80 rounded-full border border-slate-600 text-xs text-slate-300">
+                            当前进度：<span id="lock-progress-sec32">0</span> / 3 正确
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二阶段</span>
+                            进阶填空题（2题）
+                        </h3>
+                        <span id="unlock-badge-sec32" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-unlock mr-1"></i>已解锁</span>
+                    </div>
+                    <div id="subjective-container-sec32" class="mt-6 space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.3 -->
+        <section id="sec33" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                    <span>3.3 有理数与无理数（实数分类）</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-amber-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 dark:text-amber-300">有理数 vs 无理数</h4>
+                            <p class="mt-1"><b>有理数：</b>能写成分数形式 <span class="math-frac"><span class="math-num">p</span><span class="math-den">q</span></span> 的数（有限小数或无限循环小数）。</p>
+                            <p class="mt-1"><b>无理数：</b><b>无限不循环小数</b>。例如：<span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">2</span></span>, &pi;, 0.1010010001...</p>
+                        </div>
+                        <div class="p-3 bg-teal-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-teal-500">
+                            <h4 class="font-bold text-teal-900 dark:text-teal-300">数轴与实数</h4>
+                            <p class="mt-1">实数与数轴上的点是一一对应的。每一个无理数都可以用数轴上的具体几何位置精准表示。</p>
+                        </div>
+                    </div>
+
+                    <!-- SVG Number Line Construction of Sqrt(2) -->
+                    <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <h5 class="text-xs font-bold text-slate-500 mb-2">几何构造：数轴上找到 &radic;2</h5>
+                        <svg width="260" height="150" viewBox="0 0 260 150">
+                            <!-- Axis line -->
+                            <line x1="20" y1="120" x2="240" y2="120" stroke="#64748b" stroke-width="2" />
+                            <polygon points="240,116 248,120 240,124" fill="#64748b" />
+                            <!-- Ticks -->
+                            <line x1="50" y1="115" x2="50" y2="125" stroke="#64748b" stroke-width="2" />
+                            <text x="50" y="140" text-anchor="middle" class="text-xs fill-slate-600 dark:fill-slate-300">0</text>
+                            
+                            <line x1="120" y1="115" x2="120" y2="125" stroke="#64748b" stroke-width="2" />
+                            <text x="120" y="140" text-anchor="middle" class="text-xs fill-slate-600 dark:fill-slate-300">1</text>
+                            
+                            <line x1="190" y1="115" x2="190" y2="125" stroke="#64748b" stroke-width="2" />
+                            <text x="190" y="140" text-anchor="middle" class="text-xs fill-slate-600 dark:fill-slate-300">2</text>
+
+                            <!-- Right isosceles triangle with legs 1 -->
+                            <polygon points="50,120 120,120 120,50" fill="#0284c7" fill-opacity="0.15" stroke="#0284c7" stroke-width="2" />
+                            <line x1="50" y1="120" x2="120" y2="50" stroke="#f59e0b" stroke-width="3" />
+                            <text x="76" y="82" text-anchor="end" class="text-xs font-bold fill-amber-600 dark:fill-amber-400">&radic;2</text>
+                            <text x="85" y="112" text-anchor="middle" class="text-xs fill-slate-600 dark:fill-slate-300">1</text>
+                            <text x="129" y="88" text-anchor="start" class="text-xs fill-slate-600 dark:fill-slate-300">1</text>
+                            <!-- Arc: centre 0, radius = hypotenuse = &radic;2 -->
+                            <path d="M 120,50 A 98.99 98.99 0 0 1 149,120" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4" />
+                            <circle cx="149" cy="120" r="3.5" fill="#f59e0b" />
+                            <text x="149" y="140" text-anchor="middle" class="text-xs font-bold fill-amber-600 dark:fill-amber-400">&radic;2</text>
+                            <text x="158" y="104" text-anchor="start" class="text-xs font-bold fill-amber-600 dark:fill-amber-400">&radic;2 &approx; 1.414</text>
+                        </svg>
+                        <p class="text-xs text-slate-500 mt-2 text-center">以 0 为圆心、斜边长 &radic;2 为半径画弧，交数轴于 &radic;2 对应的点。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extra-sec33"></div>
+            <div id="calc-sec33"></div>
+
+            <!-- Dynamic Practice Area 3.3 -->
+            <div id="practice-sec33" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="bg-brand-500 text-white text-xs px-2.5 py-1 rounded-full">第一阶段</span>
+                                随机选择题（5题）
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">考验对开方数、循环小数及带根号数是否有理的精准甄别能力。</p>
+                        </div>
+                        <button onclick="generateQuiz('sec33')" class="self-start sm:self-auto px-3 py-1.5 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-300 rounded-lg text-xs font-semibold hover:bg-brand-100 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> 换一组新题
+                        </button>
+                    </div>
+                    <div id="mcq-container-sec33" class="mt-6 space-y-6"></div>
+                </div>
+
+                <div id="locked-zone-sec33" class="relative bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all">
+                    <div id="lock-overlay-sec33" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center text-white p-6 transition-all">
+                        <div class="w-16 h-16 bg-slate-800/90 rounded-full flex items-center justify-center border-2 border-amber-400 mb-3 shadow-xl">
+                            <i class="fa-solid fa-lock text-amber-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">填空作答题已锁定</h4>
+                        <p class="text-sm text-slate-200 mt-1 text-center max-w-md">完成选择题且得分 &ge; 3 解锁。</p>
+                        <div class="mt-4 px-4 py-1.5 bg-slate-800/80 rounded-full border border-slate-600 text-xs text-slate-300">
+                            当前进度：<span id="lock-progress-sec33">0</span> / 3 正确
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二阶段</span>
+                            进阶填空题（2题）
+                        </h3>
+                        <span id="unlock-badge-sec33" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-unlock mr-1"></i>已解锁</span>
+                    </div>
+                    <div id="subjective-container-sec33" class="mt-6 space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.4 -->
+        <section id="sec34" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>3.4 二次根式的化简</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-blue-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-900 dark:text-blue-300">积与商的算术平方根公式</h4>
+                            <p class="mt-1"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">ab</span></span> = <span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span> &middot; <span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">b</span></span> (<span class="radical-symbol">a</span> &ge; 0, <span class="radical-symbol">b</span> &ge; 0)</p>
+                            <p class="mt-1"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content"><span class="math-frac"><span class="math-num">a</span><span class="math-den">b</span></span></span></span> = <span class="math-frac"><span class="math-num"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span></span><span class="math-den"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">b</span></span></span></span> (<span class="radical-symbol">a</span> &ge; 0, <span class="radical-symbol">b</span> &gt; 0)</p>
+                        </div>
+                        <div class="p-3 bg-indigo-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-900 dark:text-indigo-300">最简二次根式的两大条件</h4>
+                            <ol class="list-decimal list-inside space-y-1 mt-1 text-slate-600 dark:text-slate-300">
+                                <li>被开方数中<b>不含能开得尽方的因数或因式</b>。</li>
+                                <li>被开方数<b>不含分母</b>（分母中不含根号）。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- SVG Radical Breakdown Visual -->
+                    <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <h5 class="text-xs font-bold text-slate-500 mb-2">图形拆解：&radic;12 = &radic;(4 &times; 3) = 2&radic;3</h5>
+                        <svg width="240" height="130" viewBox="0 0 240 130">
+                            <!-- Big square of area 12 = 4 small squares of area 3 -->
+                            <rect x="20" y="22" width="90" height="90" fill="#38bdf8" fill-opacity="0.15" stroke="#0284c7" stroke-width="2.5" rx="3" />
+                            <line x1="65" y1="22" x2="65" y2="112" stroke="#0284c7" stroke-dasharray="4" />
+                            <line x1="20" y1="67" x2="110" y2="67" stroke="#0284c7" stroke-dasharray="4" />
+                            <text x="42" y="48" text-anchor="middle" class="text-xs font-bold fill-sky-800 dark:fill-sky-200">3</text>
+                            <text x="88" y="48" text-anchor="middle" class="text-xs font-bold fill-sky-800 dark:fill-sky-200">3</text>
+                            <text x="42" y="94" text-anchor="middle" class="text-xs font-bold fill-sky-800 dark:fill-sky-200">3</text>
+                            <text x="88" y="94" text-anchor="middle" class="text-xs font-bold fill-sky-800 dark:fill-sky-200">3</text>
+                            <text x="42" y="16" text-anchor="middle" class="text-xs fill-rose-700 dark:fill-rose-300">&radic;3</text>
+                            <text x="88" y="16" text-anchor="middle" class="text-xs fill-rose-700 dark:fill-rose-300">&radic;3</text>
+                            <line x1="118" y1="22" x2="118" y2="112" stroke="#e11d48" stroke-width="2" />
+                            <text x="126" y="58" text-anchor="start" class="text-xs fill-slate-600 dark:fill-slate-300">大正方形面积 = 12</text>
+                            <text x="126" y="76" text-anchor="start" class="text-xs font-bold fill-brand-600 dark:fill-brand-400">边长 &radic;12 = 2&radic;3</text>
+                        </svg>
+                        <p class="text-xs text-slate-500 mt-2 text-center">面积 12 的正方形 = 4 个面积 3 的小正方形，所以边长 &radic;12 是小正方形边长 &radic;3 的 2 倍。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extra-sec34"></div>
+            <div id="calc-sec34"></div>
+
+            <!-- Dynamic Practice Area 3.4 -->
+            <div id="practice-sec34" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="bg-brand-500 text-white text-xs px-2.5 py-1 rounded-full">第一阶段</span>
+                                随机选择题（5题）
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">选项包含未完全化简、错误开方因子等陷阱选项。</p>
+                        </div>
+                        <button onclick="generateQuiz('sec34')" class="self-start sm:self-auto px-3 py-1.5 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-300 rounded-lg text-xs font-semibold hover:bg-brand-100 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> 换一组新题
+                        </button>
+                    </div>
+                    <div id="mcq-container-sec34" class="mt-6 space-y-6"></div>
+                </div>
+
+                <div id="locked-zone-sec34" class="relative bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all">
+                    <div id="lock-overlay-sec34" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center text-white p-6 transition-all">
+                        <div class="w-16 h-16 bg-slate-800/90 rounded-full flex items-center justify-center border-2 border-amber-400 mb-3 shadow-xl">
+                            <i class="fa-solid fa-lock text-amber-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">填空作答题已锁定</h4>
+                        <p class="text-sm text-slate-200 mt-1 text-center max-w-md">完成选择题且得分 &ge; 3 解锁。</p>
+                        <div class="mt-4 px-4 py-1.5 bg-slate-800/80 rounded-full border border-slate-600 text-xs text-slate-300">
+                            当前进度：<span id="lock-progress-sec34">0</span> / 3 正确
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二阶段</span>
+                            进阶填空题（2题）
+                        </h3>
+                        <span id="unlock-badge-sec34" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-unlock mr-1"></i>已解锁</span>
+                    </div>
+                    <div id="subjective-container-sec34" class="mt-6 space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.5 -->
+        <section id="sec35" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>3.5 二次根式的四则运算与分母有理化</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-purple-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-900 dark:text-purple-300">同类根式与加减法则</h4>
+                            <p class="mt-1"><b>同类根式：</b>化简后<b>被开方数相同</b>的二次根式（如 3&radic;2 与 5&radic;2）。</p>
+                            <p class="mt-1 text-rose-600 dark:text-rose-400 font-bold">❌ 绝对致命陷阱：&radic;2 + &radic;3 &ne; &radic;5 ！异类根式不可直接相加！</p>
+                        </div>
+                        <div class="p-3 bg-indigo-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-900 dark:text-indigo-300">分母有理化技巧</h4>
+                            <p class="mt-1">单项式分母：<span class="math-frac"><span class="math-num">1</span><span class="math-den"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span></span></span> = <span class="math-frac"><span class="math-num"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span></span><span class="math-den">a</span></span></p>
+                            <p class="mt-1">利用平方差公式：<span class="math-frac"><span class="math-num">1</span><span class="math-den"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span> + <span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">b</span></span></span></span> = <span class="math-frac"><span class="math-num"><span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">a</span></span> &minus; <span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">b</span></span></span><span class="math-den">a &minus; b</span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- SVG Visual Radical Tile Addition -->
+                    <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <h5 class="text-xs font-bold text-slate-500 mb-2">几何拼接：2&radic;3 + 3&radic;3 = 5&radic;3</h5>
+                        <svg width="250" height="120" viewBox="0 0 250 120">
+                            <!-- Block 1 -->
+                            <rect x="10" y="40" width="70" height="35" fill="#8b5cf6" fill-opacity="0.3" stroke="#7c3aed" stroke-width="2" rx="4" />
+                            <text x="45" y="62" text-anchor="middle" class="text-xs font-bold fill-purple-800 dark:fill-purple-300">2&radic;3</text>
+                            
+                            <text x="95" y="62" text-anchor="middle" class="text-sm font-bold fill-slate-500">+</text>
+
+                            <!-- Block 2 -->
+                            <rect x="110" y="40" width="100" height="35" fill="#10b981" fill-opacity="0.3" stroke="#059669" stroke-width="2" rx="4" />
+                            <text x="160" y="62" text-anchor="middle" class="text-xs font-bold fill-emerald-800 dark:fill-emerald-300">3&radic;3</text>
+
+                            <text x="125" y="105" text-anchor="middle" class="text-xs font-bold fill-brand-600 dark:fill-brand-400">合并同类根式 = 5&radic;3</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extra-sec35"></div>
+            <div id="calc-sec35"></div>
+
+            <!-- Dynamic Practice Area 3.5 -->
+            <div id="practice-sec35" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="bg-brand-500 text-white text-xs px-2.5 py-1 rounded-full">第一阶段</span>
+                                随机选择题（5题）
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">包含分母有理化符号错误、多项式乘法化简遗漏等陷阱。</p>
+                        </div>
+                        <button onclick="generateQuiz('sec35')" class="self-start sm:self-auto px-3 py-1.5 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-300 rounded-lg text-xs font-semibold hover:bg-brand-100 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> 换一组新题
+                        </button>
+                    </div>
+                    <div id="mcq-container-sec35" class="mt-6 space-y-6"></div>
+                </div>
+
+                <div id="locked-zone-sec35" class="relative bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 transition-all">
+                    <div id="lock-overlay-sec35" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center text-white p-6 transition-all">
+                        <div class="w-16 h-16 bg-slate-800/90 rounded-full flex items-center justify-center border-2 border-amber-400 mb-3 shadow-xl">
+                            <i class="fa-solid fa-lock text-amber-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">填空作答题已锁定</h4>
+                        <p class="text-sm text-slate-200 mt-1 text-center max-w-md">完成选择题且得分 &ge; 3 解锁。</p>
+                        <div class="mt-4 px-4 py-1.5 bg-slate-800/80 rounded-full border border-slate-600 text-xs text-slate-300">
+                            当前进度：<span id="lock-progress-sec35">0</span> / 3 正确
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二阶段</span>
+                            进阶填空题（2题）
+                        </h3>
+                        <span id="unlock-badge-sec35" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-unlock mr-1"></i>已解锁</span>
+                    </div>
+                    <div id="subjective-container-sec35" class="mt-6 space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.6 - CHAPTER COMPREHENSIVE TEST -->
+        <section id="sec36" class="tab-content hidden space-y-8">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Chapter Final Evaluation</span>
+                        <h2 class="text-2xl font-extrabold mt-1">第3章《平方根与立方根》全章综合挑战</h2>
+                        <p class="text-sm text-amber-100 mt-1">系统将跨章节抽取 10 道陷阱选择题与 4 道综合填空题，全方位检测你的数学掌控力！</p>
+                    </div>
+                    <button onclick="startFinalExam()" class="px-6 py-3 bg-white text-amber-600 rounded-xl font-bold shadow-md hover:bg-amber-50 transition transform active:scale-95 flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> 生成全新测试卷
+                    </button>
+                </div>
+            </div>
+
+            <!-- Exam Stats Score Board -->
+            <div id="exam-scoreboard" class="hidden bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-slate-50 dark:bg-slate-700/40 rounded-xl">
+                    <div class="text-xs text-slate-500">选择题得分</div>
+                    <div id="exam-mcq-score" class="text-2xl font-bold text-brand-600 dark:text-brand-400 mt-1">0 / 10</div>
+                </div>
+                <div class="p-4 bg-slate-50 dark:bg-slate-700/40 rounded-xl">
+                    <div class="text-xs text-slate-500">填空题得分</div>
+                    <div id="exam-subj-score" class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">0 / 4</div>
+                </div>
+                <div class="p-4 bg-slate-50 dark:bg-slate-700/40 rounded-xl">
+                    <div class="text-xs text-slate-500">综合正确率</div>
+                    <div id="exam-accuracy" class="text-2xl font-bold text-amber-500 mt-1">0%</div>
+                </div>
+                <div class="p-4 bg-slate-50 dark:bg-slate-700/40 rounded-xl">
+                    <div class="text-xs text-slate-500">能力评价</div>
+                    <div id="exam-evaluation" class="text-lg font-bold text-slate-700 dark:text-slate-200 mt-1">未测试</div>
+                </div>
+            </div>
+
+            <!-- Exam Questions Container -->
+            <div id="exam-container" class="space-y-6"></div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400">
+            <p>初中数学互动学习课件系统 · 《数学》初二上册 第3章 平方根与立方根</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+/* ==== ENGINE CORE START ==== */
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const getRandomInt=ri;
+const pick=a=>a[ri(0,a.length-1)];
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=ri(0,i);[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+const sample=(arr,n)=>shuffle(arr.slice()).slice(0,n);
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a;};
+function sqfree(n){let k=1,m=n;for(let p=2;p*p<=m;p++){while(m%(p*p)===0){m/=p*p;k*=p;}}return [k,m];}
+const isSqFree=n=>sqfree(n)[0]===1;
+const isSquare=n=>n>=0&&Number.isInteger(Math.sqrt(n));
+const fmtDec=x=>String(parseFloat(Number(x).toFixed(8)));
+const R2=x=>Math.round((x+1e-9)*100)/100;
+
+/* ---------- 有理数 / 根式代数 ---------- */
+function Q(n,d=1){if(d===0)throw new Error('div0');if(d<0){n=-n;d=-d;}const g=gcd(n,d)||1;return {n:n/g,d:d/g};}
+const qadd=(a,b)=>Q(a.n*b.d+b.n*a.d,a.d*b.d);
+const qmul=(a,b)=>Q(a.n*b.n,a.d*b.d);
+const qneg=a=>({n:-a.n,d:a.d});
+const qinv=a=>Q(a.d,a.n);
+const qz=a=>a.n===0;
+function eConst(q){const e=new Map();if(!qz(q))e.set(1,q);return e;}
+function eAddTerm(e,k,q){const cur=e.get(k)||Q(0);const s=qadd(cur,q);if(qz(s))e.delete(k);else e.set(k,s);}
+function eAdd(a,b){const r=new Map(a);b.forEach((q,k)=>eAddTerm(r,k,q));return r;}
+function eNeg(a){const r=new Map();a.forEach((q,k)=>r.set(k,qneg(q)));return r;}
+function eSub(a,b){return eAdd(a,eNeg(b));}
+function eScale(a,q){const r=new Map();a.forEach((c,k)=>{const v=qmul(c,q);if(!qz(v))r.set(k,v);});return r;}
+function eMul(a,b){
+  const r=new Map();
+  a.forEach((qa,ka)=>b.forEach((qb,kb)=>{
+    let k,c=qmul(qa,qb);
+    if(ka==='p'||kb==='p'){if(ka===1)k='p';else if(kb===1)k='p';else throw new Error('unsupported');}
+    else{const [s,t]=sqfree(ka*kb);k=t;c=qmul(c,Q(s));}
+    eAddTerm(r,k,c);
+  }));
+  return r;
+}
+function eDiv(x,y){
+  if(y.size===0)throw new Error('div0');
+  if(y.size===1){
+    const [k,q]=[...y.entries()][0];
+    if(k==='p')throw new Error('unsupported');
+    if(k===1)return eScale(x,qinv(q));
+    const num=eMul(x,new Map([[k,Q(1)]]));
+    return eScale(num,qinv(Q(q.n*k,q.d)));
+  }
+  if(y.size===2){
+    const ent=[...y.entries()];
+    if(ent.some(e=>e[0]==='p'))throw new Error('unsupported');
+    const conj=new Map([[ent[0][0],ent[0][1]],[ent[1][0],qneg(ent[1][1])]]);
+    const den=eMul(y,conj);
+    if(!(den.size===1&&den.has(1))){if(den.size===0)throw new Error('div0');throw new Error('unsupported');}
+    return eScale(eMul(x,conj),qinv(den.get(1)));
+  }
+  throw new Error('unsupported');
+}
+const isRat=e=>e.size===0||(e.size===1&&e.has(1));
+const ratOf=e=>e.size===0?Q(0):e.get(1);
+function eSqrt(arg){
+  if(!isRat(arg))throw new Error('unsupported');
+  const q=ratOf(arg);if(q.n<0)throw new Error('neg');
+  if(q.n===0)return new Map();
+  const [k,m]=sqfree(q.n*q.d);
+  return new Map([[m,Q(k,q.d)]]);
+}
+function eCbrt(arg){
+  if(!isRat(arg))throw new Error('unsupported');
+  const q=ratOf(arg);
+  const cn=Math.round(Math.cbrt(q.n)),cd=Math.round(Math.cbrt(q.d));
+  if(cn*cn*cn!==q.n||cd*cd*cd!==q.d)throw new Error('unsupported');
+  return eConst(Q(cn,cd));
+}
+function ePow(b,n){if(n>12)throw new Error('big');let r=eConst(Q(1));for(let i=0;i<n;i++)r=eMul(r,b);return r;}
+function eFloat(e){let s=0;e.forEach((q,k)=>{s+=(q.n/q.d)*(k==='p'?Math.PI:Math.sqrt(k));});return s;}
+function eKey(e){return [...e.entries()].map(([k,q])=>k+':'+q.n+'/'+q.d).sort().join(',');}
+const eEq=(a,b)=>eKey(a)===eKey(b);
+const E=(c,n)=>eScale(eSqrt(eConst(Q(n))),Q(c));
+const K=c=>eConst(Q(c));
+
+function normInput(raw){
+  let s=String(raw).replace(/\s+/g,'');
+  s=s.replace(/[−–—﹣－]/g,'-').replace(/[×·⋅＊]/g,'*').replace(/÷/g,'/').replace(/（/g,'(').replace(/）/g,')').replace(/＋/g,'+').replace(/\{/g,'(').replace(/\}/g,')');
+  s=s.replace(/sqrt/gi,'√').replace(/根号/g,'√').replace(/cbrt/gi,'∛').replace(/pi/gi,'π');
+  return s;
+}
+function parseExpr(raw){
+  const s=normInput(raw);
+  if(!s)throw new Error('empty');
+  if(!/^[0-9.+\-*\/^()√∛π]+$/.test(s))throw new Error('chars');
+  let i=0;const peek=()=>s[i];
+  function num(){
+    let j=i;while(j<s.length&&/[0-9]/.test(s[j]))j++;
+    const ip=s.slice(i,j);let fp='';
+    if(s[j]==='.'){let k=j+1;while(k<s.length&&/[0-9]/.test(s[k]))k++;fp=s.slice(j+1,k);j=k;}
+    if(!ip&&!fp)throw new Error('num');
+    i=j;return eConst(Q(parseInt((ip||'0')+fp,10),Math.pow(10,fp.length)));
+  }
+  function atom(){
+    const c=peek();
+    if(c==='('){i++;const v=expr();if(peek()!==')')throw new Error('paren');i++;return v;}
+    if(c==='√'||c==='∛'){
+      i++;let arg;
+      if(peek()==='('){i++;arg=expr();if(peek()!==')')throw new Error('paren');i++;}
+      else if(peek()==='√'||peek()==='∛'){arg=atom();}
+      else arg=num();
+      return c==='√'?eSqrt(arg):eCbrt(arg);
+    }
+    if(c==='π'){i++;return new Map([['p',Q(1)]]);}
+    return num();
+  }
+  function pow(){
+    let b=atom();
+    while(peek()==='^'){
+      i++;let j=i;while(/[0-9]/.test(s[j]||''))j++;
+      if(j===i)throw new Error('pow');
+      b=ePow(b,parseInt(s.slice(i,j),10));i=j;
+    }
+    return b;
+  }
+  function unary(){if(peek()==='-'){i++;return eNeg(unary());}if(peek()==='+'){i++;return unary();}return pow();}
+  function term(){
+    let v=unary();
+    for(;;){
+      const c=peek();
+      if(c==='*'){i++;v=eMul(v,unary());}
+      else if(c==='/'){i++;v=eDiv(v,unary());}
+      else if(c&&/[0-9.√∛π(]/.test(c)){v=eMul(v,pow());}
+      else break;
+    }
+    return v;
+  }
+  function expr(){
+    let v=term();
+    while(peek()==='+'||peek()==='-'){const op=s[i++];const t=term();v=op==='+'?eAdd(v,t):eSub(v,t);}
+    return v;
+  }
+  const v=expr();if(i!==s.length)throw new Error('trail');return v;
+}
+/* 根式 → 文本（可再被 parseExpr 解析，也可被 M() 渲染） */
+function eStr(e){
+  const keys=[...e.keys()].sort((a,b)=>a===1?-1:b===1?1:a-b);
+  if(!keys.length)return '0';
+  const D=[...e.values()].map(q=>q.d).reduce((a,b)=>a*b/gcd(a,b),1);
+  let num='';
+  keys.forEach((k,idx)=>{
+    const q=e.get(k);const c=q.n*(D/q.d);const abs=Math.abs(c);
+    const body=k===1?String(abs):(abs===1?'':String(abs))+'√'+k;
+    num+=idx===0?((c<0?'-':'')+body):((c<0?'-':'+')+body);
+  });
+  if(D===1)return num;
+  return keys.length>1?`{(${num})/${D}}`:`{${num}/${D}}`;
+}
+const rad=(c,m)=>c===0?'0':m===1?String(c):(c===1?'√'+m:c===-1?'-√'+m:c+'√'+m);
+const termStr=(c,n)=>(c===1?'':String(c))+'√'+n;
+function sumStr(terms){ /* terms:[{s,c,n}] */
+  return terms.map((t,i)=>(i===0?(t.s<0?'-':''):(t.s<0?'-':'+'))+termStr(t.c,t.n)).join('');
+}
+
+/* ---------- 渲染：把文本式子变成带根号/分数的 HTML ---------- */
+const Rh=c=>`<span class="sqrt"><span class="sqrt-symbol">&radic;</span><span class="sqrt-content">${c}</span></span>`;
+const Ch=c=>`<span class="cbrt-symbol"><span class="cbrt-index">3</span>${Rh(c)}</span>`;
+const Fh=(n,d)=>`<span class="math-frac"><span class="math-num">${n}</span><span class="math-den">${d}</span></span>`;
+function matchClose(s,i,o,c){let d=0;for(let j=i;j<s.length;j++){if(s[j]===o)d++;else if(s[j]===c){d--;if(d===0)return j;}}return s.length-1;}
+function topSlash(b){let d=0;for(let j=0;j<b.length;j++){const c=b[j];if(c==='('||c==='{')d++;else if(c===')'||c==='}')d--;else if(c==='/'&&d===0)return j;}return -1;}
+function stripOuter(t){if(t[0]==='('&&matchClose(t,0,'(',')')===t.length-1)return t.slice(1,-1);return t;}
+function rend(s){
+  let out='',i=0;
+  const prevCh=()=>{let j=i-1;while(j>=0&&s[j]===' ')j--;return j>=0?s[j]:'';};
+  while(i<s.length){
+    const c=s[i];
+    if(c==='√'||c==='∛'){
+      i++;let inner='';
+      if(s[i]==='('){const j=matchClose(s,i,'(',')');inner=rend(s.slice(i+1,j));i=j+1;}
+      else if(s[i]==='{'){const j=matchClose(s,i,'{','}');inner=rend(s.slice(i,j+1));i=j+1;}
+      else{let j=i;while(j<s.length&&/[0-9.]/.test(s[j]))j++;if(j===i){inner=rend(s[i]||'');i++;}else{inner=s.slice(i,j);i=j;}}
+      out+=c==='√'?Rh(inner):Ch(inner);
+    }else if(c==='{'){
+      const j=matchClose(s,i,'{','}');const body=s.slice(i+1,j);const k=topSlash(body);
+      if(k<0)out+=rend(body);
+      else out+=Fh(rend(stripOuter(body.slice(0,k))),rend(stripOuter(body.slice(k+1))));
+      i=j+1;
+    }else if(c==='^'){
+      i++;let exp;
+      if(s[i]==='('){const j=matchClose(s,i,'(',')');exp=rend(s.slice(i+1,j));i=j+1;}
+      else{let j=i;if(s[j]==='-')j++;while(/[0-9]/.test(s[j]||''))j++;exp=rend(s.slice(i,j));i=j;}
+      out+='<sup>'+exp+'</sup>';
+    }else if(c==='+'){out+=' + ';i++;}
+    else if(c==='-'){const bin=/[0-9a-zA-Z)}.]/.test(prevCh());out+=bin?' &minus; ':'&minus;';i++;}
+    else if(c==='*'){out+=' &times; ';i++;}
+    else if(c==='÷'){out+=' &divide; ';i++;}
+    else if(c==='='){out+=' = ';i++;}
+    else if(c==='<'){out+=' &lt; ';i++;}
+    else if(c==='>'){out+=' &gt; ';i++;}
+    else if(c==='±'){out+='&plusmn;';i++;}
+    else if(/[a-zA-Z]/.test(c)){out+=`<span class="radical-symbol">${c}</span>`;i++;}
+    else{out+=c;i++;}
+  }
+  return out;
+}
+const M=s=>rend(String(s));
+/* 把文字里剩下的“√数字 / √(…) / √字母”也画成带横线的根号（已画好的根号用的是 &radic;，不会重复处理） */
+const fixRad=h=>String(h).replace(/√(\([^()]*\)|\d+(?:\.\d+)?|[a-zA-Z])/g,m=>rend(m));
+
+/* ---------- 选择题 / 填空题构造 ---------- */
+function MQ(o){
+  const seen=new Set([String(o.ok).trim()]);const bads=[];
+  for(const [t,w] of o.bad){const k=String(t).trim();if(seen.has(k))continue;seen.add(k);bads.push([t,w]);if(bads.length===3)break;}
+  if(bads.length<3)throw new Error('distractors: '+o.q);
+  const options=shuffle([{text:M(o.ok),correct:true,why:M(o.okWhy||'')},...bads.map(([t,w])=>({text:M(t),correct:false,why:M(w)}))]);
+  return {q:o.q,options,sol:o.sol||'',_ok:o.ok,_bad:bads.map(b=>b[0]),chk:o.chk,mode:o.mode};
+}
+/* 填空题检查：返回 {ok, hint} */
+function strictIssue(raw,e){
+  const s=normInput(raw);
+  for(let i=0;i<s.length;i++){
+    if(s[i]==='√'){
+      let j=i+1,txt='';
+      if(s[j]==='('){let d=1,k=j+1;while(k<s.length&&d>0){if(s[k]==='(')d++;else if(s[k]===')')d--;k++;}txt=s.slice(j+1,k-1);}
+      else{let k=j;while(k<s.length&&/[0-9.]/.test(s[k]))k++;txt=s.slice(j,k);}
+      if(!/^\d+$/.test(txt))return '根号里面还不是最简的整数，请继续化简';
+      if(!isSqFree(parseInt(txt,10)))return '根号里面还有开得尽方的因数，请继续化简';
+    }
+  }
+  if(/\/\(?[0-9.]*√/.test(s))return '分母里还有根号，请先分母有理化';
+  const irr=[...e.keys()].filter(k=>k!==1).length;
+  const cnt=(s.match(/√/g)||[]).length;
+  if(cnt>irr)return irr===0?'答案还没有计算到最简，请继续化简':'还有同类根式没合并，或还没有化到最简';
+  const s2=s.replace(/√\(?\d+\)?/g,'R');
+  let m;const f1=/(\d+)\/(\d+)/g;
+  while((m=f1.exec(s2))){if(gcd(+m[1],+m[2])>1)return '分数还没有约分到最简';}
+  const f2=/(\d+)R\/(\d+)/g;
+  while((m=f2.exec(s2))){if(gcd(+m[1],+m[2])>1)return '分数还没有约分到最简';}
+  return '';
+}
+function checkFill(spec,raw){
+  raw=String(raw||'').trim();
+  if(!raw)return {ok:false,hint:'请先输入答案'};
+  if(spec.kind==='approx'){
+    const s=raw.replace(/\s+/g,'');
+    if(!/^-?\d+(\.\d+)?$/.test(s))return {ok:false,hint:'请输入小数，例如 3.46'};
+    return Math.abs(parseFloat(s)-spec.val)<1e-9?{ok:true}:{ok:false,hint:'请按要求保留两位小数'};
+  }
+  if(spec.kind==='custom')return spec.validate(raw);
+  if(spec.kind==='pm'){
+    let s=raw.replace(/\s+/g,'').replace(/或|和|and|or/gi,',');
+    let parts;
+    try{
+      if(s.includes('±')){const body=s.replace(/±/g,'');parts=[parseExpr(body)];parts.push(eNeg(parts[0]));}
+      else parts=s.split(/[,，、;；]/).filter(Boolean).map(parseExpr);
+    }catch(err){return {ok:false,hint:'无法识别你的输入，可以写成 ±3，或 3,-3'};}
+    const got=new Set(parts.map(eKey));const want=new Set(spec.list.map(x=>eKey(parseExpr(x))));
+    if(got.size===want.size&&[...want].every(k=>got.has(k)))return {ok:true};
+    return {ok:false,hint:got.size<want.size?'平方根有两个，正的和负的都要写出来':''};
+  }
+  let e;
+  try{e=parseExpr(raw);}catch(err){return {ok:false,hint:'无法识别你的输入。根号可以用 √ 或 sqrt，例如 2√3、sqrt(3)/2、(√5-√2)/3'};}
+  const want=parseExpr(spec.ans);
+  if(!eEq(e,want))return {ok:false,hint:''};
+  if(spec.strict!==false){const h=strictIssue(raw,e);if(h)return {ok:false,hint:'数值对了，但是：'+h};}
+  return {ok:true};
+}
+/* ==== ENGINE CORE END ==== */
+
+/* ==== ENGINE Q1 START (3.1, 3.2) ==== */
+const POOL={mcq:{sec31:[],sec32:[],sec33:[],sec34:[],sec35:[]},fill:{sec31:[],sec32:[],sec33:[],sec34:[],sec35:[]}};
+const NONSQ=[];for(let n=2;n<=150;n++)if(!isSquare(n))NONSQ.push(n);
+const SQFREE_BIG=NONSQ.filter(n=>n<=60&&isSqFree(n));
+const TRI=[[3,4,5],[5,12,13],[6,8,10],[8,15,17],[9,12,15],[7,24,25],[20,21,29],[12,16,20],[15,20,25],[9,40,41],[12,35,37]];
+const decStr10=e=>e>=0?'1'+'0'.repeat(e):'0.'+'0'.repeat(-e-1)+'1';
+const noSign=s=>String(s).replace(/^-/,'');
+
+/* 完全平方数生成器：整数 / 小数 / 分数 / 带分数 */
+function gsq(kinds){
+  const t=pick(kinds||['int','int','dec','frac','mixed']);
+  if(t==='int'){const N=ri(2,25);return {kind:t,disp:`${N*N}`,plain:`${N*N}`,rd:`${N}`,rp:`${N}`,near:`${N+(N>3?-1:1)}`};}
+  if(t==='dec'){
+    let k=ri(2,19);if(k%10===0)k=ri(11,19);
+    if(Math.random()<.35){const S=fmtDec(k*k/10000),Rr=fmtDec(k/100);return {kind:t,disp:S,plain:S,rd:Rr,rp:Rr,near:fmtDec((k+1)/100)};}
+    const S=fmtDec(k*k/100),Rr=fmtDec(k/10);return {kind:t,disp:S,plain:S,rd:Rr,rp:Rr,near:fmtDec((k+1)/10)};
+  }
+  if(t==='frac'){
+    let a,b;do{b=ri(2,12);a=ri(1,b-1);}while(gcd(a,b)!==1);
+    return {kind:t,disp:`{${a*a}/${b*b}}`,plain:`(${a*a}/${b*b})`,rd:`{${a}/${b}}`,rp:`(${a}/${b})`,near:a+1<b?`{${a+1}/${b}}`:`{${a}/${b+1}}`};
+  }
+  let p,q;do{q=ri(2,6);p=ri(q+1,3*q);}while(gcd(p,q)!==1);
+  const whole=Math.floor(p*p/(q*q)),rem=p*p-whole*q*q;
+  return {kind:'mixed',disp:`${whole}{${rem}/${q*q}}`,plain:`(${p*p}/${q*q})`,rd:`{${p}/${q}}`,rp:`(${p}/${q})`,near:`{${p+1}/${q}}`};
+}
+/* 完全立方数生成器：整数 / 小数 / 分数，可正可负 */
+function gcube(kinds){
+  const t=pick(kinds||['int','int','dec','frac']);const neg=Math.random()<.5;const sg=neg?'-':'';
+  if(t==='int'){const N=ri(2,12);return {neg,disp:`${sg}${N**3}`,plain:`${sg}${N**3}`,rd:`${sg}${N}`,rp:`${sg}${N}`,near:`${sg}${N+1}`};}
+  if(t==='dec'){const k=ri(2,9);return {neg,disp:`${sg}${fmtDec(k**3/1000)}`,plain:`${sg}${fmtDec(k**3/1000)}`,rd:`${sg}${fmtDec(k/10)}`,rp:`${sg}${fmtDec(k/10)}`,near:`${sg}${fmtDec((k+1)/10)}`};}
+  let a,b;do{b=ri(2,7);a=ri(1,b-1);}while(gcd(a,b)!==1);
+  return {neg,disp:`${sg}{${a**3}/${b**3}}`,plain:`${sg}(${a**3}/${b**3})`,rd:`${sg}{${a}/${b}}`,rp:`${sg}(${a}/${b})`,near:`${sg}{${a+1}/${b}}`};
+}
+function statementQ(stemTrue,stemFalse,trues,falses,okWhyT,okWhyF){
+  const wantTrue=Math.random()<.5;
+  if(wantTrue){const ok=trues.shift();return MQ({q:stemTrue,ok:ok[0],okWhy:ok[1],bad:falses.map(f=>[f[0],f[1]]),mode:'true'});}
+  const ok=falses.shift();return MQ({q:stemFalse,ok:ok[0],okWhy:ok[1],bad:trues.map(f=>[f[0],f[1]]),mode:'false'});
+}
+
+/* ---------------- 3.1 平方根与算术平方根 ---------------- */
+POOL.mcq.sec31.push(
+// 1 求平方根
+()=>{const s=gsq();return MQ({q:`求 ${M(s.disp)} 的平方根。${s.kind==='mixed'?'（先把带分数化为假分数）':''}`,ok:`±${s.rd}`,okWhy:'正确！正数有两个互为相反数的平方根。',
+  bad:[[s.rd,'只写了正的平方根，漏掉了负的平方根。'],[`-${s.rd}`,'只写了负的平方根，正的平方根也要写。'],[`±${s.disp}`,'没有开方：被开方数不能直接当作平方根。'],[`±${s.near}`,'数字算错了，请用平方验证。']],
+  sol:`因为 ${M(`(${s.rd})^2 = ${s.disp}`)}，所以 ${M(s.disp)} 的平方根是 ${M('±'+s.rd)}。`,chk:[`(${s.rp})^2`,s.plain]});},
+// 2 算术平方根
+()=>{const s=gsq();return MQ({q:`求 ${M(s.disp)} 的算术平方根。${s.kind==='mixed'?'（先把带分数化为假分数）':''}`,ok:s.rd,okWhy:'正确！算术平方根只取正的那一个。',
+  bad:[[`±${s.rd}`,'“±”是平方根的写法，算术平方根只取正的。'],[`-${s.rd}`,'算术平方根不能是负数。'],[s.disp,'没有开方。'],[s.near,'数字算错了，请用平方验证。']],
+  sol:`因为 ${M(`(${s.rd})^2 = ${s.disp}`)}，且算术平方根是非负数，所以答案是 ${M(s.rd)}。`,chk:[`(${s.rp})^2`,s.plain]});},
+// 3 √、-√、±√ 求值
+()=>{const s=gsq();const f=ri(0,2);const sy=['','-','±'][f];const stem=`求 ${M(`${sy}√(${s.disp})`)} 的值。`;
+  const forms=[s.rd,`-${s.rd}`,`±${s.rd}`];const why=['√ 表示算术平方根，结果是非负数。','“−√”表示算术平方根的相反数，结果是负数。','“±√”表示正、负两个平方根。'];
+  const bad=[];[0,1,2].forEach(i=>{if(i!==f)bad.push([forms[i],'符号处理错误：注意题目里根号前面的符号。']);});bad.push([s.near,'数字算错了。']);
+  return MQ({q:stem,ok:forms[f],okWhy:'正确！'+why[f],bad,sol:why[f],chk:f===2?null:[`${sy}√(${s.plain})`,f===0?s.rp:`-${s.rp}`]});},
+// 4 (√a)^2
+()=>{const a=pick([2,3,5,6,7,10,11,13,15,17,19,21,23,2.3,3.7,5.1,7.2,0.6]);const f=ri(0,2);const A=fmtDec(a);const A2=fmtDec(a*a);
+  const exprs=[`(√${A})^2`,`(-√${A})^2`,`-(√${A})^2`];const vals=[A,A,`-${A}`];const plains=[`(√(${A}))^2`,`(-√(${A}))^2`,`-(√(${A}))^2`];
+  return MQ({q:`计算 ${M(exprs[f])} 的值。`,ok:vals[f],okWhy:'正确！(√a)² = a（a≥0）。',
+    bad:[[f===2?A:`-${A}`,'符号错了：先算平方，再看前面的负号。'],[`±${A}`,'结果是一个确定的数，不是两个。'],[A2,'把 (√a)² 当成了 a²。'],[`√${A}`,'平方和开方互为逆运算，应该约掉。']],
+    sol:'根据 (√a)² = a（a≥0）。注意：负号在括号外面时最后再带上。',chk:[plains[f],vals[f]]});},
+// 5 √(m^2)
+()=>{const m=-pick([2,3,4,5,6,7,8,9,11,12,13,15,0.3,0.5,1.2]);const M0=fmtDec(Math.abs(m));
+  return MQ({q:`计算 ${M(`√((${m})^2)`)} 的值。`,ok:M0,okWhy:'正确！√(a²)=|a|。',
+    bad:[[fmtDec(m),'√(a²)=|a|，结果不能是负数。'],[`±${M0}`,'√ 表示算术平方根，只取正的。'],[fmtDec(m*m),'没有开方。']],
+    sol:`先算括号内：${M(`(${m})^2 = ${fmtDec(m*m)}`)}，再求算术平方根得 ${M(M0)}。即 √(a²)=|a|。`,chk:[`√((${m})^2)`,M0]});},
+// 6 乘积
+()=>{const a=gsq(['int','dec']),b=gsq(['int','dec']);const r1=parseFloat(a.rd),r2=parseFloat(b.rd);const ans=fmtDec(r1*r2);
+  return MQ({q:`计算 ${M(`√(${a.disp}*${b.disp})`)} 的值。`,ok:ans,okWhy:'正确！√(ab)=√a·√b。',
+    bad:[[fmtDec(r1+r2),'√(ab) 是 √a 与 √b 的积，不是和。'],[fmtDec(parseFloat(a.disp)*parseFloat(b.disp)),'没有开方。'],[fmtDec(r1*r2*10),'小数点位置错了。'],[fmtDec(r1*r2/10),'小数点位置错了。']],
+    sol:`${M(`√(${a.disp}*${b.disp}) = √(${a.disp})*√(${b.disp}) = ${a.rd}*${b.rd} = ${ans}`)}`,chk:[`√(${a.plain}*${b.plain})`,ans]});},
+// 7 概念判断
+()=>{const N=()=>ri(2,15);const n=[N(),N(),N(),N(),N(),N()];
+  const T=[[`${-n[0]} 是 ${n[0]*n[0]} 的一个平方根`,`(${-n[0]})² = ${n[0]*n[0]}，所以 −${n[0]} 是 ${n[0]*n[0]} 的平方根。`],[`${n[1]*n[1]} 的算术平方根是 ${n[1]}`,`算术平方根取正的。`],[`${n[2]*n[2]} 的平方根是 ±${n[2]}`,`正数的平方根有两个。`],[`0 的平方根是 0`,`0 的平方根只有 0 一个。`],[`${n[3]*n[3]} 的平方根有两个，它们互为相反数`,`这是正数平方根的性质。`]];
+  const F=[[`${n[0]*n[0]} 的平方根是 ${n[0]}`,`漏了负的平方根，应为 ±${n[0]}。`],[`-${n[1]*n[1]} 的平方根是 ±${n[1]}`,`负数没有平方根。`],[`√${n[2]*n[2]} = ±${n[2]}`,`√ 只表示算术平方根，√${n[2]*n[2]} = ${n[2]}。`],[`任何数都有两个平方根`,`0 只有一个平方根，负数没有平方根。`],[`${n[3]*n[3]} 是 ${n[3]} 的算术平方根`,`说反了：${n[3]} 是 ${n[3]*n[3]} 的算术平方根。`],[`√((-${n[4]})^2) = -${n[4]}`,`√(a²)=|a|，结果是 ${n[4]}。`]];
+  return statementQ('下列说法正确的是（ ）。','下列说法错误的是（ ）。',sample(T,4),sample(F,4));},
+// 8 √x = N
+()=>{const N=pick([2,3,4,5,6,7,8,9,10,12,15,0.3,0.5,1.5]);const Ns=fmtDec(N);
+  return MQ({q:`若 ${M(`√x = ${Ns}`)}，则 x 的值是（ ）。`,ok:fmtDec(N*N),okWhy:'正确！两边平方。',bad:[[Ns,'x 是 √x 的平方，不是它本身。'],[`±${fmtDec(N*N)}`,'√x=N 时 x 是唯一的。'],[fmtDec(2*N),'把平方当成了乘以 2。'],[fmtDec(N*N+1),'计算错误。']],
+    sol:`两边同时平方：x = ${M(`(${Ns})^2 = ${fmtDec(N*N)}`)}。`,chk:[`√(${fmtDec(N*N)})`,Ns]});},
+// 9 勾股
+()=>{const t=pick(TRI);const f=ri(0,1);let stem,ans,bad,expr;
+  if(f===0){stem=`已知 ${M('c = √(a^2+b^2)')}，当 a = ${t[0]}，b = ${t[1]} 时，c 的值是（ ）。`;ans=t[2];expr=`√(${t[0]}^2+${t[1]}^2)`;bad=[[t[0]+t[1],'√(a²+b²) 不等于 a+b。'],[t[0]**2+t[1]**2,'忘了开方。'],[t[2]+1,'计算错误。'],[t[2]-1,'计算错误。']];}
+  else{stem=`已知 ${M('y = √(z^2-x^2)')}，当 z = ${t[2]}，x = ${t[0]} 时，y 的值是（ ）。`;ans=t[1];expr=`√(${t[2]}^2-${t[0]}^2)`;bad=[[t[2]-t[0],'√(z²−x²) 不等于 z−x。'],[t[2]**2-t[0]**2,'忘了开方。'],[t[1]+1,'计算错误。'],[t[1]-1,'计算错误。']];}
+  return MQ({q:stem,ok:String(ans),okWhy:'正确！',bad:bad.map(b=>[String(b[0]),b[1]]),sol:`${M(expr+' = '+ans)}`,chk:[expr,String(ans)]});},
+// 10 解方程 x^2 = S
+()=>{const s=gsq();return MQ({q:`解方程 ${M(`x^2 = ${s.disp}`)}，x 的值是（ ）。${s.kind==='mixed'?'（先把带分数化为假分数）':''}`,ok:`±${s.rd}`,okWhy:'正确！开平方时要写两个值。',
+  bad:[[s.rd,'漏了负根。'],[`-${s.rd}`,'漏了正根。'],[`±${s.disp}`,'没有开方。'],[`±${s.near}`,'数字算错了。']],sol:`两边开平方：${M(`x = ±√(${s.disp}) = ±${s.rd}`)}。`,chk:[`(${s.rp})^2`,s.plain]});}
+);
+POOL.fill.sec31.push(
+// F1 求平方根
+()=>{const s=gsq();return {q:`求 ${M(s.disp)} 的平方根。${s.kind==='mixed'?'（先把带分数化为假分数）':''}（正负都要写，如 ±3）`,kind:'pm',list:[s.rp,`-${s.rp}`],disp:M('±'+s.rd),sol:`${M(`(${s.rd})^2 = ${s.disp}`)}，所以平方根是 ${M('±'+s.rd)}。`};},
+// F2 非负数性质
+()=>{const a=ri(2,9),b=ri(1,9);const sg=pick([1,-1]);const lhs=`|x ${sg>0?'-':'+'} ${a}| + √(y - ${b}) = 0`;const x=sg*a;
+  return {q:`已知 ${M(lhs).replace(/\|/g,'|')}，求 ${M('x+y')} 的值。`,kind:'exact',ans:String(x+b),disp:M(String(x+b)),sol:`绝对值和算术平方根都是非负数，和为 0 则两项都为 0：x = ${x}，y = ${b}，所以 x + y = ${x+b}。`};},
+// F3 两个平方根表达式
+()=>{const A=ri(2,3),C=-ri(1,2);const x=pick([-3,-2,-1,1,2,3,4]);const t=pick([-1,1])*ri(2,8);const B=t-A*x,D=-t-C*x;
+  const lin=(c,k)=>`${c===1?'':c===-1?'-':c}x${k===0?'':(k>0?'+':'-')+Math.abs(k)}`;
+  return {q:`已知一个正数 ${M('a')} 的两个平方根分别是 ${M(lin(A,B))} 和 ${M(lin(C,D))}，求 ${M('a')} 的值。`,kind:'exact',ans:String(t*t),disp:M(String(t*t)),
+    sol:`正数的两个平方根互为相反数：${M(lin(A,B))} + (${M(lin(C,D))}) = 0，解得 x = ${x}，一个平方根是 ${t}，所以 a = ${t}² = ${t*t}。`};},
+// F4 勾股
+()=>{const t=pick(TRI);const f=ri(0,1);if(f===0)return {q:`已知 ${M('c = √(a^2+b^2)')}，当 a = ${t[0]}，b = ${t[1]} 时，求 c 的值。`,kind:'exact',ans:String(t[2]),disp:M(String(t[2])),sol:`${M(`√(${t[0]}^2+${t[1]}^2) = √${t[0]**2+t[1]**2} = ${t[2]}`)}`};
+  return {q:`已知 ${M('y = √(z^2-x^2)')}，当 z = ${t[2]}，x = ${t[0]} 时，求 y 的值。`,kind:'exact',ans:String(t[1]),disp:M(String(t[1])),sol:`${M(`√(${t[2]}^2-${t[0]}^2) = √${t[2]**2-t[0]**2} = ${t[1]}`)}`};},
+// F5 乘积公式
+()=>{const a=gsq(['int','dec']),b=gsq(['int','dec']);const ans=fmtDec(parseFloat(a.rd)*parseFloat(b.rd));
+  return {q:`计算 ${M(`√(${a.disp}*${b.disp})`)} 的值。`,kind:'exact',ans,disp:M(ans),sol:`${M(`√(${a.disp}*${b.disp}) = ${a.rd}*${b.rd} = ${ans}`)}`};},
+// F6 分解质因数
+()=>{const R=pick([12,14,15,18,21,24,28,30,33,35,36,42,45,48,54,56,60,63,66,70]);
+  return {q:`利用分解质因数求 ${M(`√${R*R}`)} 的值。`,kind:'exact',ans:String(R),disp:M(String(R)),sol:`${R*R} = ${R}²，所以 ${M(`√${R*R}`)} = ${R}。`};},
+// F7 小数
+()=>{let k=ri(11,39);if(k%10===0)k++;const S='0.'+'0'.repeat(6-String(k*k).length)+k*k;const ans=fmtDec(k/1000);
+  return {q:`求 ${M(`√${S}`)} 的值。`,kind:'exact',ans,disp:M(ans),sol:`${S} = ${ans}²，所以 ${M(`√${S}`)} = ${ans}。`};}
+);
+
+/* ---------------- 3.2 立方根 ---------------- */
+function bCombo(){
+  const A=ri(2,6),B=ri(2,9),sA=pick([1,-1]),bn=Math.random()<.5,op=pick([1,-1]);
+  const a=sA*A;const disp=`∛(${sA*A**3})${op>0?'+':'-'}√(${bn?`(-${B})`:B}^2)`;const v=a+op*B;
+  return {disp,v,a,B,op,sA,A};
+}
+function bTri(){
+  const parts=[];let v=0,s='';
+  for(let i=0;i<3;i++){const n=ri(1,5),sg=pick([1,-1]),op=i===0?1:pick([1,-1]);const c=sg*n**3;s+=(i===0?'':op>0?'+':'-')+`∛(${c})`;v+=op*sg*n;parts.push({n,sg,op});}
+  return {disp:s,v,parts};
+}
+function bEq(){
+  const cand=[];for(let q=2;q<=4;q++)for(let c=2;c<=4;c++)for(let p=1;p<=9;p++)if((p+c**3)%q===0)cand.push([p,q,c]);
+  const [p,q,c]=pick(cand);return {p,q,c,x:(p+c**3)/q};
+}
+POOL.mcq.sec32.push(
+// 1 求立方根
+()=>{const s=gcube();const ab=noSign(s.rd);return MQ({q:`求 ${M(s.disp)} 的立方根。`,ok:s.rd,okWhy:'正确！立方根的符号与被开方数相同。',
+  bad:[[s.neg?ab:`-${ab}`,'符号错了：立方根的符号与被开方数的符号相同。'],[`±${ab}`,'立方根只有一个。'],[s.near,'数字算错了，请用立方验证。'],[s.neg?`-${noSign(s.near)}`.replace('--','-'):`-${noSign(s.near)}`,'符号和数字都不对。']],
+  sol:`因为 ${M(`(${s.rd})^3 = ${s.disp}`)}，所以立方根是 ${M(s.rd)}。`,chk:[`(${s.rp})^3`,s.plain]});},
+// 2 立方根与平方根混合
+()=>{const b=bCombo();const v=b.v,a=b.a,B=b.B,op=b.op;
+  return MQ({q:`计算 ${M(b.disp)} 的值。`,ok:String(v),okWhy:'正确！',bad:[[String(-a+op*B),'立方根的符号弄反了。'],[String(a-op*B),'√((−B)²) 应该是正数 B。'],[String(-a-op*B),'符号都弄反了。'],[String(a*B),'运算符号看错了。'],[String(v+2),'计算错误。'],[String(-v),'符号弄反了。']],
+    sol:`${M(b.disp)}：∛ 部分得 ${a}，√ 部分得 ${B}，结果 ${a} ${op>0?'+':'−'} ${B} = ${v}。`,chk:[b.disp,String(v)]});},
+// 3 概念判断
+()=>{const N=()=>ri(2,9);const n=[N(),N(),N(),N(),N()];const c=i=>n[i]**3;
+  const T=[[`${-c(0)} 的立方根是 ${-n[0]}`,`(${-n[0]})³ = ${-c(0)}。`],[`0 的立方根是 0`,`0³ = 0。`],[`正数的立方根是正数`,`正数的立方是正数。`],[`负数的立方根是负数`,`负数的立方是负数。`],[`任何数都只有一个立方根`,`立方根是唯一的。`]];
+  const F=[[`${c(1)} 的立方根是 ±${n[1]}`,`立方根只有一个，是 ${n[1]}。`],[`负数没有立方根`,`负数有立方根，且是负数。`],[`一个数的立方根等于它本身，则这个数只有 0 和 1`,`−1、0、1 的立方根都等于它本身。`],[`${c(2)} 的立方根是 ${n[2]*n[2]}`,`${n[2]}³ = ${c(2)}，立方根是 ${n[2]}。`],[`${-c(3)} 的立方根是 ${n[3]}`,`负数的立方根是负数，应为 ${-n[3]}。`]];
+  return statementQ('下列说法正确的是（ ）。','下列说法错误的是（ ）。',sample(T,4),sample(F,4));},
+// 4 ∛x = r
+()=>{const A=ri(2,6),r=pick([1,-1])*A;const c=r**3;
+  return MQ({q:`若 ${M(`∛x = ${r}`)}，则 x 的值是（ ）。`,ok:String(c),okWhy:'正确！两边同时立方。',bad:[[String(-c),'符号错了。'],[String(3*r),'把立方当成了乘以 3。'],[String(r*r),'把立方当成了平方。'],[`±${Math.abs(c)}`,'x 是唯一确定的。']],
+    sol:`两边立方：${M(`x = (${r})^3 = ${c}`)}。`,chk:[`∛(${c})`,String(r)]});},
+// 5 x^3 = S
+()=>{const s=gcube();const ab=noSign(s.rd);return MQ({q:`解方程 ${M(`x^3 = ${s.disp}`)}，x 的值是（ ）。`,ok:s.rd,okWhy:'正确！',bad:[[`±${ab}`,'立方根只有一个，不用写 ±。'],[s.neg?ab:`-${ab}`,'符号错了。'],[s.near,'数字算错了。']],
+  sol:`两边开立方：${M(`x = ∛(${s.disp}) = ${s.rd}`)}。`,chk:[`(${s.rp})^3`,s.plain]});},
+// 6 10 的幂
+()=>{const k=pick([-3,-2,-1,1,2,3]);const n=decStr10(3*k),ans=decStr10(k);
+  return MQ({q:`求 ${M(`∛${n}`)} 的值。`,ok:ans,okWhy:'正确！小数点每移动 3 位，立方根的小数点移动 1 位。',bad:[[decStr10(k+1),'小数点位置错了。'],[decStr10(k-1),'小数点位置错了。'],[decStr10(2*k),'小数点位置错了。'],[decStr10(-k),'方向反了。']],
+    sol:`${n} = ${M('(' + ans + ')^3')}，所以立方根是 ${ans}。`,chk:[`∛(${n})`,ans]});},
+// 7 ∛(p-qx) = -c
+()=>{const {p,q,c,x}=bEq();
+  return MQ({q:`若 ${M(`∛(${p}-${q}x) = -${c}`)}，则 x 的值是（ ）。`,ok:String(x),okWhy:'正确！',bad:[[String(x+1),'计算错误，请代回检验。'],[String(x-1),'计算错误，请代回检验。'],[String(-x),'符号错了。'],[String(c**3),'没有解完方程。']],
+    sol:`两边立方：${M(`${p}-${q}x = -${c**3}`)}，解得 x = ${x}。`,chk:[`∛(${p}-${q}*(${x}))`,`-${c}`]});},
+// 8 体积
+()=>{const N=ri(2,12);return MQ({q:`一个正方体的体积是 ${N**3} cm<sup>3</sup>，它的棱长是（ ）cm。`,ok:String(N),okWhy:'正确！棱长 = ∛体积。',bad:[[String(N+1),'请用立方验证。'],[String(N-1),'请用立方验证。'],[String(N*N),'把立方当成了平方。'],[String(3*N),'把立方当成了乘以 3。']],sol:`棱长 = ${M(`∛${N**3}`)} = ${N} cm。`});},
+// 9 三个立方根
+()=>{const b=bTri();return MQ({q:`计算 ${M(b.disp)} 的值。`,ok:String(b.v),okWhy:'正确！',bad:[[String(b.parts.reduce((s,p)=>s+p.op*p.n,0)),'负数的立方根是负数，不能去掉负号。'],[String(b.parts.reduce((s,p)=>s-p.op*p.sg*p.n,0)),'符号弄反了。'],[String(b.v+1),'计算错误。'],[String(b.v-1),'计算错误。'],[String(b.v+2),'计算错误。'],[String(-b.v),'符号弄反了。']],sol:'逐个求立方根，再按顺序加减。',chk:[b.disp,String(b.v)]});}
+);
+POOL.fill.sec32.push(
+()=>{const s=gcube();return {q:`求 ${M(`∛(${s.disp})`)} 的值（分数请化为最简分数，如 2/3）。`,kind:'exact',ans:s.rp,disp:M(s.rd),sol:`${M(`(${s.rd})^3 = ${s.disp}`)}，所以立方根是 ${M(s.rd)}。`};},
+()=>{const b=bCombo();return {q:`计算 ${M(b.disp)} 的值。`,kind:'exact',ans:String(b.v),disp:M(String(b.v)),sol:`∛ 部分得 ${b.a}，√ 部分得 ${b.B}，结果 ${b.v}。`};},
+()=>{const {p,q,c,x}=bEq();return {q:`若 ${M(`∛(${p}-${q}x) = -${c}`)}，求 x 的值。`,kind:'exact',ans:String(x),disp:M(String(x)),sol:`两边立方：${M(`${p}-${q}x = -${c**3}`)}，x = ${x}。`};},
+()=>{const s=gcube();return {q:`解方程 ${M(`x^3 = ${s.disp}`)}，求 x 的值（分数请化为最简分数）。`,kind:'exact',ans:s.rp,disp:M(s.rd),sol:`${M(`x = ∛(${s.disp}) = ${s.rd}`)}。`};},
+()=>{const b=bTri();return {q:`计算 ${M(b.disp)} 的值。`,kind:'exact',ans:String(b.v),disp:M(String(b.v)),sol:'逐个求立方根，再按顺序加减。'};},
+()=>{const k=pick([-3,-2,-1,1,2,3]);const n=decStr10(3*k),ans=decStr10(k);return {q:`求 ${M(`∛${n}`)} 的值。`,kind:'exact',ans,disp:M(ans),sol:`${n} = ${ans}³，所以立方根是 ${ans}。`};}
+);
+/* ==== ENGINE Q1 END ==== */
+
+/* ==== ENGINE Q2 START (3.3, 3.4) ==== */
+/* ---------- 小数展开 ---------- */
+function decExp(p,q){
+  const ip=Math.floor(p/q);let r=p%q;const digs=[],seen={};
+  while(r!==0&&seen[r]===undefined){seen[r]=digs.length;r*=10;digs.push(Math.floor(r/q));r=r%q;}
+  if(r===0)return {ip,nonrep:digs.join(''),rep:''};
+  const st=seen[r];return {ip,nonrep:digs.slice(0,st).join(''),rep:digs.slice(st).join('')};
+}
+const DOT='\u0307';
+function decDots(ex){
+  let s=ex.ip+'.';if(ex.rep==='')return s+(ex.nonrep||'0');
+  s+=ex.nonrep;const r=ex.rep;
+  return s+(r.length===1?r+DOT:r[0]+DOT+r.slice(1,-1)+r[r.length-1]+DOT);
+}
+/* ---------- 无理数 / 有理数 小题库 ---------- */
+const IRR_ITEMS=[
+  ()=>({h:'π',why:'π 是无限不循环小数，是无理数'}),
+  ()=>{const n=pick(NONSQ.filter(x=>x<=60));return {h:`√${n}`,why:`√${n} 开方开不尽，是无限不循环小数，是无理数`};},
+  ()=>{const n=pick([2,3,4,5,6,7,9,10,11,12,13]);return {h:`∛${n}`,why:`∛${n} 开立方开不尽，是无理数`};},
+  ()=>{const a=ri(1,9);let b;do{b=ri(1,9);}while(b===a);return {h:`0.${a}${b}${a}${b}${b}${a}${b}${b}${b}…`,why:`0.${a}${b}${a}${b}${b}${a}${b}${b}${b}… 的小数位按规律变化却不循环，是无理数`};},
+  ()=>{const c=pick([2,3,4,5]),n=pick([2,3,5,6,7]);return {h:`${c}√${n}`,why:`${c}√${n} 是无理数`};}
+];
+const RAT_ITEMS=[
+  ()=>{const k=pick([2,3,4,5,6,7,8,9,10,11,12]);return {h:`√${k*k}`,why:`√${k*k} = ${k}，是整数，是有理数`};},
+  ()=>{const k=pick([2,3,4,5]);return {h:`∛(-${k**3})`,why:`∛(-${k**3}) = -${k}，是整数，是有理数`};},
+  ()=>{const q=pick([3,7,9,11,13]);const p=ri(1,q-1);return {h:`{${p}/${q}}`,why:`${p}/${q} 是分数，是有理数`};},
+  ()=>{const h=pick(['3.14','0.25','-1.5','2.718','0.125','-0.6','0.375']);return {h,why:`${h} 是有限小数，是有理数`};},
+  ()=>{const q=pick([3,9,11]);let p=ri(1,q-1);return {h:decDots(decExp(p,q)),why:`循环小数是有理数`};},
+  ()=>{const h=pick(['0','-5','8','-12','21','-7']);return {h,why:`${h} 是整数，是有理数`};},
+  ()=>{const k=ri(2,9);return {h:`√{${k*k}/${(k+1)**2}}`,why:`√{${k*k}/${(k+1)**2}} = ${k}/${k+1}，是有理数`};}
+];
+function pickItems(gens,n){const out=[],seen=new Set();let guard=0;while(out.length<n&&guard++<200){const it=pick(gens)();if(seen.has(it.h))continue;seen.add(it.h);out.push(it);}return out;}
+function bCount(){
+  const k=ri(1,3);const irr=pickItems(IRR_ITEMS,k),rat=pickItems(RAT_ITEMS,5-k);
+  const all=shuffle(irr.map(x=>({...x,irr:true})).concat(rat.map(x=>({...x,irr:false}))));
+  return {k,all,irr};
+}
+POOL.mcq.sec33.push(
+// 1 数无理数个数
+()=>{const b=bCount();const cand=[b.k+1,b.k-1,b.k+2,b.k-2,0,5,4].filter(x=>x>=0&&x<=5);
+  return MQ({q:`在 ${b.all.map(x=>M(x.h)).join('，　')} 这五个数中，无理数有（ ）个。`,ok:`${b.k}`,okWhy:'正确！',bad:cand.map(x=>[`${x}`,'数错了，请逐个判断每个数是不是无限不循环小数。']),
+    sol:'无理数是：'+b.irr.map(x=>M(x.h)).join('、')+'。其余都是有理数。'});},
+// 2 概念判断
+()=>{const n=pick(NONSQ.filter(x=>x<=60)),s=pick([4,9,16,25,36,49]),c=pick([8,27,64]),p=ri(1,6),q=pick([7,9,11,13]);
+  const T=[['无理数都是无限不循环小数','无理数的定义。'],['循环小数都是有理数','循环小数可以化成分数。'],[`√${n} 是无理数`,`${n} 不是完全平方数，√${n} 开不尽。`],['有限小数都是有理数','有限小数可以写成分数。'],['任何一个分数都可以化成有限小数或循环小数','所以分数都是有理数。'],[`∛${c} 是有理数`,`∛${c} = ${Math.round(Math.cbrt(c))}。`]];
+  const F=[['带根号的数都是无理数',`例如 √${s} = ${Math.sqrt(s)} 是有理数。`],['无限小数都是无理数','无限循环小数是有理数。'],[`√${s} 是无理数`,`√${s} = ${Math.sqrt(s)}，是有理数。`],['两个无理数的和一定是无理数','例如 √2 + (−√2) = 0。'],['无理数乘以有理数一定是无理数','例如 √2 × 0 = 0。'],[`{${p}/${q}} 是无理数`,'分数都是有理数。']];
+  return statementQ('下列说法正确的是（ ）。','下列说法错误的是（ ）。',sample(T,4),sample(F,4));},
+// 3 估算两个整数之间
+()=>{const n=pick(NONSQ.filter(x=>x>=3&&x<=120));const k=Math.floor(Math.sqrt(n));
+  return MQ({q:`${M('√'+n)} 在哪两个连续整数之间？`,ok:`${k} 与 ${k+1} 之间`,okWhy:`正确！${k}² = ${k*k} < ${n} < ${(k+1)**2} = ${(k+1)}²。`,bad:[[`${k-1} 与 ${k} 之间`,'范围偏小了。'],[`${k+1} 与 ${k+2} 之间`,'范围偏大了。'],[`${Math.floor(n/2)} 与 ${Math.floor(n/2)+1} 之间`,'不要把被开方数除以 2。'],[`${k+2} 与 ${k+3} 之间`,'范围偏大了。']],sol:`${k}² = ${k*k}，${k+1}² = ${(k+1)**2}，而 ${k*k} < ${n} < ${(k+1)**2}，所以 ${k} < √${n} < ${k+1}。`});},
+// 4 分数化小数
+()=>{const rep=Math.random()<.65;let p,q;
+  if(rep){q=pick([3,9,11,7,6]);do{p=ri(1,q-1);}while(gcd(p,q)!==1);}else{q=pick([2,4,5,8,20,25]);do{p=ri(1,q-1);}while(gcd(p,q)!==1);}
+  const ex=decExp(p,q);const ok=decDots(ex);const full=ex.nonrep+ex.rep.repeat(5);const cands=[];
+  if(!rep){const last=ex.nonrep.slice(-1);cands.push([`${ex.ip}.0${ex.nonrep}`,'小数点位置错了。'],[`${ex.ip}.${ex.nonrep.slice(0,-1)}${last}${DOT}`,'有限小数不是循环小数，不用标循环点。'],[fmtDec(q/p),'分子分母写反了。'],[`${ex.ip}.${ex.nonrep}${(parseInt(last,10)+1)%10}`,'末位多写了数字。'],[fmtDec(p/q*10),'小数点位置错了。']);}
+  else cands.push([`${ex.ip}.${full.slice(0,3)}`,'循环小数不能随便截断成有限小数。']);cands.push([`${ex.ip}.${full.slice(0,2)}`,'这只是近似值，不是准确值。']);
+  const p2=p%(q-1)+1;if(p2!==p)cands.push([decDots(decExp(p2,q)),'数字算错了，请用长除法再算一次。']);
+  if(ex.nonrep)cands.push([decDots({ip:ex.ip,nonrep:'',rep:ex.nonrep+ex.rep}),'循环节位置标错了。']);
+  cands.push([`${ex.ip}.${(ex.nonrep+ex.rep).slice(0,1)}${(ex.nonrep+ex.rep.repeat(3)).slice(1,3)}${DOT}`,'循环节位置标错了。']);cands.push([`0.0${(ex.nonrep||ex.rep)}`,'小数点位置错了。']);
+  return MQ({q:`把 ${M(`{${p}/${q}}`)} 化成小数，结果是（ ）。${rep?'（带点的数字表示循环节）':''}`,ok,okWhy:'正确！',bad:cands,sol:`用长除法计算 ${p} ÷ ${q}，得 ${ok}。`});},
+// 5 有限小数化最简分数
+()=>{const d=pick([2,4,5,8,20,25]);let p;do{p=ri(1,d-1);}while(gcd(p,d)!==1);const ex=decExp(p,d);const dec=`${ex.ip}.${ex.nonrep}`;const t=ex.nonrep.length;const num=parseInt(ex.nonrep,10),den=10**t;
+  return MQ({q:`把 ${dec} 写成最简分数，结果是（ ）。`,ok:`{${p}/${d}}`,okWhy:'正确！',bad:[[`{${num}/${den}}`,'没有约分到最简。'],[`{${d}/${p}}`,'分子分母写反了。'],[`{${p}/${d+1}}`,'数字算错了。'],[`{${p+1}/${d}}`,'数字算错了。']],sol:`${dec} = ${M(`{${num}/${den}}`)}，约分得 ${M(`{${p}/${d}}`)}。`});},
+// 6 最接近的整数
+()=>{const n=pick(NONSQ.filter(x=>x>=3&&x<=120));const k=Math.floor(Math.sqrt(n));const near=(n<=k*k+k)?k:k+1;
+  return MQ({q:`${M('√'+n)} 最接近下面哪个整数？`,ok:String(near),okWhy:'正确！',bad:[[String(near+1),'偏大了。'],[String(near-1),'偏小了。'],[String(Math.floor(n/2)),'不要把被开方数除以 2。'],[String(near+2),'偏大了。']],sol:`${k}² = ${k*k}，${(k+1)}² = ${(k+1)**2}。${n} 离 ${near===k?k*k:(k+1)**2} 更近，所以 √${n} 最接近 ${near}。`});},
+// 7 哪个是无理数
+()=>{const irr=pickItems(IRR_ITEMS,1)[0];const rats=pickItems(RAT_ITEMS,3);
+  return MQ({q:'下列各数中，是无理数的是（ ）。',ok:irr.h,okWhy:'正确！'+irr.why+'。',bad:rats.map(r=>[r.h,r.why+'。']).concat([['0',' 0 是整数，是有理数。']]),sol:irr.why+'。'});},
+// 8 比较 √n 与 k
+()=>{const k=ri(2,9);const dl=pick([-3,-2,-1,0,1,2,3]);const n=k*k+dl;const sg=dl>0?'>':dl<0?'<':'=';
+  const forms={'>':`√${n} > ${k}`,'<':`√${n} < ${k}`,'=':`√${n} = ${k}`};
+  return MQ({q:`比较大小：${M('√'+n)} 与 ${k}。`,ok:forms[sg],okWhy:'正确！',bad:['>','<','='].filter(x=>x!==sg).map(x=>[forms[x],'比较被开方数与 '+k+'² = '+k*k+' 的大小。']).concat([['无法比较','实数都可以比较大小。']]),sol:`${k}² = ${k*k}，被开方数 ${n} ${dl>0?'大于':dl<0?'小于':'等于'} ${k*k}，所以 ${forms[sg]}。`});},
+// 9 √a+√b 与 √(a+b)
+()=>{const a=ri(2,9);let b;do{b=ri(2,9);}while(b===a);
+  return MQ({q:`比较大小：${M(`√${a}+√${b}`)} 与 ${M(`√${a+b}`)}。`,ok:'前者大于后者',okWhy:'正确！',bad:[['前者小于后者','平方后比较。'],['两者相等','√a+√b 一般不等于 √(a+b)。'],['无法比较','实数都可以比较大小。']],
+    sol:`两个正数比较，可以先平方：${M(`(√${a}+√${b})^2 = ${a+b}+2√${a*b}`)}，而 ${M(`(√${a+b})^2 = ${a+b}`)}，因为 ${M(`2√${a*b}`)} > 0，所以前者大。`});}
+);
+POOL.fill.sec33.push(
+// F1 介于 a,b 的无理数
+()=>{const a=ri(1,8),b=a+pick([1,2]);
+  return {q:`写出一个大于 ${a} 且小于 ${b} 的无理数（可用 √ 输入，如 √5）。`,kind:'custom',disp:M(`√${a*a+1}`),sol:`例如 ${M(`√${a*a+1}`)}：因为 ${a*a} < ${a*a+1} < ${(a+1)**2}，所以 ${a} < √${a*a+1} < ${a+1}。答案不唯一。`,
+    validate:(raw)=>{let e;try{e=parseExpr(raw);}catch(x){return {ok:false,hint:'无法识别，请写成 √5 这样的形式'};}
+      const irr=[...e.keys()].some(k=>k!==1);if(!irr)return {ok:false,hint:'你写的是有理数，请写一个无理数，如 √5'};
+      const v=eFloat(e);if(!(v>a&&v<b))return {ok:false,hint:`数值大约是 ${v.toFixed(3)}，不在 ${a} 与 ${b} 之间`};return {ok:true};}};},
+// F2 整数部分
+()=>{const n=pick(NONSQ.filter(x=>x>=5&&x<=150));const k=Math.floor(Math.sqrt(n));return {q:`求 ${M('√'+n)} 的整数部分。`,kind:'exact',ans:String(k),disp:M(String(k)),sol:`${k}² = ${k*k} < ${n} < ${(k+1)**2} = ${k+1}²，所以整数部分是 ${k}。`};},
+// F3 小数部分
+()=>{const n=pick(SQFREE_BIG.filter(x=>x>=5));const k=Math.floor(Math.sqrt(n));return {q:`求 ${M('√'+n)} 的小数部分（用 √ 表示，如 √7-2）。`,kind:'exact',ans:`√${n}-${k}`,disp:M(`√${n}-${k}`),sol:`整数部分是 ${k}，小数部分 = ${M(`√${n}-${k}`)}。`};},
+// F4 分数→有限小数
+()=>{const d=pick([2,4,5,8,20,25,40]);let p;do{p=ri(1,d-1);}while(gcd(p,d)!==1);const ex=decExp(p,d);const dec=`${ex.ip}.${ex.nonrep}`;return {q:`把 ${M(`{${p}/${d}}`)} 化成小数。`,kind:'exact',ans:dec,disp:M(dec),sol:`${p} ÷ ${d} = ${dec}。`};},
+// F5 小数→最简分数
+()=>{const d=pick([2,4,5,8,20,25]);let p;do{p=ri(1,d-1);}while(gcd(p,d)!==1);const ex=decExp(p,d);const dec=`${ex.ip}.${ex.nonrep}`;return {q:`把 ${dec} 写成最简分数（如 3/4）。`,kind:'exact',ans:`${p}/${d}`,disp:M(`{${p}/${d}}`),sol:`${dec} 约分后是 ${M(`{${p}/${d}}`)}。`};},
+// F6 无理数个数
+()=>{const b=bCount();return {q:`在 ${b.all.map(x=>M(x.h)).join('，　')} 这五个数中，无理数有几个？（填数字）`,kind:'exact',ans:String(b.k),disp:M(String(b.k)),sol:'无理数是：'+b.irr.map(x=>M(x.h)).join('、')+'。'};}
+);
+
+/* ---------------- 3.4 二次根式的化简 ---------------- */
+function bSimp(){
+  const m=pick([2,3,5,6,7,10,11,13,14,15]);const kmax=Math.min(12,Math.floor(Math.sqrt(500/m)));const k=ri(2,kmax);const n=k*k*m;
+  return {k,m,n,ans:rad(k,m)};
+}
+function bMinN(){
+  const s=pick([2,3,5,6,7,10]),u=ri(1,4);const c=s*u*u;return {s,u,c};
+}
+function bDomain(){
+  const f=ri(0,2);const a=ri(1,4),c=ri(1,9);
+  if(f===0&&a===1)return bDomain();
+  return {f,a,c};
+}
+const GIVEN='已知 √2 = 1.4142，√3 = 1.7321，√5 = 2.2361。';
+const RV={2:1.4142,3:1.7321,5:2.2361};
+POOL.mcq.sec34.push(
+// 1 化简 √n
+()=>{const b=bSimp();const {k,m,n}=b;return MQ({q:`化简 ${M('√'+n)}，结果是（ ）。`,ok:b.ans,okWhy:`正确！${n} = ${k}² × ${m}。`,
+  bad:[[`${m}√${k}`,'把根号里外的数搞反了。'],[`${k*k}√${m}`,'开方时没有把 '+k*k+' 开出 '+k+'。'],[`√${k*m}`,'把平方因数的指数弄错了。'],[`${k+m}`,'根式不能这样相加。'],[`${k}√${m+1}`,'被开方数算错了。']],
+  sol:`${M(`√${n} = √(${k*k}*${m}) = ${k}√${m}`)}。`,chk:[`√${n}`,b.ans]});},
+// 2 √(p×q)
+()=>{let p,q,k,m;do{p=ri(2,40);q=ri(2,40);[k,m]=sqfree(p*q);}while(k===1||p*q>1500);const ans=m===1?String(k):rad(k,m);
+  return MQ({q:`化简 ${M(`√(${p}*${q})`)}，结果是（ ）。`,ok:ans,okWhy:`正确！${p}×${q} = ${p*q} = ${k}² × ${m}。`,bad:[[`√${p*q}`,'根号里还有开得尽方的因数，没有化到最简。'],[`${p}√${q}`,'√(pq) 不等于 p√q。'],[rad(k*k,m),'开方时没有开出来。'],[`${k+m}`,'结果算错了。'],[`${k}√${m+1}`,'被开方数算错了。']],sol:`${p}×${q} = ${p*q} = ${k*k}×${m}，所以 ${M(`√${p*q} = ${ans}`)}。`,chk:[`√(${p}*${q})`,ans]});},
+// 3 含字母
+()=>{const k=ri(2,6),m=pick([1,2,3,5,6,7]);const S=k*k*m;const f=ri(0,2);let q,ok,bad,sol;
+  const sq=(c)=>c===1?'':String(c);
+  if(f===0){q=`√(${S}a^2)`;ok=m===1?`${k}a`:`${k}a√${m}`;bad=[[m===1?`${k*k}a`:`${k*k}a√${m}`,'没有开方。'],[m===1?`${k}a^2`:`${k}a^2√${m}`,'字母的指数处理错了。'],[m===1?`${k}`:`${k}√${m}`,'漏掉了字母 a。'],[m===1?`${k}a+1`:`${k}a√${m}+1`,'多了不该有的项。'],[m===1?`${S}a`:`${S}a√${m}`,'没有开方。']];sol=`${S}a² = ${k*k}${m===1?'':'×'+m}×a²，开出 ${k}a。`;}
+  else if(f===1){q=`√(${S}x^3)`;ok=m===1?`${k}x√x`:`${k}x√(${m}x)`;bad=[[m===1?`${k}x^2`:`${k}x^2√${m}`,'x³ = x²·x，余下的 x 还要留在根号里。'],[m===1?`${k}√x`:`${k}x√${m}`,'x 的处理出错了。'],[m===1?`${k*k}x√x`:`${k*k}x√(${m}x)`,'没有开方。'],[m===1?`${k}x^2√x`:`${k}√(${m}x)`,'漏掉了 x。'],[m===1?`${k}x√x+1`:`${k}x√(${m}x)+1`,'多了不该有的项。']];sol=`x³ = x²·x，所以 ${S}x³ = ${k*k}x²·${sq(m)}x，开出 ${k}x，余下 ${m===1?'√x':'√('+m+'x)'}。`;}
+  else{q=`√(${S}x^3y^4)`;ok=m===1?`${k}xy^2√x`:`${k}xy^2√(${m}x)`;bad=[[m===1?`${k}xy√x`:`${k}xy√(${m}x)`,'y⁴ 开方应得 y²。'],[m===1?`${k}x^2y^2`:`${k}x^2y^2√${m}`,'x 的处理出错了。'],[m===1?`${k*k}xy^2√x`:`${k*k}xy^2√(${m}x)`,'没有开方。'],[m===1?`${k}xy^2`:`${k}xy^2√${m}`,'漏掉了根号里的 x。'],[m===1?`${k}x^2y√x`:`${k}x^2y√(${m}x)`,'指数分配错了。']];sol=`x³y⁴ = (x·y²)²·x，所以开出 ${k}xy²，余下 ${m===1?'√x':'√('+m+'x)'}。`;}
+  return MQ({q:`化简 ${M(q)}（字母都表示非负数），结果是（ ）。`,ok,okWhy:'正确！',bad,sol,chk:[q,ok]});},
+// 4 最简二次根式辨认
+()=>{const m=pick(SQFREE_BIG.filter(x=>x<=30)),k=ri(2,4),m2=pick([2,3,5,7]);const cands=[[`√${k*k*m2}`,'根号内有开得尽方的因数。'],[`√{${m2}/${m2+2}}`,'被开方数含分母。'],[`{1/√${m2}}`,'分母中含根号。'],[`√0.${m2}`,'被开方数是小数。'],[`√{${k*k}/${m2}}`,'被开方数含分母。']].filter(c=>c[1]);
+  return MQ({q:'下列各式中，是最简二次根式的是（ ）。',ok:`√${m}`,okWhy:`正确！${m} 不含平方因数，也不含分母。`,bad:cands,sol:'最简二次根式需满足：被开方数不含分母，也不含开得尽方的因数（或因式）。'});},
+// 5 有意义的范围
+()=>{const b=bDomain();let q,ok,bad,why;const {f,a,c}=b;
+  if(f===0){q=`${a===1?'':a}x-${a*c}`;ok=`x ≥ ${c}`;bad=[[`x > ${c}`,'被开方数可以等于 0，所以应包含等号。'],[`x ≤ ${c}`,'不等号方向反了。'],[`x ≠ ${c}`,'被开方数不能是负数，不是“不等于”。'],[`x ≥ -${c}`,'移项时符号错了。']];}
+  else if(f===1){q=`${a*c}-${a===1?'':a}x`;ok=`x ≤ ${c}`;bad=[[`x < ${c}`,'被开方数可以等于 0，所以应包含等号。'],[`x ≥ ${c}`,'不等号方向反了，注意 x 的系数是负的。'],[`x ≠ ${c}`,'被开方数不能是负数，不是“不等于”。'],[`x ≤ -${c}`,'移项时符号错了。']];}
+  else{q=`${a===1?'':a}x+${a*c}`;ok=`x ≥ -${c}`;bad=[[`x > -${c}`,'被开方数可以等于 0，所以应包含等号。'],[`x ≤ -${c}`,'不等号方向反了。'],[`x ≥ ${c}`,'移项时符号错了。'],[`x ≠ -${c}`,'被开方数不能是负数，不是“不等于”。']];}
+  return MQ({q:`要使 ${M(`√(${q})`)} 有意义，x 的取值范围是（ ）。`,ok,okWhy:'正确！',bad,sol:`被开方数必须 ≥ 0：${M(`${q} ≥ 0`)}，解得 ${M(ok)}。`});},
+// 6 近似值
+()=>{const m=pick([2,3,5]),k=ri(2,7);const n=k*k*m;const val=R2(k*RV[m]);
+  return MQ({q:`${GIVEN}求 ${M('√'+n)} 的近似值（保留两位小数）。`,ok:val.toFixed(2),okWhy:`正确！√${n} = ${k}√${m}。`,bad:[[R2((k+1)*RV[m]).toFixed(2),'化简出错了。'],[R2(k*k*RV[m]).toFixed(2),'√ 里的 '+k*k+' 开方后应该是 '+k+'。'],[R2(RV[m]).toFixed(2),'漏掉了根号外面的系数。'],[R2(m*RV[m]).toFixed(2),'把根号里外的数搞反了。']],sol:`${M(`√${n} = ${k}√${m} ≈ ${k} × ${RV[m]} ≈ ${val.toFixed(2)}`)}。`});},
+// 7 √(a/b)
+()=>{const s=ri(2,6),k=ri(2,6),m=pick([2,3,5,6,7]);const g=gcd(k,s);const kk=k/g,ss=s/g;const a=k*k*m,b=s*s;  const ans=ss===1?rad(kk,m):`{${rad(kk,m)}/${ss}}`;
+  return MQ({q:`化简 ${M(`√{${a}/${b}}`)}，结果是（ ）。`,ok:ans,okWhy:`正确！${a} = ${k}²×${m}，${b} = ${s}²。`,bad:[[`{√${a}/${b}}`,'分母也要开方：√b，不是 b。'],[`{${rad(k,m)}/${b}}`,'分母也要开方。'],[`{${rad(s,m)}/${k}}`,'分子分母弄反了。'],[`${rad(k*s,m)}`,'应当是分母，不是乘上去。']],sol:`${M(`√{${a}/${b}} = {√${a}/√${b}} = {${rad(k,m)}/${s}} = ${ans}`)}。`,chk:[`√(${a}/${b})`,ans]});},
+// 8 最小的 n
+()=>{const {s,u,c}=bMinN();return MQ({q:`若 ${M(`√(${c}n)`)} 是整数，则正整数 n 的最小值是（ ）。`,ok:String(s),okWhy:`正确！${c} = ${u}²×${s}，再乘 ${s} 才能凑成完全平方数。`,bad:[[String(c),'n 不需要这么大。'],[String(u),'要补的是 '+s+' 这个因数。'],[String(s+1),'请把 '+c+' 分解后再看。'],[String(s*2),'不是最小值。']],sol:`${c} = ${u*u}×${s}，要使 ${c}n 是完全平方数，n 的最小值是 ${s}。`});}
+);
+POOL.fill.sec34.push(
+()=>{const b=bSimp();return {q:`化简 ${M('√'+b.n)}。`,kind:'exact',ans:b.ans,disp:M(b.ans),expr:`√${b.n}`,sol:`${M(`√${b.n} = √(${b.k*b.k}*${b.m}) = ${b.ans}`)}。`};},
+()=>{const {s,u,c}=bMinN();return {q:`若 ${M(`√(${c}n)`)} 是整数，求正整数 n 的最小值。`,kind:'exact',ans:String(s),disp:M(String(s)),sol:`${c} = ${u*u}×${s}，所以 n 的最小值是 ${s}。`};},
+()=>{const m=pick([2,3,5]),k=ri(2,7);const n=k*k*m;const val=R2(k*RV[m]);return {q:`${GIVEN}求 ${M('√'+n)} 的近似值（保留两位小数）。`,kind:'approx',val,disp:M(val.toFixed(2)),sol:`${M(`√${n} = ${k}√${m} ≈ ${k} × ${RV[m]} ≈ ${val.toFixed(2)}`)}。`};},
+()=>{let p,q,k,m;do{p=ri(2,40);q=ri(2,40);[k,m]=sqfree(p*q);}while(k===1||p*q>1500);const ans=m===1?String(k):rad(k,m);return {q:`化简 ${M(`√(${p}*${q})`)}。`,kind:'exact',ans,disp:M(ans),expr:`√(${p}*${q})`,sol:`${p}×${q} = ${k*k}×${m}，所以结果是 ${M(ans)}。`};},
+()=>{const a=ri(2,5),b=ri(1,19);const f=ri(0,1);if(f===0){const ans=Math.ceil(b/a);return {q:`使 ${M(`√(${a}x-${b})`)} 有意义的最小整数 x 是多少？`,kind:'exact',ans:String(ans),disp:M(String(ans)),sol:`${a}x − ${b} ≥ 0，x ≥ ${b}/${a} ≈ ${(b/a).toFixed(2)}，最小整数是 ${ans}。`};}
+  const ans=Math.floor(b/a);return {q:`使 ${M(`√(${b}-${a}x)`)} 有意义的最大整数 x 是多少？`,kind:'exact',ans:String(ans),disp:M(String(ans)),sol:`${b} − ${a}x ≥ 0，x ≤ ${b}/${a} ≈ ${(b/a).toFixed(2)}，最大整数是 ${ans}。`};},
+()=>{const s=ri(2,6),k=ri(2,6),m=pick([2,3,5,6,7]);const g=gcd(k,s);const kk=k/g,ss=s/g;const a=k*k*m,b=s*s;const ans=ss===1?rad(kk,m):`{${rad(kk,m)}/${ss}}`;
+  return {q:`化简 ${M(`√{${a}/${b}}`)}（分数请写成如 3√2/5 的形式）。`,kind:'exact',ans,disp:M(ans),expr:`√(${a}/${b})`,sol:`${M(`√{${a}/${b}} = {√${a}/√${b}} = ${ans}`)}。`};}
+);
+/* ==== ENGINE Q2 END ==== */
+
+/* ==== ENGINE Q3 START (3.5) ==== */
+const SQL=[2,3,5,6,7,10];
+function bAddSub(){
+  for(;;){
+    const m=pick([2,3,5,6,7]),nt=pick([2,3,3]),terms=[];
+    for(let t=0;t<nt;t++){const k=ri(1,5),c=pick([1,1,2,3]);terms.push({s:t===0?1:pick([1,-1]),c,k,n:k*k*m});}
+    if(!terms.some(t=>t.k>1)||terms.some(t=>t.n>150))continue;
+    const total=terms.reduce((a,t)=>a+t.s*t.c*t.k,0);if(total===0||Math.abs(total)>20)continue;
+    const disp=sumStr(terms);const simp=sumStr(terms.map(t=>({s:t.s,c:t.c*t.k,n:m})));
+    const wrongs=[];
+    if(terms.every(t=>t.c===1)){const val=terms.reduce((a,t)=>a+t.s*t.n,0);if(val>0)wrongs.push([`√${val}`,'被开方数不能直接相加减，要先化成同类根式再合并系数。']);}
+    const t1=terms.find(t=>t.k>1);wrongs.push([rad(total-t1.s*t1.c*(t1.k-1),m),'有一项没有化简就直接合并了。']);
+    const t2=terms[1];wrongs.push([rad(total-2*t2.s*t2.c*t2.k,m),'加减号处理错了。']);
+    wrongs.push([String(total),'合并同类根式时，根号要保留。']);
+    wrongs.push([rad(terms.reduce((a,t)=>a+t.s*t.c,0),m),'化简时漏掉了根号外的系数。']);
+    wrongs.push([rad(total,m+1),'被开方数算错了。']);
+    return {disp,plain:disp,ans:E(total,m),wrongs,chain:`${disp} = ${simp} = ${rad(total,m)}`};
+  }
+}
+function bRatSingle(){
+  const a=ri(2,12),b=ri(1,4),m=pick([2,3,5,6,7]);
+  const disp=`{${a}/(${b===1?'':b}√${m})}`;const ans=eDiv(K(a),E(b,m));const wrongs=[];
+  if(gcd(a,b*m)>1)wrongs.push([`{${a}√${m}/${b*m}}`,'分母有理化后还要约分到最简。']);
+  wrongs.push([b===1?`${a}√${m}`:`{${a}√${m}/${b}}`,'分子分母同乘 √'+m+' 后，分母应为 '+b+'×'+m+'。']);
+  wrongs.push([`{${a}/${b*m}}`,'分子漏掉了 √'+m+'。']);
+  wrongs.push([`${a}√${m}`,'分母不能直接丢掉。']);
+  wrongs.push([b===1?`${a*m}√${m}`:`{${a*m}√${m}/${b}}`,'分子乘多了。']);
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = {${a}√${m}/${b*m}} = ${eStr(ans)}`};
+}
+function bRatBinom(){
+  const t=ri(0,1),k=ri(1,6),sg=pick([1,-1]);let a,b,den,conj,D,dispDen,conjStr,Dstr,sumD;
+  if(t===0){a=pick(SQL);do{b=pick(SQL);}while(b===a);den=eAdd(E(1,a),eScale(E(1,b),Q(sg)));conj=eSub(E(1,a),eScale(E(1,b),Q(sg)));D=a-b;dispDen=`√${a}${sg>0?'+':'-'}√${b}`;conjStr=`√${a}${sg>0?'-':'+'}√${b}`;Dstr=`${a}-${b}`;sumD=a+b;}
+  else{a=pick(SQL);const l=ri(1,4);den=eAdd(E(1,a),eScale(K(l),Q(sg)));conj=eSub(E(1,a),eScale(K(l),Q(sg)));D=a-l*l;dispDen=`√${a}${sg>0?'+':'-'}${l}`;conjStr=`√${a}${sg>0?'-':'+'}${l}`;Dstr=`${a}-${l*l}`;sumD=a+l*l;}
+  const disp=`{${k}/(${dispDen})}`;const ans=eDiv(K(k),den);const N=eScale(conj,Q(k));
+  const wrongs=[[eStr(N),'分子乘了共轭式，分母也要变成 '+D+'。'],[eStr(eScale(eMul(K(k),den),Q(1,D))),'分子应乘 ('+conjStr+')，符号要变。'],[eStr(eScale(N,Q(1,sumD))),'分母是平方差：'+Dstr+'，不是相加。'],[eStr(eNeg(ans)),'符号错了。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = {${k}(${conjStr})/(${Dstr})} = ${eStr(ans)}`};
+}
+function bMul(){
+  const P=[2,3,5,6,7,8,10,12,14,15,18,20,24,27,32,45,50];let p,q,c1,c2,k,m;
+  do{p=pick(P);q=pick(P);c1=pick([1,1,2,3]);c2=pick([1,1,2,3]);[k,m]=sqfree(p*q);}while(p*q>2500);
+  const disp=`${c1===1?'':c1}√${p}*${c2===1?'':c2}√${q}`;const ans=E(c1*c2*k,m);
+  const wrongs=[[rad(c1*c2,p*q),'根号里还有开得尽方的因数，没有化到最简。'],[rad(c1*c2,p+q),'√a×√b = √(ab)，不是 √(a+b)。'],[String(c1*c2*p*q),'乘完后还要开方。'],[rad(c1*c2*k*k,m),'化简时把 '+k+' 多乘了一次。'],[rad(c1*c2,m*k),'根号内外弄混了。'],[`${c1+c2}√${p*q}`,'根号外的系数应该相乘，不是相加。'],[rad(c1*c2+1,m),'系数算错了。'],[rad(c1*c2*2,m),'系数算错了。'],[rad(c1*c2,m+1),'被开方数算错了。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = ${rad(c1*c2,p*q)} = ${eStr(ans)}`};
+}
+function bDiv(){
+  let q,k,m,r,p;do{q=pick([2,3,5,6,7]);k=ri(2,6);m=pick([1,2,3,5,6]);r=k*k*m;p=q*r;}while(p>400);
+  const disp=`√${p}÷√${q}`;const ans=E(k,m);
+  const wrongs=[[`√${p-q}`,'√a ÷ √b = √(a÷b)，不是 √(a−b)。'],[rad(1,r),'根号里还有开得尽方的因数，没有化到最简。'],[String(r),'除完后还要开方。'],[rad(k*k,m),'化简时把 '+k+' 多乘了一次。'],[String(k+m),'结果算错了。'],[rad(k+1,m),'系数算错了。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = √${r} = ${eStr(ans)}`};
+}
+function bDiff(){
+  const kind=ri(0,2);let A,B,P,Q2,t1,t2;
+  if(kind===0){const a=pick([2,3,5,6,7,10,11]),l=ri(1,4);A=E(1,a);B=K(l);P=a;Q2=l*l;t1=`√${a}`;t2=`${l}`;}
+  else if(kind===1){const a=pick(SQL);let b;do{b=pick(SQL);}while(b===a);A=E(1,a);B=E(1,b);P=a;Q2=b;t1=`√${a}`;t2=`√${b}`;}
+  else{const a=pick(SQL);let b;do{b=pick(SQL);}while(b===a);const c=ri(1,4),d=ri(1,4);A=E(c,a);B=E(d,b);P=c*c*a;Q2=d*d*b;t1=termStr(c,a);t2=termStr(d,b);}
+  const f1=`(${t1}+${t2})`,f2=`(${t1}-${t2})`;const disp=Math.random()<.5?f1+f2:f2+f1;
+  const ans=K(P-Q2);
+  const wrongs=[[String(P+Q2),'平方差公式是 a²−b²，中间是减号。'],[String(Q2-P),'被减数和减数弄反了。'],[String(P*Q2),'公式用错了。'],[String(P-Q2+1),'计算错误。'],[String(P-Q2-1),'计算错误。'],[String(P-Q2+2),'计算错误。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = (${t1})^2-(${t2})^2 = ${P}-${Q2} = ${P-Q2}`};
+}
+function bSquare(){
+  const kind=ri(0,2),sg=pick([1,-1]);let X1,X2,t1,t2;
+  if(kind===0){const a=pick(SQL),l=ri(1,4);X1=E(1,a);X2=K(l);t1=`√${a}`;t2=`${l}`;}
+  else if(kind===1){const a=pick(SQL);let b;do{b=pick(SQL);}while(b===a);X1=E(1,a);X2=E(1,b);t1=`√${a}`;t2=`√${b}`;}
+  else{const a=pick(SQL);let b;do{b=pick(SQL);}while(b===a);const c=ri(1,3),d=ri(1,3);X1=E(c,a);X2=E(d,b);t1=termStr(c,a);t2=termStr(d,b);}
+  const Y=eAdd(X1,eScale(X2,Q(sg)));const ans=eMul(Y,Y);const sq=eAdd(eMul(X1,X1),eMul(X2,X2));const cross=eMul(X1,X2);
+  const disp=`(${t1}${sg>0?'+':'-'}${t2})^2`;
+  const wrongs=[[eStr(sq),'完全平方公式中间还有 ±2ab 这一项。'],[eStr(eAdd(sq,eScale(cross,Q(-2*sg)))),'中间项的符号错了。'],[eStr(eAdd(sq,eScale(cross,Q(sg)))),'中间项是 2ab，漏乘了 2。'],[eStr(Y),'平方没有展开。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = ${eStr(sq)} ${sg>0?'+':'-'} ${eStr(eScale(cross,Q(2)))} = ${eStr(ans)}`};
+}
+function bDistr(){
+  const a=pick([2,3,5]);const L=[2,3,5,6,7,8,10,12];const b=pick(L);let c;do{c=pick(L);}while(c===b);const sg=pick([1,-1]);
+  const Y=eAdd(E(1,b),eScale(E(1,c),Q(sg)));const ans=eMul(E(1,a),Y);const Sa=E(1,a);
+  const disp=`√${a}(√${b}${sg>0?'+':'-'}√${c})`;
+  const wrongs=[[eStr(eAdd(eMul(Sa,E(1,b)),eScale(E(1,c),Q(sg)))),'乘法分配律：√'+a+' 要乘括号里的每一项。'],[`√${a+b}${sg>0?'+':'-'}√${a+c}`,'√a×√b = √(ab)，不是 √(a+b)。'],[`√${a*b}${sg>0?'+':'-'}√${a*c}`,'根号里还有开得尽方的因数，没有化到最简。'],[eStr(eAdd(eMul(Sa,E(1,b)),eScale(eMul(Sa,E(1,c)),Q(-sg)))),'符号处理错了。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = √${a*b} ${sg>0?'+':'-'} √${a*c} = ${eStr(ans)}`};
+}
+function bMix(){
+  const q=pick([2,3,5,6]),t=ri(2,12),r=pick([2,3,5,6,7,8]);const p=q*t;const [k,m]=sqfree(t*r);
+  const disp=`√${p}÷√${q}*√${r}`;const ans=E(k,m);
+  const wrongs=[[rad(1,t*r),'根号里还有开得尽方的因数，没有化到最简。'],[`√${t+r}`,'乘法应该是 √t × √r = √(tr)。'],[rad(k*k,m),'化简时把 '+k+' 多乘了一次。'],[String(t*r),'最后还要开方。'],[`√${p-q}`,'除法法则用错了。'],[rad(1,t),'漏乘了最后的 √'+r+'。'],[rad(1,t*r+1),'被开方数算错了。']];
+  return {disp,plain:disp,ans,wrongs,chain:`${disp} = √${t}×√${r} = √${t*r} = ${eStr(ans)}`};
+}
+const wrap=(b,stem)=>MQ({q:stem(b),ok:eStr(b.ans),okWhy:'正确！',bad:b.wrongs,sol:M(b.chain),chk:[b.plain,eStr(b.ans)]});
+POOL.mcq.sec35.push(
+()=>wrap(bAddSub(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bRatSingle(),b=>`将 ${M(b.disp)} 分母有理化，最简结果是（ ）。`),
+()=>wrap(bMul(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bDiv(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bDiff(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bSquare(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bRatBinom(),b=>`将 ${M(b.disp)} 分母有理化，最简结果是（ ）。`),
+()=>wrap(bDistr(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+()=>wrap(bMix(),b=>`计算 ${M(b.disp)} 的结果（化到最简）是（ ）。`),
+// 判断运算是否正确
+()=>{const m=pick([2,3,5,7]),c1=ri(2,9);let c2=ri(2,9);if(c1===2&&c2===2)c2=3;let c3,d3;do{c3=ri(3,9);d3=ri(2,c3-2);}while(c3-d3<2);
+  const p=pick([2,3,5,6,7]),q=pick([2,3,5,6,7]),a=ri(2,9);let b;do{b=ri(2,9);}while(b===a);const aa=a+b+ri(1,3),ll=ri(1,4),m2=pick([2,3,5,7]);
+  const T=[[`${c1}√${m}+${c2}√${m}=${c1+c2}√${m}`,'同类根式合并同类项：系数相加，根式不变。'],[`√${p}*√${q}=√${p*q}`,'√a×√b=√(ab)。'],[`${c3}√${m}-${d3}√${m}=${c3-d3}√${m}`,'同类根式合并：系数相减。'],[`(√${a})^2=${a}`,'(√a)²=a。'],[`{${m2}/√${m2}}=√${m2}`,'分子分母同乘 √'+m2+' 即可得到。'],[`√${p*5}÷√5=√${p}`,'√a÷√b=√(a÷b)。']];
+  const F=[[`√${a}+√${b}=√${a+b}`,'被开方数不能直接相加。'],[`${c1}√${a}+${c2}√${aa}=${c1+c2}√${a+aa}`,'不是同类根式，不能这样合并。'],[`${c1}√${m}+${c2}√${m}=${c1*c2}√${m}`,'合并同类根式是系数相加，不是相乘。'],[`√${a*b}=√${a}+√${b}`,'√(ab) = √a×√b，不是相加。'],[`(√${a}+${ll})^2=${a}+${ll*ll}`,'完全平方公式漏了中间项。'],[`√${a+4}-√${a}=2`,'被开方数不能直接相减。']];
+  return statementQ('下列运算正确的是（ ）。','下列运算错误的是（ ）。',sample(T,4),sample(F,4));}
+);
+POOL.fill.sec35.push(
+()=>{const b=bAddSub();return {q:`计算 ${M(b.disp)}。`,kind:'exact',ans:eStr(b.ans),disp:M(eStr(b.ans)),expr:b.plain,sol:M(b.chain)};},
+()=>{const b=bDistr();return {q:`计算 ${M(b.disp)}（结果化成最简形式，如 √6+2）。`,kind:'exact',ans:eStr(b.ans),disp:M(eStr(b.ans)),expr:b.plain,sol:M(b.chain)};},
+()=>{const b=Math.random()<.5?bDiff():bSquare();return {q:`计算 ${M(b.disp)}（结果化成最简形式，如 7+2√10）。`,kind:'exact',ans:eStr(b.ans),disp:M(eStr(b.ans)),expr:b.plain,sol:M(b.chain)};},
+()=>{const b=Math.random()<.5?bRatSingle():bRatBinom();return {q:`将 ${M(b.disp)} 分母有理化（分数请写成如 (√5-√2)/3 的形式）。`,kind:'exact',ans:eStr(b.ans),disp:M(eStr(b.ans)),expr:b.plain,sol:M(b.chain)};},
+()=>{let d,k,n,m;do{d=ri(1,3);k=ri(1,4);n=ri(2,4);m=k*k+d;}while(isSquare(m));
+  return {q:`计算 ${M(`(√${m}+${k})^${n}(√${m}-${k})^${n}`)} 的值。`,kind:'exact',ans:String(d**n),disp:M(String(d**n)),expr:`(√${m}+${k})^${n}(√${m}-${k})^${n}`,sol:`先算 ${M(`(√${m}+${k})(√${m}-${k}) = ${m}-${k*k} = ${d}`)}，再取 ${n} 次方：${d}^${n} = ${d**n}。`};},
+()=>{const n=pick([2,3,5]);const f=ri(0,2);let disp,val,txt;
+  if(f===0){disp=`{1/√${n}}`;val=R2(RV[n]/n);txt=`${M(disp)} = ${M(`{√${n}/${n}}`)}`;}
+  else if(f===1){const k=ri(2,9);disp=`{${k}/√${n}}`;val=R2(k*RV[n]/n);txt=`${M(disp)} = ${M(`{${k}√${n}/${n}}`)}`;}
+  else{const [a,b]=pick([[3,2],[5,2],[5,3]]);const sg=pick([1,-1]);disp=`{1/(√${a}${sg>0?'+':'-'}√${b})}`;val=R2(sg>0?(RV[a]-RV[b])/(a-b):(RV[a]+RV[b])/(a-b));txt=`${M(disp)} = ${M(`{√${a}${sg>0?'-':'+'}√${b}/${a-b}}`)}`;}
+  return {q:`${GIVEN}求 ${M(disp)} 的近似值（保留两位小数）。`,kind:'approx',val,disp:M(val.toFixed(2)),sol:`先分母有理化：${txt}，代入近似值得 ${val.toFixed(2)}。`};},
+()=>{const b=pick([bMul,bDiv,bMix])();return {q:`计算 ${M(b.disp)}。`,kind:'exact',ans:eStr(b.ans),disp:M(eStr(b.ans)),expr:b.plain,sol:M(b.chain)};}
+);
+/* ==== ENGINE Q3 END ==== */
+
+/* ==== CALC START ==== */
+function factorize(n){const f=[];let m=n;for(let p=2;p*p<=m;p++){let e=0;while(m%p===0){m/=p;e++;}if(e)f.push([p,e]);}if(m>1)f.push([m,1]);return f;}
+const facStr=f=>f.map(([p,e])=>e===1?`${p}`:`${p}^${e}`).join('*');
+function cubefree(n){let k=1,m=n;for(let p=2;p*p*p<=m;p++){while(m%(p*p*p)===0){m/=p*p*p;k*=p;}}return [k,m];}
+const qStr=q=>q.d===1?String(q.n):`{${q.n}/${q.d}}`;
+const qDec=q=>(q.n<0?'-':'')+decDots(decExp(Math.abs(q.n),q.d));
+const isFinDec=q=>{let d=q.d;while(d%2===0)d/=2;while(d%5===0)d/=5;return d===1;};
+const qVal=q=>q.n/q.d;
+const tooBig=q=>Math.abs(q.n)>1e12||q.d>1e12;
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function parseRat(str){
+  let s=String(str).trim().replace(/[−–—]/g,'-').replace(/／/g,'/');
+  if(!s||s.length>40)return null;
+  let m;
+  if((m=s.match(/^(-?)\s*(\d+)\s+(\d+)\s*\/\s*(\d+)$/))){
+    const d=+m[4];if(!d)return null;const v=Q(+m[2]*d+ +m[3],d);return m[1]?qneg(v):v;
+  }
+  try{const e=parseExpr(s);return isRat(e)?ratOf(e):null;}catch(err){return null;}
+}
+const crow=(k,v)=>`<div class="flex flex-wrap items-baseline gap-x-3 py-1.5 border-b border-slate-100 dark:border-slate-700/60 last:border-0"><span class="text-xs font-semibold text-slate-500 dark:text-slate-400 w-24 shrink-0">${k}</span><span class="text-sm leading-relaxed">${fixRad(v)}</span></div>`;
+const cerr=m=>`<div class="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-sm">${m}</div>`;
+const cbox=rows=>`<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">${rows.join('')}</div>`;
+const ctag=(t,c)=>`<span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold ${c}">${t}</span>`;
+const TG_OK='bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200';
+const TG_IRR='bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-200';
+const TG_INFO='bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-200';
+const Nh=(n,c)=>`<span class="cbrt-symbol"><span class="cbrt-index">${n}</span>${Rh(c)}</span>`;
+
+/* √(p/q) 的最简形式 */
+function sqrtInfo(q){
+  const rn=Math.round(Math.sqrt(q.n)),rd=Math.round(Math.sqrt(q.d));
+  if(rn*rn===q.n&&rd*rd===q.d)return {perfect:true,root:Q(rn,rd)};
+  const [k0,m]=sqfree(q.n*q.d);const g=gcd(k0,q.d);
+  return {perfect:false,k:k0/g,m,s:q.d/g};
+}
+const radStr=(k,m,s)=>s===1?rad(k,m):`{${rad(k,m)}/${s}}`;
+/* ∛(p/q) 的最简形式 */
+function cbrtInfo(a){ /* a 为非负有理数 */
+  const cn=Math.round(Math.cbrt(a.n)),cd=Math.round(Math.cbrt(a.d));
+  if(cn*cn*cn===a.n&&cd*cd*cd===a.d)return {perfect:true,root:Q(cn,cd)};
+  const [k0,m]=cubefree(a.n*a.d*a.d);const g=gcd(k0,a.d);
+  return {perfect:false,k:k0/g,m,s:a.d/g};
+}
+const cbStr=(k,m,s,neg)=>`${neg?'-':''}${s===1?'':'{'}${k===1?'':k}∛${m}${s===1?'':'/'+s+'}'}`;
+
+/* ---------- 3.1 平方根计算器 ---------- */
+function calcSqrt(inp){
+  const q=parseRat(inp);
+  if(!q)return cerr('请输入一个数：整数、小数（0.49）、分数（9/16）或带分数（1 9/16）。');
+  if(tooBig(q))return cerr('数太大了，请输入小一点的数。');
+  const rows=[];const given=String(inp).trim();
+  if(/[.\s×*÷]/.test(given)||/\//.test(given)&&q.d===1)rows.push(crow('化成分数',`${esc(given)} = ${M(qStr(q))}`));
+  if(q.n<0)return cbox([crow('结果','负数没有平方根（在实数范围内）。'),crow('原因','任何数的平方都不可能是负数。')]);
+  if(q.n===0)return cbox([crow('平方根','0（零只有一个平方根）'),crow('算术平方根','0')]);
+  const info=sqrtInfo(q);const v=Math.sqrt(qVal(q));
+  if(info.perfect){
+    const r=info.root;
+    rows.push(crow('类型',ctag('完全平方数',TG_OK)));
+    rows.push(crow('平方根',M('±'+qStr(r))+'　（两个，互为相反数）'));
+    rows.push(crow('算术平方根',M(`√(${qStr(q)}) = ${qStr(r)}`)+(r.d!==1&&isFinDec(r)?'　'+M(`= ${fmtDec(qVal(r))}`):'')));
+    rows.push(crow('验算',M(`(${qStr(r)})^2 = ${qStr(q)}`)));
+    if(q.d===1&&q.n>3){const f=factorize(q.n);const sq=f.map(([p,e])=>e===1?String(p):`${p}^${e}`).join('*');
+      rows.push(crow('分解质因数',M(`${q.n} = ${sq}`)+'　每个质因数的指数都是偶数。'));
+      rows.push(crow('开方',M(`√${q.n} = √(${sq}) = ${f.map(([p,e])=>p**(e/2)).join('*')} = ${qStr(r)}`)));}
+    else if(q.d!==1)rows.push(crow('分子分母分别开方',M(`√{${q.n}/${q.d}} = {√${q.n}/√${q.d}} = ${qStr(r)}`)));
+  }else{
+    const rs=radStr(info.k,info.m,info.s);
+    rows.push(crow('类型',ctag('不是完全平方数 → 平方根是无理数',TG_IRR)));
+    rows.push(crow('平方根',M('±'+rs)));
+    rows.push(crow('算术平方根',M('√('+qStr(q)+') = '+rs)));
+    if(q.d===1){const f=factorize(q.n);const [k]=sqfree(q.n);
+      rows.push(crow('分解质因数',M(`${q.n} = ${facStr(f)}`)+(k>1?`　= ${M(`${k}^2*${info.m}`)}`:'')));
+      if(k>1)rows.push(crow('化简',M(`√${q.n} = √(${k}^2*${info.m}) = ${k}√${info.m}`)));}
+    else rows.push(crow('化简',M(`√{${q.n}/${q.d}} = {√${q.n*q.d}/${q.d}} = ${rs}`)));
+    const fl=Math.floor(v);
+    rows.push(crow('近似值',`≈ ${v.toFixed(4)}（保留两位小数 ≈ ${v.toFixed(2)}）`));
+    rows.push(crow('估算',M(`${fl}<√(${qStr(q)})<${fl+1}`)));
+  }
+  rows.push(crow('性质',M(`(√(${qStr(q)}))^2 = ${qStr(q)}`)+'　'+M(`√((-${qStr(q)})^2) = ${qStr(q)}`)+'（√(a²)=|a|）'));
+  return cbox(rows);
+}
+function calcSqrtFormula(v){
+  const a=parseRat(v.a),b=parseRat(v.b);
+  if(!a||!b)return cerr('请输入两个数。');
+  if(tooBig(a)||tooBig(b))return cerr('数太大了。');
+  const sum=v.mode==='sum';const R=sum?qadd(qmul(a,a),qmul(b,b)):qadd(qmul(a,a),qneg(qmul(b,b)));
+  const lbl=sum?M(`c = √(a^2+b^2)`):M(`y = √(z^2-x^2)`);
+  const ex=sum?`√((${qStr(a)})^2+(${qStr(b)})^2)`:`√((${qStr(a)})^2-(${qStr(b)})^2)`;
+  const rows=[crow('公式',lbl),crow('代入',M(`${ex} = √(${qStr(R)})`))];
+  if(R.n<0)return cbox(rows.concat([crow('结果','被开方数是负数，没有意义。（请检查 z 是否大于 x）')]));
+  const info=sqrtInfo(R);
+  if(info.perfect)rows.push(crow('结果',M(`${qStr(info.root)}`)));
+  else{rows.push(crow('最简根式',M(radStr(info.k,info.m,info.s))));rows.push(crow('近似值',`≈ ${Math.sqrt(qVal(R)).toFixed(4)}`));}
+  return cbox(rows);
+}
+
+/* ---------- 3.2 立方根计算器 ---------- */
+function calcCbrt(inp){
+  const q=parseRat(inp);
+  if(!q)return cerr('请输入一个数：整数、小数（-0.216）、分数（64/125）或带分数。');
+  if(tooBig(q))return cerr('数太大了，请输入小一点的数。');
+  const rows=[];const given=String(inp).trim();
+  if(/[.\s×*÷]/.test(given))rows.push(crow('化成分数',`${esc(given)} = ${M(qStr(q))}`));
+  if(q.n===0)return cbox([crow('立方根','0')]);
+  const neg=q.n<0;const a=Q(Math.abs(q.n),q.d);const info=cbrtInfo(a);const v=Math.cbrt(qVal(q));
+  rows.push(crow('符号',neg?'负数的立方根是负数':'正数的立方根是正数'));
+  if(info.perfect){
+    const r=info.root;const rr=neg?qneg(r):r;
+    rows.push(crow('类型',ctag('完全立方数',TG_OK)));
+    rows.push(crow('立方根',M(`∛(${qStr(q)}) = ${qStr(rr)}`)+(rr.d!==1&&isFinDec(rr)?'　'+M(`= ${fmtDec(qVal(rr))}`):'')+'　（只有一个）'));
+    rows.push(crow('验算',M(`(${qStr(rr)})^3 = ${qStr(q)}`)));
+    if(a.d===1&&a.n>1){const f=factorize(a.n);rows.push(crow('分解质因数',M(`${a.n} = ${facStr(f)}`)));}
+    if(a.d!==1)rows.push(crow('分子分母分别开方',M(`∛(${qStr(a)}) = {∛${a.n}/∛${a.d}} = ${qStr(r)}`)));
+  }else{
+    const cs=cbStr(info.k,info.m,info.s,neg);
+    rows.push(crow('类型',ctag('不是完全立方数 → 立方根是无理数',TG_IRR)));
+    rows.push(crow('立方根',M(`∛(${qStr(q)}) = ${cs}`)));
+    if(a.d===1){const f=factorize(a.n);const [k]=cubefree(a.n);rows.push(crow('分解质因数',M(`${a.n} = ${facStr(f)}`)+(k>1?'　'+M(`= ${k}^3*${info.m}`):'')));}
+    rows.push(crow('近似值',`≈ ${v.toFixed(4)}（保留两位小数 ≈ ${v.toFixed(2)}）`));
+    const fl=Math.floor(v);rows.push(crow('估算',M(`${fl}<∛(${qStr(q)})<${fl+1}`)));
+  }
+  return cbox(rows);
+}
+function nthExact(num,n){const r=Math.round(Math.pow(num,1/n));for(const rr of [r-1,r,r+1])if(rr>=0&&BigInt(rr)**BigInt(n)===BigInt(num))return rr;return null;}
+function calcNth(v){
+  const n=parseInt(v.n,10);const q=parseRat(v.a);
+  if(!q)return cerr('请输入一个数。');if(tooBig(q))return cerr('数太大了。');
+  const rows=[crow('根指数',`n = ${n}（${n%2?'奇数':'偶数'}）`)];
+  const lbl=Nh(n,M(qStr(q)));
+  if(n%2===0&&q.n<0)return cbox(rows.concat([crow('结果','负数没有偶次方根（在实数范围内）。')]));
+  if(q.n===0)return cbox(rows.concat([crow('结果',`0 的 ${n} 次方根是 0。`)]));
+  const a=Q(Math.abs(q.n),q.d);const rn=nthExact(a.n,n),rd=nthExact(a.d,n);
+  if(rn!==null&&rd!==null){
+    const r=Q(rn,rd);const rr=(q.n<0)?qneg(r):r;
+    rows.push(crow(n%2?'奇次方根（唯一）':'偶次方根（两个）',n%2?`${lbl} = ${M(qStr(rr))}`:`${lbl} = ${M('±'+qStr(r))}`));
+    rows.push(crow('验算',M(`(${qStr(n%2?rr:r)})^${n} = ${qStr(n%2?q:a)}`)));
+  }else{
+    const val=Math.pow(Math.abs(qVal(q)),1/n)*(q.n<0?-1:1);
+    rows.push(crow('类型',ctag('不是完全 '+n+' 次方数 → 无理数',TG_IRR)));
+    rows.push(crow(n%2?'近似值':'近似值（±）',`≈ ${n%2?val.toFixed(4):'±'+Math.abs(val).toFixed(4)}`));
+  }
+  rows.push(crow('规律',n%2?'n 为奇数：任何数的 n 次方根唯一，符号与原数相同。':'n 为偶数：正数的 n 次方根有两个且互为相反数。'));
+  return cbox(rows);
+}
+
+/* ---------- 3.3 实数分类器 ---------- */
+function ratBlock(q,note){
+  const rows=[];
+  rows.push(crow('分数形式',q.d===1?M(String(q.n))+'（整数）':M(qStr(q))));
+  if(q.d===1){rows.push(crow('小数形式',`${q.n}.0（整数可看作有限小数）`));rows.push(crow('类型',ctag('整数',TG_OK)));}
+  else{
+    const ex=decExp(Math.abs(q.n),q.d);const fin=ex.rep==='';
+    rows.push(crow('小数形式',M(qDec(q))+(fin?'':`　（循环节：${ex.rep}）`)));
+    rows.push(crow('类型',ctag(fin?'有限小数':'无限循环小数',TG_OK)));
+  }
+  rows.push(crow('分类','实数 → <b>有理数</b> → '+(q.d===1?'整数':(isFinDec(q)?'有限小数':'无限循环小数'))));
+  rows.push(crow('结论',ctag('有理数',TG_OK)+'　可以写成 p/q（p、q 为整数，q≠0）的形式。'));
+  if(note)rows.unshift(crow('说明',note));
+  return cbox(rows);
+}
+function irrBlock(val,expr,simple){
+  const rows=[];
+  rows.push(crow('小数形式',`${val.toFixed(8)}…（无限不循环小数）`));
+  rows.push(crow('分类','实数 → <b>无理数</b> → 不循环的无限小数'));
+  rows.push(crow('结论',ctag('无理数',TG_IRR)+'　无法写成分数。'));
+  if(val>0){const f=Math.floor(val);rows.push(crow('估算',M(`${f}<${expr}<${f+1}`)));
+    if(simple)rows.push(crow('整数/小数部分',`整数部分是 ${f}，小数部分是 ${M(`${expr}-${f}`)}`));}
+  return cbox(rows);
+}
+function calcClassify(inp){
+  const raw=String(inp).trim();if(!raw)return cerr('请输入一个数，例如 3/4、0.75、√2、∛(-27)、π。');
+  const s=raw.replace(/\s+/g,'').replace(/[−–—]/g,'-');let m;
+  if(/^[-+]?(π|pi)$/i.test(s))return irrBlock(Math.PI,'π',true);
+  if((m=s.match(/^([-+]?)(√|sqrt|∛|cbrt)(?:\(([-]?[\d./]+)\)|([-]?[\d./]+))$/i))){
+    const sg=m[1]==='-'?-1:1;const isSq=/^(√|sqrt)$/i.test(m[2]);const inner=parseRat(m[3]||m[4]);
+    if(!inner)return cerr('无法识别根号里面的数。');
+    if(tooBig(inner))return cerr('数太大了。');
+    if(isSq){
+      if(inner.n<0)return cbox([crow('结果','负数没有平方根，√(负数) 在实数范围内没有意义。')]);
+      const info=sqrtInfo(inner);
+      if(info.perfect)return ratBlock(sg<0?qneg(info.root):info.root,`${M(`${sg<0?'-':''}√(${qStr(inner)})`)} 开得尽方，等于 ${M(qStr(sg<0?qneg(info.root):info.root))}`);
+      return irrBlock(sg*Math.sqrt(qVal(inner)),`${sg<0?'-':''}√(${qStr(inner)})`.replace(/^-/,'-'),sg>0);
+    }
+    const a=Q(Math.abs(inner.n),inner.d);const info=cbrtInfo(a);const sgn=(inner.n<0?-1:1)*sg;
+    if(info.perfect){const r=sgn<0?qneg(info.root):info.root;return ratBlock(r,`${M(`${sg<0?'-':''}∛(${qStr(inner)})`)} 开得尽方，等于 ${M(qStr(r))}`);}
+    return irrBlock(sgn*Math.cbrt(qVal(a)),`${sgn<0?'-':''}∛(${qStr(a)})`,sgn>0);
+  }
+  const q=parseRat(raw);
+  if(q){if(tooBig(q))return cerr('数太大了。');return ratBlock(q);}
+  try{
+    const e=parseExpr(raw);
+    if(isRat(e))return ratBlock(ratOf(e),`化简后是有理数`);
+    return irrBlock(eFloat(e),eStr(e),false);
+  }catch(err){return cerr('无法识别。可以输入：整数、小数（0.75）、分数（13/6）、√2、∛(-27)、2√3、π。');}
+}
+
+/* ---------- 3.4 二次根式化简计算器 ---------- */
+function calcSimplify(inp){
+  const q=parseRat(inp);
+  if(!q)return cerr('请输入被开方数：整数、小数、分数，或乘积（如 28×63）。');
+  if(tooBig(q))return cerr('数太大了。');
+  if(q.n<0)return cbox([crow('结果','被开方数是负数，√(负数) 没有意义。')]);
+  const rows=[];const given=String(inp).trim();
+  rows.push(crow('算式',M(`√(${normInput(given)})`)+(/[*×÷\/.]/.test(given)?`　被开方数 = ${M(qStr(q))}`:'')));
+  if(q.n===0)return cbox(rows.concat([crow('最简结果','0')]));
+  const info=sqrtInfo(q);
+  if(info.perfect){rows.push(crow('最简结果',M(qStr(info.root))+'　（开得尽方）'));return cbox(rows);}
+  const rs=radStr(info.k,info.m,info.s);
+  if(q.d===1){
+    const f=factorize(q.n);const [k]=sqfree(q.n);
+    rows.push(crow('分解质因数',M(`${q.n} = ${facStr(f)}`)));
+    rows.push(crow('化简',M(`√${q.n} = √(${k}^2*${info.m}) = √(${k}^2)*√${info.m} = ${k}√${info.m}`)));
+  }else rows.push(crow('化简',M(`√{${q.n}/${q.d}} = {√${q.n}/√${q.d}} = {√${q.n*q.d}/${q.d}} = ${rs}`)));
+  rows.push(crow('最简结果',M(rs)));
+  const v=Math.sqrt(qVal(q));rows.push(crow('近似值',`≈ ${v.toFixed(4)}（两位小数 ≈ ${v.toFixed(2)}）`));
+  if(RV[info.m]){const approx=R2(info.k*RV[info.m]/info.s);
+    rows.push(crow('代入已知值',M(`${info.k}×${RV[info.m]}${info.s>1?'÷'+info.s:''} ≈ ${approx.toFixed(2)}`)+`　（已知 √${info.m} = ${RV[info.m]}）`));}
+  return cbox(rows);
+}
+function calcSimplifyVar(v){
+  const c=parseInt(v.c,10),p=parseInt(v.p,10),r=parseInt(v.r,10);
+  if(!(c>=1)||c>100000)return cerr('请输入 1 到 100000 的正整数系数。');
+  const mono=(k,x,y)=>`${k===1&&(x||y)?'':k}${x?(x===1?'x':`x^${x}`):''}${y?(y===1?'y':`y^${y}`):''}`;
+  const [k,m]=sqfree(c);const xo=Math.floor(p/2),xr=p%2,yo=Math.floor(r/2),yr=r%2;
+  const out=mono(k,xo,yo);const inn=`${m===1&&(xr||yr)?'':m}${xr?'x':''}${yr?'y':''}`;
+  const res=(inn==='1')?out:`${out==='1'?'':out}√(${inn})`;
+  const rows=[crow('算式',M(`√(${mono(c,p,r)})`)+'　（字母都表示非负数）')];
+  rows.push(crow('拆开',M(`√(${mono(k*k,xo*2,yo*2)}*${inn==='1'?'1':inn})`)+'　各项分成“开得尽方的部分”和“剩下的部分”'));
+  rows.push(crow('最简结果',M(res)));
+  rows.push(crow('规则','字母的指数除以 2：商移到根号外，余数（0 或 1）留在根号内。'));
+  return cbox(rows);
+}
+const coefStr=a=>a.d===1&&a.n===1?'':(a.d===1&&a.n===-1?'-':qStr(a));
+function calcDomain(v){
+  const a=parseRat(v.a),b=parseRat(v.b);
+  if(!a||!b)return cerr('请输入 a 和 b（可以是整数、小数或分数）。');
+  const rows=[crow('二次根式',M(`√(${coefStr(a)}x${b.n<0?'-'+qStr(qneg(b)):'+'+qStr(b)})`)),crow('条件','被开方数必须 ≥ 0：'+M(`${coefStr(a)}x${b.n<0?'-'+qStr(qneg(b)):'+'+qStr(b)} ≥ 0`))];
+  if(a.n===0){rows.push(crow('结果',b.n>=0?'无论 x 取何值都有意义。':'无论 x 取何值都没有意义。'));return cbox(rows);}
+  const bound=qmul(qneg(b),qinv(a));
+  if(a.n>0){rows.push(crow('解不等式',M(`x ≥ ${qStr(bound)}`)));rows.push(crow('最小整数 x',String(Math.ceil(qVal(bound)-1e-12))));}
+  else{rows.push(crow('解不等式',M(`x ≤ ${qStr(bound)}`)+'　（a<0，不等号方向改变）'));rows.push(crow('最大整数 x',String(Math.floor(qVal(bound)+1e-12))));}
+  return cbox(rows);
+}
+
+/* ---------- 3.5 根式四则运算计算器 ---------- */
+function splitTerms(s){
+  const out=[];let d=0,cur='';
+  for(let i=0;i<s.length;i++){
+    const c=s[i];
+    if(c==='('||c==='{')d++;else if(c===')'||c==='}')d--;
+    if(d===0&&(c==='+'||c==='-')&&cur!==''&&!/[*\/^(+\-]$/.test(cur)){out.push(cur);cur=c;}else cur+=c;
+  }
+  if(cur)out.push(cur);return out;
+}
+function calcRadicalExpr(inp){
+  const raw=String(inp).trim();if(!raw)return cerr('请输入算式，例如 √48+√12-√75。');
+  let e;const norm=normInput(raw);
+  try{e=parseExpr(raw);}catch(err){return cerr('无法识别这个算式。可用 + − × ÷、括号、^2、√（或 sqrt），例如 (√5+2)^2、1/(√3-√2)。');}
+  const rows=[crow('算式',M(norm))];
+  const terms=splitTerms(norm);
+  if(terms.length>1){
+    const steps=terms.map(t=>{try{return `${M(t)} → ${M(eStr(parseExpr(t)))}`;}catch(x){return M(t);}});
+    rows.push(crow('逐项化简',steps.join('　；　')));
+  }
+  if(/\/\(?[0-9.]*√/.test(norm)||/\/\(.*√/.test(norm))rows.push(crow('分母有理化','分母含根号，已按“分子分母同乘分母（的共轭式）”化去。'));
+  rows.push(crow('最简结果',M(eStr(e))));
+  const v=eFloat(e);rows.push(crow('近似值',`≈ ${v.toFixed(4)}（两位小数 ≈ ${v.toFixed(2)}）`));
+  return cbox(rows);
+}
+function calcLike(v){
+  let a,b;try{a=parseExpr(v.a);b=parseExpr(v.b);}catch(err){return cerr('请输入两个根式，例如 3√2 和 5√8。');}
+  const single=e=>e.size===1&&[...e.keys()][0]!==1&&[...e.keys()][0]!=='p';
+  const rows=[crow('化简后',`${M(normInput(v.a))} = ${M(eStr(a))}　；　${M(normInput(v.b))} = ${M(eStr(b))}`)];
+  if(!single(a)||!single(b)){rows.push(crow('结论','请输入单项根式（如 3√2、√18、5√8），才能判断是否同类。'));return cbox(rows);}
+  const ka=[...a.keys()][0],kb=[...b.keys()][0];
+  if(ka===kb){rows.push(crow('结论',ctag('同类根式',TG_OK)+`　化简后被开方数都是 ${ka}。`));
+    rows.push(crow('相加',M(`${eStr(a)}+${eStr(b)} = ${eStr(eAdd(a,b))}`)));rows.push(crow('相减',M(`${eStr(a)}-${eStr(b)} = ${eStr(eSub(a,b))}`)));}
+  else{rows.push(crow('结论',ctag('不是同类根式',TG_IRR)+`　被开方数不同（${ka} 与 ${kb}），不能合并。`));
+    rows.push(crow('提醒',M(`√${ka}+√${kb} ≠ √${ka+kb}`)));}
+  return cbox(rows);
+}
+
+/* ---------- 计算器外壳 ---------- */
+function mountCalc(secId,cfg){
+  const host=document.getElementById(`calc-${secId}`);if(!host)return;
+  const inCls='px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500';
+  const panels=cfg.panels.map((p,i)=>{
+    const inputs=p.inputs.map(inp=>{
+      const id=`${secId}-c${i}-${inp.id}`;
+      const field=inp.type==='select'
+        ?`<select id="${id}" class="${inCls}">${inp.options.map(o=>`<option value="${o[0]}"${o[0]===inp.def?' selected':''}>${o[1]}</option>`).join('')}</select>`
+        :`<input id="${id}" type="text" inputmode="text" autocomplete="off" value="${esc(inp.def||'')}" placeholder="${esc(inp.ph||'')}" class="${inCls} ${inp.w||'w-44'}" />`;
+      return `<label class="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">${inp.label}${field}</label>`;
+    }).join('');
+    const chips=(p.chips||[]).map(c=>`<button type="button" data-chip='${JSON.stringify(typeof c==='string'?{[p.inputs[0].id]:c}:c.v).replace(/'/g,'&#39;')}' class="px-2 py-1 rounded-md text-xs border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/60 hover:border-brand-500 transition">${typeof c==='string'?esc(c):c.t}</button>`).join('');
+    return `<div class="calc-panel ${i?'hidden':''} space-y-3" data-i="${i}">
+      ${p.desc?`<p class="text-xs text-slate-500 dark:text-slate-400">${fixRad(p.desc)}</p>`:''}
+      <div class="flex flex-wrap items-end gap-3">${inputs}
+        <button type="button" class="calc-run px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-semibold transition flex items-center gap-1.5"><i class="fa-solid fa-equals"></i> 计算</button></div>
+      ${chips?`<div class="flex flex-wrap items-center gap-1.5"><span class="text-xs text-slate-400">课文例子：</span>${chips}</div>`:''}
+      <div class="calc-out"></div></div>`;
+  }).join('');
+  host.innerHTML=`<div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
+    <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg"><i class="fa-solid fa-calculator"></i><span>${cfg.title}${ZW}</span></div>
+    <p class="text-xs text-slate-500 dark:text-slate-400">${fixRad(cfg.desc)}</p>
+    ${cfg.panels.length>1?`<div class="flex flex-wrap gap-2">${cfg.panels.map((p,i)=>`<button type="button" data-tab="${i}" class="calc-tab px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${i?'border-slate-200 dark:border-slate-600 text-slate-500':'border-brand-500 bg-brand-50 dark:bg-slate-700 text-brand-700 dark:text-brand-300'}">${p.label}</button>`).join('')}</div>`:''}
+    ${panels}</div>`;
+  const els=[...host.querySelectorAll('.calc-panel')];
+  els.forEach((el,i)=>{
+    const p=cfg.panels[i];const out=el.querySelector('.calc-out');
+    const get=()=>Object.fromEntries(p.inputs.map(inp=>[inp.id,document.getElementById(`${secId}-c${i}-${inp.id}`).value]));
+    const run=()=>{const v=get();out.innerHTML=p.run(p.inputs.length===1?v[p.inputs[0].id]:v);};
+    el.querySelector('.calc-run').addEventListener('click',run);
+    el.querySelectorAll('input').forEach(x=>x.addEventListener('keydown',ev=>{if(ev.key==='Enter')run();}));
+    el.querySelectorAll('select').forEach(x=>x.addEventListener('change',run));
+    el.querySelectorAll('[data-chip]').forEach(b=>b.addEventListener('click',()=>{const vals=JSON.parse(b.getAttribute('data-chip'));Object.entries(vals).forEach(([k,val])=>{document.getElementById(`${secId}-c${i}-${k}`).value=val;});run();}));
+    run();
+  });
+  host.querySelectorAll('.calc-tab').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=+btn.getAttribute('data-tab');
+    els.forEach((el,k)=>el.classList.toggle('hidden',k!==i));
+    host.querySelectorAll('.calc-tab').forEach((b,k)=>{b.className='calc-tab px-3 py-1.5 rounded-lg text-xs font-semibold border transition '+(k===i?'border-brand-500 bg-brand-50 dark:bg-slate-700 text-brand-700 dark:text-brand-300':'border-slate-200 dark:border-slate-600 text-slate-500');});
+  }));
+}
+const XSEL=[...Array(13).keys()].map(i=>[String(i),String(i)]);
+function mountAllCalcs(){
+  mountCalc('sec31',{title:'课文计算器：平方根与算术平方根',desc:'对应例题 1–7、练习 3.1a/3.1b：输入一个数，看它的平方根、算术平方根和每一步怎么开方。',panels:[
+    {label:'求平方根',inputs:[{id:'a',label:'输入一个数',ph:'如 0.49、9/16、1 9/16、1764',def:'1764'}],chips:['36','0.49','1 9/16','10000','0.000121','441','72','-9'],run:calcSqrt},
+    {label:'公式代入',desc:'练习 3.1a 第 4、5 题：c = √(a²+b²)，y = √(z²−x²)。',inputs:[{id:'mode',label:'公式',type:'select',def:'sum',options:[['sum','c = √(a²+b²)　(a, b)'],['diff','y = √(z²−x²)　(z, x)']]},{id:'a',label:'a（或 z）',def:'3',w:'w-24'},{id:'b',label:'b（或 x）',def:'4',w:'w-24'}],run:calcSqrtFormula}]});
+  mountCalc('sec32',{title:'课文计算器：立方根',desc:'对应例题 1–2、练习 3.2：输入一个数，看它的立方根，也可以直接解 x³ = a。',panels:[
+    {label:'求立方根 / 解 x³=a',inputs:[{id:'a',label:'输入一个数（a）',ph:'如 -0.216、64/125、343',def:'-0.216'}],chips:['-27','-0.216','64/125','0.001','343','0.729','27/512','-125/64','10'],run:calcCbrt},
+    {label:'n 次方根（补充资料）',desc:'奇次方根唯一；偶次方根有两个且互为相反数（正数），负数没有偶次方根。',inputs:[{id:'n',label:'根指数 n',type:'select',def:'3',options:[['2','2'],['3','3'],['4','4'],['5','5'],['6','6']]},{id:'a',label:'被开方数 a',def:'-32',w:'w-32'}],run:calcNth}]});
+  mountCalc('sec33',{title:'课文计算器：有理数与无理数分类器',desc:'输入一个数，判断它是有理数还是无理数；分数会化成小数（标出循环节），小数会化成分数。',panels:[
+    {label:'分类器',inputs:[{id:'a',label:'输入一个数',ph:'如 13/6、0.75、√2、∛(-27)、π',def:'13/6',w:'w-56'}],chips:['1/2','3/4','1/3','13/6','1/7','√2','√16','∛2','∛(-27)','π','2√3','0.125'],run:calcClassify}]});
+  mountCalc('sec34',{title:'课文计算器：二次根式化简',desc:'对应例题 1–5、练习 3.4：数字化简、含字母化简、二次根式有意义的范围。',panels:[
+    {label:'数字化简',inputs:[{id:'a',label:'被开方数',ph:'如 72、28×63、18/50',def:'28*63',w:'w-52'}],chips:['28×63','12','32','90','147','6×288','175','8','45×80'],run:calcSimplify},
+    {label:'含字母化简',desc:'字母都表示非负数。化简 √(c·xᵖ·yʳ)。',inputs:[{id:'c',label:'系数 c',def:'16',w:'w-24'},{id:'p',label:'x 的指数',type:'select',def:'3',options:XSEL},{id:'r',label:'y 的指数',type:'select',def:'4',options:XSEL}],chips:[{t:'√(16x²)',v:{c:'16',p:'2',r:'0'}},{t:'√(x³y⁴)',v:{c:'1',p:'3',r:'4'}},{t:'√(75x²)',v:{c:'75',p:'2',r:'0'}},{t:'√(4x³)',v:{c:'4',p:'3',r:'0'}},{t:'√(8xy⁴)',v:{c:'8',p:'1',r:'4'}}],run:calcSimplifyVar},
+    {label:'有意义的范围',desc:'二次根号内的数必须 ≥ 0：√(ax + b) 中 ax + b ≥ 0。',inputs:[{id:'a',label:'a',def:'2',w:'w-24'},{id:'b',label:'b',def:'-5',w:'w-24'}],run:calcDomain}]});
+  mountCalc('sec35',{title:'课文计算器：二次根式的四则运算',desc:'对应例题 1–13、练习 3.5：输入算式，逐项化简并给出最简结果（分母有理化会自动完成）。',panels:[
+    {label:'四则运算',inputs:[{id:'a',label:'输入算式',ph:'如 √48+√12-√75',def:'√48+√12-√75',w:'w-72'}],chips:['5√2+12√2-8√2','√48+√12-√75','√2×√8','3√2×2√6','√72÷√6','√2(√6+√10)','(√3+√2)(√3-√2)','(√5+2)^2','6/√3','1/(√3-√2)'],run:calcRadicalExpr},
+    {label:'同类根式判断',desc:'同类根式：化简后被开方数相同。',inputs:[{id:'a',label:'根式一',def:'3√2',w:'w-32'},{id:'b',label:'根式二',def:'5√8',w:'w-32'}],chips:[{t:'3√2 与 5√8',v:{a:'3√2',b:'5√8'}},{t:'3√2 与 3√5',v:{a:'3√2',b:'3√5'}},{t:'√12 与 √75',v:{a:'√12',b:'√75'}}],run:calcLike}]});
+}
+/* ==== CALC END ==== */
+
+/* ==== EXTRA START (课文补充 + 水印) ==== */
+const WM_ID='ecchua79';
+const WM_TEXT='ecchua79 · 蔡逸众';
+function zwEncode(s){
+  return '\u2063'+[...new TextEncoder().encode(s)].map(b=>b.toString(2).padStart(8,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('')+'\u2063';
+}
+function zwDecode(t){
+  const m=String(t).match(/\u2063([\u200b\u200c]+)\u2063/);if(!m)return null;
+  const bits=m[1].replace(/\u200b/g,'0').replace(/\u200c/g,'1');
+  return new TextDecoder().decode(new Uint8Array(bits.match(/.{8}/g).map(b=>parseInt(b,2))));
+}
+const ZW=zwEncode(WM_ID);
+if(typeof window!=='undefined')window.__wmDecode=zwDecode;
+
+function setupWatermark(){
+  if(typeof document==='undefined')return;
+  let el=document.getElementById('wm-float');
+  if(!el){
+    el=document.createElement('div');el.id='wm-float';el.setAttribute('aria-hidden','true');document.body.appendChild(el);
+    const c=document.createElement('div');c.id='wm-corner';c.setAttribute('aria-hidden','true');c.textContent='© '+WM_TEXT;document.body.appendChild(c);
+    const h=document.createElement('span');h.id='wm-hidden';h.setAttribute('data-author',WM_ID);h.textContent='© '+WM_ID+' '+ZW;
+    h.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;';document.body.appendChild(h);
+    document.documentElement.setAttribute('data-author',WM_ID);
+    const t=document.querySelector('header h1');if(t)t.appendChild(document.createTextNode(ZW));
+    document.querySelectorAll('svg').forEach(s=>{const d=document.createElementNS('http://www.w3.org/2000/svg','desc');d.textContent='© '+WM_ID;s.insertBefore(d,s.firstChild);});
+    try{console.info('%c© '+WM_TEXT,'color:#64748b');}catch(e){}
+  }
+  const dark=document.documentElement.classList.contains('dark');
+  const fill=dark?'#e2e8f0':'#475569';
+  const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='300' height='190'><text x='150' y='95' text-anchor='middle' transform='rotate(-24 150 95)' font-family='sans-serif' font-size='17' font-weight='600' fill='${fill}' fill-opacity='0.07'>${WM_TEXT}</text></svg>`;
+  el.style.backgroundImage=`url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+}
+
+/* ---------- 课文补充卡片 ---------- */
+const blk=(c,title,html)=>`<div class="p-3 bg-${c}-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-${c}-500"><h4 class="font-bold text-${c}-900 dark:text-${c}-300">${title}</h4><div class="text-sm mt-1 space-y-1.5">${html}</div></div>`;
+const extraCard=(title,icon,blocks,after)=>`<div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+  <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-500 font-bold text-lg mb-4"><i class="fa-solid ${icon}"></i><span>${title}${ZW}</span></div>
+  <div class="grid md:grid-cols-2 gap-4">${blocks.join('')}</div>${after||''}</div>`;
+function renderExtras(){
+  const put=(id,h)=>{const el=document.getElementById('extra-'+id);if(el)el.innerHTML=h;};
+  put('sec31',extraCard('课文补充：开平方、乘积公式与分解质因数','fa-pen-ruler',[
+    blk('sky','开平方与读法',`<p>求一个非负数 a 的平方根的运算，叫做<b>开平方</b>；a 叫做<b>被开方数</b>。${M('√a')} 读作“根号 a”，${M('-√a')} 读作“负根号 a”。</p><p>例如：${M('√25 = 5')}，${M('-√25 = -5')}，简记作 ${M('±√25 = ±5')}。<b class="text-rose-600 dark:text-rose-400">注意：</b>${M('√25')} 不等于 ${M('±5')}。</p>`),
+    blk('amber','带分数先化成假分数',`<p>求 ${M('2{1/4}')} 的平方根：先化成假分数 ${M('2{1/4} = {9/4}')}，再开方：${M('±√{9/4} = ±{3/2}')}。</p><p>小数也可以先化成分数：${M('0.49 = {49/100}')}，所以 ${M('√0.49 = {7/10} = 0.7')}。</p>`),
+    blk('emerald','乘积公式（补充资料）',`<p>${M('√(ab) = √a*√b')}（a≥0，b≥0）；${M('√{a/b} = {√a/√b}')}（a≥0，b&gt;0）。</p><p>${M('√(9*25) = √9*√25 = 3*5 = 15')}</p><p>${M('√(0.16*0.81) = √0.16*√0.81 = 0.4*0.9 = 0.36')}</p>`),
+    blk('violet','分解质因数法（大数、小数）',`<p>${M('√441 = √(3^2*7^2) = 3*7 = 21')}</p><p>${M('√1764 = √(2^2*3^2*7^2) = 2*3*7 = 42')}</p><p>${M('√0.000121 = √{121/1000000} = {11/1000} = 0.011')}</p>`),
+    blk('rose','公式代入（练习 3.1a 第 4、5 题）',`<p>${M('c = √(a^2+b^2)')}：a=3，b=4 时，${M('c = √(3^2+4^2) = √25 = 5')}。</p><p>${M('y = √(z^2-x^2)')}：z=25，x=7 时，${M('y = √(25^2-7^2) = √576 = 24')}。</p>`)
+  ]));
+  const ks=[-3,-2,-1,0,1,2,3];
+  const tbl=`<div class="mt-4 overflow-x-auto"><p class="text-xs font-bold text-slate-500 mb-1">小数点规律（练习 3.2 第 17 题）</p><table class="text-xs border-collapse min-w-full"><tbody>
+    <tr><td class="border border-slate-200 dark:border-slate-600 px-2 py-1 font-semibold bg-slate-50 dark:bg-slate-700/50 whitespace-nowrap">被开方数</td>${ks.map(k=>`<td class="border border-slate-200 dark:border-slate-600 px-2 py-1 text-center whitespace-nowrap">${k===0?'1':decStr10(3*k)}</td>`).join('')}</tr>
+    <tr><td class="border border-slate-200 dark:border-slate-600 px-2 py-1 font-semibold bg-slate-50 dark:bg-slate-700/50 whitespace-nowrap">立方根</td>${ks.map(k=>`<td class="border border-slate-200 dark:border-slate-600 px-2 py-1 text-center text-brand-600 dark:text-brand-400 font-semibold whitespace-nowrap">${k===0?'1':decStr10(k)}</td>`).join('')}</tr></tbody></table>
+    <p class="text-xs text-slate-500 mt-1">被开方数的小数点每移动 3 位，立方根的小数点就移动 1 位。</p></div>`;
+  put('sec32',extraCard('课文补充：n 次方根、小数与分数的立方根','fa-pen-ruler',[
+    blk('purple','补充资料：n 次方根',`<p>根指数 n 记在根号的左上角，n=2 时省略不写。${Nh('n',M('a'))} 叫做 a 的 n 次方根。</p><p>n 为<b>奇数</b>时，a 的 n 次方根是唯一的；n 为<b>偶数</b>时，正数 a 的 n 次方根有两个，且互为相反数。</p>`),
+    blk('indigo','例题：小数、分数的立方根',`<p>${M('∛(-0.216) = -0.6')}　${M('∛{64/125} = {4/5}')}</p><p>${M('∛0.001 = 0.1')}　${M('∛(-{27/64}) = -{3/4}')}</p>`),
+    blk('teal','解方程 x³ = a（练习 3.2 第 18–21 题）',`<p>${M('x^3 = 343')}，所以 ${M('x = ∛343 = 7')}。</p><p>${M('x^3 = 0.729')} → ${M('x = 0.9')}；${M('x^3 = {27/512}')} → ${M('x = {3/8}')}。</p>`),
+    blk('sky','开立方的读法',`<p>求一个数 a 的立方根的运算，叫做<b>开立方</b>。${Nh(3,M('a'))} 中，a 是被开方数，3 是根指数。</p>`)
+  ],tbl));
+  const pairs=[[1,2],[3,4],[1,3],[2,3],[13,6],[1,7],[5,11],[7,8]];
+  const tree=`<div class="mt-4 flex flex-col items-center gap-2 text-sm"><p class="text-xs font-bold text-slate-500 self-start">数的分类</p>
+    <div class="px-4 py-1.5 rounded-lg bg-slate-700 text-white font-bold">实数</div>
+    <div class="grid grid-cols-2 gap-4 w-full max-w-lg">
+      <div class="flex flex-col items-center gap-2"><div class="px-3 py-1 rounded-lg bg-emerald-500 text-white font-semibold">有理数</div>
+        <div class="grid grid-cols-2 gap-2 w-full"><div class="p-2 text-xs text-center rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">有限小数<br/>（含整数）</div><div class="p-2 text-xs text-center rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">无限循环小数</div></div></div>
+      <div class="flex flex-col items-center gap-2"><div class="px-3 py-1 rounded-lg bg-rose-500 text-white font-semibold">无理数</div>
+        <div class="p-2 text-xs text-center rounded-md bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 w-full">不循环的无限小数<br/>${M('√2')}、${M('√5')}、${M('∛2')}、π …</div></div></div></div>`;
+  put('sec33',extraCard('课文补充：分数与小数、数的分类','fa-pen-ruler',[
+    blk('amber','分数 ⇄ 小数',`<p>任何一个分数，都可以写成有限小数或者循环小数。</p><div class="grid grid-cols-2 gap-x-4 gap-y-1">${pairs.map(([p,q])=>`<span>${M(`{${p}/${q}}`)} = ${M(decDots(decExp(p,q)))}</span>`).join('')}</div><p class="text-xs text-slate-500">带点的数字是循环节。</p>`),
+    blk('emerald','反过来：有限小数、循环小数 → 分数',`<p>任何有限小数和循环小数都可以写成分数：${M('0.5 = {1/2}')}，${M('0.75 = {3/4}')}。</p><p>能写成 ${M('{p/q}')}（p、q 为整数，q≠0）的数叫做<b>分数或有理数</b>。</p>`),
+    blk('rose','不循环的无限小数',`<p>${M('√2 = 1.41421356…')}</p><p>${M('√3 = 1.73205080…')}</p><p>${M('∛2 = 1.25992104…')}</p><p>我们无法把它们写成分数，它们是<b>无理数</b>。</p>`)
+  ],tree));
+  put('sec34',extraCard('课文补充：有意义的条件、含字母的化简、近似值','fa-pen-ruler',[
+    blk('amber','前提约定',`<p>${M('√a')}（a≥0）表示非负数 a 的算术平方根。在实数范围内，若 a&lt;0，则 ${M('√a')} 没有意义，如 ${M('√(-2)')}、${M('√(-9)')} 都没有意义。</p><p><b>本章里，二次根号内的变数都是非负数。</b></p>`),
+    blk('sky','含字母的化简（例题 1、4）',`<p>${M('√(16a^2) = √16*√(a^2) = 4a')}</p><p>${M('√(x^3y^4) = √(x^2*y^4*x) = xy^2√x')}</p><p>${M('√{25y^2/(9x^4)} = {√(25y^2)/√(9x^4)} = {5y/(3x^2)}')}</p><p>${M('√(75a^2) = √(3*5^2*a^2) = 5a√3')}</p>`),
+    blk('emerald','近似值（例题 5）',`<p>已知 ${M('√2 = 1.4142')}，求 ${M('√8')} 的值至小数两位：</p><p>${M('√8 = √(4*2) = 2√2 = 2*1.4142 = 2.8284 ≈ 2.83')}</p>`),
+    blk('violet','化简的两个性质',`<p>${M('√(ab) = √a*√b')}（a≥0，b≥0）</p><p>${M('√{a/b} = {√a/√b}')}（a≥0，b&gt;0）</p>`)
+  ]));
+  put('sec35',extraCard('课文补充：同类根式、乘除法则、乘法公式','fa-pen-ruler',[
+    blk('sky','同类根式与加减',`<p>被开方数相同的根式叫做<b>同类根式</b>：${M('3√2')} 与 ${M('5√2')} 是，${M('3√2')} 与 ${M('3√5')} 不是。</p><p><b class="text-rose-600 dark:text-rose-400">注意：</b>${M('√2+√3 ≠ √5')}，${M('√5-√3 ≠ √2')}。先化简，再合并同类根式。</p><p>${M('5√2+12√2-8√2 = (5+12-8)√2 = 9√2')}</p><p>${M('√48+√12-√75 = 4√3+2√3-5√3 = √3')}</p>`),
+    blk('emerald','乘法与除法',`<p>${M('√a*√b = √(ab)')}　${M('√a÷√b = √{a/b}')}　${M('c√a*d√b = cd√(ab)')}</p><p>${M('√2*√8 = √16 = 4')}</p><p>${M('3√2*2√6 = 6√12 = 12√3')}</p>`),
+    blk('violet','乘法公式',`<p>${M('(a+b)(a-b) = a^2-b^2')}　${M('(a±b)^2 = a^2±2ab+b^2')}</p><p>${M('(√3+√2)(√3-√2) = 3-2 = 1')}</p><p>${M('(√5+2)^2 = 5+4√5+4 = 9+4√5')}</p>`),
+    blk('amber','思考：谁更大？',`<p>比较 ${M('√2+√3')} 与 ${M('√5')}：两个正数可以先平方再比较。</p><p>${M('(√2+√3)^2 = 5+2√6')}，${M('(√5)^2 = 5')}，所以 ${M('√2+√3 > √5')}。</p>`)
+  ]));
+}
+/* ==== EXTRA END ==== */
+
+/* ==== UI START ==== */
+const LET='ABCD';
+const SECS=['sec31','sec32','sec33','sec34','sec35'];
+const state={
+  fontSize:'16px',activeTab:'sec31',
+  chapterData:Object.fromEntries(SECS.map(s=>[s,{mcqScore:0,unlocked:false,mcqAnswered:0}])),
+  quiz:{},subj:{},
+  exam:{mcq:[],subj:[],mcqScore:0,subjScore:0,mcqAnswered:0,subjAnswered:0}
+};
+window.onload=function(){SECS.forEach(generateQuiz);mountAllCalcs();renderExtras();setupWatermark();};
+
+function toggleDarkMode(){
+  const html=document.documentElement,icon=document.getElementById('theme-icon');
+  if(html.classList.contains('dark')){html.classList.remove('dark');icon.className='fa-solid fa-moon text-lg';}
+  else{html.classList.add('dark');icon.className='fa-solid fa-sun text-lg text-amber-400';}
+  setupWatermark();
+}
+function setFontSize(size){
+  document.documentElement.style.setProperty('--base-font-size',size);
+  ['font-sm','font-md','font-lg','font-xl'].forEach(id=>{document.getElementById(id).className='px-2 py-1 text-xs rounded hover:bg-white dark:hover:bg-slate-600 transition';});
+  const map={'14px':'font-sm','16px':'font-md','18px':'font-lg','20px':'font-xl'};
+  if(map[size])document.getElementById(map[size]).className+=' bg-white dark:bg-slate-600 font-bold shadow-sm';
+}
+function switchTab(tabId){
+  state.activeTab=tabId;
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active'));
+  document.getElementById(tabId).classList.remove('hidden');
+  document.getElementById(`tab-${tabId}`).classList.add('active');
+  window.scrollTo({top:0,left:0,behavior:'instant'});
+}
+
+/* 生成一道题（极少数随机数组合不满足条件时自动重抽） */
+function genSafe(fn){
+  for(let i=0;i<40;i++){
+    try{const o=fn();if(o.q)o.q=fixRad(o.q);if(o.sol)o.sol=fixRad(o.sol);return o;}catch(e){}
+  }
+  throw new Error('出题失败');
+}
+function feedbackHTML(q,optIdx){
+  const opt=q.options[optIdx],ci=q.options.findIndex(o=>o.correct);
+  let h=opt.correct?`<b>回答正确！</b> ${opt.why}`:`${opt.why}<br/><b>正确答案：${LET[ci]}. ${q.options[ci].text}</b>`;
+  if(q.sol)h+=`<div class="mt-1 opacity-90">解析：${q.sol}</div>`;
+  return h;
+}
+function optionHTML(onclick,cls,text,idx){
+  return `<button onclick="${onclick}" class="${cls}"><span><span class="font-bold mr-2 text-slate-400">${LET[idx]}.</span>${text}</span><i class="status-icon fa-regular fa-circle text-slate-300"></i></button>`;
+}
+
+/* ---------- 各节练习 ---------- */
+function generateQuiz(secId){
+  const box=document.getElementById(`mcq-container-${secId}`);box.innerHTML='';
+  state.chapterData[secId]={mcqScore:0,unlocked:false,mcqAnswered:0};setLocked(secId,true);
+  const qs=sample(POOL.mcq[secId],5).map(genSafe);state.quiz[secId]=qs;
+  qs.forEach((q,i)=>{
+    const card=document.createElement('div');
+    card.className='p-5 bg-slate-50 dark:bg-slate-700/40 rounded-xl border border-slate-200 dark:border-slate-600 transition';
+    card.id=`${secId}-mcq-card-${i}`;
+    const btnCls='mcq-btn w-full text-left p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:border-brand-500 hover:bg-brand-50/50 dark:hover:bg-slate-700 transition flex items-center justify-between text-sm';
+    const opts=q.options.map((o,k)=>optionHTML(`checkMCQ('${secId}',${i},${k},this)`,btnCls,o.text,k)).join('');
+    card.innerHTML=`
+      <div class="font-semibold text-slate-800 dark:text-slate-100 mb-3 flex items-start gap-2">
+        <span class="bg-brand-100 text-brand-700 dark:bg-slate-600 dark:text-brand-300 px-2 py-0.5 rounded text-xs mt-0.5 font-bold">${i+1}</span>
+        <div>${q.q}${ZW}</div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-2 text-sm">${opts}</div>
+      <div id="${secId}-mcq-explain-${i}" class="hidden mt-3 p-3 rounded-lg text-xs leading-relaxed"></div>`;
+    box.appendChild(card);
+  });
+  renderSubjective(secId);updateLockStatus(secId);
+}
+function markOptions(btns,q,optIdx,okCls,badCls,dimCls){
+  const ci=q.options.findIndex(o=>o.correct);
+  btns.forEach((b,k)=>{
+    b.disabled=true;
+    if(k===ci){b.classList.add(...okCls);b.querySelector('.status-icon').className='status-icon fa-solid fa-circle-check text-emerald-500 text-base';}
+    else if(k===optIdx){b.classList.add(...badCls);b.querySelector('.status-icon').className='status-icon fa-solid fa-circle-xmark text-rose-500 text-base';}
+    else b.classList.add(...dimCls);
+  });
+}
+function checkMCQ(secId,qIndex,optIdx,btn){
+  const q=state.quiz[secId][qIndex];const card=document.getElementById(`${secId}-mcq-card-${qIndex}`);
+  const box=document.getElementById(`${secId}-mcq-explain-${qIndex}`);const ok=q.options[optIdx].correct;
+  markOptions([...card.querySelectorAll('.mcq-btn')],q,optIdx,
+    ['bg-emerald-50','border-emerald-500','text-emerald-800','dark:bg-emerald-950/60','dark:text-emerald-200'],
+    ['bg-rose-50','border-rose-500','text-rose-800','dark:bg-rose-950/60','dark:text-rose-200'],['opacity-60','cursor-not-allowed']);
+  box.className='mt-3 p-3 rounded-lg text-xs leading-relaxed border '+(ok?'bg-emerald-100/70 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 border-emerald-300 dark:border-emerald-800':'bg-rose-100/70 text-rose-900 dark:bg-rose-950/50 dark:text-rose-200 border-rose-300 dark:border-rose-800');
+  box.innerHTML=`<i class="fa-solid ${ok?'fa-circle-check':'fa-triangle-exclamation'} mr-1"></i> ${feedbackHTML(q,optIdx)}`;
+  if(ok)state.chapterData[secId].mcqScore++;
+  state.chapterData[secId].mcqAnswered++;updateLockStatus(secId);
+}
+function setLocked(secId,locked){
+  const ov=document.getElementById(`lock-overlay-${secId}`),cont=document.getElementById(`subjective-container-${secId}`),badge=document.getElementById(`unlock-badge-${secId}`);
+  state.lockTimers=state.lockTimers||{};clearTimeout(state.lockTimers[secId]);
+  if(locked){
+    if(ov)ov.classList.remove('hidden','opacity-0','pointer-events-none');
+    if(cont)cont.inert=true;if(badge)badge.classList.add('hidden');
+  }else{
+    if(ov){ov.classList.add('opacity-0','pointer-events-none');state.lockTimers[secId]=setTimeout(()=>ov.classList.add('hidden'),500);}
+    if(cont)cont.inert=false;if(badge)badge.classList.remove('hidden');
+  }
+}
+function updateLockStatus(secId){
+  const cd=state.chapterData[secId];const lp=document.getElementById(`lock-progress-${secId}`);
+  if(lp)lp.innerText=cd.mcqScore;
+  if(cd.mcqScore>=3&&!cd.unlocked){cd.unlocked=true;setLocked(secId,false);}
+}
+const SYMS=['√','±','/','(',')','^'];
+function insertSym(inputId,sym){
+  const el=document.getElementById(inputId);const a=el.selectionStart??el.value.length,b=el.selectionEnd??el.value.length;
+  el.value=el.value.slice(0,a)+sym+el.value.slice(b);el.focus();const pos=a+sym.length;el.setSelectionRange(pos,pos);
+}
+function symButtons(inputId){
+  return SYMS.map(s=>`<button type="button" onclick="insertSym('${inputId}','${s}')" class="w-8 h-8 rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-semibold hover:border-emerald-500 transition">${s}</button>`).join('');
+}
+const PLACEHOLDER='输入答案，如 5、2√3、(√5-√2)/3（√ 也可写成 sqrt）';
+function renderSubjective(secId){
+  const box=document.getElementById(`subjective-container-${secId}`);box.innerHTML='';
+  const specs=sample(POOL.fill[secId],2).map(genSafe);state.subj[secId]=specs;
+  specs.forEach((q,idx)=>{
+    const id=`${secId}-subj-input-${idx}`;const card=document.createElement('div');
+    card.className='p-5 bg-slate-50 dark:bg-slate-700/40 rounded-xl border border-slate-200 dark:border-slate-600 space-y-3';
+    card.innerHTML=`
+      <div class="font-semibold text-slate-800 dark:text-slate-100 flex items-start gap-2">
+        <span class="bg-emerald-500 text-white px-2 py-0.5 rounded text-xs font-bold mt-0.5">${idx+1}</span><div>${q.q}${ZW}</div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <input type="text" id="${id}" placeholder="${PLACEHOLDER}" autocomplete="off" class="flex-grow px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        <button onclick="checkSubjective('${secId}',${idx})" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition flex items-center justify-center gap-1">提交答案</button>
+      </div>
+      <div class="flex flex-wrap gap-1.5">${symButtons(id)}</div>
+      <div id="${secId}-subj-explain-${idx}" class="hidden p-3 rounded-lg text-xs leading-relaxed"></div>`;
+    box.appendChild(card);
+  });
+}
+function fillFeedback(box,spec,res){
+  box.className='p-3 rounded-lg text-xs leading-relaxed bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800';
+  box.innerHTML=`<i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> <b>回答正确！</b><br/>${spec.sol||''}`;
+}
+function checkSubjective(secId,idx){
+  const spec=state.subj[secId][idx];const input=document.getElementById(`${secId}-subj-input-${idx}`).value;
+  const box=document.getElementById(`${secId}-subj-explain-${idx}`);const res=checkFill(spec,input);
+  box.classList.remove('hidden');
+  if(!input.trim()||/^无法识别|^请输入小数/.test(res.hint||'')){
+    box.className='p-3 rounded-lg text-xs leading-relaxed bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100 border border-amber-300';
+    box.innerHTML=res.hint||'请先在输入框填入你的解答再提交！';return;
+  }
+  if(res.ok){fillFeedback(box,spec,res);return;}
+  box.className='p-3 rounded-lg text-xs leading-relaxed bg-rose-100 text-rose-900 dark:bg-rose-950/60 dark:text-rose-200 border border-rose-300 dark:border-rose-800';
+  box.innerHTML=`<i class="fa-solid fa-circle-xmark mr-1 text-rose-600"></i> <b>回答错误。</b>${res.hint?' '+res.hint+'。':''} 正确答案为：<span class="font-bold">${spec.disp}</span><br/>${spec.sol||''}`;
+}
+
+/* ---------- 3.6 总复习题 ---------- */
+function startFinalExam(){
+  const box=document.getElementById('exam-container'),sb=document.getElementById('exam-scoreboard');
+  sb.classList.remove('hidden');box.innerHTML='';
+  const mcqs=[];SECS.forEach(s=>sample(POOL.mcq[s],2).forEach(t=>mcqs.push(genSafe(t))));
+  shuffle(mcqs);
+  const fillSecs=[pick(['sec31','sec32']),'sec33','sec34','sec35'];
+  const fills=fillSecs.map(s=>genSafe(pick(POOL.fill[s])));
+  state.exam={mcq:mcqs,subj:fills,mcqScore:0,subjScore:0,mcqAnswered:0,subjAnswered:0};
+  const h1=document.createElement('h3');
+  h1.className='text-lg font-bold flex items-center gap-2 text-slate-800 dark:text-slate-100 border-b pb-2 border-slate-200 dark:border-slate-700';
+  h1.innerHTML='<span class="bg-amber-500 text-white text-xs px-2.5 py-1 rounded-full">第一部分</span> 综合选择题（共 10 题）';
+  box.appendChild(h1);
+  mcqs.forEach((q,i)=>{
+    const card=document.createElement('div');
+    card.className='p-5 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3';
+    card.id=`exam-mcq-card-${i}`;
+    const cls='exam-mcq-btn w-full text-left p-3 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 hover:border-amber-500 transition text-sm flex items-center justify-between';
+    card.innerHTML=`
+      <div class="font-semibold text-slate-800 dark:text-slate-100 flex items-start gap-2">
+        <span class="bg-amber-500 text-white px-2 py-0.5 rounded text-xs font-bold mt-0.5">${i+1}</span><div>${q.q}${ZW}</div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-2">${q.options.map((o,k)=>optionHTML(`checkExamMCQ(${i},${k})`,cls,o.text,k)).join('')}</div>
+      <div id="exam-mcq-exp-${i}" class="hidden p-3 rounded-lg text-xs leading-relaxed"></div>`;
+    box.appendChild(card);
+  });
+  const h2=document.createElement('h3');
+  h2.className='text-lg font-bold flex items-center gap-2 text-slate-800 dark:text-slate-100 border-b pb-2 border-slate-200 dark:border-slate-700 pt-4';
+  h2.innerHTML='<span class="bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-full">第二部分</span> 综合填空题（共 4 题）';
+  box.appendChild(h2);
+  fills.forEach((q,i)=>{
+    const id=`exam-subj-input-${i}`;const card=document.createElement('div');
+    card.className='p-5 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3';
+    card.innerHTML=`
+      <div class="font-semibold text-slate-800 dark:text-slate-100 flex items-start gap-2">
+        <span class="bg-emerald-500 text-white px-2 py-0.5 rounded text-xs font-bold mt-0.5">${i+1}</span><div>${q.q}${ZW}</div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <input type="text" id="${id}" placeholder="${PLACEHOLDER}" autocomplete="off" class="flex-grow px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        <button id="exam-subj-btn-${i}" onclick="checkExamSubj(${i})" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition">提交答案</button>
+      </div>
+      <div class="flex flex-wrap gap-1.5">${symButtons(id)}</div>
+      <div id="exam-subj-exp-${i}" class="hidden p-3 rounded-lg text-xs leading-relaxed"></div>`;
+    box.appendChild(card);
+  });
+  updateExamScoreboard();
+}
+function checkExamMCQ(qIdx,optIdx){
+  const q=state.exam.mcq[qIdx];const card=document.getElementById(`exam-mcq-card-${qIdx}`);
+  const box=document.getElementById(`exam-mcq-exp-${qIdx}`);const ok=q.options[optIdx].correct;
+  markOptions([...card.querySelectorAll('.exam-mcq-btn')],q,optIdx,
+    ['bg-emerald-50','border-emerald-500','text-emerald-800','dark:bg-emerald-950/60','dark:text-emerald-200'],
+    ['bg-rose-50','border-rose-500','text-rose-800','dark:bg-rose-950/60','dark:text-rose-200'],['opacity-60','cursor-not-allowed']);
+  box.className='p-3 rounded-lg text-xs leading-relaxed border '+(ok?'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 border-emerald-300 dark:border-emerald-800':'bg-rose-100 text-rose-900 dark:bg-rose-950/50 dark:text-rose-200 border-rose-300 dark:border-rose-800');
+  box.innerHTML=`<i class="fa-solid ${ok?'fa-circle-check':'fa-triangle-exclamation'} mr-1"></i> ${feedbackHTML(q,optIdx)}`;
+  if(ok)state.exam.mcqScore++;state.exam.mcqAnswered++;updateExamScoreboard();
+}
+function checkExamSubj(i){
+  const spec=state.exam.subj[i];const inp=document.getElementById(`exam-subj-input-${i}`);
+  const box=document.getElementById(`exam-subj-exp-${i}`);const res=checkFill(spec,inp.value);box.classList.remove('hidden');
+  if(!inp.value.trim()||/^无法识别|^请输入小数/.test(res.hint||'')){
+    box.className='p-3 rounded-lg text-xs leading-relaxed bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100 border border-amber-300';
+    box.innerHTML=res.hint||'请先在输入框填入你的解答再提交！';return;
+  }
+  inp.disabled=true;document.getElementById(`exam-subj-btn-${i}`).disabled=true;document.getElementById(`exam-subj-btn-${i}`).classList.add('opacity-50','cursor-not-allowed');
+  if(res.ok){
+    box.className='p-3 rounded-lg text-xs leading-relaxed bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800';
+    box.innerHTML=`<i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> <b>回答正确！</b><br/>${spec.sol||''}`;state.exam.subjScore++;
+  }else{
+    box.className='p-3 rounded-lg text-xs leading-relaxed bg-rose-100 text-rose-900 dark:bg-rose-950/60 dark:text-rose-200 border border-rose-300 dark:border-rose-800';
+    box.innerHTML=`<i class="fa-solid fa-circle-xmark mr-1 text-rose-600"></i> <b>回答错误。</b>${res.hint?' '+res.hint+'。':''} 正确答案为：<span class="font-bold">${spec.disp}</span><br/>${spec.sol||''}`;
+  }
+  state.exam.subjAnswered++;updateExamScoreboard();
+}
+function updateExamScoreboard(){
+  const e=state.exam;const answered=e.mcqAnswered+e.subjAnswered,correct=e.mcqScore+e.subjScore;
+  document.getElementById('exam-mcq-score').innerText=`${e.mcqScore} / 10`;
+  document.getElementById('exam-subj-score').innerText=`${e.subjScore} / 4`;
+  const acc=answered?Math.round(correct/answered*100):0;
+  document.getElementById('exam-accuracy').innerText=`${acc}%`;
+  const ev=document.getElementById('exam-evaluation');
+  if(answered<14){ev.innerText=answered?`答题中（${answered}/14）`:'未测试';ev.className='text-lg font-bold text-slate-700 dark:text-slate-200 mt-1';return;}
+  if(acc>=90){ev.innerText='卓越 🏆';ev.className='text-lg font-bold text-emerald-600 mt-1';}
+  else if(acc>=70){ev.innerText='良好 👍';ev.className='text-lg font-bold text-brand-600 mt-1';}
+  else if(acc>=60){ev.innerText='及格 ✊';ev.className='text-lg font-bold text-amber-600 mt-1';}
+  else{ev.innerText='需复习 📖';ev.className='text-lg font-bold text-rose-600 mt-1';}
+}
+/* ==== UI END ==== */
+
+    </script>
+</body>
+</html>
