@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初三数学上册 第1章 变数法 - 互动学习课件</title>
+    <style>
+        /* ==========================================
+           1. CSS 变量与主题样式 (Light / Dark Mode)
+           ========================================== */
+        :root {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #cbd5e1;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --success-color: #10b981;
+            --success-light: #ecfdf5;
+            --warning-color: #f59e0b;
+            --warning-light: #fffbeb;
+            --danger-color: #ef4444;
+            --danger-light: #fef2f2;
+            --accent-color: #8b5cf6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --base-font-size: 16px;
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --primary-light: #1e3a8a;
+            --success-color: #10b981;
+            --success-light: #064e3b;
+            --warning-color: #f59e0b;
+            --warning-light: #78350f;
+            --danger-color: #ef4444;
+            --danger-light: #7f1d1d;
+            --accent-color: #a78bfa;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 动态字体大小 */
+        html.font-sm { font-size: 14px; }
+        html.font-md { font-size: 16px; }
+        html.font-lg { font-size: 18px; }
+        html.font-xl { font-size: 20px; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* ==========================================
+           2. 顶部导航与控制栏
+           ========================================== */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-title h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            user-select: none;
+            gap: 0.3rem;
+        }
+
+        .btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn.on { background-color: var(--primary-light); border-color: var(--primary-color); color: var(--primary-color); }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #ffffff !important;
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* ==========================================
+           3. Tab 选项卡导航
+           ========================================== */
+        .nav-tabs-wrapper {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-tabs {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 1rem;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: none;
+            background: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* ==========================================
+           4. 主体内容布局
+           ========================================== */
+        main {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        /* ==========================================
+           5. 数学公式排版系统 (HTML/CSS 无外部依赖)
+           ========================================== */
+        .math-expr {
+            font-family: "Cambria Math", "Georgia", "Times New Roman", serif;
+            font-style: italic;
+            padding: 0 0.15em;
+        }
+
+        .math-block {
+            display: block;
+            text-align: center;
+            margin: 0.8rem 0;
+            padding: 0.6rem;
+            background-color: var(--primary-light);
+            border-radius: var(--radius-md);
+            font-size: 1.05em;
+        }
+
+        .frac {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 0.2em;
+            font-size: 0.95em;
+        }
+
+        .frac .top {
+            border-bottom: 1.5px solid currentColor;
+            padding-bottom: 1px;
+            line-height: 1.1;
+        }
+
+        .frac .bottom {
+            padding-top: 1px;
+            line-height: 1.1;
+        }
+
+        .sqrt {
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        .sqrt-symbol {
+            font-style: normal;
+            font-size: 1.1em;
+            margin-right: 1px;
+        }
+
+        .sqrt-body {
+            border-top: 1.5px solid currentColor;
+            padding-top: 1px;
+        }
+
+        /* ==========================================
+           6. 图表与计算器样式
+           ========================================== */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .svg-container {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 0.5rem;
+        }
+
+        .calculator-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--card-bg));
+            border: 2px dashed var(--primary-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .calc-result {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           7. 习题与测试组件 (MCQ & 填空)
+           ========================================== */
+        .quiz-section {
+            margin-top: 2rem;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .question-header {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .q-badge {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 640px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            text-align: left;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .option-btn.correct {
+            border-color: var(--success-color);
+            background-color: var(--success-light);
+            color: var(--success-color);
+            font-weight: 700;
+        }
+
+        .option-btn.wrong {
+            border-color: var(--danger-color);
+            background-color: var(--danger-light);
+            color: var(--danger-color);
+        }
+
+        .explanation-box {
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-color);
+            font-size: 0.875rem;
+            display: none;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* 锁定的作答题卡片 */
+        .locked-box {
+            position: relative;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1rem;
+            text-align: center;
+            background-color: var(--bg-color);
+            margin-top: 1.5rem;
+        }
+
+        .locked-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--warning-light);
+            color: var(--warning-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            border: 1px solid var(--warning-color);
+        }
+
+        .score-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, var(--primary-light), var(--card-bg));
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        .table-custom th, .table-custom td {
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.6rem;
+            text-align: center;
+        }
+
+        .table-custom th {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker></defs></svg>
+
+    <!-- ==========================================
+         顶部控制栏
+         ========================================== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <h1>初三数学：第1章 变数法</h1>
+            </div>
+            <div class="controls-group">
+                <span style="font-size:0.85rem; color:var(--text-secondary);">字号:</span>
+                <button class="btn btn-sm" data-fs="sm" onclick="setFontSize('sm')">小</button>
+                <button class="btn btn-sm" data-fs="md" onclick="setFontSize('md')">中</button>
+                <button class="btn btn-sm" data-fs="lg" onclick="setFontSize('lg')">大</button>
+                <button class="btn btn-sm" data-fs="xl" onclick="setFontSize('xl')">特大</button>
+                <div style="width: 1px; height: 18px; background: var(--border-color); margin: 0 0.2rem;"></div>
+                <button class="btn" onclick="toggleDarkMode()" id="themeToggleBtn">
+                    <span id="themeIcon">🌙</span> <span id="themeText">深色模式</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         Tab 导航栏
+         ========================================== -->
+    <div class="nav-tabs-wrapper">
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-1-1', this)">1.1 正变 (Direct)</button>
+            <button class="tab-btn" onclick="switchTab('tab-1-2', this)">1.2 反变 (Inverse)</button>
+            <button class="tab-btn" onclick="switchTab('tab-1-3', this)">1.3 联变 (Joint)</button>
+            <button class="tab-btn" onclick="switchTab('tab-1-4', this)">总复习题 1（综合测试）</button>
+        </nav>
+    </div>
+
+    <!-- ==========================================
+         主要内容区域
+         ========================================== -->
+    <main>
+
+        <!-- ==========================================
+             TAB 1.1 正变 (Direct Variation)
+             ========================================== -->
+        <div id="tab-1-1" class="tab-content active">
+            
+            <!-- 核心概念 -->
+            <div class="card">
+                <div class="card-title">
+                    <span>📘 1.1 正变概念与性质</span>
+                </div>
+                <div class="grid-2col">
+                    <div>
+                        <p><strong>定义：</strong>一般上，<span class="math-expr">x</span> 与 <span class="math-expr">y</span> 两个变量，当 <span class="math-expr">x</span> 改变时，<span class="math-expr">y</span> 也随着改变且保持在 <span class="math-expr">x</span> 值的 <span class="math-expr">k</span> 倍，我们就说 <strong><span class="math-expr">y</span> 依 <span class="math-expr">x</span> 而正变</strong>。</p>
+                        <div class="math-block">
+                            若 <span class="math-expr">y ∝ x</span> （<span class="math-expr">y</span> 依 <span class="math-expr">x</span> 正变）<br>
+                            则 <span class="math-expr">y = kx</span> （其中 <span class="math-expr">k</span> 是非零常数，称为变数常数）
+                        </div>
+                        <p style="margin-top:0.5rem; font-size:0.9em; color:var(--text-secondary);">
+                            📌 <strong>补充规律：</strong>比值保持不变，即 <span class="math-expr"><span class="frac"><span class="top">y</span><span class="bottom">x</span></span> = k</span>。若 <span class="math-expr">y ∝ x</span>，则 <span class="math-expr">x ∝ y</span> 也成立。
+                        </p>
+                    </div>
+                    <div>
+                        <div class="svg-container">
+                            <svg width="220" height="180" viewBox="0 0 220 180">
+                                <!-- 坐标轴 -->
+                                <line x1="30" y1="150" x2="200" y2="150" stroke="var(--text-secondary)" stroke-width="2" marker-end="url(#arrow)"/>
+                                <line x1="30" y1="150" x2="30" y2="20" stroke="var(--text-secondary)" stroke-width="2" marker-end="url(#arrow)"/>
+                                <!-- 文本刻度 -->
+                                <text x="20" y="165" fill="var(--text-secondary)" font-size="12">0</text>
+                                <text x="205" y="165" fill="var(--text-secondary)" font-size="12">x</text>
+                                <text x="18" y="20" fill="var(--text-secondary)" font-size="12">y</text>
+                                <!-- 正比例直线 -->
+                                <line x1="30" y1="150" x2="180" y2="30" stroke="var(--primary-color)" stroke-width="3"/>
+                                <circle cx="105" cy="90" r="4" fill="var(--accent-color)"/>
+                                <text x="115" y="95" fill="var(--text-primary)" font-size="12">y = kx (k>0)</text>
+                            </svg>
+                        </div>
+                        <p style="text-align:center; font-size:0.85em; color:var(--text-secondary); margin-top:0.3rem;">图 1-1：正变关系图象为一条经过原点的直线</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课本例题解析 -->
+            <div class="card">
+                <div class="card-title">📖 课本经典例题讲解</div>
+                
+                <div style="margin-bottom: 1rem; border-bottom:1px dashed var(--border-color); padding-bottom:0.8rem;">
+                    <p><strong>例题 1：</strong>若 <span class="math-expr">y ∝ x</span>，且当 <span class="math-expr">x = 5</span> 时，<span class="math-expr">y = 30</span>。</p>
+                    <p>(a) 以 <span class="math-expr">x</span> 表示 <span class="math-expr">y</span>； &nbsp;&nbsp; (b) 当 <span class="math-expr">x = 20</span> 时，求 <span class="math-expr">y</span>。</p>
+                    <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;">
+                        <strong>解答：</strong><br>
+                        (a) 设 <span class="math-expr">y = kx</span>。代入 <span class="math-expr">x = 5, y = 30</span> 得：<span class="math-expr">30 = k × 5 ⟹ k = 6</span>。<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;∴ 关系式为 <strong><span class="math-expr">y = 6x</span></strong>。<br>
+                        (b) 当 <span class="math-expr">x = 20</span> 时，<span class="math-expr">y = 6 × 20 = 120</span>。
+                    </div>
+                </div>
+
+                <div>
+                    <p><strong>例题 2：</strong>已知 <span class="math-expr">y</span> 依 <span class="math-expr">x</span> 的平方而正变，当 <span class="math-expr">x = 4</span> 时，<span class="math-expr">y = -32</span>。当 <span class="math-expr">y = -8</span> 时，求 <span class="math-expr">x</span>。</p>
+                    <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;">
+                        <strong>解答：</strong><br>
+                        (a) 设 <span class="math-expr">y = kx<sup>2</sup></span>。代入得：<span class="math-expr">-32 = k × 4<sup>2</sup> ⟹ 16k = -32 ⟹ k = -2</span>。关系式为 <span class="math-expr">y = -2x<sup>2</sup></span>。<br>
+                        (b) 当 <span class="math-expr">y = -8</span> 时，<span class="math-expr">-8 = -2x<sup>2</sup> ⟹ x<sup>2</sup> = 4 ⟹ x = ±2</span>。
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📖 课本例题 3（实际应用）</div>
+                <p>已知柱体容器内水的体积 <span class="math-expr">V</span> 依水位高度 <span class="math-expr">h</span> 而正变。若 <span class="math-expr">h = 3</span> cm 时 <span class="math-expr">V = 42</span> cm³。(a) 以 <span class="math-expr">h</span> 表示 <span class="math-expr">V</span>；(b) 当 <span class="math-expr">h = 3.5</span> cm 时，求体积。</p>
+                <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;"><strong>解答：</strong><br>(a) <span class="math-expr">V = kh</span>，<span class="math-expr">42 = k × 3 ⟹ k = 14</span>，∴ <span class="math-expr">V = 14h</span>。<br>(b) <span class="math-expr">V = 14 × 3.5 = 49</span> cm³。</div>
+            </div>
+
+            <!-- 专属互动计算器 -->
+            <div class="card">
+                <div class="card-title">🧮 1.1 正变专属计算器与推导生成器</div>
+                <p style="font-size:0.9em; color:var(--text-secondary);">选择变化类型并输入数值，系统将为您即时推导出完整的解答步骤：</p>
+                
+                <div class="calculator-box">
+                    <div class="grid-2col">
+                        <div>
+                            <div class="form-group">
+                                <label>1. 选择类型：</label>
+                                <select id="calc1-type" class="form-control" onchange="runCalc1()">
+                                    <option value="linear">y ∝ x (一次正变)</option>
+                                    <option value="square">y ∝ x² (平方正变)</option>
+                                    <option value="sqrt">y ∝ √x (算数平方根正变)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>2. 已知条件 (x₁, y1)：</label>
+                                <div style="display:flex; gap:0.5rem;">
+                                    <input type="number" id="calc1-x1" class="form-control" value="5" placeholder="x1" oninput="runCalc1()">
+                                    <input type="number" id="calc1-y1" class="form-control" value="30" placeholder="y1" oninput="runCalc1()">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label>3. 目标计算：</label>
+                                <div style="display:flex; gap:0.5rem;">
+                                    <select id="calc1-target-type" class="form-control" style="width:40%" onchange="runCalc1()">
+                                        <option value="findY">已知 x₂ 求 y₂</option>
+                                        <option value="findX">已知 y₂ 求 x₂</option>
+                                    </select>
+                                    <input type="number" id="calc1-target-val" class="form-control" value="20" placeholder="输入已知值" oninput="runCalc1()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="calc1-output" class="calc-result">
+                        <!-- JS 动态计算生成解答步骤 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 习题部分 -->
+            <div class="card quiz-section">
+                <div class="card-title" style="justify-content:space-between;">
+                    <span>📝 1.1 动态练习题 (随机生成)</span>
+                    <button class="btn btn-sm btn-primary" onclick="initTabQuiz('1-1')">🔄 重新生成题目</button>
+                </div>
+                
+                <p style="font-size:0.9em; color:var(--text-secondary); margin-bottom:1rem;">
+                    规则：以下 5 道选择题选项包含针对常见错因设计的干扰项。<strong>答对 3 题或以上</strong>可解锁下方 2 道作答题！
+                </p>
+
+                <div id="mcq-container-1-1"></div>
+
+                <!-- 锁定/解锁的作答题 -->
+                <div id="locked-box-1-1" class="locked-box">
+                    <div class="locked-banner">
+                        🔒 需在上方选择题中答对 3 题或以上方可解锁作答题
+                    </div>
+                </div>
+
+                <div id="input-container-1-1" style="display:none; margin-top:1.5rem;">
+                    <h3 style="margin-bottom:1rem; color:var(--primary-color);">🔓 进阶作答题 (需自行计算填入正确数值)</h3>
+                    <div id="input-questions-1-1"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             TAB 1.2 反变 (Inverse Variation)
+             ========================================== -->
+        <div id="tab-1-2" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">📘 1.2 反变概念与性质</div>
+                <div class="grid-2col">
+                    <div>
+                        <p><strong>定义：</strong>当变量 <span class="math-expr">x</span> 改变时，<span class="math-expr">y</span> 也随着改变且保持在 <span class="math-expr"><span class="frac"><span class="top">1</span><span class="bottom">x</span></span></span> 值的 <span class="math-expr">k</span> 倍，我们就说 <strong><span class="math-expr">y</span> 依 <span class="math-expr">x</span> 而反变</strong>。</p>
+                        <div class="math-block">
+                            若 <span class="math-expr">y ∝ <span class="frac"><span class="top">1</span><span class="bottom">x</span></span></span> （<span class="math-expr">y</span> 依 <span class="math-expr">x</span> 反变）<br>
+                            则 <span class="math-expr">y = <span class="frac"><span class="top">k</span><span class="bottom">x</span></span></span> 或 <span class="math-expr">xy = k</span> （其中 <span class="math-expr">k ≠ 0</span>）
+                        </div>
+                        <p style="margin-top:0.5rem; font-size:0.9em; color:var(--text-secondary);">
+                            📌 <strong>补充规律：</strong>两变量的乘积恒为常数，即 <span class="math-expr">x × y = k</span>。若 <span class="math-expr">y</span> 依 <span class="math-expr">x</span> 反变，等价于 <span class="math-expr">y</span> 依 <span class="math-expr"><span class="frac"><span class="top">1</span><span class="bottom">x</span></span></span> 正变。
+                        </p>
+                    </div>
+                    <div>
+                        <div class="svg-container">
+                            <svg width="220" height="180" viewBox="0 0 220 180">
+                                <line x1="30" y1="150" x2="200" y2="150" stroke="var(--text-secondary)" stroke-width="2" marker-end="url(#arrow)"/>
+                                <line x1="30" y1="150" x2="30" y2="20" stroke="var(--text-secondary)" stroke-width="2" marker-end="url(#arrow)"/>
+                                <text x="20" y="165" fill="var(--text-secondary)" font-size="12">0</text>
+                                <text x="205" y="165" fill="var(--text-secondary)" font-size="12">x</text>
+                                <text x="18" y="20" fill="var(--text-secondary)" font-size="12">y</text>
+                                <!-- 反比例曲线 (双曲线第一象限) -->
+                                <polyline points="45.0,30.0 51.0,64.3 57.0,83.3 63.0,95.5 69.0,103.8 75.0,110.0 81.0,114.7 87.0,118.4 93.0,121.4 99.0,123.9 105.0,126.0 111.0,127.8 117.0,129.3 123.0,130.6 129.0,131.8 135.0,132.9 141.0,133.8 147.0,134.6 153.0,135.4 159.0,136.0 165.0,136.7 171.0,137.2 177.0,137.8 183.0,138.2 189.0,138.7 195.0,139.1" fill="none" stroke="var(--primary-color)" stroke-width="3"/>
+                                <text x="90" y="70" fill="var(--text-primary)" font-size="12">y = k/x (k>0)</text>
+                            </svg>
+                        </div>
+                        <p style="text-align:center; font-size:0.85em; color:var(--text-secondary); margin-top:0.3rem;">图 1-2：反变关系图象为双曲线在第一象限的弧线</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课本例题解析 -->
+            <div class="card">
+                <div class="card-title">📖 课本经典例题讲解</div>
+                
+                <div style="margin-bottom: 1rem; border-bottom:1px dashed var(--border-color); padding-bottom:0.8rem;">
+                    <p><strong>例题 1：</strong>已知 <span class="math-expr">y</span> 依 <span class="math-expr"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-body">x</span></span></span> 反变，且当 <span class="math-expr">x = 4</span> 时，<span class="math-expr">y = 5</span>。求 (a) <span class="math-expr">x, y</span> 关系式； (b) 当 <span class="math-expr">x = <span class="frac"><span class="top">1</span><span class="bottom">4</span></span></span> 时，求 <span class="math-expr">y</span>。</p>
+                    <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;">
+                        <strong>解答：</strong><br>
+                        (a) 设 <span class="math-expr">y = <span class="frac"><span class="top">k</span><span class="bottom"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-body">x</span></span></span></span></span>。代入 <span class="math-expr">x = 4, y = 5</span> 得：<span class="math-expr">5 = <span class="frac"><span class="top">k</span><span class="bottom">√4</span></span> ⟹ 5 = <span class="frac"><span class="top">k</span><span class="bottom">2</span></span> ⟹ k = 10</span>。关系式为 <strong><span class="math-expr">y = <span class="frac"><span class="top">10</span><span class="bottom"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-body">x</span></span></span></span></span></strong>。<br>
+                        (b) 当 <span class="math-expr">x = 1/4</span> 时，<span class="math-expr">y = <span class="frac"><span class="top">10</span><span class="bottom">√(1/4)</span></span> = <span class="frac"><span class="top">10</span><span class="bottom">1/2</span></span> = 20</span>。
+                    </div>
+                </div>
+
+                <div>
+                    <p><strong>例题 2：</strong>已知圆柱体的体积不变，它的底面积 <span class="math-expr">S</span> 依高 <span class="math-expr">h</span> 而反变。当 <span class="math-expr">h = 12.5</span> cm 时，<span class="math-expr">S = 20</span> cm²。(a) 以 <span class="math-expr">h</span> 表示 <span class="math-expr">S</span>；(b) 当 <span class="math-expr">h = 5</span> cm 时，求 <span class="math-expr">S</span>。</p>
+                    <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;">
+                        <strong>解答：</strong><br>
+                        (a) <span class="math-expr">S = k/h</span>，代入得 <span class="math-expr">20 = k/12.5 ⟹ k = 250</span>，∴ <span class="math-expr">S = 250/h</span>。<br>
+                        (b) 当 <span class="math-expr">h = 5</span> 时，<span class="math-expr">S = 250/5 = 50</span> cm²。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 互动计算器 -->
+            <div class="card">
+                <div class="card-title">🧮 1.2 反变专属计算器与推导生成器</div>
+                <div class="calculator-box">
+                    <div class="grid-2col">
+                        <div>
+                            <div class="form-group">
+                                <label>1. 选择反变类型：</label>
+                                <select id="calc2-type" class="form-control" onchange="runCalc2()">
+                                    <option value="linear">y ∝ 1/x (基础反变)</option>
+                                    <option value="square">y ∝ 1/x² (平方反变)</option>
+                                    <option value="sqrt">y ∝ 1/√x (平方根反变)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>2. 已知条件 (x₁, y1)：</label>
+                                <div style="display:flex; gap:0.5rem;">
+                                    <input type="number" id="calc2-x1" class="form-control" value="4" placeholder="x1" oninput="runCalc2()">
+                                    <input type="number" id="calc2-y1" class="form-control" value="5" placeholder="y1" oninput="runCalc2()">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label>3. 目标计算：</label>
+                                <div style="display:flex; gap:0.5rem;">
+                                    <select id="calc2-target-type" class="form-control" style="width:40%" onchange="runCalc2()">
+                                        <option value="findY">已知 x₂ 求 y₂</option>
+                                        <option value="findX">已知 y₂ 求 x₂</option>
+                                    </select>
+                                    <input type="number" id="calc2-target-val" class="form-control" value="0.25" placeholder="输入已知值" oninput="runCalc2()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="calc2-output" class="calc-result"></div>
+                </div>
+            </div>
+
+            <!-- 习题 -->
+            <div class="card quiz-section">
+                <div class="card-title" style="justify-content:space-between;">
+                    <span>📝 1.2 动态练习题</span>
+                    <button class="btn btn-sm btn-primary" onclick="initTabQuiz('1-2')">🔄 重新生成题目</button>
+                </div>
+                <div id="mcq-container-1-2"></div>
+                <div id="locked-box-1-2" class="locked-box">
+                    <div class="locked-banner">🔒 需在上方选择题中答对 3 题或以上方可解锁作答题</div>
+                </div>
+                <div id="input-container-1-2" style="display:none; margin-top:1.5rem;">
+                    <h3 style="margin-bottom:1rem; color:var(--primary-color);">🔓 进阶作答题</h3>
+                    <div id="input-questions-1-2"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             TAB 1.3 联变 (Joint Variation)
+             ========================================== -->
+        <div id="tab-1-3" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">📘 1.3 联变概念与三种常见类型</div>
+                <p>一个变量随着另外两个或多个变量改变时，称为<strong>联变</strong>。常见有三种情形：</p>
+                
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>类型描述</th>
+                            <th>符号表示</th>
+                            <th>代数关系式 (<span class="math-expr">k ≠ 0</span>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="math-expr">z</span> 依 <span class="math-expr">x</span> 正变，也依 <span class="math-expr">y</span> 正变</td>
+                            <td><span class="math-expr">z ∝ xy</span></td>
+                            <td><span class="math-expr">z = kxy</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="math-expr">z</span> 依 <span class="math-expr">x</span> 正变，且依 <span class="math-expr">y</span> 反变</td>
+                            <td><span class="math-expr">z ∝ <span class="frac"><span class="top">x</span><span class="bottom">y</span></span></span></td>
+                            <td><span class="math-expr">z = <span class="frac"><span class="top">kx</span><span class="bottom">y</span></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="math-expr">z</span> 依 <span class="math-expr">x</span> 反变，也依 <span class="math-expr">y</span> 反变</td>
+                            <td><span class="math-expr">z ∝ <span class="frac"><span class="top">1</span><span class="bottom">xy</span></span></span></td>
+                            <td><span class="math-expr">z = <span class="frac"><span class="top">k</span><span class="bottom">xy</span></span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📖 课本经典例题讲解</div>
+                <p><strong>例题：</strong>4名工人工作5天的工资是 RM 840。问 7名工人工作 20天的工资是多少？</p>
+                <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;">
+                    <strong>解答：</strong><br>
+                    设人数为 <span class="math-expr">x</span>，天数为 <span class="math-expr">y</span>，总工资为 <span class="math-expr">z</span>。则 <span class="math-expr">z ∝ xy ⟹ z = kxy</span>。<br>
+                    代入 <span class="math-expr">x = 4, y = 5, z = 840</span> 得：<span class="math-expr">840 = k × 4 × 5 ⟹ 20k = 840 ⟹ k = 42</span>（常数 <span class="math-expr">k</span> 代表每人每天的工资）。<br>
+                    当 <span class="math-expr">x = 7, y = 20</span> 时，<span class="math-expr">z = 42 × 7 × 20 = 5880</span>。<br>
+                    答：工资为 <strong>RM 5880</strong>。
+                </div>
+            </div>
+
+            <!-- 互动计算器 -->
+            <div class="card">
+                <div class="card-title">📖 课本例题 1</div>
+                <p>若 <span class="math-expr">z</span> 依 <span class="math-expr">y²</span> 而正变，依 <span class="math-expr">x</span> 而反变，且当 <span class="math-expr">y = 2, x = 3</span> 时 <span class="math-expr">z = 24</span>。(a) 以 <span class="math-expr">x</span>、<span class="math-expr">y</span> 表示 <span class="math-expr">z</span>；(b) 当 <span class="math-expr">y = 1/2, x = −1</span> 时，求 <span class="math-expr">z</span>。</p>
+                <div style="background-color: var(--bg-color); padding:0.6rem 0.8rem; border-radius:var(--radius-md); margin-top:0.4rem; font-size:0.9em;"><strong>解答：</strong><br>(a) <span class="math-expr">z = ky²/x</span>，<span class="math-expr">24 = k × 2²/3 ⟹ k = 18</span>，∴ <span class="math-expr">z = 18y²/x</span>。<br>(b) <span class="math-expr">z = 18 × (1/2)² / (−1) = −9/2</span>。</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🧮 1.3 联变专属计算器</div>
+                <div class="calculator-box">
+                    <div class="grid-2col">
+                        <div>
+                            <div class="form-group">
+                                <label>1. 选择联变公式：</label>
+                                <select id="calc3-type" class="form-control" onchange="runCalc3()">
+                                    <option value="k_x_y">z = k · x · y (双正变)</option>
+                                    <option value="kx_div_y">z = k · x / y (正反混合)</option>
+                                    <option value="ky2_div_x">z = k · y² / x (例题1形式)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>2. 初始数据 (x₁, y₁, z₁)：</label>
+                                <div style="display:flex; gap:0.4rem;">
+                                    <input type="number" id="calc3-x1" class="form-control" value="3" placeholder="x1" oninput="runCalc3()">
+                                    <input type="number" id="calc3-y1" class="form-control" value="2" placeholder="y1" oninput="runCalc3()">
+                                    <input type="number" id="calc3-z1" class="form-control" value="24" placeholder="z1" oninput="runCalc3()">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label>3. 目标计算 (已知 x₂, y₂ 求 z₂)：</label>
+                                <div style="display:flex; gap:0.4rem;">
+                                    <input type="number" id="calc3-x2" class="form-control" value="-1" placeholder="x2" oninput="runCalc3()">
+                                    <input type="number" id="calc3-y2" class="form-control" value="0.5" placeholder="y2" oninput="runCalc3()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="calc3-output" class="calc-result"></div>
+                </div>
+            </div>
+
+            <!-- 习题 -->
+            <div class="card quiz-section">
+                <div class="card-title" style="justify-content:space-between;">
+                    <span>📝 1.3 动态练习题</span>
+                    <button class="btn btn-sm btn-primary" onclick="initTabQuiz('1-3')">🔄 重新生成题目</button>
+                </div>
+                <div id="mcq-container-1-3"></div>
+                <div id="locked-box-1-3" class="locked-box">
+                    <div class="locked-banner">🔒 需在上方选择题中答对 3 题或以上方可解锁作答题</div>
+                </div>
+                <div id="input-container-1-3" style="display:none; margin-top:1.5rem;">
+                    <h3 style="margin-bottom:1rem; color:var(--primary-color);">🔓 进阶作答题</h3>
+                    <div id="input-questions-1-3"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             TAB 1.4 综合复习 (Comprehensive Practice)
+             ========================================== -->
+        <div id="tab-1-4" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">📚 1.4 变数法核心法则全梳理</div>
+                <p>在解答变数法应用题时，请遵循以下三步法：</p>
+                <ol style="margin-left:1.5rem; margin-top:0.5rem;">
+                    <li><strong>建立物理/几何模型：</strong>根据题意确定变量之间的变数关系，写出含常数 <span class="math-expr">k</span> 的方程（例如 <span class="math-expr">y=kx</span>, <span class="math-expr">y=<span class="frac"><span class="top">k</span><span class="bottom">x</span></span></span>, <span class="math-expr">PV=k</span>）。</li>
+                    <li><strong>求解常数 <span class="math-expr">k</span>：</strong>代入已知的一组完整已知条件，计算出非零常数 <span class="math-expr">k</span>。</li>
+                    <li><strong>代入求值：</strong>将新的已知数据代入已确定 <span class="math-expr">k</span> 的公式中，解出目标变量。</li>
+                </ol>
+            </div>
+
+            <!-- 综合测试卷 -->
+            <div class="card quiz-section">
+                <div class="card-title" style="justify-content:space-between;">
+                    <span>🏆 全章综合测试 (10题选择 + 5题作答)</span>
+                    <button class="btn btn-sm btn-primary" onclick="initTabQuiz('1-4')">🔄 重新生成全套测试卷</button>
+                </div>
+
+                <div id="comp-score-banner" class="score-banner" style="display:none;">
+                    <div>
+                        <h4 id="comp-score-title">测试成绩总结</h4>
+                        <p id="comp-score-detail" style="font-size:0.9em"></p>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom:1rem; border-left:4px solid var(--primary-color); padding-left:0.5rem;">第一部分：选择题 (10 题)</h3>
+                <div id="mcq-container-1-4"></div>
+
+                <h3 style="margin:2rem 0 1rem 0; border-left:4px solid var(--accent-color); padding-left:0.5rem;">第二部分：作答题 (5 题)</h3>
+                <div id="input-questions-1-4"></div>
+                
+                <div style="text-align:center; margin-top:1.5rem;">
+                    <button class="btn btn-primary" style="padding:0.6rem 2rem; font-size:1rem;" onclick="checkComprehensiveAll()">提交整份试卷评分</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         8. JavaScript 逻辑引擎 (纯原生，无外部依赖)
+         ========================================== -->
+    <script>
+        /* ----------------------------------------------------
+           1. 全局状态与设置 (字体大小, 暗黑模式, Tabs)
+           ---------------------------------------------------- */
+        let state = {
+            fontSize: 'md',
+            isDark: false,
+            scores: { '1-1': 0, '1-2': 0, '1-3': 0 },
+            unlocked: { '1-1': false, '1-2': false, '1-3': false },
+            quizData: {}
+        };
+
+        function setFontSize(size) {
+            const h = document.documentElement;
+            h.classList.remove('font-sm', 'font-md', 'font-lg', 'font-xl');
+            h.classList.add('font-' + size);
+            state.fontSize = size;
+            document.querySelectorAll('[data-fs]').forEach(b => b.classList.toggle('on', b.dataset.fs === size));
+            try { localStorage.setItem('bsf-font', size); } catch (e) {}
+        }
+
+        function toggleDarkMode(force) {
+            state.isDark = typeof force === 'boolean' ? force : !state.isDark;
+            document.body.classList.toggle('dark-mode', state.isDark);
+            document.getElementById('themeIcon').textContent = state.isDark ? '☀️' : '🌙';
+            document.getElementById('themeText').textContent = state.isDark ? '浅色模式' : '深色模式';
+            try { localStorage.setItem('bsf-dark', state.isDark ? '1' : '0'); } catch (e) {}
+        }
+
+        function loadPrefs() {
+            let f = 'md', d = null;
+            try { f = localStorage.getItem('bsf-font') || 'md'; d = localStorage.getItem('bsf-dark'); } catch (e) {}
+            setFontSize(f);
+            toggleDarkMode(d === null ? window.matchMedia('(prefers-color-scheme: dark)').matches : d === '1');
+        }
+
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        /* ----------------------------------------------------
+           2. 随机数与数学辅助函数
+           ---------------------------------------------------- */
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomChoice(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // 格式化数字，保留合理小数
+        function roundNum(num, dec = 2) {
+            return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+        }
+
+        // 打乱数组 (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        /* ----------------------------------------------------
+           3. 通用工具与计算器 (分数显示、无静默改值、无实数解提示)
+           ---------------------------------------------------- */
+        const M = s => `<span class="math-expr">${s}</span>`;
+        const R = getRandomInt, C = getRandomChoice;
+
+        // 数字格式化：整数 / 简单分数 / 最多4位小数
+        function fmt(n) {
+            if (!isFinite(n)) return String(n);
+            if (Number.isInteger(n)) return String(n);
+            const r = roundNum(n, 4);
+            if (Number.isInteger(r)) return String(r);
+            for (let d = 2; d <= 12; d++) {
+                const a = n * d;
+                if (Math.abs(a - Math.round(a)) < 1e-9) return (n < 0 ? '-' : '') + Math.abs(Math.round(a)) + '/' + d;
+            }
+            return String(r);
+        }
+
+        const G = {
+            lin: { n: 'x',  g: x => x,           l: x => fmt(x) },
+            sq:  { n: 'x²', g: x => x * x,       l: x => `${fmt(x)}²` },
+            rt:  { n: '√x', g: x => Math.sqrt(x), l: x => `√${fmt(x)}` }
+        };
+
+        function runCalc(n) {
+            const id = s => document.getElementById(`calc${n}-${s}`);
+            const out = document.getElementById(`calc${n}-output`);
+            const T = { linear: 'lin', square: 'sq', sqrt: 'rt' }[id('type').value], g = G[T];
+            const v = s => id(s).value.trim() === '' ? NaN : parseFloat(id(s).value);
+            const x1 = v('x1'), y1 = v('y1'), tv = v('target-val');
+            const findY = id('target-type').value === 'findY';
+            const err = m => { out.innerHTML = `<span style="color:var(--danger-color)">⚠️ ${m}</span>`; };
+
+            if ([x1, y1, tv].some(isNaN)) return err('请把所有数值填写完整。');
+            if (x1 === 0) return err('x₁ 不能为 0，否则无法求常数 k。');
+            if (T === 'rt' && x1 < 0) return err('算数平方根要求 x ≥ 0。');
+            if (y1 === 0) return err('y₁ 不能为 0（k 是非零常数）。');
+
+            const k = n === 1 ? y1 / g.g(x1) : y1 * g.g(x1);
+            const rel = n === 1 ? `y = k${g.n}` : `y = k/${g.n}`;
+            const s1 = n === 1 ? `k = ${fmt(y1)} ÷ ${g.l(x1)} = ${fmt(k)}` : `k = ${fmt(y1)} × ${g.l(x1)} = ${fmt(k)}`;
+            const f = n === 1 ? `y = ${fmt(k)}${g.n}` : `y = ${fmt(k)}/${g.n}`;
+            let s2;
+            if (findY) {
+                if (T === 'rt' && tv < 0) return err('算数平方根要求 x ≥ 0。');
+                if (n === 2 && tv === 0) return err('x 不能为 0。');
+                const r = n === 1 ? k * g.g(tv) : k / g.g(tv);
+                s2 = `当 ${M('x = ' + fmt(tv))} 时：${M('y = ' + fmt(k) + (n === 1 ? ' × ' : ' ÷ ') + g.l(tv) + ' = <strong>' + fmt(r) + '</strong>')}。`;
+            } else {
+                if (n === 2 && tv === 0) return err('y 不能为 0。');
+                const w = n === 1 ? tv / k : k / tv;   // g(x) 的值
+                let res;
+                if (T === 'lin') res = `x = <strong>${fmt(w)}</strong>`;
+                else if (T === 'sq') res = w < 0 ? '<strong>无实数解</strong>（x² 不可能是负数）' : (w === 0 ? 'x = <strong>0</strong>' : `x = <strong>±${fmt(Math.sqrt(w))}</strong>`);
+                else res = w < 0 ? '<strong>无解</strong>（算数平方根不可能是负数）' : `x = <strong>${fmt(w * w)}</strong>`;
+                s2 = `当 ${M('y = ' + fmt(tv))} 时：${M(g.n + ' = ' + fmt(w))} ⟹ ${res}。`;
+            }
+            out.innerHTML = `<strong>步骤：</strong><br>1. 设 ${M(rel)}，代入 ${M('x = ' + fmt(x1) + ', y = ' + fmt(y1))}：${M(s1)}。<br>2. 关系式：${M(f)}。<br>3. ${s2}`;
+        }
+        const runCalc1 = () => runCalc(1), runCalc2 = () => runCalc(2);
+
+        function runCalc3() {
+            const out = document.getElementById('calc3-output');
+            const v = s => { const e = document.getElementById('calc3-' + s); return e.value.trim() === '' ? NaN : parseFloat(e.value); };
+            const F = {
+                k_x_y: [(x, y) => x * y, 'xy'],
+                kx_div_y: [(x, y) => x / y, 'x/y'],
+                ky2_div_x: [(x, y) => y * y / x, 'y²/x']
+            }[document.getElementById('calc3-type').value];
+            const [x1, y1, z1, x2, y2] = ['x1', 'y1', 'z1', 'x2', 'y2'].map(v);
+            const err = m => { out.innerHTML = `<span style="color:var(--danger-color)">⚠️ ${m}</span>`; };
+            if ([x1, y1, z1, x2, y2].some(isNaN)) return err('请把所有数值填写完整。');
+            const g1 = F[0](x1, y1), g2 = F[0](x2, y2);
+            if (!isFinite(g1) || g1 === 0) return err('初始数据使分母为 0 或乘积为 0，无法求 k。');
+            if (z1 === 0) return err('z₁ 不能为 0（k 是非零常数）。');
+            if (!isFinite(g2)) return err('x₂、y₂ 使分母为 0，无法计算。');
+            const k = z1 / g1, z2 = k * g2;
+            out.innerHTML = `<strong>步骤：</strong><br>1. 设 ${M('z = k·' + F[1])}，代入初始数据：${M('k = ' + fmt(z1) + ' ÷ ' + fmt(g1) + ' = ' + fmt(k))}。<br>2. 当 ${M('x = ' + fmt(x2) + ', y = ' + fmt(y2))} 时：${M(F[1] + ' = ' + fmt(g2) + '，z = ' + fmt(k) + ' × ' + fmt(g2) + ' = <strong>' + fmt(z2) + '</strong>')}。`;
+        }
+
+        /* ----------------------------------------------------
+           4. 题目引擎：每次都用随机数重新生成，干扰项对应常见错因
+           ---------------------------------------------------- */
+        // mk: 组装一道选择题。wrongs 为“错因干扰项”，自动去重；不足3个时补近似值
+        function mk(q, c, wrongs, expl, u = '') {
+            const t = x => typeof x === 'number' ? fmt(roundNum(x, 4)) + u : x;
+            const ct = t(c), seen = new Set([ct]), wr = [];
+            wrongs.forEach(w => {
+                if (typeof w === 'number' && !isFinite(w)) return;
+                const s = t(w);
+                if (!seen.has(s)) { seen.add(s); wr.push(s); }
+            });
+            let guard = 0;
+            while (wr.length < 3 && typeof c === 'number' && guard++ < 40) {
+                const step = Math.max(1, Math.round(Math.abs(c) / 10));
+                const s = t(roundNum(c + C([-3, -2, 2, 3, 5]) * step));
+                if (!seen.has(s)) { seen.add(s); wr.push(s); }
+            }
+            return { q, expl, options: shuffleArray([{ text: ct, correct: true }, ...wr.slice(0, 3).map(s => ({ text: s, correct: false }))]) };
+        }
+
+        /* ===== 1.1 正变 ===== */
+        const T11 = [
+            () => { const k = R(3, 9), x1 = R(2, 6), x2 = R(8, 16), y1 = k * x1, c = k * x2;
+                return mk(`若 ${M('y ∝ x')}，且当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。求当 ${M('x = ' + x2)} 时 ${M('y')} 的值。`,
+                    c, [x2 / k, k / x2, y1 + x2 - x1, c + k, c - x1],
+                    `${M('y = kx')}，${M('k = ' + y1 + '/' + x1 + ' = ' + k)}，${M('y = ' + k + ' × ' + x2 + ' = ' + c)}。<br>易错：把 k 颠倒（得 ${fmt(x2 / k)}）；用“加法”思维（得 ${y1 + x2 - x1}）。`); },
+            () => { const k = C([2, 3, 4, 5, -2, -3, -4]), x1 = R(2, 5), a = R(2, 6), y1 = k * x1 * x1, y2 = k * a * a, lin = y2 * x1 / y1;
+                return mk(`已知 ${M('y')} 依 ${M('x')} 的平方而正变，当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。当 ${M('y = ' + y2)} 时，求 ${M('x')}。`,
+                    '±' + a, [String(a), '±' + a * a, '±' + fmt(lin), '±' + (a + 1), '±' + 2 * a],
+                    `${M('y = kx²')}，${M('k = ' + y1 + '/' + x1 + '² = ' + k)}。${M(y2 + ' = ' + k + 'x² ⟹ x² = ' + a * a + ' ⟹ x = ±' + a)}。<br>易错：漏掉负根（只写 ${a}）；忘记开方（写 ±${a * a}）；误当一次正变（得 ±${fmt(lin)}）。`); },
+            () => { const x1 = C([4, 9, 16, 25]), x2 = C([25, 36, 49, 64].filter(v => v > x1)), k = R(2, 6), y1 = k * Math.sqrt(x1), c = k * Math.sqrt(x2);
+                return mk(`已知 ${M('y ∝ <span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-body">x</span></span>')}，且当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。求当 ${M('x = ' + x2)} 时 ${M('y')} 的值。`,
+                    c, [k * x2, y1 * x2 / x1, c + k, y1 + (x2 - x1) / 2],
+                    `${M('y = k√x')}，${M('k = ' + y1 + '/√' + x1 + ' = ' + k)}，${M('y = ' + k + ' × √' + x2 + ' = ' + k + ' × ' + Math.sqrt(x2) + ' = ' + c)}。<br>易错：忘记开方（得 ${k * x2}）；误当一次正变（得 ${fmt(y1 * x2 / x1)}）。`); },
+            () => { const m = R(2, 4), x1 = R(2, 5), k = R(2, 5), y1 = k * x1 * x1, x2 = m * x1, c = y1 * m * m;
+                return mk(`已知 ${M('y')} 依 ${M('x')} 的平方而正变。当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}，求当 ${M('x = ' + x2)} 时 ${M('y')} 的值。`,
+                    c, [y1 * m, 2 * y1 * m, k * x2, c + k],
+                    `${M('k = ' + y1 + '/' + x1 + '² = ' + k)}，${M('y = ' + k + ' × ' + x2 + '² = ' + c)}。（x 变为 ${m} 倍，y 变为 ${m}² = ${m * m} 倍）<br>易错：x 变 ${m} 倍就让 y 也变 ${m} 倍（得 ${y1 * m}）；忘记平方（得 ${k * x2}）。`); },
+            () => { const a = R(1, 3), d = R(2, 3), x1 = a + d, k = R(2, 5), y1 = k * d * d, e = R(4, 6), x2 = a + e, c = k * e * e;
+                return mk(`已知 ${M('y')} 依 ${M('(x − ' + a + ')²')} 而正变，当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。求当 ${M('x = ' + x2)} 时 ${M('y')} 的值。`,
+                    c, [k * x2 * x2, k * (x2 - a), y1 * (x2 / x1) * (x2 / x1), c + k],
+                    `${M('y = k(x−' + a + ')²')}，${M('k = ' + y1 + '/' + d + '² = ' + k)}，${M('y = ' + k + ' × ' + e + '² = ' + c)}。<br>易错：直接用 x 而不是 (x−${a})（得 ${k * x2 * x2}）；忘记平方（得 ${k * (x2 - a)}）。`); }
+        ];
+        const I11 = [
+            () => { const a = R(1, 3), d = R(2, 3), k = R(2, 5), e = R(4, 6);
+                return { q: `已知 ${M('y ∝ (x − ' + a + ')²')}，当 ${M('x = ' + (a + d))} 时 ${M('y = ' + k * d * d)}。当 ${M('x = ' + (a + e))} 时，求 ${M('y')} 的值。`, ans: k * e * e,
+                    expl: `${M('y = k(x−' + a + ')²')}，${M('k = ' + k * d * d + '/' + d + '² = ' + k)}，${M('y = ' + k + ' × ' + e + '² = ' + k * e * e)}。` }; },
+            () => { const p = R(4, 8), W1 = C([200, 250, 300, 400]), W2 = C([30, 40, 50, 60, 75]);
+                return { q: `薯片所含热量 ${M('C')} 依重量 ${M('W')} 而正变。若 ${W1} g 薯片含 ${p * W1} kcal 热量。若想摄取 ${p * W2} kcal 热量，该吃多少克薯片？`, ans: W2,
+                    expl: `${M('k = ' + p * W1 + '/' + W1 + ' = ' + p)} kcal/g，${M('W = ' + p * W2 + '/' + p + ' = ' + W2)} 克。` }; }
+        ];
+
+        /* ===== 1.2 反变 ===== */
+        const T12 = [
+            () => { const x1 = R(3, 8), y1 = R(4, 10), k = x1 * y1, x2 = C([0.5, 2, 4]), c = k / x2;
+                return mk(`已知 ${M('y')} 依 ${M('x')} 反变，且当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。求当 ${M('x = ' + x2)} 时 ${M('y')} 的值。`,
+                    c, [y1 / x1 * x2, k * x2, y1 + x1 - x2, c + 3],
+                    `${M('xy = k')}，${M('k = ' + x1 + ' × ' + y1 + ' = ' + k)}，${M('y = ' + k + '/' + x2 + ' = ' + fmt(c))}。<br>易错：误当正变（得 ${fmt(y1 / x1 * x2)}）；k 当乘数而非除数（得 ${fmt(k * x2)}）。`); },
+            () => { const x1 = C([2, 3]), y1 = C([4, 8, 12, 16]), x2 = 2 * x1, c = y1 / 4, k = y1 * x1 * x1;
+                return mk(`若 ${M('y ∝ <span class="frac"><span class="top">1</span><span class="bottom">x²</span></span>')}，且当 ${M('x = ' + x1)} 时 ${M('y = ' + y1)}。当 ${M('x = ' + x2)} 时，求 ${M('y')}。`,
+                    c, [y1 / 2, k / x2, y1 * 4, y1 * x1 / 2, c + 2],
+                    `${M('k = yx² = ' + y1 + ' × ' + x1 + '² = ' + k)}，${M('y = ' + k + '/' + x2 + '² = ' + c)}。（x 变 2 倍，y 变为原来的 1/4）<br>易错：当成一次反变（得 ${y1 / 2}）；把 4 倍关系弄反（得 ${y1 * 4}）。`); },
+            () => { const p1 = C([60, 80, 90, 120]), d1 = C([20, 30, 40]), p2 = C([10, 15, 18, 20, 24, 30, 36, 45, 48].filter(p => p !== p1 && (p1 * d1) % p === 0)), c = p1 * d1 / p2;
+                return mk(`某工程完工天数 ${M('y')} 依工人数量 ${M('x')} 而反变。若 ${p1} 人需 ${d1} 天完成，现由 ${p2} 人做，几天可完成？`,
+                    c, [d1 * p2 / p1, c + 10, c - 5, d1 + (p1 - p2)], `总工日 ${M('k = ' + p1 + ' × ' + d1 + ' = ' + p1 * d1)}，${M('y = ' + p1 * d1 + '/' + p2 + ' = ' + c)} 天。<br>易错：误当正变（得 ${fmt(d1 * p2 / p1)}）；用“加减”思维（得 ${d1 + p1 - p2}）。`, ' 天'); },
+            () => { const pr = C([[30, 50], [20, 40], [30, 60], [60, 30], [40, 20], [40, 50]]), a1 = pr[0], a2 = pr[1], gg = (a, b) => b ? gg(b, a % b) : a, g = gg(a1, a2), p = a1 / g, q = a2 / g, n1 = q * q * R(10, 40), c = n1 * p * p / (q * q);
+                return mk(`覆盖一片草地需 ${n1} 块边长 ${a1} cm 的正方形洋灰板。若改用边长 ${a2} cm 的正方形洋灰板，需用多少块？`,
+                    c, [n1 * a1 / a2, n1 * a2 / a1, n1 * (a2 * a2) / (a1 * a1), c + 20], `块数 ${M('x')} 依边长 ${M('a')} 的<strong>平方</strong>而反变（面积不变）：${M('x = ' + n1 + ' × ' + a1 + '² ÷ ' + a2 + '² = ' + fmt(c))}。<br>易错：只按边长一次反比（得 ${fmt(n1 * a1 / a2)}）；平方后上下颠倒（得 ${fmt(n1 * a2 * a2 / (a1 * a1))}）。`, ' 块'); },
+            () => { const c0 = R(1, 3), u = R(1, 3), y1 = R(2, 6), c = 4 * (y1 + c0) - c0;
+                return mk(`如果 ${M('(y + ' + c0 + ')')} 依 ${M('x²')} 而反变，且当 ${M('x = ' + 2 * u)} 时 ${M('y = ' + y1)}。当 ${M('x = ' + u)} 时，求 ${M('y')} 的值。`,
+                    c, [4 * (y1 + c0), 4 * y1, 2 * (y1 + c0) - c0, c + c0],
+                    `${M('y + ' + c0 + ' = k/x²')}，${M('k = (' + y1 + '+' + c0 + ') × ' + 2 * u + '²')}。x 减半，${M('y + ' + c0)} 变为 4 倍：${M('y + ' + c0 + ' = ' + 4 * (y1 + c0) + ' ⟹ y = ' + c)}。<br>易错：忘记减 ${c0}（得 ${4 * (y1 + c0)}）；直接让 y 变 4 倍（得 ${4 * y1}）。`); }
+        ];
+        const I12 = [
+            () => { const c = R(2, 5), d = C([2, 3, 4, 6].filter(v => v !== c)), m = R(1, 4), x1 = d * m;
+                return { q: `已知 ${M('x')} 依 ${M('<span class="sqrt"><span class="sqrt-symbol">∛</span><span class="sqrt-body">y</span></span>')}（y 的立方根）反变，当 ${M('y = ' + c ** 3)} 时 ${M('x = ' + x1)}。当 ${M('y = ' + d ** 3)} 时，求 ${M('x')} 的值。`, ans: c * m,
+                    expl: `${M('k = x × ∛y = ' + x1 + ' × ' + c + ' = ' + x1 * c)}，${M('x = ' + x1 * c + '/∛' + d ** 3 + ' = ' + x1 * c + '/' + d + ' = ' + c * m)}。` }; },
+            () => { const v1 = C([60, 80, 90, 120]), t1 = C([2, 3, 4, 5]), v2 = C([40, 48, 72, 96, 150, 160].filter(v => v !== v1)), ans = roundNum(v1 * t1 / v2, 2);
+                return { q: `汽车匀速行驶，耗时 ${M('t')} 依速度 ${M('v')} 而反变。当 ${M('v = ' + v1)} km/h 时 ${M('t = ' + t1)} 小时。若速度改为 ${v2} km/h，需多少小时？（可填整数、两位小数或分数）`, ans,
+                    expl: `距离 ${M('s = vt = ' + v1 + ' × ' + t1 + ' = ' + v1 * t1)} km，${M('t = ' + v1 * t1 + '/' + v2 + ' = ' + fmt(v1 * t1 / v2))} 小时。` }; }
+        ];
+
+        /* ===== 1.3 联变 ===== */
+        const T13 = [
+            () => { const x1 = R(2, 6), y1 = R(2, 6), k = R(2, 9), z1 = k * x1 * y1, x2 = R(3, 9), y2 = R(3, 9), c = k * x2 * y2;
+                return mk(`已知 ${M('z ∝ xy')}，当 ${M('x = ' + x1 + ', y = ' + y1)} 时 ${M('z = ' + z1)}。求当 ${M('x = ' + x2 + ', y = ' + y2)} 时 ${M('z')} 的值。`,
+                    c, [z1 * x2 / x1, k * (x2 + y2), z1 * (x2 + y2) / (x1 + y1), c + k],
+                    `${M('z = kxy')}，${M('k = ' + z1 + '/(' + x1 + '×' + y1 + ') = ' + k)}，${M('z = ' + k + ' × ' + x2 + ' × ' + y2 + ' = ' + c)}。<br>易错：只考虑 x 的变化（得 ${fmt(z1 * x2 / x1)}）；把乘积 xy 当成和 x+y。`); },
+            () => { const k = R(2, 9), y1 = R(2, 5), m = R(2, 4), x1 = y1 * m, y2 = R(2, 7), n = R(2, 5), x2 = y2 * n, z2 = k * n;
+                return mk(`若 ${M('z')} 依 ${M('x')} 正变，依 ${M('y')} 反变。当 ${M('x = ' + x1 + ', y = ' + y1)} 时 ${M('z = ' + k * m)}。当 ${M('x = ' + x2 + ', z = ' + z2)} 时，求 ${M('y')}。`,
+                    y2, [k * z2 / x2, z2 * x2 / k, y1 * x2 / x1, y2 + y1],
+                    `${M('z = kx/y')}，${M('k = zy/x = ' + k * m + ' × ' + y1 + '/' + x1 + ' = ' + k)}。${M(z2 + ' = ' + k + ' × ' + x2 + '/y ⟹ y = ' + k * x2 + '/' + z2 + ' = ' + y2)}。<br>易错：把 y 当成正变而颠倒（得 ${fmt(z2 * x2 / k)}）；只按 x 的比例变化（得 ${fmt(y1 * x2 / x1)}）。`); },
+            () => { const c0 = R(2, 6), x1 = R(2, 6), k = c0 * x1, y1 = R(2, 4), z1 = c0 * y1 * y1, x2 = C([-1, 1, -2, 2]), y2 = C([1, 2, 3, 4]), c = k * y2 * y2 / x2;
+                return mk(`若 ${M('z')} 依 ${M('y²')} 而正变，依 ${M('x')} 而反变，且当 ${M('y = ' + y1 + ', x = ' + x1)} 时 ${M('z = ' + z1)}。当 ${M('y = ' + y2 + ', x = ' + x2)} 时，求 ${M('z')}。`,
+                    c, [k * y2 * y2 * x2, k * y2 / x2, -c, k * y2 * y2 / Math.abs(x2) + k],
+                    `${M('z = ky²/x')}，${M('k = ' + z1 + ' × ' + x1 + '/' + y1 + '² = ' + k)}，${M('z = ' + k + ' × ' + y2 + '² / (' + x2 + ') = ' + fmt(c))}。<br>易错：y 忘记平方（得 ${fmt(k * y2 / x2)}）；x 当成正变（得 ${k * y2 * y2 * x2}）；代入负数时符号出错。`); },
+            () => { const k = C([5, 6, 8, 9]), l1 = 100, d2 = C([2, 5]), l2 = C([100, 200, 300, 400]), R2 = k * l2 / (d2 * d2), R1 = k * l1;
+                return mk(`电阻 ${M('R')} 依电线长度 ${M('l')} 而正变，同时依直径 ${M('d')} 的平方而反变。已知 ${M('l = ' + l1)} m，${M('d = 1')} mm 时 ${M('R = ' + R1)} Ω。当 ${M('R = ' + R2)} Ω，${M('l = ' + l2)} m 时，求直径 ${M('d')}。`,
+                    d2, [d2 * d2, Math.sqrt(k * l1 / R2), d2 * 2, d2 + 1],
+                    `${M('R = kl/d²')}，${M('k = ' + R1 + ' × 1²/' + l1 + ' = ' + k)}。${M(R2 + ' = ' + k + ' × ' + l2 + '/d² ⟹ d² = ' + d2 * d2 + ' ⟹ d = ' + d2)}。<br>易错：忘记开方（得 ${d2 * d2}）；忘记 l 已改变。`, ' mm'); },
+            () => { const r1 = R(1, 3), r2 = R(2, 6), h2 = C([14, 21, 28]), A2 = 44 * r2 * h2 / 7;
+                return mk(`圆柱的侧面面积 ${M('A')} 依底面半径 ${M('r')} 与高 ${M('h')} 而正变。若高 7 cm、半径 ${r1} cm，侧面面积是 ${44 * r1} cm²。若侧面面积是 ${A2} cm²，高是 ${h2} cm，求底面半径。`,
+                    r2, [r2 * h2 / 7, Math.sqrt(r1 * r2), r2 + h2 / 7, r2 * 7 / h2 + 1],
+                    `${M('A = krh')}，${M('k = ' + 44 * r1 + '/(' + r1 + '×7) = 44/7')}，${M(A2 + ' = (44/7) × r × ' + h2 + ' ⟹ r = ' + r2)}。<br>易错：忽略 h 的变化（得 ${fmt(r2 * h2 / 7)}）；把 A 当成依 r² 而变（得 ${fmt(Math.sqrt(r1 * r2))}）。`, ' cm'); }
+        ];
+        const I13 = [
+            () => { const c = R(3, 8), z1 = R(2, 5), m = R(2, 4), x1 = z1 * m, n = R(2, 5), z2 = R(2, 6);
+                return { q: `已知 ${M('y ∝ x')} 且 ${M('y ∝ <span class="frac"><span class="top">1</span><span class="bottom">z</span></span>')}。当 ${M('x = ' + x1 + ', z = ' + z1)} 时 ${M('y = ' + c * m)}。若 ${M('y = ' + c * n + ', z = ' + z2)}，求 ${M('x')} 的值。`, ans: n * z2,
+                    expl: `${M('y = kx/z')}，${M('k = yz/x = ' + c * m + ' × ' + z1 + '/' + x1 + ' = ' + c)}。${M(c * n + ' = ' + c + 'x/' + z2 + ' ⟹ x = ' + n * z2)}。` }; },
+            () => { const k0 = C([4, 6, 8]), P1 = C([20, 30, 40, 50]), m = R(5, 12), T1 = P1 * m, P2 = C([20, 25, 40, 50]), n = R(6, 15), T2 = P2 * n;
+                return { q: `气体体积 ${M('V')} 依绝对温度 ${M('T')} 而正变，同时依压强 ${M('P')} 而反变。在 ${T1} 度、${P1} 个大气压时，体积为 ${k0 * m} cm³。问温度 ${T2} 度、压强 ${P2} 个大气压时，体积是多少 cm³？`, ans: k0 * n,
+                    expl: `${M('V = kT/P')}，${M('k = VP/T = ' + k0 * m + ' × ' + P1 + '/' + T1 + ' = ' + k0)}，${M('V = ' + k0 + ' × ' + T2 + '/' + P2 + ' = ' + k0 * n)} cm³。` }; }
+        ];
+        const POOL = { '1-1': [T11, I11], '1-2': [T12, I12], '1-3': [T13, I13] };
+
+        /* ----------------------------------------------------
+           5. 渲染与交互组件
+           ---------------------------------------------------- */
+        function parseAns(s) {
+            s = s.trim().replace(/[０-９．]/g, c => c === '．' ? '.' : String.fromCharCode(c.charCodeAt(0) - 65248)).replace(/[−–—]/g, '-').replace(/\s/g, '');
+            const m = s.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
+            if (m) return +m[1] / +m[2];
+            return /^-?(\d+\.?\d*|\.\d+)$/.test(s) ? +s : NaN;
+        }
+        const gradeInput = (raw, ans) => { const u = parseAns(raw); return isFinite(u) && Math.abs(u - ans) <= 0.005 + 1e-9; };
+
+        function initTabQuiz(t) {
+            let mcqs, inputs;
+            if (t === '1-4') {
+                // 选择题：每个 tab 先各抽 3 个不同模板，再从剩余模板补 1 个；作答题：每个 tab 各 1 个，再补 2 个
+                const pick = (arr, n) => shuffleArray(arr).slice(0, n);
+                let mt = [...pick(T11, 3), ...pick(T12, 3), ...pick(T13, 3)];
+                mt.push(shuffleArray([...T11, ...T12, ...T13].filter(f => !mt.includes(f)))[0]);
+                let it = [C(I11), C(I12), C(I13)];
+                it.push(...shuffleArray([...I11, ...I12, ...I13].filter(f => !it.includes(f))).slice(0, 2));
+                // 同一份卷子里任意两题的答案数值/文字都不相同（最多重抽 80 次）
+                const key = x => { x = String(x); const m = x.match(/-?\d+(\.\d+)?/); return (m && !/[±\/]/.test(x)) ? String(+m[0]) : x; };
+                // 整份卷子重抽，直到 15 题的答案互不相同（最多 200 次）
+                for (let tries = 0; tries < 200; tries++) {
+                    mcqs = shuffleArray(mt).map(f => f());
+                    inputs = shuffleArray(it).map(f => f());
+                    const ks = [...mcqs.map(q => key(q.options.find(o => o.correct).text)), ...inputs.map(q => key(fmt(q.ans)))];
+                    if (new Set(ks).size === ks.length) break;
+                }
+                document.getElementById('comp-score-banner').style.display = 'none';
+            } else {
+                mcqs = POOL[t][0].map(f => f());
+                inputs = POOL[t][1].map(f => f());
+            }
+            state.quizData[t] = { mcqs, inputs, userMcqScore: 0, picked: {}, submitted: false };
+            renderMCQs(t);
+            renderInputs(t);
+            if (t !== '1-4') {
+                document.getElementById(`locked-box-${t}`).style.display = 'block';
+                document.getElementById(`input-container-${t}`).style.display = 'none';
+                state.unlocked[t] = false;
+            }
+        }
+
+        function renderMCQs(t) {
+            document.getElementById(`mcq-container-${t}`).innerHTML = state.quizData[t].mcqs.map((qo, i) => `
+                <div class="question-card" id="q-card-${t}-${i}">
+                    <div class="question-header"><span class="q-badge">第 ${i + 1} 题</span><div>${qo.q}</div></div>
+                    <div class="options-grid">
+                        ${qo.options.map((o, j) => `<button class="option-btn" onclick="selectOption('${t}', ${i}, ${j})"><strong>${String.fromCharCode(65 + j)}.</strong> ${o.text}</button>`).join('')}
+                    </div>
+                    <div class="explanation-box" id="expl-${t}-${i}"><strong>💡 答案解析：</strong> ${qo.expl}</div>
+                </div>`).join('');
+        }
+
+        function selectOption(t, qi, oi) {
+            const d = state.quizData[t];
+            if (d.submitted) return;
+            const btns = document.querySelectorAll(`#q-card-${t}-${qi} .option-btn`);
+            if (t === '1-4') {                       // 测试模式：可改选，交卷后才揭晓
+                d.picked[qi] = oi;
+                btns.forEach((b, i) => b.classList.toggle('selected', i === oi));
+                return;
+            }
+            if (d.picked[qi] !== undefined) return;  // 练习模式：作答后立即反馈
+            d.picked[qi] = oi;
+            const opts = d.mcqs[qi].options;
+            btns.forEach((b, i) => {
+                b.disabled = true;
+                if (opts[i].correct) b.classList.add('correct');
+                else if (i === oi) b.classList.add('wrong');
+            });
+            document.getElementById(`expl-${t}-${qi}`).style.display = 'block';
+            if (opts[oi].correct) d.userMcqScore++;
+            if (d.userMcqScore >= 3 && !state.unlocked[t]) {
+                state.unlocked[t] = true;
+                document.getElementById(`locked-box-${t}`).style.display = 'none';
+                document.getElementById(`input-container-${t}`).style.display = 'block';
+            }
+        }
+
+        function renderInputs(t) {
+            document.getElementById(`input-questions-${t}`).innerHTML = state.quizData[t].inputs.map((io, i) => `
+                <div class="question-card">
+                    <div class="question-header"><span class="q-badge" style="background-color:var(--accent-color)">作答题 ${i + 1}</span><div>${io.q}</div></div>
+                    <div style="display:flex; gap:0.5rem; margin-top:0.8rem; align-items:center; flex-wrap:wrap;">
+                        <input type="text" id="input-ans-${t}-${i}" class="form-control" style="width:200px" placeholder="整数 / 小数 / 分数">
+                        ${t === '1-4' ? '' : `<button class="btn btn-primary btn-sm" onclick="checkInput('${t}', ${i})">提交作答</button>`}
+                    </div>
+                    <div class="explanation-box" id="input-expl-${t}-${i}"></div>
+                </div>`).join('');
+        }
+
+        function showInputResult(t, i) {
+            const io = state.quizData[t].inputs[i], box = document.getElementById(`input-expl-${t}-${i}`);
+            const ok = gradeInput(document.getElementById(`input-ans-${t}-${i}`).value, io.ans);
+            box.style.display = 'block';
+            box.style.borderLeftColor = ok ? 'var(--success-color)' : 'var(--danger-color)';
+            box.innerHTML = ok ? `<span style="color:var(--success-color); font-weight:700;">✅ 回答正确！</span><br><strong>解析：</strong>${io.expl}`
+                : `<span style="color:var(--danger-color); font-weight:700;">❌ 答案有误（正确答案：${fmt(io.ans)}）</span><br><strong>解析：</strong>${io.expl}`;
+            return ok;
+        }
+        function checkInput(t, i) { showInputResult(t, i); }
+
+        function checkComprehensiveAll() {
+            const t = '1-4', d = state.quizData[t];
+            if (d.submitted) return;
+            d.submitted = true;
+            let m = 0, n = 0;
+            d.mcqs.forEach((qo, qi) => {
+                const btns = document.querySelectorAll(`#q-card-${t}-${qi} .option-btn`), p = d.picked[qi];
+                btns.forEach((b, i) => {
+                    b.disabled = true; b.classList.remove('selected');
+                    if (qo.options[i].correct) b.classList.add('correct'); else if (i === p) b.classList.add('wrong');
+                });
+                if (p !== undefined && qo.options[p].correct) m++;
+                document.getElementById(`expl-${t}-${qi}`).style.display = 'block';
+            });
+            d.inputs.forEach((io, i) => { if (showInputResult(t, i)) n++; document.getElementById(`input-ans-${t}-${i}`).disabled = true; });
+            const banner = document.getElementById('comp-score-banner'), total = m + n;
+            banner.style.display = 'flex';
+            document.getElementById('comp-score-title').textContent = `🎯 总分：${total} / 15（选择题 ${m}/10，作答题 ${n}/5）`;
+            document.getElementById('comp-score-detail').textContent = total >= 10 ? '太棒了！您已掌握《变数法》的核心内容！' : '建议回看前面的例题与易错提示，再点“重新生成全套测试卷”练习！';
+            window.scrollTo({ top: banner.offsetTop - 100, behavior: 'smooth' });
+        }
+
+        /* ----------------------------------------------------
+           6. 页面初始化加载
+           ---------------------------------------------------- */
+        window.onload = function() {
+            loadPrefs();
+            // 初始化三个专属计算器
+            runCalc1();
+            runCalc2();
+            runCalc3();
+
+            // 初始化所有 Tab 的题目数据
+            initTabQuiz('1-1');
+            initTabQuiz('1-2');
+            initTabQuiz('1-3');
+            initTabQuiz('1-4');
+        };
+    </script>
+</body>
+</html>
