@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- 蔡逸众 / ecchua79 / Chinese High School（华仁中学）· 初二上册 第4章 三角形 互动版 -->
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School"><title>初二数学上册 第4章 三角形 互动版</title>
+<style>/* 蔡逸众 / ecchua79 / Chinese High School */
+:root{--bg:#f4f7fb;--cd:#fff;--tx:#1e293b;--sub:#64748b;--bd:#dbe3ee;--pr:#2563eb;--pl:#e8f0fe;--ok:#16a34a;--okb:#e7f8ec;--no:#dc2626;--nob:#fdecec}
+body.dk{--bg:#0f172a;--cd:#1e293b;--tx:#f1f5f9;--sub:#94a3b8;--bd:#334155;--pr:#60a5fa;--pl:#1e3a5f;--ok:#4ade80;--okb:#0f3320;--no:#f87171;--nob:#4a1a1a}
+*{box-sizing:border-box}html{font-size:16px}body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+.w{max-width:900px;margin:auto;padding:10px}header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:8px 14px}
+h1{font-size:1.15rem;margin:0;color:var(--pr)}h2{font-size:1.1rem;color:var(--pr);margin:.2em 0}h3{font-size:1rem;margin:.8em 0 .3em}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:8px;padding:5px 11px}button:hover{border-color:var(--pr)}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}nav button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+section{display:none;background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px 16px}section.on{display:block}
+.cp{background:var(--pl);border-left:4px solid var(--pr);border-radius:6px;padding:6px 14px;margin:8px 0}.cp ul{margin:4px 0;padding-left:1.2em}
+.tl{border:2px dashed var(--pr);border-radius:10px;padding:10px;margin:10px 0}.tl input[type=number]{width:4.5em;font:inherit;padding:3px;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:6px}
+.q{border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:8px 0}.q p{margin:.2em 0 .4em;font-weight:600}.q button{display:block;width:100%;text-align:left;margin:4px 0}
+.q button.c{background:var(--okb);border-color:var(--ok)}.q button.x{background:var(--nob);border-color:var(--no)}.ex{display:none;font-size:.92em;color:var(--sub);margin-top:4px}
+.sc{font-weight:700;color:var(--ok);margin:6px 0}.fb{border:1px dashed var(--ok);border-radius:10px;padding:8px 12px;margin-top:8px}.fb input{width:6em;font:inherit;padding:3px;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:6px}
+footer{text-align:center;color:var(--sub);font-size:.8rem;margin:14px 0}svg text{fill:var(--tx);font-size:12px}svg polygon{fill:var(--pl);stroke:var(--pr);stroke-width:2}
+</style></head><body><div class="w">
+<header><h1>📐 初二上册 第4章 三角形</h1><div><button onclick="fz(-1)">A−</button> <button onclick="fz(1)">A+</button> <button id="tb" onclick="th()">🌙 深色</button></div></header>
+<nav id="nv"></nav><main id="mn"></main>
+<footer>峇株吧辖华仁中学 Chinese High School · 蔡逸众 制作 · ecchua79</footer></div>
+<script>
+console.log('初二上册 第4章 三角形 互动版 · 蔡逸众 / ecchua79 / Chinese High School');
+const $=s=>document.querySelector(s),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,P=a=>a[R(0,a.length-1)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const d=n=>n+'°',c=n=>n+' cm';
+const sv=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},ld=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+let FS=+ld('fz4')||16;function fz(x){FS=Math.min(22,Math.max(12,FS+x));document.documentElement.style.fontSize=FS+'px';sv('fz4',FS)}
+function th(){document.body.classList.toggle('dk');const k=document.body.classList.contains('dk');$('#tb').textContent=k?'☀️ 浅色':'🌙 深色';sv('th4',k?1:0)}
+/* ---------- 题库：每个函数每次生成新数字；错误选项来自常见错解 ---------- */
+const G=[[
+()=>{let a=R(3,8),b=R(a+1,a+6),x=R(b-a+1,a+b-1);return['下列哪一组线段能组成三角形？',`${a}, ${b}, ${x}`,[`${a}, ${b}, ${a+b}`,`${a}, ${b}, ${b-a}`,`${a}, ${b}, ${a+b+R(1,2)}`],`较短两边之和必须“大于”第三边：${a}+${b}>${x}，${a}+${x}>${b}。而 ${a}+${b}=${a+b} 只是“等于”，不行。`]},
+()=>{let a=R(3,9),b=R(a+1,a+7);return[`△ABC 中 AB=${a} cm，AC=${b} cm，则 BC 的取值范围是`,`${b-a} < BC < ${a+b}`,[`${b-a} ≤ BC ≤ ${a+b}`,`${a} < BC < ${b}`,`BC < ${a+b}`],'两边之差 < 第三边 < 两边之和，端点取不到。']},
+()=>{let x=R(3,6),y=R(2*x+1,2*x+4);return[`等腰三角形两边长分别为 ${x} cm 和 ${y} cm，周长是`,c(x+2*y),[c(2*x+y),c(x+y),c(2*x+2*y)],`若腰=${x}：${x}+${x}=${2*x}<${y}，不能成三角形；所以腰=${y}，周长=${y}+${y}+${x}=${x+2*y} cm。`]},
+()=>{let a=R(5,9),b=a+R(2,3),e=b+R(2,3);return[`△ABC 中 AB=${a} cm，BC=${b} cm，CA=${e} cm，则最大的角是`,'∠B',['∠A','∠C','无法比较'],`大边对大角：最长边 CA=${e} cm，它所对的角是 ∠B（不是边两端的角）。`]},
+()=>{let a=R(3,8),b=a+R(3,8);return[`三角形两边长为 ${a} 和 ${b}，第三边取整数，共有几种取法？`,''+(2*a-1),[''+2*a,''+(2*a+1),''+(2*a-2)],`${b-a} < 第三边 < ${a+b}，整数从 ${b-a+1} 到 ${a+b-1}，共 ${2*a-1} 个。`]},
+()=>{let t=P([['三条中线','重心'],['三条高线','垂心'],['三条角平分线','内心'],['三边的垂直平分线','外心']]);return[`${t[0]}的交点叫做三角形的`,t[1],['重心','垂心','内心','外心'].filter(x=>x!=t[1]),`${t[0]}交于一点，这点叫${t[1]}。`]}
+],[
+()=>{let A=R(35,70),B=R(30,65);return[`△ABC 中 ∠A=${A}°，∠B=${B}°，则顶点 C 处的外角是`,d(A+B),[d(180-A-B),d(180-A),d(360-A-B)],`外角=不相邻两内角之和：${A}°+${B}°=${A+B}°。${180-A-B}° 是 ∠C 本身。`]},
+()=>{let t=P([[1,2,3],[2,3,4],[3,4,5],[2,3,5],[1,4,5],[1,3,5]]),s=t[0]+t[1]+t[2],u=180/s;return[`△ABC 中 ∠A:∠B:∠C = ${t.join(':')}，则最大角是`,d(t[2]*u),[d(t[1]*u),d((t[2]+1)*u),d(180-t[0]*u)],`180°÷${s}=${u}°，最大份 ${t[2]}×${u}°=${t[2]*u}°。`]},
+()=>{let B=R(20,38),C=180-3*B;return[`△ABC 中 ∠C=${C}°，∠A=2∠B，则 ∠A 是`,d(2*B),[d(B),d(3*B),d(180-2*B)],`∠A+∠B=${180-C}°，即 3∠B=${3*B}°，∠B=${B}°，∠A=${2*B}°。`]},
+()=>{let k=2*R(5,17);return[`△ABC 中 ∠C=90°，∠A−∠B=${k}°，则 ∠B 是`,d((90-k)/2),[d((90+k)/2),d(90-k),d(k)],`∠A+∠B=90°，与 ∠A−∠B=${k}° 相减：2∠B=${90-k}°，∠B=${(90-k)/2}°。`]},
+()=>{let x=R(30,60),E=x+R(30,70);return[`△ABC 的一个外角是 ${E}°，与它不相邻的一个内角是 ${x}°，则另一个不相邻的内角是`,d(E-x),[d(180-E-x),d(E+x),d(180-E)],`外角=两内对角之和，所以另一个角=${E}°−${x}°=${E-x}°。${180-E}° 是与外角相邻的内角。`]},
+()=>{let A=R(25,60),B=R(25,70),t=A+B<90?'钝角三角形':A+B==90?'直角三角形':'锐角三角形';return[`△ABC 中 ∠A=${A}°，∠B=${B}°，则这个三角形是`,t,['钝角三角形','直角三角形','锐角三角形','无法判断'].filter(x=>x!=t),`∠C=180°−${A}°−${B}°=${180-A-B}°，三个角分别为 ${A}°、${B}°、${180-A-B}°，所以是${t}。`]}
+],[
+()=>{let v=[['AB=DE, BC=EF, AC=DF','SSS'],['AB=DE, ∠B=∠E, BC=EF','SAS'],['∠A=∠D, AB=DE, ∠B=∠E','ASA'],['∠A=∠D, ∠B=∠E, BC=EF','AAS']],i=P(v);return['下列哪一组条件能判定 △ABC≌△DEF？',i[0],['AB=DE, BC=EF, ∠A=∠D','∠A=∠D, ∠B=∠E, ∠C=∠F','AC=DF, BC=EF, ∠B=∠E'],`符合 ${i[1]}。其余：AAA 与 SSA（两边及其中一边的对角）都不能判定全等。`]},
+()=>{let a=R(40,80),b=R(35,70);return[`△ABC≌△DEF，∠A=${a}°，∠B=${b}°，则 ∠F 是`,d(180-a-b),[d(a+b),d(180-a),d(180-b)],`对应角相等：∠F=∠C=180°−${a}°−${b}°=${180-a-b}°。`]},
+()=>{let x=R(10,30),e=R(5,20),m=2*x+e;return[`△ABC≌△DEF，∠A=(2x+${e})°，∠D=${m}°，则 x 等于`,''+x,[''+2*x,''+(x+e),''+m],`对应角相等：2x+${e}=${m}，x=${x}。`]},
+()=>{let a=R(4,8),b=a+R(1,3),e=b+R(1,3);return[`△ABC≌△DEF（对应顶点按顺序），AB=${a} cm，BC=${b} cm，CA=${e} cm，则 EF 的长是`,c(b),[c(a),c(e),c(a+b)],`B↔E，C↔F，所以 EF 对应 BC=${b} cm。`]},
+()=>['已知 AB=DE，AC=DF，要用 SAS 判定 △ABC≌△DEF，还需添加','∠A=∠D',['∠B=∠E','∠C=∠F','BC=EF'],'SAS 的角必须是两边的夹角：AB 与 AC 的夹角是 ∠A。添加 BC=EF 则是 SSS。'],
+()=>['已知 ∠A=∠D，∠B=∠E，添加下列条件后，仍【不能】判定 △ABC≌△DEF 的是','∠C=∠F',['AB=DE','BC=EF','AC=DF'],'已有两个角，再加任意一条边即可（ASA 或 AAS）；再加第三个角只是 AAA，不能判定。']
+],[
+()=>{let A=2*R(20,50);return[`等腰三角形的顶角是 ${A}°，则底角是`,d((180-A)/2),[d(180-A),d(A/2),d(90+A/2)],`底角=(180°−${A}°)÷2=${(180-A)/2}°。`]},
+()=>{let B=R(25,75);if(B==45)B=50;return[`等腰三角形的一个底角是 ${B}°，则顶角是`,d(180-2*B),[d(180-B),d(90-B),d(2*B)],`顶角=180°−2×${B}°=${180-2*B}°。`]},
+()=>{let x=P([30,40,50,70,80]);return[`等腰三角形有一个内角是 ${x}°，则它的顶角可能是`,`${x}° 或 ${180-2*x}°`,[d(x),d(180-2*x),d((180-x)/2)],`${x}° 可能是顶角（顶角 ${x}°），也可能是底角（顶角 180°−2×${x}°=${180-2*x}°）。`]},
+()=>{let E=R(105,145);return[`等腰 △ABC 中 AB=AC，∠B 的外角是 ${E}°，则 ∠A 是`,d(2*E-180),[d(180-E),d(E-90),d(360-2*E)],`∠B=180°−${E}°=${180-E}°=∠C，∠A=180°−2×${180-E}°=${2*E-180}°。`]},
+()=>{let a=2*R(18,40);return[`△ABC 中，D 是 AC 上一点，AB=BD=DC，∠A=${a}°，则 ∠C 是`,d(a/2),[d(a),d(180-2*a),d((180-a)/2)],`BA=BD ⇒ ∠BDA=${a}°，∠ABD=${180-2*a}°；∠BDC=∠ABD+∠A=${180-a}°；DB=DC ⇒ ∠C=(180°−${180-a}°)÷2=${a/2}°。`]},
+()=>{let x=R(40,65);if(x==60)x=62;let y=180-2*x;return[`三角形的两个内角分别是 ${x}° 和 ${y}°，则它是`,'等腰三角形',['等边三角形','不等边三角形','无法判断'],`第三个角=180°−${x}°−${y}°=${x}°，有两个角相等（等角对等边），所以是等腰三角形。`]}
+],[
+()=>{let b=R(25,70);return[`Rt△ABC 中 ∠A=90°，∠B=${b}°，则 ∠C 是`,d(90-b),[d(180-b),d(90+b),d(b)],`直角三角形两锐角互余：90°−${b}°=${90-b}°。`]},
+()=>{let x=R(25,65);return[`Rt△ABC 中 ∠A=90°，AD⊥BC 于 D，∠BAD=${x}°，则 ∠C 是`,d(x),[d(90-x),d(180-x),d(90+x)],`△ABD 中 ∠B=90°−${x}°；△ABC 中 ∠C=90°−∠B=${x}°。`]},
+()=>{let s=2*R(2,6);return[`Rt△ABC 中 ∠C=90°，∠A=30°，BC=${s} cm（∠A 的对边），则斜边 AB 是`,c(2*s),[c(s/2),c(s),c(3*s)],`30° 角所对的直角边等于斜边的一半，所以斜边=2×${s}=${2*s} cm。`]},
+()=>{let h=4*R(2,6);return[`Rt△ABC 中 ∠C=90°，∠A=30°，斜边 AB=${h} cm，则 BC 的长是`,c(h/2),[c(2*h),c(h),c(h/4)],`BC=斜边的一半=${h}÷2=${h/2} cm。`]},
+()=>{let L=2*R(150,400);return[`一人沿 30° 的坡路登山，共走了 ${L} m，则山的高度是`,`${L/2} m`,[`${L} m`,`${2*L} m`,`${Math.round(L*.866)} m`],`高=30° 角所对的直角边=斜边的一半：${L}÷2=${L/2} m。`]},
+()=>['点 P 在直线 AB 外，PH⊥AB 于 H，A、B 是直线上另两点，则点 P 到直线 AB 的距离是','垂线段 PH 的长',['线段 PA 的长','线段 PB 的长','PA、PB 两长度的平均值'],'直线外一点与直线上各点的连线中，垂线段最短，其长度就是点到直线的距离。']
+]];
+/* 填空题（需自己输入数字） */
+const F=[[
+()=>{let a=R(3,9),b=R(a+1,a+7);return[`△ABC 中 AB=${a} cm，AC=${b} cm，BC 取整数时，BC 最大是多少 cm？`,a+b-1,`${b-a} < BC < ${a+b}，最大整数是 ${a+b-1}。`]},
+()=>{let a=R(3,8),b=a+R(3,8);return[`三角形两边长为 ${a} 和 ${b}，第三边取整数，有几种取法？`,2*a-1,`第三边从 ${b-a+1} 取到 ${a+b-1}，共 ${2*a-1} 种。`]},
+()=>{let x=R(3,6),y=R(2*x+1,2*x+4);return[`等腰三角形两边长分别为 ${x} cm 和 ${y} cm，周长是多少 cm？`,x+2*y,`腰只能是 ${y}：${y}+${y}+${x}=${x+2*y}。`]}
+],[
+()=>{let A=R(35,70),B=R(30,65);return[`△ABC 中 ∠A=${A}°，∠B=${B}°，顶点 C 处的外角是多少度？`,A+B,`外角=${A}+${B}=${A+B}。`]},
+()=>{let B=R(20,38);return[`△ABC 中 ∠C=${180-3*B}°，∠A=2∠B，∠A 是多少度？`,2*B,`3∠B=${3*B}°，∠B=${B}°，∠A=${2*B}°。`]},
+()=>{let t=P([[1,2,3],[2,3,4],[3,4,5],[2,3,5]]),u=180/(t[0]+t[1]+t[2]);return[`△ABC 中 ∠A:∠B:∠C=${t.join(':')}，最大角是多少度？`,t[2]*u,`每份 ${u}°，最大角 ${t[2]*u}°。`]}
+],[
+()=>{let x=R(10,30),e=R(5,20);return[`△ABC≌△DEF，∠A=(2x+${e})°，∠D=${2*x+e}°，求 x。`,x,`2x+${e}=${2*x+e}，x=${x}。`]},
+()=>{let a=R(4,8),b=a+R(1,3),e=b+R(1,3);return[`△ABC≌△DEF（对应顶点按顺序），AB=${a}，BC=${b}，CA=${e}（cm），EF 是多少 cm？`,b,'EF 对应 BC。']},
+()=>{let a=R(30,50),b=R(25,45);return[`四边形 ABCD 中 AD∥BC，AD=BC，∠CAB=${a}°，∠ACB=${b}°，求 ∠ADC（先证 △ABC≌△CDA）。`,180-a-b,`∠ADC=∠CBA=180°−${a}°−${b}°=${180-a-b}°。`]}
+],[
+()=>{let A=2*R(20,50);return[`等腰三角形的顶角是 ${A}°，底角是多少度？`,(180-A)/2,`(180−${A})÷2=${(180-A)/2}。`]},
+()=>{let a=2*R(18,40);return[`△ABC 中，D 在 AC 上，AB=BD=DC，∠A=${a}°，求 ∠C 是多少度。`,a/2,`∠BDC=${180-a}°，∠C=${a/2}°。`]},
+()=>{let E=R(105,145);return[`等腰 △ABC 中 AB=AC，∠B 的外角是 ${E}°，求顶角 ∠A 是多少度。`,2*E-180,`底角=${180-E}°，顶角=180°−2×${180-E}°=${2*E-180}°。`]}
+],[
+()=>{let b=R(25,70);return[`Rt△ABC 中 ∠A=90°，∠B=${b}°，∠C 是多少度？`,90-b,`两锐角互余：90−${b}=${90-b}。`]},
+()=>{let h=4*R(2,6);return[`Rt△ABC 中 ∠C=90°，∠A=30°，斜边 AB=${h} cm，BC 是多少 cm？`,h/2,`BC=斜边的一半=${h/2}。`]},
+()=>{let L=2*R(150,400);return[`沿 30° 的坡路走了 ${L} m，山高多少 m？`,L/2,`高=斜边的一半=${L/2} m。`]}
+]];
+/* ---------- 综合分步题 ---------- */
+const M=[[()=>{let a=R(3,5),b=2*a+R(1,3);return[`三角形的两边长分别为 ${a} cm 和 ${b} cm，第三边的长为整数。`,[['第三边最小是多少 cm？',b-a+1,`两边之差 < 第三边：${b}−${a}=${b-a}，第三边 > ${b-a}。最小整数是 ${b-a+1}。`],['第三边最大是多少 cm？',a+b-1,`第三边 < 两边之和 ${a+b}。最大整数是 ${a+b-1}。`],['若它是等腰三角形，周长是多少 cm？',a+2*b,`腰只能是 ${b}（腰为 ${a} 时 ${a}+${a}<${b}，不成立）。周长=${b}+${b}+${a}=${a+2*b}。`]]]}],
+[()=>{let a=2*R(20,35),b=2*R(15,30),C=180-a-b;return[`△ABC 中 ∠A=${a}°，∠B=${b}°，CD 平分 ∠ACB 交 AB 于 D。`,[['∠ACB 是多少度？',C,`内角和 180°：180°−${a}°−${b}°=${C}°。`],['∠ACD 是多少度？',C/2,`CD 平分 ∠ACB：${C}°÷2=${C/2}°。`],['∠ADC 是多少度？',180-a-C/2,`在 △ACD 中：180°−${a}°−${C/2}°=${180-a-C/2}°。（也等于 ∠B+∠BCD，外角=内对角之和。）`]]]}],
+[()=>{let a=R(30,50),b=R(25,45),x=180-a-b;return[`四边形 ABCD 中，AD∥BC，AD=BC，∠CAB=${a}°，∠ACB=${b}°。`,[['∠CBA 是多少度？',x,`△ABC 内角和：180°−${a}°−${b}°=${x}°。`],['∠ADC 是多少度？（先证 △ABC≌△CDA）',x,`AD=CB；∠CAD=∠ACB（内错角相等）；AC 公共。所以 △ABC≌△CDA（SAS）。对应角相等：∠ADC=∠CBA=${x}°。`],['∠DCA 是多少度？',a,`全等三角形对应角相等：∠DCA=∠BAC=${a}°。`]]]}],
+[()=>{let a=R(36,80);return[`△ABC 中，D 在 AC 上，AB=BD=DC，∠A=${a}°。`,[['∠ABD 是多少度？',180-2*a,`BA=BD ⇒ ∠BDA=∠A=${a}°。∠ABD=180°−${a}°−${a}°=${180-2*a}°。`],['∠BDC 是多少度？',180-a,`外角=两内对角之和：∠BDC=∠ABD+∠A=${180-2*a}°+${a}°=${180-a}°。`],['∠C 是多少度？',a/2,`DB=DC ⇒ ∠C=∠DBC。2∠C=180°−${180-a}°=${a}°。∠C=${a/2}°。`]]]},
+()=>{let a=4*R(10,18),b=(180-a)/2,h=b/2;return[`等腰 △ABC 中 AB=AC，∠A=${a}°，BE、CD 分别平分 ∠ABC、∠ACB，相交于 P。`,[['∠ABC 是多少度？',b,`等腰三角形底角相等：(180°−${a}°)÷2=${b}°。`],['∠PCB 是多少度？',h,`CD 平分 ∠ACB（${b}°）：${b}°÷2=${h}°。`],['∠BPC 是多少度？',180-b,`同理 ∠PBC=${h}°。△PBC 中：∠BPC=180°−${h}°−${h}°=${180-b}°。因 ∠PBC=∠PCB，所以 △PBC 是等腰三角形。`]]]}],
+[()=>{let L=4*R(3,8);return[`Rt△PQR 中 ∠P=90°，∠Q=30°，QR=${L} cm，PS⊥QR 于 S。`,[['PR 是多少 cm？',L/2,`30° 角所对的直角边等于斜边的一半：${L}÷2=${L/2} cm。`],['∠RPS 是多少度？',30,`∠R=90°−30°=60°；在 △PSR 中 ∠RPS=90°−60°=30°。`],['RS 是多少 cm？',L/4,`Rt△PSR 中 ∠RPS=30°，它的对边 RS=PR÷2=${L/2}÷2=${L/4} cm。`],['QS 是多少 cm？',3*L/4,`QS=QR−RS=${L}−${L/4}=${3*L/4} cm。`]]]}]];
+const st=e=>'<ol style="margin:4px 0;padding-left:1.4em">'+(e.match(/[^；。]+[；。]?/g)||[e]).map(x=>`<li>${x}</li>`).join('')+'</ol>';
+function multi(box,list,n){box.innerHTML='<h3>🧩 综合分步题（每小问独立作答，附分步解析）</h3>';sh(list).slice(0,n).forEach(g=>{const[t,subs]=g(),q=document.createElement('div');q.className='q';q.innerHTML=`<p>${t}</p>`;
+subs.forEach(([sq,a,e],i)=>{const r=document.createElement('div');r.innerHTML=`<div>(${i+1}) ${sq} <input type="number" step="any" style="width:5.5em;font:inherit;padding:3px;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:6px"> <button style="display:inline;width:auto">提交</button></div><div class="ex"></div>`;
+r.querySelector('button').onclick=()=>{const v=parseFloat(r.querySelector('input').value);if(isNaN(v))return;const ok=Math.abs(v-a)<.01,x=r.querySelector('.ex');x.style.display='block';x.innerHTML=(ok?'<b style="color:var(--ok)">✅ 正确</b>':`<b style="color:var(--no)">❌ 答案是 ${a}</b>`)+st(e)};q.appendChild(r)});box.appendChild(q)})}
+function t4(){const k=+$('#t4k').value,v=+$('#t4v').value,o=$('#t4o');if(!(v>0&&v<(k?90:180))){o.textContent=k?'底角需在 0°～90° 之间':'顶角需在 0°～180° 之间';return}
+const A=k?180-2*v:v,B=k?v:(180-v)/2;o.innerHTML=`顶角 ∠A=<b>${A}°</b>，底角 ∠B=∠C=<b>${B}°</b>（${A==60?'三个角都是 60°，是等边三角形':'底角相等'}）。顶角平分线、底边的中线与高三线合一。<br>${tri(A,B,B)}`}
+function t5(){const k=+$('#t5k').value,v=+$('#t5v').value,o=$('#t5o');if(!(v>0)){o.textContent='请输入正数';return}
+o.innerHTML=k?`30° 角的对边 BC=斜边的一半=${v}÷2=<b>${v/2} cm</b>。`+tri(30,60,90):`斜边 AB=2×BC=2×${v}=<b>${2*v} cm</b>。`+tri(30,60,90)}
+/* ---------- 出题引擎 ---------- */
+function mk(g){let[q,a,w,e]=g();a=String(a);w=[...new Set(w.map(String))].filter(x=>x!==a);let m=a.match(/^(\d+)(.*)$/),k=0;while(w.length<3&&k++<30){let z=m?(+m[1]+R(1,15))+m[2]:'以上都不对';if(z!==a&&!w.includes(z))w.push(z)}return[q,a,w.slice(0,3),e]}
+function quiz(box,list,n,fl){box.innerHTML='';let sc=0,dn=0,un=0;const sm=document.createElement('div'),fb=document.createElement('div');
+sh(list).slice(0,n).forEach((g,i)=>{const[q,a,w,e]=mk(g),el=document.createElement('div');el.className='q';
+el.innerHTML=`<p>${i+1}. ${q}</p>`+sh([a,...w]).map(o=>`<button>${o}</button>`).join('')+`<div class="ex">💡 <b>分步解析</b>${st(e)}</div>`;
+el.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(el.dataset.d)return;el.dataset.d=1;const ok=b.textContent===a;b.classList.add(ok?'c':'x');
+if(!ok)el.querySelectorAll('button').forEach(z=>{if(z.textContent===a)z.classList.add('c')});el.querySelector('.ex').style.display='block';dn++;if(ok)sc++;
+sm.className='sc';sm.textContent=`已答 ${dn}/${n}，答对 ${sc} 题`+(dn==n?(fl?'':` —— 得分 ${Math.round(sc/n*100)}%`):'');
+if(fl&&sc>=3&&!un){un=1;fill(fb,fl)}});box.appendChild(el)});box.appendChild(sm);box.appendChild(fb)}
+function fill(fb,fl){fb.className='fb';fb.innerHTML='<b>🎉 答对 3 题以上，解锁作答题！请自己输入答案：</b>';
+sh(fl).slice(0,2).forEach((g,i)=>{const[q,a,e]=g(),r=document.createElement('div');r.innerHTML=`<p>${i+1}. ${q}</p><input type="number" step="any"> <button>提交</button> <span></span>`;
+r.querySelector('button').onclick=()=>{const v=parseFloat(r.querySelector('input').value),s=r.querySelector('span');
+if(isNaN(v)){s.textContent='请输入数字';return}const ok=Math.abs(v-a)<.01;s.style.color=ok?'var(--ok)':'var(--no)';s.innerHTML=(ok?'✅ 正确！':`❌ 答案是 ${a}。`)+st(e)};fb.appendChild(r)})}
+/* ---------- 三角形绘图与互动工具 ---------- */
+function tri(A,B,C){const r=Math.PI/180,a=Math.sin(A*r),cc=Math.sin(C*r),ax=cc*Math.cos(B*r),ay=cc*Math.sin(B*r),mn=Math.min(0,ax),w=Math.max(a,ax)-mn,s=Math.min(230/w,105/ay),o=20-mn*s,p=(x,y)=>[o+x*s,125-y*s],[bx,by]=p(0,0),[cx,cy]=p(a,0),[tx,ty]=p(ax,ay);
+return`<svg viewBox="0 0 270 145" width="270"><polygon points="${bx},${by} ${cx},${cy} ${tx},${ty}"/><text x="${tx}" y="${ty-6}">A</text><text x="${bx-12}" y="${by+4}">B</text><text x="${cx+4}" y="${cy+4}">C</text></svg>`}
+function t1(){const[a,b,e]=['a','b','c'].map(i=>+$('#t1'+i).value),o=$('#t1o');if(!(a>0&&b>0&&e>0)){o.textContent='请输入正数';return}
+const ok=a+b>e&&a+e>b&&b+e>a,ch=`${a}+${b}${a+b>e?'>':'≤'}${e}；${a}+${e}${a+e>b?'>':'≤'}${b}；${b}+${e}${b+e>a?'>':'≤'}${a}`;
+if(!ok){o.innerHTML=`❌ 不能组成三角形（需任意两边之和“大于”第三边）<br>${ch}`;return}
+const f=(x,y,z)=>Math.acos((y*y+z*z-x*x)/(2*y*z))*180/Math.PI,A=f(a,b,e),B=f(b,a,e),C=180-A-B;
+o.innerHTML=`✅ 能组成三角形<br>${ch}<br>BC=${a}，CA=${b}，AB=${e}；∠A≈${A.toFixed(1)}°，∠B≈${B.toFixed(1)}°，∠C≈${C.toFixed(1)}°（大边对大角）<br>${tri(A,B,C)}`}
+function t2(){const A=+$('#t2a').value,B=+$('#t2b').value,o=$('#t2o');if(!(A>0&&B>0&&A+B<180)){o.textContent='请输入两个正角，且和小于 180°';return}
+const C=180-A-B,t=Math.max(A,B,C)>90?'钝角三角形':Math.max(A,B,C)==90?'直角三角形':'锐角三角形';
+o.innerHTML=`∠C=180°−${A}°−${B}°=<b>${C}°</b>；顶点 C 处的外角=∠A+∠B=<b>${A+B}°</b>（与 ∠C 互补）；这是${t}。<br>${tri(A,B,C)}`}
+function t3(){const s=[...document.querySelectorAll('#t3 input:checked')].map(x=>x.value),S=s.filter(x=>x.length==2),N=s.filter(x=>x.length==1).sort();let m;
+if(s.length!=3)m='请恰好勾选 3 个条件。';else if(S.length==3)m='✅ SSS：三边对应相等，全等。';
+else if(S.length==2){const ms=['AB','BC','CA'].find(x=>!S.includes(x));m=N[0]=={CA:'B',AB:'C',BC:'A'}[ms]?'✅ SAS：角是两边的夹角，全等。':'❌ SSA：角不是两边的夹角，不能判定。'}
+else if(S.length==1)m=S[0]=={AB:'AB',BC:'BC',AC:'CA'}[N.join('')]?'✅ ASA：边是两角的夹边，全等。':'✅ AAS：边是其中一角的对边，全等。';
+else m='❌ AAA：三个角相等，不一定全等（可以放大缩小）。';$('#t3o').textContent=m}
+const TT=['4.1 三角形与三边关系','4.2 内角和与外角','4.3 全等三角形','4.4 等腰与等边三角形','4.5 直角三角形','🏆 全章测试'];
+const CP=['<ul><li>分类：按角——锐角/直角/钝角三角形；按边——不等边/等腰/等边三角形。</li><li>中线（连顶点与对边中点）、角平分线、高（垂线段）；三线交点分别为重心、内心、垂心；三边垂直平分线交于外心。</li><li><b>三边关系：</b>任意两边之和 > 第三边；两边之差 < 第三边 < 两边之和。</li><li><b>大边对大角，大角对大边。</b></li></ul>',
+'<ul><li><b>内角和：</b>三角形三个内角之和等于 180°。</li><li><b>外角：</b>等于与它不相邻的两个内角之和（并与相邻内角互补）。</li></ul>',
+'<ul><li>全等三角形：对应边相等，对应角相等；对应顶点字母写在对应位置。</li><li><b>判定：</b>SSS、SAS（角必须是夹角）、ASA、AAS、RHS（直角三角形：斜边+一直角边）。</li><li><b>不能判定：</b>AAA、SSA（两边及其中一边的对角）。</li></ul>',
+'<ul><li>等腰三角形：<b>底角相等</b>；顶角平分线、底边上的中线、底边上的高互相重合（三线合一）。</li><li>判定：两角相等 ⇒ 等腰（等角对等边）。</li><li>等边三角形：三边相等，每个内角都是 60°。</li></ul>',
+'<ul><li>直角三角形的<b>两个锐角互余</b>。</li><li>有一个锐角是 30° ⇒ 它所对的直角边等于斜边的一半（反过来也成立）。</li><li>直线外一点到直线上各点的连线中<b>垂线段最短</b>，其长度叫点到直线的距离。</li></ul>',
+'<p>从全章 30 个选择题题型和 5 类综合题中随机抽 10 题，数字、题目与选项顺序每次都不同。</p>'];
+const TL=[`<div class="tl"><b>🔧 三边检测器</b>：BC=<input type="number" id="t1a" value="3"> CA=<input type="number" id="t1b" value="4"> AB=<input type="number" id="t1c" value="5"> <button onclick="t1()">检测</button><div id="t1o"></div></div>`,
+`<div class="tl"><b>🔧 内角/外角计算器</b>：∠A=<input type="number" id="t2a" value="50">° ∠B=<input type="number" id="t2b" value="60">° <button onclick="t2()">计算</button><div id="t2o"></div></div>`,
+`<div class="tl" id="t3"><b>🔧 全等条件判断器</b>（△ABC 与 △DEF 中已知相等的 3 个条件）：<br>${['AB','BC','CA','A','B','C'].map(x=>`<label><input type="checkbox" value="${x}"> ${x.length>1?x+'=D'+x.replace('A','E').replace('C','F').replace('B','E'):'∠'+x+'=∠'+({A:'D',B:'E',C:'F'})[x]}</label>`).join(' ')} <button onclick="t3()">判断</button><div id="t3o"></div></div>`,
+`<div class="tl"><b>🔧 等腰三角形计算器</b>：已知 <select id="t4k"><option value="0">顶角</option><option value="1">底角</option></select> = <input type="number" id="t4v" value="40">° <button onclick="t4()">计算</button><div id="t4o"></div></div>`,
+`<div class="tl"><b>🔧 30° 直角三角形</b>（∠C=90°，∠A=30°）：已知 <select id="t5k"><option value="0">30° 角的对边 BC</option><option value="1">斜边 AB</option></select> = <input type="number" id="t5v" value="5"> cm <button onclick="t5()">计算</button><div id="t5o"></div></div>`];
+function init(){document.body.classList.toggle('dk',ld('th4')==1);$('#tb').textContent=document.body.classList.contains('dk')?'☀️ 浅色':'🌙 深色';fz(0);
+TT.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>go(i);$('#nv').appendChild(b);
+const s=document.createElement('section');s.innerHTML=`<h2>${t}</h2><div class="cp">${CP[i]}</div>${TL[i]||''}<h3>${i<5?'📝 随堂小测（5 题）':'🏆 综合测试（10 题）'}</h3><div id="qz${i}"></div><div id="mz${i}"></div><button onclick="rq(${i})">🔄 重新出题</button>`;$('#mn').appendChild(s);rq(i)});
+go(0);
+document.querySelectorAll('#t3 label').forEach((l,i)=>{const n=['AB=DE','BC=EF','CA=FD','∠A=∠D','∠B=∠E','∠C=∠F'][i];l.lastChild.textContent=' '+n});if($('#t1o')){t1();t2();t4();t5()}}
+function rq(i){quiz($('#qz'+i),i<5?G[i]:G.flat(),i<5?5:10,i<5?F[i]:null);multi($('#mz'+i),i<5?M[i]:M.flat(),i<5?1:2)}
+function go(i){document.querySelectorAll('nav button').forEach((b,j)=>b.classList.toggle('on',i==j));document.querySelectorAll('section').forEach((s,j)=>s.classList.toggle('on',i==j))}
+init();
+</script></body></html>
