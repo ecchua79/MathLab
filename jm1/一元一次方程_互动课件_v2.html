@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--
+  初一数学 第10章 一元一次方程式 互动课件
+  作者 / Author : 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School
+  GitHub : ecchua79.github.io/ScienceLab
+  版权所有 © 2026 · 未经许可请勿删除水印或用于商业用途
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School">
+<meta name="copyright" content="© 2026 蔡逸众 ecchua79">
+<meta name="generator" content="ecchua79 · Chinese High School">
+<title>初一数学 第10章 一元一次方程式 - 互动课件</title>
+<style>
+/* Author: 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School | ecchua79.github.io/ScienceLab | (c) 2026 */
+#wm-float{position:fixed;inset:0;z-index:9999;pointer-events:none;user-select:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220'%3E%3Ctext x='170' y='110' text-anchor='middle' transform='rotate(-25 170 110)' font-family='sans-serif' font-size='15' font-weight='bold' fill='rgba(30,41,59,0.10)'%3E蔡逸众 · ecchua79%3C/text%3E%3Ctext x='170' y='132' text-anchor='middle' transform='rotate(-25 170 132)' font-family='sans-serif' font-size='11' fill='rgba(30,41,59,0.10)'%3EChinese High School 华仁中学%3C/text%3E%3C/svg%3E");background-repeat:repeat}
+[data-theme="dark"] #wm-float{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220'%3E%3Ctext x='170' y='110' text-anchor='middle' transform='rotate(-25 170 110)' font-family='sans-serif' font-size='15' font-weight='bold' fill='rgba(255,255,255,0.10)'%3E蔡逸众 · ecchua79%3C/text%3E%3Ctext x='170' y='132' text-anchor='middle' transform='rotate(-25 170 132)' font-family='sans-serif' font-size='11' fill='rgba(255,255,255,0.10)'%3EChinese High School 华仁中学%3C/text%3E%3C/svg%3E")}
+.footer a{color:inherit;text-decoration:underline dotted}
+        :root {
+            --font-scale: 16px;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-muted: #6c757d;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-light: #eff6ff;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --warning: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --radius: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --success: #34d399;
+            --success-light: rgba(16, 185, 129, 0.15);
+            --danger: #f87171;
+            --danger-light: rgba(239, 68, 68, 0.15);
+            --warning: #fbbf24;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: var(--font-scale);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9em;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .font-btn-group {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .font-btn-group button {
+            border: none;
+            border-right: 1px solid var(--border-color);
+            border-radius: 0;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .font-btn-group button:last-child {
+            border-right: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 95%;
+            margin: 1.5rem auto;
+            flex: 1;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            font-weight: 600;
+            font-size: 1em;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .concept-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .example-box {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .calc-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .calc-input-group label {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        input[type="text"], input[type="number"], select {
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1em;
+            width: 100%;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid var(--primary);
+        }
+
+        .steps-box {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace, monospace;
+            white-space: pre-wrap;
+            border: 1px solid var(--border-color);
+        }
+
+        .quiz-section {
+            margin-top: 2rem;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.05em;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+        }
+
+        @media (min-width: 640px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .option-btn.selected-correct {
+            background-color: var(--success-light) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+            font-weight: bold;
+        }
+
+        .option-btn.selected-wrong {
+            background-color: var(--danger-light) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+            font-weight: bold;
+        }
+
+        .feedback-box {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box.correct {
+            background-color: var(--success-light);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .feedback-box.wrong {
+            background-color: var(--danger-light);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .unlock-banner {
+            background-color: var(--warning);
+            color: #000;
+            padding: 1rem;
+            border-radius: var(--radius);
+            font-weight: bold;
+            text-align: center;
+            margin: 1.5rem 0;
+            display: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 12px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .story-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .story-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-box p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            font-size: 0.9em;
+        }
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .15em;line-height:1.2;font-size:.9em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}
+.stp div{margin:.35rem 0;padding:.4rem .7rem;background:var(--primary-light);border-radius:8px}
+.question-text{font-size:1.05em}.tab-btn{font-size:.95em}
+@media(max-width:600px){.options-grid{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-title"><h1>📐 初一数学 第10章 一元一次方程式</h1></div>
+  <div class="controls">
+    <div class="font-btn-group"><button class="btn" onclick="setFont(fs-2)">A−</button><button class="btn" onclick="setFont(16)">A</button><button class="btn" onclick="setFont(fs+2)">A+</button></div>
+    <button class="btn" onclick="setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark')"><span id="tIcon">🌙</span> <span id="tTxt">深色模式</span></button>
+  </div>
+</div>
+<div class="container"><div class="tabs" id="tabs"></div><div id="main"></div></div>
+<div id="wm-float" aria-hidden="true"></div>
+<div id="wm-hidden" style="display:none" data-author="蔡逸众" data-id="ecchua79" data-school="Chinese High School 峇株吧辖华仁中学">蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School</div>
+<footer class="footer"><div>🏫 峇株吧辖华仁中学 Chinese High School 出品</div><div>蔡逸众老师 制作 · ecchua79 · <a href="https://ecchua79.github.io/ScienceLab" target="_blank" rel="noopener">ecchua79.github.io/ScienceLab</a></div><div>© 2026 版权所有 · 仅供教学使用</div></footer>
+<script>
+console.log('%c初一数学 第10章 一元一次方程式 · 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School','color:#2563eb;font-weight:bold');
+const $=id=>document.getElementById(id);
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a, pick=a=>a[ri(0,a.length-1)], nz=(a,b)=>{let v;do v=ri(a,b);while(!v);return v};
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a), lcm=(a,b)=>a*b/gcd(a,b);
+function R(n,d=1){if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}}
+const num=v=>typeof v==='number'?R(v):v;
+const key=v=>typeof v==='string'?v:v.d===1?''+v.n:v.n+'/'+v.d;
+const kt=v=>key(v).replace(/-/g,'−');
+const fr=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+const disp=v=>typeof v==='string'?v:v.d===1?(v.n<0?'−'+-v.n:''+v.n):(v.n<0?'−':'')+fr(Math.abs(v.n),v.d);
+const M=n=>n<0?'−'+-n:''+n, ad=n=>n===0?'':(n<0?' − ':' + ')+Math.abs(n);
+const tm=(c,v='x')=>c===1?v:c===-1?'−'+v:M(c)+v, lin=(a,b)=>tm(a)+ad(b);
+const bk=(p,q)=>`${p}(x${ad(q)})`;
+
+/* ===== 出题引擎：每个生成器返回 {q, ans, wrong:[[错误结果, 错因],...]} ===== */
+function gA1(){const x=nz(-12,12),b=nz(-15,15),c=x+b;return{q:`解方程式：x${ad(b)} = ${M(c)}`,ans:x,wrong:[[c+b,'移项时没有改变符号'],[-x,'求出了 x 的相反数（符号弄反）'],[R(c,b),'把「+b」当成了「×b」']]}}
+function gA2(){const b=ri(5,25),x=nz(-10,12),c=b-x;return{q:`解方程式：${b} − x = ${M(c)}`,ans:x,wrong:[[c-b,'没有处理好 −x 的负号，得到相反数'],[c+b,'移项时符号错误'],[-c-b,'两个符号都弄反了']]}}
+function gA3(){const r=ri(1,5),p=r+ri(1,5),x=nz(-8,9),q=nz(-12,12),s=(p-r)*x+q;return{q:`解方程式：${lin(p,q)} = ${lin(r,s)}`,ans:x,wrong:[[R(s+q,p-r),'常数项 q 移项时没有变号'],[R(s-q,p+r),'右边的 rx 移到左边时没有变号'],[R(q-s,p-r),'左右两边相减的顺序弄反了']]}}
+function gA4(){const yes=['2x − 7 = 8','5 + x = 8','3x = 12','7 − 2m = 1'],no=[['x² + 2x = 3','未知数的次数是 2，不是一次'],['x + y = 7','含有两个未知数'],['3x − 5','不是等式，没有等号'],['4 + 6 = 10','不含未知数']];return{q:'下列哪一个是一元一次方程式？',ans:pick(yes),wrong:shuf(no).slice(0,3)}}
+function gA5(){const p=ri(2,6),x=nz(-9,9),q=nz(-10,10),r=p*x+q;return{q:`解方程式：${lin(p,q)} = ${M(r)}`,ans:x,wrong:[[R(r+q,p),'q 移项时没有变号'],[R(r,p),'忘了先移项，直接用 r ÷ p'],[-x,'求出了相反数']]}}
+function gB1(){const a=nz(-9,9),x=nz(-9,9);if(Math.abs(a)<2)return gB1();const c=a*x;return{q:`解方程式：${M(a)}x = ${M(c)}`,ans:x,wrong:[[c*a,'应该除以系数，而不是乘以系数'],[c-a,'把系数当成加数来移项'],[-x,'符号弄反（负数除法）']]}}
+function gB2(){const m=ri(2,9),c=nz(-7,7),x=m*c;return{q:`解方程式：${fr('x',m)} = ${M(c)}`,ans:x,wrong:[[R(c,m),'应该乘以 m，而不是除以 m'],[c-m,'把分母当成加数来移项'],[-x,'符号弄反']]}}
+function gB3(){const a=ri(2,9),x=nz(-9,9),c=-a*x;return{q:`解方程式：−${a}x = ${M(c)}`,ans:x,wrong:[[R(c,a),'除以 −a 时丢了负号'],[c*a,'该除却乘了'],[-c*a,'该除却乘，而且符号也错了']]}}
+function gB4(){const q=ri(2,5),p=pick([2,3,5,7].filter(z=>z!==q)),t=nz(-6,6);return{q:`解方程式：${fr(p,q)}x = ${M(p*t)}`,ans:q*t,wrong:[[t,'只除以了分子，忘记乘分母'],[R(p*t*p,q),'乘的是 p/q，而不是它的倒数 q/p'],[-q*t,'符号弄反']]}}
+function gB5(){const m=ri(2,9),x=m*nz(-7,7),c=-x/m;return{q:`解方程式：−${fr('x',m)} = ${M(c)}`,ans:x,wrong:[[c*m,'漏掉了左边的负号'],[R(c,m),'该乘以 m 却除了'],[c-m,'把分母当成加数来移项']]}}
+function gC1(){const p=ri(2,6),q=nz(-6,6),x=nz(-8,9),r=p*(x+q);return{q:`解方程式：${bk(p,q)} = ${M(r)}`,ans:x,wrong:[[R(r-q,p),'去括号时只乘了 x，没乘常数 q'],[R(r+p*q,p),'两边除以 p 后，q 没有移项变号'],[p*x,'求出的是 px，忘了再除以 p']]}}
+function gC2(){const p=ri(2,5),s=ri(2,5),q=nz(-5,5),t=ri(1,6),x=nz(-7,8),r=p*(x+q)+s*(x-t);return{q:`解方程式：${bk(p,q)} + ${s}(x − ${t}) = ${M(r)}`,ans:x,wrong:[[R(r-p*q+t,p+s),'去括号时 −t 没有乘以 s'],[R(r-p*q-s*t,p+s),'−s·t 移项时没有变号'],[R(r-p*q+s*t,p*s),'合并时把 x 的系数相乘了（应相加）']]}}
+function gC3(){const q=ri(2,5),p=q+ri(1,4),t=ri(1,6),x=nz(-7,8),r=p*x-q*(x-t);return{q:`解方程式：${p}x − ${q}(x − ${t}) = ${M(r)}`,ans:x,wrong:[[R(r+q*t,p-q),'括号前是负号，−t 去括号后应变成 +qt'],[R(r-q*t,p+q),'x 的系数应是 p − q'],[R(r,p-q),'忘记处理常数项 qt']]}}
+function gC4(){const m=ri(2,5),p=nz(-5,5),any=Math.random()<.5,u=m*p+(any?0:nz(-6,6));const all=['x 为任何数','原方程式无解','x = 0',`x = ${p}`],ans=any?all[0]:all[1];return{q:`方程式 ${bk(m,p)} = ${tm(m)}${ad(u)} 的解是：`,ans,wrong:all.filter(z=>z!==ans).map(z=>[z,'化简后若得 0x = 0 则解为任何数；若得 0x = 非零数则无解'])}}
+function gC5(){const p=ri(3,7),s=ri(1,p-1),x=nz(-6,8),q=nz(-6,6),u=(p-s)*x+p*q;return{q:`解方程式：${bk(p,q)} = ${tm(s)}${ad(u)}`,ans:x,wrong:[[R(u+p*q,p-s),'pq 移项时没有变号'],[R(u-q,p-s),'去括号时 q 没有乘以 p'],[R(u-p*q,p+s),'x 项移到同一边时应相减（p − s）']]}}
+function gD1(){const m=pick([2,3,4,6]),n=pick([2,3,4,6].filter(z=>z!==m)),L=lcm(m,n),x=L*nz(-4,5),c=x/m+x/n;return{q:`解方程式：${fr('x',m)} + ${fr('x',n)} = ${M(c)}`,ans:x,wrong:[[R(c*L,n-m),'合并时把两项 x 相减了'],[R(c,m+n),'去分母时右边的数忘了乘最小公倍数'],[c*L,'去分母后没有合并 x 的系数']]}}
+function gD2(){const m=ri(2,5),n=pick([2,3,4,5,6,7,8].filter(z=>z!==m)),k=ri(1,6),x=nz(-8,8),p=m*k-x,q=n*k-x;return{q:`解方程式：${fr('x'+ad(p),m)} = ${fr('x'+ad(q),n)}`,ans:x,wrong:[[R(q-p,n-m),'去分母时 p、q 没有乘上 n、m'],[R(m*p-n*q,n-m),'交叉相乘时 m、n 的位置弄反了'],[R(m*q+n*p,n-m),'np 移项时没有变号']]}}
+function gD3(){const m=ri(2,6),p=nz(-6,6),q=nz(-4,5),j=nz(-4,5),x=m*j-p,r=j+q;return{q:`解方程式：${fr('x'+ad(p),m)}${ad(q)} = ${M(r)}`,ans:x,wrong:[[m*(r-q)+p,'p 移项时没有变号'],[r-q-p,'去分母时没有乘 m'],[m*(r+q)-p,'q 移项时没有变号']]}}
+function gD4(){const m=ri(2,5),n=m+1,c=nz(-5,6);return{q:`解方程式：${fr('x',m)} − ${fr('x',n)} = ${M(c)}`,ans:m*n*c,wrong:[[c*m,'去分母后只乘了一个分母'],[c*n,'去分母后只乘了另一个分母'],[R(m*n*c,m+n),'两项相减却合并成了相加']]}}
+function gD5(){const m=ri(2,5),n=m+ri(1,3),t=nz(-5,6),p=(n-m)*t;return{q:`解方程式：${fr('x',m)} = ${fr('x'+ad(p),n)}`,ans:m*t,wrong:[[t,'去括号时 p 忘了乘 m'],[R(m*p,n+m),'mx 移项时没有变号'],[R(n*p,n-m),'用 n 去乘了 p']]}}
+function gE1(){const x=2*ri(2,20),S=2*x+2;return{q:`两个连续偶数的和是 ${S}，较大的数是多少？`,ans:x+2,wrong:[[x+1,'S ÷ 2 得到的是两数的中间值'],[x,'求出的是较小的数'],[x+4,'设了较大的数却又多加了 2']]}}
+function gE2(){let s,k,x,f;do{s=ri(5,15);k=ri(2,5);x=ri(2,15);f=k*(s+x)-x}while(f<s+18);return{q:`父亲今年 ${f} 岁，儿子 ${s} 岁，几年后父亲的年龄是儿子的 ${k} 倍？`,ans:x,wrong:[[R(f-k*s,k),'合并 x 时应是 (k − 1)x，而不是 kx'],[k*s-f,'移项时左右颠倒，得到相反数'],[R(f+k*s,k-1),'ks 移项时没有变号']]}}
+function gE3(){const k=ri(2,5),m=ri(10,40),b=ri(m+10,m+60),a=k*b,T=a+b,x=a+m;return{q:`甲、乙两人共有 RM${T}。甲给乙 RM${m} 以后，甲的钱刚好是乙的 ${k} 倍，甲原来有多少钱（RM）？`,ans:x,wrong:[[a,'求出的是甲给钱之后的钱'],[T-x,'求出的是乙原来的钱'],[R(k*T+m,k+1),'乙收到钱后，乙的钱忘了加上 m']]}}
+function gE4(){const [v1,v2,d0,h0]=pick([[15,10,6,1],[2,4,8,6],[6,3,2,1],[12,4,3,1],[5,20,4,1],[30,20,12,1]]),t=ri(1,3),H=h0*t;return{q:`某学生骑脚车上学，来回共花 ${H} 小时，去的速度是每小时 ${v1} 公里，回的速度是每小时 ${v2} 公里，家离学校多少公里？`,ans:d0*t,wrong:[[R(H*(v1+v2),2),'用平均速度 × 时间，没有分别设去、回的时间'],[R(H*v1,2),'误以为去、回各用一半时间'],[H*(v1+v2),'把两个速度直接相加再乘时间']]}}
+function gE5(){const r=ri(3,15),c=ri(3,15);return{q:`笼中有鸡和兔共 ${r+c} 个头，${4*r+2*c} 只脚，兔有多少只？`,ans:r,wrong:[[c,'求成了鸡的只数'],[2*r,'(脚数 − 2×头数) 忘了除以 2'],[R(4*r+2*c,4),'把所有动物都当成兔子']]}}
+function gE6(){const u=ri(4,20);return{q:`买一盒洗衣粉，第二盒可以半价。两盒一共付 RM${3*u}，一盒洗衣粉多少钱（RM）？`,ans:2*u,wrong:[[R(3*u,2),'误以为两盒都是半价'],[R(9*u,2),'设 x + x/2 后，却乘了 3/2'],[u,'求出的是第二盒（半价）的价钱']]}}
+gA4.nosub=gC4.nosub=true;
+
+const SECS=[
+{id:'a',name:'① 移项',pool:[gA1,gA2,gA3,gA4,gA5],calc:1,
+ concept:`<p>含有未知数的等式叫<b>方程式</b>；只含一个未知数且次数为一次的叫<b>一元一次方程式</b>。使方程式左右两边相等的未知数的值叫<b>解（根）</b>。</p><div class="concept-box"><b>性质 1：</b>方程式两边可以同时加上（或减去）同一数，其解不变。<br><b>移项：</b>把一项从等号一边移到另一边，<b>必须改变符号</b>。</div>`,
+ steps:['解方程式 x + 6 = 15','两边同时减 6：x + 6 − 6 = 15 − 6','即 x = 15 − 6（+6 移到右边变成 −6）','∴ x = 9','代入检验：左式 = 9 + 6 = 15 = 右式 ✓']},
+{id:'b',name:'② 乘除',pool:[gB1,gB2,gB3,gB4,gB5],
+ concept:`<div class="concept-box"><b>性质 2：</b>方程式两边可以同时乘以（或除以）<b>不等于 0</b> 的数，其解不变。</div><p>注意：解 −7x = 35 时，是两边同时<b>除以 −7</b>，所以 −7 的符号不变 → 35 ÷ (−7)。分数系数 ${fr(3,4)}x = 15，可直接写成 x = 15 × ${fr(4,3)}。</p>`,
+ steps:['解方程式 −7x = 35','两边同时除以 −7：−7x ÷ (−7) = 35 ÷ (−7)','∴ x = −5','代入检验：−7 × (−5) = 35 ✓']},
+{id:'c',name:'③ 括号',pool:[gC1,gC2,gC3,gC4,gC5],
+ concept:`<p>先<b>去括号</b>（括号外的数要乘进括号内的每一项；括号前是负号，括号内各项变号），再合并同类项、移项。</p><div class="concept-box"><b>特殊情形：</b>化简得 0x = 0 → x 为任何数；化简得 0x = −8（非零数）→ 原方程式无解。</div>`,
+ steps:['解 7(x − 2) − 3(3x − 5) = 41','去括号：7x − 14 − 9x + 15 = 41','合并：−2x + 1 = 41','移项：−2x = 41 − 1 = 40','∴ x = −20']},
+{id:'d',name:'④ 分母',pool:[gD1,gD2,gD3,gD4,gD5],
+ concept:`<p>含分母的方程式：两边同乘各分母的<b>最小公倍数</b>。注意<b>每一项（包括没有分母的常数项）</b>都要乘，分子是多项式时要加括号。</p>`,
+ steps:[`解 ${fr('x+1',3)} = ${fr('2x−3',7)}`,'两边乘 3 与 7 的最小公倍数 21：7(x + 1) = 3(2x − 3)','去括号：7x + 7 = 6x − 9','移项：7x − 6x = −9 − 7','∴ x = −16']},
+{id:'e',name:'⑤ 应用题',pool:[gE1,gE2,gE3,gE4,gE5,gE6],calc:2,
+ concept:`<div class="concept-box"><b>步骤：</b>① 设未知数 → ② 找等量关系 → ③ 列方程 → ④ 解方程 → ⑤ 检验并作答。<br>常见设法：连续数 x, x+2；年龄 x 年后 (40+x)；鸡兔 x 与 (总数 − x)；行程用 时间 = 路程 ÷ 速度。</div>`,
+ steps:['两个连续偶数的和为 62，求此二数','设：较小偶数为 x，则另一个为 x + 2','等量关系：两数之和 = 62','列方程：x + (x + 2) = 62','解：2x = 60，x = 30','答：30 与 32（检验：30 + 32 = 62 ✓）']}
+];
+const ALL=SECS.flatMap(s=>s.pool.map(f=>({f,sec:s.name})));
+const mk=(f,tag)=>{const g=f();g.tag=tag;return g};
+function opts(g){const seen=new Set([key(num(g.ans))]),os=[{v:num(g.ans),ok:true}];
+  for(const[v,why]of g.wrong){const w=num(v),k=key(w);if(!seen.has(k)){seen.add(k);os.push({v:w,why})}if(os.length===4)break}
+  for(let d=1;os.length<4&&typeof g.ans==='number';d++)for(const z of[g.ans+d,g.ans-d]){const k=key(R(z));if(os.length<4&&!seen.has(k)){seen.add(k);os.push({v:R(z),why:'计算时的小失误'})}}
+  return shuf(os)}
+const pv=s=>{s=s.replace(/−/g,'-').trim();if(/^-?\d+\/\d+$/.test(s)){const[a,b]=s.split('/');return a/b}return s===''?NaN:+s};
+/* ===== UI ===== */
+let fs=16;
+function setFont(n){fs=Math.min(26,Math.max(12,n));document.documentElement.style.setProperty('--font-scale',fs+'px');try{localStorage.setItem('fs',fs)}catch(e){}}
+function setTheme(t){document.documentElement.dataset.theme=t;$('tIcon').textContent=t==='dark'?'☀️':'🌙';$('tTxt').textContent=t==='dark'?'浅色模式':'深色模式';try{localStorage.setItem('th',t)}catch(e){}}
+function mcq(box,qs,cb){box.innerHTML='';qs.forEach((g,i)=>{const c=document.createElement('div');c.className='question-card';c.innerHTML=`<div class="question-text">问题 ${i+1}：${g.q}</div><div class="options-grid"></div><div class="feedback-box"></div>`;const og=c.children[1],fb=c.children[2],os=opts(g);
+  os.forEach((o,j)=>{const b=document.createElement('button');b.className='option-btn';b.innerHTML=`<span>${'ABCD'[j]}. ${disp(o.v)}</span>`;
+    b.onclick=()=>{[...og.children].forEach((x,k)=>{x.disabled=true;if(os[k].ok)x.classList.add('selected-correct')});if(!o.ok)b.classList.add('selected-wrong');
+      fb.className='feedback-box show '+(o.ok?'correct':'wrong');fb.innerHTML=o.ok?'✅ 正确！':`❌ 正确答案是 ${disp(os.find(z=>z.ok).v)}。<br>你选的结果来自：${o.why}`;cb(!!o.ok,g.tag)};og.appendChild(b)});box.appendChild(c)})}
+function subs(box,fns,n,cb){box.innerHTML='<h3 style="margin-bottom:1rem;color:var(--primary)">🔓 作答题（自己输入答案，可输入分数如 -1/2）</h3>';
+  shuf(fns.filter(f=>!f.nosub)).slice(0,n).forEach((f,i)=>{const g=f(),c=document.createElement('div');c.className='question-card';
+    c.innerHTML=`<div class="question-text">作答题 ${i+1}：${g.q}</div><div style="display:flex;gap:.5rem"><input type="text" inputmode="text" placeholder="输入答案" style="flex:1;padding:.5rem;border-radius:8px;border:1px solid var(--border-color);background:var(--card-bg);color:var(--text-color);font-size:1em"><button class="btn btn-primary">提交</button></div><div class="feedback-box"></div>`;
+    const inp=c.querySelector('input'),fb=c.querySelector('.feedback-box');
+    c.querySelector('button').onclick=()=>{const ok=Math.abs(pv(inp.value)-g.ans)<1e-9;fb.className='feedback-box show '+(ok?'correct':'wrong');fb.innerHTML=ok?'✅ 答对了！':`❌ 再检查一下。正确答案是 ${g.ans}。`;if(cb)cb(ok)};box.appendChild(c)})}
+function gen(s){let sc=0,dn=0;const ub=$('ub_'+s.id);ub.style.display='none';$('sq_'+s.id).innerHTML='';
+  mcq($('mq_'+s.id),shuf(s.pool).slice(0,5).map(f=>mk(f,s.name)),ok=>{dn++;sc+=ok;if(dn===5){ub.style.display='block';
+    if(sc>=3){ub.textContent=`🎉 答对 ${sc}/5！作答题已开启`;subs($('sq_'+s.id),s.pool,2)}else ub.textContent=`答对 ${sc}/5，再接再厉！点「换一组」重新挑战，答对 3 题即可解锁作答题`}})}
+function genFinal(){let sc=0,dn=0;const bad={},r=$('fres');r.style.display='none';
+  mcq($('fm'),shuf(ALL).slice(0,10).map(e=>mk(e.f,e.sec)),(ok,tag)=>{dn++;if(ok)sc++;else bad[tag]=(bad[tag]||0)+1;
+    if(dn===10){r.style.display='block';r.className='feedback-box show '+(sc>=6?'correct':'wrong');const w=Object.entries(bad).map(([k,v])=>`${k}（错 ${v} 题）`).join('、');r.innerHTML=`🏆 得分 ${sc}/10<br>${w?'需要加强：'+w:'全部答对，太棒了！'}`}});
+  subs($('fs'),ALL.map(e=>e.f),3)}
+function calcUI(id,defs,fn){$('cg_'+id).innerHTML=defs.map(([k,l,v])=>`<div class="calc-input-group"><label>${l}</label><input type="number" id="k_${id}_${k}" value="${v}"></div>`).join('');
+  $('cb_'+id).onclick=()=>{const v=defs.map(([k])=>parseFloat($('k_'+id+'_'+k).value)),o=$('co_'+id);o.style.display='block';o.innerHTML=v.some(isNaN)?'⚠️ 请把所有数值填写完整':fn(...v)}}
+function solve1(a,b,c,d){const p=a-c,q=d-b;let o=`方程式：${lin(a,b)} = ${lin(c,d)}\n移项、合并同类项：(${a} − (${c}))x = ${d} − ${b}\n即 ${M(p)}x = ${M(q)}\n`;
+  if(!p)return o+(q?`0x = ${q}（非零）→ 原方程式无解`:'0x = 0 → x 为任何数');
+  const x=R(q,p),L=R(a*x.n+b*x.d,x.d),Rt=R(c*x.n+d*x.d,x.d);return o+`x = ${kt(x)}\n代入检验：左式 = ${kt(L)}，右式 = ${kt(Rt)} ${kt(L)===kt(Rt)?'✓':'✗'}`}
+const CT={
+age:{n:'年龄问题',d:[['f','父亲现在年龄',40],['s','儿子现在年龄',12],['k','目标倍数',2]],fn:(f,s,k)=>{
+  let o=`设 x 年后父亲的年龄是儿子的 ${k} 倍（x 为负数表示几年前）。\n列方程：${f} + x = ${k}(${s} + x)\n去括号：${f} + x = ${k*s} + ${k}x\n移项合并：${tm(1-k)} = ${M(k*s-f)}\n`;
+  if(k===1)return o+(f===s?'两人年龄相同，任何时候都成立。':'⚠️ 年龄差永远不变，不可能相等，原题无解。');
+  const x=R(k*s-f,1-k);o+=`x = ${kt(x)}\n`;if(x.d!==1)return o+'⚠️ 年数不是整数，题目数据不合理。';if(s+x.n<0)return o+'⚠️ 那时儿子还没出生，题目数据不合理。';
+  return o+(x.n===0?'答：现在就满足条件。':`答：${Math.abs(x.n)} 年${x.n>0?'后':'前'}，父亲 ${f+x.n} 岁，儿子 ${s+x.n} 岁，刚好 ${k} 倍。`)}},
+cons:{n:'连续数问题',d:[['t','类型（1整数 2偶数 3奇数）',2],['n','个数（2~6）',2],['S','和',62]],fn:(t,n,S)=>{
+  if(![1,2,3].includes(t)||!Number.isInteger(n)||n<2||n>6)return '⚠️ 类型请填 1/2/3，个数请填 2 ~ 6 的整数';
+  const d=t===1?1:2,nm=['整数','偶数','奇数'][t-1],off=d*n*(n-1)/2,tr=[...Array(n)].map((_,i)=>i?`x + ${i*d}`:'x');
+  let o=`设最小的${nm}为 x，则这 ${n} 个连续${nm}为：${tr.join('、')}\n列方程：(${tr.join(') + (')}) = ${S}\n合并：${n}x + ${off} = ${S}\n${n}x = ${S-off}\n`;const x=R(S-off,n);o+=`x = ${kt(x)}\n`;
+  if(x.d!==1)return o+'⚠️ 没有整数解，题目数据不合理。';if(t===2&&x.n%2)return o+'⚠️ 最小数不是偶数，没有符合条件的数。';if(t===3&&Math.abs(x.n%2)!==1)return o+'⚠️ 最小数不是奇数，没有符合条件的数。';
+  return o+`答：这 ${n} 个数是 ${[...Array(n)].map((_,i)=>x.n+i*d).join('、')}。`}},
+monk:{n:'和尚吃馒头',d:[['T','和尚总人数',100],['M','馒头总数',100],['b','大和尚 1 人吃几个',3],['s','小和尚几人吃 1 个',3]],fn:(T,M2,b,s)=>{
+  let o=`设大和尚 x 人，则小和尚 (${T} − x) 人。\n馒头数：${b}x + (${T} − x)/${s} = ${M2}\n两边乘 ${s}：${b*s}x + ${T} − x = ${M2*s}\n合并移项：${b*s-1}x = ${M2*s-T}\n`;
+  if(b*s-1===0)return o+(M2*s-T?'⚠️ 无解':'x 可为任何数');const x=R(M2*s-T,b*s-1);o+=`x = ${kt(x)}\n`;
+  if(x.d!==1||x.n<0||x.n>T)return o+'⚠️ 人数必须是 0 ~ 总人数之间的整数，题目数据不合理。';return o+`答：大和尚 ${x.n} 人，小和尚 ${T-x.n} 人。`}},
+cr:{n:'鸡兔同笼',d:[['h','总头数',35],['f','总脚数',94],['a','动物 A 每只脚数',4],['b','动物 B 每只脚数',2]],fn:(h,f,a,b)=>{
+  let o=`设 A 有 x 只，则 B 有 (${h} − x) 只。\n脚数：${a}x + ${b}(${h} − x) = ${f}\n去括号：${a}x + ${b*h} − ${b}x = ${f}\n合并移项：${a-b}x = ${f-b*h}\n`;
+  if(a===b)return o+(f===b*h?'x 可为任何数':'⚠️ 无解');const x=R(f-b*h,a-b);o+=`x = ${kt(x)}\n`;
+  if(x.d!==1||x.n<0||x.n>h)return o+'⚠️ 只数必须是 0 ~ 总头数之间的整数，题目数据不合理。';return o+`答：A 有 ${x.n} 只，B 有 ${h-x.n} 只。`}}};
+const cf=(p,q)=>q===1?tm(p):p===1?fr('x',q):fr(M(p),q)+'x', okm=v=>Number.isInteger(v);
+const CALCS={
+a:{t:'方程式求解器：ax + b = cx + d',d:[['a','a（x 的左系数）',5],['b','b（左常数）',21],['c','c（x 的右系数）',-2],['d','d（右常数）',7]],fn:solve1},
+b:{t:'乘除求解器：（分子 ÷ 分母）· x = c',d:[['p','分子 p',3],['q','分母 q（填 1 即 px = c）',4],['c','右边 c',15]],fn:(p,q,c)=>{
+  if(!okm(p)||!okm(q)||!okm(c))return '⚠️ 请输入整数';if(q<=0)return '⚠️ 分母必须是正整数';
+  let o=`方程式：${cf(p,q)} = ${M(c)}\n`;if(p===0)return o+(c?'0x = 非零数 → 原方程式无解':'0x = 0 → x 为任何数');
+  const x=R(c*q,p);o+=(q>1?`两边同时乘以 ${q}（去分母）：${M(p)}x = ${M(c*q)}\n`:'')+`两边同时除以 ${M(p)}：x = ${disp(x)}\n`;
+  const L=R(p*x.n,q*x.d);return o+`代入检验：左式 = ${disp(L)}，右式 = ${M(c)} ${key(L)===''+c?'✓':'✗'}`}},
+c:{t:'括号求解器：p(x + q) + r = s(x + t)',d:[['p','p',4],['q','q',3],['r','r',2],['s','s',2],['t','t',-1]],fn:(p,q,r,s,t)=>{
+  if(![p,q,r,s,t].every(okm))return '⚠️ 请输入整数';
+  const P=p-s,Q=s*t-p*q-r;let o=`方程式：${p}(x${ad(q)})${ad(r)} = ${s}(x${ad(t)})\n去括号：${tm(p)}${ad(p*q)}${ad(r)} = ${tm(s)}${ad(s*t)}\n移项合并：(${p} − ${s})x = ${s*t} − ${p*q} − ${r}\n即 ${M(P)}x = ${M(Q)}\n`;
+  if(!P)return o+(Q?'0x = 非零数 → 原方程式无解':'0x = 0 → x 为任何数');
+  const x=R(Q,P),L=R(p*(x.n+q*x.d)+r*x.d,x.d),Rt=R(s*(x.n+t*x.d),x.d);return o+`x = ${disp(x)}\n代入检验：左式 = ${disp(L)}，右式 = ${disp(Rt)} ${key(L)===key(Rt)?'✓':'✗'}`}},
+d:{t:'分数方程求解器：（ax + b）/ m = （cx + d）/ n',d:[['a','a',1],['b','b',1],['m','分母 m',3],['c','c',2],['d','d',-3],['n','分母 n',7]],fn:(a,b,m,c,d,n)=>{
+  if(![a,b,m,c,d,n].every(okm))return '⚠️ 请输入整数';if(m<=0||n<=0)return '⚠️ 分母必须是正整数';
+  const L=lcm(m,n),A=L/m,B=L/n,P=A*a-B*c,Q=B*d-A*b;
+  let o=`方程式：${fr(lin(a,b),m)} = ${fr(lin(c,d),n)}\n${m} 与 ${n} 的最小公倍数是 ${L}，两边同时乘以 ${L}（每一项都要乘）：\n${A}(${lin(a,b)}) = ${B}(${lin(c,d)})\n去括号：${tm(A*a)}${ad(A*b)} = ${tm(B*c)}${ad(B*d)}\n移项合并：(${A*a} − ${B*c})x = ${B*d} − ${A*b}\n即 ${M(P)}x = ${M(Q)}\n`;
+  if(!P)return o+(Q?'0x = 非零数 → 原方程式无解':'0x = 0 → x 为任何数');
+  const x=R(Q,P),l=R(a*x.n+b*x.d,m*x.d),r=R(c*x.n+d*x.d,n*x.d);return o+`x = ${disp(x)}\n代入检验：左式 = ${disp(l)}，右式 = ${disp(r)} ${key(l)===key(r)?'✓':'✗'}`}}
+};
+function build(){const tabs=$('tabs'),main=$('main');
+  [...SECS,{id:'f',name:'🏆 总复习测试'}].forEach((s,i)=>{const b=document.createElement('button');b.className='tab-btn'+(i?'':' active');b.textContent=s.name;
+    b.onclick=()=>{document.querySelectorAll('.tab-btn,.tab-content').forEach(e=>e.classList.remove('active'));b.classList.add('active');$('t_'+s.id).classList.add('active');scrollTo(0,0)};tabs.appendChild(b);
+    const t=document.createElement('div');t.id='t_'+s.id;t.className='tab-content'+(i?'':' active');
+    t.innerHTML=s.id==='f'?`<div class="card"><div class="card-title"><span>🏆 第 10 章总复习：10 道选择题 + 3 道作答题</span><button class="btn btn-primary" style="margin-left:auto" onclick="genFinal()">🎲 新的一组</button></div><p>题目从所有小节随机抽取，选项随机排列，干扰项都是常见的计算错误。</p><div id="fm"></div><div id="fres" class="feedback-box"></div><div id="fs" style="margin-top:1rem"></div></div>`:
+    `<div class="card"><div class="card-title">📌 ${s.name}</div>${s.concept}</div>
+    <div class="card"><div class="card-title">🔍 逐步例题</div><div class="stp" id="stp_${s.id}"></div><button class="btn btn-primary" id="stn_${s.id}">▶ 下一步</button> <button class="btn" id="str_${s.id}">↺ 重来</button></div>
+    ${CALCS[s.id]||s.id==='e'?`<div class="card"><div class="card-title">🧮 ${s.id==='e'?'应用题建模求解器':CALCS[s.id].t}</div>${s.id==='e'?'<select id="cs_e" style="margin-bottom:1rem;padding:.4rem"></select>':''}<div class="calculator-grid" id="cg_${s.id}"></div><button class="btn btn-primary" id="cb_${s.id}" style="margin-top:1rem;width:100%">生成详细步骤</button><div class="steps-box" id="co_${s.id}" style="display:none"></div></div>`:''}
+    <div class="card"><div class="card-title"><span>✏️ ${s.name} 练习</span><button class="btn" id="re_${s.id}" style="margin-left:auto">🔄 换一组</button></div><p style="color:var(--text-muted);margin-bottom:1rem">5 道选择题，答对 3 题以上解锁 2 道作答题。</p><div id="mq_${s.id}"></div><div id="ub_${s.id}" class="unlock-banner"></div><div id="sq_${s.id}"></div></div>`;
+    main.appendChild(t)});
+  SECS.forEach(s=>{let k=0;const st=$('stp_'+s.id),nx=$('stn_'+s.id);nx.onclick=()=>{if(k<s.steps.length){const d=document.createElement('div');d.innerHTML=(k?'➜ ':'')+s.steps[k++];st.appendChild(d)}nx.disabled=k>=s.steps.length};$('str_'+s.id).onclick=()=>{k=0;st.innerHTML='';nx.disabled=false;nx.onclick()};nx.onclick();
+    $('re_'+s.id).onclick=()=>gen(s);gen(s)});
+  ['a','b','c','d'].forEach(k=>calcUI(k,CALCS[k].d,CALCS[k].fn));
+  const cs=$('cs_e');cs.innerHTML=Object.entries(CT).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');cs.onchange=()=>calcUI('e',CT[cs.value].d,CT[cs.value].fn);cs.onchange();genFinal()}
+if(typeof document!=='undefined'){let t='light';try{t=localStorage.getItem('th')||t;fs=+localStorage.getItem('fs')||16}catch(e){}build();setTheme(t);setFont(fs)}
+</script>
+</body>
+</html>
