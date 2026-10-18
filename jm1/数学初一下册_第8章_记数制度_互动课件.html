@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79">
+    <meta name="copyright" content="© 蔡逸众 (ecchua79) 版权所有，仅供教学使用">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初一数学下册 第8章 记数制度 - 互动探究课件</title>
+    <style>
+        :root {
+            --font-size-base: 16px;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-sub: #6c757d;
+            --border-color: #e2e8f0;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --success: #10b981;
+            --success-bg: #ecfdf5;
+            --danger: #ef4444;
+            --danger-bg: #fef2f2;
+            --warning: #f59e0b;
+            --warning-bg: #fffbeb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --radius: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #334155;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-light: #1e3a8a;
+            --success: #34d399;
+            --success-bg: #064e3b;
+            --danger: #f87171;
+            --danger-bg: #7f1d1d;
+            --warning: #fbbf24;
+            --warning-bg: #78350f;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        html {
+            font-size: var(--font-size-base);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo-title h1 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-title span {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            font-weight: normal;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-ctrl {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-ctrl:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 12px 0 4px 0;
+            border-bottom: 1px solid var(--border-color);
+            scrollbar-width: thin;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            padding: 10px 18px;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .method-tab-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .method-tab-btn {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .method-tab-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .method-tab-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .method-panel {
+            display: none;
+        }
+
+        .method-panel.active {
+            display: block;
+        }
+
+        .content-panel {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .math-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .rule-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 14px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background-color: var(--warning-bg);
+            border-left: 4px solid var(--warning);
+            padding: 14px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .calc-box {
+            background-color: var(--bg-color);
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .calc-inputs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .calc-inputs input, .calc-inputs select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .calc-inputs input:focus, .calc-inputs select:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-action {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .calc-output {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin: 8px 0 4px 0;
+        }
+
+        .quiz-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .quiz-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 640px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .opt-prefix {
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .opt-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .option-btn.selected-correct {
+            background-color: var(--success-bg) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+            font-weight: bold;
+        }
+
+        .option-btn.selected-wrong {
+            background-color: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+            font-weight: bold;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .feedback-box {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback-box.correct {
+            display: block;
+            background-color: var(--success-bg);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .feedback-box.wrong {
+            display: block;
+            background-color: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .short-answer-lock {
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            color: var(--text-sub);
+        }
+
+        .short-answer-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .short-answer-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        sup {
+            vertical-align: super;
+            font-size: 0.75em;
+            line-height: 0;
+        }
+
+        sub {
+            vertical-align: sub;
+            font-size: 0.75em;
+            line-height: 0;
+        }
+
+        .vertical-calc-table {
+            margin: 16px auto;
+            border-collapse: collapse;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .vertical-calc-table td {
+            padding: 4px 10px;
+            text-align: center;
+            min-width: 32px;
+        }
+
+        .carry-borrow-row {
+            color: var(--danger);
+            font-size: 0.85rem;
+            height: 24px;
+        }
+
+        .op-cell {
+            text-align: left;
+            color: var(--primary);
+        }
+
+        .calc-line-row td {
+            padding: 0;
+        }
+
+        .result-row {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+            .site-footer { text-align: center; padding: 18px 12px 28px; margin-top: 24px; font-size: 0.8rem; line-height: 1.7; color: var(--text-sub); border-top: 1px solid var(--border-color); }
+        .site-footer b { color: var(--text-main); }
+        .wm-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; opacity: 0; pointer-events: none; user-select: none; }
+    </style>
+</head>
+<body>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79 · 第8章《记数制度》互动课件 · 未经许可请勿转载或售卖 -->
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-title">
+                <h1>🔢 初一数学下册 <span>第8章 记数制度 (进位制)</span></h1>
+            </div>
+            <div class="controls">
+                <button class="btn-ctrl" onclick="adjustFontSize(-1)">A-</button>
+                <button class="btn-ctrl" onclick="adjustFontSize(1)">A+</button>
+                <button class="btn-ctrl" id="theme-btn" onclick="toggleTheme()">🌙 深色模式</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab8-1')">8.1 十进制</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab8-2')">8.2 二进制</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab8-4')">8.3 二进数的运算</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab8-3')">8.4 八进制</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab8-test')">🏆 全章综合测验</button>
+        </div>
+
+        <!-- ==================== TAB 8.1 ==================== -->
+        <div id="tab8-1" class="content-panel active">
+            <div class="card">
+                <div class="card-title">
+                    <span>📖 8.1 十进制</span>
+                    <span class="math-badge">十进制 (Base-10)</span>
+                </div>
+                <p>我们日常生活中最常用的记数制度是<b>十进位记数法</b>（Decimal System）。它的两大核心要素是：</p>
+                <div class="rule-box">
+                    <ul>
+                        <li><b>逢十进一：</b>每满 10 个单位就向高一位进 1。</li>
+                        <li><b>位值原则：</b>同一个数字放在不同的位置上，代表的大小不同。例如数字 5 在个位代表 5 × 10<sup>0</sup> = 5，在百位代表 5 × 10<sup>2</sup> = 500，在万位代表 5 × 10<sup>4</sup> = 50000。</li>
+                    </ul>
+                </div>
+                <p><b>展开式（Expanded Form）：</b> 任意一个十进制正整数都可以写成各数位上的数字与 10 的幂相乘的和。</p>
+                <p style="margin-top: 8px;"><b>课本例题：</b> 20090 = 2 × 10<sup>4</sup> + 0 × 10<sup>3</sup> + 0 × 10<sup>2</sup> + 9 × 10<sup>1</sup> + 0 × 10<sup>0</sup> = 2 × 10<sup>4</sup> + 9 × 10<sup>1</sup>（<b>零项不写</b>）。补充：任何非零数的零次方都等于 1。</p><p style="margin-top: 8px;"><b>课本例题：</b> 写出 4271 的位值展开式。</p>
+                <div style="background:var(--bg-color); padding:10px 14px; border-radius:8px; margin-top:6px; font-weight:600;">
+                    4271 = 4 × 10<sup>3</sup> + 2 × 10<sup>2</sup> + 7 × 10<sup>1</sup> + 1 × 10<sup>0</sup>
+                </div>
+
+                <div class="calc-box">
+                    <h4>🛠️ 8.1 专属智能求解器：十进制数分解与展开演示</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">输入任意十进制正整数，一键生成位值分解过程与完整展开式：</p>
+                    <div class="calc-inputs">
+                        <input type="number" id="calc8-1-input" value="248052" placeholder="请输入正整数" min="0">
+                        <button class="btn-action" onclick="runCalc8_1()">生成分解步骤</button>
+                    </div>
+                    <div class="calc-output" id="calc8-1-output"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="quiz-section-header">
+                    <h3>🎯 8.1 章节互动随堂检测 (5题选择 + 2题作答)</h3>
+                    <button class="btn-ctrl" onclick="initQuiz('8-1')">🔄 重新生成试题</button>
+                </div>
+                <div id="mcq-container-8-1"></div>
+                <div id="short-container-8-1"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 8.2 ==================== -->
+        <div id="tab8-2" class="content-panel">
+            <div class="card">
+                <div class="card-title">
+                    <span>📖 8.2 二进制</span>
+                    <span class="math-badge">课本：二进制 / 八进制　拓展：五进制 / 十六进制</span>
+                </div>
+                <p>除了十进制外，科学与计算机中还有许多其他进位制：</p>
+                <div class="rule-box">
+                    <ul>
+                        <li><b>k 进位制：</b>基本符号有 k 个（0, 1, 2, ..., k-1），遵循<b>“逢 k 进一”</b>原则。</li>
+                        <li><b>二进制 (Base-2)：</b>仅使用符号 <code>0, 1</code>，记为 (1101)<sub>2</sub>。</li>
+                        <li><b>八进制 (Base-8)：</b>使用符号 <code>0~7</code>，记为 (357)<sub>8</sub>。</li>
+                        <li><b>十六进制 (Base-16)：</b>使用符号 <code>0~9</code> 及 <code>A(10), B(11), C(12), D(13), E(14), F(15)</code>，记为 (2A5)<sub>16</sub>。</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    ⚠️ <b>常见易错点：</b> 在 k 进位制中，<b>绝对不可能出现大于或等于 k 的数字符号</b>！例如八进制中绝不能有数字 8 或 9；二进制中只有 0 和 1。
+                </div>
+
+                <div class="calc-box">
+                    <h4>🛠️ 8.2 专属智能演示器：任意进位制数的按权展开推导</h4>
+                    <div class="calc-inputs">
+                        <input type="text" id="calc8-2-input" value="101101" placeholder="输入数位数值">
+                        <span>基数 (Base):</span>
+                        <select id="calc8-2-base">
+                            <option value="2">2 (二进制)</option>
+                            <option value="5">5 (五进制)</option>
+                            <option value="8">8 (八进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <button class="btn-action" onclick="runCalc8_2()">推导位值展开式</button>
+                    </div>
+                    <div class="calc-output" id="calc8-2-output"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="calc-box">
+                    <h4>🛠️ 8.2 二进制 ↔ 十进制 互化器（短除法竖式 / 按权展开）</h4>
+                    <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">选择源进制与目标进制，输入数值，查看详细手算步骤：</p>
+                    <div class="calc-inputs">
+                        <input type="text" id="calc8-5-input" value="101101" placeholder="输入数值" style="width:130px;">
+                        <span>源进制:</span>
+                        <select id="calc8-5-srcbase">
+                            <option value="2" selected>2 (二进制)</option>
+                            <option value="5">5 (五进制)</option>
+                            <option value="8">8 (八进制)</option>
+                            <option value="10">10 (十进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <span>➔ 目标进制:</span>
+                        <select id="calc8-5-tgtbase">
+                            <option value="2">2 (二进制)</option>
+                            <option value="5">5 (五进制)</option>
+                            <option value="8">8 (八进制)</option>
+                            <option value="10" selected>10 (十进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <button class="btn-action" onclick="runCalc8_3('calc8-5')">生成手算转换全过程</button>
+                    </div>
+                    <div class="calc-output" id="calc8-5-output"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="quiz-section-header">
+                    <h3>🎯 8.2 章节互动随堂检测</h3>
+                    <button class="btn-ctrl" onclick="initQuiz('8-2')">🔄 重新生成试题</button>
+                </div>
+                <div id="mcq-container-8-2"></div>
+                <div id="short-container-8-2"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 8.3 ==================== -->
+        <div id="tab8-3" class="content-panel">
+            <div class="card">
+                <div class="card-title">
+                    <span>📖 8.4 八进制</span>
+                    <span class="math-badge">基数 8 · 三位一组</span>
+                </div>
+                <p>八进数由 0、1、2、3、4、5、6、7 这八个数字组成，基数是 8。例如 (176)<sub>8</sub> 的展开式为 1 × 8<sup>2</sup> + 7 × 8<sup>1</sup> + 6 × 8<sup>0</sup>。</p><p><b>八进数与二进数各数字的对应关系：</b></p><table style="border-collapse:collapse;margin:8px 0;"><tr><td style="border:1px solid var(--border-color);padding:4px 10px;font-weight:bold;">八进制</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">0</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">1</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">2</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">3</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">4</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">5</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">6</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;">7</td></tr><tr><td style="border:1px solid var(--border-color);padding:4px 10px;font-weight:bold;">二进制</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">000</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">001</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">010</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">011</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">100</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">101</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">110</td><td style="border:1px solid var(--border-color);padding:4px 10px;text-align:center;color:var(--primary);">111</td></tr></table><p>每个八进数字对应三位二进数，反之每三位二进数对应一个八进数字，所以两者可以<b>直接互化</b>，不必先化为十进数。<b>注意：分组从个位（最右边）算起。</b></p><p>进位制互相转换的基本方法：</p>
+                <div class="rule-box">
+                    <p><b>1. k 进位制 ➔ 十进制：</b> 使用<b>【按权展开法】</b>，把每个数位乘以 k<sup>n</sup> 之后求和。</p>
+                    <p><i>示例：</i> (1101)<sub>2</sub> = 1 × 2<sup>3</sup> + 1 × 2<sup>2</sup> + 0 × 2<sup>1</sup> + 1 × 2<sup>0</sup> = 8 + 4 + 0 + 1 = 13<sub>10</sub>。</p>
+                    <br>
+                    <p><b>2. 十进制 ➔ k 进位制：</b> 使用<b>【短除法（连续除以 k 取余数法）】</b>，一直除到商为 0，然后<b>将余数从下往上（逆序）排列</b>！</p>
+                    <br>
+                    <p><b>3. 任意 A 进制 ➔ 任意 B 进制：</b> 可先将 A 进制按权展开为<b>十进制</b>，再用短除法转换为 <b>B 进制</b>！</p>
+                </div>
+
+                <div class="calc-box">
+                    <h4>🛠️ 8.4 八进制 ↔ 十进制 互化器（短除法竖式 / 按权展开）</h4>
+                    <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">选择源进制与目标进制，输入数值，查看详细手算步骤：</p>
+                    <div class="calc-inputs">
+                        <input type="text" id="calc8-3-input" value="273" placeholder="输入数值" style="width:130px;">
+                        <span>源进制:</span>
+                        <select id="calc8-3-srcbase">
+                            <option value="2">2 (二进制)</option>
+                            <option value="5">5 (五进制)</option>
+                            <option value="8" selected>8 (八进制)</option>
+                            <option value="10">10 (十进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <span>➔ 目标进制:</span>
+                        <select id="calc8-3-tgtbase">
+                            <option value="2">2 (二进制)</option>
+                            <option value="5">5 (五进制)</option>
+                            <option value="8">8 (八进制)</option>
+                            <option value="10" selected>10 (十进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <button class="btn-action" onclick="runCalc8_3()">生成手算转换全过程</button>
+                    </div>
+                    <div class="calc-output" id="calc8-3-output"></div>
+                </div>
+                <div class="calc-box">
+                    <h4>🛠️ 八进数 ↔ 二进数 直接互化器（三位一组）</h4>
+                    <div class="calc-inputs">
+                        <input type="text" id="calcD-input" value="256" style="width:130px;">
+                        <select id="calcD-mode">
+                            <option value="o2b">八进数 ➔ 二进数</option>
+                            <option value="b2o">二进数 ➔ 八进数</option>
+                        </select>
+                        <button class="btn-action" onclick="runCalcDirect()">生成三位一组演示</button>
+                    </div>
+                    <div class="calc-output" id="calcD-output"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="quiz-section-header">
+                    <h3>🎯 8.4 章节互动随堂检测</h3>
+                    <button class="btn-ctrl" onclick="initQuiz('8-3')">🔄 重新生成试题</button>
+                </div>
+                <div id="mcq-container-8-3"></div>
+                <div id="short-container-8-3"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 8.4 ==================== -->
+        <div id="tab8-4" class="content-panel">
+            <div class="card">
+                <div class="card-title">
+                    <span>📖 8.3 二进数的运算</span>
+                    <span class="math-badge">逢 k 进一 / 借一当 k</span>
+                </div>
+                <p>非十进制的加减法与十进制竖式运算原理完全一致：</p>
+                <div class="rule-box">
+                    <ul>
+                        <li><b>加法法则：</b> 逢 k 进一（即相加满 k 时，向高位进 1，本位保留 <code>和 - k</code>）。</li>
+                        <li><b>减法法则：</b> 借一当 k（即本位不够减时，向高位借 1，在当前位相当于加上 k）。</li>
+                        <li><b>乘法：</b> 与十进数的竖式乘法类似，用乘数的每一位（<b>从个位开始</b>）去乘被乘数，再把各行相加。</li>
+                    </ul>
+                </div>
+
+                <div class="calc-box">
+                    <h4>🛠️ 8.3 专属智能演算器：进位制竖式加减法分步求解</h4>
+                    <div class="calc-inputs">
+                        <input type="text" id="calc8-4-num1" value="1011" style="width: 100px;">
+                        <select id="calc8-4-op">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="×">×</option>
+                        </select>
+                        <input type="text" id="calc8-4-num2" value="110" style="width: 100px;">
+                        <span>基数 (Base):</span>
+                        <select id="calc8-4-base">
+                            <option value="2">2 (二进制)</option>
+                            <option value="8">8 (八进制)</option>
+                            <option value="16">16 (十六进制)</option>
+                        </select>
+                        <button class="btn-action" onclick="runCalc8_4()">生成加减乘推导</button>
+                    </div>
+                    <div class="calc-output" id="calc8-4-output"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="quiz-section-header">
+                    <h3>🎯 8.3 章节互动随堂检测</h3>
+                    <button class="btn-ctrl" onclick="initQuiz('8-4')">🔄 重新生成试题</button>
+                </div>
+                <div id="mcq-container-8-4"></div>
+                <div id="short-container-8-4"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB TEST ==================== -->
+        <div id="tab8-test" class="content-panel">
+            <div class="card">
+                <div class="card-title">
+                    <span>🏆 第8章《记数制度》全章综合达标测验</span>
+                    <span class="math-badge">全章能力评估</span>
+                </div>
+                <p>本测验涵盖 8.1 ~ 8.4 所有知识点，共 10 道选择题 + 5 道填空题，全部答完后会给出学习评估。题目由随机算法生成，随时可换一套新题！</p>
+                <div style="margin-top: 15px;">
+                    <button class="btn-action" onclick="initQuiz('8-test')">🎲 生成全新全章测试卷</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="mcq-container-8-test"></div>
+                <div id="short-container-8-test"></div>
+                <div id="eval-8-test"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="site-footer" id="site-footer">
+        <div><b>峇株吧辖华仁中学蔡逸众制作</b> · Made by ecchua79</div>
+        <div>数学（初一下册）第8章《记数制度》互动课件</div>
+        <div>© 蔡逸众 版权所有 · 仅供教学使用，未经许可请勿转载、改编或售卖</div>
+    </footer>
+
+    <script>
+        let currentFontSize = 16;
+        let quizState = {};
+
+        window.onload = function() {
+            try { initWatermark(); } catch (e) {}
+            runCalc8_1();
+            runCalc8_2();
+            runCalc8_3();
+            runCalc8_4();
+
+            ['8-1', '8-2', '8-3', '8-4', '8-test'].forEach(tabId => {
+                initQuiz(tabId);
+            });
+        };
+
+        const WM_TEXTS = ['峇株吧辖华仁中学蔡逸众制作', '峇株吧辖蔡逸众制作', '华仁中学蔡逸众制作', 'Made by ecchua79'];
+
+        function zwEncode(t) {
+            return [...t].map(c => c.charCodeAt(0).toString(2).padStart(16, '0').replace(/0/g, '\u200b').replace(/1/g, '\u200c')).join('\u200d');
+        }
+
+        function buildFloatWM() {
+            let lines = '';
+            WM_TEXTS.forEach((t, i) => {
+                lines += `<text x="${20 + (i % 2) * 60}" y="${50 + i * 55}" font-size="16" font-family="sans-serif" fill="#808080" transform="rotate(-25 180 120)">${t}</text>`;
+            });
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="380" height="280">${lines}</svg>`;
+            const d = document.createElement('div');
+            d.id = 'wm-float';
+            d.setAttribute('aria-hidden', 'true');
+            d.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;opacity:0.11;user-select:none;background-image:url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}");background-repeat:repeat;`;
+            return d;
+        }
+
+        function initWatermark() {
+            // 浮水印（被删除或改样式会自动恢复）
+            const ensure = () => {
+                let d = document.getElementById('wm-float');
+                if (!d) { document.body.appendChild(buildFloatWM()); return; }
+                if (d.style.display === 'none' || d.style.visibility === 'hidden' || parseFloat(d.style.opacity) < 0.05) {
+                    d.remove(); document.body.appendChild(buildFloatWM());
+                }
+                const f = document.getElementById('site-footer');
+                if (!f) {
+                    const nf = document.createElement('footer');
+                    nf.className = 'site-footer'; nf.id = 'site-footer';
+                    nf.innerHTML = '<div><b>峇株吧辖华仁中学蔡逸众制作</b> · Made by ecchua79</div>';
+                    document.body.appendChild(nf);
+                }
+            };
+            ensure();
+            new MutationObserver(ensure).observe(document.body, { childList: true, attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+            setInterval(ensure, 3000);
+
+            // 隐藏水印：每个卡片里放一段看不见的署名 + 标题后面加零宽字符指纹
+            document.querySelectorAll('.card').forEach((c, i) => {
+                const sp = document.createElement('span');
+                sp.className = 'wm-hidden';
+                sp.textContent = WM_TEXTS[i % WM_TEXTS.length] + ' | ecchua79 | ch8-numeration';
+                c.appendChild(sp);
+            });
+            document.querySelectorAll('h1, .card-title > span:first-child').forEach(e => e.appendChild(document.createTextNode(zwEncode('ecchua79'))));
+        }
+
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            const themeBtn = document.getElementById('theme-btn');
+            if (htmlTag.getAttribute('data-theme') === 'dark') {
+                htmlTag.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '🌙 深色模式';
+            } else {
+                htmlTag.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '☀️ 浅色模式';
+            }
+        }
+
+        function adjustFontSize(delta) {
+            currentFontSize = Math.min(Math.max(12, currentFontSize + delta), 22);
+            document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
+        }
+
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function switchMethodTab(methodId) {
+            document.querySelectorAll('.method-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.method-panel').forEach(panel => panel.classList.remove('active'));
+
+            const btn = document.getElementById(`btn-m-${methodId}`);
+            const panel = document.getElementById(`panel-m-${methodId}`);
+            if (btn && panel) {
+                btn.classList.add('active');
+                panel.classList.add('active');
+            }
+        }
+
+        function runCalc8_1() {
+            const val = document.getElementById('calc8-1-input').value;
+            const out = document.getElementById('calc8-1-output');
+            if (!val || val < 0 || Number(val) >= 1e15) {
+                out.innerHTML = "<span style='color:var(--danger);'>⚠️ 请输入有效的正整数（小于 10<sup>15</sup>）！</span>";
+                return;
+            }
+            const str = String(Math.floor(val));
+            const len = str.length;
+            let parts = [];
+            let steps = `<b>数字 ${str} 的十进制位值分解与展开过程：</b><br><br>`;
+
+            for (let i = 0; i < len; i++) {
+                const digit = str[i];
+                const power = len - 1 - i;
+                const weight = Math.pow(10, power);
+                const termVal = digit * weight;
+                parts.push(`${digit} × 10<sup>${power}</sup>`);
+                steps += `<b>第 ${i+1} 位</b> (最高位算起): 数字 <b>${digit}</b>，权值为 10<sup>${power}</sup> = ${weight.toLocaleString()}，代表数值为 <b>${termVal.toLocaleString()}</b><br>`;
+            }
+            steps += `<br><b>最终十进制展开式：</b><br>`;
+            steps += `<div style="font-size:1.1rem; color:var(--primary); font-weight:bold; margin-top:6px;">${str} = ${parts.join(' + ')}</div>`;
+            if (str.includes('0') && str !== '0') steps += `<div style="margin-top:6px;">零项不写：${str} = ${str.split('').map((d, i) => d !== '0' ? `${d} × 10<sup>${len - 1 - i}</sup>` : null).filter(Boolean).join(' + ')}</div>`;
+            out.innerHTML = steps;
+        }
+
+        function runCalc8_2() {
+            const val = document.getElementById('calc8-2-input').value.trim().toUpperCase();
+            const base = parseInt(document.getElementById('calc8-2-base').value);
+            const out = document.getElementById('calc8-2-output');
+
+            if (!val) {
+                out.innerHTML = "<span style='color:var(--danger);'>⚠️ 请输入数字字符串！</span>";
+                return;
+            }
+
+            for (let char of val) {
+                let digitVal = parseInt(char, base);
+                if (isNaN(digitVal)) {
+                    out.innerHTML = `<span style='color:var(--danger);'>⚠️ 错误：在 ${base} 进制中，符号 '${char}' 是无效的！</span>`;
+                    return;
+                }
+            }
+
+            let len = val.length;
+            let parts = [];
+            let totalDec = 0;
+            let steps = `<b>数 (${val})<sub>${base}</sub> 在基数 ${base} 下的展开式推导：</b><br><br>`;
+
+            for (let i = 0; i < len; i++) {
+                let char = val[i];
+                let digitVal = parseInt(char, base);
+                let power = len - 1 - i;
+                let weight = Math.pow(base, power);
+                let termVal = digitVal * weight;
+                totalDec += termVal;
+                parts.push(`${char} × ${base}<sup>${power}</sup>`);
+                steps += `数位 [<b>${char}</b>] : 代表 ${digitVal} × ${base}<sup>${power}</sup> (${weight}) = <b>${termVal}</b><br>`;
+            }
+
+            steps += `<br><b>展开式求和：</b><br>`;
+            steps += `(${val})<sub>${base}</sub> = ${parts.join(' + ')}<br>`;
+            steps += `对应十进制值 = <b style="color:var(--primary); font-size:1.1rem;">${totalDec}<sub>10</sub></b>`;
+            out.innerHTML = steps;
+        }
+
+        function divTable(n, b) {
+            const ds = [], rs = [];
+            for (let x = n; x > 0; x = Math.floor(x / b)) { ds.push(x); rs.push(x % b); }
+            const ch = r => r >= 10 ? String.fromCharCode(55 + r) : r;
+            const cell = 'padding:2px 10px;text-align:right;';
+            let h = '<div style="display:inline-flex;gap:12px;align-items:stretch;margin:6px 0;font-family:monospace;font-size:1.05rem;"><table style="border-collapse:collapse;">';
+            ds.forEach((x, i) => {
+                h += `<tr><td style="${cell}">${b}</td><td style="${cell}border-left:2px solid var(--text-main);border-bottom:2px solid var(--text-main);">${x}</td><td style="${cell}color:var(--primary);font-weight:bold;">${i ? ch(rs[i - 1]) : ''}</td></tr>`;
+            });
+            h += `<tr><td></td><td style="${cell}">0</td><td style="${cell}color:var(--primary);font-weight:bold;">${ch(rs[rs.length - 1])}</td></tr></table>`;
+            h += '<div style="display:flex;flex-direction:column;justify-content:space-between;align-items:center;color:var(--danger);font-size:0.85rem;"><span>↑</span><span style="writing-mode:vertical-rl;">从下写到上</span><span></span></div></div><br>';
+            return { html: h, digits: rs.slice().reverse().map(ch).join('') };
+        }
+
+        function runCalcDirect() {
+            const raw = document.getElementById('calcD-input').value.trim();
+            const o2b = document.getElementById('calcD-mode').value === 'o2b';
+            const out = document.getElementById('calcD-output');
+            if (!raw || [...raw].some(c => c < '0' || c > (o2b ? '7' : '1'))) {
+                out.innerHTML = `<span style='color:var(--danger);'>⚠️ ${o2b ? '八进数只能含数字 0 ~ 7' : '二进数只能含 0 和 1'}，请重新输入！</span>`;
+                return;
+            }
+            const cell = 'border:1px solid var(--border-color);padding:4px 10px;text-align:center;';
+            const row = (a, hl) => `<tr>${a.map(x => `<td style="${cell}${hl ? 'font-weight:bold;color:var(--primary);' : ''}">${x}</td>`).join('')}</tr>`;
+            let top, bot, res;
+            if (o2b) { top = [...raw]; bot = top.map(c => (+c).toString(2).padStart(3, '0')); res = bot.join(''); }
+            else { bot = raw.padStart(Math.ceil(raw.length / 3) * 3, '0').match(/.{3}/g); top = bot.map(g => parseInt(g, 2)); res = top.join(''); }
+            res = res.replace(/^0+(?=.)/, '');
+            const [r1, r2] = o2b ? [top, bot] : [bot, top];
+            const [f, t] = o2b ? [8, 2] : [2, 8];
+            out.innerHTML = `<b>(${raw})<sub>${f}</sub> ➔ (?)<sub>${t}</sub></b><div class="step-title">${o2b ? '把每个八进数字写成三位二进数（对照上面的对应表）：' : '从个位（最右边）起每三位分成一组，最左边不足三位时补 0，再把每组写成一个八进数字：'}</div>`
+                + `<table style="border-collapse:collapse;margin:8px 0;">${row(r1)}${row(r2, true)}</table>`
+                + (o2b ? '<p style="font-size:0.9rem;">最左边多余的 0 不用写。</p>' : '')
+                + `<div class="rule-box" style="background:var(--success-bg);border-left-color:var(--success);"><b>🎯 结论：</b> <span style="font-size:1.15rem;font-weight:bold;">(${raw})<sub>${f}</sub> = (${res})<sub>${t}</sub></span></div>`;
+        }
+
+        function runCalc8_3(p = 'calc8-3') {
+            const rawInput = document.getElementById(p + '-input').value.trim().toUpperCase();
+            const srcBase = parseInt(document.getElementById(p + '-srcbase').value);
+            const tgtBase = parseInt(document.getElementById(p + '-tgtbase').value);
+            const out = document.getElementById(p + '-output');
+
+            if (!rawInput) {
+                out.innerHTML = "<span style='color:var(--danger);'>⚠️ 请输入有效的数值！</span>";
+                return;
+            }
+
+            for (let char of rawInput) {
+                let d = parseInt(char, srcBase);
+                if (isNaN(d)) {
+                    out.innerHTML = `<span style='color:var(--danger);'>⚠️ 错误：在 ${srcBase} 进制中，符号 '${char}' 是不合法的！</span>`;
+                    return;
+                }
+            }
+
+            let steps = `<b>手算转换完整步骤： (${rawInput})<sub>${srcBase}</sub> ➔ (?)<sub>${tgtBase}</sub></b><br><br>`;
+
+            let decVal = 0;
+
+            if (srcBase === 10) {
+                decVal = parseInt(rawInput, 10);
+                steps += `<div class="step-title">【步骤 1】原数本身就是十进制数：</div>`;
+                steps += `十进制数值 = <b>${decVal}</b><br><br>`;
+            } else {
+                steps += `<div class="step-title">【步骤 1】使用【按权展开法】将 ${srcBase} 进制数转换为十进制数：</div>`;
+                let len = rawInput.length;
+                let expansionTerms = [];
+                let calcTerms = [];
+
+                for (let i = 0; i < len; i++) {
+                    let char = rawInput[i];
+                    let digitVal = parseInt(char, srcBase);
+                    let power = len - 1 - i;
+                    let weight = Math.pow(srcBase, power);
+                    let termVal = digitVal * weight;
+                    decVal += termVal;
+
+                    expansionTerms.push(`${char} × ${srcBase}<sup>${power}</sup>`);
+                    calcTerms.push(`${digitVal} × ${weight} (${termVal})`);
+                }
+
+                steps += `展开式： (${rawInput})<sub>${srcBase}</sub> = ${expansionTerms.join(' + ')}<br>`;
+                steps += `计算过程： = ${calcTerms.join(' + ')}<br>`;
+                steps += `转换为十进制结果 = <b style="color:var(--primary);">${decVal}<sub>10</sub></b><br><br>`;
+            }
+
+            let finalResult = "";
+
+            if (tgtBase === 10) {
+                steps += `<div class="step-title">【步骤 2】目标进制为 10 进制：</div>`;
+                steps += `转换完成，十进制结果为：<b>${decVal}</b><sub>10</sub><br>`;
+                finalResult = decVal.toString(10);
+            } else {
+                steps += `<div class="step-title">【步骤 2】使用【短除法（连续除以 ${tgtBase} 取余数）】将十进制数 ${decVal} 转换为 ${tgtBase} 进制数：</div>`;
+
+                if (decVal === 0) {
+                    steps += `0 的任何进制表示均为 (0)<sub>${tgtBase}</sub><br>`;
+                    finalResult = "0";
+                } else {
+                    let dt = divTable(decVal, tgtBase);
+                    steps += dt.html;
+                    finalResult = dt.digits;
+                    steps += `<p style="margin-top:6px;">⚠️ <b>关键注意：</b> 将余数<b>【从下往上（逆序）排列】</b>得到：</p>`;
+                    steps += `<div style="color:var(--success); font-weight:bold;">余数逆序组合 = ${finalResult}</div><br>`;
+                }
+            }
+
+            steps += `<div class="rule-box" style="background:var(--success-bg); border-left-color:var(--success);">`;
+            steps += `<b>🎯 最终转换结论：</b><br>`;
+            steps += `<span style="font-size:1.15rem; font-weight:bold; color:var(--text-main);">(${rawInput})<sub>${srcBase}</sub> = (${finalResult})<sub>${tgtBase}</sub></span>`;
+            steps += `</div>`;
+
+            out.innerHTML = steps;
+        }
+
+        function mulHtml(n1, n2, base) {
+            const v1 = parseInt(n1, base), v2 = parseInt(n2, base), T = x => x.toString(base).toUpperCase();
+            const res = T(v1 * v2), W = Math.max(res.length, n1.length + n2.length) + 2;
+            const L = t => t.padStart(W, ' ');
+            const pos = k => k === 0 ? '个位' : `第 ${k + 1} 位`;
+            let rows = [], steps = [];
+            [...n2].reverse().forEach((c, k) => {
+                const d = parseInt(c, base);
+                if (d === 0) { steps.push(`<b>${pos(k)}</b>：乘数这一位是 0，积为 0，这一行可以省略`); return; }
+                const p = T(v1 * d);
+                rows.push(L(p + ' '.repeat(k)));
+                steps.push(`<b>${pos(k)}</b>：${n1} × ${c} = ${p}${k ? `，这是第 ${k + 1} 位，整行向左移 ${k} 位（右边空出 ${k} 位）` : ''}`);
+            });
+            const bar = '─'.repeat(W);
+            let v = `${L(n1)}\n${'×' + n2.padStart(W - 1, ' ')}\n${bar}\n`;
+            if (rows.length > 1) v += rows.join('\n') + `\n${bar}\n`;
+            v += L(res);
+            return `<b>竖式乘法：(${n1})<sub>${base}</sub> × (${n2})<sub>${base}</sub></b>`
+                + `<div style="font-family:monospace;white-space:pre;line-height:1.5;font-size:1.1rem;background:var(--bg-color);border:1px solid var(--border-color);border-radius:8px;padding:10px;margin:8px 0;display:inline-block;">${v}</div>`
+                + `<div class="step-title">分步解说（从个位开始，逐位向上）：</div>${steps.join('<br>')}<br>`
+                + (rows.length > 1 ? `<b>最后</b>：把各行按 ${base} 进制加法相加（逢 ${base} 进 1），得 ${res}<br>` : '')
+                + `<div class="rule-box" style="background:var(--success-bg);border-left-color:var(--success);"><b>🎯 结论：</b> <span style="font-size:1.15rem;font-weight:bold;">(${n1})<sub>${base}</sub> × (${n2})<sub>${base}</sub> = (${res})<sub>${base}</sub></span><br><span style="font-size:0.9rem;">验算：${v1} × ${v2} = ${v1 * v2}，化为 ${base} 进制是 ${res}。</span></div>`;
+        }
+
+        function runCalc8_4() {
+            const num1Str = document.getElementById('calc8-4-num1').value.trim().toUpperCase().replace(/^0+(?=.)/, '');
+            const num2Str = document.getElementById('calc8-4-num2').value.trim().toUpperCase().replace(/^0+(?=.)/, '');
+            const op = document.getElementById('calc8-4-op').value;
+            const base = parseInt(document.getElementById('calc8-4-base').value);
+            const out = document.getElementById('calc8-4-output');
+
+            try {
+                let v1 = parseInt(num1Str, base);
+                let v2 = parseInt(num2Str, base);
+                if (!num1Str || !num2Str || [...num1Str, ...num2Str].some(c => isNaN(parseInt(c, base)))) {
+                    out.innerHTML = `<span style='color:var(--danger);'>⚠️ 请确保输入的数值完全符合 ${base} 进制规则！</span>`;
+                    return;
+                }
+
+                if (op === '×') {
+                    if (v1 * v2 > 9e15) { out.innerHTML = "<span style='color:var(--danger);'>⚠️ 数值太大，请缩小输入范围！</span>"; return; }
+                    out.innerHTML = mulHtml(num1Str, num2Str, base);
+                    return;
+                }
+
+                if (op === '-' && v1 < v2) {
+                    out.innerHTML = "<span style='color:var(--danger);'>⚠️ 请确保被减数大于或等于减数！</span>";
+                    return;
+                }
+
+                const maxLen = Math.max(num1Str.length, num2Str.length);
+                const p1 = num1Str.padStart(maxLen, '0');
+                const p2 = num2Str.padStart(maxLen, '0');
+
+                // ==================== 方法 1：本进制直式直接运算 ====================
+                let m1Html = ``;
+                let finalResStr = "";
+
+                if (op === '+') {
+                    let carryArr = new Array(maxLen + 1).fill(0);
+                    let resDigits = [];
+                    let explanations = [];
+
+                    for (let i = maxLen - 1; i >= 0; i--) {
+                        let d1 = parseInt(p1[i], base);
+                        let d2 = parseInt(p2[i], base);
+                        let cIn = carryArr[i + 1];
+                        let sum = d1 + d2 + cIn;
+                        let outD = sum % base;
+                        let cOut = Math.floor(sum / base);
+                        carryArr[i] = cOut;
+                        resDigits.unshift(outD.toString(base).toUpperCase());
+
+                        let weightName = (maxLen - 1 - i === 0 ? '个位' : `第 ${maxLen - i} 位`) + `（权值 ${base}<sup>${maxLen - 1 - i}</sup>）`;
+                        let carryNote = cIn > 0 ? ` + 进位 ${cIn}` : '';
+                        if (cOut > 0) {
+                            explanations.push(`<b>${weightName}</b>：${d1} + ${d2}${carryNote} = ${sum} → <b>逢 ${base} 进 1</b>，本位留 <b>${outD.toString(base).toUpperCase()}</b>，向高位进 <b>${cOut}</b>`);
+                        } else {
+                            explanations.push(`<b>${weightName}</b>：${d1} + ${d2}${carryNote} = ${sum} → 不满 ${base}，不进位，本位留 <b>${outD.toString(base).toUpperCase()}</b>`);
+                        }
+                    }
+
+                    if (carryArr[0] > 0) {
+                        resDigits.unshift(carryArr[0].toString(base).toUpperCase());
+                        explanations.push(`<b>最高位进位</b>：产生最高进位 <b>${carryArr[0]}</b>`);
+                    }
+
+                    finalResStr = resDigits.join('').replace(/^0+(?=.)/, '');
+                    const totalCols = resDigits.length;
+                    const p1Padded = p1.padStart(totalCols, ' ');
+                    const p2Padded = p2.padStart(totalCols, ' ');
+
+                    m1Html += `<div style="overflow-x:auto;"><table class="vertical-calc-table">`;
+                    
+                    // 进位行
+                    m1Html += `<tr class="carry-borrow-row"><td style="color:var(--text-sub); font-size:0.75rem;">进位:</td>`;
+                    for (let i = 0; i < totalCols; i++) {
+                        let cVal = carryArr[i + 1 - (totalCols - maxLen)];
+                        m1Html += `<td>${cVal > 0 ? cVal : ''}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 被加数
+                    m1Html += `<tr><td></td>`;
+                    for (let i = 0; i < totalCols; i++) {
+                        m1Html += `<td>${p1Padded[i] !== ' ' ? p1Padded[i] : ''}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 加数
+                    m1Html += `<tr><td class="op-cell">+</td>`;
+                    for (let i = 0; i < totalCols; i++) {
+                        m1Html += `<td>${p2Padded[i] !== ' ' ? p2Padded[i] : ''}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 横线
+                    m1Html += `<tr class="calc-line-row"><td colspan="${totalCols + 1}"><hr style="border:1px solid var(--text-main); margin:2px 0;"></td></tr>`;
+
+                    // 结果
+                    m1Html += `<tr class="result-row"><td></td>`;
+                    for (let i = 0; i < totalCols; i++) {
+                        m1Html += `<td><b>${resDigits[i]}</b></td>`;
+                    }
+                    m1Html += `</tr></table></div><br>`;
+
+                    m1Html += `<div class="rule-box"><b>分步直式运算解析（从个位数开始，逐位向上计算）：</b><br>${explanations.join('<br>')}</div>`;
+                } else {
+                    let borrowArr = new Array(maxLen).fill(0);
+                    let resDigits = [];
+                    let explanations = [];
+                    let workingP1 = p1.split('').map(c => parseInt(c, base));
+
+                    for (let i = maxLen - 1; i >= 0; i--) {
+                        let d1 = workingP1[i];
+                        let d2 = parseInt(p2[i], base);
+                        let weightName = (maxLen - 1 - i === 0 ? '个位' : `第 ${maxLen - i} 位`) + `（权值 ${base}<sup>${maxLen - 1 - i}</sup>）`;
+
+                        if (d1 < d2) {
+                            borrowArr[i] = base;
+                            let remD1 = d1;
+                            workingP1[i - 1] -= 1;
+                            let finalD1 = remD1 + base;
+                            let diff = finalD1 - d2;
+                            resDigits.unshift(diff.toString(base).toUpperCase());
+                            explanations.push(d1 < 0
+                                ? `<b>${weightName}</b>：本位是 0，要借给低位 1，自己不够 → 先向高位借 1 当 ${base}，借出 1 后剩 ${base - 1}，${base - 1} - ${d2} = <b>${diff.toString(base).toUpperCase()}</b>`
+                                : `<b>${weightName}</b>：${remD1}${remD1 < parseInt(p1[i], base) ? '（已被低位借走 1）' : ''} &lt; ${d2} 不够减 → 向高位<b>借 1 当 ${base}</b>，(${remD1} + ${base}) - ${d2} = <b>${diff.toString(base).toUpperCase()}</b>`);
+                        } else {
+                            let diff = d1 - d2;
+                            resDigits.unshift(diff.toString(base).toUpperCase());
+                            let borrowText = d1 < parseInt(p1[i], base) ? ` (已被高位借走 1)` : '';
+                            explanations.push(`<b>${weightName}</b>：${d1}${borrowText} - ${d2} = <b>${diff.toString(base).toUpperCase()}</b>`);
+                        }
+                    }
+
+                    finalResStr = resDigits.join('').replace(/^0+/, '') || '0';
+
+                    m1Html += `<div style="overflow-x:auto;"><table class="vertical-calc-table">`;
+                    
+                    // 借位行
+                    m1Html += `<tr class="carry-borrow-row"><td style="color:var(--text-sub); font-size:0.75rem;">借位:</td>`;
+                    for (let i = 0; i < maxLen; i++) {
+                        m1Html += `<td>${borrowArr[i] > 0 ? '+' + base : ''}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 被减数
+                    m1Html += `<tr><td></td>`;
+                    for (let i = 0; i < maxLen; i++) {
+                        m1Html += `<td>${p1[i]}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 减数
+                    m1Html += `<tr><td class="op-cell">-</td>`;
+                    for (let i = 0; i < maxLen; i++) {
+                        m1Html += `<td>${p2[i]}</td>`;
+                    }
+                    m1Html += `</tr>`;
+
+                    // 横线
+                    m1Html += `<tr class="calc-line-row"><td colspan="${maxLen + 1}"><hr style="border:1px solid var(--text-main); margin:2px 0;"></td></tr>`;
+
+                    // 结果
+                    m1Html += `<tr class="result-row"><td></td>`;
+                    let resPadded = finalResStr.padStart(maxLen, ' ');
+                    for (let i = 0; i < maxLen; i++) {
+                        m1Html += `<td><b>${resPadded[i] !== ' ' ? resPadded[i] : ''}</b></td>`;
+                    }
+                    m1Html += `</tr></table></div><br>`;
+
+                    m1Html += `<div class="rule-box"><b>分步直式运算解析（从个位数开始，逐位向上借位）：</b><br>${explanations.join('<br>')}</div>`;
+                }
+
+                // ==================== 方法 2：先转换为十进制计算再还原 ====================
+                let m2Html = ``;
+                
+                // 1. 被运算数转十进制
+                let p1Terms = [];
+                for (let i = 0; i < num1Str.length; i++) {
+                    let d = parseInt(num1Str[i], base);
+                    let power = num1Str.length - 1 - i;
+                    p1Terms.push(`${num1Str[i]} × ${base}<sup>${power}</sup>`);
+                }
+                m2Html += `<div class="step-title">【步骤 1】将第一个数 (${num1Str})<sub>${base}</sub> 按权展开为十进制：</div>`;
+                m2Html += `(${num1Str})<sub>${base}</sub> = ${p1Terms.join(' + ')} = <b>${v1}<sub>10</sub></b><br><br>`;
+
+                // 2. 运算数转十进制
+                let p2Terms = [];
+                for (let i = 0; i < num2Str.length; i++) {
+                    let d = parseInt(num2Str[i], base);
+                    let power = num2Str.length - 1 - i;
+                    p2Terms.push(`${num2Str[i]} × ${base}<sup>${power}</sup>`);
+                }
+                m2Html += `<div class="step-title">【步骤 2】将第二个数 (${num2Str})<sub>${base}</sub> 按权展开为十进制：</div>`;
+                m2Html += `(${num2Str})<sub>${base}</sub> = ${p2Terms.join(' + ')} = <b>${v2}<sub>10</sub></b><br><br>`;
+
+                // 3. 十进制加减法
+                let decRes = op === '+' ? (v1 + v2) : (v1 - v2);
+                m2Html += `<div class="step-title">【步骤 3】在十进制下直接进行普通${op === '+' ? '加法' : '减法'}运算：</div>`;
+                m2Html += `${v1} ${op} ${v2} = <b style="color:var(--primary); font-size:1.1rem;">${decRes}<sub>10</sub></b><br><br>`;
+
+                // 4. 转回原进制
+                m2Html += `<div class="step-title">【步骤 4】用短除法将十进制运算结果 ${decRes} 转换回 ${base} 进制：</div>`;
+                if (decRes === 0) {
+                    m2Html += `0 的任何进制表示均为 (0)<sub>${base}</sub><br>`;
+                } else {
+                    let tempN = decRes;
+                    let remainders = [];
+                    m2Html += `<div style="background:var(--bg-color); padding:10px; border-radius:8px; border:1px solid var(--border-color); font-family:monospace; margin:6px 0;">`;
+                    while (tempN > 0) {
+                        let rem = tempN % base;
+                        let q = Math.floor(tempN / base);
+                        let remChar = rem >= 10 ? String.fromCharCode(55 + rem) : rem;
+                        remainders.push(remChar);
+                        m2Html += `${tempN} ÷ ${base} = ${q} …… 余数 [ <b style="color:var(--primary);">${remChar}</b> ]<br>`;
+                        tempN = q;
+                    }
+                    m2Html += `</div>`;
+                    let m2ResStr = remainders.slice().reverse().join('');
+                    m2Html += `<p style="margin-top:6px;">将余数<b>【从下往上（逆序）排列】</b>得到 ${base} 进制结果：</p>`;
+                    m2Html += `<div style="color:var(--success); font-weight:bold; font-size:1.1rem;">(${m2ResStr})<sub>${base}</sub></div>`;
+                }
+
+                // ==================== 组合 Sub-Tab 界面 ====================
+                let combinedHtml = `
+                    <p style="margin-bottom:12px; font-weight:600; color:var(--text-main);">
+                        💡 <b>求解方法对比（点击标签页自由切换解法）：</b>
+                    </p>
+                    <div class="method-tab-bar">
+                        <button class="method-tab-btn active" id="btn-m-1" onclick="switchMethodTab('1')">
+                            📐 方法一：${base} 进制直式（竖式）直接运算
+                        </button>
+                        <button class="method-tab-btn" id="btn-m-2" onclick="switchMethodTab('2')">
+                            🔄 方法二：转换十进制中转计算再还原
+                        </button>
+                    </div>
+
+                    <div class="method-panel active" id="panel-m-1">
+                        ${m1Html}
+                    </div>
+
+                    <div class="method-panel" id="panel-m-2">
+                        ${m2Html}
+                    </div>
+
+                    <div class="rule-box" style="background:var(--success-bg); border-left-color:var(--success); margin-top:16px;">
+                        🎯 <b>验证结论：</b><br>
+                        无论采用 <b>【${base} 进制直式直接运算】</b> 还是 <b>【转换为十进制再还原】</b>，得到的最终结果完全相同：<br>
+                        <span style="font-size:1.2rem; font-weight:bold; color:var(--primary);">
+                            (${num1Str})<sub>${base}</sub> ${op} (${num2Str})<sub>${base}</sub> = (${finalResStr})<sub>${base}</sub>
+                        </span>
+                        <br><span style="font-size:0.85rem; color:var(--text-sub);">（证明了两种运算法则的数学等价性与正确性）</span>
+                    </div>
+                `;
+
+                out.innerHTML = combinedHtml;
+
+            } catch (e) {
+                out.innerHTML = "<span style='color:var(--danger);'>⚠️ 计算出错，请检查输入！</span>";
+            }
+        }
+
+        function generateRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function createUniqueMCQ(qText, correctAns, wrongCandidates, explain) {
+            let opts = [String(correctAns)];
+            for (let w of wrongCandidates) {
+                let wStr = String(w);
+                if (!opts.includes(wStr) && wStr !== '' && wStr !== 'undefined') {
+                    opts.push(wStr);
+                }
+            }
+            
+            opts.length = Math.min(opts.length, 4);
+            let counter = 1;
+            while (opts.length < 4) {
+                let baseNum = parseInt(correctAns);
+                if (!isNaN(baseNum)) {
+                    let alt = String(baseNum + counter * (counter % 2 === 0 ? 1 : -1));
+                    if (!opts.includes(alt)) opts.push(alt);
+                } else {
+                    let alt = correctAns + " (" + counter + ")";
+                    if (!opts.includes(alt)) opts.push(alt);
+                }
+                counter++;
+            }
+
+            let optsWithFlag = opts.map(o => ({ text: o, isCorrect: o === String(correctAns) }));
+            shuffleArray(optsWithFlag);
+            let correctIdx = optsWithFlag.findIndex(o => o.isCorrect);
+
+            return {
+                q: qText,
+                options: optsWithFlag.map(o => o.text),
+                correctIndex: correctIdx,
+                explain: explain
+            };
+        }
+
+        const SB = (n, b) => `(${n.toString(b)})<sub>${b}</sub>`;
+        const rev = t => t.split('').reverse().join('');
+
+        function generateMCQsForSection(sectionId) {
+            let questions = [];
+
+            if (sectionId === '8-1') {
+                // 1. 位值大小题
+                let digit = generateRandomInt(3, 9);
+                let power = generateRandomInt(2, 5);
+                let placeName = ["百", "千", "万", "十万"][power - 2];
+                let num = digit * Math.pow(10, power) + generateRandomInt(12, 89);
+                let correctAns = `${digit} × 10<sup>${power}</sup>`;
+                let wrong1 = `${digit} × 10<sup>${power + 1}</sup>`;
+                let wrong2 = `${digit} × ${power * 10}`;
+                let wrong3 = `${digit} × 10<sup>${power - 1}</sup>`;
+                questions.push(createUniqueMCQ(
+                    `在十进制数 ${num} 中，数字 ${digit} 位于 ${placeName}位，它所代表的位值大小为：`,
+                    correctAns, [wrong1, wrong2, wrong3],
+                    `数字 ${digit} 在 ${placeName}位，对应权值为 10<sup>${power}</sup>，表示大小为 ${digit} × 10<sup>${power}</sup>。`
+                ));
+
+                // 2. 展开式组数题
+                let d1 = generateRandomInt(2, 9), d2 = generateRandomInt(1, 9), d3 = generateRandomInt(1, 9);
+                let correctVal = d1 * 10000 + d2 * 100 + d3;
+                let wrongVal1 = d1 * 1000 + d2 * 100 + d3;
+                let wrongVal2 = d1 * 10000 + d2 * 1000 + d3;
+                let wrongVal3 = d1 * 100000 + d2 * 100 + d3;
+                questions.push(createUniqueMCQ(
+                    `十进制展开式 ${d1} × 10<sup>4</sup> + ${d2} × 10<sup>2</sup> + ${d3} 所代表的整数是：`,
+                    `${correctVal}`, [`${wrongVal1}`, `${wrongVal2}`, `${wrongVal3}`],
+                    `${d1} × 10000 + ${d2} × 100 + ${d3} = ${correctVal}。未出现的 10<sup>3</sup> 与 10<sup>1</sup> 位用 0 补位。`
+                ));
+
+                // 3. 10的幂次题
+                let pVal = generateRandomInt(3, 5);
+                let val10 = Math.pow(10, pVal);
+                questions.push(createUniqueMCQ(
+                    `10<sup>${pVal}</sup> 表示的十进制数值是：`,
+                    `${val10}`, [`${pVal * 10}`, `${val10 * 10}`, `${Math.pow(10, pVal - 1)}`],
+                    `10<sup>${pVal}</sup> 即 1 后面跟着 ${pVal} 个 0，等于 ${val10}。`
+                ));
+
+                // 4. 【优化改进】动态倍数比较题 (不固定为100倍)
+                let posNames = ["个", "十", "百", "千", "万"];
+                let p1Idx = generateRandomInt(2, 4); // 百、千、万
+                let p2Idx = generateRandomInt(0, p1Idx - 1); // 低于 p1Idx 的数位
+                let dVal = generateRandomInt(2, 9);
+                
+                let numChars = [0, 0, 0, 0, 0];
+                numChars[p1Idx] = dVal;
+                numChars[p2Idx] = dVal;
+                for (let k = 0; k < 5; k++) {
+                    if (k !== p1Idx && k !== p2Idx) numChars[k] = generateRandomInt(1, 8);
+                }
+                let multiNum = parseInt(numChars.reverse().join(''));
+                let ratio = Math.pow(10, p1Idx - p2Idx);
+
+                questions.push(createUniqueMCQ(
+                    `在十进制数 ${multiNum} 中，${posNames[p1Idx]}位上的数字 ${dVal} 代表的值是${posNames[p2Idx]}位上 ${dVal} 的多少倍？`,
+                    `${ratio} 倍`,
+                    [`${ratio / 10} 倍`, `${ratio * 10} 倍`, `${ratio * 100} 倍`, `10 倍`],
+                    `${posNames[p1Idx]}位的权值是 10<sup>${p1Idx}</sup>，${posNames[p2Idx]}位的权值是 10<sup>${p2Idx}</sup>，相除得 ${ratio} 倍。`
+                ));
+
+                // 5. 【优化改进】动态位值系数查找题 (数值与位数完全随机变化)
+                let randNum = generateRandomInt(10000, 99999);
+                let randP = generateRandomInt(0, 4);
+                let digitCoeff = Math.floor(randNum / Math.pow(10, randP)) % 10;
+                let otherDigit1 = (digitCoeff + 3) % 10;
+                let otherDigit2 = (digitCoeff + 5) % 10;
+                let otherDigit3 = (digitCoeff + 7) % 10;
+
+                questions.push(createUniqueMCQ(
+                    `十进制数 ${randNum} 的展开式中，10<sup>${randP}</sup> 位（即${posNames[randP]}位）的系数（数字）是：`,
+                    `${digitCoeff}`,
+                    [`${otherDigit1}`, `${otherDigit2}`, `${otherDigit3}`],
+                    `${randNum} 的 ${posNames[randP]}位（权值 10<sup>${randP}</sup>）上的数字是 ${digitCoeff}。`
+                ));
+            } else if (sectionId === '8-2') {
+                const R = generateRandomInt;
+                let bse = [2, 8][R(0, 1)], hi = bse - 1, ws = new Set();
+                let bad = Array.from({ length: 4 }, () => R(0, hi)); bad[R(0, 3)] = bse + R(0, 1);
+                while (ws.size < 3) ws.add(Array.from({ length: 4 }, () => R(0, hi)).join(''));
+                questions.push(createUniqueMCQ(`下列各数中，在 ${bse} 进制中<b>绝对不可能存在</b>的是：`, `(${bad.join('')})<sub>${bse}</sub>`,
+                    [...ws].map(w => `(${w})<sub>${bse}</sub>`), `${bse} 进制只用数字 0 ~ ${hi}，不能出现数字 ${Math.max(...bad)}。`));
+                let k = R(3, 6);
+                questions.push(createUniqueMCQ(`二进数中，从右边（个位）数起第 ${k} 位的权值是：`, `2<sup>${k - 1}</sup>`,
+                    [`2<sup>${k}</sup>`, `2 × ${k}`, `${k}<sup>2</sup>`], `个位的权值是 2<sup>0</sup>，第 ${k} 位的权值是 2<sup>${k - 1}</sup>。`));
+                let m = R(9, 63), mb = m.toString(2);
+                questions.push(createUniqueMCQ(`二进数 ${SB(m, 2)} 化为十进数是：`, `${m}`, [m + 2, m - 1, m + 4],
+                    `按权展开：${[...mb].map((c, i) => `${c}×2<sup>${mb.length - 1 - i}</sup>`).join(' + ')} = ${m}。`));
+                let d = R(13, 40), db = d.toString(2), rb = rev(db);
+                if (rb === db) rb = (d + 2).toString(2);
+                questions.push(createUniqueMCQ(`用短除法将十进数 ${d} 化为二进数，结果是：`, SB(d, 2),
+                    [`(${rb})<sub>2</sub>`, SB(d + 1, 2), SB(d - 1, 2)], `连续除以 2，<b>余数从下写到上</b>，得 ${SB(d, 2)}。`));
+                questions.push(createUniqueMCQ(`关于进位制的基本法则“逢 k 进一”，下列说法正确的是：`, `每满 k 个单位就向高一位进 1`,
+                    [`每满 10 个单位就向高一位进 1`, `基数 k 可以是任意负整数`, `k 进制中最大可用的单个数字符号是 k`], `k 进位制逢 k 进一，单个数字符号最大为 k-1。`));
+            } else if (sectionId === '8-3') {
+                const R = generateRandomInt;
+                let ov = R(10, 60), os = ov.toString(8);
+                questions.push(createUniqueMCQ(`将八进数 ${SB(ov, 8)} 化为十进数是：`, `${ov}`, [ov + 8, ov - 2, parseInt(os)],
+                    `${SB(ov, 8)} = ${[...os].map((c, i) => `${c}×8<sup>${os.length - 1 - i}</sup>`).join(' + ')} = ${ov}。`));
+                let dv = R(30, 120), dr = rev(dv.toString(8));
+                if (dr === dv.toString(8)) dr = (dv + 8).toString(8);
+                questions.push(createUniqueMCQ(`用短除法将十进数 ${dv} 化为八进数，结果是：`, SB(dv, 8), [`(${dr})<sub>8</sub>`, SB(dv + 1, 8), SB(dv - 1, 8)],
+                    `连续除以 8，余数从下写到上，得 ${SB(dv, 8)}。`));
+                let o3 = '' + R(1, 7) + R(0, 7) + R(0, 7);
+                let gb = [...o3].map(c => (+c).toString(2).padStart(3, '0'));
+                let bin = gb.join('').replace(/^0+/, '');
+                questions.push(createUniqueMCQ(`将八进数 ${SB(parseInt(o3, 8), 8)} <b>直接</b>化为二进数（三位一组）：`, `(${bin})<sub>2</sub>`,
+                    [[...o3].map(c => (+c).toString(2)).join(''), rev(bin), (+o3).toString(2), bin + '0', bin.slice(0, -1) + (bin.endsWith('0') ? '1' : '0'), bin.slice(1) || '0'].map(x => `(${x})<sub>2</sub>`),
+                    `每个八进数字写成三位二进数：${[...o3].map((c, i) => `${c}→${gb[i]}`).join('，')}，最左边的 0 不写，得 (${bin})<sub>2</sub>。`));
+                let bs = '1' + Array.from({ length: R(5, 8) }, () => R(0, 1)).join('');
+                let g3 = bs.padStart(Math.ceil(bs.length / 3) * 3, '0').match(/.{3}/g), oc = g3.map(g => parseInt(g, 2)).join('');
+                let gl = bs.padEnd(Math.ceil(bs.length / 3) * 3, '0').match(/.{3}/g).map(g => parseInt(g, 2)).join('');
+                let ov2 = parseInt(oc, 8);
+                questions.push(createUniqueMCQ(`将二进数 ${SB(parseInt(bs, 2), 2)} <b>直接</b>化为八进数（三位一组）：`, `(${oc})<sub>8</sub>`,
+                    [gl, (ov2 + 1).toString(8), (ov2 - 1).toString(8), rev(oc), oc + '0', oc.slice(0, -1) + ((+oc.slice(-1) + 1) % 8)].map(x => `(${x})<sub>8</sub>`),
+                    `从个位起每三位一组（不足补 0）：${g3.join(' ')}，各组依次是 ${[...oc].join('、')}，得 (${oc})<sub>8</sub>。`));
+                questions.push(createUniqueMCQ(`八进数的每一个数字，可以化为几位二进数？`, `3 位`, [`2 位`, `4 位`, `8 位`], `8 = 2<sup>3</sup>，所以每个八进数字对应三位二进数。`));
+            } else if (sectionId === '8-4') {
+                const R = generateRandomInt;
+                let a = R(9, 31), b = R(3, 15);
+                questions.push(createUniqueMCQ(`计算：${SB(a, 2)} + ${SB(b, 2)} = ？`, SB(a + b, 2), [SB(a + b + 1, 2), SB(a + b - 1, 2), SB(a + b + 2, 2)],
+                    `逢二进一。${a} + ${b} = ${a + b}，化为二进数得 ${SB(a + b, 2)}。`));
+                let a2 = R(14, 40), b2 = R(3, 12);
+                questions.push(createUniqueMCQ(`计算：${SB(a2, 2)} - ${SB(b2, 2)} = ？`, SB(a2 - b2, 2), [SB(a2 - b2 + 1, 2), SB(a2 - b2 - 1, 2), SB(a2 - b2 + 2, 2)],
+                    `借一得二。${a2} - ${b2} = ${a2 - b2}，化为二进数得 ${SB(a2 - b2, 2)}。`));
+                let a3 = R(15, 30), b3 = R(5, 12), c3 = R(2, 10), r3 = a3 + b3 - c3;
+                questions.push(createUniqueMCQ(`计算：${SB(a3, 2)} + ${SB(b3, 2)} - ${SB(c3, 2)} = ？`, SB(r3, 2), [SB(r3 + 1, 2), SB(r3 - 1, 2), SB(a3 + b3 + c3, 2)],
+                    `${a3} + ${b3} - ${c3} = ${r3}，化为二进数得 ${SB(r3, 2)}。`));
+                let ma = R(5, 15), mb = R(3, 7), mr = ma * mb;
+                questions.push(createUniqueMCQ(`计算：${SB(ma, 2)} × ${SB(mb, 2)} = ？`, SB(mr, 2), [SB(mr + 1, 2), SB(mr - 2, 2), SB(mr + mb, 2)],
+                    `逐位相乘再相加。${ma} × ${mb} = ${mr}，化为二进数得 ${SB(mr, 2)}。`));
+                questions.push(createUniqueMCQ(`在二进数减法竖式中，本位不够减而向高位借 1，当前位相当于加上了多少？`, `2`, [`1`, `4`, `8`], `二进数“借一得二”，向高位借 1 代表当前位增加 2。`));
+            } else {
+                const R = generateRandomInt;
+                let x = R(1, 9), p = R(2, 4), y = R(1, 9), q = R(0, 1);
+                questions.push(createUniqueMCQ(`十进数展开式 ${x} × 10<sup>${p}</sup> + ${y} × 10<sup>${q}</sup> 表示的数值是：`, `${x * 10 ** p + y * 10 ** q}`,
+                    [x * 10 ** q + y * 10 ** p, x * 10 ** (p + 1) + y * 10 ** q, x * 10 ** p + y * 10 ** (q + 1)], `${x} × ${10 ** p} + ${y} × ${10 ** q} = ${x * 10 ** p + y * 10 ** q}。`));
+                let x2 = R(1, 9), p2 = R(2, 4), y2 = R(1, 9), q2 = R(0, 1), N = x2 * 10 ** p2 + y2 * 10 ** q2;
+                const ex = (a, e, b, f) => `${a} × 10<sup>${e}</sup> + ${b} × 10<sup>${f}</sup>`;
+                questions.push(createUniqueMCQ(`十进数 ${N} 的展开式（零项不写）是：`, ex(x2, p2, y2, q2),
+                    [ex(x2, q2, y2, p2), ex(x2, p2 + 1, y2, q2), `${x2} × 10<sup>${p2}</sup> + ${y2}`], `${N} = ${ex(x2, p2, y2, q2)}，中间的零项不写。`));
+                let num = R(11, 40);
+                questions.push(createUniqueMCQ(`十进数 ${num} 化为二进数是：`, SB(num, 2), [SB(num + 1, 2), SB(num - 1, 2), SB(num, 8)], `${num} 连续除以 2，余数从下写到上得 ${SB(num, 2)}。`));
+                let m = R(9, 63);
+                questions.push(createUniqueMCQ(`二进数 ${SB(m, 2)} 化为十进数是：`, `${m}`, [m + 2, m - 1, m + 4], `按权展开求和得 ${m}。`));
+                let a = R(9, 31), b = R(3, 15);
+                questions.push(createUniqueMCQ(`计算：${SB(a, 2)} + ${SB(b, 2)} = ？`, SB(a + b, 2), [SB(a + b + 1, 2), SB(a + b - 1, 2), SB(a + b + 2, 2)], `${a} + ${b} = ${a + b} = ${SB(a + b, 2)}。`));
+                let a2 = R(14, 40), b2 = R(3, 12);
+                questions.push(createUniqueMCQ(`计算：${SB(a2, 2)} - ${SB(b2, 2)} = ？`, SB(a2 - b2, 2), [SB(a2 - b2 + 1, 2), SB(a2 - b2 - 1, 2), SB(a2 - b2 + 2, 2)], `${a2} - ${b2} = ${a2 - b2} = ${SB(a2 - b2, 2)}。`));
+                let ma = R(5, 15), mb = R(3, 7), mr = ma * mb;
+                questions.push(createUniqueMCQ(`计算：${SB(ma, 2)} × ${SB(mb, 2)} = ？`, SB(mr, 2), [SB(mr + 1, 2), SB(mr - 2, 2), SB(mr + mb, 2)], `${ma} × ${mb} = ${mr} = ${SB(mr, 2)}。`));
+                let ov = R(10, 60);
+                questions.push(createUniqueMCQ(`将八进数 ${SB(ov, 8)} 化为十进数是：`, `${ov}`, [ov + 8, ov - 2, parseInt(ov.toString(8))], `${Math.floor(ov / 8)} × 8 + ${ov % 8} = ${ov}。`));
+                let o2 = '' + R(1, 7) + R(0, 7), g2 = [...o2].map(c => (+c).toString(2).padStart(3, '0')), b2s = g2.join('').replace(/^0+/, '');
+                questions.push(createUniqueMCQ(`将八进数 ${SB(parseInt(o2, 8), 8)} 直接化为二进数：`, `(${b2s})<sub>2</sub>`,
+                    [[...o2].map(c => (+c).toString(2)).join(''), rev(b2s), (+o2).toString(2), b2s + '0', b2s.slice(0, -1) + (b2s.endsWith('0') ? '1' : '0')].map(t => `(${t})<sub>2</sub>`),
+                    `${[...o2].map((c, i) => `${c}→${g2[i]}`).join('，')}，得 (${b2s})<sub>2</sub>。`));
+                let bs = '1' + Array.from({ length: R(5, 8) }, () => R(0, 1)).join('');
+                let g3 = bs.padStart(Math.ceil(bs.length / 3) * 3, '0').match(/.{3}/g), oc = g3.map(g => parseInt(g, 2)).join('');
+                let gl = bs.padEnd(Math.ceil(bs.length / 3) * 3, '0').match(/.{3}/g).map(g => parseInt(g, 2)).join(''), ov2 = parseInt(oc, 8);
+                questions.push(createUniqueMCQ(`将二进数 ${SB(parseInt(bs, 2), 2)} 直接化为八进数：`, `(${oc})<sub>8</sub>`,
+                    [gl, (ov2 + 1).toString(8), (ov2 - 1).toString(8), rev(oc), oc + '0'].map(t => `(${t})<sub>8</sub>`),
+                    `从个位起每三位一组：${g3.join(' ')}，得 (${oc})<sub>8</sub>。`));
+                const tps = ['十进制', '十进制', '二进制与互化', '二进制与互化', '二进数运算', '二进数运算', '二进数运算', '八进制', '八进制', '八进制'];
+                questions.forEach((qq, i) => qq.topic = tps[i]);
+            }
+
+            return questions;
+        }
+
+        function generateShortAnswersForSection(sectionId) {
+            const R = generateRandomInt;
+            const sub = (n, b) => `(${n.toString(b)})<sub>${b}</sub>`;
+            if (sectionId === '8-1') {
+                let len = R(4, 5), ds = [R(1, 9)];
+                for (let i = 1; i < len; i++) ds.push(R(0, 9));
+                ds[R(1, len - 1)] = 0;
+                let p = R(3, 6);
+                return [
+                    { q: `写出十进数 ${ds.join('')} 的展开式（零项不写），共有几项？`, ans: String(ds.filter(d => d !== 0).length) },
+                    { q: `如果 10<sup>n</sup> = ${Math.pow(10, p)}，那么 n 的值为：`, ans: String(p) }
+                ];
+            }
+            if (sectionId === '8-2') {
+                let b = R(4, 31).toString(2);
+                let ol = R(2, 4), o = Array.from({ length: ol }, (_, i) => R(i === 0 ? 1 : 0, 7)).join('');
+                return [
+                    { q: `二进制数 (${b})<sub>2</sub> 中，最高位上的数字 1 的权值（写成十进数）是：`, ans: String(Math.pow(2, b.length - 1)) },
+                    { q: `八进制数 (${o})<sub>8</sub> 中，最高位的权值（写成十进数）是：`, ans: String(Math.pow(8, ol - 1)) }
+                ];
+            }
+            if (sectionId === '8-3') {
+                let d = R(9, 15), o = R(2, 7) * 8 + R(1, 7);
+                return [
+                    { q: `将十进数 ${d} 化为二进数（只写数字）：`, ans: d.toString(2) },
+                    { q: `将二进数 (${R(5, 14).toString(2)})<sub>2</sub> 化为十进数：`, ans: null }
+                ].map((x, i, arr) => {
+                    if (i === 1) { let v = R(5, 14); return { q: `将二进数 ${sub(v, 2)} 化为十进数：`, ans: String(v) }; }
+                    return x;
+                });
+            }
+            if (sectionId === '8-4') {
+                let a = R(5, 15), b = R(3, 12), x = R(8, 40), y = R(5, 30);
+                return [
+                    { q: `计算 ${sub(a, 2)} + ${sub(b, 2)}，答案以二进数表示（只写数字）：`, ans: (a + b).toString(2) },
+                    { q: `计算 ${sub(x, 8)} + ${sub(y, 8)}，答案以八进数表示（只写数字）：`, ans: (x + y).toString(8) }
+                ];
+            }
+            let len = R(4, 5), ds = [R(1, 9)];
+            for (let i = 1; i < len; i++) ds.push(R(0, 9));
+            ds[R(1, len - 1)] = 0;
+            let d = R(21, 63), a = R(5, 15), b = R(3, 7), v = R(9, 63), bs = '1' + Array.from({ length: R(5, 8) }, () => R(0, 1)).join('');
+            return [
+                { topic: '十进制', q: `写出十进数 ${ds.join('')} 的展开式（零项不写），共有几项？`, ans: String(ds.filter(t => t !== 0).length) },
+                { topic: '二进制与互化', q: `将十进数 ${d} 化为二进数：`, ans: d.toString(2) },
+                { topic: '二进数运算', q: `计算 ${sub(a, 2)} × ${sub(b, 2)}，答案以二进数表示（只写数字）：`, ans: (a * b).toString(2) },
+                { topic: '八进制', q: `将八进数 ${sub(v, 8)} 化为十进数：`, ans: String(v) },
+                { topic: '八进制', q: `将二进数 ${sub(parseInt(bs, 2), 2)} 直接化为八进数（只写数字）：`, ans: parseInt(bs, 2).toString(8) }
+            ];
+        }
+
+        function initQuiz(sectionId) {
+            quizState[sectionId] = {
+                mcqs: generateMCQsForSection(sectionId),
+                shorts: generateShortAnswersForSection(sectionId),
+                score: 0,
+                answeredCount: 0,
+                unlockedShorts: sectionId === '8-test',
+                shortResults: {},
+                need: 0
+            };
+            quizState[sectionId].need = Math.ceil(quizState[sectionId].mcqs.length * 0.6);
+
+            renderQuiz(sectionId);
+        }
+
+        function renderQuiz(sectionId) {
+            const state = quizState[sectionId];
+            const mcqContainer = document.getElementById(`mcq-container-${sectionId}`);
+
+            let mcqHtml = sectionId === '8-test' ? `<h4>第一部分：选择题（共 ${state.mcqs.length} 题）</h4><br>` : `<h4>阶段一：单项选择题（需答对 ${state.need} 题及以上解锁主观作答题）</h4><br>`;
+            state.mcqs.forEach((q, qIdx) => {
+                mcqHtml += `
+                    <div class="quiz-card" id="mcq-card-${sectionId}-${qIdx}">
+                        <div class="question-text">第 ${qIdx + 1} 题：${q.q}</div>
+                        <div class="options-grid">
+                            ${q.options.map((opt, optIdx) => `
+                                <button class="option-btn" 
+                                        id="opt-btn-${sectionId}-${qIdx}-${optIdx}" 
+                                        onclick="handleMCQSelect('${sectionId}', ${qIdx}, ${optIdx})">
+                                    <span class="opt-prefix">${String.fromCharCode(65 + optIdx)}.</span>
+                                    <span class="opt-text">${opt}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="feedback-box" id="feedback-${sectionId}-${qIdx}"></div>
+                    </div>
+                `;
+            });
+            mcqContainer.innerHTML = mcqHtml;
+
+            renderShortAnswers(sectionId);
+            renderEval(sectionId);
+        }
+
+        function handleMCQSelect(sectionId, qIdx, optIdx) {
+            const state = quizState[sectionId];
+            const q = state.mcqs[qIdx];
+            const feedback = document.getElementById(`feedback-${sectionId}-${qIdx}`);
+
+            q.options.forEach((_, i) => {
+                const btn = document.getElementById(`opt-btn-${sectionId}-${qIdx}-${i}`);
+                btn.classList.add('disabled');
+                btn.onclick = null;
+            });
+
+            const selectedBtn = document.getElementById(`opt-btn-${sectionId}-${qIdx}-${optIdx}`);
+
+            if (optIdx === q.correctIndex) {
+                selectedBtn.classList.add('selected-correct');
+                feedback.className = 'feedback-box correct';
+                feedback.innerHTML = `✅ <b>回答正确！</b> ${q.explain}`;
+                state.score++;
+                q.ok = true;
+            } else {
+                selectedBtn.classList.add('selected-wrong');
+                q.ok = false;
+                const correctBtn = document.getElementById(`opt-btn-${sectionId}-${qIdx}-${q.correctIndex}`);
+                correctBtn.classList.add('selected-correct');
+
+                feedback.className = 'feedback-box wrong';
+                feedback.innerHTML = `❌ <b>回答错误！</b>正确答案是 <b>${String.fromCharCode(65 + q.correctIndex)}</b>。<br>${q.explain}`;
+            }
+
+            state.answeredCount++;
+            if (!state.unlockedShorts) renderShortAnswers(sectionId);
+
+            if (!state.unlockedShorts && state.answeredCount === state.mcqs.length) {
+                if (state.score >= state.need) {
+                    state.unlockedShorts = true;
+                }
+                renderShortAnswers(sectionId);
+            }
+            renderEval(sectionId);
+        }
+
+        function renderShortAnswers(sectionId) {
+            const state = quizState[sectionId];
+            const shortContainer = document.getElementById(`short-container-${sectionId}`);
+
+            if (!state.unlockedShorts) {
+                shortContainer.innerHTML = `
+                    <div class="short-answer-lock">
+                        🔒 <b>第二阶段：主观作答题已锁定</b><br>
+                        <span style="font-size:0.9rem;">需要在上方选择题中至少答对 <b>${state.need} 题</b> 才能开启作答题。
+                        (当前进度: 已答 ${state.answeredCount}/${state.mcqs.length} 题，答对 ${state.score} 题)</span>
+                        ${state.answeredCount === state.mcqs.length && state.score < state.need ? `
+                            <br><br><button class="btn-action" onclick="initQuiz('${sectionId}')">🔄 重新生成试题再试一次</button>
+                        ` : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            let shortHtml = `<div style="margin-top: 20px;">
+                <h4 style="color: var(--success);">${sectionId === '8-test' ? '第二部分：填空题（请输入正确数值）' : '🎉 恭喜解锁阶段二：主观填空题（请输入正确数值）'}</h4><br>`;
+
+            state.shorts.forEach((s, sIdx) => {
+                shortHtml += `
+                    <div class="quiz-card">
+                        <div class="question-text">填空题 ${sIdx + 1}：${s.q}</div>
+                        <div class="short-answer-box">
+                            <input type="text" class="short-answer-input" id="short-input-${sectionId}-${sIdx}" placeholder="请输入答案" onkeydown="if(event.key==='Enter')verifyShortAnswer('${sectionId}', ${sIdx})">
+                            <button class="btn-action" onclick="verifyShortAnswer('${sectionId}', ${sIdx})">提交验证</button>
+                        </div>
+                        <div class="feedback-box" id="short-feedback-${sectionId}-${sIdx}"></div>
+                    </div>
+                `;
+            });
+
+            shortHtml += `</div>`;
+            shortContainer.innerHTML = shortHtml;
+        }
+
+        function renderEval(sectionId) {
+            if (sectionId !== '8-test') return;
+            const st = quizState[sectionId], el = document.getElementById('eval-8-test');
+            if (!st || !el) return;
+            const nS = Object.keys(st.shortResults).length;
+            if (st.answeredCount < st.mcqs.length || nS < st.shorts.length) {
+                el.innerHTML = `<div class="rule-box">📊 作答进度：选择题 ${st.answeredCount}/${st.mcqs.length}，填空题 ${nS}/${st.shorts.length}。全部完成后会显示学习评估。</div>`;
+                return;
+            }
+            const items = [...st.mcqs.map(q => ({ t: q.topic, ok: !!q.ok })), ...st.shorts.map((x, i) => ({ t: x.topic, ok: !!st.shortResults[i] }))];
+            const total = items.length, got = items.filter(x => x.ok).length, pct = Math.round(got / total * 100);
+            const lv = pct >= 90 ? ['🏆 优秀', '基础非常扎实，继续保持！'] : pct >= 75 ? ['👍 良好', '掌握不错，看看下面的薄弱项再巩固一下。'] : pct >= 60 ? ['🙂 及格', '还需巩固，建议回到对应小节再练一遍。'] : ['💪 需加强', '建议重新学习各小节、完成随堂检测后再来挑战。'];
+            const tp = {};
+            items.forEach(x => { const o = tp[x.t] = tp[x.t] || { g: 0, n: 0 }; o.n++; if (x.ok) o.g++; });
+            const weak = Object.keys(tp).filter(k => tp[k].g / tp[k].n < 0.6);
+            let h = `<div class="card" style="border:2px solid var(--primary);margin-top:20px;"><h3>📊 学习评估</h3><p style="font-size:1.3rem;margin:8px 0;"><b>${got} / ${total}</b> 题正确（${pct}%）　${lv[0]}</p><p>${lv[1]}</p><table style="border-collapse:collapse;margin:10px 0;width:100%;">`;
+            Object.keys(tp).forEach(k => {
+                const r = Math.round(tp[k].g / tp[k].n * 100);
+                h += `<tr><td style="padding:4px 8px;white-space:nowrap;">${k}</td><td style="padding:4px 8px;width:100%;"><div style="background:var(--border-color);border-radius:6px;height:12px;"><div style="width:${r}%;background:${r >= 60 ? 'var(--success)' : 'var(--danger)'};height:12px;border-radius:6px;"></div></div></td><td style="padding:4px 8px;white-space:nowrap;">${tp[k].g}/${tp[k].n}</td></tr>`;
+            });
+            h += `</table><p>${weak.length ? `🔍 建议优先复习：<b>${weak.join('、')}</b>。` : '🎉 各部分掌握都比较均衡！'}</p></div>`;
+            el.innerHTML = h;
+        }
+
+        function verifyShortAnswer(sectionId, sIdx) {
+            const state = quizState[sectionId];
+            const target = state.shorts[sIdx];
+            const inputVal = document.getElementById(`short-input-${sectionId}-${sIdx}`).value.trim();
+            const feedback = document.getElementById(`short-feedback-${sectionId}-${sIdx}`);
+
+            if (!inputVal) {
+                feedback.className = 'feedback-box wrong';
+                feedback.innerHTML = '⚠️ 请先输入您的答案再提交！';
+                return;
+            }
+
+            const norm = s => s.replace(/[\s()（）]/g, '').toUpperCase().replace(/^0+(?=.)/, '');
+            const okNow = norm(inputVal) === norm(target.ans);
+            state.shortResults[sIdx] = okNow;
+            renderEval(sectionId);
+            if (okNow) {
+                feedback.className = 'feedback-box correct';
+                feedback.innerHTML = `🎉 <b>回答完全正确！</b> 你的答案：${inputVal}`;
+            } else {
+                feedback.className = 'feedback-box wrong';
+                feedback.innerHTML = `❌ <b>答案不正确。</b> 正确答案应该是：<b>${target.ans}</b>`;
+            }
+        }
+    </script>
+</body>
+</html>
