@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《数学》初三上册 第2章 指数与对数 - 互动学习系统</title>
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-secondary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+            --warning-color: #d97706;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --content-scale: 1;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-secondary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent-color: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --border-color: #475569;
+            --success-color: #4ade80;
+            --error-color: #f87171;
+            --warning-color: #fbbf24;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: calc(16px * var(--content-scale));
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            user-select: none;
+        }
+
+        .btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+        }
+
+        [data-theme="dark"] .btn-primary {
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            color: #ffffff;
+        }
+
+        nav.tabs-nav {
+            display: flex;
+            overflow-x: auto;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 5px;
+            margin: 20px 0;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            flex: 0 0 auto;
+            min-width: 130px;
+            text-align: center;
+            padding: 10px 12px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background-color: var(--bg-card);
+            color: var(--accent-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .formula-box {
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: serif;
+            font-size: 1.05rem;
+        }
+
+        .example-box {
+            background-color: var(--bg-secondary);
+            border: 1px dashed var(--border-color);
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: var(--warning-color);
+            margin-bottom: 6px;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .input-group input, .input-group select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .calc-steps {
+            background-color: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 12px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        canvas.graph-canvas {
+            width: 100%;
+            height: 320px;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background-color: var(--bg-primary);
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        @media (min-width: 640px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            text-align: left;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .option-btn.selected {
+            border-color: var(--accent-color);
+            background-color: var(--bg-secondary);
+            font-weight: bold;
+        }
+
+        .option-btn.correct {
+            background-color: rgba(22, 163, 74, 0.15);
+            border-color: var(--success-color);
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .option-btn.incorrect {
+            background-color: rgba(220, 38, 38, 0.15);
+            border-color: var(--error-color);
+            color: var(--error-color);
+        }
+
+        .feedback-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box.correct {
+            background-color: rgba(22, 163, 74, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .feedback-box.incorrect {
+            background-color: rgba(220, 38, 38, 0.1);
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+
+        .lock-overlay {
+            background-color: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .text-input-answer {
+            width: 100%;
+            max-width: 300px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .badge-success { background-color: var(--success-color); color: #fff; }
+        .badge-warning { background-color: var(--warning-color); color: #fff; }
+
+        .score-banner {
+            background-color: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .warn-box{background:var(--bg-secondary);border-left:4px solid #f59e0b;padding:10px 14px;border-radius:6px;margin:12px 0;font-size:.95rem}
+        .input-group select{padding:8px;border-radius:6px;border:1px solid var(--border-color);background:var(--bg-card);color:inherit}
+        [data-theme="dark"] .btn-primary:hover{color:#0f172a}
+        .rt{display:inline-flex;align-items:stretch;vertical-align:middle;white-space:nowrap}
+        .rt>sup{align-self:flex-start;line-height:1;margin-right:-.1em}
+        .rs{display:inline-block;width:.8em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L2 10.5 L5 19 L10 0' fill='none' stroke='black' stroke-width='1.6' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat 0 .75px/100% 100%;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L2 10.5 L5 19 L10 0' fill='none' stroke='black' stroke-width='1.6' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat 0 .75px/100% 100%}
+        .rc{border-top:1.6px solid currentColor;padding:.1em .15em 0 .05em;line-height:1.25}
+        .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .15em;font-size:.95em}
+        .frac>.n{border-bottom:1.5px solid currentColor;padding:0 .2em}
+        .frac>.d{padding:0 .2em}
+        sup,sub{line-height:0}
+        sup .frac,sub .frac{font-size:.8em}
+        .eq-preview{font-size:1.4rem;text-align:center;padding:10px;background:var(--bg-secondary);border-radius:10px;margin:8px 0 14px}
+        #c23_result{white-space:normal !important}
+        .fl{display:flex;flex-direction:column}
+        .fl-row{display:flex;gap:8px}.fl-row>.fl-step{flex:1}
+        .fl-step{border:1.5px solid var(--border-color);border-left:5px solid var(--accent-color);background:var(--bg-secondary);border-radius:10px;padding:8px 12px}
+        .fl-ans{border-left-color:#16a34a}
+        .fl-tag{font-size:.8rem;color:var(--accent-color);font-weight:700}
+        .fl-body{font-size:1.15rem;text-align:center;line-height:1.9}
+        .fl-arrow{text-align:center;color:var(--accent-color);line-height:1.1;padding:3px 0;font-weight:700}
+        .fl-arrow em{display:block;font-size:.8rem;font-style:normal;color:var(--text-secondary);font-weight:400}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="header-title">
+                <span>📐</span>
+                <span>初三数学：第2章 指数与对数</span>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="adjustFontSize(-0.1)" title="减小字体">A-</button>
+                <button class="btn" onclick="resetFontSize()" title="重置字体">A</button>
+                <button class="btn" onclick="adjustFontSize(0.1)" title="增大字体">A+</button>
+                <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 深色</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+<nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('tab2_1',this)">2.1 零指数幂与负整数指数幂</button>
+    <button class="tab-btn" onclick="switchTab('tab2_2',this)">2.2 分数指数幂</button>
+    <button class="tab-btn" onclick="switchTab('tab2_3',this)">2.3 简易指数方程式</button>
+    <button class="tab-btn" onclick="switchTab('tab2_4',this)">2.4 对数的定义与性质</button>
+    <button class="tab-btn" onclick="switchTab('tabFinal',this)">📝 总复习</button>
+</nav>
+
+<div id="tab2_1" class="tab-content active">
+  <div class="card">
+    <div class="card-title">📖 2.1 知识精讲与课本例题</div>
+    <p>初二已学正整数指数幂的五条法则：aᵐ×aⁿ=aᵐ⁺ⁿ，aᵐ÷aⁿ=aᵐ⁻ⁿ，(aᵐ)ⁿ=aᵐⁿ，(ab)ⁿ=aⁿbⁿ，(a/b)ⁿ=aⁿ/bⁿ (b≠0)。现在把指数推广到零和负整数：</p>
+    <div class="formula-box">
+      • 零指数幂：a<sup>0</sup> = 1 (a ≠ 0)<br>
+      • 负整数指数幂：a<sup>-n</sup> = 1 / a<sup>n</sup> (a ≠ 0，n 为正整数)<br>
+      • a<sup>-1</sup> 就是 a 的倒数；(a/b)<sup>-n</sup> = (b/a)<sup>n</sup>
+    </div>
+    <div class="warn-box">⚠️ 注意：0<sup>0</sup> 没有意义；零的负整数指数幂也没有意义。有了这两个定义，整数指数幂都适用上面五条法则。</div>
+    <div class="example-box">
+      <div class="example-title">💡 课本例题（化为分数）</div>
+      <p>(c) −7<sup>-2</sup> = −1/7<sup>2</sup> = <b>−1/49</b>　(d) (−2)<sup>-4</sup> = 1/(−2)<sup>4</sup> = <b>1/16</b></p>
+      <p>(−7)<sup>-2</sup> 与 −7<sup>-2</sup> 不同：前者底数是 −7，后者是 7 的幂再取负。</p>
+      <p>计算 (2/3)<sup>-2</sup> = 1/(2/3)<sup>2</sup> = <b>9/4</b>。</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🧮 零指数与负整数指数计算器</div>
+    <div class="calc-grid">
+      <div class="input-group"><label>底数 a（负数代表 (−a) 整体作底数）:</label><input type="number" id="c21_a" value="-2" step="any"></div>
+      <div class="input-group"><label>整数指数 n:</label><input type="number" id="c21_n" value="-4"></div>
+      <button class="btn btn-primary" onclick="calcInt()">一步步求解</button>
+    </div>
+    <div class="calc-steps" id="c21_result">点击“一步步求解”查看计算过程...</div>
+  </div>
+  <div class="quiz-slot" data-ch="2_1" data-label="2.1"></div>
+</div>
+
+<div id="tab2_2" class="tab-content">
+  <div class="card">
+    <div class="card-title">📖 2.2 知识精讲与课本例题</div>
+    <div class="formula-box">
+      • a<sup>1/n</sup> = <span class="rt"><sup>n</sup><span class="rs"></span><span class="rc">a</span></span> (a > 0，n 为正整数且 n > 1)<br>
+      • a<sup>m/n</sup> = (<span class="rt"><sup>n</sup><span class="rs"></span><span class="rc">a</span></span>)<sup>m</sup> (a > 0，m、n 为正整数且 n > 1)<br>
+      • a<sup>-m/n</sup> = 1 / a<sup>m/n</sup> = 1 / (<span class="rt"><sup>n</sup><span class="rs"></span><span class="rc">a</span></span>)<sup>m</sup>
+    </div>
+    <div class="warn-box">⚠️ 0 的正分数指数幂等于 0，0 的负分数指数幂没有意义。当 m、n 是分数时，五条运算法则仍然成立。</div>
+    <div class="example-box">
+      <div class="example-title">💡 课本例题</div>
+      <p>计算 27<sup>2/3</sup> = (3<sup>3</sup>)<sup>2/3</sup> = 3<sup>2</sup> = <b>9</b>。</p>
+      <p>计算 (9/4)<sup>-1/2</sup> = [(3/2)<sup>2</sup>]<sup>-1/2</sup> = (3/2)<sup>-1</sup> = <b>2/3</b>。</p>
+      <p>以指数式表示 3/x<sup>4</sup> = <b>3x<sup>-4</sup></b>；以根式表示 x<sup>3/5</sup> = <b><span class="rt"><sup>5</sup><span class="rs"></span><span class="rc">x<sup>3</sup></span></span></b>。</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🧮 分数指数幂化简计算器</div>
+    <div class="calc-grid">
+      <div class="input-group"><label>底数 a (a > 0):</label><input type="number" id="c22_a" value="27" step="any"></div>
+      <div class="input-group"><label>分子 m（整数）:</label><input type="number" id="c22_m" value="2"></div>
+      <div class="input-group"><label>分母 n（正整数）:</label><input type="number" id="c22_n" value="3"></div>
+      <button class="btn btn-primary" onclick="calcFrac()">一步步求解</button>
+    </div>
+    <div class="calc-steps" id="c22_result">点击“一步步求解”查看计算过程...</div>
+  </div>
+  <div class="quiz-slot" data-ch="2_2" data-label="2.2"></div>
+</div>
+
+<div id="tab2_3" class="tab-content">
+  <div class="card">
+    <div class="card-title">📖 2.3 知识精讲与课本例题</div>
+    <p>指数含有未知数的方程式叫做<b>指数方程式</b>，如 2<sup>x</sup>=16。本节只解可化成<b>同底</b>的方程式：</p>
+    <div class="formula-box">方法：① 把两边化成同底的幂　② 底数相同则指数相等，a<sup>f</sup> = a<sup>g</sup> ⇒ f = g　③ 解出 x</div>
+    <div class="example-box">
+      <div class="example-title">💡 课本例题</div>
+      <p>(a) 3<sup>2x</sup> = 3<sup>4</sup> ⇒ 2x = 4 ⇒ <b>x = 2</b></p>
+      <p>(b) 8<sup>x</sup> = 32 ⇒ 2<sup>3x</sup> = 2<sup>5</sup> ⇒ 3x = 5 ⇒ <b>x = 5/3</b></p>
+      <p>3<sup>2x</sup>·9<sup>x-1</sup> = 27 ⇒ 3<sup>4x-2</sup> = 3<sup>3</sup> ⇒ 4x − 2 = 3 ⇒ <b>x = 5/4</b></p>
+      <p>2<sup>x</sup> + 3(2<sup>x</sup>) − 32 = 0 ⇒ 2<sup>x</sup>(1+3) = 32 ⇒ 2<sup>x</sup> = 8 ⇒ <b>x = 3</b></p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🧮 指数方程式求解器</div>
+    <div class="eq-preview" id="c23_preview"></div>
+    <div class="calc-grid">
+      <div class="input-group"><label>左边底数 A（≥2 的整数）:</label><input type="number" id="c23_A" oninput="previewExp()" value="8"></div>
+      <div class="input-group"><label>p:</label><input type="number" id="c23_p" oninput="previewExp()" value="1"></div>
+      <div class="input-group"><label>q:</label><input type="number" id="c23_q" oninput="previewExp()" value="0"></div>
+      <div class="input-group"><label>右边底数 B（≥2 的整数）:</label><input type="number" id="c23_B" oninput="previewExp()" value="32"></div>
+      <div class="input-group"><label>r:</label><input type="number" id="c23_r" oninput="previewExp()" value="0"></div>
+      <div class="input-group"><label>s:</label><input type="number" id="c23_s" oninput="previewExp()" value="1"></div>
+      <button class="btn btn-primary" onclick="solveExp()">解方程</button>
+    </div>
+    <div class="calc-steps" id="c23_result">默认是课本例题 8<sup>x</sup> = 32，点击“解方程”查看化同底过程...</div>
+  </div>
+  <div class="quiz-slot" data-ch="2_3" data-label="2.3"></div>
+</div>
+
+<div id="tab2_4" class="tab-content">
+  <div class="card">
+    <div class="card-title">📖 2.4 知识精讲与课本例题</div>
+    <div class="formula-box">
+      • 定义：aⁿ = x ⇔ log<sub>a</sub> x = n (a > 0，a ≠ 1，x > 0)；a 叫底数，x 叫真数<br>
+      • 常用对数：以 10 为底，log<sub>10</sub> x 写成 lg x<br>
+      • log<sub>a</sub> a = 1，log<sub>a</sub> 1 = 0<br>
+      • 积：log<sub>a</sub>(xy) = log<sub>a</sub> x + log<sub>a</sub> y<br>
+      • 商：log<sub>a</sub>(x/y) = log<sub>a</sub> x − log<sub>a</sub> y<br>
+      • 幂：log<sub>a</sub> xᵐ = m·log<sub>a</sub> x
+    </div>
+    <div class="warn-box">⚠️ 零与负数的对数没有意义。log₃32 ÷ log₃16 ≠ log₃(32/16)，它等于 5/4（先把 32=2⁵、16=2⁴ 拆开）。</div>
+    <div class="example-box">
+      <div class="example-title">💡 课本例题（已知 lg2 = 0.3010，lg3 = 0.4771）</div>
+      <p>lg 6 = lg 2 + lg 3 = <b>0.7781</b>　lg 30 = lg 3 + lg 10 = <b>1.4771</b></p>
+      <p>lg (2/3) = lg 2 − lg 3 = <b>−0.1761</b>　lg 0.5 = lg 1 − lg 2 = <b>−0.3010</b></p>
+      <p>log<sub>81</sub> 9：设 x = log<sub>81</sub> 9，则 81<sup>x</sup> = 9，9<sup>2x</sup> = 9，x = <b>1/2</b>。</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🔁 指数式 ⇄ 对数式互换器</div>
+    <div class="calc-grid">
+      <div class="input-group"><label>底数 a (a > 0 且 a ≠ 1):</label><input type="number" id="c24_a" value="4" step="any"></div>
+      <div class="input-group"><label>真数 x (x > 0):</label><input type="number" id="c24_x" value="8" step="any"></div>
+      <button class="btn btn-primary" onclick="calcLogDef()">求 log<sub>a</sub> x</button>
+    </div>
+    <div class="calc-steps" id="c24_result">课本例题 log<sub>4</sub> 8 = 3/2，点击按钮查看互换...</div>
+  </div>
+  <div class="card">
+    <div class="card-title">🧮 对数运算法则验证器</div>
+    <div class="calc-grid">
+      <div class="input-group"><label>底数 a (a > 0 且 a ≠ 1):</label><input type="number" id="c25_a" value="2" step="any"></div>
+      <div class="input-group"><label>运算:</label><select id="c25_op"><option value="mul">积 log(M·N)</option><option value="div">商 log(M/N)</option><option value="pow">幂 log(Mᴺ)</option></select></div>
+      <div class="input-group"><label>M (M > 0):</label><input type="number" id="c25_m" value="12" step="any"></div>
+      <div class="input-group"><label>N（积商 N>0；幂时为指数）:</label><input type="number" id="c25_n" value="3" step="any"></div>
+      <button class="btn btn-primary" onclick="calcLogLaw()">验证</button>
+    </div>
+    <div class="calc-steps" id="c25_result">选择运算后点击“验证”...</div>
+  </div>
+  <div class="quiz-slot" data-ch="2_4" data-label="2.4"></div>
+</div>
+
+<div id="tabFinal" class="tab-content">
+  <div class="card">
+    <div class="card-title">🏆 全章综合总复习测试</div>
+    <p>10 道综合选择题 + 5 道综合作答题，题目随机生成且不重复。作答题可填整数、分数（如 5/4）或小数。</p>
+    <button class="btn btn-primary" style="margin-top:12px" onclick="initFinal()">🔄 重新生成一套新测试题</button>
+  </div>
+  <div class="card"><div class="card-title">一、综合选择题（共10题）</div><div id="quiz_final_mcq"></div></div>
+  <div class="card">
+    <div class="card-title">二、综合作答题（共5题）</div>
+    <div id="quiz_final_subjective"></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:20px;padding:12px;font-size:1.1rem" onclick="submitFinal()">提交整套总复习试卷</button>
+  </div>
+  <div id="final_score_box" class="card" style="display:none"><div class="card-title">📊 总复习测试成绩报告</div><div id="final_score_content"></div></div>
+</div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const R = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+const pick = a => a[R(0, a.length - 1)];
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = R(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const g = (a, b) => b ? g(b, a % b) : Math.abs(a);
+const frac = (n, d) => { if (d < 0) { n = -n; d = -d; } const k = g(n, d) || 1; n /= k; d /= k; return d === 1 ? String(n) : n + '/' + d; };
+const fmt = v => Math.abs(v - Math.round(v)) < 1e-9 ? String(Math.round(v)) : v.toFixed(4);
+const sp = (b, e) => `${b}<sup>${e}</sup>`;
+const OP = '(?:\\([^()]*\\)|[A-Za-z0-9.\\u00b2\\u00b3\\u00b9\\u2070-\\u209f\\u1d50]+)(?:<sup>[^<]*</sup>)?';
+const FXR = new RegExp('(' + OP + ')\\s*/\\s*(' + OP + ')', 'g');
+function FX(s) { return s.replace(FXR, (m, a, b) => `<span class="frac"><span class="n">${FX(a)}</span><span class="d">${FX(b)}</span></span>`); }
+const lg = (b, v) => `log<sub>${b}</sub>${v}`;
+let currentScale = 1.0;
+
+function toggleTheme() {
+  const h = document.documentElement, dark = h.getAttribute('data-theme') === 'light';
+  h.setAttribute('data-theme', dark ? 'dark' : 'light');
+  $('themeToggleBtn').innerHTML = dark ? '☀️ 浅色' : '🌙 深色';
+}
+function adjustFontSize(d) { currentScale = Math.min(Math.max(0.8, currentScale + d), 1.4); document.documentElement.style.setProperty('--content-scale', currentScale); }
+function resetFontSize() { currentScale = 1.0; document.documentElement.style.setProperty('--content-scale', 1); }
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active'); $(id).classList.add('active');
+}
+
+/* ---------- 计算器 ---------- */
+function calcInt() {
+  const a = parseFloat($('c21_a').value), n = parseInt($('c21_n').value), r = $('c21_result');
+  if (isNaN(a) || isNaN(n)) { r.textContent = '请输入有效的数字！'; return; }
+  if (a === 0 && n <= 0) { r.textContent = '错误：零的零次方及零的负整数指数幂没有意义！'; return; }
+  let s = `计算式： (${a})<sup>${n}</sup><br><br>`;
+  if (n === 0) s += `依据定义 a<sup>0</sup> = 1 (a≠0)<br>结果：<b>1</b>`;
+  else if (n > 0) s += `${n} 个 (${a}) 相乘<br>结果：<b>${fmt(a ** n)}</b>`;
+  else {
+    const d = a ** (-n);
+    s += `依据 a<sup>-n</sup> = 1 / a<sup>n</sup><br>第 1 步：= 1 / (${a})<sup>${-n}</sup><br>第 2 步：= 1 / ${fmt(d)}<br>结果：<b>${Number.isInteger(a) ? frac(Math.sign(d), Math.abs(d)) : fmt(1 / d)}</b>`;
+  }
+  r.innerHTML = FX(s);
+}
+function factor(n) { const f = {}; for (let p = 2; p * p <= n; p++) while (n % p === 0) { f[p] = (f[p] || 0) + 1; n /= p; } if (n > 1) f[n] = (f[n] || 0) + 1; return f; }
+function calcFrac() {
+  const a = parseFloat($('c22_a').value), m = parseInt($('c22_m').value), n = parseInt($('c22_n').value), r = $('c22_result');
+  if (isNaN(a) || isNaN(m) || isNaN(n)) { r.textContent = '请输入有效的数字！'; return; }
+  if (a < 0 || (a === 0 && m < 0)) { r.textContent = '错误：底数 a 必须大于 0（0 的负分数指数幂没有意义）！'; return; }
+  if (n <= 0) { r.textContent = '错误：分母 n 必须为正整数！'; return; }
+  const k0 = g(m, n) || 1, mm = m / k0, nn = n / k0;
+  let s = `计算式： ${sp(a, m + '/' + n)}<br><br>`, step = 1;
+  if (k0 > 1) s += `第 ${step++} 步：约分指数 ${m}/${n} = ${mm}/${nn}<br>`;
+  let base = a, k = 1;
+  if (Number.isInteger(a) && a > 1) {
+    const f = factor(a), ex = Object.values(f); k = ex.reduce(g);
+    base = Object.keys(f).reduce((t, p) => t * Math.pow(p, f[p] / k), 1);
+    s += k > 1 ? `第 ${step++} 步：把底数化为幂 ${a} = ${sp(base, k)}<br>` : `第 ${step++} 步：${a} 不能再写成更小整数的幂，只能用根式<br>`;
+  }
+  s += `第 ${step++} 步：写成根式形态 = (<span class="rt"><sup>${nn}</sup><span class="rs"></span><span class="rc">${a}</span></span>)<sup>${mm}</sup><br>`;
+  if (k > 1) s += `第 ${step++} 步：(${sp(base, k)})<sup>${mm}/${nn}</sup> = ${sp(base, frac(k * mm, nn))}<br>`;
+  if (m < 0) s += `（负指数：取倒数）<br>`;
+  s += `<br>最终结果：<b>${fmt(Math.pow(a, m / n))}</b>${Number.isInteger(Math.pow(a, m / n)) ? '' : '（近似值）'}`;
+  r.innerHTML = FX(s);
+}
+const L = (x, y) => `${x === 0 ? '' : (x === 1 ? '' : x === -1 ? '-' : x)}${x === 0 ? '' : 'x'}${y > 0 ? (x === 0 ? y : '+' + y) : y < 0 ? y : (x === 0 ? '0' : '')}`;
+function previewExp() {
+  const v = ['A', 'p', 'q', 'B', 'r', 's'].map(k => parseInt($('c23_' + k).value));
+  $('c23_preview').innerHTML = v.some(isNaN) ? '请输入整数' : `${sp(v[0], L(v[1], v[2]))} = ${sp(v[3], L(v[4], v[5]))}`;
+}
+function solveExp() {
+  const v = ['A', 'p', 'q', 'B', 'r', 's'].map(k => parseInt($('c23_' + k).value)), r = $('c23_result');
+  const [A, p, q, B, rr, s] = v;
+  if (v.some(isNaN)) { r.textContent = '请输入有效的整数！'; return; }
+  if (A < 2 || B < 2) { r.textContent = '错误：本节只处理底数为 ≥2 的整数的方程式！'; return; }
+  let c = 0, i = 0, j = 0;
+  for (let t = 2; t <= Math.min(A, B) && !c; t++) {
+    const x = Math.round(Math.log(A) / Math.log(t)), y = Math.round(Math.log(B) / Math.log(t));
+    if (Math.pow(t, x) === A && Math.pow(t, y) === B) { c = t; i = x; j = y; }
+  }
+  if (!c) { r.textContent = `${A} 与 ${B} 找不到共同的整数底数，本课只做可化成同底的方程式。`; return; }
+  const st = (tag, html, cls = '') => `<div class="fl-step ${cls}"><div class="fl-tag">${tag}</div><div class="fl-body">${html}</div></div>`;
+  const ar = t => `<div class="fl-arrow">↓<em>${t}</em></div>`;
+  const D = i * p - j * rr, N = j * s - i * q;
+  let h = st('① 原方程', `${sp(A, L(p, q))} = ${sp(B, L(rr, s))}`) + ar('把两边的底数化成同一个底数') +
+    `<div class="fl-row">${st('左边底数', `${A} = ${sp(c, i)}`)}${st('右边底数', `${B} = ${sp(c, j)}`)}</div>` + ar('代入原方程') +
+    st('② 同底', `${sp(c, `${i}(${L(p, q)})`)} = ${sp(c, `${j}(${L(rr, s)})`)}`) + ar('底数相同，指数相等') +
+    st('③ 指数相等', `${L(i * p, i * q)} = ${L(j * rr, j * s)}`) + ar('移项整理') +
+    st('④ 一次方程', `(${D})x = ${N}`) + ar('求解');
+  if (D === 0) h += st('结果', N === 0 ? '恒成立（x 为任何数）' : '无解', 'fl-ans');
+  else { const x = N / D; h += st('✅ 结果', `x = ${frac(N, D)}`, 'fl-ans') + ar('代入检验') + st('检验', `左边 = ${fmt(Math.pow(A, p * x + q))}，右边 = ${fmt(Math.pow(B, rr * x + s))}`); }
+  r.innerHTML = FX(`<div class="fl">${h}</div>`);
+}
+function calcLogDef() {
+  const a = parseFloat($('c24_a').value), x = parseFloat($('c24_x').value), r = $('c24_result');
+  if (isNaN(a) || isNaN(x)) { r.textContent = '请输入有效的数字！'; return; }
+  if (a <= 0 || a === 1) { r.textContent = '错误：底数 a 必须大于 0 且不等于 1！'; return; }
+  if (x <= 0) { r.textContent = '错误：零与负数的对数没有意义，真数 x 必须大于 0！'; return; }
+  const n = Math.log(x) / Math.log(a); let ns = n.toFixed(4) + '（近似值）';
+  for (let d = 1; d <= 6; d++) if (Math.abs(n * d - Math.round(n * d)) < 1e-9) { ns = frac(Math.round(n * d), d); break; }
+  r.innerHTML = FX(`${sp(a, ns)} = ${x}<br>⇕<br>${lg(a, x)} = <b>${ns}</b>`);
+}
+function calcLogLaw() {
+  const a = parseFloat($('c25_a').value), M = parseFloat($('c25_m').value), N = parseFloat($('c25_n').value), op = $('c25_op').value, r = $('c25_result');
+  if ([a, M, N].some(isNaN)) { r.textContent = '请输入有效的数字！'; return; }
+  if (a <= 0 || a === 1) { r.textContent = '错误：底数 a 必须大于 0 且不等于 1！'; return; }
+  if (M <= 0 || (op !== 'pow' && N <= 0)) { r.textContent = '错误：零与负数的对数没有意义，真数必须大于 0！'; return; }
+  const l = v => Math.log(v) / Math.log(a), A = lg(a, '');
+  let t;
+  if (op === 'mul') t = `${lg(a, `(${M}×${N})`)} = ${fmt(l(M * N))}<br>${lg(a, M)} + ${lg(a, N)} = ${fmt(l(M))} + ${fmt(l(N))} = ${fmt(l(M) + l(N))}`;
+  else if (op === 'div') t = `${lg(a, `(${M}÷${N})`)} = ${fmt(l(M / N))}<br>${lg(a, M)} − ${lg(a, N)} = ${fmt(l(M))} − ${fmt(l(N))} = ${fmt(l(M) - l(N))}`;
+  else t = `${lg(a, `(${M}<sup>${N}</sup>)`)} = ${fmt(l(Math.pow(M, N)))}<br>${N} × ${lg(a, M)} = ${N} × ${fmt(l(M))} = ${fmt(N * l(M))}`;
+  r.innerHTML = FX(t) + `<br><br>两边相等 ✅ 法则成立`;
+}
+
+/* ---------- 题库 ---------- */
+function mkQ(q, c, ws) {
+  const seen = new Set([c.t]), o = [{ text: FX(c.t), correct: true, exp: FX('正确！' + c.e) }];
+  for (const w of ws) { if (o.length >= 4) break; if (seen.has(w.t)) continue; seen.add(w.t); o.push({ text: FX(w.t), correct: false, exp: FX('误区！' + w.e) }); }
+  return { q: FX(q), options: o };
+}
+const PAIRS = [[2, 3], [3, 4], [2, 5], [3, 5], [4, 5]];
+const genQ1 = () => pick([
+  () => { const b = R(2, 5), p = R(2, 3), P = b ** p;
+    return mkQ(`计算 ${sp(b, '-' + p)} 的结果是（ ）`, { t: `1/${P}`, e: `a<sup>-n</sup> = 1/a<sup>n</sup>，所以 ${sp(b, '-' + p)} = 1/${P}。` },
+      [{ t: `-${P}`, e: '负指数表示倒数，不表示负数。' }, { t: `${P}`, e: '忽略了负指数。' }, { t: `-1/${P}`, e: '负指数不会让结果变负。' }, { t: `1/${b * p}`, e: '指数不是与底数相乘。' }]); },
+  () => { const k = R(2, 99);
+    return mkQ(`计算 (−${k})<sup>0</sup> 的结果是（ ）`, { t: '1', e: '任何非零数的零次方都是 1。' },
+      [{ t: '0', e: '零次方不是 0。' }, { t: `-${k}`, e: '零指数幂等于 1，与底数无关。' }, { t: `${k}`, e: '零指数幂等于 1。' }]); },
+  () => { const [a, b] = pick(PAIRS), n = R(1, 3), c = frac(b ** n, a ** n), w = frac(a ** n, b ** n);
+    return mkQ(`计算 (${a}/${b})<sup>-${n}</sup> 的结果是（ ）`, { t: c, e: `(a/b)<sup>-n</sup> = (b/a)<sup>n</sup>，底数取倒数。` },
+      [{ t: w, e: '没有取倒数，或把指数当成了正数。' }, { t: '-' + c, e: '负指数不表示负数。' }, { t: '-' + w, e: '负指数不表示负数。' }, { t: frac(b * n, a * n), e: '指数不能与底数相乘。' }]); },
+  () => { const n = R(3, 6), m = R(1, n - 1);
+    return mkQ(`化简 a<sup>${m}</sup> ÷ a<sup>${n}</sup>（a≠0）`, { t: `a<sup>${m - n}</sup>`, e: `a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup> = a<sup>${m - n}</sup>。` },
+      [{ t: `a<sup>${n - m}</sup>`, e: '被除数的指数在前，应是 m − n。' }, { t: `a<sup>${m + n}</sup>`, e: '除法是指数相减。' }, { t: `a<sup>${m * n}</sup>`, e: '除法是指数相减。' }, { t: 'a<sup>0</sup>', e: '指数不相等，不是零指数。' }]); }
+])();
+const genQ2 = () => pick([
+  () => { const r = R(2, 5), n = R(2, 3), m = R(1, 3), N = r ** n;
+    return mkQ(`计算 ${sp(N, m + '/' + n)} 的结果是（ ）`, { t: `${r ** m}`, e: `${N} = ${sp(r, n)}，所以 ${sp(N, m + '/' + n)} = ${sp(r, m)} = ${r ** m}。` },
+      [{ t: `${r * m}`, e: '分数指数是乘方与开方，不是乘法。' }, { t: `${N * m}`, e: '分数指数不是乘法。' }, { t: `${N ** m}`, e: '忘了开 n 次方。' }, { t: `${r ** n}`, e: '指数应是 m/n 而不是 n。' }, { t: `${N + m}`, e: '分数指数不是加法。' }, { t: `${r * n}`, e: '开 n 次方不是乘以 n。' }, { t: `${r + n}`, e: '开 n 次方不是加 n。' }, { t: `${N - 1}`, e: '分数指数不是减法。' }, { t: `${N * n}`, e: '分数指数不是乘法。' }]); },
+  () => { const r = R(2, 4), n = R(2, 3), m = R(1, 3), N = r ** n, P = r ** m;
+    return mkQ(`计算 ${sp(N, '-' + m + '/' + n)} 的结果是（ ）`, { t: `1/${P}`, e: `a<sup>-m/n</sup> = 1/a<sup>m/n</sup> = 1/${P}。` },
+      [{ t: `-${P}`, e: '负指数表示倒数。' }, { t: `${P}`, e: '忽略了负号。' }, { t: `1/${r * m}`, e: '分数指数不是乘法。' }, { t: `1/${N * m}`, e: '分数指数不是乘法。' }, { t: `-1/${P}`, e: '负指数不使结果变负。' }]); },
+  () => { const [a, b] = pick(PAIRS);
+    return mkQ(`计算 (${a * a}/${b * b})<sup>-1/2</sup> 的结果是（ ）`, { t: frac(b, a), e: `(${a * a}/${b * b})<sup>1/2</sup> = ${a}/${b}，再取倒数得 ${frac(b, a)}。` },
+      [{ t: frac(a, b), e: '忘了负指数要取倒数。' }, { t: '-' + frac(b, a), e: '负指数不表示负数。' }, { t: frac(b * b, a * a), e: '1/2 次方是开平方。' }, { t: '-' + frac(a, b), e: '负指数不表示负数。' }]); }
+])();
+const genQ3 = () => pick([
+  () => { const b = R(2, 5), p = R(2, 4), q = R(2, 8), x = frac(q, p);
+    return mkQ(`解方程 ${b}<sup>${p}x</sup> = ${b}<sup>${q}</sup>，x =（ ）`, { t: x, e: `底数相同，指数相等：${p}x = ${q}，x = ${x}。` },
+      [{ t: frac(p, q), e: '解反了：应是 x = q ÷ p。' }, { t: `${p * q}`, e: '方程是 px = q，应相除。' }, { t: `${q - p}`, e: '方程是 px = q，不是相减。' }, { t: `${q + p}`, e: '方程是 px = q，不是相加。' }, { t: '-' + x, e: '符号错误。' }]); },
+  () => { const c = R(2, 3); let i = R(1, 4), j = R(1, 4); while (i === j) j = R(1, 4);
+    const A = c ** i, B = c ** j, x = frac(j, i);
+    return mkQ(`解方程 ${sp(A, 'x')} = ${B}，x =（ ）`, { t: x, e: `${A}=${sp(c, i)}，${B}=${sp(c, j)}，所以 ${i}x = ${j}，x = ${x}。` },
+      [{ t: frac(i, j), e: '解反了。' }, { t: `${B - A}`, e: '要先化同底再比较指数。' }, { t: `${j - i}`, e: '要先化同底再比较指数。' }, { t: frac(B, A), e: '不能直接把两边底数相除。' }, { t: '-' + x, e: '符号错误。' }]); },
+  () => { const b = R(2, 5), p = R(2, 3), h = R(1, 5), x = frac(h, p);
+    return mkQ(`解方程 ${b}<sup>${p}x−${h}</sup> = 1，x =（ ）`, { t: x, e: `1 = ${b}<sup>0</sup>，所以 ${p}x − ${h} = 0，x = ${x}。` },
+      [{ t: '0', e: '1 = b<sup>0</sup>，指数应为 0，而不是 x 为 0。' }, { t: `${h}`, e: '还要除以 x 的系数。' }, { t: frac(-h, p), e: '移项后符号错误。' }, { t: frac(p, h), e: '解反了。' }, { t: `${p * h}`, e: '应相除。' }]); }
+])();
+const genQ4 = () => pick([
+  () => { const b = R(2, 5), n = R(2, 4), N = b ** n;
+    return mkQ(`将 ${sp(b, n)} = ${N} 写成对数式，正确的是（ ）`, { t: `${lg(b, N)} = ${n}`, e: `a<sup>n</sup>=x ⇔ log<sub>a</sub>x = n：底数 ${b}，真数 ${N}，对数 ${n}。` },
+      [{ t: `${lg(N, b)} = ${n}`, e: '底数和真数放反了。' }, { t: `${lg(n, N)} = ${b}`, e: '指数才是对数的值，底数仍是底数。' }, { t: `${lg(b, n)} = ${N}`, e: '真数是幂的值，对数是指数。' }, { t: `${lg(b, N)} = ${n + 1}`, e: '对数就是指数本身。' }]); },
+  () => { const b = R(2, 3), n = R(2, 4), N = b ** n;
+    return mkQ(`求 ${lg(b, `(1/${N})`)} 的值（ ）`, { t: `-${n}`, e: `1/${N} = ${sp(b, '-' + n)}，所以对数是 −${n}。` },
+      [{ t: `${n}`, e: '1/N 是负指数，结果为负。' }, { t: `${N}`, e: '对数是指数，不是真数。' }, { t: `-${N}`, e: '对数是指数，不是真数。' }, { t: `1/${n}`, e: '对数不是倒数。' }]); },
+  () => { const L2 = 0.3010, L3 = 0.4771, ans = pick([['lg 6', L2 + L3], ['lg (3/2)', L3 - L2]]);
+    const all = [L2 + L3, L2 * L3, L3 - L2, L3 / L2].map(v => v.toFixed(4)), c = ans[1].toFixed(4);
+    return mkQ(`已知 lg2 = 0.3010，lg3 = 0.4771，则 ${ans[0]} =（ ）`, { t: c, e: ans[0] === 'lg 6' ? 'lg6 = lg2 + lg3（积 → 对数相加）。' : 'lg(3/2) = lg3 − lg2（商 → 对数相减）。' },
+      all.map(t => ({ t, e: '积变加、商变减，不要把对数相乘或相除。' }))); },
+  () => { const q = R(2, 4), p = R(q + 1, 7), x = frac(p, q);
+    return mkQ(`化简 (log<sub>3</sub>${2 ** p}) ÷ (log<sub>3</sub>${2 ** q})（ ）`, { t: x, e: `${2 ** p}=2<sup>${p}</sup>，${2 ** q}=2<sup>${q}</sup>，原式 = ${p}log<sub>3</sub>2 ÷ ${q}log<sub>3</sub>2 = ${x}。` },
+      [{ t: `log<sub>3</sub>${2 ** (p - q)}`, e: '两个对数相除，不等于真数相除的对数。' }, { t: `${2 ** (p - q)}`, e: '要先把真数拆成 2 的幂。' }, { t: `${p - q}`, e: '对数相除不是指数相减。' }, { t: frac(q, p), e: '分子分母颠倒了。' }]); }
+])();
+const GEN = { '2_1': genQ1, '2_2': genQ2, '2_3': genQ3, '2_4': genQ4 };
+
+const mkS = (q, ans, exp) => ({ q: FX(q), ans, exp: FX('解析：' + exp) });
+const SUB = {
+  '2_1': [
+    () => { const b = R(2, 5), p = R(1, 3), k = R(1, 3); return mkS(`计算：${sp(b, '-' + p)} × ${sp(b, p + k)} =`, b ** k, `同底相乘指数相加：${sp(b, `-${p}+${p + k}`)} = ${sp(b, k)} = ${b ** k}。`); },
+    () => { const [a, b] = pick(PAIRS), n = R(1, 2); return mkS(`计算：(${a}/${b})<sup>-${n}</sup> =`, b ** n / a ** n, `取倒数：(${b}/${a})<sup>${n}</sup> = ${frac(b ** n, a ** n)}。`); },
+    () => { const k = R(2, 99), b = R(2, 9); return mkS(`计算：${k}<sup>0</sup> + ${b}<sup>-1</sup> =`, 1 + 1 / b, `${k}<sup>0</sup>=1，${b}<sup>-1</sup>=1/${b}，和为 ${frac(b + 1, b)}。`); }],
+  '2_2': [
+    () => { const r = R(2, 5), n = R(2, 3), m = R(1, 3); return mkS(`计算：${sp(r ** n, m + '/' + n)} =`, r ** m, `${r ** n}=${sp(r, n)}，所以结果是 ${sp(r, m)} = ${r ** m}。`); },
+    () => { const [a, b] = pick(PAIRS); return mkS(`计算：(${a * a}/${b * b})<sup>-1/2</sup> =`, b / a, `开平方得 ${a}/${b}，再取倒数得 ${frac(b, a)}。`); },
+    () => { const r = R(2, 4), n = R(2, 3), m = R(1, 2); return mkS(`计算：${sp(r ** n, '-' + m + '/' + n)} =`, 1 / r ** m, `${sp(r, '-' + m)} = 1/${r ** m}。`); }],
+  '2_3': [
+    () => { const b = R(2, 5), p = R(2, 4), q = R(2, 8); return mkS(`解方程：${b}<sup>${p}x</sup> = ${b}<sup>${q}</sup>，x =`, q / p, `${p}x = ${q}，x = ${frac(q, p)}。`); },
+    () => { const c = R(2, 3); let i = R(1, 4), j = R(1, 4); while (i === j) j = R(1, 4); return mkS(`解方程：${sp(c ** i, 'x')} = ${c ** j}，x =`, j / i, `化同底：${i}x = ${j}，x = ${frac(j, i)}。`); },
+    () => { const b = R(2, 5), p = R(2, 3), h = R(1, 5); return mkS(`解方程：${b}<sup>${p}x−${h}</sup> = 1，x =`, h / p, `1 = ${b}<sup>0</sup>，${p}x − ${h} = 0，x = ${frac(h, p)}。`); }],
+  '2_4': [
+    () => { const b = R(2, 4), n = R(2, 4); return mkS(`求值：${lg(b, b ** n)} =`, n, `因为 ${sp(b, n)} = ${b ** n}。`); },
+    () => { const k = R(1, 4); return mkS(`求值：lg ${(10 ** -k).toFixed(k)} =`, -k, `${(10 ** -k).toFixed(k)} = 10<sup>-${k}</sup>，所以是 −${k}。`); },
+    () => { const c = pick([[2, 3], [2, 5], [3, 4], [3, 5]]), i = c[0], j = c[1]; return mkS(`求值：${lg(2 ** i, 2 ** j)} =`, j / i, `${2 ** i}=2<sup>${i}</sup>，${2 ** j}=2<sup>${j}</sup>，设值为 x，则 2<sup>${i}x</sup>=2<sup>${j}</sup>，x=${frac(j, i)}。`); }]
+};
+function genSubs(ch, n) { const idx = shuffle([0, 1, 2]).slice(0, n); return idx.map(i => SUB[ch][i]()); }
+function parseAns(s) {
+  s = s.replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 65248)).replace(/[－−–]/g, '-').replace(/[／÷]/g, '/').replace(/[．。]/g, '.').replace(/\s/g, '');
+  const m = s.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
+  if (m) return +m[1] / +m[2];
+  return /^-?\d+(\.\d+)?$/.test(s) ? +s : NaN;
+}
+const dispAns = v => { for (let d = 1; d <= 100; d++) if (Math.abs(v * d - Math.round(v * d)) < 1e-9) return frac(Math.round(v * d), d); return fmt(v); };
+function judgeSub(inputEl, fbEl, s) {
+  const v = parseAns(inputEl.value), ok = !isNaN(v) && Math.abs(v - s.ans) < 1e-6;
+  fbEl.className = 'feedback-box show ' + (ok ? 'correct' : 'incorrect');
+  fbEl.innerHTML = FX(ok ? `✅ 回答正确！${s.exp}` : `❌ 回答错误！正确答案：${dispAns(s.ans)}。`) + (ok ? '' : s.exp);
+  return ok;
+}
+function uniq(genFn, n) {
+  const out = [], seen = new Set();
+  for (let t = 0; out.length < n && t < 100; t++) { const q = genFn(); if (seen.has(q.q)) continue; seen.add(q.q); q.options = shuffle(q.options); out.push(q); }
+  return out;
+}
+const ST = {}; ['2_1', '2_2', '2_3', '2_4'].forEach(k => ST[k] = { mcq: [], sub: [] });
+let FIN = { mcq: [], sub: [] }, PASSED = {};
+try { PASSED = JSON.parse(localStorage.getItem('explog_passed') || '{}'); } catch (e) { PASSED = {}; }
+const listOf = k => k === 'final' ? FIN.mcq : ST[k].mcq;
+
+function mcqHTML(k, list) {
+  return list.map((q, idx) => `<div class="quiz-card" id="mcq_${k}_${idx}"><div class="quiz-question">${idx + 1}. ${q.q}</div><div class="options-grid">${q.options.map((o, i) => `<button class="option-btn" onclick="selectOption('${k}',${idx},${i})">${String.fromCharCode(65 + i)}. ${o.text}</button>`).join('')}</div><div class="feedback-box" id="feedback_${k}_${idx}"></div></div>`).join('');
+}
+function subHTML(k, list) {
+  return list.map((s, idx) => `<div class="quiz-card"><div class="quiz-question">${idx + 1}. ${s.q}</div><input type="text" class="text-input-answer" id="sub_input_${k}_${idx}" placeholder="整数、分数（如 5/4）或小数均可"><div class="feedback-box" id="sub_feedback_${k}_${idx}"></div></div>`).join('');
+}
+function selectOption(k, qi, oi) {
+  $(`mcq_${k}_${qi}`).querySelectorAll('.option-btn').forEach((b, i) => b.classList.toggle('selected', i === oi));
+  listOf(k)[qi].userSelected = oi;
+}
+function gradeMCQ(k) {
+  let ok = 0;
+  listOf(k).forEach((q, idx) => {
+    const fb = $(`feedback_${k}_${idx}`);
+    if (q.userSelected === undefined) { fb.className = 'feedback-box show incorrect'; fb.innerText = '⚠️ 请先选择一个选项！'; return; }
+    const sel = q.options[q.userSelected];
+    $(`mcq_${k}_${idx}`).querySelectorAll('.option-btn').forEach((b, i) => { b.disabled = true; if (q.options[i].correct) b.classList.add('correct'); else if (i === q.userSelected) b.classList.add('incorrect'); });
+    fb.className = 'feedback-box show ' + (sel.correct ? 'correct' : 'incorrect');
+    fb.innerHTML = (sel.correct ? '✅ 回答正确！' : '❌ 回答错误。') + sel.exp;
+    if (sel.correct) ok++;
+  });
+  return ok;
+}
+function applyLock(k) { const p = !!PASSED[k]; $(`quiz_${k}_lock`).style.display = p ? 'none' : 'block'; $(`quiz_${k}_sub_content`).style.display = p ? 'block' : 'none'; }
+function submitMCQ(k) {
+  if (gradeMCQ(k) >= 3) { PASSED[k] = true; try { localStorage.setItem('explog_passed', JSON.stringify(PASSED)); } catch (e) { } applyLock(k); }
+}
+function submitSub(k) { ST[k].sub.forEach((s, i) => judgeSub($(`sub_input_${k}_${i}`), $(`sub_feedback_${k}_${i}`), s)); }
+function newQuiz(k) {
+  ST[k].mcq = uniq(GEN[k], 5); ST[k].sub = genSubs(k, 2);
+  $(`quiz_${k}_mcq`).innerHTML = mcqHTML(k, ST[k].mcq);
+  $(`quiz_${k}_subjective`).innerHTML = subHTML(k, ST[k].sub);
+  applyLock(k);
+}
+function initFinal() {
+  const gens = [genQ1, genQ2, genQ3, genQ4], seen = new Set(), mcq = [];
+  for (let t = 0; mcq.length < 10 && t < 200; t++) { const q = gens[mcq.length % 4](); if (seen.has(q.q)) continue; seen.add(q.q); q.options = shuffle(q.options); mcq.push(q); }
+  FIN.mcq = mcq;
+  FIN.sub = [];
+  const used = new Set();
+  ['2_1', '2_2', '2_3', '2_4', '2_3'].forEach(ch => { for (let t = 0; t < 30; t++) { const s = pick(SUB[ch])(); if (!used.has(s.q)) { used.add(s.q); FIN.sub.push(s); break; } } });
+  $('quiz_final_mcq').innerHTML = mcqHTML('final', FIN.mcq);
+  $('quiz_final_subjective').innerHTML = subHTML('final', FIN.sub);
+  $('final_score_box').style.display = 'none';
+}
+function submitFinal() {
+  const m = gradeMCQ('final');
+  let s = 0; FIN.sub.forEach((q, i) => { if (judgeSub($(`sub_input_final_${i}`), $(`sub_feedback_final_${i}`), q)) s++; });
+  const total = m * 7 + s * 6;
+  $('final_score_box').style.display = 'block';
+  $('final_score_content').innerHTML = `<p><b>选择题成绩：</b> 答对 ${m} / 10 题</p><p><b>作答题成绩：</b> 答对 ${s} / 5 题</p><p style="font-size:1.3rem;margin-top:10px;color:var(--accent-color)"><b>综合测评得分： ${total} / 100 分</b></p><p style="margin-top:6px">${total >= 80 ? '🎉 太棒了！你已经掌握了《指数与对数》本章核心！' : '💪 还需继续加油，可以回到各小节重新练习！'}</p>`;
+  $('final_score_box').scrollIntoView({ behavior: 'smooth' });
+}
+window.onload = function () {
+  previewExp();
+  document.querySelectorAll('.formula-box,.example-box,.warn-box,.calc-steps,.card > p').forEach(e => { e.innerHTML = FX(e.innerHTML); });
+  document.querySelectorAll('.quiz-slot').forEach(el => {
+    const k = el.dataset.ch, L = el.dataset.label;
+    el.innerHTML = `<div class="card"><div class="card-title"><span>✏️ ${L} 基础选择题检测（答对 3 题以上解锁作答题）</span><button class="btn" onclick="newQuiz('${k}')">🔄 刷新题目</button></div><div id="quiz_${k}_mcq"></div><button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="submitMCQ('${k}')">提交选择题答案</button></div><div class="card"><div class="card-title">📝 ${L} 进阶作答题</div><div class="lock-overlay" id="quiz_${k}_lock">🔒 请先在上方选择题中答对 <b>3 题或以上</b> 即可解锁本模块！</div><div id="quiz_${k}_sub_content" style="display:none"><div id="quiz_${k}_subjective"></div><button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="submitSub('${k}')">提交作答题</button></div></div>`;
+    newQuiz(k);
+  });
+  initFinal();
+};
+</script>
+</body>
+</html>
