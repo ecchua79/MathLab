@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- 初一下册 第9章 代数式 互动版 | 制作：蔡逸众 (ecchua79) | Chinese High School 华仁中学 -->
+<html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School">
+<title>第9章 代数式 · 互动版</title>
+<style>
+/* © 蔡逸众 ecchua79 Chinese High School */
+:root{--bg:#fafaf5;--fg:#222;--c:#fff;--ac:#a8740a;--bd:#d8d8cc;--ok:#2e7d32;--bad:#c62828;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-size:15px}
+[data-theme=dark]{--bg:#16181d;--fg:#e8e8e8;--c:#20242b;--ac:#e0b84c;--bd:#3a3f48;--ok:#66bb6a;--bad:#ef5350}
+html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+header{display:flex;gap:6px;align-items:center;padding:6px 10px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+header b{flex:1;color:var(--ac)}
+button,input{font:inherit;color:var(--fg);background:var(--c);border:1px solid var(--bd);border-radius:8px;padding:4px 10px}
+button{cursor:pointer}
+nav{display:flex;flex-wrap:wrap;gap:5px;padding:6px 10px}
+.p.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:720px;margin:0 auto;padding:4px 10px 20px}
+.n,.c{background:var(--c);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;margin:8px 0}
+.o{display:block;width:100%;text-align:left;margin:4px 0}
+.o.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 20%,var(--c))}
+.o.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 20%,var(--c))}
+.fb{margin-top:4px;font-size:.92em}.g{color:var(--ok)}.x{color:var(--bad)}
+.r{margin-top:10px}h2,h3{margin:8px 0 4px}h3{font-size:1em}
+footer{text-align:center;font-size:.8em;opacity:.75;padding:12px 10px;border-top:1px solid var(--bd);margin-top:10px;line-height:1.7}
+.ex{margin-top:4px;opacity:.9}.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.25}.fr>span{padding:0 3px}.fr>span:first-child{border-bottom:1px solid currentColor}.fi{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle}.fi>span{border-bottom:1px solid currentColor;padding-bottom:3px;margin-bottom:3px}.z{font-size:0;position:absolute}
+.wm{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;user-select:none}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='130'%3E%3Ctext x='115' y='70' text-anchor='middle' transform='rotate(-25 115 65)' font-size='14' font-family='sans-serif' fill='%23888' fill-opacity='.2'%3E蔡逸众 · ecchua79 · 华仁中学%3C/text%3E%3C/svg%3E")}
+</style></head><body>
+<header><b>第9章 代数式</b><button onclick="th()">🌓</button><button onclick="setF(-1)">A−</button><button onclick="setF(1)">A+</button></header>
+<nav id="nav"></nav><main id="app"></main>
+<footer id=ft>峇株吧辖华仁中学出品<br>蔡逸众老师 制作 · ecchua79 · Chinese High School<br>© 2026 版权所有 · 未经许可请勿转载或商用</footer><span class=wm aria-hidden=true>© 蔡逸众 ecchua79 Chinese High School 华仁中学 初一下册第9章代数式互动版</span>
+<script>
+console.log('初一下册 第9章 代数式 互动版 | 蔡逸众 / ecchua79 / Chinese High School');
+const $=id=>document.getElementById(id),H=document.documentElement;
+const st=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},ld=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+let fs=+ld('fs')||15;H.style.fontSize=fs+'px';
+function setF(d){fs=Math.min(22,Math.max(12,fs+d));H.style.fontSize=fs+'px';st('fs',fs)}
+H.dataset.theme=ld('th')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+function th(){const d=H.dataset.theme=='dark'?'light':'dark';H.dataset.theme=d;st('th',d)}
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,nz=(a,b)=>{let n;do n=R(a,b);while(!n);return n},pick=a=>a[R(0,a.length-1)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc0=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\^2/g,'²').replace(/\^3/g,'³').replace(/-/g,'−');
+const sup=s=>{s=String(s);const st=[],isA=c=>c&&/[A-Za-z0-9.^\uE000-\uF8FF]/.test(c);let k;
+while((k=s.indexOf('/'))>=0){let a=k,b=k+1,n,d;
+if(s[k-1]==')'){let dep=0,p;for(p=k-1;p>=0;p--){if(s[p]==')')dep++;else if(s[p]=='('&&--dep==0)break}a=p;if(a>0&&isA(s[a-1])){while(a>0&&isA(s[a-1]))a--;n=s.slice(a,k)}else n=s.slice(a+1,k-1)}
+else{while(a>0&&isA(s[a-1]))a--;n=s.slice(a,k)}
+if(s[k+1]=='('){let dep=0;for(b=k+1;b<s.length;b++){if(s[b]=='(')dep++;else if(s[b]==')'&&--dep==0)break}d=s.slice(k+2,b);b++}else{while(b<s.length&&isA(s[b]))b++;d=s.slice(k+1,b)}
+if(!n||!d||a<0){s=s.slice(0,k)+'\uF8FF'+s.slice(k+1);continue}
+st.push([n,d]);s=s.slice(0,a)+String.fromCharCode(0xE000+st.length-1)+s.slice(b)}
+const rend=t=>esc0(t).replace(/[\uE000-\uF8FE]/g,c=>{const f=st[c.charCodeAt(0)-0xE000];return `<span class=fr><span>${rend(f[0])}</span><span>${rend(f[1])}</span></span>`}).replace(/\uF8FF/g,'/');return rend(s)};
+const ex=h=>h.split(/(<\/?[pb]>)/).map(x=>/^<\/?[pb]>$/.test(x)?x:sup(x)).join('');
+const ZW=[...'ecchua79'].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('\u200d');
+const fbk=(ok,o)=>(ok?'<span class=g>✔ 正确</span>':`<span class=x>✘ 正确答案：${sup(o.a)}</span>`)+(o.e?`<div class=ex>💡 ${sup(o.e)}</div>`:'');
+const P=(...t)=>{let s='';for(const[c,v]of t){if(!c)continue;const a=Math.abs(c),u=(a==1&&v)?'':a;s+=(c<0?'-':(s?'+':''))+u+v}return s||'0'};
+function ev(s,V){try{s=String(s).replace(/×/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/（/g,'(').replace(/）/g,')').replace(/\s/g,'');
+if(!s||/[^a-z0-9+\-*\/().^]/.test(s))return NaN;
+s=s.replace(/(\d|\))(?=[a-z(])/g,'$1*').replace(/([a-z])(?=[a-z\d(])/g,'$1*').replace(/(^|[(*\/+\-])-/g,'$1-1*').replace(/[a-z]/g,c=>'('+V[c]+')').replace(/\^/g,'**');
+return Function('return '+s)()}catch(e){return NaN}}
+const rv=()=>{const V={};for(const c of 'abcdefghijklmnopqrstuvwxyz')V[c]=(R(-40,50)||7)/10+0.03;return V};
+function eqv(s,t){if(s==t)return true;for(let r=0;r<4;r++){const V=rv(),x=ev(s,V),y=ev(t,V);if(!isFinite(x)||!isFinite(y)||Math.abs(x-y)>1e-6*Math.max(1,Math.abs(y)))return false}return true}
+/* ===== 题目生成器：返回 {q,a,w(误导选项),k:e表达式/n数值/m仅选择,e提示} ===== */
+const g1=()=>{const k=R(2,9),m=R(2,9),n=R(2,5);const[q,a,w,e]=pick([
+[`x 的 ${k} 倍加上 ${m}`,`${k}x+${m}`,[`${k}(x+${m})`,`x+${k*m}`,`${k}x-${m}`],'倍数只乘 x，再加上 '+m],
+[`比 y 的 ${k} 倍小 ${m} 的数`,`${k}y-${m}`,[`${k}(y-${m})`,`${m}-${k}y`,`${k}y+${m}`],'“比…小”＝减去，顺序不可颠倒'],
+['a 与 b 的和的平方','(a+b)^2',['a^2+b^2','a+b^2','2(a+b)'],'先求和，再平方'],
+['a 与 b 的平方和','a^2+b^2',['(a+b)^2','a+b^2','2ab'],'各自平方后再相加'],
+['p 减去 q 的平方','p-q^2',['(p-q)^2','p^2-q^2','q^2-p'],'平方只作用在 q 上'],
+['p 与 q 的差的平方','(p-q)^2',['p^2-q^2','p-q^2','p^2+q^2'],'先求差，再平方'],
+[`${n} 人平均分担车票 RM x 与点心 RM ${m}，每人付多少 RM`,`(x+${m})/${n}`,[`x+${m}/${n}`,`${n}(x+${m})`,`x/${n}+${m}`],'总数先相加，再除以人数'],
+['汽车每小时行 v 公里，行 s 公里需多少小时','s/v',['sv','v/s','s-v'],'时间＝路程÷速度'],
+['原价 RM x，加 6% 消费税后应付 RM','1.06x',['0.06x','x+6','1.6x'],'x + x×6%'],
+[`父亲年龄是儿子 x 岁的 ${k} 倍，${m} 年后父亲几岁`,`${k}x+${m}`,[`${k}(x+${m})`,`${k}x`,`${k}x-${m}`],'先求现在年龄，再加年数'],
+['a 只鸭子和 b 只兔子共有几只脚','2a+4b',['4a+2b','6ab','2(a+b)'],'鸭 2 脚、兔 4 脚'],
+['长方形的长 x 公尺、宽 y 公尺，求周长','2(x+y)',['x+y','2x+y','xy'],'周长＝2×(长＋宽)'],
+['小明比小华重 2 公斤，小华重 y 公斤，小明重几公斤','y+2',['y-2','2y','2-y'],'“重 2 公斤”＝加 2'],
+['白糖每公斤 RM x，买 5 公斤半需多少 RM','5.5x',['5.5+x','5x+0.5','55x'],'5 公斤半＝5.5 公斤'],
+['耕地 120 亩，每天耕 x 亩，需几天','120/x',['120x','x/120','120-x'],'天数＝总亩数÷每天亩数'],
+['耕地 120 亩，原计划每天耕 x 亩，若每天多耕 5 亩，可提前几天','120/x-120/(x+5)',['120/(x+5)','120/(x-5)','120/x+120/(x+5)'],'提前天数＝原天数−新天数'],
+['男生 a 人平均 85 分，女生 b 人平均 82 分，全班平均分','(85a+82b)/(a+b)',['(85+82)/2','85a+82b','(85+82)/(a+b)'],'总分÷总人数，不是两个平均数直接平均'],
+['合唱团共 m 人，男队员占 40%，女队员共几人','0.6m',['0.4m','m-40','60m'],'女队员占 1−40%＝60%'],
+['边长 a cm 的正方形，每边减少 1 cm 后，周长是多少 cm','4(a-1)',['4a-1','(a-1)^2','a-4'],'新边长 a−1，再乘 4']]);return{q,a,w,k:'e',e}};
+const g2=()=>{const a=nz(-6,-1),b=nz(-6,6),A=R(2,5),B=R(2,5),p=nz(-5,-2),q=nz(-5,5);return pick([
+()=>{const v=A*a-B*b;return{q:`若 a=${a}，b=${b}，求 ${A}a-${B}b 的值`,a:v,w:[A*a+B*b,-v,-A*a-B*b,A*a-B],k:'n',e:`代入：${A}×(${a}) − ${B}×(${b}) = ${A*a} − (${B*b}) = ${v}`}},
+()=>({q:`若 p=${p}，q=${q}，求 p²q 的值`,a:p*p*q,w:[(p*q)**2,p*q*q,-p*p*q,p*p+q],k:'n',e:`p²=(${p})²=${p*p}；p²q=${p*p}×(${q})=${p*p*q}`}),
+()=>({q:`若 p=${p}，q=${q}，求 (p+q)² 的值`,a:(p+q)**2,w:[p*p+q*q,-((p+q)**2),(p-q)**2,2*p*q],k:'n',e:`(${p})+(${q})=${p+q}；(${p+q})²=${(p+q)**2}`}),
+()=>({q:`若 q=${p}，求 ${A}q² 的值`,a:A*p*p,w:[(A*p)**2,-A*p*p,A*2*p,A*p],k:'n',e:`${A}×(${p})²=${A}×${p*p}=${A*p*p}`}),
+()=>({q:`若 a=${a}，b=${Math.abs(b)||3}，求 a³−b² 的值`,a:a**3-(b||3)**2,w:[a**3+(b||3)**2,3*a-(b||3)**2,Math.abs(a**3)-(b||3)**2],k:'n',e:`(${a})³=${a**3}；b²=${(b||3)**2}；${a**3}−${(b||3)**2}=${a**3-(b||3)**2}`})])()};
+const g3=()=>{const A=R(2,9),B=nz(-9,9),C=R(2,9),D=nz(-9,9),op=pick([1,-1]);return pick([
+()=>({q:`化简 (${P([A,'x'],[B,'y'])}) ${op>0?'+':'-'} (${P([C,'x'],[D,'y'])})`,a:P([A+op*C,'x'],[B+op*D,'y']),w:[P([A-C,'x'],[B+D,'y']),P([A+C,'x'],[B-D,'y']),P([A+C+B+D,'xy'])],k:'e',e:`x项：${A}${op>0?'+':'−'}(${C})=${A+op*C}；y项：${B}${op>0?'+':'−'}(${D})=${B+op*D}；括号前是负号时，括号内每项都变号`}),
+()=>({q:`化简 ${A}x-(${P([B,'x'],[C,''])})`,a:P([A-B,'x'],[-C,'']),w:[P([A-B,'x'],[C,'']),P([A+B,'x'],[-C,'']),P([A-B-C,'x'])],k:'e',e:`去括号：${A}x−${B}x${C>0?'−':'+'}${C}；x项 ${A}−(${B})=${A-B}；常数项 −${C}（括号前负号，常数也变号）`}),
+()=>{const cf=c=>c==1?'':c==-1?'-':c,c=()=>cf(nz(-9,9)),[L,W]=pick([['x',['y','x^2','xy']],['y',['x','y^2','xy']],['x^2',['x','x^3','y^2']],['x^3',['x^2','x','y^3']],['xy',['x','xy^2','x^2y']],['xy^2',['x^2y','xy','y^2']],['x^2y',['xy^2','x^2','xy']],['ab',['a','a^2b','b']],['a^2b',['ab^2','a^2','ab']]]);return{q:`下列哪一项与 ${c()}${L} 是同类项？`,a:c()+L,w:W.map(x=>c()+x),k:'m',e:'同类项：字母相同，且各字母的次数也要相同'}}])()};
+const g4=()=>{const K=nz(-6,6),A=R(2,6),B=nz(-6,6),n=R(2,5),Dn=R(2,9)*pick([1,-1]),a=nz(-6,6),b=nz(-6,6);return pick([
+()=>({q:`化简 ${K}(${P([A,'x'],[B,'y'])})`,a:P([K*A,'x'],[K*B,'y']),w:[P([K*A,'x'],[B,'y']),P([K*A,'x'],[-K*B,'y']),P([K+A,'x'],[K+B,'y'])],k:'e',e:`${K}×${A}x=${K*A}x；${K}×(${B}y)=${K*B}y`}),
+()=>({q:`化简 (${P([a*Dn,'x'],[b*Dn,'y'])}) ÷ (${Dn})`,a:P([a,'x'],[b,'y']),w:[P([a,'x'],[b*Dn,'y']),P([-a,'x'],[b,'y']),P([a,'x'],[-b,'y'])],k:'e',e:`${a*Dn}x÷(${Dn})=${a}x；${b*Dn}y÷(${Dn})=${b}y`}),
+()=>({q:`化简 (${P([A,'x'],[B,''])}) ÷ (1/${n})`,a:P([A*n,'x'],[B*n,'']),w:[`(${P([A,'x'],[B,''])})/${n}`,P([A*n,'x'],[B,'']),P([A,'x'],[B*n,''])],k:'e',e:`÷(1/${n}) 变成 ×${n}：${A}x×${n}=${A*n}x；${B}×${n}=${B*n}`})])()};
+const g5=()=>{const K=R(2,5),L=R(2,5),A=R(1,6),B=R(1,6),[m,n]=pick([[2,3],[3,4],[2,5]]);return pick([
+()=>({q:`化简 ${K}(x-${A}) + ${L}(x+${B})`,a:P([K+L,'x'],[-K*A+L*B,'']),w:[P([K+L,'x'],[K*A+L*B,'']),P([K+L,'x'],[-K*A+B,'']),P([K+L,'x'],[-A+L*B,''])],k:'e',e:`去括号：${K}x−${K*A}+${L}x+${L*B}；x项 ${K+L}x；常数 ${-K*A}+${L*B}=${-K*A+L*B}`}),
+()=>({q:`化简 ${K}x - ${L}(${A}x-${B})`,a:P([K-L*A,'x'],[L*B,'']),w:[P([K-L*A,'x'],[-L*B,'']),P([K-L,'x'],[B,'']),P([K+L*A,'x'],[L*B,''])],k:'e',e:`去括号：${K}x−${L*A}x+${L*B}；x项 ${K}−${L*A}=${K-L*A}，常数 +${L*B}（负号乘进括号，两项都变号）`}),
+()=>({q:`化简 (x+${A})/${m} + (x-${B})/${n}`,a:`(${P([n+m,'x'],[n*A-m*B,''])})/${m*n}`,w:[`(${P([2,'x'],[A-B,''])})/${m+n}`,`(${P([n+m,'x'],[A-B,''])})/${m*n}`,`(${P([n+m,'x'],[n*A+m*B,''])})/${m*n}`],k:'e',e:`通分：分母 ${m*n}，分子各乘 ${n}、${m}`})])()};
+const g6=()=>{const n=R(2,9),a=R(2,6),b=R(2,9);return pick([
+()=>{const[q,s,w]=pick([[`x 不大于 ${n}`,`x≤${n}`,[`x<${n}`,`x≥${n}`,`x>${n}`]],[`y 不小于 ${n}`,`y≥${n}`,[`y>${n}`,`y≤${n}`,`y<${n}`]],[`从 x 减去 5 所得的值小于 ${n}`,`x-5<${n}`,[`5-x<${n}`,`x-5>${n}`,`x-5≤${n}`]],[`a 的三倍与 b 的两倍之和不大于 ${-n}`,`3a+2b≤${-n}`,[`3a+2b<${-n}`,`3a+2b≥${-n}`,`2a+3b≤${-n}`]],['m 与 n 的和是负数','m+n<0',['m+n>0','m+n≤0','m-n<0']],[`x 的 4 倍大于 ${n}`,`4x>${n}`,[`4x<${n}`,`x+4>${n}`,`4x≥${n}`]]]);return{q:'用不等式表示：'+q,a:s,w,k:'m',e:'不大于＝≤，不小于＝≥'}},
+()=>({q:`满足 −${a}<x≤${b} 的整数 x 共有几个？`,a:a+b,w:[a+b+1,a+b-1,b,a+b-2],k:'n',e:`整数为 ${-a+1}, …, ${b}；“<”不含左端，“≤”含右端`}),
+()=>({q:`满足 x>−${a} 的最小整数是多少？`,a:-a+1,w:[-a,a,-a-1,a+1],k:'n',e:'x 不能等于 −'+a+'，所以从下一个整数开始'})])()};
+const G=[g1,g2,g3,g4,g5,g6];
+function mk(g){const o=g(),k=o.k,a=o.a,same=k=='e'?eqv:(x,y)=>x==y,seen=[a],w=[];
+for(const x of o.w){if(!seen.some(s=>same(s,x))){seen.push(x);w.push(x)}if(w.length==3)break}
+for(const x of(k=='n'?[a+1,a-1,a+10,-a,2*a]:[a+'+1',a+'-1','2('+a+')'])){if(w.length>=3)break;if(!seen.some(s=>same(s,x))){seen.push(x);w.push(x)}}
+const opts=sh([a,...w]);return{q:o.q,k,a,e:o.e,opts,ai:opts.indexOf(a)}}
+const NAMES=['9.1 代数式','9.2 代数式的值','9.3 加减法','9.4 与数乘除','9.5 混合运算','9.6 等式与不等式','总复习'];
+const NOTE=['乘号省略，数字写前面：a×b＝ab，5×x＝5x；数与数相乘不可省略；带分数先化假分数；除号写成分数 x÷3＝x/3。',
+'用数代替字母再计算。负数代入要加括号：(−3)²＝9，而 −3²＝−9；3q² 与 (3q)² 不同。',
+'同类项：字母及次数完全相同。系数相加减，字母照写；括号前是负号，括号内各项都要变号。',
+'k(a+b)＝ka+kb，每一项都要乘；除以一个数＝写成分数后约简；除以分数＝乘倒数。',
+'先去括号，再合并同类项；分式加减要先通分。',
+'不大于＝≤，不小于＝≥；数线上 ○ 不含、● 含。−2<x≤5 的整数是 −1,0,1,…,5。'];
+const TOOL=`<div class=n><b>🧮 代数式求值器</b><br><input id=te value="3a-2b^2" style="width:9em" oninput=tl()> a=<input id=va value=-2 size=3 oninput=tl()> b=<input id=vb value=3 size=3 oninput=tl()> x=<input id=vx value=1 size=3 oninput=tl()> y=<input id=vy value=1 size=3 oninput=tl()><div id=to></div></div>`;
+function tl(){const r=ev($('te').value,{a:+$('va').value,b:+$('vb').value,x:+$('vx').value,y:+$('vy').value});$('to').textContent=isFinite(r)?'＝ '+sup(Math.round(r*1e6)/1e6):'（请检查式子）'}
+const TOOLS={4:`<div class=n><b>🔗 双分配律计算器</b>（两个分配律接在一起）<br><input id=m1 value=3 size=2 oninput=t5()>(<input id=m2 value=2 size=2 oninput=t5()>x+<input id=m3 value=-1 size=2 oninput=t5()>) <select id=mo onchange=t5()><option value=+>+</option><option value=->−</option></select> <input id=m4 value=-2 size=2 oninput=t5()>(<input id=m5 value=1 size=2 oninput=t5()>x+<input id=m6 value=4 size=2 oninput=t5()>)<div id=t5o></div></div><div class=n><b>➗ 分式通分计算器</b>（分子是 x 的一次式）<br><span class=fi><span>(<input id=h1 value=2 size=2 oninput=t7()>x+<input id=h2 value=-3 size=2 oninput=t7()>)</span><input id=h3 value=5 size=2 oninput=t7()></span> <select id=fo onchange=t7()><option value=+>+</option><option value=->−</option></select> <span class=fi><span>(<input id=h4 value=1 size=2 oninput=t7()>x+<input id=h5 value=-3 size=2 oninput=t7()>)</span><input id=h6 value=3 size=2 oninput=t7()></span><div id=t7o></div></div>`,1:TOOL,
+2:`<div class=n><b>🧩 同类项合并器</b><br>(<input id=c1 value=3 size=2 oninput=t3()>x+<input id=c2 value=-2 size=2 oninput=t3()>y) <select id=co onchange=t3()><option value=+>+</option><option value=->−</option></select> (<input id=c3 value=5 size=2 oninput=t3()>x+<input id=c4 value=4 size=2 oninput=t3()>y)<div id=t3o></div></div>`,
+3:`<div class=n><b>✖️ 分配律演示</b><br><input id=k1 value=-4 size=2 oninput=t4()>(<input id=k2 value=3 size=2 oninput=t4()>x+<input id=k3 value=2 size=2 oninput=t4()>)<div id=t4o></div></div>`,
+5:`<div class=n><b>📏 不等式数线</b><br>x <select id=no onchange=t6()><option>&gt;</option><option>≥</option><option>&lt;</option><option>≤</option></select> <input id=nv value=2 size=2 oninput=t6()>（−5 到 5）<div id=t6o></div></div>`};
+function t3(){const g=i=>+$(i).value||0,A=g('c1'),B=g('c2'),C=g('c3'),D=g('c4'),s=$('co').value=='-'?-1:1,o=s>0?'+':'−';$('t3o').innerHTML=`去括号：${sup(P([A,'x'],[B,'y']))} ${o} (${sup(P([C,'x'],[D,'y']))})<br>x项：${A}${o}(${C})=${A+s*C}；y项：${B}${o}(${D})=${B+s*D}<br><b>结果：${sup(P([A+s*C,'x'],[B+s*D,'y']))}</b>`}
+function t5(){const g=i=>+$(i).value||0,k=g('m1'),A=g('m2'),B=g('m3'),l=g('m4'),C=g('m5'),D=g('m6'),s=$('mo').value=='-'?-1:1,o=s>0?'+':'−',p=[k*A,k*B],q=[l*C,l*D],E=(a,b)=>sup(P([a,'x'],[b,'']));
+$('t5o').innerHTML=(`① 各自去括号（分配律）：<br>${k}(${E(A,B)}) = ${E(p[0],p[1])}<br>${l}(${E(C,D)}) = ${E(q[0],q[1])}<br>② 合并：(${E(p[0],p[1])}) ${o} (${E(q[0],q[1])})${s<0?` = ${sup(P([p[0],'x'],[p[1],''],[-q[0],'x'],[-q[1],'']))}（括号前是负号，括号内各项变号）`:''}<br>③ x项：${p[0]} ${o} (${q[0]}) = ${p[0]+s*q[0]}；常数项：${p[1]} ${o} (${q[1]}) = ${p[1]+s*q[1]}<br><b>结果：${E(p[0]+s*q[0],p[1]+s*q[1])}</b>`).replace(/-/g,'−')}
+function t7(){const g=i=>Math.round(+$(i).value)||0,a1=g('h1'),b1=g('h2'),m=Math.abs(g('h3'))||1,a2=g('h4'),b2=g('h5'),n=Math.abs(g('h6'))||1,s=$('fo').value=='-'?-1:1,o=s>0?'+':'-';
+const gc=(a,b)=>b?gc(b,a%b):Math.abs(a),L=m*n/gc(m,n),u=L/m,v=L/n,E1=P([a1,'x'],[b1,'']),E2=P([a2,'x'],[b2,'']),X=u*a1+s*v*a2,Y=u*b1+s*v*b2;
+const ft=(c,d,x)=>{if(!c)return'';const q=gc(c,d),p=c/q,r=d/q,ap=Math.abs(p);return(p<0?'-':'+')+(x?(ap==1?'':ap)+x:ap)+(r==1?'':'/'+r)};
+let sp=ft(X,L,'x')+ft(Y,L,'');sp=sp.replace(/^\+/,'')||'0';
+const ln=[`① 最小公倍数：L = ${L}（第一项分子分母各乘 ${u}，第二项各乘 ${v}）`,`② 通分：(${E1})/${m} = ${u}(${E1})/${L}；(${E2})/${n} = ${v}(${E2})/${L}`,`③ 合并：(${u}(${E1}) ${o} ${v}(${E2}))/${L}`,`④ 去括号：(${P([u*a1,'x'],[u*b1,''],[s*v*a2,'x'],[s*v*b2,''])})/${L}`,`⑤ 合并同类项：(${P([X,'x'],[Y,''])})/${L}`,`约分拆开写：${sp}`];
+$('t7o').innerHTML=ln.map(sup).join('<br>')}
+function t4(){const g=i=>+$(i).value||0,k=g('k1'),A=g('k2'),B=g('k3');$('t4o').innerHTML=`${k}×${A}x + ${k}×(${B}) = ${k*A}x + (${k*B})<br><b>结果：${sup(P([k*A,'x'],[k*B,'']))}</b>`}
+function t6(){const n=Math.max(-5,Math.min(5,Math.round(+$('nv').value)||0)),o=$('no').value,X=v=>20+(v+5)*26,r=o=='>'||o=='≥',f=o=='≥'||o=='≤';let s=`<svg viewBox="0 0 300 50" width="100%" style="max-width:420px"><line x1=10 y1=25 x2=290 y2=25 stroke=currentColor /><rect x=${r?X(n):10} y=18 width=${r?290-X(n):X(n)-10} height=14 fill=#d4a017 opacity=.45 />`;for(let v=-5;v<=5;v++)s+=`<line x1=${X(v)} y1=21 x2=${X(v)} y2=29 stroke=currentColor /><text x=${X(v)} y=44 font-size=10 text-anchor=middle fill=currentColor>${v<0?'−'+-v:v}</text>`;s+=`<circle cx=${X(n)} cy=25 r=5 fill="${f?'#c0392b':'none'}" stroke=#c0392b stroke-width=2 /></svg>`;$('t6o').innerHTML=`x ${o} ${sup(n)}（${f?'● 实心＝包含':'○ 空心＝不含'}）<br>`+s}
+const EX=['<p><b>例1</b> 原子笔每支 RM x，买 5 支：RM 5x。</p><p><b>例2</b> 美华与三位同学（共 4 人），车票 RM x、点心 RM 140，每人：(x+140)/4。</p><p><b>例3</b> f 与 g 的和的 4 倍：4(f+g)；比 k 的 2 倍小 4：2k−4；k 与它的 10% 的和：k+k×10%。</p><p><b>例4</b> a 与 b 的和的平方：(a+b)²；a 与 b 的平方和：a²+b²。</p><p><b>例5</b> 速度 v 公里/小时：t 小时行 tv 公里；行 s 公里需 s/v 小时。</p>',
+'<p><b>例1</b> a=−2，b=3，c=−4：3b+c＝9−4＝5；4a−3c＝−8+12＝4；abc＝24。</p><p><b>例2</b> p=−3，q=−2：p³＝−27；3q²＝3×4＝12；pq²＝−12；(pq)²＝36；(p+q)²＝25；p²+q²＝13。</p><p><b>例4</b> 当 a=2，b=−2：(2a−b)/(3a+b)＝(4+2)/(6−2)＝3/2。</p><p><b>例5</b> 薯片 RM3、汽水 RM2.50、饼干 RM3.50，买 4、6、2 份：12+15+7＝RM34。</p>',
+'<p><b>例2</b> 5x+3x＝8x；2x−5x＝−3x；−3x−4x＝−7x；−2x−(−6x)＝4x。</p><p><b>例3</b> 4x−(3y+9x)＝−5x−3y；(6p−8r)+(10p−2r)＝16p−10r；(8y+6)−(4y+3)＝4y+3；(p+q+r)−(p−q+r)＝2q。</p><p>要点：同类项＝字母和次数完全相同；3x 与 5x² 不是同类项。</p>',
+'<p><b>例1</b> 6×7x＝42x；5×(−3y)＝−15y；−(4/5)×10z＝−8z。</p><p><b>例2</b> 3(6−4x)＝18−12x；−4(3x+2)＝−12x−8；−5(4x−3)＝−20x+15；−(1/2)(2x−6)＝−x+3。</p><p><b>例3</b> 30y÷5＝6y；−45y÷3＝−15y；54y÷(−9)＝−6y；24x÷(−36)＝−2x/3。</p><p><b>例4</b> (32y+8)÷4＝8y+2；(7a−5)÷(1/2)＝14a−10。</p>',
+'<p><b>例2</b> 3x+2(x−2)＝5x−4；7a−2(3a+4)＝a−8；−2(−6a+4)−3(4+2a)＝6a−20。</p><p><b>例3</b> (2x−3)/5+(x−3)/3＝(3(2x−3)+5(x−3))/15＝(11x−24)/15；(3/4)(3x−2)−(2/3)(2x−1)＝(9(3x−2)−8(2x−1))/12＝(11x−10)/12。</p>',
+'<p><b>例1</b> h 大于 −3：h>−3；从 x 减去 5 所得小于 4：x−5<4；y 不小于 2：y≥2；3a+2b 不大于 −5：3a+2b≤−5。</p><p><b>例3</b> 满足 −2<x≤5 的整数：−1，0，1，2，3，4，5。</p><p>要点：不大于＝小于或等于；不小于＝大于或等于。</p>',''];
+let T=0,Q=[],F=[],right=0,done=0,fdone=0,fr=0;
+function mkSet(t){const n=t<6?5:10,gs=t<6?[G[t]]:sh(G),out=[],seen=new Set();for(let i=0;i<n;i++){let o,c=0;do o=mk(gs[i%gs.length]);while(seen.has(o.q)&&++c<12);seen.add(o.q);out.push(o)}return out}
+const card=(o,i,p)=>`<div class=c id=${p}${i}><b>${i+1}.</b> ${sup(o.q)}<i class=z>${ZW}</i><br>`+(o.opts?o.opts.map((x,j)=>`<button class=o onclick="pk(${i},${j})">${'ABCD'[j]}． ${sup(x)}</button>`).join(''):`<input id=fi${i} placeholder="${o.k=='n'?'输入数字':'输入式子'}" onkeydown="if(event.key=='Enter')sub(${i})"> <button onclick="sub(${i})">提交</button>`)+`<div class=fb></div></div>`;
+function view(t){T=t;Q=mkSet(t);F=[];right=done=fdone=fr=0;
+$('nav').innerHTML=NAMES.map((x,i)=>`<button class="p${i==t?' on':''}" onclick=view(${i})>${x}</button>`).join('');
+let h=`<h2>${NAMES[t]}</h2>`+(t<6?`<div class=n>${sup(NOTE[t])}</div><details class=n><summary>📖 教材例题（点开查看）</summary>${ex(EX[t])}</details>`+(TOOLS[t]||''):'');
+h+=`<h3>${t<6?'选择题 5 题（答对 3 题或以上，开启 2 道作答题）':'章节测试 · 10 题随机选择题'}</h3>`+Q.map((o,i)=>card(o,i,'q')).join('')+`<div id=res></div><div id=fl></div><button class=r onclick=view(${t})>🔄 换一组新题</button>`;
+$('app').innerHTML=h;scrollTo(0,0);({1:tl,2:t3,3:t4,4:()=>{t5();t7()},5:t6}[t]||(()=>{}))()}
+function pk(i,j){const o=Q[i];if(o.d)return;o.d=1;const c=$('q'+i),b=c.querySelectorAll('.o');b[o.ai].classList.add('ok');if(j!=o.ai)b[j].classList.add('bad');else right++;
+c.querySelector('.fb').innerHTML=fbk(j==o.ai,o);
+if(++done==Q.length)finish()}
+function finish(){let m=`<div class=n><b>得分：${right} / ${Q.length}</b>`;
+if(T==6)m+='</div>';else if(right>=3){m+=' 🎉 已开启作答题！</div>';const seen=new Set(Q.map(o=>o.q));let c=0;while(F.length<2&&c++<60){const o=mk(G[T]);if(o.k!='m'&&!seen.has(o.q)){seen.add(o.q);delete o.opts;F.push(o)}}
+$('fl').innerHTML='<h3>作答题（自己输入答案；乘号可省略，平方写 ^2，分数写 /）</h3>'+F.map((o,i)=>card(o,i,'f')).join('')}
+else m+='　答对 3 题或以上才能开启作答题，再试一组吧！</div>';
+$('res').innerHTML=m}
+function sub(i){const o=F[i];if(o.d)return;const v=$('fi'+i).value;if(!v.trim())return;o.d=1;let ok=0;
+if(o.k=='n')ok=Number(v.replace(/−/g,'-'))===o.a;else{ok=1;for(let r=0;r<5;r++){const V=rv(),x=ev(v,V),y=ev(o.a,V);if(!isFinite(x)||Math.abs(x-y)>1e-6*Math.max(1,Math.abs(y)))ok=0}}
+if(ok)fr++;$('f'+i).querySelector('.fb').innerHTML=fbk(ok,o);
+if(++fdone==F.length)$('fl').insertAdjacentHTML('beforeend',`<div class=n><b>作答题：${fr} / ${F.length}</b></div>`)}
+document.querySelector('.wm').append(ZW);$('ft').append(ZW);
+view(0);
+</script></body></html>
