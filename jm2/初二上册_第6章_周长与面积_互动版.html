@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- 周长与面积 互动版 · 蔡逸众 / ecchua79 / 华仁中学 Chinese High School -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="author" content="蔡逸众 ecchua79 · Chinese High School Batu Pahat">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>初二 第6章 周长与面积 · 互动版</title>
+<style>/* © 蔡逸众 / ecchua79 / Chinese High School */
+:root{--bg:#f6f4fb;--cd:#fff;--tx:#222;--mu:#667;--pr:#6a4fc4;--ok:#1b9a5a;--no:#d23b4b;--bd:#ddd6ee;--fs:15px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#15131c;--cd:#211e2c;--tx:#ece9f6;--mu:#a29db8;--pr:#a894ff;--ok:#4cd08a;--no:#ff7a88;--bd:#3a3550}}
+:root[data-theme=dark]{--bg:#15131c;--cd:#211e2c;--tx:#ece9f6;--mu:#a29db8;--pr:#a894ff;--ok:#4cd08a;--no:#ff7a88;--bd:#3a3550}
+html{font-size:var(--fs)}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--cd);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--cd);border-bottom:1px solid var(--bd);padding:.4rem .6rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+header b{color:var(--pr)}nav{display:flex;gap:.3rem;overflow-x:auto;flex:1 1 100%;order:3}.ctl{margin-left:auto;display:flex;gap:.3rem}
+button{font:inherit;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:.5rem;padding:.25rem .6rem;cursor:pointer}
+nav button{white-space:nowrap}nav button.on,.pri{background:var(--pr);color:#fff;border-color:var(--pr)}
+main{max-width:46rem;margin:0 auto;padding:.6rem}.card{background:var(--cd);border:1px solid var(--bd);border-radius:.7rem;padding:.6rem .8rem;margin:.6rem 0}
+h2{margin:.3rem 0;color:var(--pr)}h3{margin:.2rem 0 .4rem}.tip{background:rgba(255,170,0,.14);border-left:4px solid #e9a100;padding:.3rem .6rem;border-radius:.3rem}
+.f label{display:block;margin:.2rem 0}input[type=range]{width:100%}svg{width:100%;max-height:170px}svg polygon{fill:var(--pr);fill-opacity:.25;stroke:var(--pr);stroke-width:2}
+.op{display:block;width:100%;text-align:left;margin:.25rem 0}.op.ok{border-color:var(--ok);background:rgba(40,190,110,.2)}.op.no{border-color:var(--no);background:rgba(220,60,80,.18)}
+.ex{margin-top:.3rem;color:var(--mu)}input[type=text]{font:inherit;padding:.25rem;border:1px solid var(--bd);border-radius:.4rem;background:var(--bg);color:var(--tx);width:8rem}
+footer{text-align:center;color:var(--mu);font-size:.8em;padding:1rem}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.4rem}.wm{position:fixed;inset:0;z-index:8;pointer-events:none;user-select:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='190'><text x='140' y='100' text-anchor='middle' transform='rotate(-25 140 95)' font-size='17' fill='rgba(128,128,128,.17)' font-family='sans-serif'>蔡逸众 · ecchua79</text><text x='140' y='122' text-anchor='middle' transform='rotate(-25 140 95)' font-size='12' fill='rgba(128,128,128,.14)' font-family='sans-serif'>华仁中学 Chinese High School</text></svg>")}
+.hid{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}footer a{color:var(--pr)}</style></head><body>
+<header><b>📐 周长与面积</b><div class=ctl><button id=th title=浅色/深色>🌓</button><button id=fm>A−</button><button id=fp>A+</button></div><nav id=nav></nav></header>
+<div class=wm aria-hidden=true></div><span class=hid id=hid data-author="蔡逸众" data-id="ecchua79" data-school="Chinese High School Batu Pahat"></span>
+<main id=m></main><footer><div>© <span id=yr>2026</span> 蔡逸众 · ecchua79 · 华仁中学 Chinese High School, Batu Pahat</div><div>本网页为教学用途 · 未经许可请勿转载或商用 · <a href="https://ecchua79.github.io/ScienceLab" target=_blank rel=noopener>ScienceLab</a><span id=zw></span></div></footer>
+<script>
+console.log("周长与面积 互动版 © 蔡逸众 / ecchua79 / Chinese High School");
+const zw=s=>[...s].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('\u200d');
+$$=0;document.getElementById('yr').textContent=new Date().getFullYear();document.getElementById('zw').textContent=zw('ecchua79');document.getElementById('hid').textContent='© 蔡逸众 ecchua79 华仁中学 Chinese High School '+zw('ecchua79');document.title+=zw('ecchua79');
+const r=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[r(0,a.length-1)],nf=x=>String(parseFloat(x.toPrecision(10)));
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=r(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+// ===== 题目生成器: [题目,答案,误导选项[],解析,单位] =====
+const G=[[
+()=>{const n=pick([5,6,8]),s=r(3,12);return[`一个正${n}边形，每边长 ${s} cm，求周长。`,n*s,[(n-1)*s,(n+1)*s,n*s/2],`周长 = ${n}×${s} = ${n*s}`,'cm']},
+()=>{const w=r(3,9),l=w+r(2,6),P=2*(l+w);return[`长方形的周长是 ${P} cm，宽是 ${w} cm，求长。`,l,[P-w,P/2,P/2+w],`长 = ${P}÷2 − ${w} = ${l}`,'cm']},
+()=>{const s=r(4,15),P=4*s;return[`用一条长 ${P} cm 的铁线围成正方形，求边长。`,s,[P/2,P/3,P/8],`边长 = ${P}÷4 = ${s}`,'cm']},
+()=>{const a=r(8,14),b=r(3,a-3);return[`从边长 ${a} cm 的正方形卡纸的一角剪去边长 ${b} cm 的小正方形，求剩余部分的周长。`,4*a,[4*a-4*b,4*a+4*b,4*a-2*b],`缺口的两条新边刚好补回被剪掉的两条边，周长仍是 4×${a} = ${4*a}`,'cm']},
+()=>{const l=r(7,20),b=r(6,2*l-2),P=b+2*l;return[`等腰三角形的周长是 ${P} cm，底边长 ${b} cm，求腰长。`,l,[P-b,(P+b)/2,P/3],`腰长 = (${P}−${b})÷2 = ${l}`,'cm']},
+()=>{const a=r(5,9),b=r(2,a-2);return[`边长 ${a} cm 与边长 ${b} cm 的两个正方形并排拼合（小正方形的一边完全贴在大正方形的一边上），求拼合图形的周长。`,4*a+2*b,[4*a+4*b,4*a+b,4*a+3*b],`贴合的 ${b} cm 边不再是边界：${4*a}+${4*b}−2×${b} = ${4*a+2*b}`,'cm']}
+],[
+()=>{const s=r(3,15);return[`边长 ${s} cm 的正方形，面积是多少？`,s*s,[4*s,2*s,s*s/2],`面积 = ${s}² = ${s*s}`,'cm²']},
+()=>{const l=r(4,15),w=r(2,l-1);return[`长 ${l} cm、宽 ${w} cm 的长方形，面积是多少？`,l*w,[2*(l+w),l+w,l*w/2],`面积 = ${l}×${w} = ${l*w}`,'cm²']},
+()=>{const s=r(3,12);return[`正方形面积是 ${s*s} cm²，求它的周长。`,4*s,[2*s,s*s,8*s],`边长 = √${s*s} = ${s}，周长 = 4×${s} = ${4*s}`,'cm']},
+()=>{const p=pick([10,20,30,50]),sq=r(0,1),a=sq?2*p+p*p/100:p;return[sq?`正方形的边长增加 ${p}%，面积增加多少百分比？`:`长方形的长增加 ${p}%（宽不变），面积增加多少百分比？`,a,sq?[2*p,p,p+p/2]:[2*p,p/2,p*p/100],sq?`(1+${p}%)² −1 = ${a}%`:`宽不变，面积随长同比增加 ${p}%`,'%']},
+()=>{const a=r(3,8),b=r(2,6),t=pick([10,20,25,50]),n=a*100/t*(b*100/t);return[`地板长 ${a} m、宽 ${b} m，用边长 ${t} cm 的正方形砖铺满，需要多少块？`,n,[a*b*100/t,a*b*10000/t,a*100/t+b*100/t],`长边 ${a*100/t} 块，宽边 ${b*100/t} 块，共 ${n} 块（或 ${a*b*10000}÷${t*t}）`,'块']},
+()=>{const a=r(6,12),b=r(4,8),w=pick([1,2]),x=2*w*(a+b)+4*w*w;return[`长 ${a} m、宽 ${b} m 的草地四周铺一圈 ${w} m 宽的步道，步道面积是多少？`,x,[2*w*(a+b),(a+2*w)*(b+2*w),2*w*(a+b)+2*w*w],`大长方形 ${(a+2*w)}×${(b+2*w)} − 草地 ${a}×${b} = ${x}`,'m²']},
+()=>{const l=r(5,14),w=r(3,l-1),A=l*w;return[`长方形玻璃面积 ${A} cm²，长 ${l} cm，求宽。`,w,[A-l,A/2/l,A/l*2],`宽 = ${A}÷${l} = ${w}`,'cm']}
+],[
+()=>{const b=r(4,14),h=r(3,12);return[`三角形底 ${b} cm、高 ${h} cm，面积是多少？`,b*h/2,[b*h,b+h,b*h/4],`面积 = ½×${b}×${h} = ${b*h/2}`,'cm²']},
+()=>{const b=2*r(2,6),h=r(3,12),A=b*h/2;return[`三角形面积 ${A} cm²，底边 ${b} cm，求高。`,h,[A/b,A*b/2,A/b/2],`高 = 2×${A}÷${b} = ${h}`,'cm']},
+()=>{const A=r(5,20);return[`D 是 AB 的中点，△ADC 的面积是 ${A} cm²，求△ABC 的面积。`,2*A,[A,3*A,4*A],`△ADC 与△BDC 等高等底，故△ABC = 2×${A} = ${2*A}`,'cm²']},
+()=>{const m=r(2,5),c=r(3,9),A=m*c;return[`S 在 PQ 上且 PS = ${m}QS，△PRS 面积 ${A} cm²，求△QRS 面积。`,c,[A*m,A-m,A/(m+1)],`等高三角形面积比 = 底边比 = ${m}:1，所以 ${A}÷${m} = ${c}`,'cm²']},
+()=>{const b=r(5,12),h=r(3,8),s=h+r(1,4);return[`钝角三角形底边 ${b} cm，从顶点到底边延长线的垂直高度为 ${h} cm，另一条斜边长 ${s} cm，求面积。`,b*h/2,[b*s/2,b*s,b*h],`斜边不是高！面积 = ½×${b}×${h} = ${b*h/2}`,'cm²']},
+()=>{const m=r(1,3),n=r(2,4),k=r(2,6),S=(m+n)*k;return[`D 在 AB 上，AD:DB = ${m}:${n}，△ABC 面积 ${S} cm²，求△ACD 面积。`,m*k,[n*k,S*m/n,S/2],`△ACD:△ABC = ${m}:${m+n}，所以 ${S}×${m}/${m+n} = ${m*k}`,'cm²']}
+],[
+()=>{const b=r(4,12),h=r(3,9),s=h+r(1,5);return[`平行四边形底 ${b} cm，斜边（侧边）${s} cm，高 ${h} cm，求面积。`,b*h,[b*s,b*h/2,2*(b+s)],`面积 = 底×高 = ${b}×${h}（侧边与面积无关）`,'cm²']},
+()=>{const b=r(4,12),h=r(3,10);return[`平行四边形面积 ${b*h} cm²，高 ${h} cm，求底边。`,b,[b*h*h,b/2,b*h-h],`底 = ${b*h}÷${h} = ${b}`,'cm']},
+()=>{const c=r(3,6),m=r(2,3),a=m*c,ha=r(2,c-1);return[`平行四边形两邻边 ${a} cm 与 ${c} cm。以 ${a} cm 为底时高为 ${ha} cm，求以 ${c} cm 为底时的高。`,m*ha,[ha/m,a*ha,a-c+ha],`面积 = ${a}×${ha} = ${a*ha}，高 = ${a*ha}÷${c} = ${m*ha}`,'cm']},
+()=>{const S=r(5,15);return[`平行四边形 ABCD 与△BCE 拼合，A、B、E 共线且 AB = BE，△BCE 面积 ${S} cm²，求平行四边形面积。`,2*S,[S,3*S,4*S],`△BCE 与平行四边形同高，底 BE = AB，所以平行四边形 = 2×${S}`,'cm²']}
+],[
+()=>{const a=r(4,12),b=r(3,10);return[`菱形两条对角线长 ${a} cm 与 ${b} cm，求面积。`,a*b/2,[a*b,a+b,2*(a+b)],`面积 = ½×${a}×${b} = ${a*b/2}`,'cm²']},
+()=>{const d=2*r(2,5),o=r(3,12),A=d*o/2;return[`风筝形面积 ${A} cm²，一条对角线 ${d} cm，求另一条。`,o,[A/d,2*A,A*d/2],`另一条 = 2×${A}÷${d} = ${o}`,'cm']},
+()=>{const a=r(3,9),b=a+r(2,8),h=r(3,10);return[`梯形上底 ${a} cm、下底 ${b} cm、高 ${h} cm，求面积。`,(a+b)*h/2,[(a+b)*h,a+b+h,(a+b)*h/4],`面积 = ½×(${a}+${b})×${h} = ${(a+b)*h/2}`,'cm²']},
+()=>{const a=r(3,8),b=a+r(2,10),h=2*r(2,6),A=(a+b)*h/2;return[`梯形面积 ${A} cm²，高 ${h} cm，一底 ${a} cm，求另一底。`,b,[2*A/h,A/h-a,2*A/h+a],`上底+下底 = 2×${A}÷${h} = ${2*A/h}，另一底 = ${2*A/h}−${a} = ${b}`,'cm']},
+()=>{const d=2*r(2,8);return[`正方形的对角线长 ${d} cm，求面积。`,d*d/2,[d*d,2*d,d*d/4],`正方形是菱形：½×${d}×${d} = ${d*d/2}`,'cm²']},
+()=>{const k=r(1,3);return[`菱形对角线 ${6*k} cm 与 ${8*k} cm，边长 ${5*k} cm，求面积。`,24*k*k,[48*k*k,25*k*k,20*k*k],`面积 = ½×${6*k}×${8*k}（边长不用）= ${24*k*k}`,'cm²']}
+],[
+()=>{const x=r(2,9);return[`${x} m² 等于多少 cm²？`,x*1e4,[x*100,x*1000,x*1e5],`1 m² = 100×100 = 10000 cm²`,'cm²']},
+()=>{const x=r(2,9);return[`${x} cm² 等于多少 mm²？`,x*100,[x*10,x*1000,x*1e4],`1 cm² = 10×10 = 100 mm²`,'mm²']},
+()=>{const x=r(2,9);return[`${x} 公项等于多少 m²？`,x*1e4,[x*100,x*1000,x*1e5],`1 公项 = 10000 m²`,'m²']},
+()=>{const x=r(2,9);return[`${x} km² 等于多少公项？`,x*100,[x*10,x*1000,x*1e4],`1 km² = 1000000 m² = 100 公项`,'公项']},
+()=>{const x=r(11,90)*1000;return[`${x} cm² 等于多少 m²？`,x/1e4,[x/100,x/1000,x/1e5],`÷10000`,'m²']},
+()=>{const x=r(2,9)*1000;return[`${x} m² 等于多少 km²？`,x/1e6,[x/1000,x/1e5,x/1e4],`1 km² = 1000000 m²，所以 ÷1000000`,'km²']},
+()=>{const s=r(2,5),t=pick([50,25,20]),p=r(20,40),A=s*100/t;return[`边长 ${s} m 的正方形房间，铺边长 ${t} cm 的云石，每块 RM${p}，共需多少钱？`,A*A*p,[A*p,A*A*p/10,4*A*p],`每边 ${A} 块，共 ${A*A} 块，${A*A}×${p}`,'令吉']}
+]];
+const mk=g=>{const[q,a,w,e,u]=g();const A=nf(a);let o=[...new Set(w.map(nf))].filter(x=>x!=A&&isFinite(+x)&&+x>0).slice(0,3);while(o.length<3){const z=nf(a+r(1,9));if(z!=A&&!o.includes(z))o.push(z)}return{q,a:A,o:sh([A,...o]),e,u}};
+// ===== 教学内容 =====
+const S=[
+{id:'6.1',t:'周长',n:`<p>周长＝封闭平面图形<b>边界的总长度</b>：先找出所有边界，再求和。</p><ul><li>正方形：4×边长</li><li>长方形：2×(长＋宽)</li><li>正 n 边形：n×边长</li></ul><p class=tip>⚠️ 两个图形拼合时，贴合的边不再是边界；从长方形锡片里切掉菱形，周长反而<b>增加</b>。</p>`,
+f:[['边数 n',5,3,12],['边长 (cm)',4,1,10]],fn:([n,s])=>{const R=s/(2*Math.sin(Math.PI/n));return{p:[...Array(+n)].map((_,i)=>[R*Math.cos(2*Math.PI*i/n),R*Math.sin(2*Math.PI*i/n)]),t:`周长 = ${n} × ${s} = <b>${n*s} cm</b>`}}},
+{id:'6.2a',t:'正方形·长方形',n:`<p>面积＝图形的大小。边长 1 cm 的正方形面积为 1 cm²。</p><ul><li>正方形面积 ＝ (边长)²</li><li>长方形面积 ＝ 长×宽</li></ul><p class=tip>⚠️ 周长和面积是两回事：长增加 20%，长方形面积增加 20%，但正方形边长增加 20%，面积增加 <b>44%</b>。</p>`,
+f:[['长',6,1,12],['宽',4,1,12]],fn:([l,w])=>({p:[[0,0],[l,0],[l,w],[0,w]],t:`面积 = ${l}×${w} = <b>${l*w}</b>　周长 = 2×(${l}+${w}) = <b>${2*(l+w)}</b>`})},
+{id:'6.2b',t:'三角形',n:`<p>三角形面积 ＝ ½ × 底 × 高（高必须<b>垂直</b>于底）。</p><p>有相等的高的三角形称为<b>等高三角形</b>：面积之比 ＝ 底边之比。</p><p class=tip>⚠️ 斜边不是高；钝角三角形的高落在底边的延长线上。</p>`,
+f:[['底',8,2,12],['高',5,1,10],['顶点位置',3,0,12]],fn:([b,h,k])=>({p:[[0,h],[b,h],[+k,0]],t:`面积 = ½×${b}×${h} = <b>${b*h/2}</b>。拖动「顶点位置」，面积不变！`})},
+{id:'6.2c',t:'平行四边形',n:`<p>平行四边形面积 ＝ <b>底 × 高</b>（对角线把它分成两个全等三角形）。</p><p class=tip>⚠️ 面积只由底和高决定，与侧边长度无关；以不同的边为底，高也不同，但面积相同。</p>`,
+f:[['底',7,2,12],['高',4,1,8],['倾斜',3,0,8]],fn:([b,h,k])=>({p:[[0,h],[+b,h],[+b+ +k,0],[+k,0]],t:`面积 = ${b}×${h} = <b>${b*h}</b>。改变「倾斜」，面积不变！`})},
+{id:'6.2d',t:'菱形·风筝·梯形',n:`<ul><li>菱形、风筝形面积 ＝ ½ × 对角线的乘积</li><li>梯形面积 ＝ ½ × (上底＋下底) × 高</li></ul><p class=tip>⚠️ 菱形的边长在求面积时用不上；梯形要用「垂直的高」，不是斜边。</p>`,
+f:[['上底',4,1,10],['下底',9,2,14],['高',4,1,8]],fn:([a,B,h])=>({p:[[(B-a)/2,0],[(B+a)/2,0],[+B,h],[0,h]].map(([x,y])=>[x,h-y]),t:`梯形面积 = ½×(${a}+${B})×${h} = <b>${nf((+a+ +B)*h/2)}</b>`})},
+{id:'6.3',t:'面积单位换算',n:`<ul><li>1 cm² = 100 mm²</li><li>1 m² = 10000 cm²</li><li>1 公项 = 10000 m²</li><li>1 km² = 1000000 m² = 100 公项</li></ul><p class=tip>⚠️ 长度换算是 ×10、×100，面积要<b>平方</b>：×100、×10000。</p>`,
+f:[['面积 (m²)',9,1,25]],fn:([x])=>({p:[[0,0],[1,0],[1,1],[0,1]],t:`${x} m² = <b>${x*1e4}</b> cm² = <b>${nf(x/1e4)}</b> 公项 = <b>${nf(x/1e6)}</b> km²`})}
+];
+// ===== 界面 =====
+const $=s=>document.querySelector(s),M=$('#m');let cur=0;
+const root=document.documentElement;let fs=15;
+try{fs=+localStorage.getItem('fs69')||15;const t=localStorage.getItem('th69');if(t)root.dataset.theme=t}catch(e){}
+const setFs=d=>{fs=Math.max(12,Math.min(22,fs+d));root.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs69',fs)}catch(e){}};setFs(0);
+$('#fm').onclick=()=>setFs(-1);$('#fp').onclick=()=>setFs(1);
+$('#th').onclick=()=>{const d=root.dataset.theme?root.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;root.dataset.theme=d?'light':'dark';try{localStorage.setItem('th69',root.dataset.theme)}catch(e){}};
+const names=['首页',...S.map(s=>s.id+' '+s.t),'总测验'];
+$('#nav').innerHTML=names.map((n,i)=>`<button data-i=${i}>${n}</button>`).join('');
+$('#nav').onclick=e=>{if(e.target.dataset.i)go(+e.target.dataset.i)};
+function go(i){cur=i;document.querySelectorAll('nav button').forEach((b,j)=>b.classList.toggle('on',i==j));scrollTo(0,0);
+ if(i==0)return home();if(i==names.length-1)return final();sec(S[i-1],i-1)}
+function home(){M.innerHTML=`<div class=card><h2>第6章 周长与面积</h2><p><b>学习目标</b>：能计算正方形、长方形、三角形、平行四边形、梯形、菱形、风筝形的周长与面积；能应用等高三角形的面积比公式。</p><p>每节：📖 重点 → 🔧 互动演示 → ✏️ 5题选择（答对3题以上解锁2题作答）。章末有随机总测验，题目与选项每次都不同。</p></div><div class=g>${names.slice(1).map((n,i)=>`<button class=pri onclick=go(${i+1})>${n}</button>`).join('')}</div>`}
+function sec(s,k){M.innerHTML=`<h2>${s.id} ${s.t}</h2><div class=card><h3>📖 重点</h3>${s.n}</div><div class=card><h3>🔧 互动演示</h3><svg viewBox="0 0 240 150"><polygon></svg><div class=f></div><p class=res></p></div><div id=qz></div>`;
+ const v=s.f.map(x=>x[1]),f=M.querySelector('.f'),pg=M.querySelector('polygon');
+ const draw=()=>{const{p,t}=s.fn(v),xs=p.map(a=>a[0]),ys=p.map(a=>a[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0||1,h=Math.max(...ys)-y0||1,sc=Math.min(200/w,120/h);
+  pg.setAttribute('points',p.map(([x,y])=>`${20+(x-x0)*sc+(200-w*sc)/2},${15+(y-y0)*sc+(120-h*sc)/2}`).join(' '));M.querySelector('.res').innerHTML=t};
+ s.f.forEach((x,i)=>{const d=document.createElement('label');d.innerHTML=`${x[0]}：<b>${v[i]}</b><input type=range min=${x[2]} max=${x[3]} value=${v[i]}>`;d.querySelector('input').oninput=e=>{v[i]=+e.target.value;d.querySelector('b').textContent=v[i];draw()};f.append(d)});draw();
+ quiz($('#qz'),G[k],5,'✏️ 小测：5题选择',true)}
+function final(){M.innerHTML=`<h2>🏆 总测验</h2><div id=qz></div>`;quiz($('#qz'),G.flat(),10,'全章随机测验：10题',false)}
+function quiz(el,gens,n,title,fill){let score=0,done=0;const pool=sh(gens),qs=[...Array(n)].map((_,i)=>mk(pool[i%pool.length]));
+ el.innerHTML=`<div class=card><h3>${title}</h3><div class=sc>已答 0/${n}　答对 0</div></div>`;const box=el.firstChild,sc=box.querySelector('.sc');
+ qs.forEach((q,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<b>${i+1}.</b> ${q.q}（单位：${q.u}）${q.o.map(o=>`<button class=op data-v="${o}">${o} ${q.u}</button>`).join('')}<div class=ex></div>`;
+  c.onclick=e=>{const b=e.target.closest('.op');if(!b||c.dataset.l)return;c.dataset.l=1;const ok=b.dataset.v==q.a;c.querySelectorAll('.op').forEach(x=>{if(x.dataset.v==q.a)x.classList.add('ok')});if(!ok)b.classList.add('no');
+   c.querySelector('.ex').innerHTML=(ok?'✅ 正确！':'❌ 错了。')+q.e;done++;score+=ok;sc.textContent=`已答 ${done}/${n}　答对 ${score}`;if(done==n)end()};el.append(c)});
+ function end(){const d=document.createElement('div');d.className='card';let h=`<h3>成绩：${score}/${n}</h3>`;
+  if(fill&&score>=3)h+=`<p>🎉 解锁作答题！请自己输入答案（只填数字）。</p><div id=fl></div>`;else if(fill)h+=`<p>答对 3 题以上才能解锁作答题，再试一组吧！</p>`;else h+=`<p>${score>=9?'太棒了！':score>=6?'不错，继续加油！':'多看重点再来挑战！'}</p>`;
+  d.innerHTML=h+`<button class=pri>🔄 换一组新题</button>`;d.querySelector('button').onclick=()=>quiz(el,gens,n,title,fill);el.append(d);d.scrollIntoView({behavior:'smooth'});
+  if(fill&&score>=3){const fl=d.querySelector('#fl');let fd=0,fs2=0;for(let i=0;i<2;i++){const q=mk(pick(gens)),c=document.createElement('div');c.innerHTML=`<p><b>作答${i+1}.</b> ${q.q}（单位：${q.u}）</p><input type=text inputmode=decimal> <button>提交</button><div class=ex></div>`;
+   c.querySelector('button').onclick=e=>{if(c.dataset.l)return;const v=Number(c.querySelector('input').value.trim());if(c.querySelector('input').value.trim()==''||isNaN(v))return;c.dataset.l=1;const ok=Math.abs(v-+q.a)<1e-6*Math.max(1,+q.a);c.querySelector('.ex').innerHTML=(ok?'✅ 正确！':`❌ 答案是 ${q.a} ${q.u}。`)+q.e;fd++;fs2+=ok;if(fd==2)fl.append(Object.assign(document.createElement('p'),{innerHTML:`<b>作答题：${fs2}/2</b>`}))};fl.append(c)}}}}
+go(0);
+</script></body></html>

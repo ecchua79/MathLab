@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79">
+<meta name="copyright" content="© 峇株吧辖华仁中学 蔡逸众 (ecchua79). 未经许可，请勿转载或擅自修改。">
+<!-- 峇株吧辖华仁中学蔡逸众制作 / 峇株吧辖蔡逸众制作 / 华仁中学蔡逸众制作 / Made by ecchua79 -->
+<title>初二数学上册 第5章 四边形与多边形 互动课件</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--ink:#14213d;--sub:#51607a;--line:#d3dbe6;--ac:#0f766e;--acl:#e0f2f1;--thm:#fff3d6;--thmb:#d99a00;--ok:#15803d;--okb:#dcfce7;--no:#b91c1c;--nob:#fee2e2;--fs:16px}
+body.dark{--bg:#0e1626;--card:#18243a;--ink:#eef2f8;--sub:#a3b1c8;--line:#34425c;--ac:#3dd6c6;--acl:#143a3d;--thm:#3a2f10;--thmb:#e0a91c;--ok:#6ee7a0;--okb:#0f3a25;--no:#fca5a5;--nob:#4a1a1a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--fs)}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+header{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:10px 4px}
+h1{font-size:1.3rem}h1 small{display:block;font-size:.8rem;font-weight:400;color:var(--sub)}
+.bt{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 11px;cursor:pointer;font:inherit;font-size:.85rem}
+.bt:hover,.bt:focus-visible{border-color:var(--ac);color:var(--ac)}
+nav{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+nav button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:20px;padding:6px 14px;cursor:pointer;font:inherit;font-size:.9rem}
+nav button.on{background:var(--ac);border-color:var(--ac);color:var(--bg);font-weight:700}
+nav button.done::after{content:" ✓"}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:12px 0}
+h2{font-size:1.15rem;color:var(--ac);margin-bottom:8px}h3{font-size:1rem;margin:14px 0 6px}
+p{margin:6px 0}
+.thm{background:var(--thm);border-left:4px solid var(--thmb);padding:8px 14px;margin:8px 0;border-radius:0 8px 8px 0}
+.thm b{display:block;font-size:.8rem;color:var(--sub);font-weight:600}
+details{border:1px solid var(--line);border-radius:8px;margin:8px 0;padding:8px 12px}
+summary{cursor:pointer;font-weight:600;color:var(--ac)}
+details .s{margin-top:6px;color:var(--ink)}
+.q{border-top:1px dashed var(--line);padding:10px 0}
+.q .r{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.q input{width:110px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+.fb{font-size:.9rem;margin-top:4px;padding:4px 10px;border-radius:6px;display:none}
+.fb.ok{display:block;background:var(--okb);color:var(--ok)}.fb.no{display:block;background:var(--nob);color:var(--no)}
+table{border-collapse:collapse;width:100%;font-size:.85rem;text-align:center}
+td,th{border:1px solid var(--line);padding:4px}td:first-child{text-align:left}
+.wrongc{background:var(--nob)}.rightc{background:var(--okb)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+svg{max-width:100%;background:var(--acl);border-radius:8px}
+.tree{display:grid;gap:4px;font-size:.9rem;margin:8px 0}
+.tree div{background:var(--acl);padding:6px 12px;border-radius:6px}
+.score{font-size:.85rem;color:var(--sub)}
+.opts{display:grid;gap:6px;margin-top:6px}.opts .bt{text-align:left}.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin:6px 0}.sl input{width:100%}svg{touch-action:none;color:var(--ink)}.inf{font-size:.9rem;margin-top:6px}
+.fg{float:right;margin:0 0 6px 10px;width:230px;max-width:55%}details .s{display:flow-root}
+footer{text-align:center;font-size:.8rem;color:var(--sub);padding:18px 8px 28px;border-top:1px solid var(--line);margin-top:20px;line-height:1.9}
+footer a{color:var(--ac);text-decoration:none}
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;user-select:none}
+.hm{position:absolute!important;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;font-size:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <h1>第5章 四边形与多边形<small>初二数学上册 · 5.1–5.9 · 内容依课本编排</small></h1>
+ <div class="row"><span class="score" id="sc"></span>
+ <button class="bt" onclick="fs(1)">A+</button><button class="bt" onclick="fs(-1)">A−</button>
+ <button class="bt" onclick="document.body.classList.toggle('dark')">🌙 / ☀️</button></div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer id="ft">
+ <div>© 2026 峇株吧辖华仁中学 蔡逸众 制作 · Made by ecchua79</div>
+ <div>初二数学上册 第5章 四边形与多边形 互动课件 · 内容依课本编排，仅供教学使用</div>
+ <div><a href="https://ecchua79.github.io/ScienceLab/" target="_blank" rel="noopener">ecchua79.github.io/ScienceLab</a></div>
+</footer>
+</div>
+<script>
+// ---------- 题目数据（全部取自课本；是非题 / 数值题） ----------
+const T=(q,a,e)=>({k:'t',q,a,e}), N=(q,a,e,u='°')=>({k:'n',q,a,e,u});
+const BOX=(t,h)=>`<div class="thm"><b>${t}</b>${h}</div>`;
+const fig=(P,poly,o={})=>{const V=[...poly].map(k=>P[k]),c=[V.reduce((a,p)=>a+p[0],0)/V.length,V.reduce((a,p)=>a+p[1],0)/V.length],ln=(a,b,w,d)=>`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${d?'#d99a00':'currentColor'}" stroke-width="${w}" ${d?'stroke-dasharray="4 3"':''}/>`;
+ let h=`<polygon points="${V.map(p=>p.join(',')).join(' ')}" fill="rgba(15,118,110,.12)" stroke="currentColor" stroke-width="1.6"/>`;
+ (o.l||[]).forEach(k=>h+=ln(P[k[0]],P[k[1]],1.5,1));(o.x||[]).forEach(k=>h+=ln(P[k[0]],P[k[1]],1.6,0));
+ (o.r||[]).forEach(([v,a,b])=>{const p=P[v],u=[P[a][0]-p[0],P[a][1]-p[1]],w=[P[b][0]-p[0],P[b][1]-p[1]],du=Math.hypot(...u),dw=Math.hypot(...w),A=[p[0]+u[0]/du*9,p[1]+u[1]/du*9],B=[A[0]+w[0]/dw*9,A[1]+w[1]/dw*9],C=[p[0]+w[0]/dw*9,p[1]+w[1]/dw*9];h+=`<polyline points="${A} ${B} ${C}" fill="none" stroke="currentColor" stroke-width="1.2"/>`});
+ (o.t||[]).forEach(([k,n])=>{const a=P[k[0]],b=P[k[1]],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy),ux=dx/d,uy=dy/d;for(let i=0;i<n;i++){const o2=(i-(n-1)/2)*4,mx=(a[0]+b[0])/2+ux*o2,my=(a[1]+b[1])/2+uy*o2;h+=ln([mx-uy*5,my+ux*5],[mx+uy*5,my-ux*5],1.4,0)}});
+ Object.entries(P).filter(([k])=>/^[A-Z]$/.test(k)).forEach(([k,p])=>{let dx=p[0]-c[0],dy=p[1]-c[1],d=Math.hypot(dx,dy);if(d<8){dx=1;dy=-1;d=1.41}h+=`<circle cx="${p[0]}" cy="${p[1]}" r="1.8" fill="currentColor"/><text x="${p[0]+dx/d*11}" y="${p[1]+dy/d*11}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="currentColor">${k}</text>`});
+ (o.v||[]).forEach(([x,y,t])=>h+=`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#0f766e">${t}</text>`);
+ return `<svg class="fg" viewBox="0 0 220 130">${h}</svg>`};
+const F={
+e51:fig({A:[50,110],B:[190,110],C:[190,35],D:[68,79],'1':[8,110]},'ABCD',{x:[['1','A']],r:[['B','A','C']],v:[[26,98,'120°'],[76,102,'x'],[172,52,'70°'],[88,78,'y']]}),
+e52a:fig({A:[70,100],B:[35,39],C:[155,39],D:[190,100]},'ABCD',{v:[[88,92,'120°']]}),
+e52b:fig({P:[40,100],Q:[160,100],R:[190,30],S:[70,30]},'PQRS',{v:[[100,115,'2x+2'],[130,16,'3x−4']]}),
+e52c:fig({A:[60,30],D:[190,30],C:[160,105],B:[30,105],O:[110,67.5]},'ABCD',{l:['AC','BD']}),
+e52e:fig({P:[30,105],Q:[150,105],R:[190,35],S:[70,35]},'PQRS',{l:['SQ'],v:[[78,54,'68°'],[112,45,'53°'],[148,92,'68°'],[34,64,'7cm'],[186,72,'7cm']]}),
+e52f:fig({A:[40,105],B:[150,105],C:[190,35],D:[80,35]},'ABCD',{v:[[64,93,'3x−9°'],[130,93,'120°'],[166,50,'2x+14°'],[100,48,'5x+5°']]}),
+e53a:fig({A:[30,25],B:[30,105],C:[190,105],D:[190,25]},'ABCD',{l:['AC','BD'],r:[['D','A','C']]}),
+e53b:fig({P:[30,105],Q:[190,105],R:[190,25],S:[30,25],O:[110,65]},'PQRS',{l:['PR','SQ'],v:[[110,47,'120°'],[14,66,'5cm']]}),
+e53c:fig({B:[30,105],A:[190,105],C:[190,25],D:[30,25],M:[110,65]},'BAC',{l:['DC','DB','AD'],r:[['A','B','C']],t:[['BM',2],['MC',2],['AM',1],['MD',1]]}),
+e54:fig({A:[62,65],D:[110,18],C:[158,65],B:[110,112],O:[110,65]},'ADCB',{l:['AC','BD'],r:[['O','A','D']],v:[[84,62,'52°'],[72,34,'6cm']]}),
+e55:fig({A:[80,115],B:[180,115],C:[180,15],D:[80,15],E:[130,65],F:[30,65]},'ABCD',{l:['AC','BD'],x:['FA','FD'],v:[[48,66,'x'],[92,100,'z'],[108,100,'y']]}),
+e56:fig({P:[30,65],Q:[100,115],R:[142,65],S:[100,15]},'PQRS',{l:['PR','SQ'],v:[[52,65,'70°'],[122,65,'100°']]}),
+e57:fig({P:[30,105],Q:[190,105],R:[164,25],S:[56,25],T:[100,105]},'PQRS',{x:['ST'],t:[['PS',1],['QR',1]],v:[[54,96,'72°'],[64,46,'40°']]})};
+const EX=(t,q,s,g='')=>`<details><summary>${t}</summary><div class="s">${g}<p>${q}</p><p>${s}</p></div></details>`;
+
+const S=[
+{id:'5.1',t:'四边形',
+ n:`<p>由四条线段所围成的平面图形叫做<b>四边形</b>。线段称为边，边与边的交点称为顶点。</p>
+ <p>命名必须按顶点顺序：四边形ABCD、BCDA、ADCB 都可以，但ACBD、BDCA 不可以。</p>
+ <p>两条相邻的边所组成的角称为<b>内角</b>；不相邻的内角互为<b>对角</b>（∠A与∠C、∠B与∠D）；不相邻的边互为<b>对边</b>（AB与CD、BC与DA）。连接两个不相邻顶点的线段称为<b>对角线</b>（AC、BD）。</p>
+ ${BOX('性质','四边形四个内角的和等于360°。<br>（对角线AC把四边形分成△ABC与△ADC，180°+180°=360°）')}
+ <p>💭 思考题：一个四边形四个外角的和是多少？（5.9 会证明）</p>`,
+ ex:[EX('例题1','求x及y。（图：x的邻补角为120°；其余三个内角为70°、90°及y）','x=180°−120°=60°；y=360°−70°−90°−x=200°−60°=140°。',F.e51)],
+ q:[N('四边形的三个内角分别为110°、90°、80°，求第四个内角。（数据取自练习5.1第1题）',80,'360°−110°−90°−80°=80°')]},
+
+{id:'5.2',t:'平行四边形',
+ n:`<p>两组对边分别平行的四边形称为<b>平行四边形</b>。</p>
+ <h3>性质</h3>
+ ${BOX('性质①','平行四边形的对角相等。（同旁内角互补，∠B+∠A=180°，∠C+∠B=180°，∴∠C=∠A）')}
+ ${BOX('性质②','平行四边形的对边相等。（作对角线AC，△ABC≅△CDA，ASA）')}
+ ${BOX('性质③','平行四边形的对角线互相平分。（△ABE≅△CDE，ASA）')}
+ <h3>判定</h3>
+ ${BOX('判定','①两组对角分别相等的四边形是平行四边形。<br>②两组对边分别相等的四边形是平行四边形。<br>③两条对角线互相平分的四边形是平行四边形。<br>④一组对边平行且相等的四边形是平行四边形。')}
+ <p>💭 思考题：证明这些判定定理。　若一组对边平行、另一组对边相等，一定是平行四边形吗？<br><i>（不一定，等腰梯形就是反例。）</i></p>`,
+ ex:[EX('例题1','ABCD是平行四边形，∠A=120°，求∠B、∠C及∠D。','∠B=180°−120°=60°（AD∥BC）；∠C=∠A=120°；∠D=∠B=60°。',F.e52a),
+ EX('例题2','PQRS是平行四边形，PQ=2x+2，RS=3x−4，求PQ。','PQ=RS：2x+2=3x−4，x=6，PQ=2(6)+2=14。',F.e52b),
+ EX('例题3','ABCD是平行四边形，AC=16cm，BD=12cm，求OA及OB。','OA=½AC=8cm；OB=½BD=6cm（对角线互相平分）。',F.e52c),
+ EX('例题4','判断是否为平行四边形：(a)AB=DC=11cm，AD=BC=10cm；(b)∠E=70°，∠F=109°；(c)OK=OM=4cm，OL=ON=7cm。','(a)是（两组对边分别相等）；(b)∠E+∠F=179°，不互补，EH与FG不平行，不是；(c)是（两条对角线互相平分）。'),
+ EX('例题5','求∠P。（∠PSQ=∠SQR=68°，PS=QR=7cm，∠RSQ=53°）','∠PSQ=∠SQR，∴PS∥QR；又PS=QR，∴PQRS是平行四边形；∠P=∠R=180°−53°−68°=59°。',F.e52e),
+ EX('例题6','(a)求x；(b)证明ABCD是平行四边形。（∠A=3x−9°，∠D=5x+5°，∠C=2x+14°，∠B=120°）','(a)(3x−9)+(5x+5)+(2x+14)+120=360，10x=230，x=23。(b)∠A=∠C=60°，∠B=∠D=120°，两组对角分别相等，∴ABCD是平行四边形。',F.e52f)],
+ q:[T('平行四边形的对边平行。','T'),T('平行四边形的四个边都相等。','F','只有对边相等。'),T('平行四边形的对角相等。','T'),
+ T('平行四边形的内角和等于180°。','F','内角和为360°。'),T('平行四边形的对角线互相平分。','T'),T('平行四边形是点对称图形。','T'),T('平行四边形是线对称图形。','F','一般的平行四边形不是线对称图形。'),
+ N('PQRS是平行四边形，对角线相交于M，PM=4cm，QS=6cm，求QM。（练习5.2a第3题）',3,'QM=½QS=3cm','cm'),
+ N('同上，求PR。',8,'PR=2×PM=8cm','cm')]},
+
+{id:'5.3',t:'长方形',
+ n:`<p>四个角都是直角的四边形叫做<b>长方形</b>。长方形是特殊的平行四边形，具有平行四边形所有的性质：对边平行、对边相等、对角线互相平分。</p>
+ ${BOX('此外','长方形的两条对角线相等。<br>长方形的两条对角线互相平分成四条相等的线段。（OA=OB=OC=OD）')}
+ ${BOX('判定','①一个角是直角的平行四边形是长方形。<br>②两条对角线相等的平行四边形是长方形。')}
+ <p>📎 补充资料：四个角都相等的四边形，每个角都是直角，所以长方形也可以定义成四个角都相等的四边形。　💭 思考题：证明这些判定定理。</p>
+ ${BOX('例题3的结论','直角三角形斜边上的中线等于斜边的一半。')}`,
+ ex:[EX('例题1','ABCD是平行四边形，AC=(3x+2)cm，BD=(5x−12)cm，∠ADC=90°，求x。','一个角是直角的平行四边形是长方形，∴AC=BD：3x+2=5x−12，x=7。',F.e53a),
+ EX('例题2','PQRS是长方形，对角线相交于O，PS=5cm，∠ROS=120°。求(a)∠OSP；(b)PR。','(a)OP=OS，∠OSP=∠OPS，且∠OSP+∠OPS=120°（外角），∴∠OSP=60°。(b)△OSP是等边三角形，OP=OS=PS=5cm，PR=2×OP=10cm。',F.e53b),
+ EX('例题3','△ABC中∠A=90°，AM是BC边上的中线。证明AM=½BC。','延长AM至D使AM=DM，连DC、DB。ABDC的对角线互相平分，是平行四边形；又∠A=90°，是长方形。∴AD=BC，AM=½AD=½BC。',F.e53c)],
+ q:[T('长方形的每个角都是直角。','T'),T('长方形的所有边都相等。','F'),T('长方形的两条对角线相等。','T'),T('长方形的两条对角线互相垂直。','F'),
+ T('长方形的对角线平分其端点的角。','F'),T('长方形是线对称图形。','T'),T('长方形是点对称图形。','T'),
+ N('ABCD是长方形，对角线AC与BD相交于O，OD=4cm，求AC。（随堂练习4第2题）',8,'OD=OB=4，BD=8=AC','cm'),
+ N('△PQR中∠Q=90°，PR=15cm，M是PR的中点，求QM。（练习5.3第3题）',7.5,'直角三角形斜边上的中线等于斜边的一半','cm')]},
+
+{id:'5.4',t:'菱形',
+ n:`<p>四个边都相等的四边形称为<b>菱形</b>。菱形是特殊的平行四边形，具有平行四边形所有的性质：对边平行、对角相等、对角线互相平分。</p>
+ ${BOX('此外','菱形的两条对角线互相垂直。<br>菱形的每条对角线平分其端点的角。')}
+ <p>（AO=CO，BO是等腰△ABC底边AC上的中线，所以BO⊥AC且BO平分∠ABC。）</p>
+ ${BOX('判定','①一组邻边相等的平行四边形是菱形。<br>②两条对角线互相垂直的平行四边形是菱形。<br>③一条对角线平分它的其中一个端点的角的平行四边形是菱形。')}
+ <p>💭 思考题：证明这些判定定理。</p>`,
+ ex:[EX('例题1','ABCD为菱形，∠DAO=52°，AD=6cm。求(a)CD；(b)∠ADO；(c)∠DCB；(d)∠ABC。','(a)CD=AD=6cm；(b)∠AOD=90°，∠ADO=90°−52°=38°；(c)∠DAB=2×52°=104°，∠DCB=∠DAB=104°；(d)∠ABC=180°−104°=76°（AB∥CD）。',F.e54)],
+ q:[T('菱形的四个边都相等。','T'),T('菱形的四个角都相等。','F'),T('菱形的两条对角线相等。','F'),T('菱形的对角线互相平分。','T'),T('菱形的对角线互相垂直。','T'),
+ T('菱形是线对称图形。','T'),T('菱形是点对称图形。','T'),T('菱形恰有一条对称轴。','F','有两条对称轴（两条对角线所在直线）。'),T('菱形的四个角皆为锐角。','F'),
+ N('ABCD为菱形，∠ADC=72°，求∠ABC。（练习5.4第1题）',72,'对角相等'),N('同上，求∠DAC。',54,'△ADC中AD=DC，∠DAC=(180°−72°)÷2=54°'),N('同上，求∠DCB。',108,'∠DCB=2×54°=108°')]},
+
+{id:'5.5',t:'正方形',
+ n:`<p>四个边都相等，且四个角都是直角的四边形称为<b>正方形</b>。正方形既是特殊的菱形，也是特殊的长方形，具有两者所有的性质：</p>
+ ${BOX('性质','• 两条对角线相等<br>• 两条对角线互相垂直<br>• 对角线互相平分成四条相等的线段<br>• 对角线将每个端点的角平分成两个45°的角')}
+ ${BOX('判定','若一个四边形既是菱形，又是长方形，则它是正方形。<br>一个内角是直角的菱形是正方形。（由例题1得到）')}`,
+ ex:[EX('例题1','AB=BC=CD=DA，AE=ED=DF=FA，∠BCD=90°。求x、y及z。','ABCD、AEDF的四边分别相等，是菱形（也是平行四边形）。∠BCD=90°，∴ABCD是长方形，也是正方形，AC⊥BD，∠DEA=90°，∴AEDF也是正方形。x=90°，y=z=45°。',F.e55)],
+ q:[T('正方形的每个角都是直角。','T'),T('正方形的每个边都相等。','T'),T('正方形的对角线相等。','T'),T('正方形的对角线互相垂直。','T'),T('正方形的对角线互相平分成四个相等的线段。','T'),
+ T('正方形的对角线将其端点的角平分成两个45°的角。','T'),T('正方形既是长方形，也是菱形。','T'),T('正方形是线对称图形。','T'),T('正方形是点对称图形。','T'),T('一个角是直角的菱形是正方形。','T'),T('一组邻边相等的长方形是正方形。','T'),
+ N('ABCD是正方形，OA=4cm，求BD。（随堂练习6第3题(a)）',8,'对角线互相平分且相等，BD=AC=2×OA','cm')]},
+
+{id:'5.6',t:'风筝形',
+ n:`<p>两组邻边分别相等的四边形叫做<b>风筝形</b>（AB=AD，CB=CD）。对角线AC把风筝形分成两个全等的三角形△ABC与△ADC。</p>
+ ${BOX('性质','• 对角∠B与∠D相等。<br>• 对角线AC平分∠BAD及∠BCD。<br>• 风筝形的对角线互相垂直。（△BCD是等腰三角形）<br>• 对角线AC平分对角线BD。')}`,
+ ex:[EX('例题1','风筝形PQRS中，∠P=70°，∠R=100°，求∠Q。','∠Q=∠S（风筝形性质）；∠Q+∠S=360°−70°−100°=190°；2∠Q=190°，∠Q=95°。',F.e56)],
+ q:[T('风筝形的两条对角线相等。','F'),T('风筝形的对边平行。','F'),T('风筝形的两条对角线互相垂直。','T'),T('风筝形的对角相等。','F','只有一组对角（∠B=∠D）相等。'),T('风筝形的对边相等。','F'),
+ T('风筝形的两条对角线互相平分。','F','只有AC平分BD。'),T('风筝形的对角互补。','F'),T('风筝形的每条对角线平分其端点的角。','F','只有AC平分∠BAD及∠BCD。'),T('风筝形是点对称图形。','F'),T('风筝形是线对称图形。','T'),
+ N('KLMN是风筝形，KL=KN，ML=MN，∠K=66°，∠N=90°，求∠M。（练习5.6第1题）',114,'∠L=∠N=90°，∠M=360°−66°−90°−90°=114°')]},
+
+{id:'5.7',t:'梯形',
+ n:`<p>一组对边平行，而另一组对边不平行的四边形叫做<b>梯形</b>。平行的两边称为<b>底</b>，不平行的两边称为<b>腰</b>，两底之间的距离称为<b>高</b>。</p>
+ <p><b>直角梯形</b>：其中一个腰垂直于两个底边。<b>等腰梯形</b>：两个腰等长。</p>
+ ${BOX('性质','等腰梯形一底边的两端点的角相等。')}
+ ${BOX('判定','若梯形一底边两端点的角相等，则此梯形为等腰梯形。<br>四边形ABCD中，若∠A=∠B，AD=BC，则ABCD是等腰梯形。')}`,
+ ex:[EX('例题1','PQRS为等腰梯形，PS=QR，∠SPQ=72°，∠PST=40°，求∠RQP及∠RST。','∠RQP=∠SPQ=72°；∠RSP+∠SPQ=180°（PQ∥SR，同旁内角互补）；∠RST+40°+72°=180°，∠RST=68°。',F.e57)],
+ q:[T('等腰梯形一底边两端点的角相等。','T'),T('梯形的两组对边都平行。','F'),T('直角梯形有一个腰垂直于两个底边。','T'),
+ N('KLMN为直角梯形，KPMN为平行四边形，∠LMP=30°，求∠KNM。（随堂练习8）',120,'△PLM中∠L=90°，∠LPM=60°，∠KPM=120°，∠KNM=∠KPM=120°'),
+ N('ABCD是梯形（DC∥AB），AB=AC，DA=DC，∠ADC=104°，求∠ABC。（练习5.7第2题）',71,'∠DAC=∠DCA=38°，∠CAB=∠DCA=38°，∠ABC=(180°−38°)÷2=71°')]},
+
+{id:'5.8',t:'四边形之间的关系',
+ n:`<p>图5-19所示的关系：</p>
+ <div class="tree"><div>四边形 → 风筝形、梯形、平行四边形</div><div>平行四边形 → 菱形、长方形</div><div>风筝形 → 菱形</div><div>菱形、长方形 → 正方形</div></div>
+ <p>下表对应<b>练习5.8</b>：勾选四边形具有所述性质的格子（梯形、风筝形按一般情形判断）。</p><div id="tb"></div>
+ <details><summary>随堂练习9：哪些是线对称图形？哪些是点对称图形？</summary><div class="s">线对称：风筝形、长方形、菱形、正方形。<br>点对称：平行四边形、长方形、菱形、正方形。<br>（一般的梯形两者都不是。）</div></details>`,ex:[],q:[]},
+
+{id:'5.9',t:'多边形',
+ n:`<p>由三条或三条以上的线段围成的平面图形叫<b>多边形</b>；被n条边围成的叫<b>n边形</b>。</p>
+ <p>顶点、内角、<b>外角</b>（一边与相邻边的反向延长线所组成的角）、<b>对角线</b>（连接不相邻两顶点的线段）。</p>
+ <p><b>凸多边形</b>：每个内角都小于180°（每条边的无限延长线都不穿过多边形）。<b>凹多边形</b>：有一个或多个内角大于180°。</p>
+ <p><b>正多边形</b>：每个角相等且每个边相等。📎 两个条件缺一不可：长方形四角相等但四边不一定相等；菱形四边相等但四角不一定相等。</p>
+ ${BOX('内角和','由n边形的一个顶点可作n−3条对角线，将n边形分成n−2个三角形。<br>n边形的内角和＝(n−2)×180°')}
+ ${BOX('外角和','一个凸n边形的外角和＝360°（每个外角与相邻内角之和为180°，n×180°−(n−2)×180°=360°）')}
+ <h3>🧮 多边形计算器（拖动n）</h3>
+ <div class="row"><label>边数 n = <b id="nv">6</b></label><input type="range" id="nr" min="3" max="20" value="6" style="flex:1;min-width:140px"></div>
+ <div class="row"><svg id="pg" width="220" height="220" viewBox="0 0 220 220"></svg><div id="pi"></div></div>
+ <p>💭 思考题：一个凸n边形共有几条对角线？<br><i>每个顶点作n−3条，共n个顶点，每条被数两次：n(n−3)÷2（见计算器）。</i></p>`,
+ ex:[EX('例题1','多边形内角和为1980°，求边数。','(n−2)×180°=1980°，n−2=11，n=13。'),
+ EX('例题2','求正八边形每个内角。','内角和=(8−2)×180°=6×180°，每个角=6×180°÷8=135°。'),
+ EX('例题3','正多边形每个外角等于40°，求边数。','n×40°=360°，n=9。'),
+ EX('例题5','正多边形每个内角等于156°，求边数。','每个外角=180°−156°=24°，n×24°=360°，n=15。')],
+ q:[N('求14边形的内角和。（随堂练习11第2题）',2160,'(14−2)×180°'),N('求正12边形每个内角的大小。（随堂练习11第3题）',150,'(12−2)×180°÷12'),
+ N('求11边形的内角和。（练习5.9第2题）',1620,'(11−2)×180°'),N('多边形内角和为2520°，求边数。',16,'n−2=14'),N('多边形每个外角都等于20°，求边数。',18,'360÷20'),
+ N('多边形每个内角都等于162°，求边数。',20,'外角18°，360÷18=20'),N('多边形内角和等于外角和的4倍，求边数。',10,'(n−2)×180=4×360，n=10'),
+ N('求正24边形每个内角的大小。',165,'外角15°，内角165°'),N('多边形每个外角都等于45°，求其内角和。',1080,'n=8，(8−2)×180°'),
+ N('正多边形的内角和是外角和的8倍，求每个内角。',160,'内角和2880°，n=18，2880÷18=160'),N('正多边形内角和为2340°，求每个内角。',156,'n−2=13，n=15，2340÷15=156'),
+ N('五边形五个内角的比为2:3:4:5:6，求最大的内角。',162,'内角和540°，每份27°，6×27°=162°')]},
+
+{id:'总',t:'总复习题5',
+ n:`<p>综合复习（取自总复习题5）。</p>`,ex:[],
+ q:[T('正方形是菱形。','T'),T('菱形是长方形。','F'),T('平行四边形的对角线相等。','F'),T('长方形是平行四边形。','T'),T('对角线互相垂直且互相平分的四边形是菱形。','T'),
+ T('对角线相等的四边形是长方形。','F'),T('对角相等的四边形是菱形。','F'),T('长方形的内角和等于360°。','T'),T('正方形的两条对角线将正方形分成4个全等的三角形。','T'),T('风筝形的其中一条对角线平分其端点的角。','T'),
+ N('求17边形的内角和。（第4题）',2700,'(17−2)×180°'),N('正多边形每个内角等于144°，求边数。（第5题）',10,'外角36°，360÷36=10'),
+ N('正多边形内角和为6120°，求每个外角的大小。（第6题）',10,'n−2=34，n=36，360÷36=10°')]}
+];
+
+
+// ---------- 选择题 & 工具位置 ----------
+const Q=(q,o,a,e='')=>({q,o,a,e});
+const M={
+'5.1':[Q('四边形四个内角的和等于？',['180°','360°','540°','720°'],1,'对角线把四边形分成两个三角形：2×180°。'),
+ Q('下列哪一个是四边形ABCD的正确命名？',['ACBD','BDCA','BCDA','ACDB'],2,'命名必须按顶点顺序。'),
+ Q('在四边形ABCD中，∠B的对角是？',['∠A','∠C','∠D','∠B的外角'],2,'不相邻的内角互为对角。')],
+'5.2':[Q('平行四边形ABCD中，∠A=120°，则∠B＝？',['60°','120°','90°','30°'],0,'同旁内角互补。'),
+ Q('平行四边形PQRS的对角线相交于O，PR=10cm，则OP＝？',['4cm','5cm','8cm','10cm'],1,'对角线互相平分。'),
+ Q('下列哪一个条件不能确定四边形是平行四边形？',['两组对边分别相等','两条对角线互相平分','一组对边平行且相等','一组对边平行，另一组对边相等'],3,'等腰梯形满足最后一项却不是平行四边形。')],
+'5.3':[Q('下列哪一个是长方形的性质？',['对角线互相垂直','对角线相等','邻边相等','对角线平分其端点的角'],1),
+ Q('直角三角形的斜边为10cm，斜边上的中线长＝？',['5cm','10cm','20cm','2.5cm'],0,'直角三角形斜边上的中线等于斜边的一半。'),
+ Q('一个角是直角的什么四边形是长方形？',['任意四边形','平行四边形','风筝形','梯形'],1)],
+'5.4':[Q('下列哪一个性质是菱形具有、而长方形不一定具有的？',['对角线互相平分','对边平行','对角线互相垂直','对角相等'],2),
+ Q('菱形ABCD中，∠ABC=76°，则∠DAB＝？',['76°','104°','52°','90°'],1,'邻角互补。'),
+ Q('下列哪一个不能判定平行四边形是菱形？',['一组邻边相等','两条对角线互相垂直','两条对角线相等','一条对角线平分一个端点的角'],2,'对角线相等的平行四边形是长方形。')],
+'5.5':[Q('正方形具有、而长方形一般没有的性质是？',['对角线相等','对角线互相垂直','对角线互相平分','对边相等'],1),
+ Q('正方形的对角线把端点的角分成两个多少度的角？',['30°','45°','60°','90°'],1),
+ Q('既是菱形又是长方形的四边形是？',['平行四边形','风筝形','正方形','梯形'],2)],
+'5.6':[Q('下列哪一个是风筝形的性质？',['两条对角线相等','两条对角线互相垂直','对边平行','两条对角线互相平分'],1),
+ Q('风筝形PQRS中，∠P=70°，∠R=100°，则∠Q＝？',['95°','90°','110°','85°'],0,'∠Q=∠S，2∠Q=360°−170°。'),
+ Q('风筝形ABCD（AB=AD，CB=CD）中，相等的一组对角是？',['∠A与∠C','∠B与∠D','∠A与∠B','没有'],1)],
+'5.7':[Q('下列哪一个是等腰梯形的性质？',['两腰平行','一底边两端点的角相等','对角线互相平分','四边相等'],1),
+ Q('等腰梯形PQRS中，∠SPQ=72°，则∠RQP＝？',['72°','108°','68°','40°'],0),
+ Q('其中一个腰垂直于两个底边的梯形叫做？',['等腰梯形','直角梯形','风筝形','平行四边形'],1)],
+'5.8':[Q('下列关系正确的是？',['长方形是菱形','正方形是长方形','梯形是平行四边形','风筝形是平行四边形'],1),
+ Q('下列哪一个既是线对称图形，又是点对称图形？',['风筝形','平行四边形','菱形','一般梯形'],2),
+ Q('下列哪一个的两条对角线一定相等？',['长方形','菱形','风筝形','平行四边形'],0)],
+'5.9':[Q('十边形的内角和是？',['1440°','1620°','1800°','1260°'],0,'(10−2)×180°。'),
+ Q('凸多边形的外角和等于？',['180°','360°','(n−2)×180°','n×180°'],1),
+ Q('由n边形的一个顶点一共可作几条对角线？',['n−3','n−2','n−1','n'],0),
+ Q('有一个内角大于180°的多边形叫做？',['凸多边形','凹多边形','正多边形','四边形'],1),
+ Q('正五边形每个内角的大小是？',['72°','108°','120°','135°'],1,'内角和540°，除以5。')],
+'总':[Q('对角线互相垂直且互相平分的四边形是？',['长方形','菱形','梯形','风筝形'],1),
+ Q('对角线相等的平行四边形是？',['菱形','长方形','风筝形','梯形'],1),
+ Q('正多边形每个外角为30°，边数是？',['10','12','15','6'],1),
+ Q('多边形内角和为1080°，边数是？',['6','7','8','9'],2),
+ Q('下列哪一个一定是线对称图形？',['平行四边形','风筝形','一般梯形','以上皆非'],1)]};
+
+const first={};
+const _x={'5.1':[Q('已知四边形ABCD中，∠A=100°，∠B=80°，∠C=90°，则∠D＝？',['90°','80°','100°','110°'],0,'360°−100°−80°−90°=90°。'),Q('连接两个不相邻顶点的线段叫做？',['边','对角线','外角','顶点'],1)],
+'5.2':[Q('下列哪一个是平行四边形的性质？',['对角线相等','对角线互相平分','邻边相等','四个角相等'],1),Q('两组对角分别相等的四边形是？',['平行四边形','梯形','风筝形','不一定是特殊四边形'],0,'这是平行四边形的判定定理。')],
+'5.3':[Q('长方形ABCD的对角线相交于O，OD=4cm，则AC＝？',['4cm','8cm','12cm','16cm'],1,'OA=OB=OC=OD。'),Q('长方形的两条对角线互相平分成的四条线段？',['全部相等','只有对边相等','互相垂直','长度比为1:2'],0)],
+'5.4':[Q('菱形的每条对角线平分什么？',['对边','其端点的角','邻边','另一条对角线的垂线'],1),Q('菱形ABCD的对角线AC与BD相交于O，则∠AOB＝？',['45°','60°','90°','120°'],2)],
+'5.5':[Q('正方形ABCD中，OA=4cm，则BD＝？',['4cm','8cm','16cm','2cm'],1,'对角线相等且互相平分。'),Q('一个内角是直角的菱形是？',['长方形','正方形','风筝形','梯形'],1)],
+'5.6':[Q('风筝形ABCD中，对角线AC与BD相交于O，BO=3cm，则BD＝？',['3cm','6cm','9cm','12cm'],1,'对角线AC平分对角线BD。'),Q('下列哪一个一般是线对称图形，但不是点对称图形？',['平行四边形','风筝形','长方形','菱形'],1)],
+'5.7':[Q('梯形中互相平行的两边叫做？',['腰','底','高','对角线'],1),Q('四边形ABCD中，若∠A=∠B，AD=BC，则ABCD是？',['等腰梯形','风筝形','菱形','长方形'],0)],
+'5.8':[Q('长方形、菱形、正方形都具有的性质是？',['对角线相等','对角线互相垂直','对角线互相平分','四个边相等'],2),Q('图5-19中，菱形和长方形都指向哪一个四边形？',['平行四边形','正方形','风筝形','梯形'],1)]};
+for(const k in _x)M[k].push(..._x[k]);
+const C={
+'5.1':[N('四边形四个内角的比为1:2:3:4，求最大的内角。',144,'共10份，每份36°，4×36°=144°'),N('四边形的四个内角分别为x、2x−10°、3x+20°及4x−10°，求x。',36,'10x=360°，x=36')],
+'5.2':[N('平行四边形ABCD中，AB=(3x+1)cm，CD=(5x−7)cm，BC=2y cm，AD=(y+4)cm，求它的周长。',42,'x=4，y=4，AB=13，BC=8，周长=2×(13+8)','cm'),N('平行四边形ABCD中，∠A=(3x+10)°，∠B=(5x−30)°，求∠A。',85,'∠A+∠B=180°，8x−20=180，x=25，∠A=85°')],
+'5.3':[N('长方形ABCD的对角线相交于O，∠AOB=60°，AC=12cm，求AB。',6,'OA=OB=6cm，△AOB是等边三角形','cm'),N('长方形ABCD的对角线相交于O，∠OAD=35°，求∠AOB。',70,'OA=OD，∠ODA=35°，∠AOD=110°，∠AOB=180°−110°')],
+'5.4':[N('菱形的边长为8cm，其中一个内角为60°，求较短对角线的长。',8,'较短对角线与两边构成等边三角形','cm'),N('菱形ABCD的对角线相交于O，∠ABD=(2x+5)°，∠BAC=(x+10)°，求∠ABD。',55,'△AOB中∠AOB=90°，3x+15=90，x=25')],
+'5.5':[N('正方形ABCD中，△ABE是等边三角形（E在正方形内），求∠CED。',150,'∠AED=∠BEC=75°，∠CED=360°−60°−75°−75°'),N('正方形ABCD中，点E在对角线AC上，AE=AB，求∠EBC。',22.5,'∠ABE=(180°−45°)÷2=67.5°，∠EBC=90°−67.5°')],
+'5.6':[N('风筝形ABCD中，AB=AD，CB=CD，∠A=110°，∠C=50°，求∠B。',100,'∠B=∠D=(360°−110°−50°)÷2'),N('风筝形ABCD中，AB=AD，CB=CD，∠ABC=(3x+10)°，∠ADC=(5x−30)°，求∠ABC。',70,'∠B=∠D：3x+10=5x−30，x=20')],
+'5.7':[N('等腰梯形下底一个端点的角为(2x+10)°，同一腰上上底端点的角为(3x+20)°，求下底端点的角。',70,'同旁内角互补：5x+30=180，x=30'),N('直角梯形斜腰两端点的内角分别为x°及(2x−30)°，求其中较大的角。',110,'x+(2x−30)=180，x=70，较大的角为110°')],
+'5.8':[N('正方形有几条对称轴？',4,'两条对角线所在直线及两组对边的中垂线','条'),N('风筝形、平行四边形、长方形、菱形、正方形中，既是线对称又是点对称图形的有几个？',3,'长方形、菱形、正方形','个')],
+'5.9':[N('一个凸多边形的内角和比外角和多1260°，求边数。',11,'内角和=1620°，n−2=9'),N('正多边形的每个内角比每个外角大100°，求边数。',9,'内角=140°，外角=40°，360÷40')],
+'总':[N('凸多边形的内角和与其中一个外角的和为1350°，求边数。',9,'1350°=7×180°+90°，n−2=7'),N('正多边形每个内角与每个外角的比为5:1，求边数。',12,'外角=180°÷6=30°，360÷30')]};
+const chtml=(s,i,q)=>`<div class="q"><div>${i+1}. ${q.q}</div><div class="r"><input id="i${s.id}_c${i}" inputmode="decimal"> ${q.u}<button class="bt" onclick="cn('${s.id}_c${i}')">检查</button></div><div class="fb" id="f${s.id}_c${i}"></div></div>`;
+const TL={
+'5.1':'<p>拖动四个顶点（保持边不交叉），观察内角和。</p><div class="tool" data-t="p4"></div>',
+'5.2':'<p>拖动A、B、C、D任意一点，其余点会自动跟随，始终保持平行四边形。</p><div class="tool" data-t="par"></div>',
+'5.6':'<p>调整对角线交点位置与BD长度，观察风筝形的性质。</p><div class="tool" data-t="kite"></div>',
+'5.7':'<p>调整上底、下底与高，观察等腰梯形底边两端点的角。</p><div class="tool" data-t="trap"></div>',
+'5.9':'<p>拖动五边形的顶点，观察内角和与外角和。</p><div class="tool" data-t="p5"></div><h3>边数求解器</h3><div class="tool" data-t="sol"></div><h3>随机练习</h3><div class="tool" data-t="rnd"></div>'};
+const MT='<p>调整两邻边与夹角（或点按下方按钮），观察图形在平行四边形、长方形、菱形、正方形之间转换。</p><div class="tool" data-t="mor"></div>';
+['5.3','5.4','5.5','5.8'].forEach(k=>TL[k]=MT);
+const mhtml=(s,i,q)=>{const id=s.id+'_m'+i;return `<div class="q"><div>${i+1}. ${q.q}</div><div class="opts">${q.o.map((o,j)=>`<button class="bt" onclick="cm('${id}',${j})">${'ABCD'[j]}. ${o}</button>`).join('')}</div><div class="fb" id="f${id}"></div></div>`};
+function cm(id,j){const[s,i]=id.split('_'),q=M[s][+i.slice(1)],ok=q.a==j;if(!(id in first))first[id]=ok;fb(id,ok,ok?'✔ 正确。'+q.e:'✘ 不对，再想想。');
+ if(M[s].filter((_,k)=>first[s+'_m'+k]).length>=3){document.getElementById('ch'+s).style.display='';document.getElementById('lk'+s).style.display='none'}}
+
+// ---------- 互动工具 ----------
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),f=x=>(+x).toFixed(1).replace(/\.0$/,''),
+ ang=(a,b,c)=>{const u=[a[0]-b[0],a[1]-b[1]],v=[c[0]-b[0],c[1]-b[1]];return Math.acos(Math.max(-1,Math.min(1,(u[0]*v[0]+u[1]*v[1])/(Math.hypot(...u)*Math.hypot(...v)))))*180/Math.PI},
+ lab=(P,N)=>P.map((p,i)=>`<text x="${p[0]+9}" y="${p[1]-9}" fill="currentColor" font-size="14" font-weight="700">${N[i]}</text>`).join(''),
+ poly=P=>`<polygon points="${P.map(p=>p.join(',')).join(' ')}" fill="rgba(15,118,110,.15)" stroke="currentColor" stroke-width="2"/>`,
+ seg=(a,b)=>`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#d99a00" stroke-width="2" stroke-dasharray="5 4"/>`,
+ rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function inter(P,i){const n=P.length,a=P[(i+n-1)%n],b=P[i],c=P[(i+1)%n];let ar=0;P.forEach((p,k)=>{const q=P[(k+1)%n];ar+=p[0]*q[1]-q[0]*p[1]});
+ const cr=(b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0]),t=ang(a,b,c);return cr*ar>0?t:360-t}
+function drag(el,P0,draw,hook){el.innerHTML='<svg viewBox="0 0 400 240" style="width:100%"></svg><div class="inf"></div>';
+ const svg=el.firstChild,inf=el.lastChild,P=P0.map(p=>[...p]);let cur=-1;
+ function r(){const o=draw(P);svg.innerHTML=o[0]+P.map((p,i)=>`<circle data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="10" fill="#0f766e" fill-opacity=".85" style="cursor:grab"/>`).join('');inf.innerHTML=o[1]}
+ svg.onpointerdown=e=>{const i=e.target.dataset.i;if(i!==undefined){cur=+i;svg.setPointerCapture(e.pointerId)}};
+ svg.onpointermove=e=>{if(cur<0)return;const b=svg.getBoundingClientRect(),k=400/b.width;const old=P.map(p=>[...p]);P[cur]=[Math.max(12,Math.min(388,(e.clientX-b.left)*k)),Math.max(12,Math.min(228,(e.clientY-b.top)*k))];if(hook&&hook(P,cur)===false)old.forEach((p,j)=>P[j]=p);r()};
+ svg.onpointerup=()=>cur=-1;r()}
+function polyTool(el,P0){const N='ABCDEFGH';drag(el,P0,P=>{const n=P.length,a=P.map((_,i)=>inter(P,i)),sum=a.reduce((x,y)=>x+y,0),cv=a.every(x=>x<180);
+ return[poly(P)+lab(P,N),a.map((x,i)=>`∠${N[i]}=${f(x)}°`).join('，')+`<br>内角和＝<b>${f(sum)}°</b>（(n−2)×180°＝${(n-2)*180}°）<br>`+(cv?`凸多边形：外角和＝${f(a.reduce((x,y)=>x+(180-y),0))}°`:'有内角大于180°：这是<b>凹多边形</b>（内角和仍为(n−2)×180°）')]})}
+function par(el){drag(el,[[60,190],[120,60],[310,60],[250,190]],P=>{const[A,B,C,D]=P,O=[(A[0]+C[0])/2,(A[1]+C[1])/2];
+ return[poly(P)+seg(A,C)+seg(B,D)+lab([A,B,C,D,O],'ABCDO'),`AB=${f(dist(A,B))}，CD=${f(dist(C,D))}；AD=${f(dist(A,D))}，BC=${f(dist(B,C))}<br>∠A=${f(ang(B,A,D))}°，∠C=${f(ang(B,C,D))}°；∠B=${f(ang(A,B,C))}°，∠D=${f(ang(A,D,C))}°<br>AO=${f(dist(A,O))}，CO=${f(dist(C,O))}（对角线互相平分）`]},
+ (P,i)=>{const[A,B,C,D]=P;if(i==2)P[3]=[A[0]+C[0]-B[0],A[1]+C[1]-B[1]];else P[2]=[B[0]+D[0]-A[0],B[1]+D[1]-A[1]];return P.every(p=>p[0]>=12&&p[0]<=388&&p[1]>=12&&p[1]<=228)})}
+function mor(el){el.innerHTML='<svg viewBox="0 0 400 240" style="width:100%"></svg><div class="sl"><label>邻边 a <input type="range" min="50" max="120" value="110"></label><label>邻边 b <input type="range" min="50" max="120" value="70"></label><label>夹角 θ <input type="range" min="30" max="150" value="70"></label></div><div class="row"><button class="bt">长方形</button><button class="bt">菱形</button><button class="bt">正方形</button></div><div class="inf"></div>';
+ const[A,B,C]=el.querySelectorAll('input'),bs=el.querySelectorAll('button'),svg=el.firstChild,inf=el.lastChild;
+ function r(){const a=+A.value,b=+B.value,t=C.value*Math.PI/180,c=Math.cos(t),s=Math.sin(t),P0=[150,190],P1=[150+a,190],P2=[150+a+b*c,190-b*s],P3=[150+b*c,190-b*s];
+  const sq=Math.abs(a-b)<1,rc=Math.abs(C.value-90)<1,u=[P2[0]-P0[0],P2[1]-P0[1]],v=[P3[0]-P1[0],P3[1]-P1[1]],cs=(u[0]*v[0]+u[1]*v[1])/(Math.hypot(...u)*Math.hypot(...v));
+  svg.innerHTML=poly([P0,P1,P2,P3])+seg(P0,P2)+seg(P1,P3)+lab([P0,P1,P2,P3],'ABCD');
+  inf.innerHTML=`形状：<b>${sq&&rc?'正方形':rc?'长方形':sq?'菱形':'平行四边形'}</b><br>对角线 AC=${f(dist(P0,P2))}，BD=${f(dist(P1,P3))}：${Math.abs(dist(P0,P2)-dist(P1,P3))<.8?'相等':'不相等'}；${Math.abs(cs)<.012?'互相垂直':'不互相垂直'}`}
+ const set=(a,b,t)=>{A.value=a;B.value=b;C.value=t;r()};bs[0].onclick=()=>set(110,70,90);bs[1].onclick=()=>set(90,90,70);bs[2].onclick=()=>set(90,90,90);
+ [A,B,C].forEach(i=>i.oninput=r);r()}
+function kite(el){el.innerHTML='<svg viewBox="0 0 400 240" style="width:100%"></svg><div class="sl"><label>交点O位置 <input type="range" min="20" max="80" value="35"></label><label>BD的一半 <input type="range" min="30" max="100" value="70"></label></div><div class="inf"></div>';
+ const[T,W]=el.querySelectorAll('input'),svg=el.firstChild,inf=el.lastChild;
+ function r(){const A=[50,120],C=[330,120],x=50+280*T.value/100,O=[x,120],B=[x,120+ +W.value],D=[x,120- +W.value];
+  svg.innerHTML=poly([A,B,C,D])+seg(A,C)+seg(B,D)+lab([A,B,C,D,O],'ABCDO');
+  inf.innerHTML=`AB=${f(dist(A,B))}，AD=${f(dist(A,D))}；CB=${f(dist(C,B))}，CD=${f(dist(C,D))}<br>∠B=${f(ang(A,B,C))}°，∠D=${f(ang(A,D,C))}°（相等）；AC⊥BD<br>BO=${f(dist(B,O))}，DO=${f(dist(D,O))}（AC平分BD）；∠A=${f(ang(B,A,D))}°，∠C=${f(ang(B,C,D))}°`+(Math.abs(T.value-50)<1?'<br>此时O是AC中点，风筝形变成<b>菱形</b>。':'')}
+ [T,W].forEach(i=>i.oninput=r);r()}
+function trap(el){el.innerHTML='<svg viewBox="0 0 400 240" style="width:100%"></svg><div class="sl"><label>上底 <input type="range" min="40" max="140" value="90"></label><label>下底 <input type="range" min="160" max="280" value="240"></label><label>高 <input type="range" min="50" max="130" value="90"></label></div><div class="inf"></div>';
+ const[U,D,H]=el.querySelectorAll('input'),svg=el.firstChild,inf=el.lastChild;
+ function r(){const u=+U.value,d=+D.value,h=+H.value,x0=(400-d)/2,y=205,P=[[x0,y],[x0+d,y],[200+u/2,y-h],[200-u/2,y-h]],t=Math.atan2(h,(d-u)/2)*180/Math.PI;
+  svg.innerHTML=poly(P)+lab(P,'PQRS');inf.innerHTML=`腰 PS=${f(dist(P[0],P[3]))}，QR=${f(dist(P[1],P[2]))}（相等）<br>下底两端点：∠P=${f(ang(P[1],P[0],P[3]))}°，∠Q=${f(ang(P[0],P[1],P[2]))}°（相等）<br>上底两端点：∠S=${f(180-t)}°，∠R=${f(180-t)}°（相等）；∠P+∠S=180°`}
+ [U,D,H].forEach(i=>i.oninput=r);r()}
+function sol(el){el.innerHTML='<div class="row"><select class="bt"><option value="s">已知内角和（°）</option><option value="e">已知正多边形每个外角（°）</option><option value="i">已知正多边形每个内角（°）</option></select><input type="number" style="width:100px" class="bt"><button class="bt">求边数</button></div><div class="inf"></div>';
+ const[sel,inp,b]=el.querySelectorAll('select,input,button'),inf=el.lastChild;
+ b.onclick=()=>{const v=+inp.value;let n=sel.value=='s'?v/180+2:sel.value=='e'?360/v:360/(180-v),how=sel.value=='s'?`(n−2)×180°=${v}°，n−2=${f(v/180)}`:sel.value=='e'?`n×${v}°=360°`:`每个外角=180°−${v}°=${f(180-v)}°，n×${f(180-v)}°=360°`;
+  inf.innerHTML=Number.isInteger(n)&&n>=3?`${how}，<b>n=${n}</b>，该多边形有${n}个边。`:'这个数值得不到正整数边数（n≥3），请检查。'}}
+function rq(el){el.innerHTML='<div class="inf"></div><div class="row"><input type="number" style="width:110px" class="bt"> °或边<button class="bt">检查</button><button class="bt">换一题</button></div><div class="fb"></div>';
+ const t=el.firstChild,[inp,ck,nx]=el.querySelectorAll('input,button'),fe=el.lastChild;let A=0,E='';
+ function g(){const L=[5,6,8,9,10,12,15,18,20,24,30,36],n=rnd(5,20),m=L[rnd(0,L.length-1)],k=rnd(0,3);inp.value='';fe.className='fb';
+  [[`求${n}边形的内角和（°）。`,(n-2)*180,`(${n}−2)×180°`],[`多边形的内角和为${(n-2)*180}°，求边数。`,n,`n−2=${n-2}`],[`求正${m}边形每个内角的大小（°）。`,180-360/m,`外角=360°÷${m}=${360/m}°`],[`正多边形每个外角等于${360/m}°，求边数。`,m,`n=360°÷${360/m}°`]].forEach((x,i)=>{if(i==k){t.innerHTML=x[0];A=x[1];E=x[2]}})}
+ ck.onclick=()=>{const ok=+inp.value==A;fe.className='fb '+(ok?'ok':'no');fe.textContent=ok?'✔ 正确！'+E:'✘ 不对，提示：'+E};nx.onclick=g;g()}
+const TOOLS={p4:e=>polyTool(e,[[70,200],[330,200],[300,60],[110,50]]),p5:e=>polyTool(e,[[200,30],[330,110],[285,210],[115,210],[70,110]]),par,mor,kite,trap,sol,rnd:rq};
+// ---------- 渲染 ----------
+const nav=document.getElementById('nav'),main=document.getElementById('main');
+const state={},total=S.reduce((a,s)=>a+s.q.length,0)+Object.values(M).reduce((a,m)=>a+m.length,0)+Object.values(C).reduce((a,m)=>a+m.length,0)+14;
+function upd(){let ok=Object.values(state).filter(v=>v).length;
+ document.getElementById('sc').textContent='已答对 '+ok+' / '+total;
+ S.forEach((s,i)=>{const ids=Object.keys(state).filter(k=>k.startsWith(s.id+'_')&&state[k]).length;
+  nav.children[i].classList.toggle('done',ids==s.q.length+(M[s.id]||[]).length+(C[s.id]||[]).length+(s.id=='5.8'?14:0))})}
+function qhtml(s,i,q){const id=s.id+'_'+i;
+ return q.k=='t'?`<div class="q"><div>${i+1}. ${q.q}</div><div class="r"><button class="bt" onclick="ct('${id}',${i},'T',this)">对 ✓</button><button class="bt" onclick="ct('${id}',${i},'F',this)">错 ✗</button></div><div class="fb" id="f${id}"></div></div>`
+ :`<div class="q"><div>${i+1}. ${q.q}</div><div class="r"><input id="i${id}" inputmode="decimal"> ${q.u}<button class="bt" onclick="cn('${id}',${i})">检查</button></div><div class="fb" id="f${id}"></div></div>`}
+function fb(id,ok,msg){const f=document.getElementById('f'+id);f.className='fb '+(ok?'ok':'no');f.textContent=msg;state[id]=state[id]||ok;upd()}
+const find=id=>{const[s,i]=id.split('_');return i[0]=='c'?C[s][+i.slice(1)]:S.find(x=>x.id==s).q[i]};
+function ct(id,i,v){const q=find(id),ok=q.a==v;fb(id,ok,(ok?'✔ 正确。':'✘ 再想想。正确答案：'+(q.a=='T'?'对':'错')+'。')+(q.e||''))}
+function cn(id){const q=find(id),v=parseFloat(document.getElementById('i'+id).value),ok=Math.abs(v-q.a)<1e-6;
+ fb(id,ok,ok?'✔ 正确。'+q.e:'✘ 不对，再算一次。（提示：'+q.e+'）')}
+S.forEach((s,i)=>{
+ const b=document.createElement('button');b.textContent=s.id=='总'?'总复习题5':s.id+' '+s.t;b.onclick=()=>show(i);nav.appendChild(b);
+ const el=document.createElement('section');
+ el.innerHTML=`<div class="card"><h2>${s.id=='总'?'总复习题5':s.id+' '+s.t}</h2>${s.n}${s.ex.length?'<h3>📘 例题</h3>'+s.ex.join(''):''}</div>`+
+ (TL[s.id]?`<div class="card"><h2>🛠 互动工具</h2>${TL[s.id]}</div>`:'')+
+ (s.q.length?`<div class="card"><h2>✍️ 练习（${s.q.length}题）</h2>${s.q.map((q,j)=>qhtml(s,j,q)).join('')}</div>`:'')+
+ (M[s.id]?`<div class="card"><h2>🎯 选择题（${M[s.id].length}题）</h2>${M[s.id].map((q,j)=>mhtml(s,j,q)).join('')}</div>`:'')+
+ (C[s.id]?`<div class="card"><h2>🏅 挑战填充题（${C[s.id].length}题）</h2><p class="score" id="lk${s.id}">🔒 选择题首次作答答对3题或以上，即可解锁。</p><div id="ch${s.id}" style="display:none">${C[s.id].map((q,j)=>chtml(s,j,q)).join('')}</div></div>`:'');
+ main.appendChild(el)});
+function show(i){[...nav.children].forEach((b,j)=>b.classList.toggle('on',i==j));
+ [...main.children].forEach((e,j)=>e.classList.toggle('on',i==j));scrollTo(0,0)}
+function fs(d){const r=document.documentElement,c=parseFloat(getComputedStyle(r).fontSize);r.style.setProperty('--fs',Math.min(24,Math.max(13,c+d*2))+'px')}
+
+// ---------- 5.8 性质表（练习5.8） ----------
+const cols=['梯形','风筝形','平行四边形','长方形','菱形','正方形'];
+const rows=[['(a) 对边平行','001111'],['(b) 对边相等','001111'],['(c) 对角相等','001111'],['(d) 对角线相等','000101'],['(e) 对角线互相平分','001111'],['(f) 对角线互相垂直','010011'],
+['(g) 对角线平分其端点的角','000011'],['(h) 对角线互相平分成四条等长的线段','000101'],['(i) 两组邻边相等','010011'],['(j) 三个内角是直角','000101'],['(k) 四个边相等','000011'],['(l) 四个内角相等','000101'],['(m) 没有一个角是钝角','000101'],['(n) 没有一个角是锐角','000101']];
+document.getElementById('tb').innerHTML='<div style="overflow-x:auto"><table><tr><th>性质</th>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+
+ rows.map((r,i)=>'<tr><td>'+r[0]+'</td>'+[...r[1]].map((_,j)=>`<td id="c${i}_${j}"><input type="checkbox" id="k${i}_${j}"></td>`).join('')+'</tr>').join('')+
+ '</table></div><div class="row" style="margin-top:8px"><button class="bt" onclick="tc(0)">检查</button><button class="bt" onclick="tc(1)">显示答案</button><span id="tm" class="score"></span></div>';
+function tc(show){let bad=0;rows.forEach((r,i)=>[...r[1]].forEach((v,j)=>{const k=document.getElementById('k'+i+'_'+j),c=document.getElementById('c'+i+'_'+j);
+ if(show)k.checked=v=='1';const ok=k.checked==(v=='1');if(!ok)bad++;c.className=ok?'rightc':'wrongc'}));
+ document.getElementById('tm').textContent=bad?'有 '+bad+' 格不对（红色）':'全部正确 🎉';
+ if(!bad&&!show)for(let i=0;i<14;i++)state['5.8_'+i]=true;upd()}
+
+// ---------- 5.9 多边形计算器 ----------
+const nr=document.getElementById('nr');
+function drawPoly(){const n=+nr.value;document.getElementById('nv').textContent=n;
+ const P=[...Array(n)].map((_,k)=>{const a=-Math.PI/2+2*Math.PI*k/n;return[110+85*Math.cos(a),110+85*Math.sin(a)]});
+ let h='<polygon points="'+P.map(p=>p.join(',')).join(' ')+'" fill="none" stroke="currentColor" stroke-width="2"/>';
+ for(let k=2;k<n-1;k++)h+=`<line x1="${P[0][0]}" y1="${P[0][1]}" x2="${P[k][0]}" y2="${P[k][1]}" stroke="#d99a00" stroke-dasharray="4 3"/>`;
+ document.getElementById('pg').innerHTML=h+`<circle cx="${P[0][0]}" cy="${P[0][1]}" r="4" fill="#0f766e"/>`;
+ const s=(n-2)*180;document.getElementById('pi').innerHTML=`由一顶点作对角线：<b>${n-3}</b> 条<br>分成三角形：<b>${n-2}</b> 个<br>内角和：<b>${s}°</b><br>外角和：<b>360°</b><br>正${n}边形：每个内角 <b>${+(s/n).toFixed(2)}°</b>，每个外角 <b>${+(360/n).toFixed(2)}°</b><br>对角线总数：<b>${n*(n-3)/2}</b> 条`}
+nr.oninput=drawPoly;drawPoly();
+document.querySelectorAll(".tool").forEach(e=>TOOLS[e.dataset.t](e));
+// ---------- 水印（浮水印 + 隐藏水印 + 防删除） ----------
+(function(){
+ const V=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240"><g transform="rotate(-24 180 120)" fill="rgba(128,128,128,0.16)" font-family="sans-serif" font-size="17" text-anchor="middle"><text x="180" y="100">'+V[0]+'</text><text x="180" y="140" font-size="14">'+V[3]+'</text></g></svg>';
+ function add(){
+  if(!document.getElementById('wm')){const w=document.createElement('div');w.id='wm';
+   w.style.cssText='position:fixed;inset:0;z-index:9999;pointer-events:none;user-select:none;background:url("data:image/svg+xml,'+encodeURIComponent(svg)+'") repeat';
+   document.body.appendChild(w)}
+  document.querySelectorAll('section .card:first-child h2').forEach((h,i)=>{if(!h.querySelector('.hm')){const x=document.createElement('span');x.className='hm';x.textContent=V[i%4];h.appendChild(x)}});
+  if(!document.getElementById('hm0')){const x=document.createElement('div');x.id='hm0';x.className='hm';x.textContent=V.join(' / ');document.body.appendChild(x)}
+ }
+ add();setInterval(add,2500);
+ new MutationObserver(add).observe(document.body,{childList:true});
+ try{console.log('%c'+V[0]+' · Made by ecchua79','color:#0f766e;font-weight:bold')}catch(e){}
+})();
+show(0);upd();
+</script>
+</body>
+</html>
