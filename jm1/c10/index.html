@@ -2,7 +2,7 @@
 <!--
   初一数学 第10章 一元一次方程式 互动课件
   作者 / Author : 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School
-  GitHub : ecchua79.github.io/ScienceLab
+  GitHub : ecchua79.github.io/MathLab
   版权所有 © 2026 · 未经许可请勿删除水印或用于商业用途
 -->
 <html lang="zh-CN" data-theme="light">
@@ -14,7 +14,7 @@
 <meta name="generator" content="ecchua79 · Chinese High School">
 <title>初一数学 第10章 一元一次方程式 - 互动课件</title>
 <style>
-/* Author: 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School | ecchua79.github.io/ScienceLab | (c) 2026 */
+/* Author: 蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School | (c) 2026 */
 #wm-float{position:fixed;inset:0;z-index:9999;pointer-events:none;user-select:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220'%3E%3Ctext x='170' y='110' text-anchor='middle' transform='rotate(-25 170 110)' font-family='sans-serif' font-size='15' font-weight='bold' fill='rgba(30,41,59,0.10)'%3E蔡逸众 · ecchua79%3C/text%3E%3Ctext x='170' y='132' text-anchor='middle' transform='rotate(-25 170 132)' font-family='sans-serif' font-size='11' fill='rgba(30,41,59,0.10)'%3EChinese High School 华仁中学%3C/text%3E%3C/svg%3E");background-repeat:repeat}
 [data-theme="dark"] #wm-float{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220'%3E%3Ctext x='170' y='110' text-anchor='middle' transform='rotate(-25 170 110)' font-family='sans-serif' font-size='15' font-weight='bold' fill='rgba(255,255,255,0.10)'%3E蔡逸众 · ecchua79%3C/text%3E%3Ctext x='170' y='132' text-anchor='middle' transform='rotate(-25 170 132)' font-family='sans-serif' font-size='11' fill='rgba(255,255,255,0.10)'%3EChinese High School 华仁中学%3C/text%3E%3C/svg%3E")}
 .footer a{color:inherit;text-decoration:underline dotted}
@@ -487,19 +487,19 @@ function gE6(){const u=ri(4,20);return{q:`买一盒洗衣粉，第二盒可以�
 gA4.nosub=gC4.nosub=true;
 
 const SECS=[
-{id:'a',name:'① 移项',pool:[gA1,gA2,gA3,gA4,gA5],calc:1,
+{id:'a',name:'10.1 ① 移项',pool:[gA1,gA2,gA3,gA4,gA5],calc:1,
  concept:`<p>含有未知数的等式叫<b>方程式</b>；只含一个未知数且次数为一次的叫<b>一元一次方程式</b>。使方程式左右两边相等的未知数的值叫<b>解（根）</b>。</p><div class="concept-box"><b>性质 1：</b>方程式两边可以同时加上（或减去）同一数，其解不变。<br><b>移项：</b>把一项从等号一边移到另一边，<b>必须改变符号</b>。</div>`,
  steps:['解方程式 x + 6 = 15','两边同时减 6：x + 6 − 6 = 15 − 6','即 x = 15 − 6（+6 移到右边变成 −6）','∴ x = 9','代入检验：左式 = 9 + 6 = 15 = 右式 ✓']},
-{id:'b',name:'② 乘除',pool:[gB1,gB2,gB3,gB4,gB5],
+{id:'b',name:'10.1 ② 乘除',pool:[gB1,gB2,gB3,gB4,gB5],
  concept:`<div class="concept-box"><b>性质 2：</b>方程式两边可以同时乘以（或除以）<b>不等于 0</b> 的数，其解不变。</div><p>注意：解 −7x = 35 时，是两边同时<b>除以 −7</b>，所以 −7 的符号不变 → 35 ÷ (−7)。分数系数 ${fr(3,4)}x = 15，可直接写成 x = 15 × ${fr(4,3)}。</p>`,
  steps:['解方程式 −7x = 35','两边同时除以 −7：−7x ÷ (−7) = 35 ÷ (−7)','∴ x = −5','代入检验：−7 × (−5) = 35 ✓']},
-{id:'c',name:'③ 括号',pool:[gC1,gC2,gC3,gC4,gC5],
+{id:'c',name:'10.1 ③ 括号',pool:[gC1,gC2,gC3,gC4,gC5],
  concept:`<p>先<b>去括号</b>（括号外的数要乘进括号内的每一项；括号前是负号，括号内各项变号），再合并同类项、移项。</p><div class="concept-box"><b>特殊情形：</b>化简得 0x = 0 → x 为任何数；化简得 0x = −8（非零数）→ 原方程式无解。</div>`,
  steps:['解 7(x − 2) − 3(3x − 5) = 41','去括号：7x − 14 − 9x + 15 = 41','合并：−2x + 1 = 41','移项：−2x = 41 − 1 = 40','∴ x = −20']},
-{id:'d',name:'④ 分母',pool:[gD1,gD2,gD3,gD4,gD5],
+{id:'d',name:'10.1 ④ 分母',pool:[gD1,gD2,gD3,gD4,gD5],
  concept:`<p>含分母的方程式：两边同乘各分母的<b>最小公倍数</b>。注意<b>每一项（包括没有分母的常数项）</b>都要乘，分子是多项式时要加括号。</p>`,
  steps:[`解 ${fr('x+1',3)} = ${fr('2x−3',7)}`,'两边乘 3 与 7 的最小公倍数 21：7(x + 1) = 3(2x − 3)','去括号：7x + 7 = 6x − 9','移项：7x − 6x = −9 − 7','∴ x = −16']},
-{id:'e',name:'⑤ 应用题',pool:[gE1,gE2,gE3,gE4,gE5,gE6],calc:2,
+{id:'e',name:'10.2 应用问题',pool:[gE1,gE2,gE3,gE4,gE5,gE6],calc:2,
  concept:`<div class="concept-box"><b>步骤：</b>① 设未知数 → ② 找等量关系 → ③ 列方程 → ④ 解方程 → ⑤ 检验并作答。<br>常见设法：连续数 x, x+2；年龄 x 年后 (40+x)；鸡兔 x 与 (总数 − x)；行程用 时间 = 路程 ÷ 速度。</div>`,
  steps:['两个连续偶数的和为 62，求此二数','设：较小偶数为 x，则另一个为 x + 2','等量关系：两数之和 = 62','列方程：x + (x + 2) = 62','解：2x = 60，x = 30','答：30 与 32（检验：30 + 32 = 62 ✓）']}
 ];
