@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79">
+    <title>初一数学 第11章 比与比例 互动课件</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0284c7', 600: '#0369a1', 700: '#075985' }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- KaTeX 数学公式渲染 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMath();"></script>
+    <style>
+        .font-sz-sm { font-size: 0.875rem; }
+        .font-sz-base { font-size: 1rem; }
+        .font-sz-lg { font-size: 1.125rem; }
+        .font-sz-xl { font-size: 1.25rem; }
+
+        #wm-float{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='300'%3E%3Cg transform='rotate%28-25 210 150%29' fill='%23808080' font-size='15' font-family='sans-serif'%3E%3Ctext x='20' y='80'%3E%E5%B3%87%E6%A0%AA%E5%90%A7%E8%BE%96%E5%8D%8E%E4%BB%81%E4%B8%AD%E5%AD%A6%E8%94%A1%E9%80%B8%E4%BC%97%E5%88%B6%E4%BD%9C%3C/text%3E%3Ctext x='60' y='150'%3EMade by ecchua79%3C/text%3E%3Ctext x='20' y='220'%3E%E5%8D%8E%E4%BB%81%E4%B8%AD%E5%AD%A6%E8%94%A1%E9%80%B8%E4%BC%97%E5%88%B6%E4%BD%9C%3C/text%3E%3Ctext x='200' y='270'%3E%E5%B3%87%E6%A0%AA%E5%90%A7%E8%BE%96%E8%94%A1%E9%80%B8%E4%BC%97%E5%88%B6%E4%BD%9C%3C/text%3E%3C/g%3E%3C/svg%3E");}
+        .wm-hidden{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;}
+        .tab-anim { transition: all 0.25s ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sz-base transition-colors duration-200">
+
+    <div id="wm-float" aria-hidden="true"></div>
+    <div class="wm-hidden" aria-hidden="true">峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79</div>
+
+    <!-- 顶部导航与工具栏 -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur border-b border-slate-200 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between min-h-[4rem] py-2 gap-2">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-primary-600 text-white rounded-lg font-bold text-lg">比</div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">初一数学：第11章 比与比例</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">互动教学、步骤求解器与高误导性智能测试系统</p>
+                </div>
+            </div>
+
+            <!-- 工具控制：主题与字号 -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg p-1 text-xs">
+                    <span class="px-2 text-slate-500 dark:text-slate-400">字号:</span>
+                    <button onclick="setFontSize('sm')" id="btn-font-sm" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold">小</button>
+                    <button onclick="setFontSize('base')" id="btn-font-base" class="px-2 py-1 rounded bg-white dark:bg-slate-600 font-bold shadow-sm">中</button>
+                    <button onclick="setFontSize('lg')" id="btn-font-lg" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold">大</button>
+                    <button onclick="setFontSize('xl')" id="btn-font-xl" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold">特大</button>
+                </div>
+
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 flex items-center gap-1 text-xs font-semibold">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">深色模式</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 章节 Tab 导航菜单 -->
+        <div class="bg-slate-100 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700">
+            <div class="max-w-7xl mx-auto px-4 flex space-x-2 overflow-x-auto py-2">
+                <button onclick="switchTab('11-1')" id="tab-btn-11-1" class="tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap bg-primary-600 text-white shadow">11.1 比与比例概念与性质</button>
+                <button onclick="switchTab('11-2')" id="tab-btn-11-2" class="tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">11.2 比例分配</button>
+                <button onclick="switchTab('11-3')" id="tab-btn-11-3" class="tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">11.3 正比例与反比例</button>
+                <button onclick="switchTab('11-4')" id="tab-btn-11-4" class="tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">11.4 综合总复习评估</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Tab 11.1 -->
+        <section id="tab-11-1" class="tab-content space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-200 dark:border-slate-700 pb-3">
+                    <span class="text-2xl">📖</span>
+                    <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">11.1 比与比例的概念及其性质</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border-l-4 border-primary-500 space-y-2">
+                        <h3 class="font-bold text-lg">1. 比的概念与基本性质</h3>
+                        <p>数 $a$ 除以数 $b$ ($b$ ≠ $0$)，记为 <span class="font-semibold text-primary-600 dark:text-primary-400">$a : b$</span>。$a$ 为<span class="underline">前项</span>，$b$ 为<span class="underline">后项</span>。</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">比值 $\frac{a}{b}$ 通常化为最简分数或最简整数比。</p>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-2.5 rounded text-amber-800 dark:text-amber-200 text-sm font-medium space-y-1">
+                            <p class="font-bold">⚠️ 注意陷阱：</p>
+                            <p>1. 同乘或同除以 $m$ ($m$ ≠ $0$)，比值不变：$a:b = ma:mb$。但 <span class="font-bold text-red-500">$(a+m):(b+m)$ ≠ $a:b$</span>！</p>
+                            <p>2. 比较不同单位时必须先<span class="underline">统一单位</span>（如 $150 \text{ 分钟} : 3 \text{ 小时} = 150 : 180 = 5 : 6$）。</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border-l-4 border-emerald-500 space-y-2">
+                        <h3 class="font-bold text-lg">2. 连比与比例性质</h3>
+                        <p><span class="font-semibold">连比：</span>三个量 $x, y, z$ 的比记为 <span class="font-semibold text-emerald-600 dark:text-emerald-400">$x : y : z$</span>。（注意：连比不可写成分数形式）</p>
+                        <p><span class="font-semibold">比例基本性质：</span>若 $a : b = c : d$，则：</p>
+                        <p class="text-center font-bold text-lg text-emerald-600 dark:text-emerald-400">$ad = bc$ （交叉相乘相等）</p>
+                        <p class="text-sm">若 $a:b:c = x:y:z$，则存在非零常数 $k$，使得：<span class="font-mono bg-white dark:bg-slate-800 px-2 py-0.5 rounded">$a = kx, b = ky, c = kz$</span></p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h3 class="font-bold text-lg mb-2 text-slate-700 dark:text-slate-200">💡 课本经典例题解析</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                            <span class="font-bold text-primary-500">【例题1】</span> 求 $150 \text{ 分钟}$ 与 $3 \text{ 小时}$ 的比值。<br>
+                            <span class="font-semibold">解：</span>统一单位：$3 \text{ 小时} = 180 \text{ 分钟}$。<br>
+                            $150 : 180 = \frac{150}{180} = \mathbf{\frac{5}{6}}$。
+                        </div>
+                        <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                            <span class="font-bold text-primary-500">【例题2】</span> 已知 $y:z = 4:3$，$x:z = 7:6$，求 $x:y:z$。<br>
+                            <span class="font-semibold">解：</span>公共项 $z$ 的最小公倍数 $\text{LCM}(3, 6) = 6$。<br>
+                            $y:z = 8:6$，$x:z = 7:6 \Rightarrow \mathbf{x : y : z = 7 : 8 : 6}$。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11.1 互动计算器 -->
+            <div class="bg-gradient-to-br from-sky-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800/80 rounded-xl p-6 shadow-sm border border-sky-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="text-2xl">🧮</span>
+                    <h3 class="text-lg font-bold text-sky-800 dark:text-sky-300">11.1 专属求解计算器</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-slate-700 p-4 rounded-lg shadow-sm space-y-3">
+                        <h4 class="font-bold border-b pb-2 text-slate-700 dark:text-slate-200">① 化简最简整数比 ($A : B : C$)</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="text" inputmode="text" id="calc1-a" placeholder="项 A" value="30" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            <input type="text" inputmode="text" id="calc1-b" placeholder="项 B" value="15" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            <input type="text" inputmode="text" id="calc1-c" placeholder="项 C (可选)" value="50" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">支持整数、小数、分数（3/4、5/4）和带分数（1 1/4，中间留空格）。</p>
+                        <button onclick="runCalc1()" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 rounded-lg transition">生成化简步骤</button>
+                        <div id="calc1-output" class="p-3 bg-slate-50 dark:bg-slate-800 rounded border text-sm font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">点击按钮计算...</div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-700 p-4 rounded-lg shadow-sm space-y-3">
+                        <h4 class="font-bold border-b pb-2 text-slate-700 dark:text-slate-200">② 比例方程求解器 ($A : B = C : x$)</h4>
+                        <div class="grid grid-cols-3 gap-2 items-center">
+                            <input type="number" id="calc2-a" placeholder="A" value="3" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            <span class="text-center font-bold">:</span>
+                            <input type="number" id="calc2-b" placeholder="B" value="2" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            <input type="number" id="calc2-c" placeholder="C" value="18" class="p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            <span class="text-center font-bold">:</span>
+                            <span class="p-2 text-center font-bold text-primary-600 bg-primary-50 dark:bg-slate-800 rounded">$x$</span>
+                        </div>
+                        <button onclick="runCalc2()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg transition">求解未知数 x 步骤</button>
+                        <div id="calc2-output" class="p-3 bg-slate-50 dark:bg-slate-800 rounded border text-sm font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">点击按钮计算...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11.1 互动习题区 -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                <div class="flex flex-wrap items-center justify-between border-b pb-4 gap-2">
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span>📝 11.1 章节闯关练习</span>
+                            <span id="quiz11-1-status" class="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded-full font-bold">选择题阶段</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">包含算错误导选项。答对 3 题或以上解锁 2 道填空作答题，每次刷题题目与选项均随机重新生成。</p>
+                    </div>
+                    <button onclick="initQuiz('11-1')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-sm shadow transition flex items-center gap-1">
+                        🔄 刷新本章题目
+                    </button>
+                </div>
+
+                <div id="quiz11-1-msg" class="hidden"></div>
+                <div id="mcq-container-11-1" class="space-y-6"></div>
+
+                <div id="fill-container-11-1" class="hidden space-y-6 border-t-2 border-dashed border-emerald-400 pt-6">
+                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-800 dark:text-emerald-200 text-sm font-bold flex items-center gap-2">
+                        🎉 恭喜！你在选择题中答对 <span id="mcq-score-11-1">0</span>/5 题，已解锁进阶作答题！
+                    </div>
+                    <div id="fill-questions-11-1" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 11.2 -->
+        <section id="tab-11-2" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-200 dark:border-slate-700 pb-3">
+                    <span class="text-2xl">📐</span>
+                    <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">11.2 比例分配</h2>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border-l-4 border-indigo-500 space-y-2">
+                    <h3 class="font-bold text-lg">什么是比例分配？</h3>
+                    <p>把一个数量按照一定的比例分成若干部分，叫做<span class="font-bold text-indigo-600 dark:text-indigo-400">比例分配</span>。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-sm">
+                        <div class="bg-white dark:bg-slate-800 p-3 rounded border">
+                            <span class="font-bold text-primary-600">解法一（份数法）：</span><br>
+                            总比例 $a : b : c$，总份数 <span class="font-semibold text-emerald-600">$S = a + b + c$</span>。<br>
+                            各部分占总量的分数分别为 $\frac{a}{S}$, $\frac{b}{S}$, $\frac{c}{S}$。
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-3 rounded border">
+                            <span class="font-bold text-primary-600">解法二（常数 k 法）：</span><br>
+                            设各部分分别为 <span class="font-semibold text-emerald-600">$ak, bk, ck$</span>。<br>
+                            根据已知代数条件（如已知总和或已知两项之差）列方程求解 $k$。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+                    <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span class="font-bold text-primary-500">【例题1】</span> 将 RM 65,000 分给三兄弟，长:次 = 3:4，次:幼 = 2:3，求各自所得。<br>
+                        <span class="font-semibold">解：</span>求连比：长:次:幼 = $3 : 4 : 6$，总份数 = $13$。<br>
+                        长子 = $65000 \times \frac{3}{13} = \mathbf{\text{RM } 15,000}$<br>
+                        次子 = $65000 \times \frac{4}{13} = \mathbf{\text{RM } 20,000}$<br>
+                        幼子 = $65000 \times \frac{6}{13} = \mathbf{\text{RM } 30,000}$
+                    </div>
+                    <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span class="font-bold text-primary-500">【例题2】</span> 甲乙丙分钱，比为 6:5:2。若甲比丙多 RM 240，求款项总额。<br>
+                        <span class="font-semibold">解：</span>设三人为 $6k, 5k, 2k$。<br>
+                        甲比丙多 $6k - 2k = 4k = 240 \Rightarrow k = 60$<br>
+                        总额 = $(6+5+2) \times 60 = 13 \times 60 = \mathbf{\text{RM } 780}$。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11.2 互动计算器 -->
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-800/80 rounded-xl p-6 shadow-sm border border-indigo-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="text-2xl">🧮</span>
+                    <h3 class="text-lg font-bold text-indigo-800 dark:text-indigo-300">11.2 专属计算器：比例分配求解器</h3>
+                </div>
+
+                <div class="bg-white dark:bg-slate-700 p-4 rounded-lg shadow-sm space-y-4 max-w-3xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold mb-1 text-slate-600 dark:text-slate-300">分配总量 ($S$):</label>
+                            <input type="number" id="calc3-sum" value="3240" class="w-full p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold mb-1 text-slate-600 dark:text-slate-300">分配比例 ($a : b : c$):</label>
+                            <div class="flex gap-1">
+                                <input type="number" id="calc3-a" value="2" class="w-1/3 p-2 border rounded dark:bg-slate-800 dark:border-slate-600 text-center">
+                                <input type="number" id="calc3-b" value="3" class="w-1/3 p-2 border rounded dark:bg-slate-800 dark:border-slate-600 text-center">
+                                <input type="number" id="calc3-c" value="4" class="w-1/3 p-2 border rounded dark:bg-slate-800 dark:border-slate-600 text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="runCalc3()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg transition">计算分配结果与步骤</button>
+                    <div id="calc3-output" class="p-3 bg-slate-50 dark:bg-slate-800 rounded border text-sm font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">输入数据后点击按钮...</div>
+                </div>
+            </div>
+
+            <!-- 11.2 互动习题区 -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                <div class="flex flex-wrap items-center justify-between border-b pb-4 gap-2">
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span>📝 11.2 章节闯关练习</span>
+                            <span id="quiz11-2-status" class="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded-full font-bold">选择题阶段</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">包含算错误导选项。答对 3 题或以上解锁 2 道填空作答题。</p>
+                    </div>
+                    <button onclick="initQuiz('11-2')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-sm shadow transition flex items-center gap-1">
+                        🔄 刷新本章题目
+                    </button>
+                </div>
+
+                <div id="quiz11-2-msg" class="hidden"></div>
+                <div id="mcq-container-11-2" class="space-y-6"></div>
+
+                <div id="fill-container-11-2" class="hidden space-y-6 border-t-2 border-dashed border-emerald-400 pt-6">
+                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-800 dark:text-emerald-200 text-sm font-bold flex items-center gap-2">
+                        🎉 恭喜！你在选择题中答对 <span id="mcq-score-11-2">0</span>/5 题，已解锁进阶作答题！
+                    </div>
+                    <div id="fill-questions-11-2" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 11.3 -->
+        <section id="tab-11-3" class="tab-content hidden space-y-8">
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-200 dark:border-slate-700 pb-3">
+                    <span class="text-2xl">⚖️</span>
+                    <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">11.3 正比例与反比例</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border-l-4 border-blue-500 space-y-2">
+                        <h3 class="font-bold text-lg text-blue-600 dark:text-blue-400">1. 正比例 (Direct Proportion)</h3>
+                        <p>若两相关联量变化时，它们的<span class="font-bold underline">比值 (商) 固定</span>，则成正比。</p>
+                        <p class="font-mono text-center bg-white dark:bg-slate-800 p-2 rounded border">
+                            $\frac{y}{x} = k \text{ (常数)} \Rightarrow \mathbf{x_1 : x_2 = y_1 : y_2}$
+                        </p>
+                        <p class="text-xs text-slate-500">例：速度固定时距离与时间；单价固定时数量与总价；地图比例尺。</p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-lg border-l-4 border-rose-500 space-y-2">
+                        <h3 class="font-bold text-lg text-rose-600 dark:text-rose-400">2. 反比例 (Inverse Proportion)</h3>
+                        <p>若两相关联量变化时，它们的<span class="font-bold underline">乘积固定</span>，则成反比。</p>
+                        <p class="font-mono text-center bg-white dark:bg-slate-800 p-2 rounded border">
+                            $x \cdot y = k \text{ (常数)} \Rightarrow \mathbf{x_1 : x_2 = y_2 : y_1}$
+                        </p>
+                        <p class="text-xs text-slate-500">例：路程固定时速度与时间；工程总量固定时人数与天数。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-2">
+                    <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span class="font-bold text-blue-500">【正比例例题】</span> 桥长 $800\text{m}$，地图比例尺 $1:50000$，图上长多少 $\text{cm}$？<br>
+                        <span class="font-semibold">解：</span>$800\text{m} = 80000\text{cm}$。设图长 $x \text{ cm}$。<br>
+                        $1 : 50000 = x : 80000 \Rightarrow x = \frac{80000}{50000} = \mathbf{1.6 \text{ cm}}$
+                    </div>
+                    <div class="bg-white dark:bg-slate-700 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
+                        <span class="font-bold text-rose-500">【反比例例题】</span> 工程 5 人做 16 天完成，若 4 人做需几日？<br>
+                        <span class="font-semibold">解：</span>人数与天数成反比，乘积固定。<br>
+                        $5 \times 16 = 4 \times x \Rightarrow x = \frac{80}{4} = \mathbf{20 \text{ 天}}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11.3 互动计算器 -->
+            <div class="bg-gradient-to-br from-blue-50 to-rose-50 dark:from-slate-800 dark:to-slate-800/80 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="text-2xl">🧮</span>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">11.3 专属计算器：正反比例与应用题求解器</h3>
+                </div>
+
+                <div class="bg-white dark:bg-slate-700 p-4 rounded-lg shadow-sm space-y-4 max-w-3xl mx-auto">
+                    <div class="flex flex-wrap gap-2 justify-center border-b pb-3 text-xs font-bold">
+                        <button onclick="setCalc4Mode('prop')" id="calc4-tab-prop" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white">1. 基础正/反比例</button>
+                        <button onclick="setCalc4Mode('scale')" id="calc4-tab-scale" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200">2. 地图比例尺计算</button>
+                        <button onclick="setCalc4Mode('app')" id="calc4-tab-app" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200">3. 行程/工程反比例</button>
+                    </div>
+
+                    <div id="calc4-panel-prop" class="space-y-3">
+                        <div class="flex gap-4 justify-center">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="prop-type" value="direct" checked class="w-4 h-4 text-blue-600">
+                                <span class="font-bold text-blue-600">正比例 ($y/x = k$)</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="prop-type" value="inverse" class="w-4 h-4 text-rose-600">
+                                <span class="font-bold text-rose-600">反比例 ($x \cdot y = k$)</span>
+                            </label>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                            <div>
+                                <span>条件 $A_1$:</span>
+                                <input type="number" id="calc4-a1" value="5" class="w-full p-2 border rounded text-center dark:bg-slate-800 dark:border-slate-600">
+                            </div>
+                            <div>
+                                <span>结果 $B_1$:</span>
+                                <input type="number" id="calc4-b1" value="16" class="w-full p-2 border rounded text-center dark:bg-slate-800 dark:border-slate-600">
+                            </div>
+                            <div>
+                                <span>新条件 $A_2$:</span>
+                                <input type="number" id="calc4-a2" value="4" class="w-full p-2 border rounded text-center dark:bg-slate-800 dark:border-slate-600">
+                            </div>
+                            <div>
+                                <span>新结果 $B_2$ (未知):</span>
+                                <div class="p-2 border rounded bg-slate-100 dark:bg-slate-800 font-bold text-primary-600">?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="calc4-panel-scale" class="hidden space-y-3 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block font-bold mb-1">比例尺 ($1 : N$):</label>
+                                <div class="flex items-center gap-1">
+                                    <span class="font-bold">1 :</span>
+                                    <input type="number" id="calc4-scale-n" value="50000" placeholder="如: 50000" class="w-full p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">实际距离:</label>
+                                <div class="flex gap-1">
+                                    <input type="number" id="calc4-scale-real" value="800" class="w-2/3 p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                                    <select id="calc4-scale-unit" class="w-1/3 p-2 border rounded dark:bg-slate-800 dark:border-slate-600 font-bold">
+                                        <option value="m">公尺(m)</option>
+                                        <option value="km">公里(km)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">地图距离 (求解):</label>
+                                <div class="p-2 border rounded bg-slate-100 dark:bg-slate-800 font-bold text-indigo-600">自动计算 (cm)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="calc4-panel-app" class="hidden space-y-3 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block font-bold mb-1">初始速度/人数 ($V_1$ 或 $W_1$):</label>
+                                <input type="number" id="calc4-app-v1" value="110" class="w-full p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">初始时间/天数 ($T_1$ 或 $D_1$):</label>
+                                <input type="number" id="calc4-app-t1" value="2" class="w-full p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">变化方式与数值:</label>
+                                <div class="flex gap-1">
+                                    <select id="calc4-app-op" class="w-1/2 p-2 border rounded dark:bg-slate-800 dark:border-slate-600 font-bold">
+                                        <option value="dec">减少了</option>
+                                        <option value="inc">增加了</option>
+                                        <option value="to">直接变为</option>
+                                    </select>
+                                    <input type="number" id="calc4-app-v2val" value="30" class="w-1/2 p-2 border rounded dark:bg-slate-800 dark:border-slate-600">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="runCalc4()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 rounded-lg transition">一键计算与解答步骤</button>
+                    <div id="calc4-output" class="p-3 bg-slate-50 dark:bg-slate-800 rounded border text-sm font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">点击按钮计算...</div>
+                </div>
+            </div>
+
+            <!-- 11.3 互动习题区 -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                <div class="flex flex-wrap items-center justify-between border-b pb-4 gap-2">
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <span>📝 11.3 章节闯关练习</span>
+                            <span id="quiz11-3-status" class="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded-full font-bold">选择题阶段</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">包含正反比例混淆误导选项。答对 3 题或以上解锁 2 道填空作答题。</p>
+                    </div>
+                    <button onclick="initQuiz('11-3')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-sm shadow transition flex items-center gap-1">
+                        🔄 刷新本章题目
+                    </button>
+                </div>
+
+                <div id="quiz11-3-msg" class="hidden"></div>
+                <div id="mcq-container-11-3" class="space-y-6"></div>
+
+                <div id="fill-container-11-3" class="hidden space-y-6 border-t-2 border-dashed border-emerald-400 pt-6">
+                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-800 dark:text-emerald-200 text-sm font-bold flex items-center gap-2">
+                        🎉 恭喜！你在选择题中答对 <span id="mcq-score-11-3">0</span>/5 题，已解锁进阶作答题！
+                    </div>
+                    <div id="fill-questions-11-3" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 11.4 全章总复习评估 -->
+        <section id="tab-11-4" class="tab-content hidden space-y-8">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl p-6 shadow-md space-y-2">
+                <h2 class="text-2xl font-bold flex items-center gap-2">
+                    <span>🎓</span>
+                    <span>第11章《比与比例》全章综合能力评估</span>
+                </h2>
+                <p class="text-indigo-100 text-sm">
+                    本测验包含 10 道计算陷阱选择题 与 5 道综合填空题。可实时作答校验，点击“提交测验”即可生成诊断报告与全套 LaTeX 详细步骤解析！
+                </p>
+                <div class="pt-2">
+                    <button onclick="initFinalExam()" class="px-5 py-2.5 bg-white text-indigo-700 font-bold rounded-lg shadow hover:bg-indigo-50 transition flex items-center gap-2">
+                        <span>⚡ 生成全新测验卷</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 诊断评估结果报告 -->
+            <div id="exam-report-card" class="hidden bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border-2 border-indigo-500 space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                        <span>🏆 测验评估诊断报告</span>
+                    </h3>
+                    <span id="exam-badge" class="px-3 py-1 text-sm font-bold rounded-full bg-emerald-100 text-emerald-800">成绩良好</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                        <div class="text-xs text-slate-500 dark:text-slate-400">总得分</div>
+                        <div id="report-score" class="text-2xl font-black text-indigo-600 dark:text-indigo-400">0 / 100</div>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                        <div class="text-xs text-slate-500 dark:text-slate-400">选择题得分</div>
+                        <div id="report-mcq" class="text-2xl font-bold text-slate-700 dark:text-slate-200">0/60</div>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                        <div class="text-xs text-slate-500 dark:text-slate-400">填空题得分</div>
+                        <div id="report-fill" class="text-2xl font-bold text-slate-700 dark:text-slate-200">0/40</div>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                        <div class="text-xs text-slate-500 dark:text-slate-400">诊断建议</div>
+                        <div id="report-eval" class="text-xs font-bold text-amber-600 mt-1">请完成答题</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10 道选择题 -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                <h3 class="text-lg font-bold border-b pb-3 text-slate-800 dark:text-slate-200 flex items-center justify-between">
+                    <span>第一部分：选择题 (每题 6 分，共 60 分)</span>
+                    <span class="text-xs text-slate-400 font-normal">点击选中答案，可随时更改</span>
+                </h3>
+                <div id="final-mcq-container" class="space-y-6"></div>
+            </div>
+
+            <!-- 5 道填空题 -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                <h3 class="text-lg font-bold border-b pb-3 text-slate-800 dark:text-slate-200 flex items-center justify-between">
+                    <span>第二部分：作答填空题 (每题 8 分，共 40 分)</span>
+                    <span class="text-xs text-slate-400 font-normal">支持单题即时检验或统一提交诊断</span>
+                </h3>
+                <div id="final-fill-container" class="space-y-6"></div>
+
+                <div class="pt-4 text-center">
+                    <button onclick="submitFinalExam()" class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                        🚀 提交测验并获取完整解析与报告
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>初中数学《数学》初一下册 第11章 比与比例 交互课件系统</p>
+        <p class="mt-1">算错诱导算法 · 动态 LaTeX 渲染引擎</p>
+        <p class="mt-1">© 峇株吧辖华仁中学 蔡逸众 制作 · Made by ecchua79</p>
+    </footer>
+
+    <script>
+        let currentFontSize = 'base';
+        let calc4Mode = 'prop';
+
+        const quizData = {
+            '11-1': { mcqs: [], fills: [], mcqScore: 0, mcqAnswered: 0 },
+            '11-2': { mcqs: [], fills: [], mcqScore: 0, mcqAnswered: 0 },
+            '11-3': { mcqs: [], fills: [], mcqScore: 0, mcqAnswered: 0 },
+            'final': { mcqs: [], fills: [], mcqAnswers: [], submitted: false }
+        };
+
+        function renderMath() {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        function escapeHtml(str) {
+            if (typeof str !== 'string') return str;
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        function fmtOpt(o) {
+            const e = escapeHtml(String(o));
+            return /^[\d\s:.\/\-]+$/.test(e) ? `$${e}$` : `$\\text{${e}}$`;
+        }
+
+        function finalizeOptions(q) {
+            const opts = [...new Set(q.options)];
+            const correct = String(q.correct);
+            const ratio = correct.split(' : ');
+            const m = correct.match(/^(RM\s*)?(-?[\d.]+)(.*)$/);
+            let t = 0;
+            while (opts.length < 4 && t++ < 30) {
+                let cand;
+                if (ratio.length > 1 && ratio.every(x => !isNaN(Number(x)))) {
+                    const nums = ratio.map(Number);
+                    nums[t % nums.length] += (t % 3) + 1;
+                    cand = nums.join(' : ');
+                } else if (m) {
+                    const f = [2, 0.5, 1.5, 1.25, 3][t % 5];
+                    cand = `${m[1] || ''}${+(parseFloat(m[2]) * f).toFixed(2)}${m[3]}`;
+                } else break;
+                if (!opts.includes(cand)) opts.push(cand);
+            }
+            q.options = shuffle(opts);
+        }
+
+        function normNum(v) {
+            let x = String(v).trim().replace(/[，,\s]/g, '').replace(/^RM/i, '').replace(/[^\d./\-]+$/, '');
+            const fr = x.match(/^(-?\d+)\/(\d+)$/);
+            if (fr) return Number(fr[2]) ? Number(fr[1]) / Number(fr[2]) : NaN;
+            return x === '' ? NaN : Number(x);
+        }
+
+        function isFillCorrect(fq, val) {
+            if (!val) return false;
+            if (fq.ans.includes(val)) return true;
+            const n = normNum(val);
+            return !isNaN(n) && fq.ans.some(a => Math.abs(normNum(a) - n) < 1e-9);
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+            document.getElementById('theme-text').innerText = isDark ? '浅色模式' : '深色模式';
+        }
+
+        function randInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function gcd(a, b) {
+            a = Math.abs(a);
+            b = Math.abs(b);
+            while (b) {
+                let t = b;
+                b = a % b;
+                a = t;
+            }
+            return a || 1;
+        }
+
+        function gcd3(a, b, c) {
+            return gcd(gcd(a, b), c);
+        }
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function setFontSize(size) {
+            currentFontSize = size;
+            document.body.classList.remove('font-sz-sm', 'font-sz-base', 'font-sz-lg', 'font-sz-xl');
+            document.body.classList.add(`font-sz-${size}`);
+
+            ['sm', 'base', 'lg', 'xl'].forEach(s => {
+                const btn = document.getElementById(`btn-font-${s}`);
+                if (btn) {
+                    btn.className = (s === size) 
+                        ? 'px-2 py-1 rounded bg-white dark:bg-slate-600 font-bold shadow-sm'
+                        : 'px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold';
+                }
+            });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-nav-btn').forEach(btn => {
+                btn.className = 'tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
+            });
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = 'tab-nav-btn px-4 py-2 rounded-md font-semibold text-sm whitespace-nowrap bg-primary-600 text-white shadow';
+            }
+            window.scrollTo({ top: 0, behavior: 'auto' });
+            renderMath();
+        }
+
+        function setCalc4Mode(mode) {
+            calc4Mode = mode;
+            ['prop', 'scale', 'app'].forEach(m => {
+                const btn = document.getElementById(`calc4-tab-${m}`);
+                const panel = document.getElementById(`calc4-panel-${m}`);
+                if (m === mode) {
+                    btn.className = 'px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold';
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold';
+                    panel.classList.add('hidden');
+                }
+            });
+            renderMath();
+        }
+
+        function parseFrac(str) {
+            const t = str.trim().replace(/[又＋+]/g, ' ').replace(/／/g, '/').replace(/\s+/g, ' ');
+            let m;
+            let r = null;
+            if ((m = t.match(/^(\d+) (\d+)\/(\d+)$/))) r = { n: +m[1] * +m[3] + +m[2], d: +m[3] };
+            else if ((m = t.match(/^(\d+)\/(\d+)$/))) r = { n: +m[1], d: +m[2] };
+            else if (/^\d+(\.\d+)?$/.test(t)) {
+                const dec = (t.split('.')[1] || '').length;
+                r = { n: Math.round(parseFloat(t) * Math.pow(10, dec)), d: Math.pow(10, dec) };
+            }
+            if (!r || r.d <= 0 || r.n <= 0) return null;
+            const g = gcd(r.n, r.d);
+            return { n: r.n / g, d: r.d / g };
+        }
+
+        function runCalc1() {
+            const vals = ['calc1-a', 'calc1-b', 'calc1-c'].map(id => document.getElementById(id).value.trim()).filter((v, i) => i < 2 || v !== '');
+            const out = document.getElementById('calc1-output');
+            const fr = vals.map(parseFrac);
+            if (vals.length < 2 || fr.some(f => !f)) {
+                out.innerText = "请输入大于0的数：整数、小数、分数（如 5/4）或带分数（如 1 1/4）！";
+                return;
+            }
+            const lcm = fr.reduce((acc, f) => acc / gcd(acc, f.d) * f.d, 1);
+            const ints = fr.map(f => f.n * (lcm / f.d));
+            const g = ints.reduce((x, y) => gcd(x, y));
+            const res = ints.map(n => n / g);
+            const allInt = fr.every(f => f.d === 1);
+            let step = 2;
+            let text = `解题步骤：\n1. 输入之比：${vals.join(' : ')}\n`;
+            if (!allInt) {
+                text += `${step++}. 化为分数（带分数先化假分数，小数化分数）：${fr.map(f => f.d === 1 ? f.n : f.n + '/' + f.d).join(' : ')}\n`;
+                text += `${step++}. 分母的最小公倍数 LCM(${[...new Set(fr.map(f => f.d))].join(', ')}) = ${lcm}，各项同乘 ${lcm}：${ints.join(' : ')}\n`;
+            }
+            text += `${step++}. 最大公因数 GCD(${ints.join(', ')}) = ${g}\n${step}. 各项同除以 ${g}：${res.join(' : ')}\n\n最简整数比为：${res.join(' : ')}`;
+            out.innerText = text;
+        }
+
+        function runCalc2() {
+            const a = parseFloat(document.getElementById('calc2-a').value);
+            const b = parseFloat(document.getElementById('calc2-b').value);
+            const c = parseFloat(document.getElementById('calc2-c').value);
+            const out = document.getElementById('calc2-output');
+
+            if (!a || !b || !c) {
+                out.innerText = "请输入有效的 A, B, C 数值！";
+                return;
+            }
+
+            const x = (b * c) / a;
+            out.innerText = `比例方程：${a} : ${b} = ${c} : x\n根据 ad = bc（交叉相乘）：\n  ${a} × x = ${b} × ${c}\n  ${a}x = ${b * c}\n  x = ${b * c} ÷ ${a}\n  x = ${Number.isInteger(x) ? x : x.toFixed(2)}`;
+            renderMath();
+        }
+
+        function runCalc3() {
+            const sum = parseFloat(document.getElementById('calc3-sum').value);
+            const a = parseFloat(document.getElementById('calc3-a').value);
+            const b = parseFloat(document.getElementById('calc3-b').value);
+            const c = parseFloat(document.getElementById('calc3-c').value);
+            const out = document.getElementById('calc3-output');
+
+            if (!sum || !a || !b || !c) {
+                out.innerText = "请填入完整数据！";
+                return;
+            }
+
+            const totalParts = a + b + c;
+            const partA = (sum * a) / totalParts;
+            const partB = (sum * b) / totalParts;
+            const partC = (sum * c) / totalParts;
+
+            out.innerText = `解题步骤：\n1. 总份数：${a} + ${b} + ${c} = ${totalParts} 份\n2. 第一部分占 ${a}/${totalParts}：${sum} × (${a}/${totalParts}) = ${partA.toFixed(2)}\n3. 第二部分占 ${b}/${totalParts}：${sum} × (${b}/${totalParts}) = ${partB.toFixed(2)}\n4. 第三部分占 ${c}/${totalParts}：${sum} × (${c}/${totalParts}) = ${partC.toFixed(2)}\n\n分配结果分别为：${partA.toFixed(2)}, ${partB.toFixed(2)}, ${partC.toFixed(2)}`;
+            renderMath();
+        }
+
+        function runCalc4() {
+            const out = document.getElementById('calc4-output');
+
+            if (calc4Mode === 'prop') {
+                const typeEl = document.querySelector('input[name="prop-type"]:checked');
+                const type = typeEl ? typeEl.value : 'direct';
+                const a1 = parseFloat(document.getElementById('calc4-a1').value);
+                const b1 = parseFloat(document.getElementById('calc4-b1').value);
+                const a2 = parseFloat(document.getElementById('calc4-a2').value);
+
+                if (!a1 || !b1 || !a2) {
+                    out.innerText = "请输入有效数值！";
+                    return;
+                }
+
+                if (type === 'direct') {
+                    const b2 = (b1 * a2) / a1;
+                    out.innerText = `【正比例】比值固定 (B₁/A₁ = B₂/A₂)\n1. 列比例式：${a1} : ${b1} = ${a2} : B₂\n2. 交叉相乘：${a1} × B₂ = ${b1} × ${a2}\n3. 解得：B₂ = ${Number.isInteger(b2) ? b2 : b2.toFixed(2)}`;
+                } else {
+                    const b2 = (a1 * b1) / a2;
+                    out.innerText = `【反比例】乘积固定 (A₁ × B₁ = A₂ × B₂)\n1. 列方程：${a1} × ${b1} = ${a2} × B₂\n2. 乘积总量 k = ${a1 * b1}\n3. 解得：B₂ = ${a1 * b1} ÷ ${a2} = ${Number.isInteger(b2) ? b2 : b2.toFixed(2)}`;
+                }
+            } else if (calc4Mode === 'scale') {
+                const scaleN = parseFloat(document.getElementById('calc4-scale-n').value);
+                const realDist = parseFloat(document.getElementById('calc4-scale-real').value);
+                const unit = document.getElementById('calc4-scale-unit').value;
+
+                if (!scaleN || !realDist) {
+                    out.innerText = "请输入有效的比例尺与实际距离！";
+                    return;
+                }
+
+                const realCm = unit === 'km' ? realDist * 100000 : realDist * 100;
+                const mapCm = realCm / scaleN;
+
+                out.innerText = `【比例尺求解】\n1. 统一单位：实际距离 ${realDist} ${unit} = ${realCm} cm\n2. 比例尺：1 : ${scaleN}\n3. 地图距离 = ${realCm} ÷ ${scaleN} = ${Number.isInteger(mapCm) ? mapCm : mapCm.toFixed(2)} cm`;
+            } else if (calc4Mode === 'app') {
+                const v1 = parseFloat(document.getElementById('calc4-app-v1').value);
+                const t1 = parseFloat(document.getElementById('calc4-app-t1').value);
+                const op = document.getElementById('calc4-app-op').value;
+                const val = parseFloat(document.getElementById('calc4-app-v2val').value);
+
+                if (!v1 || !t1 || isNaN(val)) {
+                    out.innerText = "请输入有效数值！";
+                    return;
+                }
+
+                let v2 = v1;
+                let opText = "";
+                if (op === 'dec') {
+                    v2 = v1 - val;
+                    opText = `减少了 ${val} ➔ 变为 ${v2}`;
+                } else if (op === 'inc') {
+                    v2 = v1 + val;
+                    opText = `增加了 ${val} ➔ 变为 ${v2}`;
+                } else {
+                    v2 = val;
+                    opText = `直接变为 ${v2}`;
+                }
+
+                if (v2 <= 0) {
+                    out.innerText = "变化后的数值必须大于 0！";
+                    return;
+                }
+
+                const t2 = (v1 * t1) / v2;
+                out.innerText = `【反比例应用题】\n1. 初始条件 ${v1}，${opText}\n2. 乘积总量 k = ${v1} × ${t1} = ${v1 * t1}\n3. 解得：T₂ = ${v1 * t1} ÷ ${v2} = ${Number.isInteger(t2) ? t2 : t2.toFixed(2)}`;
+            }
+            renderMath();
+        }
+
+        function generate11_1_MCQ() {
+            const templates = [
+                () => {
+                    const mins = randInt(2, 5) * 30;
+                    const hrs = randInt(2, 4);
+                    const totalMins = hrs * 60;
+                    const g = gcd(mins, totalMins);
+                    const ansA = mins / g;
+                    const ansB = totalMins / g;
+                    
+                    const correctStr = `${ansA} : ${ansB}`;
+                    const gRaw = gcd(mins, hrs);
+                    const wrong1 = `${mins / gRaw} : ${hrs / gRaw}`;
+                    const wrong2 = `${ansB} : ${ansA}`;
+                    const wrong3Mins = hrs * 100;
+                    const g100 = gcd(mins, wrong3Mins);
+                    const wrong3 = `${mins / g100} : ${wrong3Mins / g100}`;
+
+                    return {
+                        title: `求 $${mins} \\text{ 分钟}$ 与 $${hrs} \\text{ 小时}$ 的最简整数比。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `先统一单位：$${hrs} \\text{ 小时} = ${totalMins} \\text{ 分钟}$。故比值为 $${mins} : ${totalMins} = ${correctStr}$。若未统一单位（得 $${wrong1}$）是极常见的错误陷阱！`
+                    };
+                },
+                () => {
+                    const a = randInt(2, 8);
+                    let b = randInt(3, 9);
+                    while (b === a) b = randInt(3, 9);
+                    const k = randInt(2, 6);
+                    const c = a * k;
+                    const ansX = b * k;
+
+                    const correctStr = `${ansX}`;
+                    const wrong1 = `${Math.round((a * c) / b)}`;
+                    const wrong2 = `${c + (b - a)}`;
+                    const wrong3 = `${b * c}`;
+
+                    return {
+                        title: `求解比例方程 $${a} : ${b} = ${c} : x$ 中 $x$ 的值。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `根据比例基本性质 $ad = bc$：$${a} \\cdot x = ${b} \\cdot ${c} \\Rightarrow ${a}x = ${b*c} \\Rightarrow x = ${ansX}$。`
+                    };
+                },
+                () => {
+                    const factor = randInt(2, 5);
+                    const aDec = (0.2 * factor).toFixed(1);
+                    const bDec = (0.5 * factor).toFixed(1);
+                    const correctStr = `2 : 5`;
+                    const wrong1 = `${Math.round(aDec*10)} : ${Math.round(bDec*10)}`;
+                    const wrong2 = `5 : 2`;
+                    const wrong3 = `${Math.round(aDec*10)+1} : ${Math.round(bDec*10)+1}`;
+
+                    return {
+                        title: `化简小数比 $${aDec} : ${bDec}$ 为最简整数比。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `同乘以 $10$ 得 $${Math.round(aDec*10)} : ${Math.round(bDec*10)}$，约分化简得 $2 : 5$。`
+                    };
+                },
+                () => {
+                    const b = 3, c = 2;
+                    const lcmBC = 6;
+                    const a = [1, 2, 4, 5][randInt(0, 3)], d = [1, 3, 5][randInt(0, 2)];
+                    const rx = a * (lcmBC / b);
+                    const ry = lcmBC;
+                    const rz = d * (lcmBC / c);
+
+                    const correctStr = `${rx} : ${ry} : ${rz}`;
+                    const wrong1 = `${a} : ${b} : ${d}`;
+                    const wrong2 = `${rz} : ${ry} : ${rx}`;
+                    const wrong3 = `${a*c} : ${b*c} : ${d}`;
+
+                    return {
+                        title: `已知 $x : y = ${a} : ${b}$，$y : z = ${c} : ${d}$，求连比 $x : y : z$。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `公共项 $y$ 的 $\\text{LCM}(${b}, ${c}) = ${lcmBC}$。故 $x:y = ${rx}:${ry}$，$y:z = ${ry}:${rz}$，连比为 $${correctStr}$。`
+                    };
+                },
+                () => {
+                    const p = 3, q = 2;
+                    const top = 2 * p + q;
+                    const bot = 2 * p - q;
+                    const g = gcd(top, bot);
+                    const correctStr = `${top/g} : ${bot/g}`;
+                    const wrong1 = `${top} : ${bot}`;
+                    const wrong2 = `${bot/g} : ${top/g}`;
+                    const wrong3 = `${p} : ${q}`;
+
+                    return {
+                        title: `已知 $x : y = ${p} : ${q}$，求 $(2x + y) : (2x - y)$ 的最简整数比。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `设 $x = ${p}k, y = ${q}k$。代入得 $(${2*p}k + ${q}k) : (${2*p}k - ${q}k) = ${top}k : ${bot}k = ${correctStr}$。`
+                    };
+                }
+            ];
+
+            return shuffle(templates.map(fn => {
+                const q = fn();
+                finalizeOptions(q);
+                return q;
+            }));
+        }
+
+        function generate11_2_MCQ() {
+            const templates = [
+                () => {
+                    const a = 3, b = 4;
+                    const total = randInt(10, 50) * 70;
+                    const ansB = (total * b) / (a + b);
+                    const ansA = (total * a) / (a + b);
+
+                    const correctStr = `RM ${ansB}`;
+                    const wrong1 = `RM ${ansA}`;
+                    const wrong2 = `RM ${Math.round(total / 2)}`;
+                    const wrong3 = `RM ${total * b}`;
+
+                    return {
+                        title: `将现金 $\\text{RM } ${total}$ 按 $3 : 4$ 分给甲、乙二人，问乙分得多少钱？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `总份数 $= 3 + 4 = 7$。乙占 $\\frac{4}{7} \\Rightarrow \\text{RM } ${total} \\times \\frac{4}{7} = \\text{RM } ${ansB}$。`
+                    };
+                },
+                () => {
+                    const a = 2, b = 3, c = 4;
+                    const totalParts = 9;
+                    const k = randInt(100, 400);
+                    const total = totalParts * k;
+                    const minVal = a * k;
+
+                    const correctStr = `${minVal}`;
+                    const wrong1 = `${b * k}`;
+                    const wrong2 = `${c * k}`;
+                    const wrong3 = `${(a + b) * k}`;
+
+                    return {
+                        title: `将数 $${total}$ 按 $2 : 3 : 4$ 分成三个数，求最小的数。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `总份数 $2+3+4=9$，每份为 $${total}/9 = ${k}$。最小数占 $2$ 份 $\\Rightarrow 2 \\times ${k} = ${minVal}$。`
+                    };
+                },
+                () => {
+                    const a = 7, b = 3;
+                    const diffParts = a - b;
+                    const k = randInt(20, 80);
+                    const diff = diffParts * k;
+                    const total = (a + b) * k;
+
+                    const correctStr = `${total} ml`;
+                    const wrong1 = `${a * k} ml`;
+                    const wrong2 = `${b * k} ml`;
+                    const wrong3 = `${diff * (a + b)} ml`;
+
+                    return {
+                        title: `配制饮料需要果汁与水的比为 $7 : 3$。若果汁比水多 $${diff} \\text{ ml}$，问饮料共有多少毫升？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `果汁比水多 $7 - 3 = 4$ 份，对应 $${diff} \\text{ ml}$，每份为 $${diff}/4 = ${k} \\text{ ml}$。总量 $10$ 份 $\\Rightarrow 10 \\times ${k} = ${total} \\text{ ml}$。`
+                    };
+                },
+                () => {
+                    const a = 5, b = 12, c = 13;
+                    const k = randInt(2, 5);
+                    const maxSide = c * k;
+                    const minSide = a * k;
+
+                    const correctStr = `${minSide} cm`;
+                    const wrong1 = `${b * k} cm`;
+                    const wrong2 = `${(a + b + c) * k} cm`;
+                    const wrong3 = `${Math.round((maxSide * a) / b)} cm`;
+
+                    return {
+                        title: `三角形三边长之比为 $5 : 12 : 13$，已知最长边为 $${maxSide} \\text{ cm}$，求最短边的长度。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `最长边 $13$ 份 $= ${maxSide} \\text{ cm} \\Rightarrow$ 每份 $${k} \\text{ cm}$。最短边 $5$ 份 $\\Rightarrow 5 \\times ${k} = ${minSide} \\text{ cm}$。`
+                    };
+                },
+                () => {
+                    const k = randInt(150, 300);
+                    const profitB = 3 * k;
+                    const totalProfit = (2 + 3 + 5) * k;
+
+                    const correctStr = `RM ${totalProfit}`;
+                    const wrong1 = `RM ${5 * k}`;
+                    const wrong2 = `RM ${(3 + 5) * k}`;
+                    const wrong3 = `RM ${profitB * 3}`;
+
+                    return {
+                        title: `甲、乙、丙投资比为 $2 : 3 : 5$，按比例分配利润。若乙分得 $\\text{RM } ${profitB}$，求总利润。`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `乙占 $3$ 份对应 $\\text{RM } ${profitB} \\Rightarrow$ 每份 $\\text{RM } ${k}$。总利润 $(2+3+5) = 10$ 份 $\\Rightarrow 10 \\times \\text{RM } ${k} = \\text{RM } ${totalProfit}$。`
+                    };
+                }
+            ];
+
+            return shuffle(templates.map(fn => {
+                const q = fn();
+                finalizeOptions(q);
+                return q;
+            }));
+        }
+
+        function generate11_3_MCQ() {
+            const fmt = n => +Number(n).toFixed(2);
+            const templates = [
+                () => {
+                    const hrs1 = randInt(2, 6), rate = randInt(3, 9) * 50;
+                    const pages1 = hrs1 * rate;
+                    const hrs2 = randInt(hrs1 + 1, 12);
+                    const pages2 = hrs2 * rate;
+                    const ans = hrs2;
+
+                    const correctStr = `${ans} 小时`;
+                    const wrong1 = `${fmt((hrs1 * pages1) / pages2)} 小时`;
+                    const wrong2 = `${ans + 1} 小时`;
+                    const wrong3 = `${ans * 2} 小时`;
+
+                    return {
+                        title: `印刷机 $${hrs1} \\text{ 小时}$ 可印 $${pages1} \\text{ 页}$，若要印 $${pages2} \\text{ 页}$ 需要多少小时？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `页数与时间成正比例 (比值固定)：$${hrs1} : ${pages1} = x : ${pages2} \\Rightarrow x = \\frac{${hrs1} \\times ${pages2}}{${pages1}} = ${ans} \\text{ 小时}$。若误当反比例，会得 $${wrong1.replace(' 小时', '')}$。`
+                    };
+                },
+                () => {
+                    const w1 = randInt(4, 8);
+                    const w2 = w1 - randInt(1, 2);
+                    const d1 = w2 * randInt(2, 5);
+                    const ans = (w1 * d1) / w2;
+
+                    const correctStr = `${ans} 天`;
+                    const wrong1 = `${fmt((w2 * d1) / w1)} 天`;
+                    const wrong2 = `${d1 + (w1 - w2)} 天`;
+                    const wrong3 = `${ans + 2} 天`;
+
+                    return {
+                        title: `某工程，$${w1} \\text{ 人}$ 做 $${d1} \\text{ 天}$ 可完成。若减少为 $${w2} \\text{ 人}$ 做，需要多少天完成？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `人数与天数成反比例（乘积固定）：$${w1} \\times ${d1} = ${w2} \\times x \\Rightarrow ${w1 * d1} = ${w2}x \\Rightarrow x = ${ans} \\text{ 天}$。误算为正比例（得 ${wrong1}）是常见陷阱！`
+                    };
+                },
+                () => {
+                    const scale = [10000, 20000, 25000, 50000][randInt(0, 3)];
+                    const ansCm = randInt(2, 16);
+                    const realM = (scale / 100) * ansCm;
+
+                    const correctStr = `${ansCm} cm`;
+                    const wrong1 = `${fmt(realM / scale)} cm`;
+                    const wrong2 = `${ansCm * 10} cm`;
+                    const wrong3 = `${fmt(ansCm / 10)} cm`;
+
+                    return {
+                        title: `一条长 $${realM} \\text{ m}$ 的桥，在比例尺为 $1 : ${scale}$ 的地图上长多少 $\\text{cm}$？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `换算单位：$${realM} \\text{ m} = ${realM * 100} \\text{ cm}$。地图长度 $= ${realM * 100} \\div ${scale} = ${ansCm} \\text{ cm}$。`
+                    };
+                },
+                () => {
+                    let v1, v2, t1;
+                    do {
+                        v1 = [60, 80, 90, 100, 110, 120][randInt(0, 5)];
+                        v2 = [40, 48, 50, 60, 75, 80][randInt(0, 5)];
+                        t1 = randInt(2, 4);
+                    } while (v2 >= v1 || v1 - v2 === v2 || !Number.isInteger((v1 * t1 * 4) / v2));
+                    const dec = v1 - v2;
+                    const ansH = (v1 * t1) / v2;
+
+                    const correctStr = `${fmt(ansH)} 小时`;
+                    const wrong1 = `${fmt((v2 * t1) / v1)} 小时`;
+                    const wrong2 = `${fmt((v1 * t1) / dec)} 小时`;
+                    const wrong3 = `${t1 + 1} 小时`;
+
+                    return {
+                        title: `汽车以 $${v1} \\text{ km/h}$ 速度行驶需 $${t1} \\text{ 小时}$ 抵达。若车速减少 $${dec} \\text{ km/h}$，需多少小时抵达？`,
+                        options: [correctStr, wrong1, wrong2, wrong3],
+                        correct: correctStr,
+                        explain: `总路程 $= ${v1} \\times ${t1} = ${v1 * t1} \\text{ km}$。减速后速度 $= ${v2} \\text{ km/h}$。时间 $= ${v1 * t1} \\div ${v2} = ${fmt(ansH)} \\text{ 小时}$。`
+                    };
+                },
+                () => {
+                    return {
+                        title: `下列哪一个关系中，两个量成“反比例”关系？`,
+                        options: [
+                            `路程固定时，行驶的速度与时间`,
+                            `单价固定时，购买物品的数量与总价`,
+                            `速度固定时，行驶的时间与距离`,
+                            `正方形的边长与它的周长`
+                        ],
+                        correct: `路程固定时，行驶的速度与时间`,
+                        explain: `$\\text{速度} \\times \\text{时间} = \\text{路程}$（乘积固定），成反比例。其他选项比值固定，均成正比例。`
+                    };
+                }
+            ];
+
+            return shuffle(templates.map(fn => {
+                const q = fn();
+                finalizeOptions(q);
+                return q;
+            }));
+        }
+
+        function generateFillQuestions(section) {
+            if (section === '11-1') {
+                const a = randInt(2, 7);
+                let b = randInt(2, 9);
+                while (b === a) b = randInt(2, 9);
+                const kk = randInt(2, 9);
+                const c = a * kk, xAns = b * kk;
+                let h, mm, r;
+                do {
+                    h = randInt(2, 5);
+                    mm = [10, 12, 15, 20, 30, 40][randInt(0, 5)];
+                    r = (h * 60) / mm;
+                } while (!Number.isInteger(r) || r < 2 || r > 20);
+                return [
+                    { title: `已知 $${a} : ${b} = ${c} : x$，求 $x$ 的数值。`, ans: [xAns + ""], explain: `交叉相乘 $${a}x = ${b} \\times ${c} \\Rightarrow x = ${xAns}$` },
+                    { title: `求 $${h} \\text{ 小时}$ 与 $${mm} \\text{ 分钟}$ 的比值（写成最简整数）。`, ans: [r + ""], explain: `$${h} \\text{ 小时} = ${h * 60} \\text{ 分钟}$。比值为 $${h * 60} \\div ${mm} = ${r}$。` }
+                ];
+            } else if (section === '11-2') {
+                const a = randInt(2, 5);
+                let b = randInt(2, 7);
+                while (b === a) b = randInt(2, 7);
+                const kk = randInt(8, 40) * 5;
+                const T = (a + b) * kk;
+                let p, q, r;
+                do {
+                    [p, q, r] = [randInt(1, 8), randInt(1, 8), randInt(1, 8)].sort((x, y) => x - y);
+                } while (p === q || q === r || gcd(gcd(p, q), r) > 1);
+                const k2 = randInt(5, 30) * 2;
+                const S = (p + q + r) * k2;
+                return [
+                    { title: `将 $\\text{RM } ${T}$ 按 $${a} : ${b}$ 分给甲乙二人，问乙分得多少 RM？`, ans: [(b * kk) + ""], explain: `$${T} \\times \\frac{${b}}{${a + b}} = ${b * kk}$` },
+                    { title: `若 $a:b:c = ${p}:${q}:${r}$，且 $a+b+c = ${S}$，求最大数 $c$ 的值。`, ans: [(r * k2) + ""], explain: `总份数 $${p + q + r}$ 份，每份 $${k2}$，$c = ${r} \\times ${k2} = ${r * k2}$` }
+                ];
+            } else {
+                const p = [20, 24, 30, 36, 40][randInt(0, 4)];
+                const d = [6, 10, 12, 15, 18][randInt(0, 4)];
+                const qs = [2, 3, 4, 5].filter(f => p % f === 0).map(f => p / f);
+                const q = qs[randInt(0, qs.length - 1)];
+                const x = (p * d) / q;
+                const n = [10000, 20000, 25000, 50000][randInt(0, 3)];
+                const cm = randInt(2, 9);
+                const m = (cm * n) / 100;
+                return [
+                    { title: `$${p} \\text{ 人}$ 工作需 $${d} \\text{ 天}$ 完成工程，若只有 $${q} \\text{ 人}$ 工作，需要多少天完成？`, ans: [x + ""], explain: `反比例：$${p} \\times ${d} = ${q} \\times x \\Rightarrow x = ${x} \\text{ 天}$` },
+                    { title: `地图比例尺 $1 : ${n}$，地图上 $${cm} \\text{ cm}$ 代表实际距离多少公尺 (m)？`, ans: [m + ""], explain: `$${cm} \\times ${n} = ${cm * n} \\text{ cm} = ${m} \\text{ m}$` }
+                ];
+            }
+        }
+
+        function initQuiz(section) {
+            const data = quizData[section];
+            data.mcqs = section === '11-1' ? generate11_1_MCQ() : (section === '11-2' ? generate11_2_MCQ() : generate11_3_MCQ());
+            data.fills = generateFillQuestions(section);
+            data.mcqScore = 0;
+            data.mcqAnswered = 0;
+
+            document.getElementById(`quiz${section}-status`).innerText = "选择题阶段 (0/5)";
+            const msgDiv = document.getElementById(`quiz${section}-msg`);
+            if (msgDiv) {
+                msgDiv.className = "hidden";
+                msgDiv.innerHTML = "";
+            }
+
+            document.getElementById(`fill-container-${section}`).classList.add('hidden');
+
+            const container = document.getElementById(`mcq-container-${section}`);
+            container.innerHTML = '';
+
+            data.mcqs.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-600 space-y-3";
+                
+                let optsHtml = q.options.map((opt, oIdx) => `
+                    <button onclick="checkMCQ('${section}', ${idx}, ${oIdx}, this)" 
+                            class="opt-btn-${section}-${idx} w-full text-left p-2.5 rounded-lg border bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition font-medium text-sm border-slate-200 dark:border-slate-600">
+                        ${String.fromCharCode(65 + oIdx)}. ${fmtOpt(opt)}
+                    </button>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 dark:text-slate-100">
+                        <span class="inline-block px-2 py-0.5 bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200 rounded text-xs mr-1">第 ${idx + 1} 题</span>
+                        ${q.title}
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optsHtml}</div>
+                    <div id="explain-${section}-${idx}" class="hidden p-3 rounded-lg text-sm bg-blue-50 dark:bg-slate-800 border border-blue-200 dark:border-slate-600 text-slate-700 dark:text-slate-300"></div>
+                `;
+                container.appendChild(card);
+            });
+            renderMath();
+        }
+
+        function checkMCQ(section, qIdx, oIdx, btnEl) {
+            const data = quizData[section];
+            const q = data.mcqs[qIdx];
+            const selected = q.options[oIdx];
+            
+            const allBtns = document.querySelectorAll(`.opt-btn-${section}-${qIdx}`);
+            allBtns.forEach(b => b.disabled = true);
+
+            const expDiv = document.getElementById(`explain-${section}-${qIdx}`);
+            expDiv.classList.remove('hidden');
+
+            if (selected === q.correct) {
+                btnEl.className = `opt-btn-${section}-${qIdx} w-full text-left p-2.5 rounded-lg border font-bold text-sm bg-emerald-600 text-white border-emerald-700 shadow-sm`;
+                expDiv.innerHTML = `<span class="font-bold text-emerald-600 dark:text-emerald-400">✅ 回答正确！</span> ${q.explain}`;
+                data.mcqScore++;
+            } else {
+                btnEl.className = `opt-btn-${section}-${qIdx} w-full text-left p-2.5 rounded-lg border font-bold text-sm bg-rose-600 text-white border-rose-700 shadow-sm`;
+                allBtns.forEach((b, i) => {
+                    if (q.options[i] === q.correct) {
+                        b.className = `opt-btn-${section}-${qIdx} w-full text-left p-2.5 rounded-lg border font-bold text-sm bg-emerald-100 dark:bg-emerald-900 border-emerald-500 text-emerald-800 dark:text-emerald-200`;
+                    }
+                });
+                expDiv.innerHTML = `<span class="font-bold text-rose-500">❌ 回答错误！正确答案是：${fmtOpt(q.correct)}</span><br>${q.explain}`;
+            }
+
+            data.mcqAnswered++;
+            document.getElementById(`quiz${section}-status`).innerText = `选择题进度 (${data.mcqAnswered}/5)`;
+
+            if (data.mcqAnswered === 5) {
+                const msgDiv = document.getElementById(`quiz${section}-msg`);
+                if (data.mcqScore >= 3) {
+                    if (msgDiv) {
+                        msgDiv.className = "p-3 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg text-emerald-800 dark:text-emerald-200 text-sm font-bold flex items-center justify-between";
+                        msgDiv.innerHTML = `<span>🎉 恭喜！你在选择题中答对 ${data.mcqScore}/5 题，已解锁进阶作答题！</span>`;
+                        msgDiv.classList.remove('hidden');
+                    }
+                    unlockFillQuestions(section);
+                } else {
+                    if (msgDiv) {
+                        msgDiv.className = "p-3 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700 rounded-lg text-amber-800 dark:text-amber-200 text-sm font-bold flex items-center justify-between";
+                        msgDiv.innerHTML = `
+                            <span>⚠️ 你在选择题中答对 ${data.mcqScore}/5 题。需答对 3 题以上方可解锁作答题。</span>
+                            <button onclick="initQuiz('${section}')" class="px-3 py-1 bg-amber-600 text-white rounded text-xs font-bold hover:bg-amber-700">重新刷题</button>
+                        `;
+                        msgDiv.classList.remove('hidden');
+                    }
+                }
+            }
+            renderMath();
+        }
+
+        function unlockFillQuestions(section) {
+            const data = quizData[section];
+            document.getElementById(`mcq-score-${section}`).innerText = data.mcqScore;
+            const fillBox = document.getElementById(`fill-container-${section}`);
+            fillBox.classList.remove('hidden');
+
+            const questionsContainer = document.getElementById(`fill-questions-${section}`);
+            questionsContainer.innerHTML = '';
+
+            data.fills.forEach((fq, idx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-600 space-y-3";
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 dark:text-slate-100">
+                        <span class="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 rounded text-xs mr-1">作答题 ${idx + 1}</span>
+                        ${fq.title}
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="text" id="fill-input-${section}-${idx}" placeholder="请输入正确数字答案" class="p-2 border rounded-lg dark:bg-slate-800 dark:border-slate-600 text-sm">
+                        <button id="fill-btn-${section}-${idx}" onclick="checkFill('${section}', ${idx})" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-bold shadow">提交答案</button>
+                    </div>
+                    <div id="fill-explain-${section}-${idx}" class="hidden p-3 rounded-lg text-sm bg-blue-50 dark:bg-slate-800 border"></div>
+                `;
+                questionsContainer.appendChild(card);
+            });
+            renderMath();
+        }
+
+        function lockFill(inputEl, btn) {
+            if (inputEl) { inputEl.disabled = true; inputEl.classList.add('opacity-70', 'cursor-not-allowed'); }
+            if (btn) { btn.disabled = true; btn.classList.add('opacity-50', 'cursor-not-allowed'); }
+        }
+
+        function checkFill(section, idx) {
+            const fq = quizData[section].fills[idx];
+            const inputEl = document.getElementById(`fill-input-${section}-${idx}`);
+            const val = inputEl ? inputEl.value.trim() : "";
+            const expDiv = document.getElementById(`fill-explain-${section}-${idx}`);
+            if (inputEl && inputEl.disabled) return;
+            if (!val) {
+                expDiv.classList.remove('hidden');
+                expDiv.className = "p-3 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/40 border border-amber-300 text-amber-800 dark:text-amber-200";
+                expDiv.innerText = "⚠️ 请先输入答案再提交。";
+                return;
+            }
+            expDiv.classList.remove('hidden');
+            lockFill(inputEl, document.getElementById(`fill-btn-${section}-${idx}`));
+
+            const isCorrect = isFillCorrect(fq, val);
+
+            if (isCorrect) {
+                expDiv.className = "p-3 rounded-lg text-sm bg-emerald-50 dark:bg-emerald-900/40 border border-emerald-300 text-emerald-800 dark:text-emerald-200 font-bold";
+                expDiv.innerHTML = `🎉 答对了！解析：${fq.explain}`;
+            } else {
+                expDiv.className = "p-3 rounded-lg text-sm bg-rose-50 dark:bg-rose-900/40 border border-rose-300 text-rose-800 dark:text-rose-200";
+                expDiv.innerHTML = `❌ 解答有误。正确答案是：$${escapeHtml(fq.ans.join(" \\text{ 或 } "))}$。解析：${fq.explain}`;
+            }
+            renderMath();
+        }
+
+        function initFinalExam() {
+            const mcqs = [
+                ...generate11_1_MCQ().slice(0, 3),
+                ...generate11_2_MCQ().slice(0, 4),
+                ...generate11_3_MCQ().slice(0, 3)
+            ];
+
+            const fills = [
+                ...generateFillQuestions('11-1'),
+                ...generateFillQuestions('11-2'),
+                ...generateFillQuestions('11-3').slice(0, 1)
+            ];
+
+            quizData.final.mcqs = shuffle(mcqs);
+            quizData.final.fills = shuffle(fills);
+            quizData.final.mcqAnswers = new Array(10).fill(null);
+            quizData.final.submitted = false;
+
+            document.getElementById('exam-report-card').classList.add('hidden');
+
+            const mcqBox = document.getElementById('final-mcq-container');
+            mcqBox.innerHTML = '';
+            quizData.final.mcqs.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-600 space-y-3";
+                
+                let optsHtml = q.options.map((opt, oIdx) => `
+                    <button onclick="selectFinalMCQ(${idx}, ${oIdx}, this)" 
+                            id="final-opt-btn-${idx}-${oIdx}"
+                            class="final-opt-${idx} w-full text-left p-3 rounded-lg border transition font-medium text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        ${String.fromCharCode(65 + oIdx)}. ${fmtOpt(opt)}
+                    </button>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 dark:text-slate-100">
+                        <span class="inline-block px-2 py-0.5 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded text-xs mr-1">选择 ${idx + 1}</span>
+                        ${q.title}
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optsHtml}</div>
+                    <div id="final-mcq-explain-${idx}" class="hidden p-3 rounded-lg text-sm space-y-1"></div>
+                `;
+                mcqBox.appendChild(card);
+            });
+
+            const fillBox = document.getElementById('final-fill-container');
+            fillBox.innerHTML = '';
+            quizData.final.fills.forEach((fq, idx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-600 space-y-3";
+                card.innerHTML = `
+                    <div class="font-bold text-slate-800 dark:text-slate-100">
+                        <span class="inline-block px-2 py-0.5 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 rounded text-xs mr-1">填空 ${idx + 1}</span>
+                        ${fq.title}
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <input type="text" id="final-fill-input-${idx}" placeholder="在此输入数值答案" class="w-full sm:w-64 p-2.5 border rounded-lg dark:bg-slate-800 dark:border-slate-600 text-sm">
+                        <button id="final-fill-btn-${idx}" onclick="checkSingleFinalFill(${idx})" class="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition">检查单题</button>
+                    </div>
+                    <div id="final-fill-explain-${idx}" class="hidden p-3 rounded-lg text-sm space-y-1"></div>
+                `;
+                fillBox.appendChild(card);
+            });
+            renderMath();
+        }
+
+        function selectFinalMCQ(qIdx, oIdx, btnEl) {
+            if (quizData.final.submitted) return;
+
+            const q = quizData.final.mcqs[qIdx];
+            quizData.final.mcqAnswers[qIdx] = q.options[oIdx];
+
+            const allBtns = document.querySelectorAll(`.final-opt-${qIdx}`);
+            allBtns.forEach(b => {
+                b.className = `final-opt-${qIdx} w-full text-left p-3 rounded-lg border transition font-medium text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700`;
+            });
+
+            btnEl.className = `final-opt-${qIdx} w-full text-left p-3 rounded-lg border transition font-bold text-sm bg-indigo-600 text-white border-indigo-700 shadow-sm`;
+        }
+
+        function checkSingleFinalFill(idx) {
+            const fq = quizData.final.fills[idx];
+            const inputEl = document.getElementById(`final-fill-input-${idx}`);
+            const val = inputEl ? inputEl.value.trim() : "";
+            const expDiv = document.getElementById(`final-fill-explain-${idx}`);
+            if (quizData.final.submitted || (inputEl && inputEl.disabled)) return;
+            if (!val) {
+                expDiv.classList.remove('hidden');
+                expDiv.className = "p-3 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/40 border border-amber-300 text-amber-800 dark:text-amber-200";
+                expDiv.innerText = "⚠️ 请先输入答案再检查。";
+                return;
+            }
+            expDiv.classList.remove('hidden');
+            lockFill(inputEl, document.getElementById(`final-fill-btn-${idx}`));
+
+            const isCorrect = isFillCorrect(fq, val);
+
+            if (isCorrect) {
+                if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg font-bold text-sm bg-emerald-50 dark:bg-emerald-900/30 border-emerald-500 text-emerald-800 dark:text-emerald-200";
+                expDiv.className = "p-3 rounded-lg text-sm bg-emerald-50 dark:bg-emerald-900/40 border border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200";
+                expDiv.innerHTML = `<div class="font-bold text-emerald-600 dark:text-emerald-400">✅ 判定：回答正确！</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+            } else if (!val) {
+                if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/30 border-amber-500 text-amber-800 dark:text-amber-200";
+                expDiv.className = "p-3 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200";
+                expDiv.innerHTML = `<div class="font-bold text-amber-600 dark:text-amber-400">⚠️ 判定：未作答！</div><div><b>标准答案：</b>$${escapeHtml(fq.ans.join(" \\text{ 或 } "))}$</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+            } else {
+                if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg font-bold text-sm bg-rose-50 dark:bg-rose-900/30 border-rose-500 text-rose-800 dark:text-rose-200";
+                expDiv.className = "p-3 rounded-lg text-sm bg-rose-50 dark:bg-rose-900/40 border border-rose-300 dark:border-rose-700 text-rose-800 dark:text-rose-200";
+                expDiv.innerHTML = `<div class="font-bold text-rose-600 dark:text-rose-400">❌ 判定：回答错误！</div><div><b>标准答案：</b>$${escapeHtml(fq.ans.join(" \\text{ 或 } "))}$</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+            }
+            renderMath();
+        }
+
+        function submitFinalExam() {
+            quizData.final.submitted = true;
+            let mcqCorrect = 0;
+            let fillCorrect = 0;
+
+            // 批改 10 道选择题
+            quizData.final.mcqs.forEach((q, idx) => {
+                const selectedOpt = quizData.final.mcqAnswers[idx];
+                const isCorrect = (selectedOpt === q.correct);
+                if (isCorrect) mcqCorrect++;
+
+                const allBtns = document.querySelectorAll(`.final-opt-${idx}`);
+                allBtns.forEach((b, oIdx) => {
+                    b.disabled = true;
+                    const optVal = q.options[oIdx];
+                    if (optVal === q.correct) {
+                        b.className = `final-opt-${idx} w-full text-left p-3 rounded-lg border transition font-bold text-sm bg-emerald-600 text-white border-emerald-700 shadow-sm`;
+                    } else if (optVal === selectedOpt) {
+                        b.className = `final-opt-${idx} w-full text-left p-3 rounded-lg border transition font-bold text-sm bg-rose-600 text-white border-rose-700 shadow-sm`;
+                    } else {
+                        b.className = `final-opt-${idx} w-full text-left p-3 rounded-lg border transition font-medium text-sm bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700 opacity-60`;
+                    }
+                });
+
+                const expDiv = document.getElementById(`final-mcq-explain-${idx}`);
+                if (expDiv) {
+                    expDiv.classList.remove('hidden');
+                    if (isCorrect) {
+                        expDiv.className = "p-3 rounded-lg text-sm bg-emerald-50 dark:bg-emerald-900/40 border border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200";
+                        expDiv.innerHTML = `<div class="font-bold text-emerald-600 dark:text-emerald-400">✅ 判定：回答正确 (+6分)</div><div><b>解析：</b>${q.explain}</div>`;
+                    } else if (!selectedOpt) {
+                        expDiv.className = "p-3 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200";
+                        expDiv.innerHTML = `<div class="font-bold text-amber-600 dark:text-amber-400">⚠️ 判定：未作答 (0分)</div><div><b>标准答案：</b>${fmtOpt(q.correct)}</div><div><b>解析：</b>${q.explain}</div>`;
+                    } else {
+                        expDiv.className = "p-3 rounded-lg text-sm bg-rose-50 dark:bg-rose-900/40 border border-rose-300 dark:border-rose-700 text-rose-800 dark:text-rose-200";
+                        expDiv.innerHTML = `<div class="font-bold text-rose-600 dark:text-rose-400">❌ 判定：回答错误 (0分)</div><div><b>您的选择：</b>${fmtOpt(selectedOpt)}</div><div><b>标准答案：</b>${fmtOpt(q.correct)}</div><div><b>解析：</b>${q.explain}</div>`;
+                    }
+                }
+            });
+
+            // 批改 5 道作答填空题
+            quizData.final.fills.forEach((fq, idx) => {
+                const inputEl = document.getElementById(`final-fill-input-${idx}`);
+                const val = inputEl ? inputEl.value.trim() : "";
+                lockFill(inputEl, document.getElementById(`final-fill-btn-${idx}`));
+
+                const isCorrect = isFillCorrect(fq, val);
+                if (isCorrect) fillCorrect++;
+
+                const expDiv = document.getElementById(`final-fill-explain-${idx}`);
+                if (expDiv) {
+                    expDiv.classList.remove('hidden');
+                    if (isCorrect) {
+                        if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg font-bold text-sm bg-emerald-50 dark:bg-emerald-900/30 border-emerald-500 text-emerald-800 dark:text-emerald-200";
+                        expDiv.className = "p-3 rounded-lg text-sm bg-emerald-50 dark:bg-emerald-900/40 border border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200";
+                        expDiv.innerHTML = `<div class="font-bold text-emerald-600 dark:text-emerald-400">✅ 判定：回答正确 (+8分)</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+                    } else if (!val) {
+                        if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/30 border-amber-500 text-amber-800 dark:text-amber-200";
+                        expDiv.className = "p-3 rounded-lg text-sm bg-amber-50 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200";
+                        expDiv.innerHTML = `<div class="font-bold text-amber-600 dark:text-amber-400">⚠️ 判定：未作答 (0分)</div><div><b>标准答案：</b>$${escapeHtml(fq.ans.join(" \\text{ 或 } "))}$</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+                    } else {
+                        if (inputEl) inputEl.className = "w-full sm:w-64 p-2.5 border-2 rounded-lg font-bold text-sm bg-rose-50 dark:bg-rose-900/30 border-rose-500 text-rose-800 dark:text-rose-200";
+                        expDiv.className = "p-3 rounded-lg text-sm bg-rose-50 dark:bg-rose-900/40 border border-rose-300 dark:border-rose-700 text-rose-800 dark:text-rose-200";
+                        expDiv.innerHTML = `<div class="font-bold text-rose-600 dark:text-rose-400">❌ 判定：回答错误 (0分)</div><div><b>您的答案：</b>$${escapeHtml(val)}$</div><div><b>标准答案：</b>$${escapeHtml(fq.ans.join(" \\text{ 或 } "))}$</div><div><b>解题步骤：</b>${fq.explain}</div>`;
+                    }
+                }
+            });
+
+            const mcqScore = mcqCorrect * 6;
+            const fillScore = fillCorrect * 8;
+            const totalScore = mcqScore + fillScore;
+
+            const reportCard = document.getElementById('exam-report-card');
+            reportCard.classList.remove('hidden');
+
+            document.getElementById('report-score').innerText = `${totalScore} / 100`;
+            document.getElementById('report-mcq').innerText = `${mcqScore} / 60`;
+            document.getElementById('report-fill').innerText = `${fillScore} / 40`;
+
+            const badge = document.getElementById('exam-badge');
+            const evalText = document.getElementById('report-eval');
+
+            if (totalScore >= 85) {
+                badge.className = "px-3 py-1 text-sm font-bold rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200";
+                badge.innerText = "成绩优秀 🌟";
+                evalText.innerText = "非常棒！对第11章比与比例概念掌握扎实！";
+            } else if (totalScore >= 60) {
+                badge.className = "px-3 py-1 text-sm font-bold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+                badge.innerText = "成绩良好 👍";
+                evalText.innerText = "表现不错！请参考下方标红题目的解题步骤进行针对性强化。";
+            } else {
+                badge.className = "px-3 py-1 text-sm font-bold rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200";
+                badge.innerText = "需继续努力 💪";
+                evalText.innerText = "建议查看下方每道题的详细解析，并重温前三节的示例与计算器！";
+            }
+
+            reportCard.scrollIntoView({ behavior: 'smooth' });
+            renderMath();
+        }
+
+        window.onload = function() {
+            initQuiz('11-1');
+            initQuiz('11-2');
+            initQuiz('11-3');
+            initFinalExam();
+            
+            runCalc1();
+            runCalc2();
+            runCalc3();
+            runCalc4();
+            renderMath();
+        };
+    </script>
+</body>
+</html>
