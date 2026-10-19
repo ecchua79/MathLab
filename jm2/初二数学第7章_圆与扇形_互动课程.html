@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="峇株吧辖华仁中学蔡逸众制作 / Made by ecchua79">
+    <!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初二数学第7章《圆与扇形》互动课程</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --secondary: #0ea5e9;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; padding-bottom: 60px; }
+        
+        /* 竖向标准分数样式 (分子在上，分母在下) */
+        .frac {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 0.9em;
+            padding: 0 3px;
+            line-height: 1.15;
+            margin: 0 2px;
+            font-style: normal;
+        }
+        .frac .num {
+            border-bottom: 1.5px solid currentColor;
+            padding-bottom: 2px;
+            display: block;
+        }
+        .frac .den {
+            padding-top: 2px;
+            display: block;
+        }
+
+        header { background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%); color: white; padding: 24px 20px; box-shadow: var(--shadow); }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+        .header-title h1 { font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .header-title p { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+        .formula-btn { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600; backdrop-filter: blur(4px); transition: all 0.2s; }
+        .formula-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+
+        .nav-tabs-container { background: white; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .nav-tabs { max-width: 1200px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 16px 24px; border: none; background: none; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s; }
+        .tab-btn:hover { color: var(--primary); }
+        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); background: var(--primary-light); }
+
+        main { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border-color); padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow); }
+        .card-header { font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 16px; border-left: 4px solid var(--primary); padding-left: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .formula-box { background: var(--primary-light); border: 1px dashed var(--primary); padding: 16px; border-radius: 8px; margin-bottom: 16px; font-size: 1rem; line-height: 1.9; }
+        .example-item { background: #f8fafc; border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 12px; }
+        .example-title { font-weight: 700; color: #334155; margin-bottom: 6px; }
+        .example-sol { background: white; padding: 12px; border-radius: 6px; border-left: 3px solid var(--secondary); margin-top: 8px; font-family: inherit; font-size: 0.98rem; line-height: 1.8; }
+
+        .calculator-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .calculator-panel { grid-template-columns: 1fr; } }
+        .calc-inputs { display: flex; flex-direction: column; gap: 12px; }
+        .input-group { display: flex; flex-direction: column; gap: 4px; }
+        .input-group label { font-size: 0.88rem; font-weight: 600; color: var(--text-muted); }
+        .input-group input, .input-group select { padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; outline: none; }
+        .input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+        .calc-result { background: #0f172a; color: #f8fafc; padding: 16px; border-radius: 8px; font-family: inherit; min-height: 140px; line-height: 2; }
+        .canvas-container { display: flex; justify-content: center; align-items: center; background: #fafafa; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; }
+        canvas { max-width: 100%; height: auto; }
+
+        .question-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+        .question-title { font-weight: 600; margin-bottom: 12px; font-size: 1.05rem; line-height: 1.8; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 640px) { .options-grid { grid-template-columns: 1fr; } }
+        .option-btn { padding: 12px 14px; border: 1px solid var(--border-color); background: white; border-radius: 6px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .option-btn:hover:not(:disabled) { background: var(--primary-light); border-color: var(--primary); }
+        .option-btn.correct { background: var(--success-light) !important; border-color: var(--success) !important; color: var(--success) !important; font-weight: 700; }
+        .option-btn.wrong { background: var(--danger-light) !important; border-color: var(--danger) !important; color: var(--danger) !important; }
+        .explanation-box { margin-top: 10px; padding: 12px; background: #f1f5f9; border-radius: 6px; font-size: 0.95rem; display: none; line-height: 1.8; }
+
+        .subjective-section { margin-top: 24px; padding: 20px; background: #fff8f1; border: 1px solid #ffedd5; border-radius: var(--radius); }
+        .locked-badge { display: inline-flex; align-items: center; gap: 6px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .unlocked-badge { background: #dcfce7; color: #166534; }
+        .subj-input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; margin-top: 8px; }
+
+        .modal-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-card { background: white; border-radius: var(--radius); max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 24px; position: relative; }
+        .close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+
+        .action-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .action-btn:hover { background: var(--primary-hover); }
+        .reset-btn { background: #64748b; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .reset-btn:hover { background: #475569; }
+
+        .score-banner { text-align: center; padding: 24px; background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border-radius: 12px; margin-bottom: 20px; }
+        .score-number { font-size: 3rem; font-weight: 800; color: var(--primary); }
+
+        /* 浮水印 / 隐藏水印 / 页脚 */
+        .wm-float { position: fixed; inset: 0; z-index: 9998; pointer-events: none; user-select: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><g transform='rotate(-25 150 100)' fill='%23475569' fill-opacity='0.09' font-family='sans-serif' font-size='16' text-anchor='middle'><text x='150' y='95'>峇株吧辖华仁中学蔡逸众制作</text><text x='150' y='120' font-size='13'>Made by ecchua79</text></g></svg>");
+            background-repeat: repeat; }
+        .wm-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        .site-footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 24px 16px 8px; }
+        @media print { .wm-float { display: none; } }
+
+        /* 字体大小 / 白天夜间模式 */
+        .header-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .tool-btn, .formula-btn { font-size: 0.9rem; }
+        .tool-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 16px; cursor: pointer; font-weight: 600; }
+        .tool-btn:hover { background: rgba(255,255,255,0.3); }
+        .explanation-box[style*="background"] { color: #0f172a; }
+        .input-group input, .input-group select, .subj-input { background: var(--card-bg); color: var(--text-main); }
+        .option-btn { color: var(--text-main); }
+        [data-theme="dark"] {
+            --primary: #6366f1; --primary-hover: #818cf8; --primary-light: #1e2350;
+            --success-light: #0f2e24; --danger-light: #3b1518; --warning-light: #3a2a0a;
+            --bg-main: #0b1220; --card-bg: #111a2e; --text-main: #e5e7eb; --text-muted: #94a3b8; --border-color: #26324a;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
+        }
+        [data-theme="dark"] .nav-tabs-container { background: var(--card-bg); }
+        [data-theme="dark"] .example-item { background: #0f1729; border-color: var(--border-color); }
+        [data-theme="dark"] .example-title { color: #cbd5e1; }
+        [data-theme="dark"] .example-sol, [data-theme="dark"] .question-card, [data-theme="dark"] .modal-card { background: var(--card-bg); }
+        [data-theme="dark"] .subjective-section { background: #2a1f12; border-color: #4a3519; }
+        [data-theme="dark"] .explanation-box { background: #1b2640; }
+        [data-theme="dark"] .score-banner { background: linear-gradient(135deg, #1e2350 0%, #2d1b4e 100%); }
+        [data-theme="dark"] .option-btn { background: var(--card-bg); }
+        [data-theme="dark"] .option-btn:hover:not(:disabled) { background: var(--primary-light); }
+        [data-theme="dark"] .wm-float { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'><g transform='rotate(-25 150 100)' fill='%23e2e8f0' fill-opacity='0.07' font-family='sans-serif' font-size='16' text-anchor='middle'><text x='150' y='95'>峇株吧辖华仁中学蔡逸众制作</text><text x='150' y='120' font-size='13'>Made by ecchua79</text></g></svg>"); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="header-title">
+                <h1>《数学》初二下册 第7章 圆与扇形</h1>
+                <p>互动式自学与深度练习系统（完全无网离线版）</p>
+            </div>
+            <div class="header-tools">
+                <button class="tool-btn" onclick="changeFont(-1)" title="缩小字体">A-</button>
+                <button class="tool-btn" onclick="changeFont(0)" title="默认字体">A</button>
+                <button class="tool-btn" onclick="changeFont(1)" title="放大字体">A+</button>
+                <button class="tool-btn" id="theme-btn" onclick="toggleTheme()">🌙 夜间</button>
+                <button class="formula-btn" onclick="openFormulaModal()">📐 公式与知识宝典</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-tabs-container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('tab1')">7.1 圆与周长、面积</button>
+            <button class="tab-btn" onclick="switchTab('tab2')">7.2 弧长与扇形面积</button>
+            <button class="tab-btn" onclick="switchTab('tab3')">7.3 几何图形组合拓展</button>
+            <button class="tab-btn" onclick="switchTab('tab4')">🏆 章末综合总复习测试</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- TAB 1 -->
+        <div id="tab1" class="tab-content active">
+            <div class="card">
+                <div class="card-header">7.1 核心概念与课本精解</div>
+                <div class="formula-box">
+                    <strong>一、 核心性质与计算公式：</strong><br>
+                    • 圆的基本性质：同圆或等圆中，所有半径 r 都相等，直径 d = 2r，半径 r = <span class="frac"><span class="num">d</span><span class="den">2</span></span>。<br>
+                    • 圆周长公式：C = 2πr = πd<br>
+                    • 圆面积公式：A = πr²<br><br>
+                    <strong>二、 常用计算技巧（π 值的取值原则）：</strong><br>
+                    • 当半径 r 是 7 的倍数（如 7, 14, 21）时，优先取 π = <span class="frac"><span class="num">22</span><span class="den">7</span></span>，可大幅简化约分计算。<br>
+                    • 当数值为整十数或一般小数时，优先取 π ≈ 3.14。<br>• 圆周率 π = 周长 ÷ 直径，是无理数，介于 3.1415926 与 3.1415927 之间（南北朝数学家祖冲之，429–500 年，是历史上第一位算出此范围的人）。<br>• 题目要求“答案以 π 表示”时，直接保留 π，如 C = 14π cm。
+                </div>
+                <div class="grid-2">
+                    <div class="example-item">
+                        <div class="example-title">课本例题1：已知半径求周长</div>
+                        <p><strong>题目：</strong>求半径为 7 cm 的圆的周长（取 π = <span class="frac"><span class="num">22</span><span class="den">7</span></span>）。</p>
+                        <div class="example-sol">
+                            解：周长 C = 2πr<br>
+                            = 2 × <span class="frac"><span class="num">22</span><span class="den">7</span></span> × 7 = 44 cm
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-title">课本例题2：已知周长求直径</div>
+                        <p><strong>题目：</strong>已知一圆的周长为 62.8 cm，求其直径（取 π = 3.14）。</p>
+                        <div class="example-sol">
+                            解：C = πd → 62.8 = 3.14 × d<br>
+                            d = 62.8 ÷ 3.14 = 20 cm
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1 CALCULATOR -->
+            <div class="card">
+                <div class="card-header">7.1 专属互动计算与推导工具</div>
+                <div class="calculator-panel">
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>已知输入条件：</label>
+                            <select id="calc1-type" onchange="updateCalc1()">
+                                <option value="r">已知 半径 (r)</option>
+                                <option value="d">已知 直径 (d)</option>
+                                <option value="c">已知 周长 (C)</option>
+                                <option value="a">已知 面积 (A)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>输入数值（选 π 时，周长/面积填 π 的倍数，如 14 表示 14π）：</label>
+                            <input type="number" id="calc1-val" value="7" step="any" oninput="updateCalc1()">
+                        </div>
+                        <div class="input-group">
+                            <label>圆周率 π 取值：</label>
+                            <select id="calc1-pi" onchange="updateCalc1()">
+                                <option value="22/7">22 / 7 (分数取值)</option>
+                                <option value="3.14">3.14 (小数取值)</option>
+                                <option value="pi">π（以 π 表示结果）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="calc-result" id="calc1-out">计算结果将在此实时呈现...</div>
+                        <div class="canvas-container" style="margin-top:12px;">
+                            <canvas id="canvas1" width="180" height="180"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 1 QUIZ -->
+            <div class="card">
+                <div class="card-header">
+                    <span>7.1 动态自测题 (选择题 5 题)</span>
+                    <button class="reset-btn" onclick="initTabQuiz(1)">🔄 重新生成题目</button>
+                </div>
+                <div id="quiz1-mc-container"></div>
+
+                <div id="quiz1-subj-wrapper" class="subjective-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <h4 style="font-weight:700;">7.1 进阶作答题 (2 题)</h4>
+                        <span id="quiz1-status" class="locked-badge">🔒 答对 3 题选择题后解锁</span>
+                    </div>
+                    <div id="quiz1-subj-container" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2 -->
+        <div id="tab2" class="tab-content">
+            <div class="card">
+                <div class="card-header">7.2 核心概念与课本精解</div>
+                <div class="formula-box">
+                    <strong>一、 弧长与扇形计算公式：</strong><br>
+                    设圆半径为 r，圆心角为 θ：<br>
+                    • 弧长公式：l = <span class="frac"><span class="num">θ</span><span class="den">360°</span></span> × 2πr = <span class="frac"><span class="num">θ</span><span class="den">180°</span></span> × πr<br>
+                    • 扇形面积公式：S = <span class="frac"><span class="num">θ</span><span class="den">360°</span></span> × πr²<br>
+                    • 快捷计算公式：S = <span class="frac"><span class="num">1</span><span class="den">2</span></span> × l × r （已知弧长和半径时直接套用）<br>
+                    • 扇形周长公式：P = l + 2r<br><br>
+                    <strong>二、 劣弧、优弧与扇形：</strong><br>• 圆周上两点把圆周分成两段弧：小于半圆的叫<b>劣弧</b>，大于半圆的叫<b>优弧</b>（用三个字母表示，如 ACB）。<br>• 对应有<b>劣扇形</b>（圆心角小于 180°）与<b>优扇形</b>（圆心角为优角）；计算优扇形时，θ 要代入优角（如 240°）。<br><br><strong>三、 知识小结：</strong><br>
+                    扇形是圆的一部分，圆心角占全圆（360°）的几分之几，其弧长与面积就占全圆周长与面积的几分之几。
+                </div>
+                <div class="grid-2">
+                    <div class="example-item">
+                        <div class="example-title">课本例题1：求扇形弧长</div>
+                        <p><strong>题目：</strong>O 为圆心，r = 14 cm，圆心角 θ = 120°，求弧 AB 的长（取 π = <span class="frac"><span class="num">22</span><span class="den">7</span></span>）。</p>
+                        <div class="example-sol">
+                            解：弧长 l = <span class="frac"><span class="num">120°</span><span class="den">360°</span></span> × 2 × <span class="frac"><span class="num">22</span><span class="den">7</span></span> × 14<br>
+                            = <span class="frac"><span class="num">1</span><span class="den">3</span></span> × 88 = 29.33 cm (即 29<span class="frac"><span class="num">1</span><span class="den">3</span></span> cm)
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-title">课本例题4：求扇形面积</div>
+                        <p><strong>题目：</strong>OA = 10 cm，∠AOB = 108°，求扇形面积（取 π = 3.14）。</p>
+                        <div class="example-sol">
+                            解：S = <span class="frac"><span class="num">108°</span><span class="den">360°</span></span> × 3.14 × 10²<br>
+                            = 0.3 × 314 = 94.2 cm²
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2 CALCULATOR -->
+            <div class="card">
+                <div class="card-header">7.2 专属扇形互动计算器</div>
+                <div class="calculator-panel">
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>半径 (r):</label>
+                            <input type="number" id="calc2-r" value="10" step="any" oninput="updateCalc2()">
+                        </div>
+                        <div class="input-group">
+                            <label>圆心角 (θ°):</label>
+                            <input type="number" id="calc2-angle" value="108" step="any" oninput="updateCalc2()">
+                        </div>
+                        <div class="input-group">
+                            <label>圆周率 π 取值：</label>
+                            <select id="calc2-pi" onchange="updateCalc2()">
+                                <option value="3.14">3.14 (小数取值)</option>
+                                <option value="22/7">22 / 7 (分数取值)</option>
+                                <option value="pi">π（以 π 表示结果）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="calc-result" id="calc2-out">计算结果...</div>
+                        <div class="canvas-container" style="margin-top:12px;">
+                            <canvas id="canvas2" width="180" height="180"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2 QUIZ -->
+            <div class="card">
+                <div class="card-header">
+                    <span>7.2 动态自测题 (选择题 5 题)</span>
+                    <button class="reset-btn" onclick="initTabQuiz(2)">🔄 重新生成题目</button>
+                </div>
+                <div id="quiz2-mc-container"></div>
+
+                <div id="quiz2-subj-wrapper" class="subjective-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <h4 style="font-weight:700;">7.2 进阶作答题 (2 题)</h4>
+                        <span id="quiz2-status" class="locked-badge">🔒 答对 3 题选择题后解锁</span>
+                    </div>
+                    <div id="quiz2-subj-container" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3 -->
+        <div id="tab3" class="tab-content">
+            <div class="card">
+                <div class="card-header">7.3 组合图形与阴影面积割补法</div>
+                <div class="formula-box">
+                    <strong>解题常用四大核心策略：</strong><br>
+                    1. <strong>和差法：</strong> 阴影面积 = 大图形面积 - 空白面积<br>
+                    2. <strong>割补拼接法：</strong> 将不规则阴影通过对称、旋转或平移拼凑成规则扇形或三角形。<br>
+                    3. <strong>弓形面积：</strong> 弓形面积 = 扇形面积 - 三角形 OAB 面积<br>
+                    4. <strong>圆环/扇环面积：</strong> 圆环面积 S = π(R² - r²) ； 扇环面积 S = <span class="frac"><span class="num">θ</span><span class="den">360°</span></span> × π(R² - r²)
+                </div>
+                <div class="grid-2">
+                    <div class="example-item">
+                        <div class="example-title">7.1 例题7：弓形面积计算</div>
+                        <p><strong>题目：</strong>OACB 为四分之一圆，r = 10 cm，求弓形 ACB 的面积（π = 3.14）。</p>
+                        <div class="example-sol">
+                            解：扇形面积 = <span class="frac"><span class="num">1</span><span class="den">4</span></span> × 3.14 × 10² = 78.5 cm²<br>
+                            三角形 OAB 面积 = <span class="frac"><span class="num">1</span><span class="den">2</span></span> × 10 × 10 = 50 cm²<br>
+                            弓形面积 = 78.5 - 50 = 28.5 cm²
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-title">7.1 例题8：同心圆环面积</div>
+                        <p><strong>题目：</strong>外圆半径 10 cm，内圆半径 7 cm，求阴影圆环面积（以 π 表示）。</p>
+                        <div class="example-sol">
+                            解：S = π × 10² - π × 7²<br>
+                            = (100 - 49)π = 51π cm²
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="example-title">7.2 例题7：扇环的面积与周长</div>
+                        <p><strong>题目：</strong>OAB 及 OCD 是扇形，C、D 分别是 OA、OB 的中点，∠AOB = 120°，着色部分面积为 154 cm²，求 OC 的长及着色部分周长（取 π = <span class="frac"><span class="num">22</span><span class="den">7</span></span>）。</p>
+                        <div class="example-sol">
+                            设 OC = r，则 OA = R = 2r。<br>
+                            S = <span class="frac"><span class="num">120°</span><span class="den">360°</span></span> × π × (4r² - r²) = 154 → r² = 49，OC = 7 cm<br>
+                            周长 = 大弧 + 小弧 + AC + BD = <span class="frac"><span class="num">1</span><span class="den">3</span></span> × 2 × <span class="frac"><span class="num">22</span><span class="den">7</span></span> × (14 + 7) + 14 = 58 cm
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3 CALCULATOR -->
+            <div class="card">
+                <div class="card-header">7.3 阴影圆环与扇环计算器</div>
+                <div class="calculator-panel">
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>外圆半径 (R):</label>
+                            <input type="number" id="calc3-R" value="10" step="any" oninput="updateCalc3()">
+                        </div>
+                        <div class="input-group">
+                            <label>内圆半径 (r):</label>
+                            <input type="number" id="calc3-r" value="7" step="any" oninput="updateCalc3()">
+                        </div>
+                        <div class="input-group">
+                            <label>扇环角度 (θ°, 360°表示整环):</label>
+                            <input type="number" id="calc3-angle" value="360" step="any" oninput="updateCalc3()">
+                        </div>
+                        <div class="input-group">
+                            <label>圆周率 π 取值：</label>
+                            <select id="calc3-pi" onchange="updateCalc3()">
+                                <option value="pi">π（以 π 表示结果）</option>
+                                <option value="3.14">3.14 (小数取值)</option>
+                                <option value="22/7">22 / 7 (分数取值)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="calc-result" id="calc3-out">计算结果...</div>
+                        <div class="canvas-container" style="margin-top:12px;">
+                            <canvas id="canvas3" width="180" height="180"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3 QUIZ -->
+            <div class="card">
+                <div class="card-header">
+                    <span>7.3 动态自测题 (选择题 5 题)</span>
+                    <button class="reset-btn" onclick="initTabQuiz(3)">🔄 重新生成题目</button>
+                </div>
+                <div id="quiz3-mc-container"></div>
+
+                <div id="quiz3-subj-wrapper" class="subjective-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <h4 style="font-weight:700;">7.3 进阶作答题 (2 题)</h4>
+                        <span id="quiz3-status" class="locked-badge">🔒 答对 3 题选择题后解锁</span>
+                    </div>
+                    <div id="quiz3-subj-container" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4 -->
+        <div id="tab4" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <span>章末全真模拟评估 (10 选择题 + 5 填空题)</span>
+                    <button class="action-btn" onclick="initFinalExam()">🎲 重新抽题组卷</button>
+                </div>
+                <p style="color:var(--text-muted); margin-bottom:16px;">
+                    说明：包含本章所有核心题型及课本总复习题难点，提交后将生成详细能力分析报告。
+                </p>
+
+                <div id="final-exam-container"></div>
+
+                <div style="text-align:center; margin-top:24px;">
+                    <button class="action-btn" style="font-size:1.1rem; padding:12px 36px;" onclick="submitFinalExam()">🚀 提交试卷并评估</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FORMULA MODAL -->
+    <div id="formula-modal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="close-btn" onclick="closeFormulaModal()">&times;</button>
+            <h2 style="margin-bottom:16px; color:var(--primary);">📖 第7章 圆与扇形 知识宝典</h2>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="example-item">
+                    <strong>1. 圆的基本性质与定义</strong>
+                    <p>同圆或等圆中，所有半径 r 都相等，直径 d = 2r，半径 r = <span class="frac"><span class="num">d</span><span class="den">2</span></span>。</p>
+                </div>
+                <div class="example-item">
+                    <strong>2. 周长与面积公式</strong>
+                    <p>圆周长：C = 2πr = πd</p>
+                    <p>圆面积：A = πr²</p>
+                </div>
+                <div class="example-item">
+                    <strong>3. 弧长与扇形公式</strong>
+                    <p>弧长：l = <span class="frac"><span class="num">θ</span><span class="den">360°</span></span> × 2πr = <span class="frac"><span class="num">θ</span><span class="den">180°</span></span> × πr</p>
+                    <p>扇形面积：S = <span class="frac"><span class="num">θ</span><span class="den">360°</span></span> × πr² = <span class="frac"><span class="num">1</span><span class="den">2</span></span> × l × r</p>
+                    <p>扇形周长：P = l + 2r</p>
+                </div>
+                <div class="example-item">
+                    <strong>4. 常用简化技巧</strong>
+                    <p>当 r 是 7 的倍数时，优先取 π = <span class="frac"><span class="num">22</span><span class="den">7</span></span>。</p>
+                    <p>当数值为整十数或小数时，优先取 π = 3.14。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCORE REPORT MODAL -->
+    <div id="report-modal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="close-btn" onclick="closeReportModal()">&times;</button>
+            <h2 style="text-align:center; color:var(--primary); margin-bottom:12px;">🏆 考试成绩报告单</h2>
+            <div class="score-banner">
+                <div>总得分</div>
+                <div id="report-score" class="score-number">0</div>
+                <div id="report-evaluation" style="font-weight:700; color:var(--text-main); margin-top:6px;">--</div>
+            </div>
+            <div id="report-details" style="font-size:0.95rem; line-height:1.8;"></div>
+            <div style="text-align:center; margin-top:20px;">
+                <button class="action-btn" onclick="closeReportModal()">确定并查看解析</button>
+            </div>
+        </div>
+    </div>
+
+    <span class="wm-hidden" aria-hidden="true">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</span>
+    <div class="wm-float" aria-hidden="true"></div>
+    <footer class="site-footer">© 2026 峇株吧辖华仁中学蔡逸众制作</footer>
+
+    <script>
+        let currentQuizData = { 1: null, 2: null, 3: null };
+        let finalExamData = null;
+
+        // 生成标准竖向分数的 HTML 字符串 (分子在上，分母在下)
+        function frac(num, den) {
+            return `<span class="frac"><span class="num">${num}</span><span class="den">${den}</span></span>`;
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            const selectedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(selectedBtn) selectedBtn.classList.add('active');
+            
+            document.getElementById(tabId).classList.add('active');
+
+            if(tabId === 'tab1') updateCalc1();
+            if(tabId === 'tab2') updateCalc2();
+            if(tabId === 'tab3') updateCalc3();
+
+            // 点击切换标签时，平滑滚动到页面最顶端
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openFormulaModal() { document.getElementById('formula-modal').style.display = 'flex'; }
+        function closeFormulaModal() { document.getElementById('formula-modal').style.display = 'none'; }
+        function closeReportModal() { document.getElementById('report-modal').style.display = 'none'; }
+
+        function num(id) { return Math.max(0, parseFloat(document.getElementById(id).value) || 0); }
+        function f(x) { return String(+x.toFixed(2)); }
+        function piInfo(t) {
+            if(t === '3.14') return { v: 3.14, s: '3.14', sym: false };
+            if(t === '22/7') return { v: 22/7, s: frac(22, 7), sym: false };
+            return { v: 1, s: 'π', sym: true }; // 选 π：数值以 π 的倍数表示
+        }
+        function prepCanvas(id) {
+            const c = document.getElementById(id), d = window.devicePixelRatio || 1;
+            c.width = 180 * d; c.height = 180 * d; c.style.width = '180px'; c.style.height = '180px';
+            const x = c.getContext('2d'); x.setTransform(d, 0, 0, d, 0, 0); x.clearRect(0, 0, 180, 180);
+            return x;
+        }
+
+        function updateCalc1() {
+            const type = document.getElementById('calc1-type').value;
+            const val = num('calc1-val');
+            const p = piInfo(document.getElementById('calc1-pi').value);
+            const P = p.sym ? 'π' : '';
+            let r = 0, d = 0, C = 0, A = 0;
+            if(type === 'r') { r = val; d = 2*r; }
+            else if(type === 'd') { d = val; r = d/2; }
+            else if(type === 'c') { C = val; d = C / p.v; r = d/2; }
+            else { A = val; r = Math.sqrt(A / p.v); d = 2*r; }
+            if(type !== 'c') C = 2 * p.v * r;
+            if(type !== 'a') A = p.v * r * r;
+
+            document.getElementById('calc1-out').innerHTML =
+                `<b>【解答推导过程】</b><br>半径 r = ${f(r)} cm<br>直径 d = 2r = ${f(d)} cm<br>` +
+                `周长 C = 2 × ${p.s} × ${f(r)} = <b>${f(C)}${P} cm</b><br>` +
+                `面积 A = ${p.s} × ${f(r)}² = <b>${f(A)}${P} cm²</b>`;
+            drawCircleCanvas('canvas1', r);
+        }
+
+        function updateCalc2() {
+            const r = num('calc2-r');
+            const angle = Math.min(360, num('calc2-angle'));
+            const p = piInfo(document.getElementById('calc2-pi').value);
+            const P = p.sym ? 'π' : '';
+            const arc = (angle / 360) * 2 * p.v * r;
+            const area = (angle / 360) * p.v * r * r;
+            const per = p.sym ? `${f(arc)}π + ${f(2*r)}` : f(arc + 2*r);
+            const kind = angle > 180 ? '优扇形（圆心角为优角）' : (angle === 180 ? '半圆' : '劣扇形');
+
+            document.getElementById('calc2-out').innerHTML =
+                `<b>【扇形推导结果】</b> ${kind}<br>` +
+                `弧长 l = ${frac(angle + '°', '360°')} × 2 × ${p.s} × ${f(r)} = <b>${f(arc)}${P} cm</b><br>` +
+                `扇形面积 S = ${frac(angle + '°', '360°')} × ${p.s} × ${f(r)}² = <b>${f(area)}${P} cm²</b><br>` +
+                `扇形周长 P = l + 2r = <b>${per} cm</b>`;
+            drawSectorCanvas('canvas2', r, angle);
+        }
+
+        function updateCalc3() {
+            const R = num('calc3-R'), r = num('calc3-r');
+            let ang = parseFloat(document.getElementById('calc3-angle').value);
+            if(isNaN(ang) || ang <= 0 || ang > 360) ang = 360;
+            const p = piInfo(document.getElementById('calc3-pi').value);
+            const P = p.sym ? 'π' : '';
+            const out = document.getElementById('calc3-out');
+            if(r >= R) {
+                out.innerHTML = '⚠️ 内半径 r 必须小于外半径 R，请重新输入。';
+                drawRingCanvas('canvas3', R, 0, ang);
+                return;
+            }
+            const k = ang / 360;
+            const area = k * p.v * (R*R - r*r);
+            const arcs = k * 2 * p.v * (R + r);
+            const straight = ang < 360 ? 2 * (R - r) : 0;
+            const per = p.sym ? `${f(arcs)}π` + (straight ? ` + ${f(straight)}` : '') : f(arcs + straight);
+
+            out.innerHTML = `<b>【环形/扇环推导】</b><br>外半径 R = ${f(R)}, 内半径 r = ${f(r)}<br>` +
+                `面积 S = ${frac(ang + '°', '360°')} × ${p.s} × (${f(R)}² - ${f(r)}²) = <b>${f(area)}${P} cm²</b><br>` +
+                `周长 = 两段弧长${straight ? ' + 两条直边 2(R - r)' : ''} = <b>${per} cm</b>`;
+            drawRingCanvas('canvas3', R, r, ang);
+        }
+
+        function drawCircleCanvas(id, r) {
+            const ctx = prepCanvas(id);
+            ctx.beginPath(); ctx.arc(90, 90, 65, 0, Math.PI*2);
+            ctx.fillStyle = '#eef2ff'; ctx.fill();
+            ctx.lineWidth = 3; ctx.strokeStyle = '#4f46e5'; ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(90, 90); ctx.lineTo(155, 90);
+            ctx.strokeStyle = '#ef4444'; ctx.stroke();
+            ctx.fillStyle = '#0f172a'; ctx.font = '12px sans-serif';
+            ctx.fillText('r = ' + f(r), 105, 83);
+            ctx.beginPath(); ctx.arc(90, 90, 3, 0, Math.PI*2); ctx.fill();
+        }
+
+        function drawSectorCanvas(id, r, angle) {
+            const ctx = prepCanvas(id);
+            const rad = (angle * Math.PI) / 180;
+            ctx.beginPath(); ctx.moveTo(90, 90); ctx.arc(90, 90, 65, 0, rad, false); ctx.closePath();
+            ctx.fillStyle = '#e0f2fe'; ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = '#0ea5e9'; ctx.stroke();
+            ctx.fillStyle = '#0f172a'; ctx.font = '12px sans-serif';
+            ctx.fillText('θ = ' + f(angle) + '°', 8, 16);
+            ctx.fillText('r = ' + f(r), 8, 32);
+        }
+
+        function drawRingCanvas(id, R, r, angle) {
+            const ctx = prepCanvas(id);
+            const rad = (angle * Math.PI) / 180;
+            const inner = R > 0 ? Math.min(66, 70 * r / R) : 0; // 内外半径按实际比例绘制
+            ctx.beginPath();
+            ctx.arc(90, 90, 70, 0, rad);
+            ctx.arc(90, 90, inner, rad, 0, true);
+            ctx.closePath();
+            ctx.fillStyle = '#fef3c7'; ctx.fill();
+            ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+        }
+
+        function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+        function generateTabQuiz(tabIndex) {
+            let mcList = [];
+            let subjList = [];
+
+            if(tabIndex === 1) {
+                // 7.1 Dynamic Questions with vertical fraction formatting
+                let r1 = getRandomInt(2, 12) * 7;
+                mcList.push({
+                    q: `若一圆的半径为 ${r1} cm，求其周长（取 π = ${frac(22, 7)}）。`,
+                    opts: [`${2*22/7*r1} cm`, `${22/7*r1} cm`, `${2*22/7*r1*2} cm`, `${22/7*r1*r1} cm`],
+                    ans: 0,
+                    exp: `周长 C = 2πr = 2 × ${frac(22, 7)} × ${r1} = ${2*22/7*r1} cm`
+                });
+
+                let d2 = getRandomInt(1, 10) * 10;
+                let c2 = 3.14 * d2;
+                mcList.push({
+                    q: `已知一圆的周长为 ${c2.toFixed(1)} cm，求其直径（取 π = 3.14）。`,
+                    opts: [`${d2} cm`, `${d2/2} cm`, `${d2*2} cm`, `${d2+5} cm`],
+                    ans: 0,
+                    exp: `直径 d = C ÷ π = ${c2.toFixed(1)} ÷ 3.14 = ${d2} cm`
+                });
+
+                let r3 = getRandomInt(1, 5) * 7;
+                let a3 = (22/7) * r3 * r3;
+                mcList.push({
+                    q: `若一圆的半径为 ${r3} cm，求其面积（取 π = ${frac(22, 7)}）。`,
+                    opts: [`${a3} cm²`, `${a3/2} cm²`, `${2*22/7*r3} cm²`, `${a3*2} cm²`],
+                    ans: 0,
+                    exp: `面积 A = πr² = ${frac(22, 7)} × ${r3}² = ${a3} cm²`
+                });
+
+                let r4 = getRandomInt(1, 6) * 5;
+                let a4 = Math.round(314 * r4 * r4) / 100;
+                mcList.push({
+                    q: `已知一圆的面积为 ${a4} cm²，求其半径（取 π = 3.14）。`,
+                    opts: [`${r4.toFixed(1)} cm`, `${(r4*2).toFixed(1)} cm`, `${(r4/2).toFixed(1)} cm`, `${(r4+3).toFixed(1)} cm`],
+                    ans: 0,
+                    exp: `r² = A ÷ π = ${a4} ÷ 3.14 = ${r4*r4} → 半径 r = ${r4.toFixed(1)} cm`
+                });
+
+                const [pa, pb] = [[2,3],[3,4],[2,5],[3,5]][getRandomInt(0, 3)];
+                mcList.push({
+                    q: `已知二圆的半径之比为 ${pa}:${pb}，求此二圆的面积之比。`,
+                    opts: [`${pa*pa}:${pb*pb}`, `${pa}:${pb}`, `${pb*pb}:${pa*pa}`, `${pa*pa}:${pb}`],
+                    ans: 0,
+                    exp: `面积 = πr²，面积之比 = 半径平方之比 = ${pa}² : ${pb}² = ${pa*pa}:${pb*pb}（周长之比则等于半径之比 ${pa}:${pb}）`
+                });
+
+                subjList.push({
+                    q: `作答题1：已知一车轮直径为 63 cm，求车轮转动 100 圈所行驶的距离（以米为单位，取 π = ${frac(22, 7)}）。`,
+                    ans: `198`,
+                    exp: `周长 C = ${frac(22, 7)} × 63 = 198 cm = 1.98 m。100 圈距离 = 1.98 × 100 = 198 m`
+                });
+                subjList.push({
+                    q: `作答题2：已知半圆的直径为 14 cm，求此半圆图形的周长（取 π = ${frac(22, 7)}）。`,
+                    ans: `36`,
+                    exp: `半圆弧长 = ${frac(1, 2)} × ${frac(22, 7)} × 14 = 22 cm。总周长 = 22 + 14 = 36 cm`
+                });
+            } else if(tabIndex === 2) {
+                // 7.2 Dynamic Questions
+                mcList.push({
+                    q: `扇形半径 OA = 18 cm，∠AOB = 70°，求弧 AB 的长（取 π = ${frac(22, 7)}）。`,
+                    opts: [`22 cm`, `44 cm`, `11 cm`, `33 cm`],
+                    ans: 0,
+                    exp: `弧长 l = ${frac('70°', '360°')} × 2 × ${frac(22, 7)} × 18 = 22 cm`
+                });
+
+                mcList.push({
+                    q: `扇形半径为 10 cm，面积为 40π cm²，求其圆心角。`,
+                    opts: [`144°`, `120°`, `108°`, `72°`],
+                    ans: 0,
+                    exp: `${frac('θ', '360°')} × π × 100 = 40π → θ = 0.4 × 360° = 144°`
+                });
+
+                mcList.push({
+                    q: `扇形圆心角 80°，面积为 72π cm²，求半径 OA 的长。`,
+                    opts: [`18 cm`, `12 cm`, `16 cm`, `24 cm`],
+                    ans: 0,
+                    exp: `${frac('80°', '360°')} × π × r² = 72π → r² = 324 → r = 18 cm`
+                });
+
+                mcList.push({
+                    q: `已知一扇形弧长为 10π mm，圆心角为 300°，求其半径。`,
+                    opts: [`6 mm`, `8 mm`, `10 mm`, `12 mm`],
+                    ans: 0,
+                    exp: `${frac('300°', '360°')} × 2π × r = 10π → ${frac(5, 3)} r = 10 → r = 6 mm`
+                });
+
+                mcList.push({
+                    q: `OABC 是优扇形，优角 ∠AOC = 240°，优弧 ABC = 125.6 cm，求半径 OA 的长（取 π = 3.14）。`,
+                    opts: [`30 cm`, `20 cm`, `15 cm`, `45 cm`],
+                    ans: 0,
+                    exp: `${frac('240°', '360°')} × 2 × 3.14 × r = 125.6 → r = 30 cm（优扇形的 θ 要代入优角 240°）`
+                });
+
+                subjList.push({
+                    q: `作答题1：扇形半径 OA = 45 cm，∠AOB = 80°，求此扇形的周长（取 π = 3.14）。`,
+                    ans: `152.8`,
+                    exp: `弧长 l = ${frac('80°', '360°')} × 2 × 3.14 × 45 = 62.8 cm。周长 P = 62.8 + 90 = 152.8 cm`
+                });
+                subjList.push({
+                    q: `作答题2：扇形面积为 99 cm²，半径 r = 9 cm，求圆心角（取 π = ${frac(22, 7)}）。`,
+                    ans: `140`,
+                    exp: `${frac('θ', '360°')} × ${frac(22, 7)} × 81 = 99 → θ = 140°`
+                });
+            } else {
+                // 7.3 Dynamic Questions
+                mcList.push({
+                    q: `四分之一圆 OACB 半径为 10 cm，求弓形 ACB 的面积（取 π = 3.14）。`,
+                    opts: [`28.5 cm²`, `78.5 cm²`, `50 cm²`, `25 cm²`],
+                    ans: 0,
+                    exp: `S扇形 = ${frac(1, 4)} × 3.14 × 100 = 78.5，S三角形 = 50，弓形面积 = 78.5 - 50 = 28.5 cm²`
+                });
+
+                mcList.push({
+                    q: `正方形边长为 40 cm，内部切去最大圆，求四周着色部分面积（取 π = 3.14）。`,
+                    opts: [`344 cm²`, `1256 cm²`, `1600 cm²`, `244 cm²`],
+                    ans: 0,
+                    exp: `S正方形 = 1600，S圆 = 3.14 × 20² = 1256，阴影面积 = 1600 - 1256 = 344 cm²`
+                });
+
+                mcList.push({
+                    q: `同心圆外半径 8.5 cm，内半径 5.5 cm，求半圆环面积（取 π = ${frac(22, 7)}）。`,
+                    opts: [`66 cm²`, `132 cm²`, `33 cm²`, `99 cm²`],
+                    ans: 0,
+                    exp: `S = ${frac(1, 2)} × ${frac(22, 7)} × (8.5² - 5.5²) = ${frac(11, 7)} × (14 × 3) = 66 cm²`
+                });
+
+                mcList.push({
+                    q: `运动场由长 100 m 的长方形与两端半圆组成，半圆直径 80 m，求总面积（取 π = 3.14）。`,
+                    opts: [`13024 m²`, `8000 m²`, `5024 m²`, `10000 m²`],
+                    ans: 0,
+                    exp: `长方形面积 = 8000，两半圆 = 整圆 = 3.14 × 40² = 5024，总面积 = 13024 m²`
+                });
+
+                mcList.push({
+                    q: `大圆直径 20 cm 内有内接正方形，求正方形外的阴影面积（取 π = 3.14）。`,
+                    opts: [`114 cm²`, `314 cm²`, `200 cm²`, `100 cm²`],
+                    ans: 0,
+                    exp: `S圆 = 314，正方形对角线 = 20 → 边长² = 200，阴影面积 = 314 - 200 = 114 cm²`
+                });
+
+                subjList.push({
+                    q: `作答题1：已知一正方形周长与直径 20 cm 的圆周长相等，求正方形边长（取 π = 3.14）。`,
+                    ans: `15.7`,
+                    exp: `圆周长 = 3.14 × 20 = 62.8 cm。正方形边长 = ${frac('62.8', '4')} = 15.7 cm`
+                });
+                subjList.push({
+                    q: `作答题2：大圆面积为 48 cm²，内部有两个以半径为直径的小圆，求空白小圆之外的阴影面积。`,
+                    ans: `24`,
+                    exp: `大圆半径 R，小圆半径 r = ${frac('R', '2')}，两个小圆面积 = 2 × π(${frac('R', '2')})² = ${frac(1, 2)}πR² = 24 cm²。阴影面积 = 48 - 24 = 24 cm²`
+                });
+            }
+
+            return { mcList, subjList, userScore: 0, answeredCount: 0 };
+        }
+
+        function initTabQuiz(tabIndex) {
+            const data = generateTabQuiz(tabIndex);
+            currentQuizData[tabIndex] = data;
+
+            const mcContainer = document.getElementById(`quiz${tabIndex}-mc-container`);
+            mcContainer.innerHTML = '';
+
+            data.mcList.forEach((item, qIdx) => {
+                const qCard = document.createElement('div');
+                qCard.className = 'question-card';
+                
+                let optsWithIdx = item.opts.map((opt, i) => ({ text: opt, isCorrect: i === item.ans }));
+                optsWithIdx.sort(() => Math.random() - 0.5);
+
+                let optsHTML = optsWithIdx.map((optObj, oIdx) => `
+                    <button class="option-btn" data-correct="${optObj.isCorrect}" onclick="handleOptionClick(${tabIndex}, ${qIdx}, ${optObj.isCorrect}, this)">
+                        ${String.fromCharCode(65 + oIdx)}. ${optObj.text}
+                    </button>
+                `).join('');
+
+                qCard.innerHTML = `
+                    <div class="question-title">第 ${qIdx + 1} 题: ${item.q}</div>
+                    <div class="options-grid">${optsHTML}</div>
+                    <div class="explanation-box" id="exp-${tabIndex}-${qIdx}">
+                        <b>解析：</b>${item.exp}
+                    </div>
+                `;
+                mcContainer.appendChild(qCard);
+            });
+
+            document.getElementById(`quiz${tabIndex}-status`).className = 'locked-badge';
+            document.getElementById(`quiz${tabIndex}-status`).innerHTML = '🔒 答对 3 题选择题后解锁';
+            document.getElementById(`quiz${tabIndex}-subj-container`).style.display = 'none';
+        }
+
+        function handleOptionClick(tabIndex, qIdx, isCorrect, btnEl) {
+            const parent = btnEl.closest('.options-grid');
+            const btns = parent.querySelectorAll('.option-btn');
+            btns.forEach(b => b.disabled = true);
+
+            btns.forEach(b => { if(b.dataset.correct === 'true') b.classList.add('correct'); }); // 正确答案一律标绿
+            if(isCorrect) {
+                currentQuizData[tabIndex].userScore++;
+            } else {
+                btnEl.classList.add('wrong'); // 点错的标红
+            }
+
+            document.getElementById(`exp-${tabIndex}-${qIdx}`).style.display = 'block';
+            currentQuizData[tabIndex].answeredCount++;
+
+            if(currentQuizData[tabIndex].answeredCount === 5) {
+                const score = currentQuizData[tabIndex].userScore;
+                const statusBadge = document.getElementById(`quiz${tabIndex}-status`);
+                if(score >= 3) {
+                    statusBadge.className = 'locked-badge unlocked-badge';
+                    statusBadge.innerHTML = `🔓 已答对 ${score}/5 题！作答题已解锁`;
+                    unlockSubjectiveSection(tabIndex);
+                } else {
+                    statusBadge.innerHTML = `❌ 仅答对 ${score}/5 题，需答对3题以上解锁（可点击重新生成试卷）`;
+                }
+            }
+        }
+
+        function unlockSubjectiveSection(tabIndex) {
+            const container = document.getElementById(`quiz${tabIndex}-subj-container`);
+            container.style.display = 'block';
+            container.innerHTML = '';
+
+            currentQuizData[tabIndex].subjList.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.style.marginTop = '12px';
+                card.innerHTML = `
+                    <p><strong>${item.q}</strong></p>
+                    <input type="text" class="subj-input" placeholder="只填数字即可（单位可不写）" id="subj-input-${tabIndex}-${idx}">
+                    <button class="action-btn" style="margin-top:8px; padding:6px 12px; font-size:0.85rem;" onclick="checkSubjAns(${tabIndex}, ${idx})">核对答案</button>
+                    <div id="subj-exp-${tabIndex}-${idx}" class="explanation-box"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function numEq(u, c) { const n = parseFloat(String(u).replace(/[^\d.\-]/g, '')); return !isNaN(n) && Math.abs(n - parseFloat(c)) < 0.01; }
+        function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        function checkSubjAns(tabIndex, idx) {
+            const { ans: correctAns, exp } = currentQuizData[tabIndex].subjList[idx];
+            const userAns = document.getElementById(`subj-input-${tabIndex}-${idx}`).value.trim();
+            const expBox = document.getElementById(`subj-exp-${tabIndex}-${idx}`);
+            expBox.style.display = 'block';
+            
+            if(numEq(userAns, correctAns)) {
+                expBox.style.background = '#dcfce7';
+                expBox.innerHTML = `<b>正确！</b><br>解析：${exp}`;
+            } else {
+                expBox.style.background = '#fef2f2';
+                expBox.innerHTML = `<b>答案不准确。参考正确答案：${correctAns}</b><br>解析：${exp}`;
+            }
+        }
+
+        function initFinalExam() {
+            let mc1 = generateTabQuiz(1).mcList;
+            let mc2 = generateTabQuiz(2).mcList;
+            let mc3 = generateTabQuiz(3).mcList;
+
+            let allMC = shuffle([...mc1, ...mc2, ...mc3]).slice(0, 10).map(it => { const o = shuffle(it.opts.map((t, i) => ({ t, c: i === it.ans }))); return { ...it, opts: o.map(x => x.t), ans: o.findIndex(x => x.c) }; });
+            
+            let sub1 = generateTabQuiz(1).subjList;
+            let sub2 = generateTabQuiz(2).subjList;
+            let sub3 = generateTabQuiz(3).subjList;
+            let allSubj = shuffle([...sub1, ...sub2, ...sub3]).slice(0, 5).map(it => ({ ...it, q: it.q.replace(/^作答题\d：/, '') }));
+
+            finalExamData = { mcList: allMC, subjList: allSubj };
+
+            const container = document.getElementById('final-exam-container');
+            container.innerHTML = '';
+
+            const mcTitle = document.createElement('h3');
+            mcTitle.style.marginBottom = '12px';
+            mcTitle.innerText = '一、 选择题 (每题 6 分，共 60 分)';
+            container.appendChild(mcTitle);
+
+            allMC.forEach((item, qIdx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                let optsHTML = item.opts.map((opt, oIdx) => `
+                    <label style="display:block; margin-bottom:6px; cursor:pointer;">
+                        <input type="radio" name="final-mc-${qIdx}" value="${oIdx}">
+                        ${String.fromCharCode(65+oIdx)}. ${opt}
+                    </label>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="question-title">${qIdx+1}. ${item.q}</div>
+                    <div>${optsHTML}</div>
+                `;
+                container.appendChild(card);
+            });
+
+            const subjTitle = document.createElement('h3');
+            subjTitle.style.margin = '24px 0 12px 0';
+            subjTitle.innerText = '二、 填空作答题 (每题 8 分，共 40 分)';
+            container.appendChild(subjTitle);
+
+            allSubj.forEach((item, qIdx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div class="question-title">${qIdx+1}. ${item.q}</div>
+                    <input type="text" class="subj-input" id="final-subj-${qIdx}" placeholder="请输入数值答案...">
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function markFinalExam() {
+            const cards = document.querySelectorAll('#final-exam-container .question-card');
+            const nMC = finalExamData.mcList.length;
+            const all = [...finalExamData.mcList, ...finalExamData.subjList];
+            cards.forEach((card, i) => {
+                const item = all[i]; if(!item) return;
+                let ok, right;
+                if(i < nMC) {
+                    const sel = card.querySelector('input[type=radio]:checked');
+                    ok = !!sel && parseInt(sel.value) === item.ans;
+                    right = String.fromCharCode(65 + item.ans);
+                } else {
+                    ok = numEq(card.querySelector('input').value, item.ans);
+                    right = item.ans;
+                }
+                card.querySelectorAll('input').forEach(x => x.disabled = true);
+                if(i < nMC) card.querySelectorAll('label').forEach((lb, k) => {
+                    const chosen = lb.querySelector('input').checked;
+                    if(k === item.ans) { lb.style.cssText += ';background:#ecfdf5;color:#059669;font-weight:700;padding:4px 8px;border-radius:6px;'; }
+                    else if(chosen) { lb.style.cssText += ';background:#fef2f2;color:#dc2626;padding:4px 8px;border-radius:6px;'; }
+                });
+                const old = card.querySelector('.final-res'); if(old) old.remove();
+                const d = document.createElement('div');
+                d.className = 'explanation-box final-res';
+                d.style.display = 'block';
+                d.style.background = ok ? '#dcfce7' : '#fef2f2';
+                d.innerHTML = `<b>${ok ? '✅ 正确' : '❌ 正确答案：' + right}</b><br>解析：${item.exp}`;
+                card.appendChild(d);
+            });
+        }
+
+        function submitFinalExam() {
+            if(!finalExamData) return;
+
+            let mcScore = 0;
+            let subjScore = 0;
+
+            finalExamData.mcList.forEach((item, qIdx) => {
+                const selected = document.querySelector(`input[name="final-mc-${qIdx}"]:checked`);
+                if(selected && parseInt(selected.value) === item.ans) {
+                    mcScore += 6;
+                }
+            });
+
+            finalExamData.subjList.forEach((item, qIdx) => {
+                const inputVal = document.getElementById(`final-subj-${qIdx}`).value.trim();
+                if(numEq(inputVal, item.ans)) {
+                    subjScore += 8;
+                }
+            });
+
+            const totalScore = mcScore + subjScore;
+            markFinalExam();
+            
+            let evalText = "表现优秀，完全掌握本章知识！";
+            if(totalScore < 60) evalText = "基础有待加强，建议重新复习例题与公式。";
+            else if(totalScore < 80) evalText = "良好！掌握了大部分知识，注意计算细节。";
+
+            document.getElementById('report-score').innerText = totalScore;
+            document.getElementById('report-evaluation').innerText = evalText;
+            document.getElementById('report-details').innerHTML = `
+                • 选择题得分：<b>${mcScore} / 60 分</b><br>
+                • 填空题得分：<b>${subjScore} / 40 分</b><br>
+                • 评估建议：${totalScore >= 80 ? '可进入下一章节学习！' : '建议多次点击“重新生成题目”巩固练习。'}
+            `;
+
+            document.getElementById('report-modal').style.display = 'flex';
+        }
+
+        window.onload = function() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if(e.target === m) m.style.display = 'none'; }));
+            updateCalc1();
+            updateCalc2();
+            updateCalc3();
+
+            initTabQuiz(1);
+            initTabQuiz(2);
+            initTabQuiz(3);
+
+            initFinalExam();
+        };
+    </script>
+
+    <script>
+        // 字体大小（A-/A/A+）与白天/夜间模式，设置会保存在浏览器中
+        (function() {
+            const root = document.documentElement;
+            let pct = 100, theme = null;
+            try { pct = parseInt(localStorage.getItem('fs')) || 100; theme = localStorage.getItem('theme'); } catch(e) {}
+            if(!theme) theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            function save() { try { localStorage.setItem('fs', pct); localStorage.setItem('theme', theme); } catch(e) {} }
+            function apply() {
+                root.style.fontSize = pct + '%';
+                root.setAttribute('data-theme', theme);
+                const b = document.getElementById('theme-btn');
+                if(b) b.textContent = theme === 'dark' ? '☀️ 白天' : '🌙 夜间';
+            }
+            window.changeFont = function(d) { pct = d === 0 ? 100 : Math.min(140, Math.max(85, pct + d * 10)); save(); apply(); };
+            window.toggleTheme = function() { theme = theme === 'dark' ? 'light' : 'dark'; save(); apply(); };
+            apply();
+        })();
+    </script>
+    <script>
+        // 水印/页脚被移除时自动补回
+        (function() {
+            const keep = ['wm-float', 'wm-hidden', 'site-footer'], store = {};
+            keep.forEach(c => { const e = document.querySelector('.' + c); if(e) store[c] = e.outerHTML; });
+            new MutationObserver(() => keep.forEach(c => {
+                if(!document.querySelector('.' + c) && store[c]) document.body.insertAdjacentHTML('beforeend', store[c]);
+            })).observe(document.body, { childList: true });
+        })();
+    </script>
+</body>
+</html>
