@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 (ecchua79) · 华仁中学 Chinese High School, Batu Pahat"><title>初二上册 · 第2章 因式分解</title>
+<!-- © 蔡逸众 (ecchua79) · 华仁中学 Chinese High School · 初中数学互动学习 -->
+<style>
+/* © 蔡逸众 (ecchua79) · 华仁中学 Chinese High School */
+:root{--bg:#f4f6fb;--fg:#1d2433;--card:#fff;--bd:#d9dfec;--acc:#3b5bdb;--acc2:#e7ecff;--ok:#2b8a3e;--okb:#e6f6ea;--bad:#c92a2a;--badb:#fdeaea;--mut:#667}
+[data-theme=dark]{--bg:#12151f;--fg:#e6e9f2;--card:#1b2030;--bd:#2c3450;--acc:#8ea2ff;--acc2:#252d4a;--ok:#6fd48a;--okb:#16301f;--bad:#ff8787;--badb:#3a1c1f;--mut:#9aa3bb}
+html{font-size:15px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between}
+h1{font-size:1.2rem;margin:0}#sub{font-size:.8rem;color:var(--mut)}.ctl{display:flex;gap:.4rem;align-items:center}
+button{font:inherit;cursor:pointer;color:var(--fg)}.btn,.ctl button{background:var(--acc2);border:1px solid var(--bd);border-radius:8px;padding:.3rem .7rem}.btn:hover,.ctl button:hover{border-color:var(--acc)}
+#nav{display:flex;flex-wrap:wrap;gap:.4rem;padding:.7rem 1rem;max-width:960px;margin:auto}.tab{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:.25rem .8rem}.tab.on{background:var(--acc);border-color:var(--acc);color:#fff}
+#main{max-width:960px;margin:auto;padding:0 1rem 2rem}section>h2{font-size:1.3rem;margin:.3rem 0 .6rem}.box,.q,.tool,.demo,.quiz{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:.8rem 1rem;margin:.7rem 0}
+.q{margin:.5rem 0}.qt small{color:var(--mut);margin-left:.4rem}.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.5rem;margin-top:.5rem}
+.opt{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:.5rem .7rem;text-align:left}.opt:hover{border-color:var(--acc)}.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.bad{background:var(--badb);border-color:var(--bad)}.opt.dim{opacity:.55}
+.ex,.ex2{margin-top:.5rem;padding:.5rem .7rem;border-radius:8px;background:var(--acc2);font-size:.95rem}.ex2{margin-top:.6rem}.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.row{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.4rem 0}.in{font:inherit;padding:.3rem .5rem;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);max-width:11rem}
+.sc{font-size:.9rem;color:var(--mut);margin-bottom:.3rem}.lock{padding:.6rem;border-radius:8px;background:var(--acc2);margin:.5rem 0}h3{margin:.2rem 0 .5rem;font-size:1.05rem}.out{margin:.4rem 0}
+
+:root{--grid:#e3e8f3}[data-theme=dark]{--grid:#2a3350}
+.mut{color:var(--mut);font-size:.9rem}.big{font-size:1.15rem;font-family:ui-monospace,Menlo,monospace}svg{display:block;max-width:100%;height:auto}
+.sl{display:grid;grid-template-columns:2.5rem 1fr 3rem;align-items:center;gap:.5rem;margin:.1rem 0}.sl b{font-family:ui-monospace,Menlo,monospace}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:36px;margin:0;background:transparent;touch-action:none;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:var(--grid)}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--acc);border:3px solid var(--card);margin-top:-9px;box-shadow:0 1px 4px #0006}
+input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:var(--grid)}input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--acc);border:3px solid var(--card)}
+.pill{display:inline-block;padding:2px 10px;border-radius:12px;color:#fff;font-size:.85rem}.tools{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0}.tools button{border:1px solid var(--bd);background:var(--card);border-radius:8px;padding:.2rem .6rem}.tools button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.stp{border-left:4px solid var(--acc);background:var(--bg);border-radius:10px;padding:.5rem .8rem;margin:.5rem 0}.stp.bad{border-color:var(--bad)}.stp.good{border-color:var(--ok)}.stp b{color:var(--acc)}.stp.bad b{color:var(--bad)}.stp.good b{color:var(--ok)}
+.num{width:3.1em;padding:.15em 0;text-align:center;font:inherit;font-weight:700;border:1.5px solid var(--acc);border-radius:6px;background:var(--acc2);color:var(--acc);-moz-appearance:textfield}.num::-webkit-outer-spin-button,.num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.eqrow{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:.25em;white-space:nowrap;font-size:min(1.1rem,4.4vw);font-weight:600;margin:.6rem 0}
+.tb{border-collapse:collapse;width:100%;font-size:.9rem;text-align:center}.tb td,.tb th{border-bottom:1px solid var(--bd);padding:.2rem}.tb tr.hit{background:var(--ok);color:#fff}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 3px}.fr i{font-style:normal;padding:0 4px}.fr i:first-child{border-bottom:1.5px solid currentColor}
+.bar{height:16px;background:var(--grid);border-radius:8px;position:relative;margin:.5rem 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:var(--acc)}.bar u{position:absolute;top:-4px;bottom:-4px;width:3px;background:var(--bad)}.cap{margin-top:.3rem}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:1rem}
+</style></head><body>
+<header><div><h1 id="ttl"></h1><div id="sub"></div></div><div class="ctl"><button id="fsm" title="缩小字体">A−</button><span id="fsv"></span><button id="fsp" title="放大字体">A+</button><button id="thm"></button></div></header>
+<div id="nav"></div><div id="main"></div>
+<footer>© 蔡逸众 (ecchua79) · 华仁中学 Chinese High School, Batu Pahat · 初中数学互动学习 · 题目每次随机生成</footer>
+<script>
+/* ===== core: helpers / grading / question builder (no DOM) ===== */
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)],
+shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a},
+g=(a,b)=>b?g(b,a%b):Math.abs(a),nz=(a,b)=>{let v;do v=R(a,b);while(!v);return v},
+SUP='⁰¹²³⁴⁵⁶⁷⁸⁹',
+D=s=>String(s).replace(/\^(\d)/g,(m,d)=>SUP[d]).replace(/-/g,'−').replace(/\*/g,'·'),
+S=t=>{let o='';t.forEach(([c,m])=>{if(!c)return;const a=Math.abs(c),n=(a===1&&m)?'':a;o+=(o?(c<0?' - ':' + '):(c<0?'-':''))+n+m});return o||'0'},
+P=t=>'('+S(t)+')',
+fr=(n,d=1)=>{if(d<0){n=-n;d=-d}const k=g(n,d)||1;n/=k;d/=k;return d===1?''+n:n+'/'+d},
+NORM=s=>String(s).toLowerCase().replace(/[−–—]/g,'-').replace(/[×·⋅∙]/g,'*').replace(/（/g,'(').replace(/）/g,')').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g,c=>'^'+SUP.indexOf(c)).replace(/\s+/g,'');
+function pw(s){let i;while((i=s.indexOf('^'))>=0){const e=s.slice(i+1).match(/^\d+/)[0];let j=i-1,b;
+ if(s[j]===')'){let d=0;for(;j>=0;j--){if(s[j]===')')d++;if(s[j]==='('&&--d===0)break}b=s.slice(j,i)}
+ else{while(j>=0&&/[a-z0-9.]/.test(s[j]))j--;j++;b=s.slice(j,i)}
+ s=s.slice(0,j)+'Math.pow('+b+','+e+')'+s.slice(i+1+e.length)}return s}
+function ev(s,vals){s=NORM(s);if(!/^[0-9a-z+\-*/^().]*$/.test(s))return NaN;
+ s=pw(s.replace(/(\d|[a-z]|\))(?=[a-z(])/g,'$1*'));const ks=Object.keys(vals);
+ try{return Function(...ks,'"use strict";return '+s)(...ks.map(k=>vals[k]))}catch(e){return NaN}}
+const lets=(...x)=>[...new Set((x.map(NORM).join('')).match(/[a-z]/g)||[])],
+vv=ls=>Object.fromEntries(ls.map(l=>[l,1.3+Math.random()*5.7])),
+close=(x,y)=>isFinite(x)&&isFinite(y)&&Math.abs(x-y)<=1e-6*Math.max(1,Math.abs(x),Math.abs(y));
+function veq(a,b){const ls=lets(a,b);for(let t=0;t<4;t++){const v=vv(ls);if(!close(ev(a,v),ev(b,v)))return false}return true}
+function grp(s){s=NORM(s);const o=[];let d=0,st=0;for(let i=0;i<s.length;i++){if(s[i]==='('){if(!d)st=i;d++}else if(s[i]===')'){d--;if(!d){const m=s.slice(i+1).match(/^\^(\d)/),n=m?+m[1]:1;for(let k=0;k<n;k++)o.push(s.slice(st+1,i))}}}return o}
+function gsame(A,B){const a=grp(A),b=grp(B);if(a.length!==b.length)return false;const ls=lets(A,B),pts=[0,1,2].map(()=>vv(ls)),
+ f=gs=>gs.map(c=>{const v=pts.map(p=>ev(c,p));return v.map(x=>x/v[0])}),fa=f(a),fb=f(b),used=new Set();
+ for(const x of fa){const j=fb.findIndex((y,i)=>!used.has(i)&&x.every((v,k)=>close(v,y[k])));if(j<0)return false;used.add(j)}return true}
+const prim=c=>{const cs=NORM(c).replace(/\([^)]*\)/g,'1').split(/(?=[+-])/).map(t=>{const m=t.replace(/^[+-]/,'').match(/^\d+/);return m?+m[0]:1});return cs.reduce(g)<=1};
+function exprOK(s,a){s=NORM(s);if(!s)return false;if(!/\(/.test(s)&&/^\([^()]*\)$/.test(NORM(a)))s='('+s+')';
+ return veq(s,a)&&gsame(s,a)&&grp(s).every(prim)}
+const nums=s=>(s.match(/-?\d+(\.\d+)?(\/-?\d+)?/g)||[]).map(t=>{const[a,b]=t.split('/');return b?+a/+b:+a}),
+cl=s=>NORM(s).replace(/[a-z₁₂]/g,'');
+function grade(o,s){switch(o.kind){
+ case'expr':return exprOK(s,o.ans);
+ case'num':{const v=nums(cl(s));return v.length>0&&Math.abs(v[0]-o.fa)<1e-6}
+ case'roots':{const a=[...new Set(nums(cl(s)).map(v=>+v.toFixed(6)))].sort((x,y)=>x-y),b=[...new Set(o.fa.map(v=>+v.toFixed(6)))].sort((x,y)=>x-y);return a.length===b.length&&a.every((v,i)=>Math.abs(v-b[i])<1e-6)}
+ case'pt':{const a=nums(cl(s));return a.length===2&&Math.abs(a[0]-o.fa[0])<1e-6&&Math.abs(a[1]-o.fa[1])<1e-6}
+ case'text':return /无/.test(s)}return false}
+function prep(o){if(!o.q)o.q='因式分解：'+o.ex;const seen=new Set([NORM(o.ans)]),w=[];
+ for(const x of o.wrongs){const k=NORM(x);if(seen.has(k))continue;if(o.kind==='expr'&&exprOK(x,o.ans))continue;seen.add(k);w.push(x)}
+ if(w.length<3)return null;o.opts=shuffle([o.ans,...shuffle(w).slice(0,3)]);return o}
+function mk(gens,n,fill=false){const out=[],seen=new Set(),gl=shuffle(gens);let t=0,i=0;
+ while(out.length<n&&t++<400){const f=gl[i++%gl.length];let o;try{o=f()}catch(e){continue}if(!o||(fill&&!o.kind))continue;o=prep(o);if(!o||seen.has(o.q))continue;seen.add(o.q);out.push(o)}return out}
+
+/* ===== ui ===== */
+const $=(s,r=document)=>r.querySelector(s),el=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstElementChild},
+store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+function setTheme(t){document.documentElement.dataset.theme=t;store.set('m_th',t);$('#thm').textContent=t==='dark'?'☀️ 浅色':'🌙 深色'}
+let fs=+store.get('m_fs')||15;
+function setFs(v){fs=Math.min(22,Math.max(12,v));document.documentElement.style.fontSize=fs+'px';store.set('m_fs',fs);$('#fsv').textContent=fs}
+function fillCard(o){const c=el(`<div class=q><div class=qt>✏️ ${D(o.q)}${o.ex?'<small>（须分解到不能再分解为止）</small>':''}</div><div class=row><input class=in placeholder="输入你的答案（可用 ^ 表示次方）"><button class=btn>提交</button></div><div class=ex hidden></div></div>`);
+ const inp=$('input',c),b=$('button',c);b.onclick=()=>{if(c.dataset.d||!inp.value.trim())return;c.dataset.d=1;inp.disabled=b.disabled=true;
+  const ok=grade(o,inp.value),x=$('.ex',c);x.hidden=false;c.classList.add(ok?'ok':'bad');
+  x.innerHTML=(ok?'✅ 正确！':'❌ 不对。参考答案：<b>'+D(o.ans)+'</b>')+'<br>'+D(o.exp)};
+ inp.onkeydown=e=>{if(e.key==='Enter')b.click()};return c}
+function qCard(o,i,onDone){const c=el(`<div class=q><div class=qt>${i}. ${D(o.q)}${o.ex?'<small>（须分解到不能再分解为止）</small>':''}</div><div class=opts></div><div class=ex hidden></div></div>`);
+ const bs=o.opts.map(t=>{const b=el('<button class=opt></button>');b.textContent=D(t);b._t=t;$('.opts',c).append(b);return b});
+ bs.forEach(b=>b.onclick=()=>{if(c.dataset.d)return;c.dataset.d=1;const ok=b._t===o.ans;bs.forEach(x=>x.classList.add(x._t===o.ans?'ok':(x===b?'bad':'dim')));
+  const x=$('.ex',c);x.hidden=false;x.innerHTML=(ok?'✅ 正确！':'❌ 不对，正确答案是 <b>'+D(o.ans)+'</b>')+'<br>'+D(o.exp);onDone(ok)});return c}
+function quizUI(host,gens){host.innerHTML='<h3>📝 随堂习题（5 题）</h3><div class=sc></div><div class=qs></div><div class=fl></div><button class=btn>🔄 重新出题</button>';
+ const bar=$('.sc',host),box=$('.qs',host),fl=$('.fl',host);let done,score;
+ function start(){const qs=mk(gens,5);done=score=0;fl.innerHTML='';box.innerHTML='';bar.textContent='已答 0/5 · 答对 0';
+  qs.forEach((o,i)=>box.append(qCard(o,i+1,ok=>{done++;if(ok)score++;bar.textContent=`已答 ${done}/5 · 答对 ${score}`;
+   if(done===5){if(score>=3){fl.innerHTML='<h3>🔓 作答题已解锁（自己输入答案）</h3>';mk(gens,2,true).forEach(o=>fl.append(fillCard(o)))}
+   else fl.innerHTML=`<div class=lock>🔒 答对 3 题或以上才能解锁作答题（你答对 ${score}/5）。点“重新出题”再试一次！</div>`}})))}
+ $('.btn',host).onclick=start;start()}
+function demoUI(host,gens){host.innerHTML='<button class=btn>🎲 随机例题演示</button><div class=ex2 hidden></div>';
+ $('.btn',host).onclick=()=>{const o=mk(gens,1)[0],x=$('.ex2',host);x.hidden=false;x.innerHTML=`<b>例：</b>${D(o.q)}<br><b>答案：</b>${D(o.ans)}<br><b>解：</b>${D(o.exp)}`}}
+function reviewUI(host,secs){host.innerHTML='<h3>🏁 章末综合测试（10 题，随机抽自各节）</h3><div class=sc></div><div class=qs></div><div class=fl></div><button class=btn>🔄 重新出题</button>';
+ const bar=$('.sc',host),box=$('.qs',host),fl=$('.fl',host);let done,score;
+ function start(){done=score=0;box.innerHTML=fl.innerHTML='';bar.textContent='已答 0/10 · 答对 0';const ss=shuffle(secs),qs=[],seen=new Set();let t=0;
+  while(qs.length<10&&t++<500){const s=ss[qs.length%ss.length],o=mk(s.gens,1)[0];if(o&&!seen.has(o.q)){seen.add(o.q);qs.push(o)}}
+  qs.forEach((o,i)=>box.append(qCard(o,i+1,ok=>{done++;if(ok)score++;bar.textContent=`已答 ${done}/10 · 答对 ${score}`;
+   if(done===10)fl.innerHTML=`<div class=lock>总分 ${score}/10 ${score>=9?'🏆 太棒了！':score>=6?'👍 不错，再巩固错题！':'💪 回去再看各节例题，然后重新测试。'}</div>`})))}
+ $('.btn',host).onclick=start;start()}
+function boot(CH){document.title=CH.title;$('#ttl').textContent=CH.title;$('#sub').textContent=CH.sub;
+ const nav=$('#nav'),main=$('#main'),secs=[];
+ CH.secs.forEach((s,i)=>{const sec=el(`<section hidden><h2>${s.t}</h2>${s.html?'<div class=box>'+s.html+'</div>':''}<div class=demo></div><div class=quiz></div></section>`);
+  if(s.gens)demoUI($('.demo',sec),s.gens);else $('.demo',sec).remove();
+  [].concat(s.tool||[]).forEach(f=>{const d=el('<div class=tool></div>');sec.insertBefore(d,$('.quiz',sec));f(d)});
+  if(s.review)reviewUI($('.quiz',sec),CH.secs.filter(x=>x.gens));else quizUI($('.quiz',sec),s.gens);
+  const b=el('<button class=tab></button>');b.textContent=s.n;b.onclick=()=>{secs.forEach(x=>{x.sec.hidden=x.b!==b;x.b.classList.toggle('on',x.b===b)});scrollTo(0,0)};
+  nav.append(b);main.append(sec);secs.push({sec,b})});
+ secs[0].b.click();
+ $('#thm').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+ $('#fsm').onclick=()=>setFs(fs-1);$('#fsp').onclick=()=>setFs(fs+1);
+ setTheme(store.get('m_th')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));setFs(fs)}
+
+/* ported from 参考页：逐步解题计算器核心 */
+const fn=n=>String(Math.round(n*1e4)/1e4).replace('-','−'),pn=n=>n<0?`(${fn(n)})`:fn(n);
+const cof=(v,t,f)=>v?(v<0?(f?'−':' − '):(f?'':' + '))+((Math.abs(v)==1&&t)?'':fn(Math.abs(v)))+t:'';
+const TT=(a,b,c)=>cof(a,'x²',1)+cof(b,'x')+cof(c,'')+' = 0',lin=(p,q)=>(p==1?'x':p==-1?'−x':fn(p)+'x')+(q?(q>0?' + ':' − ')+fn(Math.abs(q)):'');
+const STP=(t,b,c='')=>`<div class="stp ${c}"><b>${t}</b><div>${b}</div></div>`,eq0=(x,y)=>Math.abs(x-y)<1e-9;
+const fv=x=>{const q=toQ(x);return q&&q.d>1?FQ(q):fn(x)},fin=(x1,x2)=>STP('✅ 最终求解结果',`<span class="big">${eq0(x1,x2)?'x₁ = x₂ = '+fv(x1):'x₁ = '+fv(x1)+'，x₂ = '+fv(x2)}</span>`,'good');
+const nor=w=>STP('❌ 无实数解',w,'bad');
+function gfp(ac){const A=Math.abs(ac),r=[],sn=new Set();for(let i=1;i<=Math.sqrt(A);i++)if(A%i==0){const j=A/i;(ac>0?[[i,j],[-i,-j]]:[[i,-j],[-i,j]]).forEach(p=>{const q=p[0]<=p[1]?p:[p[1],p[0]];if(!sn.has(q+'')){sn.add(q+'');r.push(q)}})}return r}
+function fcm(a,b,c){for(const[p1,p2]of gfp(a))for(const[q1,q2]of gfp(c)){if(p1*q2+p2*q1==b)return[p1,q1,p2,q2];if(p1*q1+p2*q2==b)return[p1,q2,p2,q1]}return null}
+const gc=(x,y)=>y?gc(y,x%y):Math.abs(x),RQ=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gc(n,d)||1;return{n:n/g,d:d/g}};
+const qa=(x,y)=>RQ(x.n*y.d+y.n*x.d,x.d*y.d),qm=(x,y)=>RQ(x.n*y.n,x.d*y.d),qd=(x,y)=>RQ(x.n*y.d,x.d*y.n),qn=x=>RQ(-x.n,x.d);
+const toQ=x=>{if(Number.isInteger(x))return RQ(x);for(let d=2;d<=1000;d++){const n=Math.round(x*d);if(Math.abs(x*d-n)<1e-9)return RQ(n,d)}return null};
+const FQ=(x,ab)=>{const n=ab?Math.abs(x.n):x.n,m=n<0?'−':'';return x.d==1?m+Math.abs(n):`${m}<span class="fr"><i>${Math.abs(n)}</i><i>${x.d}</i></span>`};
+const cq=(v,t,f)=>v.n?(v.n<0?(f?'−':' − '):(f?'':' + '))+((Math.abs(v.n)==1&&v.d==1&&t)?'':FQ(v,1))+t:'';
+const isq=n=>{const r=Math.round(Math.sqrt(n));return r*r==n?r:null},rad=N=>{for(let k=Math.floor(Math.sqrt(N));k>1;k--)if(N%(k*k)==0)return[k,N/(k*k)];return[1,N]};
+const STEPM={
+f(a,b,c){const D=b*b-4*a*c;if(D<0)return nor(`Δ = b²−4ac = ${pn(b)}²−4×${pn(a)}×${pn(c)} = ${fn(D)} < 0，在实数范围内无法因式分解。`);
+const r=Math.sqrt(D),x1=(-b+r)/(2*a),x2=(-b-r)/(2*a),ac=a*c,int=[a,b,c].every(Number.isInteger);
+let o=STP('步骤 1：判别式',`Δ = ${pn(b)}²−4×${pn(a)}×${pn(c)} = ${fn(D)} ${D==0?'（两根相同）':'≥ 0，可以分解'}`);
+if(int&&c==0)return o+STP('步骤 2：c = 0，直接提公因式 x',`${cof(a,'x²',1)}${cof(b,'x')} = x(${lin(a,b)}) = 0`)+STP('步骤 3：每个因式分别等于 0',`x = 0　或　${lin(a,b)} = 0`)+fin(x1,x2);
+if(int){const pr=gfp(ac),hit=pr.find(p=>p[0]+p[1]==b);
+o+=STP(`步骤 2：找两数 m、n，使 m×n = ac = ${ac}，m+n = b = ${b}`,`<table class="tb"><tr><th>m × n</th><th>m + n</th><th></th></tr>${pr.map(([m,n])=>`<tr class="${m+n==b?'hit':''}"><td>${pn(m)} × ${pn(n)} = ${fn(ac)}</td><td>${fn(m+n)}</td><td>${m+n==b?'✔️ 符合':'❌'}</td></tr>`).join('')}</table>`);
+if(hit){let g=null;for(const[m,n]of[hit,[hit[1],hit[0]]]){const g1=gc(a,m),k=n*g1/a;if(Number.isInteger(k)&&k*a/g1==n&&k*m/g1==c){g={m,n,g1,k};break}}
+if(g){const{m,n,g1,k}=g,Bq=lin(a/g1,m/g1),ks=Math.abs(k)==1?'':fn(Math.abs(k));
+return o+STP('步骤 3：拆中项——把 bx 拆成 mx + nx',`${fn(b)}x = ${pn(m)}x + ${pn(n)}x<br>${cof(a,'x²',1)}${cof(b,'x')}${cof(c,'')} = 0 ➜ <b>${cof(a,'x²',1)}${cof(m,'x')}${cof(n,'x')}${cof(c,'')} = 0</b>`)
++STP('步骤 4：前两项、后两项各分一组，分别提公因式',`(${cof(a,'x²',1)}${cof(m,'x')}) + (${cof(n,'x',1)}${cof(c,'')}) = 0<br>${g1==1?'':g1}x(${Bq}) ${k<0?'−':'+'} ${ks}(${Bq}) = 0<br><span class="mut">两组提出公因式后，括号 (${Bq}) 完全相同——这正是 m×n = ac 的作用。</span>`)
++STP('步骤 5：提出相同的括号',`<span class="big">(${lin(g1,k)})(${Bq}) = 0</span>`)+STP('步骤 6：每个因式分别等于 0',`${lin(g1,k)} = 0　或　${Bq} = 0`)+fin(x1,x2)}}}
+const x=int?fcm(a,b,c):null;let f1,f2,pre='';if(x){f1=lin(x[0],x[1]);f2=lin(x[2],x[3])}else{f1=lin(1,-x1);f2=lin(1,-x2);pre=a==1?'':a==-1?'−':fn(a)}
+const st=int?3:2;return o+STP(`步骤 ${st}：写成乘积`,`<span class="big">${pre}(${f1})(${f2}) = 0</span>`)+STP(`步骤 ${st+1}：每个因式分别等于 0`,`${f1} = 0　或　${f2} = 0`)+fin(x1,x2)},
+s(a,b,c){const A=toQ(a),B=toQ(b),C=toQ(c);if(!A||!B||!C)return STEPM.s0(a,b,c);
+const bp=qd(B,A),cp=qd(qn(C),A),h=qd(bp,RQ(2)),h2=qm(h,h),rhs=qa(cp,h2),sg=h.n>=0?'+ '+FQ(h):'− '+FQ(h,1),L=h.n?`(x ${sg})`:'x';
+const nn=a!=1?0:1;let o=STP('步骤 1：移项',`${cq(A,'x²',1)}${cq(B,'x')} = ${FQ(qn(C))}`);
+if(a!=1)o+=STP(`步骤 2：两边同除以 a = ${FQ(A)}`,`x²${cq(bp,'x')} = ${FQ(cp)}`);
+o+=STP(`步骤 ${3-nn}：两边加上（一次项系数的一半）²`,`一次项系数的一半 = ${FQ(bp)} ÷ 2 = ${FQ(h)}<br>(${FQ(h)})² = ${FQ(h2)}<br>x²${cq(bp,'x')} + ${FQ(h2)} = ${FQ(cp)} + ${FQ(h2)}`)+STP(`步骤 ${4-nn}：写成完全平方式`,`<span class="big">${L}² = ${FQ(rhs)}</span>`);
+if(rhs.n<0)return o+nor(`右边 ${FQ(rhs)} < 0，实数的平方不可能为负数。`);
+const fq=(p,q)=>STP('✅ 最终求解结果',`<span class="big">${p}</span>${q?`<div class="mut">≈ ${q}</div>`:''}`,'good'),sn=isq(rhs.n),sd=isq(rhs.d),mh=qn(h);
+if(sn!=null&&sd!=null){const r=RQ(sn,sd),x1=qa(mh,r),x2=qa(mh,qn(r));
+return o+STP(`步骤 ${5-nn}：两边开平方`,`x ${sg} = ± ${FQ(r)}`).replace('x + 0','x')+fq(x1.n*x2.d==x2.n*x1.d?'x₁ = x₂ = '+FQ(x1):'x₁ = '+FQ(x1)+'，x₂ = '+FQ(x2),x1.d>1||x2.d>1?fn(x1.n/x1.d)+(x1.n*x2.d==x2.n*x1.d?'':'，'+fn(x2.n/x2.d)):'')}
+const [k,m]=rad(rhs.n*rhs.d),kq=RQ(k,rhs.d),rd=kq.d==1?`${kq.n==1?'':kq.n}√${m}`:`<span class="fr"><i>${kq.n==1?'':kq.n}√${m}</i><i>${kq.d}</i></span>`,v=Math.sqrt(rhs.n/rhs.d),hv=h.n/h.d;
+return o+STP(`步骤 ${5-nn}：两边开平方`,`x ${sg} = ± ${rd}`)+fq(`x = ${FQ(mh)} ± ${rd}`,`${fn(-hv+v)}，${fn(-hv-v)}`)},
+s0(a,b,c){const bp=b/a,cp=-c/a,h=bp/2,h2=h*h,rhs=cp+h2,sg=h>=0?'+ '+fn(h):'− '+fn(-h);
+let o=STP('步骤 1：移项',`${cof(a,'x²',1)}${cof(b,'x')} = ${fn(-c)}`);
+if(a!=1)o+=STP('步骤 2：两边同除以 a = '+fn(a),`x²${cof(bp,'x')} = ${fn(cp)}`);
+o+=STP('步骤 3：两边加上（一次项系数的一半）²',`(${fn(h)})² = ${fn(h2)}<br>x²${cof(bp,'x')} + ${fn(h2)} = ${fn(cp)} + ${fn(h2)}`)+STP('步骤 4：写成完全平方式',`<span class="big">(x ${sg})² = ${fn(rhs)}</span>`);
+if(rhs<0)return o+nor(`右边 ${fn(rhs)} < 0，实数的平方不可能为负数。`);
+const r=Math.sqrt(rhs);return o+STP('步骤 5：两边开平方',`x ${sg} = ± ${fn(r)}`)+fin(-h+r,-h-r)},
+q(a,b,c){const D=b*b-4*a*c;let o=STP('步骤 1：确定系数',`a = ${fn(a)}，b = ${fn(b)}，c = ${fn(c)}`)+STP('步骤 2：判别式 Δ = b²−4ac',`Δ = ${pn(b)}² − 4×${pn(a)}×${pn(c)} = ${fn(D)}`);
+if(D<0)return o+nor(`Δ = ${fn(D)} < 0，负数不能开平方。`);const r=Math.sqrt(D);
+return o+STP('步骤 3：代入 x = (−b ± √Δ) ÷ 2a',`x = (${fn(-b)} ± √${fn(D)}) ÷ ${fn(2*a)} = (${fn(-b)} ± ${fn(r)}) ÷ ${fn(2*a)}`)+STP('步骤 4：算出两个根',`x₁ = (${fn(-b)} + ${fn(r)}) ÷ ${fn(2*a)} = ${fn((-b+r)/(2*a))}<br>x₂ = (${fn(-b)} − ${fn(r)}) ÷ ${fn(2*a)} = ${fn((-b-r)/(2*a))}`)+fin((-b+r)/(2*a),(-b-r)/(2*a))}};
+/* ===== widgets: sliders / plot / helpers ===== */
+const f2=n=>(Math.round(n*100)/100).toString().replace('-','−'),sg=n=>(n<0?'−':'+')+Math.abs(n);
+function drag(inp){const set=e=>{const r=inp.getBoundingClientRect(),mn=+inp.min,mx=+inp.max,st=+inp.step||1;let v=mn+(e.clientX-r.left-14)/Math.max(1,r.width-28)*(mx-mn);v=mn+Math.round((v-mn)/st)*st;v=Math.min(mx,Math.max(mn,v));inp.value=+v.toFixed(4);inp.dispatchEvent(new Event('input',{bubbles:true}))};
+ inp.addEventListener('pointerdown',e=>{try{inp.setPointerCapture(e.pointerId)}catch(x){}set(e);e.preventDefault()});
+ inp.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType=='touch'){try{if(!inp.hasPointerCapture(e.pointerId))return}catch(x){}set(e)}})}
+function sliders(host,defs,cb){const o={};host.innerHTML='';defs.forEach(([n,lo,hi,st,v])=>{o[n]=v;const r=el(`<div class=sl><b>${n}</b><input type=range min=${lo} max=${hi} step=${st} value=${v}><b>${f2(v)}</b></div>`),inp=r.children[1],lab=r.children[2];drag(inp);inp.oninput=()=>{o[n]=+inp.value;lab.textContent=f2(o[n]);cb(o)};host.append(r)});cb(o)}
+const polyS=(a,b,c)=>cof(a,'x²',1)+cof(b,'x')+cof(c,'');
+function plotQ(svg,a,b,c,xr,yr,pts,hl){const W=400,H=300,X=x=>(x-xr[0])/(xr[1]-xr[0])*W,Y=y=>H-(y-yr[0])/(yr[1]-yr[0])*H;let s='';
+ for(let x=Math.ceil(xr[0]);x<=xr[1];x++)s+=`<line x1=${X(x)} x2=${X(x)} y1=0 y2=${H} stroke="var(--grid)"/>`;
+ for(let y=Math.ceil(yr[0]);y<=yr[1];y++)s+=`<line y1=${Y(y)} y2=${Y(y)} x1=0 x2=${W} stroke="var(--grid)"/>`;
+ s+=`<line x1=0 x2=${W} y1=${Y(0)} y2=${Y(0)} stroke="var(--mut)"/><line y1=0 y2=${H} x1=${X(0)} x2=${X(0)} stroke="var(--mut)"/>`;
+ for(let x=Math.ceil(xr[0]);x<=xr[1];x++)if(x&&x%2==0)s+=`<text x=${X(x)} y=${Y(0)+12} font-size=9 text-anchor=middle fill="var(--mut)">${x}</text>`;
+ for(let y=Math.ceil(yr[0]);y<=yr[1];y++)if(y&&y%2==0)s+=`<text x=${X(0)+3} y=${Y(y)+3} font-size=9 fill="var(--mut)">${y}</text>`;
+ if(hl!=null)s+=`<line x1=0 x2=${W} y1=${Y(hl)} y2=${Y(hl)} stroke="var(--ok)" stroke-width=2 stroke-dasharray="6 4"/>`;
+ let d='';for(let i=0;i<=200;i++){const x=xr[0]+(xr[1]-xr[0])*i/200,y=a*x*x+b*x+c;d+=(i?'L':'M')+X(x)+','+Math.max(-50,Math.min(H+50,Y(y)))}
+ s+=`<path d="${d}" fill="none" stroke="var(--acc)" stroke-width=3 />`;
+ if(a){const h=-b/(2*a),k=a*h*h+b*h+c;s+=`<line x1=${X(h)} x2=${X(h)} y1=0 y2=${H} stroke="var(--bad)" stroke-dasharray="5 4"/><circle cx=${X(h)} cy=${Y(k)} r=6 fill="var(--bad)"/>`}
+ (pts||[]).forEach(([x,y,t])=>s+=`<circle cx=${X(x)} cy=${Y(y)} r=6 fill="var(--ok)"/><text x=${X(x)} y=${Y(y)-9} font-size=12 text-anchor=middle fill="var(--fg)">${t}</text>`);
+ svg.innerHTML=s}
+
+/* ===== ch2 tools ===== */
+const mulP=(f,q)=>{const r=Array(f.length+q.length-1).fill(0);f.forEach((x,i)=>q.forEach((y,j)=>r[i+j]+=x*y));return r},
+facStr=fs=>fs.map(f=>f.length===1?(f[0]===1?'':f[0]===-1?'−':fn(f[0])):(f[0]===1&&f[1]===0?'x':`(${lin(f[0],f[1])})`)).join('');
+const cx=m=>(m===1?'':fn(m))+'x';
+const crossSVG=(p,q,r,s)=>{const L=(c,t)=>(c===1?'':c===-1?'−':c)+t,Q=v=>(v<0?'−':'+')+Math.abs(v);
+ return `<svg viewBox="0 0 320 170" style="max-width:320px"><g font-size=17 fill="var(--fg)" text-anchor=middle><text x=45 y=42>${L(p,'x')}</text><text x=45 y=122>${L(r,'x')}</text><text x=215 y=42>${Q(q)}</text><text x=215 y=122>${Q(s)}</text>
+ <text x=280 y=42 fill="var(--bad)">${fn(r*q)}x</text><text x=280 y=122 fill="var(--acc)">${fn(p*s)}x</text><text x=160 y=160 font-size=14>${fn(p*s)}x + (${fn(r*q)}x) = ${fn(p*s+r*q)}x ✔</text></g>
+ <line x1=75 y1=36 x2=185 y2=116 stroke="var(--acc)" stroke-width=2.5 /><line x1=75 y1=116 x2=185 y2=36 stroke="var(--bad)" stroke-width=2.5 /></svg>`};
+function FAC(a,b,c){const st=[],fac=[];let svg='',k=g(g(a,b),c)||1;if(a<0)k=-k;const A=a/k,B=b/k,C=c/k,pre=k===1?'':k===-1?'−':fn(k),lp=polyS(A,B,C);
+ st.push(['提公因式（先检查有没有公因数）',k===1?`系数 ${fn(a)}、${fn(b)}、${fn(c)} 的最大公约数是 1，没有公因数可提。`:`系数 ${fn(a)}、${fn(b)}、${fn(c)} 的最大公约数是 ${Math.abs(k)}${k<0?'，首项为负，连同 −1 一起提出':''}。<br>${polyS(a,b,c)} = ${pre}(${lp})`]);if(k!==1)fac.push([k]);
+ const done=(t,fs,extra)=>{fac.push(...fs);st.push([t,extra]);return 1};
+ if(C===0){const bs=B===0;st.push(['每一项都含有 x，提出 x',`${lp} = x(${bs?'x':lin(A,B)})`]);fac.push([1,0],bs?[1,0]:[A,B])}
+ else if(B===0){const m=isq(A),n=isq(-C);if(A>0&&C<0&&m&&n){st.push(['没有一次项 ⇒ 试平方差公式 a² − b² = (a+b)(a−b)',`${lp} = (${cx(m)})² − ${n}² = <span class=big>(${lin(m,n)})(${lin(m,-n)})</span>`]);fac.push([m,n],[m,-n])}
+  else{st.push(['❌ 不能分解',A>0&&C<0?`${A} 与 ${-C} 不都是完全平方数，在整数范围内不能用平方差公式分解。`:'没有一次项，而且两项同号（平方和）或不是平方差，无法分解。']);return{st,fac:null}}}
+ else if(B*B===4*A*C&&A>0&&isq(A)){const p=isq(A),q=isq(C),s=B>0?1:-1;st.push(['首尾是平方，中间项是 2 倍乘积 ⇒ 完全平方公式',`${lp} = (${cx(p)})² ${s>0?'+':'−'} 2·${cx(p)}·${q} + ${q}² = <span class=big>(${lin(p,s*q)})²</span>`]);fac.push([p,s*q],[p,s*q])}
+ else{const ac=A*C,pr=gfp(ac),hit=pr.find(p=>p[0]+p[1]===B);
+  st.push([`交叉相乘：找两数 m、n，使 m×n = ac = ${ac}，m+n = b = ${B}`,`<table class="tb"><tr><th>m × n</th><th>m + n</th><th></th></tr>${pr.map(([m,n])=>`<tr class="${m+n==B?'hit':''}"><td>${pn(m)} × ${pn(n)} = ${fn(ac)}</td><td>${fn(m+n)}</td><td>${m+n==B?'✔️ 符合':'❌'}</td></tr>`).join('')}</table>`]);
+  if(!hit){st.push(['❌ 不能分解',`表中没有一组的和等于 ${B}（Δ = ${B*B-4*A*C}，不是完全平方数），在整数范围内不能分解。`]);return{st,fac:null}}
+  const[m,n]=hit;
+  if(A===1){fac.push([1,m],[1,n]);svg=crossSVG(1,m,1,n);st.push(['写成乘积',`<span class=big>(${lin(1,m)})(${lin(1,n)})</span>`])}
+  else{let G=null;for(const[mm,nn]of[hit,[hit[1],hit[0]]]){const g1=g(A,mm),k2=nn*g1/A;if(Number.isInteger(k2)&&k2*A/g1===nn&&k2*mm/g1===C){G={mm,nn,g1,k2};break}}
+   if(!G){st.push(['❌ 不能分解','无法配成整数因式。']);return{st,fac:null}}
+   const{mm,nn,g1,k2}=G,Bq=lin(A/g1,mm/g1);
+   st.push(['拆中项：把 bx 拆成 mx + nx',`${fn(B)}x = ${pn(mm)}x + ${pn(nn)}x<br><b>${cof(A,'x²',1)}${cof(mm,'x')}${cof(nn,'x')}${cof(C,'')}</b>`]);
+   st.push(['前两项、后两项各分一组，分别提公因式',`(${cof(A,'x²',1)}${cof(mm,'x')}) + (${cof(nn,'x',1)}${cof(C,'')})<br>${g1===1?'':g1}x(${Bq}) ${k2<0?'−':'+'} ${Math.abs(k2)===1?'':Math.abs(k2)}(${Bq})<br><span class=mut>两组提出公因式后，括号 (${Bq}) 完全相同——这正是 m×n = ac 的作用。</span>`]);
+   st.push(['提出相同的括号',`<span class=big>(${lin(g1,k2)})(${Bq})</span>`]);fac.push([g1,k2],[A/g1,mm/g1]);svg=crossSVG(g1,k2,A/g1,mm/g1)}}
+ const prod=fac.reduce((x,y)=>mulP(x,y),[1]);
+ st.push(['✅ 最终结果',`<span class=big>${polyS(a,b,c)} = ${facStr(fac)}</span><br><span class=mut>检验：把右边展开 = ${polyS(...prod)} ${prod.join()===[a,b,c].join()?'✔ 与原式相同':'⚠'}。每个因式都是一次式，已经不能再分解。</span>`,'good']);
+ return{st,fac,svg}}
+const facTool=pre=>h=>{h.innerHTML='<h3>🧮 逐步分解器（二次三项式）</h3><p class=mut>输入 ax²+bx+c 的系数，自动判断该用提公因式、平方差、完全平方还是交叉相乘，并列出每一步。</p><div class=tools data-r=pre></div><p class=eqrow><input class=num type=number step=any value=1>x² + <input class=num type=number step=any value=5>x + <input class=num type=number step=any value=6> = 0</p><div class=out2></div>';
+ const ins=[...h.querySelectorAll('.num')],o=$('.out2',h);
+ const run=()=>{const[a,b,c]=ins.map(i=>+i.value);if(![a,b,c].every(Number.isInteger))return o.innerHTML=STP('⚠️ 注意','请输入整数。','bad');if(!a)return o.innerHTML=STP('⚠️ 注意','a 不能为 0。','bad');
+  const r=FAC(a,b,c);o.innerHTML=`<p class=big>${polyS(a,b,c)}</p>`+r.st.map(([t,b_,c_],i)=>STP(c_==='good'?t:`步骤 ${i+1}：${t}`,b_,c_||(t.startsWith('❌')?'bad':''))).join('')+(r.svg?'<p class=mut>交叉图示：</p>'+r.svg:'')};
+ pre.forEach(([a,b,c,t])=>{const e=el('<button></button>');e.textContent=t;e.onclick=()=>{ins[0].value=a;ins[1].value=b;ins[2].value=c;run()};$('[data-r=pre]',h).append(e)});ins.forEach(i=>i.oninput=()=>{if(i.value.length>4)i.value=i.value.slice(0,4);run()});
+ const f0=pre[0];ins[0].value=f0[0];ins[1].value=f0[1];ins[2].value=f0[2];run()};
+const areaTool=kind=>h=>{const cfg={f:['🧩 面积图：提公因式 ax + ay = a(x + y)',[['a',1,6,1,3],['x',1,6,1,4],['y',1,6,1,2]]],d:['🧩 面积图：平方差 a² − b² = (a+b)(a−b)',[['a',2,9,1,6],['b',1,8,1,2]]],s:['🧩 面积图：完全平方 (a+b)² = a² + 2ab + b²',[['a',1,8,1,4],['b',1,8,1,3]]]}[kind];
+ h.innerHTML=`<h3>${cfg[0]}</h3><p class=mut>拖动滑块，看面积如何拆分、重组——两边的面积永远相等。</p><div class=sls></div><svg viewBox="0 0 400 230"></svg><div class=cap></div>`;
+ const T=(x,y,t,c='#fff')=>`<text x=${x} y=${y} font-size=12 text-anchor=middle fill="${c}">${t}</text>`;
+ sliders($('.sls',h),cfg[1],o=>{let s='',cap='',{a,b,x,y}=o;
+  if(kind==='f'){const u=Math.min(380/(x+y),170/a,28);s=`<rect x=10 y=30 width=${x*u} height=${a*u} fill="var(--acc)" opacity=.8 /><rect x=${10+x*u} y=30 width=${y*u} height=${a*u} fill="var(--bad)" opacity=.75 />`+T(10+x*u/2,30+a*u/2+4,`a·x = ${a*x}`)+T(10+x*u+y*u/2,30+a*u/2+4,`a·y = ${a*y}`)+T(10+(x+y)*u/2,20,`x + y = ${x+y}`,'var(--fg)')+T(10+(x+y)*u/2,30+a*u+16,`高 a = ${a}`,'var(--fg)');
+   cap=`${a}×${x} + ${a}×${y} = ${a*x} + ${a*y} = ${a*(x+y)} = ${a}×(${x}+${y})`}
+  if(kind==='d'){const bb=Math.min(b,a-1),u=Math.min(370/(2*a+bb),200/a),X0=a*u+30;s=`<path d="M10,10 H${10+(a-bb)*u} V${10+bb*u} H${10+a*u} V${10+a*u} H10 Z" fill="var(--acc)" opacity=.8 /><rect x=${10+(a-bb)*u} y=10 width=${bb*u} height=${bb*u} fill="none" stroke="var(--bad)" stroke-width=2 stroke-dasharray="4 3" />`+T(10+(a-bb)*u/2+bb*u/4,10+a*u/2,`a²−b²`)+T(10+a*u-bb*u/2,10+bb*u/2+4,'b²','var(--bad)')+`<rect x=${X0} y=10 width=${(a+bb)*u} height=${(a-bb)*u} fill="var(--acc)" opacity=.8 />`+T(X0+(a+bb)*u/2,10+(a-bb)*u/2+4,`(a+b)(a−b)`)+T(X0+(a+bb)*u/2,10+(a-bb)*u+16,`宽 a+b = ${a+bb}，高 a−b = ${a-bb}`,'var(--fg)');
+   cap=`${a}² − ${bb}² = ${a*a} − ${bb*bb} = ${a*a-bb*bb}；(${a}+${bb})(${a}−${bb}) = ${a+bb}×${a-bb} = ${(a+bb)*(a-bb)}`}
+  if(kind==='s'){const u=Math.min(200/(a+b),26);s=`<rect x=10 y=10 width=${a*u} height=${a*u} fill="var(--acc)" opacity=.85 /><rect x=${10+a*u} y=10 width=${b*u} height=${a*u} fill="var(--acc)" opacity=.4 /><rect x=10 y=${10+a*u} width=${a*u} height=${b*u} fill="var(--acc)" opacity=.4 /><rect x=${10+a*u} y=${10+a*u} width=${b*u} height=${b*u} fill="var(--bad)" opacity=.75 />`+T(10+a*u/2,10+a*u/2+4,`a² = ${a*a}`)+T(10+a*u+b*u/2,10+a*u/2+4,`ab`,'var(--fg)')+T(10+a*u/2,10+a*u+b*u/2+4,`ab`,'var(--fg)')+T(10+a*u+b*u/2,10+a*u+b*u/2+4,`b²`)+`<text x=${a*u+40} y=${20+(a+b)*u/2} font-size=13 fill="var(--fg)">边长 a+b = ${a+b}</text>`;
+   cap=`(${a}+${b})² = ${(a+b)**2} = ${a*a} + ${2*a*b} + ${b*b} = a² + 2ab + b²`}
+  $('svg',h).innerHTML=s;$('.cap',h).innerHTML='<b>'+cap+'</b>'})};
+function groupTool(h){h.innerHTML='<h3>🧮 分组分解器（四项式）</h3><p class=mut>输入四项的多项式（如 ax+ay+2x+2y），自动尝试三种分组方式，看哪一种提公因式后括号相同。</p><div class=tools data-r=pre></div><div class=row><input class=in style="max-width:18rem" value="ax+ay+2x+2y"></div><div class=out2></div>';
+ const inp=$('.in',h),o=$('.out2',h);
+ const pt=s=>{const m=s.match(/^([+-]?)(\d*)((?:[a-z](?:\^\d+)?)*)$/);if(!m)return null;const e={};m[3].replace(/([a-z])(?:\^(\d+))?/g,(x,l,n)=>e[l]=(e[l]||0)+(n?+n:1));return{c:(m[1]==='-'?-1:1)*(m[2]?+m[2]:1),e}},
+ ts=t=>{const k=Object.keys(t.e).sort().map(l=>l+(t.e[l]>1?'^'+t.e[l]:'')).join('');return{k,s:(Math.abs(t.c)!==1||!k?Math.abs(t.c):'')+k}},
+ str=a=>a.map((t,i)=>(t.c<0?(i?' − ':'−'):(i?' + ':''))+ts(t).s).join(''),
+ gm=(p,q)=>{const e={};for(const l in p.e)if(q.e[l])e[l]=Math.min(p.e[l],q.e[l]);return{c:g(p.c,q.c),e}},
+ dv=(t,m)=>{const e={};for(const l in t.e){const v=t.e[l]-(m.e[l]||0);if(v)e[l]=v}return{c:t.c/m.c,e}},
+ key=a=>a.map(t=>t.c+'|'+ts(t).k).sort().join(',');
+ const run=()=>{const raw=inp.value.replace(/\s/g,'').toLowerCase().replace(/−/g,'-'),parts=raw.split(/(?=[+-])/).filter(Boolean),T=parts.map(pt);
+  if(parts.length!==4||T.some(x=>!x))return o.innerHTML=STP('⚠️ 注意','请输入恰好四项，例如 ax+ay+2x+2y 或 b^2-bc-bd+cd（只用数字、字母、^）。','bad');
+  let html=`<p class=big>${str(T,1)}</p>`,ok=false,n=0;
+  for(const[[i,j],[p,q]]of[[[0,1],[2,3]],[[0,2],[1,3]],[[0,3],[1,2]]]){if(ok)break;n++;const G=[[T[i],T[j]],[T[p],T[q]]],gs=G.map(([u,v])=>gm(u,v));
+   let hit=null;for(const sgn of[1,-1]){const g2={c:gs[1].c*sgn,e:gs[1].e},b1=[dv(G[0][0],gs[0]),dv(G[0][1],gs[0])],b2=[dv(G[1][0],g2),dv(G[1][1],g2)];if(key(b1)===key(b2)){hit={g2,b1};break}}
+   const A=`(${str(G[0],1)})`,B=`(${str(G[1],1)})`;
+   if(hit){const{g2,b1}=hit,g0=ts(gs[0]).s||'1',g1=ts({c:Math.abs(g2.c),e:g2.e}).s||'1';ok=true;
+    html+=STP(`尝试 ${n}：分组 ${A} + ${B}`,`${A}：提出 <b>${g0}</b> ⇒ ${g0==='1'?'':g0}(${str(b1,1)})<br>${B}：提出 <b>${g2.c<0?'−':''}${g1}</b> ⇒ ${g2.c<0?'−':'+'} ${g1==='1'?'':g1}(${str(b1,1)})<br><span class=mut>两个括号完全相同 ✔</span>`)+STP('✅ 提出相同的括号',`<span class=big>(${str(b1,1)})(${(g0==='1'?'1':g0)} ${g2.c<0?'−':'+'} ${g1})</span>`,'good')}
+   else html+=STP(`尝试 ${n}：分组 ${A} + ${B}`,'提公因式后两个括号不相同 ❌，换一种分组方式。','bad')}
+  if(!ok)html+=STP('❌ 三种分组都不行','试试“三一分组”：先把其中三项配成平方（完全平方式），再用平方差；或某组先用乘法公式分解（如 x²−y² = (x+y)(x−y)），再提出相同因式。','bad');
+  o.innerHTML=D(html)};
+ ['ax+ay+2x+2y','b^2-bc-bd+cd','2ax+6by-4bx-3ay','xy+x+y+1','ac-a-c+1','x^2-y^2+5x-5y'].forEach(t=>{const e=el('<button></button>');e.textContent=t;e.onclick=()=>{inp.value=t;run()};$('[data-r=pre]',h).append(e)});inp.oninput=run;run()}
+const atomTool=h=>{h.innerHTML='<h3>🧮 H.C.F. / L.C.M. 表格计算器</h3><p class=mut>输入已分解的式子（单项式或因式相乘，如 3ab(a-b)^2(a+b)）；三项可只填两项。多项式请先用上面的分解器分解。</p><div class=tools data-r=pre></div><div class=row><input class=in value="12a^2b^3"> <input class=in value="18a^3b^2"> <input class=in placeholder="（可选）"></div><div class=out2></div>';
+ const ins=[...h.querySelectorAll('.in')],o=$('.out2',h);
+ const pa=s=>{s=s.replace(/\s|·|\*/g,'').replace(/−/g,'-');if(!s)return null;const m=s.match(/^(\d*)/),at={};let r=s.slice(m[1].length);
+  while(r){const t=r.match(/^([a-z]|\([^()]+\))(?:\^(\d+))?/);if(!t)return undefined;at[t[1]]=(at[t[1]]||0)+(t[2]?+t[2]:1);r=r.slice(t[0].length)}return{c:m[1]?+m[1]:1,at,s}},
+  pf=n=>{const f={};for(let p=2;n>1;p++)while(n%p===0){f[p]=(f[p]||0)+1;n/=p}return f};
+ const run=()=>{const L=ins.map(i=>pa(i.value)),E=L.filter(x=>x),bad=L.some(x=>x===undefined);if(bad||E.length<2)return o.innerHTML=STP('⚠️ 注意','请至少输入两个式子，格式例：12a^2b^3、a(a+b)(a-b)、6a(a+b)^2。','bad');
+  const pfs=E.map(e=>pf(e.c)),keys=[...new Set([...pfs.flatMap(f=>Object.keys(f)),...E.flatMap(e=>Object.keys(e.at))])].sort((x,y)=>{const r=k=>+k?0:/^[a-z]$/.test(k)?1:2;return r(x)-r(y)||(x<y?-1:1)}),
+  ex=(i,k)=>+k?pfs[i][k]||0:E[i].at[k]||0,rows=keys.map(k=>{const v=E.map((_,i)=>ex(i,k));return{k,v,mn:Math.min(...v),mx:Math.max(...v)}});
+  const fm=w=>{const t=rows.filter(r=>r[w]>0);let c=1,rest='';t.forEach(r=>{if(+r.k)c*=Math.pow(+r.k,r[w]);else rest+=r.k+(r[w]>1?'^'+r[w]:'')});return (c>1||!rest?c:'')+rest};
+  const nm=k=>+k?'质因数 '+k:'因式 '+D(k);
+  o.innerHTML=STP('步骤 1：把每个式子写成“系数的质因数 × 各因式的次数”',E.map((e,i)=>`${D(e.s)}：系数 ${e.c} = ${Object.keys(pfs[i]).map(p=>p+(pfs[i][p]>1?'^'+pfs[i][p]:'')).map(D).join(' × ')||'1'}`).join('<br>'))+
+  STP('步骤 2：列表比较各因式的次数',`<table class="tb"><tr><th>因式</th>${E.map(e=>`<th>${D(e.s)}</th>`).join('')}<th>取最低<br>(H.C.F.)</th><th>取最高<br>(L.C.M.)</th></tr>${rows.map(r=>`<tr><td>${nm(r.k)}</td>${r.v.map(x=>`<td>${x}</td>`).join('')}<td style="color:var(--acc)"><b>${r.mn}</b></td><td style="color:var(--bad)"><b>${r.mx}</b></td></tr>`).join('')}</table><span class=mut>次数为 0 表示该式子没有这个因式。注意 (a−b) 与 (b−a) 要先统一写法。</span>`)+
+  STP('✅ H.C.F.（每个因式取最低次）',`<span class=big>${D(fm('mn'))}</span>${rows.every(r=>!r.mn)?'<br><span class=mut>没有共同因式，H.C.F. = 1</span>':''}`,'good')+STP('✅ L.C.M.（每个因式取最高次）',`<span class=big>${D(fm('mx'))}</span>`,'good')};
+ [['12a^2b^3','18a^3b^2',''],['4p^2q^2','12pq^2',''],['3ab(a-b)^2(a+b)','a(a+b)(a-b)','6a(a+b)^2'],['(x+1)(x+2)','(x-3)(x+2)','(x-1)(x+2)']].forEach(v=>{const e=el('<button></button>');e.textContent=v.filter(x=>x).join('，');e.onclick=()=>{ins.forEach((i,j)=>i.value=v[j]);run()};$('[data-r=pre]',h).append(e)});ins.forEach(i=>i.oninput=run);run()};
+/* ===== 初二上册 第2章 因式分解 ===== */
+const co=n=>n>1?n:'',X=(t)=>P([[1,'x'],[t,'']]),mn=(i,j)=>'a'+(i>1?'^'+i:'')+'b'+(j>1?'^'+j:'');
+const a1=()=>{const k=pick([4,6,8,9,12]),m=R(1,5),n=R(1,5),s=pick([1,-1]);if(g(m,n)>1)return a1();
+ const d=pick([2,3].filter(x=>k%x===0)),ans=k+P([[m,'x'],[s*n,'y']]);
+ return{kind:'expr',ex:S([[k*m,'x'],[s*k*n,'y']]),ans,wrongs:[d+P([[k/d*m,'x'],[s*k/d*n,'y']]),k+P([[m,'x'],[-s*n,'y']]),k+P([[m,'x'],[s*n,'']]),k+P([[n,'x'],[s*m,'y']])],
+ exp:`系数 ${k*m} 与 ${k*n} 的最大公约数是 ${k}，全部提出：${ans}。只提出 ${d} 的话括号内还有公因数，没分解完。`}};
+const a2=()=>{const d=pick([1,2,3,4,6]),p=R(1,4),q=R(1,4),s=pick([1,-1]);if(g(p,q)>1)return a2();const c=co(d),ans=c+'xy'+P([[p,'x'],[s*q,'y']]);
+ return{kind:'expr',ex:S([[d*p,'x^2y'],[s*d*q,'xy^2']]),ans,wrongs:[c+'x'+P([[p,'xy'],[s*q,'y^2']]),c+'xy'+P([[p,'x'],[-s*q,'y']]),'xy'+P([[d*p,'x'],[s*d*q,'y']]),c+'xy'+P([[p,'x^2'],[s*q,'y^2']])],
+ exp:`公因式 = 系数最大公约数 × 各字母的最低次方 = ${c}xy，提出后括号内是 ${P([[p,'x'],[s*q,'y']])}。`}};
+const a3=()=>{const k=R(2,9);return{kind:'expr',ex:`${k}(b - a) + y(a - b)`,ans:`(b - a)(${k} - y)`,wrongs:[`(b - a)(${k} + y)`,`(a - b)(${k} + y)`,`(b - a)(y - ${k})`,`(a - b)(${k} - y)`],
+ exp:`注意 a - b = -(b - a)，所以 y(a - b) = -y(b - a)，原式 = ${k}(b - a) - y(b - a) = (b - a)(${k} - y)。`}};
+const a4=()=>{const p=pick([2,3,5]),q=pick([2,3,4]),t=R(2,6);return{kind:'expr',ex:`${p}a(x - ${t}) - ${p*q}b(${t} - x)`,ans:`${p}(x - ${t})(a + ${q}b)`,
+ wrongs:[`${p}(x - ${t})(a - ${q}b)`,`(x - ${t})(${p}a + ${q}b)`,`${p}(x - ${t})(a + b)`,`${p}(${t} - x)(a + ${q}b)`],
+ exp:`先把 (${t} - x) 改写成 -(x - ${t})，第二项变成 +${p*q}b(x - ${t})，再提出 ${p}(x - ${t})。`}};
+const b1=()=>{const m=R(1,9),n=R(1,9);if(g(m,n)>1||(m===1&&n===1))return b1();const ans=P([[m,'x'],[n,'y']])+P([[m,'x'],[-n,'y']]);
+ return{kind:'expr',ex:S([[m*m,'x^2'],[-n*n,'y^2']]),ans,wrongs:[P([[m,'x'],[-n,'y']])+'^2',P([[m,'x'],[n,'y']])+'^2',P([[m*m,'x'],[n*n,'y']])+P([[m*m,'x'],[-n*n,'y']]),P([[m,'x'],[n,'y']])+P([[n,'x'],[-m,'y']])],
+ exp:`${m*m}x² = (${m}x)²，${n*n}y² = (${n}y)²，用 a² - b² = (a+b)(a-b)：${ans}。`}};
+const b2=()=>{const k=pick([2,3,5]),m=R(1,5),n=R(1,5);if(g(m,n)>1)return b2();const ans=k+P([[m,'a'],[n,'b']])+P([[m,'a'],[-n,'b']]);
+ return{kind:'expr',ex:S([[k*m*m,'a^2'],[-k*n*n,'b^2']]),ans,wrongs:[P([[k*m,'a'],[k*n,'b']])+P([[m,'a'],[-n,'b']]),k+P([[m*m,'a'],[n*n,'b']])+P([[m*m,'a'],[-n*n,'b']]),k+P([[m,'a'],[-n,'b']])+'^2',P([[m,'a'],[n,'b']])+P([[m,'a'],[-n,'b']])],
+ exp:`先提公因式 ${k}，得 ${k}(${m*m}a² - ${n*n}b²)，再用平方差公式：${ans}。`}};
+const b3=()=>{const p=R(2,8),q=R(1,6);if(p===q)return b3();return{kind:'expr',ex:`(x + ${p})^2 - ${q}^2`,ans:X(p+q)+X(p-q),
+ wrongs:[X(p+q)+P([[1,'x'],[-p-q,'']]),X(p+q)+X(q-p),X(p-q)+'^2',X(p+q)+'^2'],exp:`把 (x + ${p}) 看成 a，${q} 看成 b：(a+b)(a-b) = (x+${p}+${q})(x+${p}-${q}) = ${X(p+q)}${X(p-q)}。`}};
+const b4=()=>{const S_=pick([100,200]),Dd=pick([10,20,30,40,50,60]),A=(S_+Dd)/2,B=(S_-Dd)/2;return{kind:'num',fa:S_*Dd,q:`用平方差公式计算：${A}^2 - ${B}^2`,ans:''+S_*Dd,
+ wrongs:[''+Dd*Dd,''+S_*S_,''+S_*Dd/10,''+(S_*Dd+Dd)],exp:`${A}² - ${B}² = (${A}+${B})(${A}-${B}) = ${S_} × ${Dd} = ${S_*Dd}。`}};
+const c1=()=>{const p=R(1,5),q=R(1,6),s=pick([1,-1]);if(g(p,q)>1)return c1();const ans=P([[p,'x'],[s*q,'']])+'^2';
+ return{kind:'expr',ex:S([[p*p,'x^2'],[2*s*p*q,'x'],[q*q,'']]),ans,wrongs:[P([[p,'x'],[-s*q,'']])+'^2',P([[p,'x'],[2*s*q,'']])+'^2',P([[p*p,'x'],[s*q,'']])+'^2',P([[p,'x'],[s*q,'']])+P([[p,'x'],[-s*q,'']])],
+ exp:`首项 (${p}x)²，末项 ${q}²，中间项 ${2*p*q}x = 2·${p}x·${q} ，符号为 ${s>0?'+':'-'}，所以是 ${ans}。`}};
+const c2=()=>{const k=pick([2,3,5]),p=R(1,4),q=R(1,6),s=pick([1,-1]);if(g(p,q)>1)return c2();const ans=k+P([[p,'a'],[s*q,'']])+'^2';
+ return{kind:'expr',ex:S([[k*p*p,'a^2'],[2*s*k*p*q,'a'],[k*q*q,'']]),ans,wrongs:[P([[k*p,'a'],[s*k*q,'']])+P([[p,'a'],[s*q,'']]),k+P([[p,'a'],[-s*q,'']])+'^2',k+P([[p,'a'],[2*s*q,'']])+'^2',P([[p,'a'],[s*q,'']])+'^2'],
+ exp:`先提公因式 ${k}，括号内是完全平方式：${ans}。`}};
+const c3=()=>{const p=R(1,5),q=R(1,6),s=pick([1,-1]);if(g(p,q)>1)return c3();const ans='-'+P([[p,'a'],[-s*q,'']])+'^2';
+ return{kind:'expr',ex:S([[-p*p,'a^2'],[2*s*p*q,'a'],[-q*q,'']]),ans,wrongs:[P([[p,'a'],[-s*q,'']])+'^2','-'+P([[p,'a'],[s*q,'']])+'^2','-'+P([[p,'a'],[s*q,'']])+P([[p,'a'],[-s*q,'']]),'-'+P([[p*p,'a'],[-s*q,'']])+'^2'],
+ exp:`首项是负的，先提出 -1，括号内变成完全平方式，得 ${ans}。`}};
+const d1=()=>{const m=nz(-9,9),n=nz(-9,9);if(m===n||m+n===0)return d1();const pr=m*n,ps=[];
+ for(let u=1;u<=Math.abs(pr);u++)if(pr%u===0)for(const sg of[1,-1]){const a=sg*u,b=pr/a;if(a+b!==m+n)ps.push([a,b])}
+ const[u,v]=ps.length?pick(ps):[m+1,n+1],k=[1,2,3].find(k=>(m+k)*(n-k)!==m*n)||1;
+ return{kind:'expr',ex:S([[1,'x^2'],[m+n,'x'],[m*n,'']]),ans:X(m)+X(n),wrongs:[X(-m)+X(-n),X(u)+X(v),X(m)+X(-n),X(m+k)+X(n-k)],
+ exp:`找两个数：积 = ${m*n}，和 = ${m+n}。这两个数是 ${m} 和 ${n}，所以 = ${X(m)}${X(n)}。（积对了但和不对的组合都不行）`}};
+const d2=()=>{const m=nz(-8,8),n=nz(-8,8);if(m===n||m+n===0)return d2();const B=t=>P([[1,'b'],[t,'']]);
+ return{kind:'expr',ex:S([[-1,'b^2'],[-(m+n),'b'],[-m*n,'']]),ans:'-'+B(m)+B(n),wrongs:[B(m)+B(n),'-'+B(-m)+B(-n),'-'+B(m)+B(-n),P([[-1,'b'],[m,'']])+B(n)],
+ exp:`先提出 -1：-(b² + ${m+n}b + ${m*n})，括号内两数积 ${m*n}、和 ${m+n}，是 ${m} 与 ${n}。`}};
+const eF=y=>{const f=()=>{const p=R(1,4),r=R(1,4),q=nz(-6,6),s=nz(-6,6);if(p*r===1||g(p,q)>1||g(r,s)>1)return f();const v=y?'y':'',B=p*s+q*r;
+ return{kind:'expr',ex:S([[p*r,'x^2'],[B,y?'xy':'x'],[q*s,y?'y^2':'']]),ans:P([[p,'x'],[q,v]])+P([[r,'x'],[s,v]]),
+ wrongs:[P([[p,'x'],[s,v]])+P([[r,'x'],[q,v]]),P([[p,'x'],[-q,v]])+P([[r,'x'],[-s,v]]),P([[p*r,'x'],[q,v]])+P([[1,'x'],[s,v]]),P([[p,'x'],[q*s,v]])+P([[r,'x'],[1,v]])],
+ exp:`拆首项 ${p*r}=${p}×${r}，拆末项 ${q*s}=${q}×${s}，交叉相乘再相加：${p}×${s}+${q}×${r} = ${B}，正好是一次项系数，所以 = ${P([[p,'x'],[q,v]])}${P([[r,'x'],[s,v]])}。`}};return f};
+const gf1=()=>{const m=R(2,5),s1=pick([1,-1]),s2=pick([1,-1]);return{kind:'expr',ex:S([[1,'ax'],[s1,'ay'],[s2*m,'x'],[s1*s2*m,'y']]),ans:P([[1,'x'],[s1,'y']])+P([[1,'a'],[s2*m,'']]),
+ wrongs:[P([[1,'x'],[s1,'y']])+P([[1,'a'],[-s2*m,'']]),P([[1,'x'],[-s1,'y']])+P([[1,'a'],[s2*m,'']]),P([[1,'x'],[s1,'y']])+P([[1,'a'],[m,'']]),P([[1,'x'],[s2*m,'']])+P([[1,'a'],[s1,'y']])],
+ exp:`前两项提 a，后两项提 ${s2*m}：a${P([[1,'x'],[s1,'y']])} ${s2>0?'+':'-'} ${m}${P([[1,'x'],[s1,'y']])}，再提出相同因式 ${P([[1,'x'],[s1,'y']])}。`}};
+const gf2=()=>{const k=R(2,9);return{kind:'expr',ex:S([[1,'x^2'],[-1,'y^2'],[k,'x'],[-k,'y']]),ans:P([[1,'x'],[-1,'y']])+P([[1,'x'],[1,'y'],[k,'']]),
+ wrongs:[P([[1,'x'],[-1,'y']])+P([[1,'x'],[1,'y'],[-k,'']]),P([[1,'x'],[1,'y']])+P([[1,'x'],[-1,'y'],[k,'']]),P([[1,'x'],[-1,'y']])+P([[1,'x'],[-1,'y'],[k,'']]),`(x - y)(x + y) + ${k}(x - y)`],
+ exp:`分组：(x² - y²) + ${k}(x - y) = (x+y)(x-y) + ${k}(x-y)，再提出 (x - y)，得 (x - y)(x + y + ${k})。`}};
+const h1=()=>{const d=pick([2,3,4,6]),u=pick([1,2,3,5]),v=pick([1,2,3,5]),i=R(1,4),j=R(1,4),k=R(1,4),l=R(1,4);if(u===v||g(u,v)>1||i===k||j===l)return h1();
+ const lo=mn(Math.min(i,k),Math.min(j,l)),hi=mn(Math.max(i,k),Math.max(j,l));
+ return{kind:'expr',q:`求 ${co(d*u)}${mn(i,j)} 与 ${co(d*v)}${mn(k,l)} 的最高公因式（H.C.F.）。`,ans:d+lo,wrongs:[d+hi,d*u*v+lo,d*d*u*v+lo,d+mn(Math.max(i,k),Math.min(j,l))],
+ exp:`系数取最大公约数 ${d}，每个字母取各式中最低的次方，得 ${d}${lo}。`}};
+const h2=()=>{const[c,d1,d2,d3]=shuffle([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6]),T=t=>S([[1,'x^2'],[c+t,'x'],[c*t,'']]);
+ return{kind:'expr',q:`求 ${T(d1)}、${T(d2)} 及 ${T(d3)} 的最高公因式。`,ans:X(c),wrongs:[X(d1),X(-c),X(c)+X(d1),X(d1)+X(d2)],
+ exp:`分别分解：${T(d1)}=${X(c)}${X(d1)}，${T(d2)}=${X(c)}${X(d2)}，${T(d3)}=${X(c)}${X(d3)}，共同因式只有 ${X(c)}。`}};
+const l1=()=>{const d=pick([1,2,3]),u=pick([1,2,3,5]),v=pick([2,3,5,7]),i=R(1,4),j=R(1,4),k=R(1,4),l=R(1,4);if(u===v||g(u,v)>1||i===k||j===l)return l1();
+ const L=d*u*v,hi=mn(Math.max(i,k),Math.max(j,l));
+ return{kind:'expr',q:`求 ${co(d*u)}${mn(i,j)} 与 ${co(d*v)}${mn(k,l)} 的最低公倍式（L.C.M.）。`,ans:L+hi,wrongs:[d*u*d*v+hi,co(d)+hi,L+mn(Math.min(i,k),Math.min(j,l)),L+mn(i+k,j+l)],
+ exp:`系数取最小公倍数 ${L}，每个字母取各式中最高的次方，得 ${L}${hi}。`}};
+const l2=()=>{const[a,b,c]=shuffle([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6]),T=(p,q)=>S([[1,'x^2'],[p+q,'x'],[p*q,'']]);
+ return{kind:'expr',q:`求 ${T(a,b)}、${T(b,c)} 及 ${T(a,c)} 的最低公倍式。`,ans:X(a)+X(b)+X(c),wrongs:[X(a)+X(b),X(a)+'^2'+X(b)+'^2'+X(c)+'^2',X(-a)+X(-b)+X(-c),X(a)+X(c)],
+ exp:`分解：${X(a)}${X(b)}，${X(b)}${X(c)}，${X(a)}${X(c)}。取所有不同的因式各一次（最高次方都是 1）：${X(a)}${X(b)}${X(c)}。`}};
+const GA=[a1,a2,a3,a4],GB=[b1,b2,b3,b4],GC=[c1,c2,c3],GD=[d1,d2],GE=[eF(0),eF(1)],GF=[gf1,gf2],GH=[h1,h2],GL=[l1,l2];
+const CH={title:'初二上册 · 第2章 因式分解',sub:'互动学习 · 随机习题 · 章末测试',secs:[
+{n:'2.1a 抽取公因式',t:'2.1a 抽取公因式法',gens:GA,tool:[areaTool('f'),facTool([[1,5,6,'x²+5x+6'],[1,-7,-18,'x²−7x−18'],[2,7,3,'2x²+7x+3'],[6,-11,-10,'6x²−11x−10'],[1,0,-9,'平方差 x²−9'],[4,0,-25,'平方差 4x²−25'],[1,6,9,'完全平方 x²+6x+9'],[4,-12,9,'完全平方 4x²−12x+9'],[2,32,128,'先提公因式 2x²+32x+128'],[1,3,0,'x²+3x'],[1,2,5,'无法分解 x²+2x+5']])],html:'<p><b>因式分解</b>：把一个多项式写成几个多项式的乘积，须分解到每个因式都不能再分解为止。</p><p>若每一项都含有相同的因式，就把它抽出来：<b>ax + 2ay = a(x + 2y)</b>。步骤：① 系数取最大公约数 ② 字母取最低次方 ③ 抽出后检验（展开应得回原式）。</p><p>⚠ <b>a - b = -(b - a)</b>：例 4(b-a) + y(a-b) = 4(b-a) - y(b-a) = (b-a)(4-y)。</p>'},
+{n:'2.1b 平方差',t:'2.1b 平方差公式',gens:GB,tool:[areaTool('d'),facTool([[1,5,6,'x²+5x+6'],[1,-7,-18,'x²−7x−18'],[2,7,3,'2x²+7x+3'],[6,-11,-10,'6x²−11x−10'],[1,0,-9,'平方差 x²−9'],[4,0,-25,'平方差 4x²−25'],[1,6,9,'完全平方 x²+6x+9'],[4,-12,9,'完全平方 4x²−12x+9'],[2,32,128,'先提公因式 2x²+32x+128'],[1,3,0,'x²+3x'],[1,2,5,'无法分解 x²+2x+5']])],html:'<p><b>a² - b² = (a + b)(a - b)</b></p><p>例：9x² - 25y² = (3x)² - (5y)² = (3x+5y)(3x-5y)。有公因式时<b>先提公因式</b>：2a² - 18b² = 2(a²-9b²) = 2(a+3b)(a-3b)。</p><p>计算技巧：13.5² - 6.5² = (13.5+6.5)(13.5-6.5) = 140。</p>'},
+{n:'2.1c 完全平方',t:'2.1c 完全平方公式',gens:GC,tool:[areaTool('s'),facTool([[1,5,6,'x²+5x+6'],[1,-7,-18,'x²−7x−18'],[2,7,3,'2x²+7x+3'],[6,-11,-10,'6x²−11x−10'],[1,0,-9,'平方差 x²−9'],[4,0,-25,'平方差 4x²−25'],[1,6,9,'完全平方 x²+6x+9'],[4,-12,9,'完全平方 4x²−12x+9'],[2,32,128,'先提公因式 2x²+32x+128'],[1,3,0,'x²+3x'],[1,2,5,'无法分解 x²+2x+5']])],html:'<p><b>a² + 2ab + b² = (a + b)²</b>，<b>a² - 2ab + b² = (a - b)²</b></p><p>判断：首尾两项是平方，中间项是首尾底数乘积的 2 倍。首项为负先提出 -1：6a - 9a² - 1 = -(3a - 1)²。</p><p>💭 思考：(2 - x)² 也可写成 (x - 2)²，因为 (-A)² = A²。</p>'},
+{n:'2.1d 交叉相乘 a=1',t:'2.1d 交叉相乘法（首项系数为 1）',gens:GD,tool:[facTool([[1,5,6,'x²+5x+6'],[1,-7,-18,'x²−7x−18'],[2,7,3,'2x²+7x+3'],[6,-11,-10,'6x²−11x−10'],[1,0,-9,'平方差 x²−9'],[4,0,-25,'平方差 4x²−25'],[1,6,9,'完全平方 x²+6x+9'],[4,-12,9,'完全平方 4x²−12x+9'],[2,32,128,'先提公因式 2x²+32x+128'],[1,3,0,'x²+3x'],[1,2,5,'无法分解 x²+2x+5']])],html:'<p><b>x² + (a+b)x + ab = (x+a)(x+b)</b>：找两个数，<b>积 = 常数项，和 = 一次项系数</b>。</p><p>例：x² + 5x + 6 → 6 = 2×3 且 2+3 = 5 ⇒ (x+2)(x+3)；x² - 7x - 18 = (x+2)(x-9)。</p>'},
+{n:'2.1e 交叉相乘 a≠1',t:'2.1e 交叉相乘法（首项系数不为 1）',gens:GE,tool:[facTool([[1,5,6,'x²+5x+6'],[1,-7,-18,'x²−7x−18'],[2,7,3,'2x²+7x+3'],[6,-11,-10,'6x²−11x−10'],[1,0,-9,'平方差 x²−9'],[4,0,-25,'平方差 4x²−25'],[1,6,9,'完全平方 x²+6x+9'],[4,-12,9,'完全平方 4x²−12x+9'],[2,32,128,'先提公因式 2x²+32x+128'],[1,3,0,'x²+3x'],[1,2,5,'无法分解 x²+2x+5']])],html:'<p>先拆首项系数，再拆常数项，交叉相乘后相加等于一次项。例：2x² + 7x + 3：2x=2x·x，3=1×3，交叉 2x·3 + 1·x = 7x ✔ ⇒ (2x+1)(x+3)。</p><p>含两个字母同理：4x² - 3xy - 10y² = (4x+5y)(x-2y)。</p>'},
+{n:'2.1f 分组分解',t:'2.1f 分组分解法',gens:GF,tool:groupTool,html:'<p>多项式没有公因式时，把项<b>适当分组</b>：xy + bx + ay + ab = x(y+b) + a(y+b) = (y+b)(x+a)。</p><p>也有“三一分组”：x² - 2xy + y² - z² = (x-y)² - z² = (x-y+z)(x-y-z)。</p>'},
+{n:'2.2a H.C.F.',t:'2.2a 最高公因式（H.C.F.）',gens:GH,tool:atomTool,html:'<p>公因式中次数最高的那个叫<b>最高公因式</b>。单项式：系数取最大公约数，字母取<b>最低</b>次。多项式：先因式分解，再取共同的因式。若除 1 外没有其他共同因式，则 H.C.F. = 1。</p><p>例：x²+3x+2、x²-x-6、x²+x-2 的 H.C.F. 是 x+2。</p>'},
+{n:'2.2b L.C.M.',t:'2.2b 最低公倍式（L.C.M.）',gens:GL,tool:atomTool,html:'<p>公倍式中次数最低的叫<b>最低公倍式</b>。单项式：系数取最小公倍数，字母取<b>最高</b>次。多项式：先因式分解，把所有不同的因式各取其最高次方后相乘。</p><p>例：x²-x-6、x²-4x+3、x²+x-2 的 L.C.M. 是 (x-3)(x+2)(x-1)。</p>'},
+{n:'🏁 总复习',t:'总复习 · 章末测试',review:1}]};
+
+console.log("%c初中数学互动学习 © 蔡逸众 · 华仁中学 Chinese High School","color:#3b5bdb");
+boot(CH);
+</script></body></html>
