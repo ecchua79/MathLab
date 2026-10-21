@@ -1,0 +1,182 @@
+<!DOCTYPE html><!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<html lang="zh"><head><meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79"><meta name="copyright" content="© 2026 ecchua79"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>初三数学 第3章 统计表与统计图</title>
+<style>
+:root{--bg:#f6f8fb;--c:#fff;--t:#1d2733;--m:#5b6b7d;--p:#2f6fed;--b:#d9e1ec;--ok:#1f9d55;--no:#d64545;--hi:#eaf1ff}
+[data-theme=dark]{--bg:#12161c;--c:#1b222b;--t:#e6edf5;--m:#9aa9ba;--p:#6aa3ff;--b:#2c3745;--ok:#2e9d6a;--no:#d05a5a;--hi:#22304a}
+*{box-sizing:border-box}html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--t);font:1rem/1.7 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem 1rem;background:var(--c);border-bottom:1px solid var(--b)}
+h1{font-size:1.1rem;margin:0}h3{margin:.2rem 0 .5rem}h4{margin:.5rem 0}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:.25rem .7rem;cursor:pointer}
+.btn:hover,.pri{background:var(--p);color:#fff;border-color:var(--p)}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 1rem;background:var(--bg);scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+nav button{flex:none;scroll-snap-align:start;border:1px solid var(--b);background:var(--c);border-radius:20px;padding:.3rem .9rem;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--p);color:#fff;border-color:var(--p)}
+main{max-width:900px;margin:auto;padding:1rem}section{display:none}section.on{display:block}
+.card{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:.8rem 1rem;margin:0 0 1rem}
+.calc{background:var(--hi)}summary{cursor:pointer}
+table{border-collapse:collapse;margin:.5rem 0;font-size:.95em}td,th{border:1px solid var(--b);padding:.2rem .6rem;text-align:center}th{background:var(--hi)}
+.hl td{background:var(--hi);font-weight:bold}.tw{overflow-x:auto}
+input,textarea,select{background:var(--bg);border:1px solid var(--b);border-radius:6px;padding:.3rem .5rem;max-width:100%}
+input[type=number]{width:7em}textarea{width:100%}
+.op{display:block;width:100%;text-align:left;margin:.3rem 0;padding:.45rem .8rem;border:1px solid var(--b);border-radius:8px;background:var(--c);cursor:pointer}
+.op:hover:not(:disabled){border-color:var(--p)}.op:disabled{cursor:default;color:inherit}
+.op.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.op.no{background:var(--no);color:#fff;border-color:var(--no)}
+.ex,.m{font-size:.92em;color:var(--m)}.q{padding:.6rem 0;border-bottom:1px dashed var(--b)}
+.good{color:var(--ok)}.bad{color:var(--no)}.ch{color:var(--t);width:100%;max-width:440px;display:block}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.35;margin:0 .2em}.fr i{font-style:normal;padding:0 .35em}.fr i:first-child{border-bottom:1.5px solid currentColor}
+#wmf{position:fixed;inset:0;z-index:9999;pointer-events:none;background-repeat:repeat}
+.hw{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;font-size:1px}
+footer{position:relative;text-align:center;color:var(--m);font-size:.85rem;padding:1rem 1rem 2.5rem;border-top:1px solid var(--b);margin-top:1rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.3rem 0}
+</style></head><body>
+<header><h1>📊 初三数学 · 第3章 统计表与统计图</h1><div><button class="btn" onclick="fs(-1)">A−</button> <button class="btn" onclick="fs(0)">A</button> <button class="btn" onclick="fs(1)">A＋</button> <button class="btn" id="th" onclick="tt()">🌙 夜间</button></div></header>
+<nav></nav><main></main>
+<script>
+const $=(s,e=document)=>e.querySelector(s),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[R(0,a.length-1)],
+sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a},
+r2=x=>+(+x).toFixed(2),sum=a=>a.reduce((x,y)=>x+y,0),nums=s=>(s.match(/\d+(\.\d+)?/g)||[]).map(Number),
+WM=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'],ZW=[...'ecchua79'].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('\u200d'),
+ls=(k,v)=>{try{return v===undefined?localStorage.getItem(k):localStorage.setItem(k,v)}catch(e){}};
+let FS=+ls('fs')||16;
+function fs(d){FS=d?Math.min(28,Math.max(12,FS+d*2)):16;document.documentElement.style.fontSize=FS+'px';ls('fs',FS)}
+function tt(d){let n=d||(document.documentElement.dataset.theme=='dark'?'light':'dark');document.documentElement.dataset.theme=n;$('#th').textContent=n=='dark'?'☀️ 白天':'🌙 夜间';ls('th',n)}
+fs(FS>0?0:0);document.documentElement.style.fontSize=FS+'px';
+tt(ls('th')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+/* ---------- 图表 ---------- */
+const C=['#4f8ef7','#f0647d','#4cc38a','#f5b942','#a77be8','#40c4d9','#ef8a45'];
+function tb(h,rows,hl=-1){return `<div class=tw><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr${i==hl?' class=hl':''}>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`}
+function bar(L,V,g=8){let w=360,h=190,m=28,mx=Math.max(...V)*1.12||1,bw=(w-m)/L.length;return `<svg viewBox="0 0 ${w} ${h+24}" class=ch>`+V.map((v,i)=>{let bh=v/mx*h,x=m+i*bw;return `<rect x="${x+g/2}" y="${h-bh}" width="${bw-g}" height="${bh}" fill="${C[g?i%7:0]}" stroke="${g?'none':'#fff'}"/><text x="${x+bw/2}" y="${h-bh-3}" text-anchor="middle" font-size="10" fill="currentColor">${v}</text><text x="${x+bw/2}" y="${h+14}" text-anchor="middle" font-size="10" fill="currentColor">${L[i]}</text>`}).join('')+`<line x1="${m}" y1="${h}" x2="${w}" y2="${h}" stroke="currentColor"/></svg>`}
+function pie(L,V){let T=sum(V),a=-Math.PI/2,s='',r=80;V.forEach((v,i)=>{let b=a+v/T*2*Math.PI,P=t=>[100+r*Math.cos(t),100+r*Math.sin(t)],p=P(a),q=P(b);s+=v==T?`<circle cx="100" cy="100" r="80" fill="${C[0]}"/>`:`<path d="M100 100L${p[0]} ${p[1]}A80 80 0 ${v/T>.5?1:0} 1 ${q[0]} ${q[1]}Z" fill="${C[i%7]}"/>`;s+=`<text x="210" y="${30+i*18}" font-size="12" fill="currentColor"><tspan fill="${C[i%7]}">■</tspan> ${L[i]} ${r2(v/T*100)}%</text>`;a=b});return `<svg viewBox="0 0 340 200" class=ch>${s}</svg>`}
+function poly(P,G=[]){let w=360,h=190,m=30,x0=P[0][0],x1=P[P.length-1][0],ym=Math.max(...P.map(p=>p[1]))||1,X=x=>m+(x-x0)/((x1-x0)||1)*(w-m-14),Y=y=>h-y/ym*(h-14);return `<svg viewBox="0 0 ${w} ${h+26}" class=ch><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="${P.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`+P.map(p=>`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="3" fill="#f0647d"/><text x="${X(p[0])}" y="${h+12}" font-size="8" text-anchor="middle" fill="currentColor">${p[0]}</text>`).join('')+`<text x="2" y="${Y(ym)+4}" font-size="9" fill="currentColor">${r2(ym)}</text><text x="16" y="${h}" font-size="9" fill="currentColor">0</text><line x1="${m}" y1="${h}" x2="${w}" y2="${h}" stroke="currentColor"/><line x1="${m}" y1="${h}" x2="${m}" y2="4" stroke="currentColor"/>${G.map(g=>{let a=X(g[0]),b=Y(g[1]);return `<path d="${g[2]?`M${a} ${h}V${b}H${m}`:`M${m} ${b}H${a}V${h}`}" fill="none" stroke="#f08a2c" stroke-width="1.6" stroke-dasharray="5 3"/><circle cx="${a}" cy="${b}" r="4" fill="#f08a2c"/><text x="${a}" y="${h+23}" font-size="9" font-weight="bold" text-anchor="middle" fill="#f08a2c">${r2(g[0])}</text><text x="${m-3}" y="${b-3}" font-size="9" font-weight="bold" text-anchor="end" fill="#f08a2c">${r2(g[1])}</text>`}).join('')}</svg>`}
+/* ---------- 计算核心 ---------- */
+function grp(d,cont,w,lo){let a1=Math.min(...d),z1=Math.max(...d);if(d.some(v=>v%1))cont=true;if(lo==null||isNaN(lo))lo=Math.floor(a1/w)*w;let g=[];for(let l=lo;l<=z1;l=r2(l+w)){let u=cont?r2(l+w):r2(l+w-1);g.push({l,u,f:d.filter(v=>cont?v>=l&&v<u:v>=l&&v<=u).length,m:(l+u)/2,b:cont?[l,u]:[l-.5,u+.5]})}
+let T=d.length,mf=Math.max(...g.map(x=>x.f)),hi=g.findIndex(x=>x.f==mf);
+return `<p>数据 ${T} 个，最大值 ${z1}，最小值 ${a1}，<b>全距 = ${z1} − ${a1} = ${r2(z1-a1)}</b>；组距 = ${w}；共 ${g.length} 组。</p>`+tb(['组别','划记','频数','百分比','组中点','下组界','上组界'],g.map(x=>[cont?`${x.l}≤x<${x.u}`:`${x.l}–${x.u}`,'▮'.repeat(Math.min(x.f,25)),x.f,r2(x.f/T*100)+'%',x.m,x.b[0],x.b[1]]),hi)+`<p>合计 ${T}。<b>频数最高的是第 ${hi+1} 组</b>（${g[hi].f} 个，占 ${r2(g[hi].f/T*100)}%）。</p>`+bar(g.map(x=>x.m),g.map(x=>x.f),0)+'<p class=ex>↑ 直方图（横轴为组中点，条形相连）</p>'}
+function stem(d){d=[...d].sort((a,b)=>a-b);let a=Math.floor(d[0]/10),z=Math.floor(d[d.length-1]/10),r=[];for(let s=a;s<=z;s++){let L=d.filter(v=>Math.floor(v/10)==s).map(v=>r2(v-s*10));r.push([L.length,s,L.join(' ')])}return tb(['频数','茎','叶'],r)+'<p class=ex>叶＝个位数，茎＝其余数位；如 1|5 代表 15。共 '+d.length+' 个数据。</p>'}
+function pieT(L,V){let T=sum(V);return tb(['类别','数值','百分比','圆心角'],[...L.map((l,i)=>[l,V[i],`${fr(V[i],T)}×100% = ${r2(V[i]/T*100)}%`,`${fr(V[i],T)}×360° = ${r2(V[i]/T*360)}°`]),['总和',T,'100%','360°']])+pie(L,V)+bar(L,V)}
+function cum(s,w,f,G){let b=[s],c=[0];f.forEach((x,i)=>{b.push(r2(s+(i+1)*w));c.push(c[i]+x)});let T=c[f.length];return{b,c,T,html:tb(['组界','频数','少过(上组界)','累积频数','累积百分率'],f.map((x,i)=>[`${b[i]}–${b[i+1]}`,x,b[i+1],c[i+1],r2(c[i+1]/T*100)+'%']))+poly(b.map((x,i)=>[x,c[i]]),G)+'<p class=ex>↑ 累积频数多边形（横轴：上组界；起点累积频数为0）</p>'}}
+/* ---------- 计算器入口 ---------- */
+function c0(){let N=+$('#cN').value,n=+$('#cn').value,o=$('#o0');if(!(N>0&&n>0&&n<=N&&N<=1e5)){o.innerHTML='<b class=bad>请输入 0 &lt; 样本数 ≤ 总体数 的正整数</b>';return}let ids=sh(Array.from({length:N},(_,i)=>i+1)).slice(0,n).sort((a,b)=>a-b);o.innerHTML=`<p>抽样比例 = ${fr('n','N')} × 100% = ${fr(n,N)} × 100% = <b>${r2(n/N*100)}%</b></p><p>未被抽到：${N} − ${n} = <b>${N-n}</b></p><p>随机抽到的编号：${ids.slice(0,60).join('、')}${n>60?'…':''}</p><p class=ex>${n/N<.05?'抽样比例很小，要特别留意样本是否有代表性。':'样本占比较大，估计通常更接近总体。'}</p>`}
+function c1(){let d=nums($('#d1').value),o=$('#o1');if(d.length<2){o.innerHTML='<b class=bad>请至少输入2个数据</b>';return}let w=+$('#w1').value||10,lo=$('#l1').value;o.innerHTML=grp(d,$('#t1').value=='1',w,lo===''?null:+lo)}
+function c2(){let p=$('#d2').value.split(/[,，;；\n]+/).map(s=>s.split(/[:：]/)).filter(a=>a.length==2&&+a[1]>0);$('#o2').innerHTML=p.length<2?'<b class=bad>请按「名称:数值」输入至少2项</b>':pieT(p.map(a=>a[0].trim()),p.map(a=>+a[1]))}
+function c3(){let d=nums($('#d3').value);$('#o3').innerHTML=d.length?stem(d):'<b class=bad>请输入数据</b>'}
+function c4(){let s=+$('#s4').value,w=+$('#w4').value,f=nums($('#f4').value),o=$('#o4');if(!(w>0&&f.length)){o.innerHTML='<b class=bad>请输入组距与频数</b>';return}let r=cum(s,w,f),x=$('#x4').value,y=$('#y4').value,p=$('#p4').value,G=[],h='';
+const cl=(v,a,b)=>Math.min(Math.max(v,a),b);
+const I=x=>{x=cl(x,r.b[0],r.b[f.length]);let i=Math.min(Math.floor((x-s)/w),f.length-1);return r.c[i]+(x-r.b[i])/w*f[i]};
+const V=y=>{for(let i=0;i<f.length;i++)if(f[i]>0&&y<=r.c[i+1])return r.b[i]+(y-r.c[i])/f[i]*w;return r.b[f.length]};
+if(x!==''){let xx=cl(+x,r.b[0],r.b[f.length]),v=I(xx);G.push([xx,v,1]);h+=`<p>📍 <b>由 x 找 y</b>：x = ${xx} → 向上碰到折线 → 向左读出 y ≈ <b>${r2(v)}</b>（少过 ${xx} 的累积频数；${xx} 或以上 ≈ ${r2(r.T-v)}；累积百分率 ≈ ${r2(v/r.T*100)}%）</p>`}
+if(y!==''){let yy=cl(+y,0,r.T),v=V(yy);G.push([v,yy,0]);h+=`<p>📍 <b>由 y 找 x</b>：y = ${yy} → 向右碰到折线 → 向下读出 x ≈ <b>${r2(v)}</b></p>`}
+if(p!==''){let pp=cl(+p,0,100),yy=pp/100*r.T,v=V(yy);G.push([v,yy,0]);h+=`<p>📍 <b>由累积百分率找 x</b>：${pp}% → y = ${pp}%×${r.T} = ${r2(yy)} → 向右碰到折线 → 向下读出 x ≈ <b>${r2(v)}</b></p>`}
+o.innerHTML=cum(s,w,f,G).html+h+'<p class=ex>橙色虚线：从输入值出发，碰到折线后转向另一条轴。估计值由折线内插而得，是近似值。</p>'}
+/* ---------- 题目引擎 ---------- */
+function mc(q,c,w,e){let o=sh([c,...sh(w.filter((v,i)=>v!=c&&w.indexOf(v)==i)).slice(0,3)]);return{q,o,a:o.indexOf(c),e}}
+function mn(q,c,e,s=1,u=''){let w=new Set;while(w.size<3){let v=r2(c+(R(0,1)?1:-1)*s*R(1,4));if(v!==c&&v>0)w.add(v+u)}return mc(q,c+u,[...w],e)}
+const fl=(q,a,e)=>({q,a,e});
+const SC=[["了解全班同学每周上网的时间",0],["调查市场上零食的防腐剂是否符合标准",1],["测试工厂所生产灯泡的寿命",1],["全国人口普查",0],["了解班上同学最喜欢的联课活动",0],["测试椅子所能承受的重量",1],["电视节目的收视率调查",1],["选出某班跑得最快的同学参赛",0],["检验一批罐头是否变质",1]];
+const M0=[()=>{let s=pick(SC);return mc(`要调查「${s[0]}」，应采用哪种方式？`,s[1]?'抽样调查':'全面调查',[s[1]?'全面调查':'抽样调查'],s[1]?'对象很多，或测试会破坏产品，只能抽样。':'对象不多且要掌握每一个，用全面调查。')},
+()=>{let d=[["对总体中每个对象都进行调查","全面调查"],["对总体的某个子集进行调查，再推测总体","抽样调查"],["由全体研究对象所构成的集合","总体"],["被选取出来进行调查的子集","样本"]],x=pick(d);return mc(`「${x[0]}」称为？`,x[1],d.map(v=>v[1]),'')},
+()=>{let N=pick([200,400,500,800,1000]),n=N/pick([5,10,20,25]);return mn(`总体共 ${N} 人，抽取 ${n} 人作样本，样本占总体的百分之几？`,r2(n/N*100),`${fr('n','N')}×100%`,5,'%')},
+()=>{let N=pick([200,500,800,1000]),p=pick([5,10,20,25]);return mn(`总体有 ${N} 个对象，抽取 ${p}% 作样本，样本容量是多少？`,N*p/100,`${N}×${p}%`,10)}];
+const F0=[()=>{let N=pick([200,400,500,800,1000]),n=N/pick([5,10,20,25]);return fl(`总体共 ${N} 人，抽取 ${n} 人作样本，样本占总体的百分之几？（填数字，单位%）`,r2(n/N*100),`${fr('n','N')}×100%`)},
+()=>{let N=pick([120,300,500,800]),n=N/pick([4,5,10]);return fl(`全校 ${N} 名学生，抽 ${n} 名作样本，没被抽到的有多少人？`,N-n,`${N}−${n}`)},
+()=>{let N=pick([200,500,800,1000]),p=pick([5,10,20,25]);return fl(`总体有 ${N} 个对象，抽取 ${p}% 作样本，样本容量是多少？`,N*p/100,`${N}×${p}%`)}];
+const D=n=>Array.from({length:n},()=>R(10,59));
+const M1=[()=>{let d=D(10);return mn(`数据：${d.join('、')}。全距是多少？`,Math.max(...d)-Math.min(...d),'全距＝最大值－最小值',2)},
+()=>{let a=pick([0,10,20,30,40,50]),w=pick([5,10]),b=a+w-1;return mn(`分组 ${a}–${b}（整数分数）的组中点是？`,(a+b)/2,`组中点＝${fr('下限＋上限','2')}`,1)},
+()=>{let a=pick([10,20,30,40,50,60]);return mc(`分组 ${a}–${a+9}（整数分数）的下组界是？`,String(a-.5),[String(a),String(a+.5),String(a-1)],'下组界＝下限－0.5')},
+()=>{let d=D(14),a=pick([10,20,30,40,50]);return mn(`数据：${d.join('、')}。落在 ${a}–${a+9} 的数据有几个？`,d.filter(v=>v>=a&&v<a+10).length,'逐个数一数',1)},
+()=>{let T=pick([20,25,40,50]),f=pick([2,3,4,5,6]);return mn(`共 ${T} 人，某组频数为 ${f}，该组占百分之几？`,r2(f/T*100),`${fr('频数','总数')}×100%`,4,'%')},
+()=>mc('制作频数分配表时，第一组的下限必须____数据中的最小值。','小于或等于',['大于','大于或等于','恒等于'],'这样最小值才会被包含在第一组内')];
+const F1=[()=>{let d=D(10);return fl(`数据：${d.join('、')}。求全距。`,Math.max(...d)-Math.min(...d),'最大值－最小值')},
+()=>{let d=D(14),a=pick([10,20,30,40,50]);return fl(`数据：${d.join('、')}。落在 ${a}–${a+9} 的数据有几个？`,d.filter(v=>v>=a&&v<a+10).length,'逐个数')},
+()=>{let T=pick([20,25,40,50]),f=pick([3,5,7,9]);return fl(`共 ${T} 人，某组频数为 ${f}，该组占百分之几？（保留两位小数以内，单位%）`,r2(f/T*100),`${fr('频数','总数')}×100%`)},
+()=>{let a=pick([20,30,40,50]),w=pick([5,10]);return fl(`某组的下组界是 ${a-.5}，上组界是 ${a+w-.5}，组距是多少？`,w,'上组界－下组界')}];
+const CH=[["表示一段时间内数量变化的趋势","线形图"],["以扇形面积表示各部分占整体的百分比","圆形图"],["既表示分布，又保留部分原始数据","茎叶图"],["用面积表示分组数据的频数分配","直方图"],["以宽度相同的条形长短表示数据","条形图"],["用实物的形象表示数据","象形图"]];
+function ser(){let y=R(2005,2015);for(;;){let v=Array.from({length:6},()=>R(2,20)*5),d=v.slice(1).map((x,i)=>Math.abs(x-v[i])),m=Math.max(...d);if(d.filter(x=>x==m).length==1)return{y,v,m,i:d.indexOf(m)}}}
+const pa=()=>{let T=pick([40,80,120,200]),p=pick([10,20,25,30,40]);return{T,p,n:T*p/100,A:r2(p*3.6)}};
+const xe=()=>{let x=pick([10,15,20,25]),k=pick([3,4,5,6]);return{x,k,fx:360-(3+k)*x}};
+const M2=[()=>{let a=pa();return mn(`某班共 ${a.T} 人，其中 ${a.n} 人喜欢足球。在圆形图中，足球扇形的圆心角是多少度？`,a.A,`${fr(a.n,a.T)}×360°`,12,'°')},
+()=>{let A=pick([36,54,72,90,108,144,180]);return mn(`圆形图中某扇形的圆心角是 ${A}°，它占总数的百分之几？`,r2(A/3.6),`${fr(A,360)}×100%`,5,'%')},
+()=>{let x=pick(CH),o=sh(CH.map(v=>v[1]).filter(v=>v!=x[1])).slice(0,3);return mc(`「${x[0]}」描述的是哪一种统计图？`,x[1],o,'')},
+()=>{let e=xe();return mn(`圆形图中四个圆心角分别是 ${e.fx}°、x、2x、${e.k}x，求 x（度）。`,e.x,`${e.fx}+x+2x+${e.k}x=360 → ${3+e.k}x=${360-e.fx}`,5,'°')},
+()=>{let a=pick([1000,2000,3000]);return mn(`画频数多边形时，组 ${a}≤x<${a+500} 应用哪个横坐标？`,a+250,`用组中点＝${fr('下限＋上限','2')}`,100)},
+()=>{let s=ser(),L=i=>`${s.y+i}–${s.y+i+1}`,o=sh([0,1,2,3,4].filter(i=>i!=s.i)).slice(0,3).map(L);return mc(`某数据各年数值：${s.v.map((x,i)=>s.y+i+'年:'+x).join('，')}。折线图中哪一段最陡（变化最大）？`,L(s.i),o,`变化量最大为 ${s.m}`)}];
+const F2=[()=>{let a=pa();return fl(`某班共 ${a.T} 人，其中 ${a.n} 人喜欢足球。圆形图中足球扇形的圆心角是多少度？`,a.A,`${fr(a.n,a.T)}×360°`)},
+()=>{let e=xe();return fl(`圆形图中四个圆心角分别是 ${e.fx}°、x、2x、${e.k}x，求 x（度）。`,e.x,`${3+e.k}x=${360-e.fx}`)},
+()=>{let A=pick([60,90,120,72,40]),t=pick([360,540,720]),P=t*A/360;return fl(`食物含蛋白质 ${P} 克，在圆形图中圆心角为 ${A}°，求食物的总重量（克）。`,t,`${fr(P+'×360',A)}`)},
+()=>{let s=ser();return fl(`某数据各年数值：${s.v.map((x,i)=>s.y+i+'年:'+x).join('，')}。相邻两年变化最大的一段相差多少？`,s.m,'逐段求差，取绝对值最大者')}];
+function cg(ev){let b=pick([30,40,50]),w=pick([5,10]),f=Array.from({length:5},()=>ev?R(1,6)*2:R(2,12)),c=[0];f.forEach((x,i)=>c.push(c[i]+x));return{b,w,f,c,T:c[5],txt:f.map((x,i)=>`${b+i*w}–${b+(i+1)*w}:${x}`).join('；')}}
+const M3=[()=>{let g=cg(),k=R(1,4);return mn(`各组（范围:频数）${g.txt}。少过 ${g.b+k*g.w} 的累积频数是？`,g.c[k],'把前面各组频数累加',3)},
+()=>{let g=cg(),k=R(1,4);return mn(`各组（范围:频数）${g.txt}。${g.b+k*g.w} 或以上的有多少个？`,g.T-g.c[k],'总数－少过该值的累积频数',3)},
+()=>{let g=cg(),k=R(1,4);return mn(`各组（范围:频数）${g.txt}。少过 ${g.b+k*g.w} 的累积百分率是多少？`,r2(g.c[k]/g.T*100),`${fr('累积频数','总数')}×100%`,6,'%')},
+()=>mc('绘制累积频数多边形时，横坐标应使用各组的____。','上组界',['组中点','下组界','组距'],'累积频数表示「少过上组界」的个数'),
+()=>{let g=cg();return mn(`各组频数：${g.f.join('、')}。累积频数多边形最高点的纵坐标是？`,g.T,'最后一组的累积频数＝总数',3)}];
+const F3=[()=>{let g=cg(),k=R(1,4);return fl(`各组（范围:频数）${g.txt}。少过 ${g.b+k*g.w} 的累积频数是？`,g.c[k],'累加')},
+()=>{let g=cg(),k=R(1,4);return fl(`各组（范围:频数）${g.txt}。${g.b+k*g.w} 或以上的有多少个？`,g.T-g.c[k],'总数－累积频数')},
+()=>{let g=cg(),k=R(1,4);return fl(`各组（范围:频数）${g.txt}。少过 ${g.b+k*g.w} 的累积百分率是多少？（单位%，保留两位小数以内）`,r2(g.c[k]/g.T*100),`${fr('累积频数','总数')}×100%`)},
+()=>{let g=cg(),i=R(0,2),j=R(i+1,4);return fl(`各组（范围:频数）${g.txt}。介于 ${g.b+i*g.w} 与 ${g.b+(j+1)*g.w} 之间的有多少个？`,sum(g.f.slice(i,j+1)),'把这几组频数相加')}];
+const MH=[()=>{let p=pick([90,92,95,80]),q=pick([20,25,40]);return mn(`某国居民中 ${p}% 是公民，公民中华裔占 ${q}%。华人占全国居民的百分之几？`,r2(p*q/100),`${p}%×${q}%`,3,'%')},
+()=>{let B=pick([30,40,45,60,72,90]),n=R(2,10);return mn(`某班喜爱榴莲冰淇淋的扇形圆心角为 ${B}°，有 ${n} 名学生，全班共有多少人？`,n*360/B,`${fr(n+'×360',B)}`,4)},
+()=>{let g=cg(1),i=R(0,4);return mn(`各组（范围:频数）${g.txt}。用累积频数多边形估计，少过 ${g.b+i*g.w+g.w/2} 的有多少个？`,g.c[i]+g.f[i]/2,'该点位于该组正中，取该组频数的一半加前面累积',3)}];
+const FH=[()=>{let p=pick([90,92,95,80]),q=pick([20,25,40]);return fl(`某国居民中 ${p}% 是公民，公民中华裔占 ${q}%。华人占全国居民的百分之几？（单位%）`,r2(p*q/100),`${p}%×${q}%`)},
+()=>{let B=pick([30,40,45,60,72,90]),n=R(2,10);return fl(`某班喜爱榴莲冰淇淋的扇形圆心角为 ${B}°，有 ${n} 名学生，全班共有多少人？`,n*360/B,`${fr(n+'×360',B)}`)},
+()=>{let g=cg(1),i=R(0,4);return fl(`各组（范围:频数）${g.txt}。用累积频数多边形估计，少过 ${g.b+i*g.w+g.w/2} 的有多少个？`,g.c[i]+g.f[i]/2,'前面累积＋该组频数的一半')}];
+const tg=(a,t)=>a.map(g=>()=>Object.assign(g(),{t}));
+const FM=[...tg(M0,'3.1'),...tg(M1,'3.2'),...tg(M2,'3.3'),...tg(M3,'3.4'),...tg(MH,'难题'),...tg(MH,'难题')],
+FF=[...tg(F0,'3.1'),...tg(F1,'3.2'),...tg(F2,'3.3'),...tg(F3,'3.4'),...tg(FH,'难题'),...tg(FH,'难题')];
+function quiz(el,M,F,nm,nf,gate){
+const S=(g,n)=>{let r=[];while(r.length<n)r.push(...sh(g));return r.slice(0,n)};
+function go(){const m=S(M,nm).map(g=>g()),f=S(F,nf).map(g=>g());let d=0,ok=0,fd=0,fk=0,bad=new Set;
+el.innerHTML=m.map((q,i)=>`<div class=q data-i=${i}><b>${i+1}.</b> ${q.q}<div>${q.o.map((o,j)=>`<button class=op data-j=${j}>${'ABCD'[j]}. ${o}</button>`).join('')}</div><div class=ex></div></div>`).join('')+`<div class=rs></div><div class=fb hidden><h4>✏️ 作答题（填写数字）</h4>${f.map((q,i)=>`<div class=q data-f=${i}><b>填${i+1}.</b> ${q.q}<div class=row><input type=number step=any inputmode=decimal><button class="btn sub">提交</button></div><div class=ex></div></div>`).join('')}</div><div class=sm></div><p><button class=btn data-nw=1>🔄 换一组新题</button></p>`;
+const Q=s=>el.querySelector(s);
+const sm=()=>{if(fd<nf)return;let t=ok+fk,a=nm+nf,p=t/a*100;Q('.sm').innerHTML=`<div class=card><h3>🏁 本轮得分：${t} / ${a}（${Math.round(p)}%）</h3><p>${p>=90?'🏆 优秀！概念掌握得很扎实。':p>=70?'👍 良好，把错题再巩固一下就更稳了。':p>=50?'🙂 基本及格，建议回到例题与计算器多练习。':'💪 还要加油，先复习例题，再点「换一组新题」重做。'}${bad.size?`<br>需加强：${[...bad].join('、')}`:''}</p></div>`};
+el.onclick=e=>{let t=e.target;if(t.dataset.nw)return go();
+if(t.classList.contains('op')){let c=t.closest('.q'),q=m[c.dataset.i],j=+t.dataset.j;if(c.dataset.l)return;c.dataset.l=1;c.querySelectorAll('.op').forEach((b,k)=>{b.disabled=true;if(k==q.a)b.classList.add('ok');else if(k==j)b.classList.add('no')});let r=j==q.a;if(r)ok++;else if(q.t)bad.add(q.t);c.querySelector('.ex').innerHTML=(r?'<b class=good>✅ 正确！</b>':`<b class=bad>❌ 错误，正确答案是 ${'ABCD'[q.a]}</b>`)+(q.e?'<br>'+q.e:'');
+if(++d==nm){let rs=Q('.rs'),fb=Q('.fb');if(!gate||ok>=gate){rs.innerHTML=`<p><b class=good>选择题答对 ${ok}/${nm}${gate?'，解锁作答题！🎉':''}</b></p>`;fb.hidden=false}else rs.innerHTML=`<p><b class=bad>答对 ${ok}/${nm}，需要答对 ${gate} 题或以上才能做作答题。</b>看看解析，点下方「换一组新题」再试一次！</p>`}}
+else if(t.classList.contains('sub')){let c=t.closest('.q'),q=f[c.dataset.f],i=c.querySelector('input');if(i.value==='')return;i.disabled=t.disabled=true;let r=Math.abs(+i.value-q.a)<=.06;if(r)fk++;else if(q.t)bad.add(q.t);c.querySelector('.ex').innerHTML=(r?'<b class=good>✅ 正确！</b>':`<b class=bad>❌ 错误，正确答案是 ${q.a}</b>`)+(q.e?'<br>解析：'+q.e:'');fd++;sm()}}}
+go()}
+/* ---------- 课文内容 ---------- */
+const H=[122,127,132,145,135,150,156,147,148,154,127,140,148,150,152,150,149,158,152,125,134,145,147,152,151,147,146,152,150,147,132,150,145,155,154,150,147,150,149,145].map((v,i)=>i==1?127:v);
+const SCI=[20,71,56,53,49,95,64,36,65,6,50,51,53,44,14,64,73,41,90,57,52,32,76,81,93,91,31,71,37,60,62,18,93,65,86,30,84,8,56,41];
+const S49=[49,47,65,56,54,44,41,53,31,55,47,38,9,74,39,87,50,75,49,32,66,49,38,22,15,70,74,35,39,64,87,45,88,45,87,89,84,37,14,50,64,68,84,57,47,2,74,40,40];
+const fr=(a,b)=>`<span class=fr><i>${a}</i><i>${b}</i></span>`;
+const qz=(i,t)=>`<div class=card><h3>📝 ${t}</h3><div id=qz${i}></div></div>`;
+const TB=[
+{t:'3.1',n:'统计学的基本概念',h:`<div class=card><h3>📘 核心概念</h3><p><b>统计学</b>：研究如何收集、整理、分析数据并得出结论的科学。</p><p><b>总体</b>：由全体研究对象所构成的集合。<b>样本</b>：从总体中选取的子集。</p><p><b>全面调查</b>：对总体中每个对象都调查（耗人力财力时间，有时不可行，如逐个测试灯泡寿命）。<b>抽样调查</b>：只调查样本，再推测总体；样本的代表性决定估计的准确度。</p></div>
+<details open class=card><summary><b>随堂练习1 解说</b></summary><p>(a) 了解全班同学每周上网时间 → <b>全面调查</b>（人数少，可逐一询问）。</p><p>(b) 调查零食防腐剂是否合标 → <b>抽样调查</b>（种类、数量太多）。</p><p>(c) 家私厂测椅子承重 → <b>抽样调查</b>（测试会损坏椅子，不可能全测）。</p></details>
+<details class=card><summary><b>思考题 解说</b></summary><p>① 鞋厂每种尺码都造 500 双：<b>不合理</b>，各尺码的需求不同，应按市场需求的分布来安排。</p><p>② 只在百货商场问卷：样本只来自「会逛商场」的人，<b>代表性不足</b>，应在不同地点、不同类型的年轻人中随机抽样。</p></details>
+<details class=card><summary><b>表1 初三德班最喜爱的活动（频数分配表）</b></summary>${tb(['活动类型','人数','百分比'],[['制服团体',7,'14%'],['体育团体',6,'12%'],['演艺团体',14,'28%'],['学术团体',16,'32%'],['服务团体',7,'14%'],['合计',50,'100%']])}<p class=m>百分比＝${fr('人数','50')}×100%；百分比合计应为 100%，可用来检查是否算错。</p></details>
+<div class="card calc"><h3>🧮 抽样计算器</h3><div class=row>总体数 N <input type=number id=cN value=800> 样本数 n <input type=number id=cn value=40> <button class="btn pri" onclick="c0()">计算</button></div><div id=o0></div></div>${qz(0,'随堂测验（5题选择题）')}`,i(){c0()}},
+{t:'3.2',n:'频数分配表',h:`<div class=card><h3>📘 数据分组步骤</h3><p>① <b>全距</b>＝最大值－最小值　② 决定<b>组距</b>与组数（组距越大，组数越少）　③ 设<b>组限</b>：第一组下限 ≤ 最小值，最后一组上限 ≥ 最大值　④ 作表（划记、频数）。</p><p><b>组中点</b>＝${fr('上限＋下限','2')}。整数数据的 <b>下组界＝下限−0.5</b>，<b>上组界＝上限＋0.5</b>；组距＝上组界−下组界。连续数据用 a≤x&lt;b 分组时，组界＝组限。</p></div>
+<details open class=card><summary><b>例：40 位学生身高（体育老师选啦啦队）</b></summary><p>最大值 158，最小值 122，全距 = 158−122 = 36。取组距 5 → ${fr(36,5)} = 7.2，得 8 组；第一组下限取 120（≤122）。</p>${grp(H,0,5,120)}<p>频数最高的两组是 145–149 与 150–154（共 29 人），老师可从这两组选 20 人。</p></details>
+<details open class=card><summary><b>例题1 初三忠班科学测验（以 0–9, 10–19, … 分组）</b></summary>${grp(SCI,0,10,0)}<p>(a) 第五组 40–49：上、下限 49 与 40；上、下组界 49.5 与 39.5；组中点 = ${fr('40+49','2')} = <b>44.5</b>。</p><p>(b) 组距 = 49.5 − 39.5 = <b>10</b>。　(c) 及格但少过 80：6+4 = <b>10 人</b>。</p><p>(d) 不及格：2+2+1+5+4+8 = 22 人，${fr(22,40)}×100% = <b>55%</b>。</p><p>(e) 出现 100 分：可用 1–10, 11–20, … 分组。(f) 同时有 0 分和 100 分：用 0≤x&lt;10, 10≤x&lt;20, …, 90≤x≤100。</p></details>
+<div class="card calc"><h3>🧮 频数分配表计算器</h3><p class=m>输入数据（逗号或空格分隔），自动求全距、分组、频数、百分比、组中点与组界，并画出直方图。</p><textarea id=d1 rows=3>49 47 65 56 54 44 41 53 31 55 47 38 9 74 39 87 50 75 49 32 66 49 38 22 15 70 74 35 39 64 87 45 88 45 87 89 84 37 14 50 64 68 84 57 47 2 74 40 40</textarea><div class=row>分组方式 <select id=t1><option value=0>整数分组 (0–9)</option><option value=1>连续分组 (a≤x&lt;b)</option></select> 组距 <input type=number id=w1 value=10> 第一组下限（可空） <input type=number id=l1 value=0> <button class="btn pri" onclick="c1()">生成</button></div><div id=o1></div></div>${qz(1,'随堂测验（5题选择题）')}`,i(){c1()}},
+{t:'3.3',n:'统计图',h:`<div class=card><h3>📘 各种统计图的特点</h3><p>🧑 <b>象形图</b>：形象生动、易引起兴趣，但不精确、绘制较麻烦。<br>📊 <b>条形图</b>：宽度相等、间距相等；数值表达精确（复式：并排；组合：叠起，可看总数）。<br>🥧 <b>圆形图</b>：扇形面积表示百分比，圆心角＝${fr('部分','总数')}×360°；百分比很接近时不易分辨。<br>📈 <b>线形图</b>：折线表示随时间的变化趋势。<br>🌿 <b>茎叶图</b>：显示分布且保留原始数据。<br>🏛 <b>直方图</b>：面积表示分组数据的频数；<b>频数多边形</b>：以组中点为横坐标，两端各加一个频数为0的点。</p></div>
+<details open class=card><summary><b>例题1 条形图：培才中学各年级人数</b></summary>${bar(['初一','初二','初三','高一','高二','高三'],[417,340,280,320,195,140])}<p class=m>注意：条形宽度相等，间距相等。</p></details>
+<details open class=card><summary><b>例题3 圆形图：文科216、理科108、商科396</b></summary>${pieT(['文科','理科','商科'],[216,108,396])}<p class=m>步骤：求总数 → 求百分比及圆心角 → 用量角器作圆心角 → 涂色并标明百分比。</p></details>
+<details class=card><summary><b>例题5 圆心角与方程</b></summary><p>(a) 140° + x + 2x + 8x = 360° → 11x = 220° → <b>x = 20°</b>。</p><p>(b) 蛋白质 210 克对应 140°：${fr(210,'总重量')} = ${fr(140,360)} → 总重量 = ${fr('210 × 360',140)} = <b>540 克</b>。</p></details>
+<details class=card><summary><b>例题6 线形图：吉隆坡人口（百万）</b></summary>${poly([[1960,.34],[1970,.45],[1980,.97],[1990,2.1],[2000,4.18],[2010,5.81]])}<p>(a) 1990 至 2000 年的线段最陡，人口增加最快。(b) 在图上由 1995 年向上找折线再向左读出，约 <b>320 万人</b>（估计值）。</p><p class=m>例题7：平均最低温变化较小；最高、最低温相差最大的月份是八月。思考：纵轴不从零开始会放大变化。</p></details>
+<details class=card><summary><b>例题8 茎叶图：49 名学生数学成绩</b></summary>${stem(S49)}</details>
+<details class=card><summary><b>例题9 直方图：40 名学生身高</b></summary>${bar([122,127,132,137,142,147,152,157],[1,2,3,1,1,14,15,3],0)}<p>横轴标上下组界 119.5, 124.5, … 159.5；组距相等时，长方形的高＝频数。</p></details>
+<details class=card><summary><b>例题11 频数多边形：利通公司职员月薪</b></summary>${poly([[750,0],[1250,7],[1750,9],[2250,15],[2750,24],[3250,10],[3750,5],[4250,0]])}<p>用组中点作横坐标；第一组前、最后一组后各加一个频数为 0 的点（750 与 4250）。优点：易于比较多组数据的分布。</p></details>
+<div class="card calc"><h3>🧮 圆形图／条形图计算器</h3><p class=m>格式「名称:数值」，用逗号分隔。</p><textarea id=d2 rows=2>巫裔:20, 华裔:22, 印裔:7, 其他:1</textarea><div class=row><button class="btn pri" onclick="c2()">生成</button></div><div id=o2></div></div>
+<div class="card calc"><h3>🧮 茎叶图生成器</h3><textarea id=d3 rows=2>168 180 172 176 165 170 169 180 172 168 178 170 178 165 170 168 175 176 178 172 172 165 180 175 180 169 172 175 170 176</textarea><div class=row><button class="btn pri" onclick="c3()">生成</button></div><div id=o3></div></div>${qz(2,'随堂测验（5题选择题）')}`,i(){c2();c3()}},
+{t:'3.4',n:'累积频数',h:`<div class=card><h3>📘 累积频数</h3><p>制作累积频数分配表：列出各组<b>上组界</b>，把频数逐组累加。累积频数多边形：横坐标＝上组界，纵坐标＝累积频数，<b>起点（最小下组界）的累积频数为 0</b>，各点以直线连接。把最高点到横轴的垂线分成 100 等份，即得<b>累积频数百分率</b>。</p></div>
+<details open class=card><summary><b>42 名学生体重</b></summary>${cum(35,5,[1,2,4,8,11,9,5,2]).html}<p>少过 55 kg 有 15 人；70 kg 或以上有 42−40 = 2 人；由图可估计少过 52 kg 约有 10 人。</p></details>
+<details open class=card><summary><b>例题1 50 名学生的测验成绩</b></summary>${cum(.5,10,[1,6,11,14,7,5,3,2,1]).html}<p>(b)(i) 60% 及格 → 40% 不及格 → 累积百分率 40%（累积频数 20）→ 由图得 <b>32 分</b>为及格分数。</p><p>(ii) 最好的 8% → 92% 得不到特优 → 由图得最低分数约 <b>68 分</b>。</p><p>(iii) 少于 28 分的约 15 名 → 28 分或以上：50−15 = <b>35 名</b>。</p><p class=m>这些答案都是由图估计的近似值。</p></details>
+<div class="card calc"><h3>🧮 累积频数计算器</h3><div class=row>第一个下组界 <input type=number step=any id=s4 value=0.5> 组距 <input type=number step=any id=w4 value=10></div><div class=row>各组频数 <input id=f4 value="1,6,11,14,7,5,3,2,1" style="width:70%"></div><p class=m>下面三格可填任意一个或多个（留空则不画）：</p><div class=row>x（上组界）<input type=number step=any id=x4 value=28> → 求 y　　y（累积频数）<input type=number step=any id=y4 value=35> → 求 x　　累积百分率 <input type=number step=any id=p4> % → 求 x <button class="btn pri" onclick="c4()">计算</button></div><div id=o4></div></div>${qz(3,'随堂测验（5题选择题）')}`,i(){c4()}},
+{t:'总复习',n:'综合挑战',h:`<div class=card><h3>📋 重点公式速查</h3>${tb(['项目','公式'],[['全距','最大值 − 最小值'],['组中点',fr('上限 + 下限','2')],['整数分组的组界','下组界 = 下限 − 0.5；上组界 = 上限 + 0.5'],['百分比',`${fr('频数','总数')} × 100%`],['圆心角',`${fr('部分','总数')} × 360°`],['累积频数','逐组累加，横坐标用上组界'],['少过 / 或以上','少过 = 累积频数；或以上 = 总数 − 少过']])}</div><div class=card><h3>🏆 总复习测验</h3><p class=m>10 题选择 + 5 题填充，题目抽自 3.1–3.4 及课本总复习中较难的题型（华人百分比、圆心角求人数、累积频数估计等）。选择题全部答完后才显示填充题，最后给出分数评估。</p><div id=qz4></div></div>`,i(){}}];
+const nav=$('nav'),main=$('main');
+TB.forEach((t,i)=>{nav.insertAdjacentHTML('beforeend',`<button data-i=${i}>${t.t} ${t.n}</button>`);main.insertAdjacentHTML('beforeend',`<section id=s${i}>${t.h}<i class=hw>${ZW}${WM[i%4]}</i></section>`);t.i()});
+[[M0,F0],[M1,F1],[M2,F2],[M3,F3]].forEach((p,i)=>quiz($('#qz'+i),p[0],p[1],5,2,3));quiz($('#qz4'),FM,FF,10,5,0);
+function show(i){document.querySelectorAll('section').forEach((s,k)=>s.classList.toggle('on',k==i));nav.querySelectorAll('button').forEach((b,k)=>{b.classList.toggle('on',k==i);if(k==i)b.scrollIntoView({inline:'center',block:'nearest'})});scrollTo(0,0)}
+nav.onclick=e=>{let b=e.target.closest('button');if(b)show(+b.dataset.i)};show(0);
+function wm(){if(!$('#wmf')){let svg=`<svg xmlns="http://www.w3.org/2000/svg" width="480" height="340" font-family="sans-serif" font-size="15" fill="#888" fill-opacity=".17" text-anchor="middle">${[[120,50],[360,130],[120,210],[360,290]].map((p,i)=>`<text x="${p[0]}" y="${p[1]}" transform="rotate(-20 ${p[0]} ${p[1]})">${WM[i]}</text>`).join('')}</svg>`,d=document.createElement('div');d.id='wmf';d.style.backgroundImage=`url("data:image/svg+xml,${encodeURIComponent(svg)}")`;document.body.appendChild(d)}
+if(!$('#ft')){let f=document.createElement('footer');f.id='ft';f.innerHTML=`© 2026 ${WM[0]} · ${WM[3]}<br>初三数学 第3章 统计表与统计图 互动课程 · 仅供教学使用，未经许可请勿转载或售卖<i class=hw>${ZW}${WM.join('|')}</i>`;document.body.appendChild(f)}}
+wm();new MutationObserver(wm).observe(document.body,{childList:true});
+setInterval(()=>{let d=$('#wmf'),c=d&&getComputedStyle(d);if(!c||c.display=='none'||c.visibility=='hidden'||+c.opacity<.5){d&&d.remove();wm()}},3000);
+console.log('%c'+WM[0]+' | '+WM[3],'color:#2f6fed');
+</script></body></html>
