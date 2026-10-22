@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 ecchua79 · 峇株吧辖华仁中学">
+<title>初三数学下册 第8章 圆 · 互动课程</title>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<style>
+:root{color-scheme:dark;--bg:#0a1424;--card:#111e36;--ink:#e8eefa;--mut:#8fa3c4;--ac:#38bdf8;--ok:#22c55e;--bad:#f43f5e;--bd:#25375a;--gr:rgba(56,189,248,.06)}
+[data-theme=light]{color-scheme:light;--bg:#f3f7fc;--card:#fff;--ink:#13223f;--mut:#58698a;--ac:#0369a1;--ok:#15803d;--bad:#be123c;--bd:#cbd8ec;--gr:rgba(3,105,161,.07)}
+html{font-size:16px}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);background-image:linear-gradient(var(--gr) 1px,transparent 1px),linear-gradient(90deg,var(--gr) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;line-height:1.7}
+.top{position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--bd)}
+.bar{display:flex;align-items:center;gap:10px;padding:8px 14px;flex-wrap:wrap}
+.bar h1{font-size:1.05rem;margin:0;flex:1;min-width:180px}
+.btn,.opt,.tab{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--bd);border-radius:8px;padding:6px 12px;cursor:pointer}
+.btn:hover,.opt:hover:not(:disabled),.tab:hover{border-color:var(--ac)}
+.btn.pri{background:var(--ac);color:#04121f;border-color:var(--ac);font-weight:700}
+#tabs{display:flex;gap:6px;overflow-x:auto;padding:6px 14px 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.tab{white-space:nowrap;flex:0 0 auto}
+.tab.on{background:var(--ac);color:#04121f;border-color:var(--ac);font-weight:700}
+main{max-width:860px;margin:0 auto;padding:14px}
+.pn{display:none}.pn.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin:14px 0}
+h2{margin:.4em 0;font-size:1.35rem}h3{margin:.2em 0 .5em;font-size:1.1rem;color:var(--ac)}h4{margin:.2em 0;font-size:1rem}
+.mut{color:var(--mut);font-size:.9rem}
+.key{border-left:4px solid var(--ac);padding:2px 12px;margin:8px 0}
+.ex{border:1px dashed var(--bd);border-radius:10px;padding:8px 12px;margin:10px 0}
+.ex summary{cursor:pointer;font-weight:700}
+.sol{margin-top:6px;border-top:1px solid var(--bd);padding-top:6px}
+.cin{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.cin label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mut);gap:2px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:6px 8px;width:9.5em}
+.out{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin-top:10px}
+.out>div{flex:1 1 280px}
+.rd{position:relative;display:inline-block;white-space:nowrap;padding:.1em 1px 0 .85em;margin:0 1px;line-height:1.2}
+.rd>.tk{position:absolute;left:0;top:0;width:.8em;height:100%;max-width:none;overflow:visible;background:none;border:0;border-radius:0;stroke:currentColor;stroke-width:1.3;fill:none}
+.rd>.tk path{vector-effect:non-scaling-stroke}
+.rd>.bar{position:absolute;left:.8em;top:0;width:calc(100% - .8em);height:3px;max-width:none;background:none;border:0;border-radius:0;stroke:currentColor;stroke-width:1.4}
+svg text{paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+svg .ac{stroke:var(--ac);stroke-width:1.5;fill:none}
+.figs{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}.figs figure{margin:0;flex:1 1 150px;max-width:240px;text-align:center}.figs figcaption{font-size:.8rem;color:var(--mut)}
+.out ol{margin:0;padding-left:1.2em}
+.err{color:var(--bad)}
+svg{width:100%;max-width:330px;background:var(--bg);border:1px solid var(--bd);border-radius:10px}
+svg .s{stroke:var(--ink);fill:none;stroke-width:1.5}svg .a{stroke:var(--ac);stroke-width:2.2}svg .g{stroke:var(--mut);stroke-dasharray:4 3}svg .f{fill:var(--ac);fill-opacity:.12}
+svg .d{fill:var(--ac)}svg .t{fill:var(--ink);font-size:13px}svg .h{fill:var(--ac);font-size:13px;font-weight:700}
+.qh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.q{margin:12px 0;padding:10px 12px;border:1px solid var(--bd);border-radius:10px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px}
+.opt:disabled{cursor:default;opacity:.75}
+.opt.ok{background:var(--ok);color:#04140a;border-color:var(--ok);opacity:1;font-weight:700}
+.opt.bad{background:var(--bad);color:#fff;border-color:var(--bad);opacity:1}
+.fb{margin-top:6px;font-size:.92rem}.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+.fi{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.sum{margin:10px 0;font-weight:700}.sum.ok{color:var(--ok)}.sum.bad{color:var(--bad)}
+.fin{margin:12px 0;padding:12px;border-radius:10px;border:2px solid var(--ac);font-weight:700}
+footer{text-align:center;color:var(--mut);font-size:.82rem;padding:22px 12px 30px;border-top:1px solid var(--bd);margin-top:20px}
+#wm{position:fixed;left:-50vw;top:-50vh;width:200vw;height:200vh;display:flex;flex-wrap:wrap;align-content:center;gap:70px 60px;transform:rotate(-24deg);pointer-events:none;user-select:none;z-index:9999;opacity:.07;font-size:18px;color:var(--ink)}
+#wm span{white-space:nowrap}
+.hid{position:absolute;left:-9999px;top:0;font-size:1px;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="top">
+ <div class="bar"><h1>📐 初三数学下册 · 第8章 圆</h1>
+  <span class="mut">字体</span><button class="btn" id="fm">A-</button><button class="btn" id="f0">A</button><button class="btn" id="fp">A+</button>
+  <button class="btn pri" id="th">☀️ 白天</button></div>
+ <nav id="tabs"></nav>
+</div>
+<main id="main"></main>
+<footer id="ft">© 2026 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79<br>《数学》初三下册 第8章 圆（8.1–8.6）互动课程 · 离线可用<span class="hid">峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</span></footer>
+<script>
+const $=s=>document.querySelector(s);
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),P=a=>a[R(0,a.length-1)];
+const SH=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const rad=d=>d*Math.PI/180,deg=r=>r*180/Math.PI,f2=x=>+x.toFixed(2),fmt=x=>Number.isInteger(x)?x:+x.toFixed(2);
+/* ============ 题目生成引擎 ============ */
+const TR=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29]];
+const trip=()=>{const t=P(TR),k=t[2]<=17?P([1,1,2]):1,s=SH([t[0]*k,t[1]*k]);return[s[0],s[1],t[2]*k]};
+const Q=(q,a,e,u)=>({q,a,e,u});
+const PAR=[[13,24,10],[5,8,6],[10,16,12],[17,30,16],[25,48,14]];
+const g1=[
+()=>{const n=P([3,4,5,6,8,9,10,12]),a=360/n;return Q(`圆O上的点把圆 ${n} 等分，相邻两个分点与圆心连线所夹的圆心角是多少？`,a,`360°÷${n}＝${a}°（等弧对等圆心角）`,'°')},
+()=>{const a=5*R(4,16);return Q(`⊙O中，弦AB＝弦BC，∠AOB＝${a}°，求∠AOC。`,2*a,`等弦对等圆心角：∠BOC＝∠AOB＝${a}°，∠AOC＝${a}°+${a}°＝${2*a}°`,'°')},
+()=>{const k=R(3,15);return Q(`⊙O中，弦AB＝弦BC，弧BC长 ${k} cm，求弧AC的长。`,2*k,`等弦对等弧：弧AB＝弧BC＝${k} cm，弧AC＝${2*k} cm`,' cm')},
+()=>{const n=P([3,4,5,6,9,10]),k=R(1,n-1),a=180*k/n;return Q(`AD是⊙O的直径，半圆被分成 ${n} 段相等的弧，点B是从A数起第 ${k} 个分点，求∠AOB。`,a,`每段弧对应 180°÷${n}＝${180/n}°，共 ${k} 段：${a}°`,'°')},
+()=>{const m=R(3,12);return Q(`同圆中，∠AOB＝∠COD，OM⊥AB于M，ON⊥CD于N，OM＝${m} cm，求ON。`,m,`圆心角相等 ⇒ 弦相等 ⇒ 弦心距相等：ON＝OM＝${m} cm`,' cm')}];
+const g2=[
+()=>{const t=2*R(10,85);return Q(`O为圆心，弧BC所对的圆心角∠BOC＝${t}°，求同弧所对的圆周角∠BAC。`,t/2,`圆周角＝½圆心角＝½×${t}°＝${t/2}°`,'°')},
+()=>{const a=R(15,85);return Q(`O为圆心，弧BC所对的圆周角∠BAC＝${a}°，求圆心角∠BOC（劣角）。`,2*a,`圆心角＝2×圆周角＝${2*a}°`,'°')},
+()=>{const t=10*R(21,32);return Q(`O为圆心，优角∠BOC＝${t}°，点A在优弧BC上，求圆周角∠BAC。`,(360-t)/2,`劣角∠BOC＝360°−${t}°＝${360-t}°，圆周角＝½×${360-t}°＝${(360-t)/2}°`,'°')},
+()=>{const a=R(20,70);return Q(`AB是⊙O的直径，C在圆上，∠CAB＝${a}°，求∠ABC。`,90-a,`半圆含直角：∠ACB＝90°，∠ABC＝90°−${a}°＝${90-a}°`,'°')},
+()=>{const p=R(30,70),q=R(30,70);return Q(`A、B、C、D在同一圆上，C、D在弦AB同侧，∠ACB＝${p}°，∠DAB＝${q}°，求△ABD中的∠ABD。`,180-p-q,`同弧圆周角相等：∠ADB＝${p}°，∠ABD＝180°−${p}°−${q}°＝${180-p-q}°`,'°')},
+()=>{const s=P([2,3,4]),bc=R(3,6),cd=R(3,8);return Q(`弦AD、BE相交于C，△ABC∽△EDC。AB＝${s*bc} cm，BC＝${bc} cm，DE＝${s*cd} cm，求CD。`,cd,`CD/BC＝DE/AB ⇒ CD＝${s*cd}÷${s*bc}×${bc}＝${cd} cm`,' cm')}];
+const g3=[
+()=>{const[h,d,r]=trip();return Q(`⊙O的半径为 ${r} cm，弦AB＝${2*h} cm，OM⊥AB于M，求弦心距OM。`,d,`AM＝½AB＝${h} cm，OM＝√(${r}²−${h}²)＝${d} cm`,' cm')},
+()=>{const[h,d,r]=trip();return Q(`⊙O的半径为 ${r} cm，弦心距为 ${d} cm，求弦AB的长。`,2*h,`AM＝√(${r}²−${d}²)＝${h} cm，AB＝${2*h} cm`,' cm')},
+()=>{const[h,d,r]=trip();return Q(`⊙O中，弦AB＝${2*h} cm，弦心距为 ${d} cm，求圆的半径。`,r,`AM＝${h} cm，r＝√(${h}²+${d}²)＝${r} cm`,' cm')},
+()=>{const[r,a,c]=P(PAR),d1=Math.round(Math.sqrt(r*r-a*a/4)),d2=Math.round(Math.sqrt(r*r-c*c/4)),o=Math.random()<.4,v=o?d1+d2:Math.abs(d1-d2);return Q(`⊙O的半径为 ${r} cm，弦AB∥弦CD，AB＝${a} cm，CD＝${c} cm，两弦在圆心${o?'的两侧':'的同一侧'}，求AB与CD的距离。`,v,`圆心到两弦的距离分别是 ${d1} cm、${d2} cm，距离＝${o?d1+'+'+d2:d1+'与'+d2+'之差'}＝${v} cm`,' cm')},
+()=>{const[h,d,r]=trip();return Q(`直径为 ${2*r} mm 的圆铁片，切去一块高为 ${r-d} mm 的弓形，求弦AB的长。`,2*h,`圆心到弦的距离＝${r}−${r-d}＝${d} mm，AB＝2√(${r}²−${d}²)＝${2*h} mm`,' mm')},
+()=>{const k=R(1,2),p=R(1,3),q=R(p+1,4),a=k*p*p,b=k*q*q,r=(a+b)/2,oe=r-a,ae=k*p*q;return Q(`直径CD⊥弦AB于E，CE＝${a} cm，DE＝${b} cm，求AB的长。`,2*ae,`半径＝(${a}+${b})÷2＝${r}，OE＝${r}−${a}＝${oe}，AE＝√(${r}²−${oe}²)＝${ae}，AB＝${2*ae} cm`,' cm')}];
+const g4=[
+()=>{const a=R(55,120);return Q(`四边形ABCD内接于圆，∠B＝${a}°，求∠D。`,180-a,`圆内接四边形对角互补：∠D＝180°−${a}°＝${180-a}°`,'°')},
+()=>{const a=R(60,120);return Q(`圆内接四边形ABCD，延长BC至E，∠BAD＝${a}°，求外角∠DCE。`,a,`圆内接四边形的外角等于它的内对角：∠DCE＝∠BAD＝${a}°`,'°')},
+()=>{const t=2*R(35,80);return Q(`O为圆心，圆上A、B、C、D依次排列，劣角∠AOC＝${t}°，B在优弧AC上，求∠ADC。`,180-t/2,`∠ABC＝½×${t}°＝${t/2}°，对角互补：∠ADC＝${180-t/2}°`,'°')},
+()=>{for(;;){const p=R(1,4),r=R(1,6),q=R(1,6);if(p!=r&&180%(p+r)==0&&q*180/(p+r)<180){const k=180/(p+r);return Q(`圆内接四边形ABCD中，∠A:∠B:∠C＝${p}:${q}:${r}，求∠D。`,180-q*k,`∠A+∠C＝180°，每份＝180°÷${p+r}＝${k}°，∠B＝${q*k}°，∠D＝${180-q*k}°`,'°')}}},
+()=>{for(;;){const a=R(2,6),b=R(3,8),c=R(2,8),rt=(a+b)*b/c;if(Number.isInteger(rt)&&rt>c)return Q(`PQRS是圆内接四边形，QPT与RST是直线。QP＝${a}，PT＝${b}，ST＝${c}，求RS。`,rt-c,`△TPS∽△TRQ：RT/PT＝QT/ST ⇒ RT＝${a+b}×${b}÷${c}＝${rt}，RS＝${rt}−${c}＝${rt-c}`,'')}},
+()=>{const p=R(30,60),q=R(30,60);return Q(`ABCD是圆内接四边形，∠ABD＝${p}°，∠ADB＝${q}°，求∠BCD。`,p+q,`∠BAD＝180°−${p}°−${q}°＝${180-p-q}°，∠BCD＝180°−${180-p-q}°＝${p+q}°`,'°')}];
+const g5=[
+()=>{const a=R(20,70);return Q(`AB是⊙O的切线，A为切点，∠AOB＝${a}°，求∠ABO。`,90-a,`切线⊥过切点的半径：∠OAB＝90°，∠ABO＝90°−${a}°＝${90-a}°`,'°')},
+()=>{const[r,t,D]=trip();return Q(`⊙O的半径为 ${r} cm，圆外一点P，OP＝${D} cm，PT切⊙O于T，求切线长PT。`,t,`OT⊥PT，PT＝√(${D}²−${r}²)＝${t} cm`,' cm')},
+()=>{const t=R(30,150);return Q(`PA、PB切⊙O于A、B，∠APB＝${t}°，求∠AOB。`,180-t,`四边形OAPB中∠OAP＝∠OBP＝90°，∠AOB＝360°−180°−${t}°＝${180-t}°`,'°')},
+()=>{const t=2*R(20,80);return Q(`PA、PB切⊙O于A、B，∠AOB＝${t}°，求∠OPA。`,(180-t)/2,`∠APB＝180°−${t}°，OP平分∠APB：∠OPA＝${(180-t)/2}°`,'°')},
+()=>{const[r,t]=trip();return Q(`PX、PY切⊙O于X、Y，PX＝${t} cm，OX＝${r} cm，求风筝形OXPY的面积。`,r*t,`面积＝2×½×${t}×${r}＝${r*t} cm²`,' cm²')},
+()=>{const a=R(3,9),b=R(3,8),c=R(a+3,a+10);return Q(`△ABC的三边与圆相切，X在AB上、Y在BC上、Z在CA上为切点。AX＝${a} cm，BY＝${b} cm，CA＝${c} cm，求BC。`,b+c-a,`AZ＝AX＝${a}，CY＝CZ＝${c}−${a}＝${c-a}，BC＝${b}+${c-a}＝${b+c-a} cm`,' cm')},
+()=>{const bc=R(5,12),ap=R(2,9),C=2*(ap+bc);return Q(`△ABC的周长为 ${C} cm，BC＝${bc} cm，三边与圆相切，P在AB上为切点，求AP。`,ap,`周长＝2AP+2BC ⇒ AP＝${C}÷2−${bc}＝${ap} cm`,' cm')}];
+const g6=[
+()=>{const a=R(25,80);return Q(`AB切⊙O于T，弦TQ，弦切角∠ATQ＝${a}°，求弦切角所夹的弧TQ所对的圆周角。`,a,`弦切角等于所夹弧所对的圆周角：${a}°`,'°')},
+()=>{const t=2*R(15,85);return Q(`AB切⊙O于T，弦TQ，弦切角∠ATQ所夹的弧TQ的圆心角为 ${t}°，求∠ATQ。`,t/2,`弦切角＝½×弧的圆心角＝${t/2}°`,'°')},
+()=>{const t=2*R(20,70);return Q(`PA、PB切⊙O于A、B，∠APB＝${t}°，求弦切角∠PAB。`,(180-t)/2,`PA＝PB（切线长定理），∠PAB＝(180°−${t}°)÷2＝${(180-t)/2}°`,'°')},
+()=>{const a=R(30,70),b=R(30,70);return Q(`AB切⊙O于T，C、D在圆上，D在弦TC的另一侧（与弦切角所夹的弧相对），弦切角∠ATC＝${a}°，∠DTC＝${b}°，求∠TCD。`,180-a-b,`∠TDC＝∠ATC＝${a}°（弦切角定理），∠TCD＝180°−${a}°−${b}°＝${180-a-b}°`,'°')},
+()=>{const t=R(40,80);return Q(`PA、PB切⊙O于A、B，点Q在优弧AB上，∠AQB＝${t}°，求∠APB。`,180-2*t,`∠AOB＝2×${t}°＝${2*t}°，∠APB＝180°−${2*t}°＝${180-2*t}°`,'°')},
+()=>{const a=R(30,80);return Q(`AB切⊙O于T，弦TQ，弦切角∠ATQ＝${a}°，R是劣弧TQ上的点，求圆周角∠TRQ。`,180-a,`R在所夹弧上，∠TRQ对着优弧：½(360°−2×${a}°)＝${180-a}°`,'°')}];
+const SEC=[g1,g2,g3,g4,g5,g6];
+const H=[
+()=>{const[h,d,r]=trip();return Q(`圆的弦AB＝${2*h} cm，弦AB的弦心距为 ${d} cm，求此圆的直径。`,2*r,`半径＝√(${h}²+${d}²)＝${r} cm，直径＝${2*r} cm`,' cm')},
+()=>{const[a,b,c]=trip();return Q(`圆的直径AB＝${c} cm，弦AC＝${a} cm，求△ABC的面积。`,a*b/2,`∠ACB＝90°，BC＝√(${c}²−${a}²)＝${b} cm，面积＝½×${a}×${b}＝${a*b/2} cm²`,' cm²')},
+()=>{const[r,e,t]=P([[3,2,4],[8,2,6],[15,2,8],[5,8,12],[12,8,16]]);return Q(`PA切⊙O于A，直线PO交圆于B（B在P与O之间），PA＝${t} cm，PB＝${e} cm，求半径。`,r,`设半径r：OP＝r+${e}，(r+${e})²＝r²+${t}²，解得 r＝${r} cm`,' cm')},
+()=>{const n=P([3,5,6,9,10]),k=R(1,n-1);return Q(`AE是⊙O的直径，半圆被分成 ${n} 段相等的弧，从A数起第 ${k} 个分点为X，求圆周角∠XEA。`,90*k/n,`弧AX＝${k}段×${180/n}°＝${180*k/n}°，圆周角＝½×${180*k/n}°＝${90*k/n}°`,'°')},
+g6[4],g5[5],g3[3],g3[4],g4[3],g3[5],g6[3]];
+/* 根号 → SVG（横线盖住根号下全部内容） */
+const RK='<span class="rd"><svg class="tk" viewBox="0 0 10 20" preserveAspectRatio="none" aria-hidden="true"><path d="M.6 11.5L2.3 10.2L4.9 17.8L9.7 .7"/></svg><svg class="bar" aria-hidden="true"><line x1="0" y1="1.5" x2="100%" y2="1.5"/></svg>';
+const rt=s=>{let o='',i=0;while(i<s.length){const c=s[i];if(c!=='√'){o+=c;i++;continue}
+ let j=i+1,inner='';if(s[j]==='('){let d=0,k=j;for(;k<s.length;k++){if(s[k]==='(')d++;else if(s[k]===')'&&--d===0)break}inner=s.slice(j+1,k);j=k+1}
+ else{const m=/^(?:\d+(?:\.\d+)?|[A-Za-z]+)/.exec(s.slice(j));if(m){inner=m[0];j+=m[0].length}else{o+=c;i++;continue}}
+ o+=RK+rt(inner)+'</span>';i=j}return o};
+/* 选项生成 */
+function opts(a){const c=new Set([a]),I=Number.isInteger(a);
+ for(const x of SH([a+10,a-10,a+5,a-5,a*2,a/2,180-a,90-a,a+20,a-20,a+1,a-1,a+2,a-2,a+15,a-15])){if(c.size>=4)break;if(x>0&&x!==a&&(!I||Number.isInteger(x)))c.add(x)}
+ for(let k=3;c.size<4;k++)c.add(a+k);return SH([...c])}
+/* 测验组件 */
+function Quiz(box,plan,nM,nF,gate,rev){
+ let st;const mk=f=>{const q=f();q.o=opts(q.a);return q};
+ function start(){const[mg,fg]=plan();st={m:mg.map(mk),f:fg.map(mk),ma:[],fa:[]};
+  box.innerHTML=`<div class="qh"><h3>${rev?'总复习测验':'随堂测验'}</h3><button class="btn rs">🔄 换一批题目</button></div><p class="mut">${rev?`先完成 ${nM} 道选择题，再作答 ${nF} 道填充题，最后看总评。`:`先完成 ${nM} 道选择题，答对 ${gate} 题或以上即可挑战 ${nF} 道作答题。`}点选答案后立即锁定并显示对错；每次题目都由引擎重新生成。</p>`+
+  st.m.map((q,i)=>`<div class="q"><div><b>选择 ${i+1}.</b> ${rt(q.q)}</div><div class="opts">${q.o.map(o=>`<button class="opt" data-i="${i}" data-v="${o}">${fmt(o)}${q.u}</button>`).join('')}</div><div class="fb"></div></div>`).join('')+'<div class="sum"></div><div class="fills"></div>';
+  box.querySelector('.rs').onclick=start;box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(b))}
+ function pick(b){const i=+b.dataset.i,v=+b.dataset.v,q=st.m[i];if(st.ma[i]!==undefined)return;st.ma[i]=v;
+  const w=b.parentNode;w.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(+x.dataset.v===q.a)x.classList.add('ok')});
+  const ok=v===q.a;if(!ok)b.classList.add('bad');const fb=w.nextElementSibling;fb.className='fb '+(ok?'ok':'bad');
+  fb.innerHTML=(ok?'✅ 正确！':`❌ 错误，正确答案是 ${fmt(q.a)}${q.u}。`)+'<br>'+rt(q.e);
+  if(st.ma.filter(x=>x!==undefined).length===nM)done()}
+ function done(){const sc=st.sc=st.m.filter((q,i)=>st.ma[i]===q.a).length,sm=box.querySelector('.sum');
+  if(gate&&sc<gate){sm.className='sum bad';sm.textContent=`选择题 ${sc}/${nM}：还差一点，需答对 ${gate} 题才能解锁作答题。点上方「换一批题目」再试一次。`;return}
+  sm.className='sum ok';sm.textContent=`选择题 ${sc}/${nM}：${gate?'已解锁作答题！':'接下来是填充题。'}`;
+  box.querySelector('.fills').innerHTML=st.f.map((q,i)=>`<div class="q"><div><b>作答 ${i+1}.</b> ${rt(q.q)}</div><div class="fi"><input type="text" inputmode="decimal" placeholder="填入数字"><span>${q.u.trim()}</span><button class="btn pri">提交</button></div><div class="fb"></div></div>`).join('')+'<div class="fin" hidden></div>';
+  box.querySelectorAll('.fi').forEach((r,i)=>{const inp=r.querySelector('input'),bt=r.querySelector('button');
+   const go=()=>{if(st.fa[i]!==undefined)return;const v=parseFloat(inp.value.replace(/[^\d.\-]/g,''));if(isNaN(v)){inp.focus();return}
+    const q=st.f[i],ok=Math.abs(v-q.a)<.01;st.fa[i]=ok;inp.disabled=bt.disabled=true;const fb=r.nextElementSibling;fb.className='fb '+(ok?'ok':'bad');
+    fb.innerHTML=(ok?'✅ 正确！':`❌ 错误，正确答案是 ${fmt(q.a)}${q.u}。`)+'<br>'+rt(q.e);if(st.fa.filter(x=>x!==undefined).length===nF)fin()};
+   bt.onclick=go;inp.onkeydown=e=>{if(e.key==='Enter')go()}})}
+ function fin(){const fs=st.fa.filter(Boolean).length,t=st.sc+fs,all=nM+nF,el=box.querySelector('.fin');el.hidden=false;
+  if(rev){const p=Math.round(t/all*100),g=t>=13?'🏆 优秀！圆的性质掌握得很扎实。':t>=10?'👍 良好，再巩固个别题型就更稳了。':t>=7?'🙂 及格，建议回到失分的章节重做例题和计算器。':'💪 需要加强：先重读各节「要点」和例题，再来挑战。';
+   el.innerHTML=`总评：选择 ${st.sc}/${nM}，填充 ${fs}/${nF}，合计 <span style="font-size:1.4em;color:var(--ac)">${t}/${all}</span>（${p}分）<br>${g}`}
+  else el.innerHTML=`本节成绩：选择 ${st.sc}/${nM}，作答 ${fs}/${nF}。${fs===nF?'全部答对，太棒了！':'点上方「换一批题目」再练一次。'}`}
+ start()}
+/* ============ SVG 与计算器 ============ */
+const CX=150,CY=125,RR=95,O0=[CX,CY];
+const pt=(p,r=RR,cx=CX,cy=CY)=>[cx+r*Math.cos(rad(p)),cy-r*Math.sin(rad(p))];
+const ln=(a,b,c='')=>`<line class="s ${c}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
+const tx=(p,s,dx=0,dy=0,c='t')=>`<text class="${c}" x="${p[0]+dx}" y="${p[1]+dy}" text-anchor="middle">${s}</text>`;
+const dt=p=>`<circle class="d" cx="${p[0]}" cy="${p[1]}" r="3.2"/>`;
+const cir=(cx=CX,cy=CY,r=RR)=>`<circle class="s" cx="${cx}" cy="${cy}" r="${r}"/>`;
+const SV=(b,h=250)=>`<svg viewBox="0 0 300 ${h}" role="img">${b}</svg>`;
+const lb=(p,s,c=O0)=>{const dx=p[0]-c[0],dy=p[1]-c[1],L=Math.hypot(dx,dy)||1;return tx([p[0]+dx/L*13,p[1]+dy/L*13],s,0,5)};
+const pg=a=>`<polygon class="s a f" points="${a.map(p=>p.join(',')).join(' ')}"/>`;
+const C1={i:[['a','圆心角 ∠AOB（°）',70],['r','半径 r（cm）',5]],run:v=>{const a=v.a,r=v.r;if(!(a>0&&a<180&&r>0))return{err:'请输入 0<∠AOB<180，且半径>0'};
+ const A=pt(90+a/2),B=pt(90-a/2),M=[CX,A[1]],arc=a/360*2*Math.PI*r,ch=2*r*Math.sin(rad(a/2)),d=r*Math.cos(rad(a/2));
+ return{h:`<ol><li>圆心角 ∠AOB＝${a}°</li><li>弧AB＝${a}/360×2π×${r}＝<b>${f2(arc)} cm</b></li><li>弦AB＝2r·sin(${a/2}°)＝<b>${f2(ch)} cm</b></li><li>弦心距 OM＝r·cos(${a/2}°)＝<b>${f2(d)} cm</b></li><li>同圆中若 ∠COD＝${a}°，则弧CD＝${f2(arc)} cm，CD＝${f2(ch)} cm，弦心距也是 ${f2(d)} cm（圆心角定理）。</li></ol>`,
+ s:FG({A:90+a/2,B:90-a/2,M:[CX,A[1],10,16]},[['O','A'],['O','B'],['A','B','a'],['O','M','g']],{a:[['O','A','B',a+'°',30]]})}}};
+const C2={i:[['t','弧AB所对的圆心角 θ（°）',100]],run:v=>{const t=v.t;if(!(t>0&&t<360))return{err:'请输入 0<θ<360'};
+ const A=pt(90+t/2),B=pt(90-t/2),Pp=pt(-90),Qp=pt(90);const q=t==180?'θ＝180°（直径），圆周角＝90°：半圆含直角。':'';
+ return{h:`<ol><li>弧AB所对圆心角 ${t>180?'（优角）':''}θ＝${t}°</li><li>P在弧AB的对侧：∠APB＝½θ＝<b>${f2(t/2)}°</b></li><li>Q在弧AB上：∠AQB＝180°−½θ＝<b>${f2(180-t/2)}°</b>（圆内接四边形对角互补）</li><li>同弧所对的圆周角相等，所以在同一侧任取点P，∠APB都是 ${f2(t/2)}°。${q}</li></ol>`,
+ s:FG({A:90+t/2,B:90-t/2,P:-90,Q:90},[['O','A','g'],['O','B','g'],['P','A','a'],['P','B','a'],['Q','A'],['Q','B']],{a:[['O','A','B',t+'°',26,'t',t>180],['P','A','B',f2(t/2)+'°',26]]})}}};
+const C3={sel:['求什么','弦心距 OM','弦长 AB','半径 r'],i:[['r','半径 r（cm）',13],['ab','弦 AB（cm）',24],['d','弦心距 OM（cm）',5]],run:v=>{let r=v.r,ab=v.ab,d=v.d,m=+v.m,st;
+ if(m==0){if(!(r>0&&ab>0&&ab<=2*r))return{err:'需要 r>0，0<AB≤2r'};d=Math.sqrt(r*r-ab*ab/4);st=`AM＝AB÷2＝${f2(ab/2)}；OM＝√(r²−AM²)＝√(${r}²−${f2(ab/2)}²)＝<b>${f2(d)} cm</b>`}
+ else if(m==1){if(!(r>0&&d>=0&&d<r))return{err:'需要 r>0，0≤弦心距<r'};ab=2*Math.sqrt(r*r-d*d);st=`AM＝√(r²−OM²)＝√(${r}²−${d}²)＝${f2(ab/2)}；AB＝2AM＝<b>${f2(ab)} cm</b>`}
+ else{if(!(ab>0&&d>=0))return{err:'需要 AB>0，弦心距≥0'};r=Math.sqrt(ab*ab/4+d*d);st=`AM＝${f2(ab/2)}；r＝OA＝√(AM²+OM²)＝√(${f2(ab/2)}²+${d}²)＝<b>${f2(r)} cm</b>`}
+ const k=95/r,hf=ab/2*k,y=CY+d*k,A=[CX-hf,y],B=[CX+hf,y],M=[CX,y];
+ return{h:`<ol><li>垂径定理：OM⊥AB ⇒ M是AB中点</li><li>${st}</li><li>验算：OA²＝AM²+OM² ⇒ ${f2(r*r)}＝${f2(ab*ab/4)}+${f2(d*d)}</li></ol>`,
+ s:SV(cir()+ln(A,B,'a')+ln(O0,A)+ln(O0,M,'g')+`<path class="s" d="M${CX},${y-9}L${CX+9},${y-9}L${CX+9},${y}"/>`+[O0,A,B,M].map(dt).join('')+tx(A,'A',-10,5)+tx(B,'B',10,5)+tx(O0,'O',-10,-4)+tx(M,'M',-9,16))}}};
+const un=(a,b)=>{const d=[b[0]-a[0],b[1]-a[1]],L=Math.hypot(d[0],d[1])||1;return[d[0]/L,d[1]/L]};
+/* 通用作图：Pn 点(数字=圆上角度；[x,y,dx,dy]=自由点)，L 线，o.q 直角，o.a 角度标注，o.m 线段标注 */
+const FG=(Pn,L,o={})=>{const p={O:o.O||O0};for(const k in Pn){const v=Pn[k];p[k]=typeof v=='number'?pt(v):v}
+ let s=o.nc?'':cir(p.O[0],p.O[1],o.rr||RR);const lc=o.lc||p.O;
+ (L||[]).forEach(l=>{s+=ln(p[l[0]],p[l[1]],l[2]||'')});
+ (o.q||[]).forEach(([v,a,b])=>{const u=un(p[v],p[a]),w=un(p[v],p[b]),m=9,V=p[v];s+=`<path class="s" d="M${V[0]+u[0]*m},${V[1]+u[1]*m}L${V[0]+(u[0]+w[0])*m},${V[1]+(u[1]+w[1])*m}L${V[0]+w[0]*m},${V[1]+w[1]*m}"/>`});
+ (o.a||[]).forEach(([v,a,b,t,k,c,big])=>{const V=p[v],u=un(V,p[a]),w=un(V,p[b]);let m=un([0,0],[u[0]+w[0],u[1]+w[1]]);const K=k||30,cr=u[0]*w[1]-u[1]*w[0];if(big)m=[-m[0],-m[1]];
+  if(Math.abs(cr)>1e-6){const r=K>45?40:Math.min(16,K*.6),sw=(cr>0?1:0)^(big?1:0);s+=`<path class="ac" d="M${V[0]+u[0]*r},${V[1]+u[1]*r}A${r},${r} 0 ${big?1:0} ${sw} ${V[0]+w[0]*r},${V[1]+w[1]*r}"/>`}
+  if(t)s+=tx([V[0]+m[0]*K,V[1]+m[1]*K],t,0,4,c||'h')});
+ (o.m||[]).forEach(([a,b,t,dx,dy])=>{s+=tx([(p[a][0]+p[b][0])/2,(p[a][1]+p[b][1])/2],t,dx||0,dy||0,'t')});
+ s+=o.raw||'';
+ for(const k in p){s+=dt(p[k]);const v=Pn[k];if(k=='O')s+=tx(p.O,'O',-11,-5);else if(Array.isArray(v)&&v.length>2)s+=tx(p[k],k,v[2],v[3]);else s+=lb(p[k],k,lc)}
+ return SV(s,o.h||250)};
+const cqPhi=(A,B)=>{const lo=Math.max(0,2*A+2*B-360),hi=Math.min(2*A,2*B),a3=(lo+hi)/2,a2=2*A-a3,a4=2*B-a3,a1=360-a2-a3-a4,p1=135-a1,p2=p1-a2;return[135,p1,p2,p2-a3]};
+const CQ=(A,B,t)=>{const f=cqPhi(A,B);return FG({A:f[0],B:f[1],C:f[2],D:f[3]},[['A','B','a'],['B','C','a'],['C','D','a'],['D','A','a']],{a:[['A','D','B',t[0],30],['B','A','C',t[1],30],['C','B','D',t[2],30],['D','C','A',t[3],30]]})};
+/* 圆外一点P引两条切线（O在左，P在右，自动缩放不出界） */
+const TPF=(r,D,n,a,o={})=>{const rho=Math.min(75,250/(1+D/r)),Ox=rho+22,oy=125,ph=deg(Math.acos(r/D)),P={};
+ P[n[0]]=[Ox+rho*D/r,oy,12,5];P[n[1]]=[Ox+rho*Math.cos(rad(ph)),oy-rho*Math.sin(rad(ph)),0,-8];P[n[2]]=[P[n[1]][0],2*oy-P[n[1]][1],0,16];
+ for(const k in o.x||{}){const f=o.x[k];P[k]=[Ox+rho*Math.cos(rad(f)),oy-rho*Math.sin(rad(f))]}
+ return FG(P,[['O',n[1]],['O',n[2]],[n[0],n[1],'a'],[n[0],n[2],'a'],['O',n[0],'g'],...(o.L||[])],{O:[Ox,oy],rr:rho,q:[[n[1],'O',n[0]],[n[2],'O',n[0]]],a,m:o.m})};
+/* 弦切角图：T在底部，切线AB水平 */
+const TCF=(a,an,o={})=>{const T=pt(-90);return FG({A:[20,T[1],0,16],B:[280,T[1],0,16],T:[T[0],T[1],0,18],Q:pt(-90+2*a),P:pt(90+a)},[['A','B'],['T','Q','a'],['P','T'],['P','Q','g'],['O','T','g']],{a:an,...o})};
+const C4={i:[['a','∠A（°）',80],['b','∠B（°）',95]],run:v=>{const A=v.a,B=v.b;if(!(A>0&&A<180&&B>0&&B<180))return{err:'∠A、∠B 都需介于 0° 与 180° 之间'};
+ return{h:`<ol><li>圆内接四边形 ABCD：对角互补</li><li>∠C＝180°−∠A＝180°−${A}°＝<b>${f2(180-A)}°</b></li><li>∠D＝180°−∠B＝180°−${B}°＝<b>${f2(180-B)}°</b></li><li>延长BC至E：外角∠DCE＝内对角∠A＝<b>${A}°</b>（外角＝内对角）</li><li>四内角和＝${A}+${B}+${f2(180-A)}+${f2(180-B)}＝360° ✓</li></ol>`,
+ s:CQ(A,B,[A+'°',B+'°',f2(180-A)+'°',f2(180-B)+'°'])}}};
+const C5={i:[['r','半径 r（cm）',15],['d','OP 的长（cm）',25]],run:v=>{const r=v.r,D=v.d;if(!(r>0&&D>r))return{err:'需要 OP＞r（P在圆外）'};
+ const t=Math.sqrt(D*D-r*r),ap=deg(Math.asin(r/D)),XY=2*r*t/D;
+ return{h:`<ol><li>切线⊥半径：△OAP 中 ∠OAP＝90°</li><li>切线长 PA＝√(OP²−r²)＝√(${D}²−${r}²)＝<b>${f2(t)} cm</b>，PB＝PA（切线长定理）</li><li>∠OPA＝${f2(ap)}°，∠APB＝2∠OPA＝<b>${f2(2*ap)}°</b>，∠AOB＝180°−∠APB＝<b>${f2(180-2*ap)}°</b></li><li>风筝形OAPB面积＝2×½×PA×r＝<b>${f2(t*r)} cm²</b></li><li>切点弦 AB＝2×面积÷OP＝<b>${f2(XY)} cm</b></li></ol>`,
+ s:TPF(r,D,['P','A','B'],[['P','O','A',f2(ap)+'°',44]],{L:[['A','B','g']]})}}};
+const C6={i:[['a','弦切角 ∠ATQ（°）',55]],run:v=>{const a=v.a;if(!(a>0&&a<180))return{err:'请输入 0<∠ATQ<180'};
+ return{h:`<ol><li>弦切角 ∠ATQ＝${a}°</li><li>所夹弧TQ的圆心角＝2×${a}°＝<b>${2*a}°</b></li><li>弦切角定理：对侧圆周角 ∠TPQ＝<b>${a}°</b></li><li>另一侧的弦切角 ∠BTQ＝180°−${a}°＝<b>${180-a}°</b>，所夹弧上的圆周角也是 <b>${180-a}°</b></li></ol>`,
+ s:TCF(a,[['T','B','Q',a+'°',38],['T','A','Q',(180-a)+'°',38,'t']])}}};
+/* ============ 章节内容 ============ */
+const S=[
+{id:'8.1',n:'圆心角',calc:C1,g:g1,pts:'<b>圆心角</b>：顶点在圆心，两边是半径的角。<b>弦</b>：连接圆上两点的线段。<b>弦心距</b>：圆心到弦的距离。<div class="key"><b>圆心角定理</b>：在同圆或等圆中，圆心角相等 ⇒ 所对的弧相等、弦相等、弦心距也相等。反过来，圆心角、弧、弦、弦心距中有一组量相等，其余各组量也分别相等。<br>证明：△AOB≌△COD（SAS）。</div>',
+ ex:[['例题1 互相垂直的直径','⊙O中，AC、BD是两条互相垂直的直径，证明 弧AB＝弧BC＝弧CD＝弧DA。','∵ AC⊥BD，且都过圆心<br>∴ ∠AOB＝∠BOC＝∠COD＝∠DOA＝90°<br>由圆心角定理：弧AB＝弧BC＝弧CD＝弧DA ∎'],
+ ['例题2 等弦对等圆心角','⊙O中，AB＝BC，∠AOB＝65°，弧BC＝6 cm，求∠AOC及弧AC。','∵ AB＝BC ∴ ∠BOC＝∠AOB＝65°（等弦对等圆心角）<br>∠AOC＝65°+65°＝<b>130°</b><br>弧AB＝弧BC＝6 cm（等弦对等弧）<br>弧AC＝6+6＝<b>12 cm</b>'],
+ ['练习8.1-1 三等分圆','点A、B、C把圆三等分，证明△ABC是等边三角形，并求∠AOB。','三段弧相等 ⇒ 圆心角相等 ⇒ AB＝BC＝CA，△ABC是等边三角形。<br>∠AOB＝360°÷3＝<b>120°</b>']]},
+{id:'8.2',n:'圆周角',calc:C2,g:g2,pts:'<b>圆周角</b>：顶点在圆上，两边都是圆的弦。<div class="key"><b>圆周角定理</b>：一条弧所对的圆周角＝它所对圆心角的一半。（证明分圆心在角的一边上、内部、外部三种情况）</div><div class="key"><b>推论①</b> 半圆（直径）所对的圆周角是直角；90°的圆周角所对的弦是直径。<br><b>推论②</b> 同弧或等弧所对的圆周角相等；同圆中相等的圆周角所对的弧也相等。<br>⚠ 同弦所对的圆周角不一定相等（点在弦的两侧时互补）。</div>',
+ ex:[['例题1 圆周角＝½圆心角','O为圆心，求x：(a)圆心角50° (b)70° (c)200° (d)优角280°','(a) x＝½×50°＝<b>25°</b><br>(b) x＝½×70°＝<b>35°</b><br>(c) x＝½×200°＝<b>100°</b><br>(d) 劣角∠BOC＝360°−280°＝80°，x＝½×80°＝<b>40°</b>'],
+ ['例题2 圆心角＝2×圆周角','O为圆心，求x：(a)圆周角50° (b)40° (c)130° (d)35°','(a) x＝50°×2＝<b>100°</b><br>(b) x＝40°×2＝<b>80°</b><br>(c) 优角∠BOC＝130°×2＝260°，x＝360°−260°＝<b>100°</b><br>(d) 劣角∠BOC＝35°×2＝70°，x＝360°−70°＝<b>290°</b>'],
+ ['例题3 同弧与半圆','O为圆心，求x：(a)∠ABD＝35° (b)AB是直径，∠A＝32°','(a) x＝∠ABD＝<b>35°</b>（同弧所对的圆周角相等）<br>(b) ∠ACB＝90°（半圆含直角），x＝90°−32°＝<b>58°</b>'],
+ ['例题4(a) 综合','O为圆心，AC是直径，∠BCA＝25°，求圆心角x及圆周角y。','x＝25°×2＝<b>50°</b><br>∠ABC＝90°，y＝90°−25°＝<b>65°</b>'],
+ ['例题5 证明等边三角形','∠APC＝∠BQC＝60°，证明△ABC是等边三角形。','∠ABC＝∠APC＝60°（同弧），∠CAB＝∠CQB＝60°（同弧）<br>两个角都是60° ⇒ △ABC是等边三角形 ∎'],
+ ['例题6 圆周角与相似','弦AE、BD交于C。(a)证明△ABC∽△EDC；(b)AB＝8，BC＝6，AC＝5，DE＝12，求CD、CE。','(a) ∠ABE＝∠ADE，∠BAD＝∠BED（同弧）⇒ 两组角对应相等 ⇒ △ABC∽△EDC<br>(b) CD/BC＝DE/AB ⇒ CD＝12/8×6＝<b>9 cm</b><br>CE/AC＝DE/AB ⇒ CE＝12/8×5＝<b>7.5 cm</b>']]},
+{id:'8.3',n:'垂径定理',calc:C3,g:g3,pts:'<div class="key"><b>垂径定理</b>：圆内垂直于弦的直径，平分这条弦，并平分弦所对的圆心角与弧。<br>逆定理：平分非直径的弦的直径，垂直于这条弦。</div>常用模型：半径 r、弦的一半 AM、弦心距 OM 构成直角三角形：<b>r²＝AM²＋OM²</b>。<br><span class="mut">思考：为什么被平分的弦不能是直径？（任意两条直径都互相平分，却不一定垂直。）</span>',
+ ex:[['例题1 求弦心距','⊙O半径13 cm，AB＝10 cm，OM⊥AB，求OM。','AM＝½AB＝5 cm，OA＝13 cm<br>OM＝√(13²−5²)＝<b>12 cm</b>'],
+ ['例题2 弦心距','⊙O半径5 cm，弦AB＝8 cm，求弦AB的弦心距。','M为AB中点，AM＝4 cm，OM⊥AB<br>弦心距OM＝√(5²−4²)＝<b>3 cm</b>'],
+ ['例题3 平行弦的距离','半径13 cm，AB∥CD，AB＝24 cm，CD＝10 cm，求AB与CD之间的距离。','AM＝12，OM＝√(13²−12²)＝5 cm<br>CN＝5，ON＝√(13²−5²)＝12 cm<br>MN＝ON−OM＝12−5＝<b>7 cm</b>（两弦在圆心同侧；若在异侧则相加）'],
+ ['例题4 求弦长','OM⊥AB，ON⊥CD，AB＝8，OM＝4，ON＝2，求CD。','AM＝4，OA＝√(4²+4²)＝√32 cm<br>CN＝√((√32)²−2²)＝√28＝2√7<br>CD＝2×CN＝<b>4√7 cm</b>']]},
+{id:'8.4',n:'圆内接四边形',calc:C4,g:g4,pts:'四个顶点都在同一个圆上的四边形，叫<b>圆内接四边形</b>。<div class="key"><b>定理</b>：圆内接四边形的对角互补（∠A＋∠C＝180°，∠B＋∠D＝180°）。<br>逆定理：对角互补的四边形是圆内接四边形。<br><b>推论</b>：圆内接四边形的外角＝它的内对角。</div>',
+ ex:[['例题1 求角','(a)∠A＝65°、∠B＝80°，求∠C＝x、∠D＝y (b)劣角∠AOC＝140°，B在优弧、D在劣弧上，求x＝∠B、y＝∠D (c)∠BAD＝75°，延长BC至E，求外角x＝∠DCE及圆心角y＝∠BOD','(a) x＝180°−65°＝<b>115°</b>；y＝180°−80°＝<b>100°</b>（对角互补）<br>(b) 圆周角＝½×140°＝70°；y＝180°−70°＝<b>110°</b><br>(c) x＝<b>75°</b>（外角＝内对角）；y＝75°×2＝<b>150°</b>'],
+ ['例题2 相似三角形','PQRS是圆内接四边形，QPT、RST是直线。(a)证明△TPS∽△TRQ；(b)QP＝3，PT＝5，ST＝4，求RS。','(a) ∠T公共；∠TPS＝∠TRQ（外角＝内对角）⇒ △TPS∽△TRQ<br>(b) RT/PT＝QT/ST ⇒ RT＝8×5÷4＝10，RS＝10−4＝<b>6</b>'],
+ ['例题3 证明DB＝DC','ABCD是圆内接四边形，AD平分∠CAE，证明DB＝DC。','∠EAD＝∠DCB（外角＝内对角）；∠DAC＝∠DBC（同弧）<br>AD平分∠CAE ⇒ ∠EAD＝∠DAC ⇒ ∠DCB＝∠DBC<br>等角对等边：DB＝DC ∎']]},
+{id:'8.5',n:'直线与圆',calc:C5,g:g5,pts:'圆心到直线的距离 d 与半径 r：<b>d＞r</b> 相离；<b>d＝r</b> 相切（唯一公共点叫切点，直线叫切线）；<b>d＜r</b> 相交（直线叫割线）。<div class="key"><b>切线性质</b>：圆的切线⊥过切点的半径。<b>切线判定</b>：经过半径外端且垂直于该半径的直线是圆的切线。</div><div class="key"><b>切线长定理</b>：圆外一点到圆的两条切线长相等；该点与圆心的连线平分两切线的夹角。</div>圆外切三角形：设切点把各边分成的线段，同一顶点引出的切线长相等，周长＝2×(三段不同的切线长之和)。',
+ ex:[['例题1 切线⊥半径','ABC切⊙O于B，求x：(a)弦切角∠CBD＝35°，x＝∠OBD (b)圆周角∠BED＝25°，O、D、C在一条直线上，x＝∠OCB','(a) ∠ABO＝90°，x＝90°−35°＝<b>55°</b><br>(b) ∠BOD＝25°×2＝50°，∠ABO＝90° ⇒ x＝90°−50°＝<b>40°</b>'],
+ ['例题2 勾股定理','ABC是切线，B为切点，OA＝10，AB＝6，OC＝17，求半径OB及BC。','OB⊥AC（B为切点）<br>OB＝√(10²−6²)＝<b>8 cm</b>；BC＝√(17²−8²)＝<b>15 cm</b>'],
+ ['例题3 切线长','PR、QR是切线，PR＝5，∠POR＝65°，求∠ROQ、∠ORP、QR。','∠ROQ＝∠POR＝<b>65°</b>；∠ORP＝90°−65°＝<b>25°</b>；QR＝PR＝<b>5 cm</b>（切线长定理）'],
+ ['例题5 风筝形','PX、PY是切线，PX＝20，OX＝15，求OP、风筝形OXPY面积、XY。','OP＝√(20²+15²)＝<b>25 cm</b>；面积＝2×½×20×15＝<b>300 cm²</b><br>½·OP·XY＝300 ⇒ XY＝<b>24 cm</b>'],
+ ['例题6 切线三角形','AB、BC、CA是切线，X、Y、Z为切点，AX＝6，BY＝4，CA＝8，求AB、CY、周长。','BX＝BY＝4，AB＝6+4＝<b>10 cm</b>；AZ＝AX＝6，CZ＝8−6＝2，CY＝CZ＝<b>2 cm</b><br>周长＝10+(4+2)+8＝<b>24 cm</b>'],
+ ['例题7 反求切线长','△ABC周长22，BC＝8，P、Q、R为切点，求AP。','周长＝2AP＋2(BQ+CQ)＝2AP＋2BC＝22<br>AP＋8＝11 ⇒ AP＝<b>3 cm</b>']]},
+{id:'8.6',n:'弦切角',calc:C6,g:g6,pts:'<b>弦切角</b>：切线与过切点的弦所夹的角。<div class="key"><b>弦切角定理</b>：弦切角＝切线与弦所夹的弧所对的圆周角（等于该弧圆心角的一半）。</div>注意：所夹的弧必须与弦切角在弦的同一侧。证明分弦切角是直角、锐角、钝角三种情况（作直径、利用半圆含直角）。',
+ ex:[['例题1 弦切角定理','AB是切线，求x：(a)圆周角100° (b)弦切角60°，PT是直径','(a) x＝∠PQT＝<b>100°</b>（弦切角定理）<br>(b) ∠PQT＝∠PTB＝60°；∠PTQ＝90°（半圆含直角）<br>x＝180°−90°−60°＝<b>30°</b>'],
+ ['例题2 综合','(a)PA、PB切圆于A、B，C在圆上，∠PAB＝62°，∠ABC＝54°，求x＝∠ACB、y＝∠CAB (b)（练习8.6-9）PA、PB切圆于A、B，Q在优弧AB上，∠AQB＝65°，求∠APB','(a) x＝∠ACB＝∠PAB＝<b>62°</b>（弦切角定理）；y＝∠CAB＝180°−54°−62°＝<b>64°</b><br>(b) ∠AOB＝2×65°＝130°，∠APB＝180°−130°＝<b>50°</b>']]}];
+/* ============ 例题插图 ============ */
+const IA=(pos,w,ct,xt,cs)=>{const d=rad(cs?pos+180:pos);return FG({A:pos+180,B:pos-w,C:pos+w},[['O','B'],['O','C'],['A','B','a'],['A','C','a']],{a:[['A','B','C',xt,28],['O','B','C',ct,26,'h',(w<90)==!!cs]]})};
+const IB=(arc,ct,xt)=>FG({B:200,A:20,C:200+arc},[['B','A','a'],['A','C','a'],['O','C'],['B','C','g']],{a:[['O','B','C',ct,26],['A','B','C',xt,36]]});
+const CH=(r,ab,d,l)=>{const k=95/r,hf=ab/2*k,y=CY+d*k;return FG({A:[CX-hf,y,-10,5],B:[CX+hf,y,10,5],M:[CX,y,0,18]},[['O','A'],['A','B','a'],['O','M','g']],{q:[['M','O','B']],m:[['O','A',l[0],-12,-4],['A','M',l[1],0,-7],['O','M',l[2],10,0]]})};
+const ix=(a,b,c,d)=>{const t=((a[0]-c[0])*(c[1]-d[1])-(a[1]-c[1])*(c[0]-d[0]))/((a[0]-b[0])*(c[1]-d[1])-(a[1]-b[1])*(c[0]-d[0]));return[a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]};
+const sec=(T,a)=>{const d=[-Math.cos(rad(a)),-Math.sin(rad(a))],w=[T[0]-CX,T[1]-CY],B=d[0]*w[0]+d[1]*w[1],c=w[0]*w[0]+w[1]*w[1]-RR*RR,s=Math.sqrt(B*B-c);return[-B-s,-B+s].map(t=>[T[0]+t*d[0],T[1]+t*d[1]])};
+const tri=(lab,n=['X','Y','Z'])=>{const P={A:[188,200,10,16],B:[60,104,-10,-4],C:[60,200,-12,16]};P[n[0]]=[111,142,12,-4];P[n[1]]=[60,168,-12,5];P[n[2]]=[92,200,0,16];return FG(P,[['A','B','a'],['B','C','a'],['C','A','a'],['O',n[0],'g'],['O',n[1],'g'],['O',n[2],'g']],{O:[92,168],rr:32,m:lab})};
+const FIGS={
+'8.1':[
+ [['',FG({A:90,B:180,C:270,D:0},[['A','C','a'],['B','D','a']],{q:[['O','A','D']],a:[['O','A','D','90°',24],['O','D','C','90°',24],['O','C','B','90°',24],['O','B','A','90°',24]]})]],
+ [['',FG({B:90,A:155,C:25},[['O','A'],['O','B'],['O','C'],['A','B','a'],['B','C','a']],{a:[['O','A','B','65°',30],['O','B','C','65°',30],['O','A','C','∠AOC＝?',54]]})]],
+ [['',FG({A:90,B:210,C:330},[['O','A'],['O','B'],['O','C'],['A','B','a'],['B','C','a'],['C','A','a']],{a:[['O','A','B','120°',30],['O','B','C','120°',30],['O','C','A','120°',30]]})]]],
+'8.2':[
+ [['(a)',IA(270,25,'50°','x')],['(b)',IB(70,'70°','x')],['(c)',IA(90,100,'200°','x')],['(d)',IA(270,40,'280°','x',1)]],
+ [['(a)',IA(270,50,'x','50°')],['(b)',IB(80,'x','40°')],['(c)',IA(90,130,'x','130°',1)],['(d)',IA(270,35,'x','35°',1)]],
+ [['(a)',FG({A:235,D:305,B:100,C:20},[['B','A'],['B','D'],['C','A'],['C','D'],['A','D','a']],{a:[['B','A','D','35°',28],['C','A','D','x',28]]})],['(b)',FG({A:180,B:0,C:64},[['A','B','a'],['A','C'],['C','B']],{q:[['C','A','B']],a:[['A','B','C','32°',40],['B','A','C','x',32]]})]],
+ [['',FG({A:200,C:20,B:250},[['A','C','a'],['A','B'],['B','C'],['O','B','g']],{q:[['B','A','C']],a:[['C','A','B','25°',36],['O','A','B','x',26],['A','C','B','y',36]]})]],
+ [['',FG({A:90,B:210,C:330,P:150,Q:30},[['A','B','a'],['B','C','a'],['C','A','a'],['P','A'],['P','C'],['Q','B'],['Q','C']],{a:[['P','A','C','60°',30],['Q','B','C','60°',30]]})]],
+ [['',(()=>{const E=[0,0],A=pt(200),Ee=pt(40),B=pt(120),D=pt(300),C=ix(A,Ee,B,D);return FG({A:200,E:40,B:120,D:300,C:[C[0],C[1],10,-6]},[['A','E','a'],['B','D','a'],['A','B'],['D','E']],{})})()]]],
+'8.3':[
+ [['',CH(13,10,12,['13','5','?'])]],
+ [['',CH(5,8,3,['5','4','?'])]],
+ [['',(()=>{const k=95/13;return FG({A:[CX-12*k,CY+5*k,-10,5],B:[CX+12*k,CY+5*k,10,5],C:[CX-5*k,CY+12*k,-10,5],D:[CX+5*k,CY+12*k,10,5],M:[CX,CY+5*k,-12,-6],N:[CX,CY+12*k,-12,16]},[['A','B','a'],['C','D','a'],['O','N','g'],['O','A','g'],['O','C','g']],{q:[['M','O','B'],['N','O','D']],m:[['O','M','5',9,0],['M','N','MN=?',36,4]]})})()]],
+ [['',(()=>{const k=95/Math.sqrt(32),M=[CX,CY+4*k],ph=rad(115),u=[Math.cos(ph),-Math.sin(ph)],N=[CX+2*k*u[0],CY+2*k*u[1]],v=[Math.sin(ph),Math.cos(ph)],hc=Math.sqrt(28)*k;return FG({A:[CX-4*k,M[1],-10,5],B:[CX+4*k,M[1],10,5],M:[M[0],M[1],8,16],C:[N[0]+hc*v[0],N[1]+hc*v[1],10,0],D:[N[0]-hc*v[0],N[1]-hc*v[1],-10,0],N:[N[0],N[1],-10,-6]},[['A','B','a'],['C','D','a'],['O','M','g'],['O','N','g'],['O','A','g'],['O','C','g']],{q:[['M','O','B'],['N','O','C']],m:[['A','M','4',0,16],['O','M','4',10,0],['O','N','2',12,8]]})})()]]],
+'8.4':[
+ [['(a)',CQ(65,80,['65°','80°','x','y'])],['(b)',FG({A:200,B:90,C:340,D:270},[['A','B','a'],['B','C','a'],['C','D','a'],['D','A','a'],['O','A','g'],['O','C','g']],{a:[['O','A','C','140°',26],['B','A','C','x',30],['D','A','C','y',30]]})],
+  ['(c)',(()=>{const f=cqPhi(75,100),B=pt(f[1]),C=pt(f[2]),E=[C[0]+(C[0]-B[0])*.45,C[1]+(C[1]-B[1])*.45,8,0];return FG({A:f[0],B:f[1],C:f[2],D:f[3],E},[['A','B','a'],['B','C','a'],['C','D','a'],['D','A','a'],['C','E','g'],['O','B','g'],['O','D','g']],{a:[['A','D','B','75°',28],['C','D','E','x',28],['O','B','D','y',22]]})})()]],
+ [['（示意图，未按比例）',(()=>{const T=[290,125,0,-8],s1=sec(T,24),s2=sec(T,-24);return FG({P:s1[0],Q:s1[1],R:s2[1],S:s2[0],T},[['T','Q','a'],['T','R','a'],['P','S'],['Q','R']],{m:[['Q','P','3',0,-8],['P','T','5',6,-13],['S','T','4',0,16]]})})()]],
+ [['',(()=>{const B=pt(340),A=pt(40),E=[A[0]+(A[0]-B[0])*.4,A[1]+(A[1]-B[1])*.4,10,0];return FG({D:90,A:40,B:340,C:200,E},[['A','B'],['B','C'],['C','D'],['D','A'],['A','C','g'],['A','E','g'],['D','B','g']],{a:[['A','E','D','x',28],['A','D','C','x',28],['C','D','B','y',30],['B','D','C','y',30]]})})()]]],
+'8.5':[
+ [['(a)',FG({A:[30,220,0,16],B:[150,220,0,18],C:[270,220,0,16],D:-20},[['A','C'],['O','B','g'],['B','D','a'],['O','D','g']],{q:[['B','O','C']],a:[['B','C','D','35°',44],['B','O','D','x',26]]})],
+  ['(b)',FG({A:[30,220,0,16],B:[150,220,0,18],C:[263,220,0,16],D:-40,E:100},[['A','C'],['O','B','g'],['O','C','a'],['E','B'],['E','D']],{q:[['B','O','C']],a:[['E','B','D','25°',26],['C','B','O','x',40]]})]],
+ [['',FG({B:[90,164,0,18],A:[42,164,-6,16],C:[210,164,6,16]},[['A','C'],['O','B','g'],['O','A','a'],['O','C','a']],{O:[90,100],rr:64,q:[['B','O','C']],m:[['O','A','10',-10,-4],['A','B','6',0,16],['O','C','17',6,-8],['O','B','?',-12,0],['B','C','?',0,16]]})]],
+ [['',TPF(1,1/Math.cos(rad(65)),['R','P','Q'],[['O','P','R','65°',30],['O','R','Q','65°',30],['R','O','P','?',40]],{m:[['R','P','5',0,-8]]})]],
+ [['',TPF(15,25,['P','X','Y'],[],{L:[['X','Y','g']],m:[['X','P','20',0,-8],['O','X','15',-10,-2],['O','P','25',0,16],['X','Y','?',9,0]]})]],
+ [['',tri([['A','X','6',10,0],['B','Y','4',-10,0],['C','A','8',0,16],['A','B','?',12,-6]])]],
+ [['（示意图）',tri([['B','C','8',-10,0],['A','P','?',10,0]],['P','Q','R'])]]],
+'8.6':[
+ [['(a)',TCF(100,[['T','B','Q','100°',34],['P','T','Q','x',30]])],['(b)',FG({A:[20,220,0,16],B:[280,220,0,16],T:[150,220,0,18],P:30,Q:210},[['A','B'],['T','P','a'],['T','Q'],['P','Q','g']],{q:[['T','P','Q']],a:[['T','B','P','60°',34],['Q','P','T','60°',26],['P','T','Q','x',30]]})]],
+ [['(a)',TPF(1,1/Math.sin(rad(28)),['P','A','B'],[['A','P','B','62°',30],['B','A','C','54°',30],['C','A','B','x',26],['A','C','B','y',34]],{x:{C:170},L:[['A','C'],['B','C'],['A','B','g']]})],['(b)',TPF(1,1/Math.sin(rad(25)),['P','A','B'],[['Q','A','B','65°',26],['P','A','B','?',40]],{x:{Q:180},L:[['A','Q'],['B','Q']]})]]]};
+const figs=(id,k)=>{const f=(FIGS[id]||[])[k];return f?`<div class="figs">${f.map(x=>`<figure>${x[1]}${x[0]?`<figcaption>${x[0]}</figcaption>`:''}</figure>`).join('')}</div>`:''};
+/* ============ 页面搭建 ============ */
+const tabs=$('#tabs'),main=$('#main'),HID=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+const show=i=>{document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('on',i==j));document.querySelectorAll('.pn').forEach((p,j)=>p.classList.toggle('on',i==j));tabs.children[i].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});scrollTo({top:0})};
+S.forEach((s,i)=>{
+ const b=document.createElement('button');b.className='tab';b.textContent=s.id+' '+s.n;b.onclick=()=>show(i);tabs.appendChild(b);
+ const c=s.calc,p=document.createElement('section');p.className='pn';
+ p.innerHTML=`<h2>${s.id} ${s.n}</h2><span class="hid">${HID[i%4]}</span>
+ <div class="card"><h3>📌 学习要点</h3>${rt(s.pts)}</div>
+ <div class="card"><h3>📖 课本例题讲解</h3>${s.ex.map((e,k)=>`<details class="ex" ${k==0?'open':''}><summary>${e[0]}</summary><p>${rt(e[1])}</p>${figs(s.id,k)}<div class="sol">${rt(e[2])}</div></details>`).join('')}</div>
+ <div class="card"><h3>🧮 ${s.id} 专属计算器</h3><p class="mut">改动数字，下方立即生成解答与示意图。</p><div class="cin">${c.sel?`<label>${c.sel[0]}<select data-k="m">${c.sel.slice(1).map((o,k)=>`<option value="${k}">${o}</option>`).join('')}</select></label>`:''}${c.i.map(x=>`<label>${x[1]}<input type="number" step="any" data-k="${x[0]}" value="${x[2]}"></label>`).join('')}</div><div class="out"></div></div>
+ <div class="card quiz"></div>`;
+ main.appendChild(p);
+ const out=p.querySelector('.out'),ins=p.querySelectorAll('.cin [data-k]'),run=()=>{const v={};ins.forEach(e=>v[e.dataset.k]=e.dataset.k=='m'?e.value:parseFloat(e.value));
+  const r=c.run(v);out.innerHTML=r.err?`<p class="err">⚠ ${r.err}</p>`:`<div>${rt(r.h)}</div><div>${r.s}</div>`};
+ ins.forEach(e=>e.oninput=run);run();
+ Quiz(p.querySelector('.quiz'),()=>{const g=SH(s.g);return[Array.from({length:5},(_,k)=>g[k%g.length]),Array.from({length:2},(_,k)=>g[(5+k)%g.length])]},5,2,3,false)});
+{const b=document.createElement('button');b.className='tab';b.textContent='总复习';b.onclick=()=>show(S.length);tabs.appendChild(b);
+ const p=document.createElement('section');p.className='pn';
+ p.innerHTML=`<h2>总复习</h2><span class="hid">${HID[1]}</span><div class="card"><h3>📋 公式与定理速查</h3><ul>
+ <li><b>8.1</b> 同圆中：圆心角相等 ⇔ 弧相等 ⇔ 弦相等 ⇔ 弦心距相等</li>
+ <li><b>8.2</b> 圆周角＝½圆心角；同弧圆周角相等；半圆（直径）所对圆周角＝90°</li>
+ <li><b>8.3</b> 垂径定理：r²＝(AB/2)²＋弦心距²；平行弦距离＝弦心距之差（同侧）或之和（异侧）</li>
+ <li><b>8.4</b> 圆内接四边形：对角互补，外角＝内对角</li>
+ <li><b>8.5</b> 切线⊥半径；切线长相等；PT²＝OP²−r²；圆外切三角形周长＝2(AP＋BQ＋CR)</li>
+ <li><b>8.6</b> 弦切角＝所夹弧所对的圆周角＝½所夹弧的圆心角</li></ul></div><div class="card quiz"></div>`;
+ main.appendChild(p);
+ Quiz(p.querySelector('.quiz'),()=>{const sc=SH([0,1,2,3,4,5]),h=SH(H);
+  return[[...sc.slice(0,5).map(i=>P(SEC[i])),...h.slice(0,5)],[P(SEC[sc[5]]),P(SEC[sc[0]]),...h.slice(5,8)]].map(a=>a)},10,5,0,true)}
+show(0);
+/* 字体 / 主题 */
+let fs=16;try{fs=+localStorage.getItem('c8fs')||16}catch(e){}
+const setFs=x=>{fs=Math.min(24,Math.max(12,x));document.documentElement.style.fontSize=fs+'px';try{localStorage.setItem('c8fs',fs)}catch(e){}};setFs(fs);
+$('#fm').onclick=()=>setFs(fs-1);$('#fp').onclick=()=>setFs(fs+1);$('#f0').onclick=()=>setFs(16);
+const th=$('#th'),setTh=t=>{document.documentElement.dataset.theme=t;th.textContent=t=='dark'?'☀️ 白天':'🌙 夜晚';try{localStorage.setItem('c8th',t)}catch(e){}};
+try{setTh(localStorage.getItem('c8th')||'dark')}catch(e){setTh('dark')}
+th.onclick=()=>setTh(document.documentElement.dataset.theme=='dark'?'light':'dark');
+/* 水印：浮水印 + 隐藏水印 */
+(function(){const mk=()=>{if($('#wm'))return;const d=document.createElement('div');d.id='wm';d.innerHTML=Array.from({length:90},(_,i)=>`<span>${HID[i%4]}</span>`).join('');document.body.appendChild(d)};
+ mk();new MutationObserver(mk).observe(document.body,{childList:true});
+ const z=[...'ecchua79'].map(c=>c.charCodeAt(0).toString(2).padStart(8,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('\u200d');
+ document.title+=z;$('#ft').appendChild(document.createTextNode(z));
+ setInterval(()=>{if(!$('#ft')){const f=document.createElement('footer');f.id='ft';f.innerHTML='© 2026 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79';document.body.appendChild(f)}},3000);
+ console.log('%c峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79','color:#38bdf8;font-weight:bold')})();
+</script>
+</body>
+</html>

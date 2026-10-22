@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 (ecchua79) · Chinese High School 峇株吧辖华仁中学 · 初三下册 数学 第9章 轨迹与几何作图 互动课程 · ecchua79.github.io/ScienceLab -->
+<html lang="zh-CN" data-th="l" data-author="ecchua79">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School 华仁中学">
+<title>初三下册 · 第9章 轨迹与几何作图 · 互动课程</title>
+<style>
+/* ecchua79 · Chinese High School · all rights reserved */
+:root{--bg:#f4f7fb;--cd:#fff;--tx:#1d2733;--mu:#6b7a89;--ac:#0f9d58;--bl:#2f6fed;--rd:#d93025;--bd:#dbe2ea}
+[data-th=d]{--bg:#11151b;--cd:#1b212a;--tx:#e6ebf1;--mu:#93a0ad;--ac:#3ddc97;--bl:#6ea8ff;--rd:#ff7b72;--bd:#2d3643}
+html{font-size:15px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:20;background:var(--cd);border-bottom:1px solid var(--bd)}
+.hd{display:flex;align-items:center;gap:6px;padding:8px 12px}
+.hd h1{flex:1;font-size:1.05rem;margin:0}
+button{font:inherit;cursor:pointer}
+.ib{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px;padding:3px 10px}
+#tb{display:flex;gap:6px;overflow-x:auto;white-space:nowrap;padding:0 12px 8px;-webkit-overflow-scrolling:touch}
+#tb button{flex:none;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:18px;padding:5px 13px}
+#tb button.on{background:var(--bl);color:#fff;border-color:var(--bl)}
+main{max-width:760px;margin:0 auto;padding:12px}
+h2{margin:.4rem 0}h3{margin:1rem 0 .4rem}h4{margin:.2rem 0}
+.ex,.cb,.qb,details{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;margin:10px 0}
+.ex li{margin:.15rem 0}.mu{color:var(--mu);font-size:.9rem}
+svg.fg{width:100%;max-width:380px;display:block;margin:.4rem auto;background:var(--bg);border:1px solid var(--bd);border-radius:8px}
+.l,.a,.d,.r{fill:none}.l{stroke:var(--ac);stroke-width:1.8}.a{stroke:var(--bl);stroke-width:1.4}.d{stroke:var(--mu);stroke-width:1.2;stroke-dasharray:4 3}.r{stroke:var(--rd);stroke-width:2}
+.p{fill:var(--tx)}.t{fill:var(--tx);font-size:11px}
+.res{background:rgba(47,111,237,.1);border-left:4px solid var(--bl);padding:6px 10px;border-radius:6px;margin:8px 0}
+select,input{font:inherit;padding:5px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);margin:3px 6px 3px 0}
+input{width:7rem}label{display:inline-block;margin-right:8px}
+.q{border-top:1px dashed var(--bd);padding:6px 0}
+.o{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+.o:disabled{opacity:1;cursor:default}.ok{border-color:var(--ac);background:rgba(15,157,88,.2)}.no{border-color:var(--rd);background:rgba(217,48,37,.2)}
+.b{border:0;background:var(--bl);color:#fff;border-radius:8px;padding:6px 14px;margin:4px 0}
+.g{color:var(--ac)}.x{color:var(--rd)}.ex2{margin:.3rem 0;font-size:.95rem}
+svg.fg{margin:.2rem auto}.fw{margin:.4rem 0}.fc{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.cp{flex:1;min-width:10rem;font-size:.9rem;color:var(--mu)}.pen{fill:var(--rd);stroke:#fff;stroke-width:1.2}
+.sq{position:relative;display:inline-block;padding:.16em 1px 0 .75em;line-height:1.2;white-space:nowrap}
+.sq .sh{position:absolute;left:0;top:0;width:.7em;height:100%;overflow:visible}.sq .sh path{fill:none;stroke:currentColor;stroke-width:1.3;vector-effect:non-scaling-stroke;stroke-linejoin:miter}
+.sq .sb{position:absolute;left:.7em;top:0;width:calc(100% - .7em);height:2px;overflow:visible}.sq .sb line{stroke:currentColor;stroke-width:1.3}
+.sr{fill:none;stroke:var(--tx);stroke-width:1.1}.fc .b:disabled{opacity:.45}.fc select{width:auto;padding:3px 4px;margin:0}
+footer{text-align:center;color:var(--mu);font-size:.85rem;padding:18px 10px 30px}
+#wm{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-28deg);font-size:1.65rem;font-weight:700;white-space:nowrap;opacity:.055;pointer-events:none;z-index:99;user-select:none}
+#wm2{position:fixed;right:8px;bottom:6px;font-size:.7rem;opacity:.35;pointer-events:none;z-index:99}
+</style>
+</head>
+<body data-wm="蔡逸众|ecchua79|Chinese High School">
+<div id="wm">蔡逸众 · ecchua79 · 华仁中学</div><div id="wm2">© 蔡逸众 ecchua79</div>
+<header><div class="hd"><h1>📐 第9章 轨迹与几何作图</h1><button class="ib" id="fm">A−</button><button class="ib" id="fp">A+</button><button class="ib" id="th">🌙</button></div><div id="tb"></div></header>
+<main>
+<details><summary><b>本章学习目标与导读</b></summary>
+<ul><li>理解轨迹的概念；能作已知圆心及半径的圆</li><li>能作线段的中垂线、过一点的垂线，能求圆心</li><li>能作正方形、三角形、平行四边形及正多边形</li><li>能作一角等于已知角、特别角及角平分线</li><li>能作过一点的平行线；能作三角形的外接圆及内切圆</li></ul>
+<p class="mu">尺规作图：只用没有刻度的直尺与圆规。古希腊三大难题（三等分角、化圆为方、倍立方）困扰数学家两千多年，后来由伽罗瓦理论证明不可能。本章直尺均无刻度。</p><p class="mu">▶ 每张作图下方都有「播放动画」按钮：图默认显示完成图，点击后从头开始一步一步画（红点是笔尖，从哪里开始一目了然）；轨迹图则是动点 P 沿路线走一遍，虚线实时显示 P 满足的条件。</p></details>
+<div id="mn"></div></main>
+<footer>峇株吧辖华仁中学出品<br>蔡逸众老师 制作</footer>
+<script>
+/* © 蔡逸众 (ecchua79) · Chinese High School */
+console.log('%c初三下册 第9章 · 蔡逸众 ecchua79 · Chinese High School','color:#0f9d58');
+const $=s=>document.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),P=a=>a[R(0,a.length-1)],
+sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a},
+f=x=>''+(+x.toFixed(2)),D=Math.PI/180,sq2=Math.SQRT2,
+M=(q,a,w,e)=>({q,a:''+a,w:[...new Set(w.map(String))].filter(x=>x!=a).slice(0,3),e}),
+nw=(a,c,u)=>{let s=[],t=x=>x>0&&Math.abs(x-a)>.004&&!s.some(y=>Math.abs(y-x)<.004);c.forEach(x=>t(x)&&s.push(x));for(let k=1;s.length<3;k++)[a+k,a*2+k,a+2*k+.5].forEach(x=>s.length<3&&t(x)&&s.push(x));return s.slice(0,3).map(x=>f(x)+u)},
+N=(q,a,c,e,u='')=>M(q,f(a)+u,nw(a,c,u),e),
+F=(q,a,e)=>({q,a:+a.toFixed(2),e}),
+B=l=>()=>{let[x,y,z,e]=P(l);return M(x,y,z,e)};
+/* ---------- SVG（含作图动画步骤 Z(k,…)） ---------- */
+const sv=(b,c)=>`<div class="fw"${c?` data-cap="${c.join('|').replace(/√/g,'&#8730;')}"`:''}><svg class="fg" viewBox="0 0 240 150">${b}</svg>${c?'<div class="fc"><button class="b pl">▶ 播放动画</button><button class="b ps" disabled>⏸ 暂停</button><select class="sp" title="播放速度"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><span class="cp"></span></div>':''}</div>`,
+Z=(k,s)=>`<g data-s="${k}">${s}</g>`,
+L=(a,b,c,d,k='l')=>`<line class="${k}" x1="${a}" y1="${b}" x2="${c}" y2="${d}"/>`,
+C=(x,y,r,k='a')=>`<circle class="${k}" cx="${x}" cy="${y}" r="${r}"/>`,
+pt=(x,y,r,a)=>[x+r*Math.cos(a*D),y-r*Math.sin(a*D)],
+AR=(x,y,r,a,b,k='a')=>{let s=pt(x,y,r,a),e=pt(x,y,r,b);return`<path class="${k}" d="M${s[0]} ${s[1]}A${r} ${r} 0 ${Math.abs(b-a)>180?1:0} 0 ${e[0]} ${e[1]}"/>`},
+LA=(x,y,a,l,k='l')=>{let e=pt(x,y,l,a);return L(x,y,e[0],e[1],k)},
+LD=(x,y,a,h,k='l')=>{let s=pt(x,y,h,a+180),e=pt(x,y,h,a);return L(s[0],s[1],e[0],e[1],k)},
+T=(x,y,s,dx=5,dy=-5)=>`<circle class="p" cx="${x}" cy="${y}" r="2.5"/><text class="t" x="${x+dx}" y="${y+dy}">${s}</text>`,
+X=(x,y,s)=>`<text class="t" x="${x}" y="${y}" text-anchor="middle">${s}</text>`,
+RT=(x,y,pre,r,post)=>{let w1=6.2*pre.length,w2=6.4*r.length+2,u=x+w1;return`<text class="t" x="${x}" y="${y}">${pre}</text><path class="sr" d="M${u} ${y-3.5}L${u+1.6} ${y-5}L${u+4.2} ${y+1.5}L${u+8} ${y-11}H${u+9+w2}"/><text class="t" x="${u+9}" y="${y}">${r}</text><text class="t" x="${u+10+w2}" y="${y}">${post}</text>`},
+an=(o,z)=>Math.atan2(-(z[1]-o[1]),z[0]-o[0])/D,
+RM=(x,y,a)=>{let p=pt(x,y,8,a),q=pt(x,y,8,a+90);return`<path class="r" d="M${p[0]} ${p[1]}L${p[0]+q[0]-x} ${p[1]+q[1]-y}L${q[0]} ${q[1]}"/>`},
+pp=a=>pt(120,75,52,a),
+fr=(x,y,p)=>`<line class="d fo" data-from="${x},${y}" x1="${x}" y1="${y}" x2="${p[0]}" y2="${p[1]}"/>`,
+pj=(x,y,a,p)=>{let u=[Math.cos(a*D),-Math.sin(a*D)],k=(p[0]-x)*u[0]+(p[1]-y)*u[1];return[x+k*u[0],y+k*u[1]]},
+fp=(x,y,a,p)=>{let q=pj(x,y,a,p);return`<line class="d fo" data-proj="${x},${y},${a}" x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}"/>`},
+pbis=(p,q,k)=>{let dx=q[0]-p[0],dy=q[1]-p[1],d=Math.hypot(dx,dy),r=.6*d,h=Math.sqrt(r*r-d*d/4),mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,nx=-dy/d,ny=dx/d,c=[[mx+h*nx,my+h*ny],[mx-h*nx,my-h*ny]],s='';[p,q].forEach(o=>c.forEach(z=>{let t=an(o,z);s+=AR(o[0],o[1],r,t-12,t+12)}));return Z(k,s)+Z(k+1,L(mx+1.6*h*nx,my+1.6*h*ny,mx-1.6*h*nx,my-1.6*h*ny))},
+perpUp=(x,y)=>AR(x,y,22,-20,20)+AR(x,y,22,160,200)+AR(x-22,y,40,40,72)+AR(x+22,y,40,108,140);
+const d91=(t,n)=>t=='c'?sv(T(120,75,'O',-12,14)+X(145,68,'r='+n)+Z(1,C(120,75,50,'l')+fr(120,75,[170,75])+T(170,75,'P',6,-6)),['动点 P 到 O 的距离恒为 r，P 绕 O 走一圈，走过的路线就是圆'])
+:t=='b'?sv(L(50,75,190,75,'a')+T(50,75,'A',-14,4)+T(190,75,'B',6,4)+X(85,95,'AB='+n)+Z(1,L(120,5,120,145)+fr(50,75,[120,35])+fr(190,75,[120,35])+T(120,35,'P',6,0)),['动点 P 沿着一条线移动，PA 与 PB 始终相等——这条线就是 AB 的垂直平分线'])
+:t=='p'?sv(L(10,75,230,75,'a')+X(215,68,'ℓ')+Z(1,L(10,40,230,40)+fp(0,75,0,[60,40])+X(78,62,'d='+n))+Z(2,L(10,110,230,110)+fp(0,75,0,[60,110])+X(78,98,'d='+n)),['P 在 ℓ 上方，到 ℓ 的距离恒为 d，沿平行线移动','P 在 ℓ 下方，同样距离 d，得到另一条平行线'])
+:(()=>{let b1=pt(120,75,60,n/2),b2=pt(120,75,60,n/2+90);return sv(LD(120,75,0,110,'a')+LD(120,75,n,110,'a')+AR(120,75,26,0,n,'r')+X(120+44*Math.cos(n/2*D),79-44*Math.sin(n/2*D),n+'°')+T(120,75,'O',-12,14)+Z(1,LD(120,75,n/2,110)+fp(120,75,0,b1)+fp(120,75,n,b1))+Z(2,LD(120,75,n/2+90,110)+fp(120,75,0,b2)+fp(120,75,n,b2)),['P 沿这条线走，到两条直线的距离始终相等——它是角的平分线','另一条平分线（与前一条互相垂直）：P 到两直线的距离同样相等'])})(),
+d92=r=>sv(T(120,75,'P',-12,14)+L(14,128,69,128,'a')+X(41,120,'r='+r)+Z(1,L(120,75,175,75,'d')+X(150,68,'r='+r))+Z(2,C(120,75,55,'l')),['圆规张开到 r（对准已知线段的两端）','针尖放在圆心 P，旋转一周画圆']),
+d92b=()=>sv(L(85,75,155,75,'a')+T(85,75,'A',-12,14)+T(155,75,'B',6,14)+Z(1,C(85,75,70))+Z(2,C(155,75,70))+Z(3,L(85,75,120,14,'d')+L(155,75,120,14,'d')+T(120,14,'C',6,-2)+T(120,136,'D',6,12)),['以 A 为圆心、AB 为半径作圆','以 B 为圆心、AB 为半径作圆','交点 C：AC = BC = AB，△ABC 是等边三角形']),
+d93a=m=>sv(L(60,85,180,85,'a')+T(60,85,'A',-14,4)+T(180,85,'B',6,4)+X(90,100,'AB='+m)+Z(1,AR(60,85,70,-45,45)+AR(180,85,70,135,225)+T(120,49,'C',6,-2)+T(120,121,'D',6,12))+Z(2,L(120,28,120,142)+T(120,85,'M',-14,14)+RM(120,85,0)),['取大于 AB 一半的半径，分别以 A、B 为圆心作弧，交于 C、D','连接 CD，交 AB 于 M：CD 是中垂线，M 是中点']),
+d93b=()=>sv(L(10,110,230,110,'a')+T(120,110,'C',4,16)+Z(1,AR(120,110,40,0,180)+T(80,110,'P',-4,16)+T(160,110,'Q',-4,16))+Z(2,AR(80,110,60,25,75)+AR(160,110,60,105,155)+T(120,65,'D',6,0))+Z(3,L(120,110,120,35)+RM(120,110,0)),['以 C 为圆心作弧，交直线于 P、Q','取大于 PC 的半径，分别以 P、Q 为圆心作弧，交于 D','连接 CD：CD ⊥ 直线']),
+d93c=()=>sv(L(10,110,230,110,'a')+T(120,50,'C',6,-2)+Z(1,AR(120,50,80,228.5,311.5)+T(67,110,'P',-14,-4)+T(173,110,'Q',6,-4))+Z(2,AR(67,110,60,-45,-10)+AR(173,110,60,190,225)+T(120,138,'D',6,4))+Z(3,L(120,20,120,145)+RM(120,110,0)),['以 C 为圆心作弧，交直线于 P、Q','取大于 PQ 一半的半径，分别以 P、Q 为圆心在另一侧作弧，交于 D','连接 CD：CD ⊥ 直线']),
+d93d=()=>{let a=pp(200),b=pp(320),c=pp(80);return sv(C(120,75,52,'l')+Z(1,L(a[0],a[1],b[0],b[1],'d')+L(b[0],b[1],c[0],c[1],'d')+T(a[0],a[1],'A',-14,4)+T(b[0],b[1],'B',6,8)+T(c[0],c[1],'C',6,-2))+pbis(a,b,2)+pbis(b,c,4)+Z(6,T(120,75,'O',-12,14)),['在圆上任取三点 A、B、C，连接 AB、BC','作 AB 的中垂线：分别以 A、B 为圆心作弧','连接两弧交点（AB 的中垂线）','作 BC 的中垂线：分别以 B、C 为圆心作弧','连接两弧交点（BC 的中垂线）','两条中垂线的交点 O 就是圆心'])},
+dSq=a=>sv(L(16,40,16,120,'a')+X(34,84,a)+Z(1,L(30,120,200,120,'a')+T(70,120,'A',-12,12)+AR(70,120,80,-14,14)+T(150,120,'B',6,12)+X(110,138,'a='+a))+Z(2,perpUp(70,120)+perpUp(150,120))+Z(3,L(70,120,70,30)+L(150,120,150,30)+RM(70,120,0)+RM(150,120,0))+Z(4,AR(70,120,80,76,104)+AR(150,120,80,76,104)+T(70,40,'D',-12,-2)+T(150,40,'C',6,-2))+Z(5,L(70,40,150,40))+Z(6,L(70,120,150,40,'r')+RT(88,107,'a','2','≈'+f(a*sq2))),['作直线，取点 A；以 A 为圆心、边长 a 为半径作弧交直线于 B','过 A、B 分别作垂线：先在两侧截等长，再作弧相交','画出垂线 AE、BF（都垂直于 AB）','以 a 为半径，分别以 A、B 为圆心作弧，交垂线于 D、C','连接 CD：ABCD 是正方形','连接对角线 AC：长度 = a√2']),
+d94a=()=>{let e=pt(25,120,45,0),g=pt(25,120,45,50),q=pt(135,120,45,0),r=pt(135,120,45,50),ef=Math.hypot(e[0]-g[0],e[1]-g[1]);return sv(LA(25,120,0,85,'a')+LA(25,120,50,85,'a')+T(25,120,'A',-12,12)+LA(135,120,0,95,'a')+T(135,120,'P',-12,12)+Z(1,AR(25,120,45,0,52)+T(e[0],e[1],'E',2,14)+T(g[0],g[1],'F',-14,-2)+AR(135,120,45,0,75)+T(q[0],q[1],'Q',2,14))+Z(2,L(e[0],e[1],g[0],g[1],'d')+AR(q[0],q[1],ef,100,130)+L(q[0],q[1],r[0],r[1],'d')+T(r[0],r[1],'R',6,-2))+Z(3,LA(135,120,50,85)+AR(135,120,22,0,50,'r')),['以 A 为圆心作弧交两边于 E、F；以 P 为圆心、同半径作弧交射线于 Q','以 Q 为圆心、EF 为半径作弧，交前弧于 R','连接 PR：∠QPR = ∠BAC'])},
+d94b=t=>{let e=pt(110,125,55,0),g=pt(110,125,55,t),d=pt(110,125,95,t/2),re=Math.hypot(e[0]-d[0],e[1]-d[1]);return sv(LA(110,125,0,100,'a')+LA(110,125,t,100,'a')+T(110,125,'A',-12,12)+X(170,14,'∠BAC='+f(t)+'°，各半 '+f(t/2)+'°')+Z(1,AR(110,125,55,0,t)+T(e[0],e[1],'E',2,14)+T(g[0],g[1],'F',-14,-2))+Z(2,AR(e[0],e[1],re,an(e,d)-14,an(e,d)+14)+AR(g[0],g[1],re,an(g,d)-14,an(g,d)+14)+T(d[0],d[1],'D',6,-4))+Z(3,L(e[0],e[1],d[0],d[1],'d')+L(g[0],g[1],d[0],d[1],'d')+LA(110,125,t/2,105,'r')),['以 A 为圆心、适当半径作弧，交两边于 E、F','分别以 E、F 为圆心、同样半径作弧，交于 D','连接 AD：AD 平分 ∠BAC'])},
+d94c=()=>sv(L(60,125,180,125)+T(60,125,'A',-12,12)+T(180,125,'B',6,12)+Z(1,AR(60,125,120,40,75))+Z(2,AR(180,125,120,105,140)+T(120,21,'C',6,-2))+Z(3,L(60,125,120,21)+L(180,125,120,21,'d')+AR(60,125,25,0,60,'r')+X(98,118,'60°')),['以 A 为圆心、AB 为半径作弧','以 B 为圆心、同样半径作弧，交于 C','连接 AC：∠BAC = 60°（△ABC 是等边三角形）']),
+d96a=()=>sv(L(10,115,230,115,'a')+T(40,115,'D',-12,14)+X(18,108,'A')+X(225,108,'B')+T(78,45,'C',-12,-4)+Z(1,AR(40,115,80,0,75)+T(120,115,'E',2,14))+Z(2,AR(78,45,80,-20,20)+AR(120,115,80,45,78)+T(158,45,'F',6,-4))+Z(3,L(30,45,220,45)+L(40,115,78,45,'d')+L(120,115,158,45,'d')),['以 D 为圆心、DC 为半径作弧，交 AB 于 E','分别以 C、E 为圆心、DC 为半径作弧，交于 F','连接 CF：DCFE 是菱形，所以 CF ∥ AB']),
+d96b=()=>sv(L(10,115,230,115,'a')+X(18,108,'A')+X(225,108,'B')+T(95,35,'C',6,-6)+T(130,115,'D',6,14)+Z(1,L(86,15,139,135,'a'))+Z(2,AR(130,115,24,0,113.6,'r')+AR(95,35,24,180,293.6,'r'))+Z(3,L(20,35,230,35)+X(28,30,'E')),['过 C 任作一直线，交 AB 于 D','作 ∠ECD = ∠CDB（内错角相等）','画出射线 CE：CE ∥ AB']),
+fit=ps=>{let xs=ps.map(p=>p[0]),ys=ps.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),s=Math.min(190/(x1-x0||1),95/(y1-y0||1));return p=>[(240-(x1-x0)*s)/2+(p[0]-x0)*s,(150+(y1-y0)*s)/2-(p[1]-y0)*s,s]},
+pl=q=>`<polygon class="l" points="${q.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/>`,
+dPar=(a,b,t)=>{let ps=[[0,0],[a,0],[a+b*Math.cos(t*D),b*Math.sin(t*D)],[b*Math.cos(t*D),b*Math.sin(t*D)]],q=ps.map(fit(ps)),[A,B,Cc,Dd]=q,rb=Math.hypot(Dd[0]-A[0],Dd[1]-A[1]),ra=Math.hypot(B[0]-A[0],B[1]-A[1]);return sv(L(A[0],A[1],B[0],B[1],'a')+L(A[0],A[1],Dd[0],Dd[1],'a')+T(A[0],A[1],'A',-12,12)+T(B[0],B[1],'B',6,12)+T(Dd[0],Dd[1],'D',-12,-2)+X((A[0]+B[0])/2,A[1]+14,'AB='+f(a))+X((A[0]+Dd[0])/2-16,(A[1]+Dd[1])/2,'AD='+f(b))+X(A[0]+30,A[1]-6,f(t)+'°')+Z(1,AR(B[0],B[1],rb,an(B,Cc)-14,an(B,Cc)+14)+AR(Dd[0],Dd[1],ra,an(Dd,Cc)-14,an(Dd,Cc)+14)+T(Cc[0],Cc[1],'C',6,-2))+Z(2,L(B[0],B[1],Cc[0],Cc[1])+L(Dd[0],Dd[1],Cc[0],Cc[1]))+Z(3,L(A[0],A[1],Cc[0],Cc[1],'d')+L(B[0],B[1],Dd[0],Dd[1],'d')),['分别以 B、D 为圆心，AD、AB 的长为半径作弧，交于 C','连接 BC、DC：对边分别相等 ⇒ 平行四边形','对角线 AC、BD 互相平分（虚线）'])},
+dP=(n,md)=>{let c=[];for(let k=0;k<n;k++)c.push(pt(120,75,62,180-360*k/n));const lb=k=>T(c[k][0],c[k][1],String.fromCharCode(65+k),(c[k][0]-120)*.14-3,(c[k][1]-75)*.14+4),ix=a=>a.map(lb).join(''),pg=pl(c),O=T(120,75,'O',-12,14),all=[...c.keys()],cr=C(120,75,62,'a');
+if(md=='h')return sv(O+Z(1,cr+L(58,75,182,75,'d')+ix([0,3]))+Z(2,AR(58,75,62,-70,70)+AR(182,75,62,110,250)+ix([1,2,4,5]))+Z(3,pg),['以 O 为圆心、边长 s 为半径作圆，作直径 AD','分别以 A、D 为圆心、OA 为半径作弧，交圆于 B、F 与 C、E','顺次连接 A、B、C、D、E、F：正六边形（边长 = 半径）']);
+if(md=='o')return sv(O+Z(1,cr+L(c[0][0],c[0][1],c[4][0],c[4][1],'d')+ix([0,4]))+Z(2,L(c[2][0],c[2][1],c[6][0],c[6][1],'d')+ix([2,6]))+Z(3,L(c[1][0],c[1][1],c[5][0],c[5][1],'d')+L(c[3][0],c[3][1],c[7][0],c[7][1],'d')+ix([1,3,5,7]))+Z(4,pg),['作圆与水平直径 AE','作与 AE 垂直的直径 CG','分别平分 ∠COE、∠EOG（及其反向延长），得另外四个顶点','顺次连接八个顶点：正八边形']);
+if(md=='t')return sv(O+Z(1,pl([c[0],c[2],c[4]])+ix([0,2,4]))+Z(2,L(c[0][0],c[0][1],c[3][0],c[3][1],'d')+L(c[2][0],c[2][1],c[5][0],c[5][1],'d')+L(c[4][0],c[4][1],c[1][0],c[1][1],'d'))+Z(3,cr+ix([1,3,5]))+Z(4,pg),['作正三角形 ACE','作 AC、AE 的中垂线（它们交于 O）','以 O 为圆心、OA 为半径作圆，交出 B、D、F','顺次连接，得正六边形 ABCDEF']);
+return sv(O+Z(1,cr)+Z(2,c.map(p=>L(120,75,p[0],p[1],'d')).join('')+ix(all))+Z(3,pg),['作外接圆（圆心 O）','把圆周 n 等分，得到 n 个顶点（虚线为半径）','顺次连接各顶点，得正 n 边形'])},
+ang=([a,b,c])=>[Math.acos((b*b+c*c-a*a)/2/b/c),Math.acos((a*a+c*c-b*b)/2/a/c),Math.acos((a*a+b*b-c*c)/2/a/b)].map(x=>f(x/D)),
+dT=(ts,o)=>{
+let cs=ts.map(([a,b,c])=>{let k=Math.max(-1,Math.min(1,(b*b+c*c-a*a)/2/b/c));return[[0,0],[c,0],[b*k,b*Math.sqrt(1-k*k)]]}),ps=cs.flat(),[a,b,c]=ts[0],Q=cs[0][2],K=c*Q[1]/2,Oc=[c/2,(Q[0]*Q[0]+Q[1]*Q[1]-c*Q[0])/2/Q[1]],Rc=a*b*c/4/K,s=a+b+c,Ic=[(b*c+c*Q[0])/s,c*Q[1]/s],ri=2*K/s;
+if(o=='c')ps=ps.concat([[Oc[0]-Rc,Oc[1]-Rc],[Oc[0]+Rc,Oc[1]+Rc]]);
+let m=fit(ps),sc=m([0,0])[2],mm=cs.map(t=>t.map(m)),[pa,pb,pc]=mm[0],
+lab=(p,q,v,ce)=>{let mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=mx-ce[0],dy=my-ce[1],l=Math.hypot(dx,dy)||1;return X(mx+dx/l*11,my+dy/l*11+4,f(v))},
+labs=mm.map((q,i)=>{let ce=[(q[0][0]+q[1][0]+q[2][0])/3,(q[0][1]+q[1][1]+q[2][1])/3],[a,b,c]=ts[i];return lab(q[1],q[2],a,ce)+lab(q[2],q[0],b,ce)+(i?'':lab(q[0],q[1],c,ce))}).join(''),
+polys=mm.map((q,i)=>pl(q).replace('"l"',i?'"r"':'"l"')).join(''),
+A_=T(pa[0],pa[1],'A',-12,12),B_=T(pb[0],pb[1],'B',6,12),Cs=mm.map((q,i)=>T(q[2][0],q[2][1],'C'+(ts.length>1?i+1:''),5,-5)).join(''),
+rA=Math.hypot(pc[0]-pa[0],pc[1]-pa[1]),rB=Math.hypot(pc[0]-pb[0],pc[1]-pb[1]),
+ray=(p,z,k)=>LA(p[0],p[1],an(p,z),1.25*Math.hypot(z[0]-p[0],z[1]-p[1]),k||'a'),AB=L(pa[0],pa[1],pb[0],pb[1],'a')+A_+B_,A2=ang(ts[0]),
+gv={SSS:`已知 BC=${f(a)}，CA=${f(b)}，AB=${f(c)}`,SAS:`已知 AC=${f(b)}，AB=${f(c)}，∠A=${A2[0]}°`,ASA:`已知 AB=${f(c)}，∠A=${A2[0]}°，∠B=${A2[1]}°`,SSA:`已知 ∠A=${A2[0]}°，AB=${f(c)}，BC=${f(a)}`}[o],G0=gv?X(120,12,gv):'',fin=k=>Z(k,polys+labs),aA=AR(pa[0],pa[1],24,0,an(pa,pc),'r');
+if(o=='SSS')return sv(G0+Z(1,AB)+Z(2,AR(pa[0],pa[1],rA,an(pa,pc)-12,an(pa,pc)+12)+AR(pb[0],pb[1],rB,an(pb,pc)-12,an(pb,pc)+12)+Cs)+fin(3),['作线段 AB = c（取点 A，以 A 为圆心、c 为半径作弧得 B）','分别以 A、B 为圆心，b 与 a 为半径作弧，交于 C','连接 AC、BC：△ABC 就是所求的三角形']);
+if(o=='SAS')return sv(G0+Z(1,AB)+Z(2,ray(pa,pc)+aA)+Z(3,AR(pa[0],pa[1],rA,an(pa,pc)-12,an(pa,pc)+12)+Cs)+fin(4),['作线段 AB = c','在 A 作已知角 ∠A（射线 AD）','以 A 为圆心、b 为半径作弧，交射线于 C','连接 BC：△ABC 就是所求的三角形']);
+if(o=='ASA')return sv(G0+Z(1,AB)+Z(2,ray(pa,pc)+aA)+Z(3,ray(pb,pc)+AR(pb[0],pb[1],24,an(pb,pc),180,'r')+Cs)+fin(4),['作线段 AB = c','在 A 作已知角 ∠A','在 B 作已知角 ∠B，两条射线交于 C','△ABC 就是所求的三角形']);
+if(o=='SSA'){let p2=mm[1]?mm[1][2]:pc,u=an(pb,pc),v=an(pb,p2),far=mm[1]&&Math.hypot(p2[0]-pa[0],p2[1]-pa[1])>rA?p2:pc;return sv(G0+Z(1,AB)+Z(2,ray(pa,far))+Z(3,AR(pb[0],pb[1],rB,Math.min(u,v)-12,Math.max(u,v)+12)+Cs)+fin(4),['作线段 AB = c','在 A 作已知角 ∠A（射线 AD）','以 B 为圆心、a 为半径作弧，交射线于 C'+(mm[1]?'₁、C₂（两个交点！）':''),'连接 BC，得所求的三角形'+(mm[1]?'（两个，红色为第二个）':'')])}
+if(o=='c'){let oo=m(Oc);return sv(polys+A_+B_+Cs+pbis(pa,pb,1)+pbis(pb,pc,3)+Z(5,C(oo[0],oo[1],Rc*sc)+T(oo[0],oo[1],'O',-12,14)),['作 AB 的中垂线：分别以 A、B 为圆心作弧','连接两弧交点','作 BC 的中垂线：分别以 B、C 为圆心作弧','连接两弧交点，交点 O 就是外心','以 O 为圆心、OA 为半径作外接圆'])}
+if(o=='i'){let ii=m(Ic);return sv(polys+A_+B_+Cs+Z(1,L(pa[0],pa[1],ii[0],ii[1],'a'))+Z(2,L(pb[0],pb[1],ii[0],ii[1],'a')+T(ii[0],ii[1],'I',-12,14))+Z(3,L(ii[0],ii[1],ii[0],pa[1],'d')+RM(ii[0],pa[1],0)+T(ii[0],pa[1],'D',-4,14))+Z(4,C(ii[0],ii[1],ri*sc)),['作 ∠A 的平分线（做法见 9.4）','作 ∠B 的平分线，两线交点 I 就是内心','过 I 作 AB 的垂线，垂足为 D，ID 就是半径','以 I 为圆心、ID 为半径作内切圆'])}
+return sv(polys+labs+A_+B_+Cs)},
+solveT=(m,x,y,z)=>{
+if(m==0)return x+y>z&&x+z>y&&y+z>x?[[x,y,z]]:[];
+if(m==1)return z<180?[[Math.sqrt(x*x+y*y-2*x*y*Math.cos(z*D)),x,y]]:[];
+if(m==2){let C=180-x-y;if(C<=0)return[];let k=z/Math.sin(C*D);return[[k*Math.sin(x*D),k*Math.sin(y*D),z]]}
+let h=y*Math.sin(x*D),o=[];if(z<h-1e-9)return[];let d=z*z-h*h<1e-9?0:Math.sqrt(z*z-h*h),b0=y*Math.cos(x*D);[b0-d,b0+d].forEach((b,i)=>{if(b>1e-9&&(i==0||d>1e-9))o.push([z,b,y])});return o};
+/* ---------- 题目引擎 ---------- */
+const G=[[
+()=>{let r=R(2,9);return M(`动点 P 与定点 O 的距离恒为 ${r} cm，则点 P 的轨迹是？`,`以 O 为圆心、半径 ${r} cm 的圆`,[`以 O 为圆心、直径 ${r} cm 的圆`,`以 O 为圆心、半径 ${2*r} cm 的圆`,`与 O 相距 ${r} cm 的两条平行线`],`到定点距离相等 ⇒ 圆，半径就是 ${r} cm。`)},
+()=>{let d=R(2,8);return M(`动点 P 到直线 AB 的距离等于 ${d} cm，点 P 的轨迹是？`,`与 AB 平行且相距 ${d} cm 的两条直线`,[`与 AB 平行且相距 ${d} cm 的一条直线`,`与 AB 垂直且相距 ${d} cm 的两条直线`,`以 AB 为直径的圆`],`AB 的两侧各有一条，共两条平行线。`)},
+()=>{let s=2*R(2,6);return N(`两平行线 AB、CD 相距 ${s} cm，到两线距离相等的动点轨迹，与 AB 的距离是多少 cm？`,s/2,[s,2*s,s/2+1],`轨迹是正中间的平行线：${s} ÷ 2 = ${s/2}。`)},
+()=>{let t=2*R(20,70);return N(`两直线相交成 ${t}° 角，到两线等距的点的轨迹中，平分该角的那条线与其一边的夹角是多少度？`,t/2,[t,90-t/2,180-t],`角平分线把 ${t}° 平分，得 ${t/2}°。`)},
+()=>{let l=2*R(3,8);return N(`与定点 A、B 等距的动点轨迹交线段 AB 于 M。若 AB = ${l} cm，则 AM = ？cm`,l/2,[l,2*l,l/2+1],`轨迹是 AB 的垂直平分线，M 是中点，AM = ${l} ÷ 2 = ${l/2}。`)}],
+[
+()=>{let r=R(2,9);return N(`圆的半径为 ${r} cm（π 取 3.14），面积是多少 cm²？`,3.14*r*r,[6.28*r,12.56*r*r,3.14*r],`面积 = πr² = 3.14 × ${r}² = ${f(3.14*r*r)}。`)},
+()=>{let r=R(2,9);return N(`圆的半径为 ${r} cm（π 取 3.14），周长是多少 cm？`,6.28*r,[3.14*r,3.14*r*r,12.56*r],`周长 = 2πr = 2 × 3.14 × ${r} = ${f(6.28*r)}。`)},
+()=>{let r=R(2,9);return N(`用圆规张开 ${r} cm 作圆，圆上相距最远的两点距离是多少 cm？`,2*r,[r,3.14*r,4*r],`最远的两点连线是直径 = 2 × ${r} = ${2*r}。`)},
+()=>M(`以线段 AB 的两端 A、B 为圆心、AB 为半径作两圆，相交于 C，则 △ABC 是？`,'等边三角形',['等腰直角三角形','直角三角形','不等边三角形'],'AC = AB，BC = AB，三边相等。'),
+()=>{let r=R(3,8),d=R(2,10),a=d<r?'在圆内':d==r?'在圆上':'在圆外';return M(`以 P 为圆心、半径 ${r} cm 作圆，点 Q 与 P 相距 ${d} cm，则点 Q：`,a,['在圆内','在圆上','在圆外','无法判断'],`比较 ${d} 与半径 ${r}：${a}。`)}],
+[
+()=>{let l=2*R(3,8);return N(`已知 AB = ${l} cm，用圆规作 AB 的中垂线，下列哪个半径可行？（cm）`,l*.75,[l/2,l/2-1,l/4],`半径必须大于 AB 的一半 ${l/2}；刚好等于时两弧只相切，不会相交。`)},
+()=>{let d=P([4,6,8,10]),s=d/sq2;return N(`正方形的对角线长 ${d} cm，边长约是多少 cm（精确到 0.01）？`,s,[d/2,d*sq2,d],`边长 = 对角线 ÷ √2 = ${d} ÷ 1.414 ≈ ${f(s)}。`)},
+B([['用尺规求已知圆的圆心，至少要作几条弦的中垂线？','2 条',['1 条','3 条','4 条'],'两条弦的中垂线的交点就是圆心。'],['求圆心时作两条弦的中垂线，圆心是它们的？','交点',['中点','垂足','平行线'],'圆心到弦的两端等距，在每条弦的中垂线上，所以是交点。'],['过线外一点 C 作垂线，第二步分别以 P、Q 为圆心的半径须？','大于 PQ 的一半',['小于 PQ 的一半','等于 PC','任意长度都可以'],'否则两弧不相交。']]),
+()=>{let r=R(2,7);return N(`过直线上一点 C 作垂线：以 C 为圆心、${r} cm 为半径作弧交直线于 P、Q，则 PQ = ？cm`,2*r,[r,r/2,4*r],`P、Q 在 C 的两侧，CP = CQ = ${r}，PQ = ${2*r}。`)},
+()=>{let a=R(3,9);return N(`边长 ${a} cm 的正方形，对角线约多少 cm（精确到 0.01）？`,a*sq2,[2*a,a*a,1.5*a],`对角线 = a√2 ≈ ${a} × 1.414 = ${f(a*sq2)}。`)}],
+[
+()=>{let t=2*R(20,80);return N(`作 ∠BAC = ${t}° 的平分线 AD，则 ∠BAD = ？度`,t/2,[t,90-t/2,2*t],`平分线把角分成相等的两份：${t} ÷ 2 = ${t/2}°。`)},
+()=>{let b=[15,30,45,60,90],T=P([75,105,120,135,150]),pr=[];b.forEach(x=>b.forEach(y=>x<=y&&pr.push([x,y])));let ok=P(pr.filter(p=>p[0]+p[1]==T)),bad=sh(pr.filter(p=>[15,30].includes(Math.abs(p[0]+p[1]-T)))),s=p=>p[0]+'° + '+p[1]+'°';return M(`要作出 ${T}° 角，可以用下列哪两个角相加？`,s(ok),bad.slice(0,3).map(s),`${T}° = ${s(ok)}。`)},
+B([['作一角等于已知角 ∠BAC：以 Q 为圆心作弧交 QY 于 R，所用半径是？','EF（已知角两弧交点之间的距离）',['AE','AF','PQ 的两倍'],'△AEF ≌ △PQR（三边相等），所以 ∠QPR = ∠BAC。'],['角平分线上的点到角两边的距离？','相等',['互补','相差 2 倍','等于到顶点的距离'],'角平分线是到两边等距的点的轨迹（9.1）。'],['尺规作 60° 角，实际上作出的是？','等边三角形',['等腰直角三角形','正方形','菱形'],'AB = AC = BC，三个角都是 60°。']]),
+()=>{let d=R(2,9);return N(`点 P 在 ∠AOC 的平分线上，P 到 OA 的距离为 ${d} cm，则 P 到 OA、OC 的距离之和是多少 cm？`,2*d,[d,d*d,d/2],`P 到两边等距，各为 ${d}，和为 ${2*d}。`)},
+()=>{let t=4*R(10,30);return N(`把 ${t}° 的角连续平分两次，每份是多少度？`,t/4,[t/2,t/3,t/8],`${t} ÷ 2 ÷ 2 = ${t/4}°。`)}],
+[
+()=>{let k=R(0,2),a=R(3,6),b=R(3,6),c=k==0?a+b-R(1,2):k==1?a+b:a+b+R(1,4),t=['能作出','不能，较短两边之和等于最长边','不能，较短两边之和小于最长边'];return M(`已知三线段长 ${sh([a,b,c]).join('、')} cm，能否用尺规作出以它们为边的三角形？`,t[k],[...t.filter((_,i)=>i!=k),'无法确定，还需知道一个角'],'三角形任意两边之和必须大于第三边。')},
+()=>{let c=2*R(3,5),h=c/2,k=R(0,3),a=[h-R(1,2),h,h+R(1,2),c+R(0,2)][k],n=[0,1,2,1][k];return M(`用尺规作 △ABC，已知 ∠A = 30°，AB = ${c} cm，BC = ${a} cm，可以作出几个三角形？`,n+' 个',['0 个','1 个','2 个','无数个'],`B 到射线 AC 的距离 h = ${c}×sin30° = ${h} cm。BC < h 无解；BC = h 一个；h < BC < AB 两个；BC ≥ AB 一个。`)},
+()=>{let x=R(30,80),y=R(30,80),c=R(4,9);return N(`作 △ABC，使 ∠A = ${x}°，∠B = ${y}°，AB = ${c} cm，则 ∠C = ？度`,180-x-y,[x+y,180-x,90-(x+y)/2],`内角和 180°：180 − ${x} − ${y} = ${180-x-y}。`)},
+B([['下列哪一组条件不能唯一确定一个三角形？','两边及其中一边的对角',['三边长','两边及其夹角','两角及夹边'],'“两边及非夹角”可能作出两个不同的三角形（例题 4）。'],['下列哪一组条件可以唯一确定一个三角形？','两边及其夹角',['两边及其中一边的对角','三个角','只知道一边与一个角'],'两边及夹角（SAS）唯一确定。']]),
+()=>{let h=2*R(3,8);return N(`△ABC 中，∠A = 90°，∠B = 30°，BC = ${h} cm，则 AC = ？cm`,h/2,[h,h*.87,2*h],`30° 角所对的直角边是斜边的一半：${h} ÷ 2 = ${h/2}。`)}],
+[
+B([['过直线外一点 C，作已知直线 AB 的平行线，可以作出几条？','1 条',['0 条','2 条','无数条'],'过直线外一点有且只有一条直线与已知直线平行。'],['作法一中四边形 DCFE 的四边都等于 DC，所以它是？','菱形',['矩形','梯形','正方形'],'菱形的对边平行，所以 CF ∥ DE。'],['作法二作 ∠ECD = ∠CDB（E、B 在 CD 两侧），CE ∥ AB 的根据是？','内错角相等，两直线平行',['同旁内角相等，两直线平行','对顶角相等，两直线平行','同位角互补，两直线平行'],'∠ECD 与 ∠CDB 是内错角。']]),
+()=>{let a=R(3,9),b=R(3,9);return N(`平行四边形 ABCD 中，AB = ${a} cm，AD = ${b} cm，周长是多少 cm？`,2*(a+b),[a+b,a*b,2*a+b],`对边相等：2 × (${a} + ${b}) = ${2*(a+b)}。`)},
+()=>{let t=2*R(20,40);return N(`平行四边形 ABCD 中，∠A = ${t}°，则 ∠B = ？度`,180-t,[t,180-t/2,90-t/2],`邻角互补：180° − ${t}° = ${180-t}°。`)},
+()=>{let[p,q]=P([[2,3],[3,4],[3,5],[2,5]]),k=R(1,3),m=R(2,3),AB=q*k,AD=p*k,AC=q*m,AE=p*m;return N(`△ABC 中，D 在 AB 上，E 在 AC 上，DE ∥ BC。AB = ${AB}，AD = ${AD}，AC = ${AC}，求 AE。`,AE,[(q-p)*m,AD,AC-AD],`AD : AB = AE : AC，所以 AE = ${AC} × ${AD} ÷ ${AB} = ${AE}。`)},
+()=>{let x=2*R(2,6),y=2*R(2,6);return N(`菱形 ABCD 的对角线 AC = ${x} cm，BD = ${y} cm，面积是多少 cm²？`,x*y/2,[x*y,x+y,x*y/4],`面积 = 对角线之积 ÷ 2 = ${x} × ${y} ÷ 2 = ${x*y/2}。`)}],
+[
+B([['三角形外接圆的圆心是？','三边中垂线的交点',['三条角平分线的交点','三条高的交点','三条中线的交点'],'外心到三个顶点等距，在各边的中垂线上。'],['三角形内切圆的圆心是？','三条角平分线的交点',['三边中垂线的交点','三条高的交点','三条中线的交点'],'内心到三边等距，在各角的平分线上。'],['外心到三角形的哪些点距离相等？','三个顶点',['三条边','三条高的垂足','三条中线的中点'],'外心是外接圆的圆心。'],['内心到三角形的哪些位置距离相等？','三条边',['三个顶点','三个顶点的对边中点','三条高的垂足'],'内心是内切圆的圆心，距离就是内切圆半径。']]),
+()=>{let t=P([[3,4,5],[5,12,13],[8,15,17],[6,8,10]]),k=R(1,2),[a,b,c]=t.map(x=>x*k);return R(0,1)?N(`直角三角形两直角边为 ${a} cm、${b} cm，斜边 ${c} cm，外接圆半径是多少 cm？`,c/2,[(a+b-c)/2,c,(a+b)/2],`直角三角形的外心是斜边中点，R = ${c} ÷ 2 = ${c/2}。`):N(`直角三角形两直角边为 ${a} cm、${b} cm，斜边 ${c} cm，内切圆半径是多少 cm？`,(a+b-c)/2,[a+b-c,c/2,a*b/(a+b+c)/2],`r = (${a} + ${b} − ${c}) ÷ 2 = ${(a+b-c)/2}。`)},
+()=>{let k=R(0,2),A,B;if(k==0){A=R(50,70);B=R(50,70)}else if(k==1){A=90;B=R(30,60)}else{A=R(100,130);B=R(20,40)}let a=['三角形内部','斜边的中点','三角形外部'][k];return M(`△ABC 中 ∠A = ${A}°，∠B = ${B}°，则它的外心位于？`,a,['三角形内部','斜边的中点','三角形外部','某一顶点上'],`∠C = ${180-A-B}°。${k==0?'三个角都是锐角':k==1?'有一个直角':'有一个钝角'}，外心在${a}。`)},
+()=>{let A=2*R(20,50);return N(`△ABC 中 ∠A = ${A}°，内心为 I，则 ∠BIC = ？度`,90+A/2,[90-A/2,180-A,2*A],`∠BIC = 180° − (∠B + ∠C) ÷ 2 = 90° + ∠A ÷ 2 = ${90+A/2}°。`)},
+()=>{let r=R(2,6);return N(`正三角形内切圆半径为 ${r} cm，则外接圆半径是多少 cm？`,2*r,[r*sq2,3*r,1.5*r],`正三角形的中心到顶点的距离是到边距离的 2 倍：R = 2r = ${2*r}。`)}],
+[
+()=>{let n=P([5,6,8,10,12]);return N(`正 ${n} 边形的每个内角是多少度？`,(n-2)*180/n,[360/n,(n-2)*180,180/n],`每个内角 = (${n} − 2) × 180° ÷ ${n} = ${f((n-2)*180/n)}°。`)},
+()=>{let a=P(['正七边形','正九边形']);return M('下列哪个正多边形不能用尺规作出？',a,sh(['正三角形','正方形','正六边形','正八边形','正十二边形']).slice(0,3),'正三、四、六、八、十二边形可作；正七、九边形不能（高斯给出了可作的条件）。')},
+()=>{let n=P([6,8,10,12]);return N(`把圆周 ${n} 等分作正 ${n} 边形，相邻两顶点与圆心连线的夹角是多少度？`,360/n,[180/n,(n-2)*180/n,360/(n-2)],`圆心角 = 360° ÷ ${n} = ${360/n}°。`)},
+()=>{let s=R(2,8);return R(0,1)?N(`边长 ${s} cm 的正六边形，最长的对角线是多少 cm？`,2*s,[s*Math.sqrt(3),3*s,s],`正六边形由 6 个等边三角形组成，最长对角线 = 2 × 边长 = ${2*s}。`):N(`在半径 ${s} cm 的圆内作内接正六边形，周长是多少 cm？`,6*s,[6.28*s,12*s,3*s],`正六边形的边长 = 半径 ${s}，周长 = 6 × ${s} = ${6*s}。`)},
+()=>{let n=P([6,8,10]);return N(`正 ${n} 边形共有多少条对角线？`,n*(n-3)/2,[n*(n-1)/2,n*(n-3),n*(n-2)/2],`每个顶点引 ${n-3} 条，共 ${n} × ${n-3} ÷ 2 = ${n*(n-3)/2} 条。`)}]];
+const FL=[[
+()=>{let d=R(2,9);return F(`与直线 AB 距离为 ${d} cm 的轨迹是两条平行线，它们彼此相距多少 cm？`,2*d,`两线分居 AB 两侧：2 × ${d} = ${2*d}。`)},
+()=>{let s=2*R(2,9);return F(`两平行线相距 ${s} cm，到两线等距的点的轨迹到其中一线的距离是多少 cm？`,s/2,`${s} ÷ 2 = ${s/2}。`)}],[
+()=>{let r=R(2,9);return F(`半径 ${r} cm 的圆（π 取 3.14），周长是多少 cm？`,6.28*r,`2πr = 6.28 × ${r} = ${f(6.28*r)}。`)},
+()=>{let r=R(2,9);return F(`半径 ${r} cm 的圆（π 取 3.14），面积是多少 cm²？`,3.14*r*r,`πr² = 3.14 × ${r}² = ${f(3.14*r*r)}。`)}],[
+()=>{let a=R(3,9);return F(`边长 ${a} cm 的正方形，对角线约多少 cm（精确到 0.01）？`,a*sq2,`a√2 ≈ ${a} × 1.414 = ${f(a*sq2)}。`)},
+()=>{let d=P([4,6,8,10]);return F(`对角线 ${d} cm 的正方形，边长约多少 cm（精确到 0.01）？`,d/sq2,`${d} ÷ √2 ≈ ${f(d/sq2)}。`)}],[
+()=>{let t=2*R(20,80);return F(`平分 ${t}° 的角，每个小角是多少度？`,t/2,`${t} ÷ 2 = ${t/2}°。`)},
+()=>{let s=R(3,9);return F(`作边长 ${s} cm 的正三角形（等边三角形），周长是多少 cm？`,3*s,`3 × ${s} = ${3*s}。`)}],[
+()=>{let x=R(30,80),y=R(30,80);return F(`作 △ABC，∠A = ${x}°，∠B = ${y}°，则 ∠C = ？度`,180-x-y,`180 − ${x} − ${y} = ${180-x-y}。`)},
+()=>{let h=2*R(3,8);return F(`△ABC 中 ∠A = 90°，∠B = 30°，BC = ${h} cm，AC = ？cm`,h/2,`30° 所对的直角边是斜边的一半：${h/2}。`)}],[
+()=>{let[p,q]=P([[2,3],[3,4],[3,5]]),k=R(1,3),m=R(2,3);return F(`△ABC 中，D 在 AB 上，E 在 AC 上，DE ∥ BC。AB = ${q*k}，AD = ${p*k}，AC = ${q*m}，求 AE。`,p*m,`AE = AC × AD ÷ AB = ${p*m}。`)},
+()=>{let x=2*R(2,6),y=2*R(2,6);return F(`菱形对角线分别为 ${x} cm 与 ${y} cm，面积是多少 cm²？`,x*y/2,`${x} × ${y} ÷ 2 = ${x*y/2}。`)}],[
+()=>{let t=P([[3,4,5],[5,12,13],[8,15,17]]),k=R(1,2);return F(`直角三角形两直角边为 ${t[0]*k} cm、${t[1]*k} cm（斜边 ${t[2]*k} cm），外接圆半径是多少 cm？`,t[2]*k/2,`R = 斜边 ÷ 2 = ${t[2]*k/2}。`)},
+()=>{let A=2*R(20,50);return F(`△ABC 中 ∠A = ${A}°，内心为 I，∠BIC = ？度`,90+A/2,`∠BIC = 90° + ∠A ÷ 2 = ${90+A/2}°。`)}],[
+()=>{let n=P([5,6,8,12]);return F(`正 ${n} 边形每个内角是多少度？`,(n-2)*180/n,`(${n} − 2) × 180 ÷ ${n} = ${f((n-2)*180/n)}°。`)},
+()=>{let r=R(2,9);return F(`半径 ${r} cm 的圆内作内接正六边形，周长是多少 cm？`,6*r,`边长 = 半径，周长 = 6 × ${r} = ${6*r}。`)}]];
+const HM=[()=>{let a=R(3,6),b=R(1,2);return N(`圆 A 半径 ${a}，圆 B 半径 ${b}，圆 B 沿着圆 A 的外侧滚动，点 B 的轨迹是以 A 为圆心的圆，其半径是？`,a+b,[a,a-b,a+2*b],`两圆外切时圆心距 = ${a} + ${b} = ${a+b}。`)},
+()=>{let s=P([6,8,10]),r=s*sq2/2;return N(`正方形 ABCD 边长 ${s} cm，动点 P 到 A 的距离等于对角线 BD 的一半，P 的轨迹是圆，半径约（精确到 0.01）为？cm`,r,[s/2,s*sq2,s],`BD = ${s}√2 ≈ ${f(s*sq2)}，一半 ≈ ${f(r)}。`)},
+()=>{let l=3*R(2,6);return N(`△ABC 中，中线 AD = ${l} cm，重心 G 在 AD 上，AG = ？cm`,2*l/3,[l/2,l/3,3*l/4],`重心把每条中线分成 2 : 1，AG = ${l} × 2 ÷ 3 = ${2*l/3}。`)}],
+HF=[()=>{let c=P([4,5,6]),r=c/(2*Math.sin(75*D));return F(`△ABC 中 AB = ${c} cm，∠B = 45°，∠C = 75°，外接圆半径约多少 cm（精确到 0.01）？`,r,`R = AB ÷ (2 sin C) = ${c} ÷ (2 × 0.9659) ≈ ${f(r)}。`)},
+()=>{let l=3*R(2,6);return F(`△ABC 的中线 BE = ${l} cm，重心为 G，则 GE = ？cm`,l/3,`重心分中线为 2 : 1，GE = ${l} ÷ 3 = ${l/3}。`)}];
+/* ---------- 内容 ---------- */
+const pa=x=>`<p>${x}</p>`,E=(t,s,g)=>`<div class="ex"><h4>${t}</h4>${s}${g||''}</div>`,ol=(...a)=>`<ol>${a.map(x=>`<li>${x}</li>`).join('')}</ol>`,o=(t,g)=>`<div class="res">${t}</div>${g}`,why=x=>`<p class="mu">💡 为什么？${x}</p>`;
+const S=[
+{id:'9.1',t:'轨迹',ex:pa('动点在特定条件下运动所经过的路径叫<b>轨迹</b>：它是满足条件的点的集合，可以是直线、曲线或圆。例如钟面分针尖端的轨迹是圆。')+E('① 与一定点 O 等距','动点 P 到 O 的距离恒为 r ⇒ 轨迹是以 O 为圆心、r 为半径的<b>圆</b>。',d91('c',3))+E('② 与二定点 A、B 等距','PA = PB ⇒ 轨迹是线段 AB 的<b>垂直平分线</b>。',d91('b',6))+E('③ 与一直线 ℓ 等距','P 到 ℓ 的距离为 d ⇒ 轨迹是与 ℓ 平行、相距 d 的<b>两条直线</b>（ℓ 两侧各一条）。',d91('p',2))+E('④ 与二相交直线等距','P 到两直线距离相等 ⇒ 轨迹是两直线所成角的<b>平分线</b>（共两条，互相垂直）。',d91('a',60)),
+c:{sel:['与定点等距（圆）','与二定点等距（中垂线）','与直线等距（平行线）','与二相交直线等距（角平分线）'],lb:[['半径 r'],['AB 长'],['距离 d'],['夹角 θ（°）']],df:[[3],[6],[2],[60]],run:(m,[n])=>n<=0||m==3&&n>=180?'请输入有效数值':o([`轨迹：以 O 为圆心、半径 ${f(n)} 的圆；周长 ≈ ${f(2*Math.PI*n)}，面积 ≈ ${f(Math.PI*n*n)}`,`轨迹：线段 AB 的垂直平分线，过中点 M，AM = MB = ${f(n/2)}`,`轨迹：与 ℓ 平行、距离为 ${f(n)} 的两条直线，这两条线相距 ${f(2*n)}`,`轨迹：两条互相垂直的角平分线，与原直线的夹角分别为 ${f(n/2)}° 与 ${f(90-n/2)}°`][m],d91('cbpa'[m],f(n)))}},
+{id:'9.2',t:'圆的作图',ex:E('例题 1 已知圆心与半径','已知点 P 及长 2 个单位的线段，作以 P 为圆心、半径 2 的圆。'+ol('圆规两脚张开 2 个单位（对准线段两端）','针尖放在 P，旋转一周，得所求的圆'),d92(2))+E('练习 9.2 以 A、B 为圆心的两圆','已知线段 AB，分别以 A、B 为圆心、AB 为半径作两圆。两圆交于 C、D，AC = BC = AB，△ABC 是等边三角形（下一节会用到！）。',d92b()),
+c:{lb:[['半径 r']],df:[[3]],run:(m,[r])=>r<=0?'请输入正数':o(`直径 = ${f(2*r)}；周长 = 2πr ≈ ${f(2*Math.PI*r)}；面积 = πr² ≈ ${f(Math.PI*r*r)}。作法：圆规张开 ${f(r)}，针尖放 P 旋转一周。`,d92(f(r)))}},
+{id:'9.3',t:'垂线的作图',ex:E('例题 1 作中垂线与中点',ol('取大于 AB 一半的半径，分别以 A、B 为圆心作弧，交于 AB 两侧的 C、D','连接 CD，交 AB 于 M：CD 是中垂线，M 是中点')+why('C、D 到 A、B 等距，都在 AB 的垂直平分线上（9.1 轨迹）。'),d93a(6))+E('例题 2 作过直线上一点的垂线',ol('以 C 为圆心作弧交直线于 P、Q','取大于 PC 的半径，分别以 P、Q 为圆心作弧交于 D，连接 CD')+why('CP = CQ，DP = DQ，所以 CD 是 PQ 的中垂线。'),d93b())+E('例题 3 作过直线外一点的垂线',ol('以 C 为圆心作弧交直线于 P、Q','取大于 PQ 一半的半径，分别以 P、Q 为圆心在另一侧作弧交于 D，连接 CD'),d93c())+E('例题 4 求已知圆的圆心',ol('在圆上取三点 A、B、C','作弦 AB、BC 的中垂线，交点 O 就是圆心')+why('圆心到弦的两端等距，必在弦的中垂线上。'),d93d())+E('例题 5 作边长为 4 的正方形',ol('取 A，以 A 为圆心、4 为半径交直线于 B','作过 A、B 且垂直于 AB 的直线 AE、BF','以 4 为半径，分别以 A、B 为圆心作弧交 AE、BF 于 D、C，连接 CD'),dSq(4)),
+c:{sel:['中垂线 / 中点','正方形'],lb:[['AB 长'],['边长 a']],df:[[6],[4]],run:(m,[n])=>n<=0?'请输入正数':m?o(`对角线 = a√2 ≈ ${f(n*sq2)}；周长 = ${f(4*n)}；面积 = ${f(n*n)}`,dSq(f(n))):o(`中点 M：AM = MB = ${f(n/2)}；圆规半径须大于 ${f(n/2)}（取 ${f(n*.75)} 即可）`,d93a(f(n)))}},
+{id:'9.4',t:'角及角平分线',ex:E('例题 1 作一角等于已知角',ol('画射线 PX','以 A 为圆心、适当半径作弧交 AB、AC 于 E、F；以 P 为圆心、同半径作弧交 PX 于 Q','以 Q 为圆心、EF 为半径作弧，交前弧于 R，连接 PR：∠QPR = ∠BAC')+why('△AEF ≌ △PQR（三边相等）。'),d94a())+E('例题 2 作角平分线',ol('以 A 为圆心作弧交 AB、AC 于 E、F','以适当半径（大于 EF 的一半），分别以 E、F 为圆心作弧交于 D，连接 AD')+why('△AED ≌ △AFD（三边相等），所以 ∠EAD = ∠FAD。'),d94b(60))+E('例题 3 作 60° 角',ol('作线段 AB','分别以 A、B 为圆心、AB 为半径作弧，交于 C','连接 AC，∠BAC = 60°（△ABC 是等边三角形）')+'<p class="mu">特别角：30° = 60° ÷ 2 ｜ 45° = 90° ÷ 2 ｜ 15° = 30° ÷ 2 ｜ 120° = 60° + 60° ｜ 75° = 60° + 15° ｜ 135° = 90° + 45°</p>',d94c()),
+c:{lb:[['角度 θ（°）']],df:[[60]],run:(m,[t])=>t<=0||t>=180?'请输入 0–180 之间的角度':o(`平分线把 ${f(t)}° 分成两个 ${f(t/2)}°。`+(t%15==0?`${f(t)}° 是 15° 的整数倍，可由 60°、90° 的加减与平分作出。`:'一般的角用“作一角等于已知角”复制。'),d94b(t))}},
+{id:'9.5',t:'三角形的作图',ex:E('例题 1 已知三边（4、5、6）',ol('作直线，取 A，以 A 为圆心、6 为半径交直线于 B','分别以 A、B 为圆心，5 与 4 为半径作弧，交于 C，连接 AC、BC'),dT(solveT(0,4,5,6),'SSS'))+E('例题 2 已知两边及夹角（∠A=60°，AB=6，AC=4）',ol('作 AB = 6','作 ∠DAB = 60°','在射线 AD 上截取 AC = 4，连接 BC'),dT(solveT(1,4,6,60),'SAS'))+E('例题 3 已知两角及夹边（AB=6，∠A=45°，∠B=60°）',ol('作 AB = 6','在 A 作 45°，在 B 作 60°，两射线交于 C'),dT(solveT(2,45,60,6),'ASA'))+E('例题 4 已知两边及非夹角（∠A=45°，AB=6，BC=4.5）',ol('作 AB = 6，作 ∠DAB = 45°','以 B 为圆心、4.5 为半径作弧，交 AD 于 C₁、C₂'),dT(solveT(3,45,6,4.5),'SSA'))+'<p class="mu">⚠ 两边及非夹角可能得到两个三角形（红色为第二个）！</p>',
+c:{sel:['三边 SSS','两边夹角 SAS','两角夹边 ASA','两边及非夹角 SSA'],lb:[['BC=a','CA=b','AB=c'],['AC=b','AB=c','∠A（°）'],['∠A（°）','∠B（°）','AB=c'],['∠A（°）','AB=c','BC=a']],df:[[4,5,6],[4,6,60],[45,60,6],[45,6,4.5]],run:(m,v)=>{if(v.some(x=>x<=0))return'数值须大于 0';let ts=solveT(m,...v);return ts.length?o(`可作出 ${ts.length} 个三角形：`+ts.map((t,i)=>{let g=ang(t);return`<br>${ts.length>1?'△ABC'+(i+1)+'：':''}a=${f(t[0])}，b=${f(t[1])}，c=${f(t[2])}；∠A=${g[0]}°，∠B=${g[1]}°，∠C=${g[2]}°`}).join(''),dT(ts,['SSS','SAS','ASA','SSA'][m])):'无法作出三角形（条件不成立）'}}},
+{id:'9.6',t:'平行线的作图',ex:E('例题 1 作法一：菱形法',ol('在 AB 上取 D，以 DC 为半径作弧交 AB 于 E','分别以 C、E 为圆心、DC 为半径作弧，交于 F','连接 CF，CF ∥ AB')+why('DCFE 四边都等于 DC，是菱形，对边平行。'),d96a())+E('例题 1 作法二：内错角法',ol('过 C 任作直线交 AB 于 D','作 ∠ECD = ∠CDB，CE ∥ AB')+why('内错角相等，两直线平行。'),d96b())+E('例题 2 作平行四边形 ABCD（AB=5，AD=3，∠A=60°）',ol('已知 AB、AD','分别以 B、D 为圆心，AD、AB 的长为半径作弧，交于 C','连接 BC、DC')+'<p class="mu">对边分别相等 ⇒ 平行四边形；同样的方法也可作正方形与长方形。</p>',dPar(5,3,60)),
+c:{lb:[['AB=a','AD=b','∠A（°）']][0].map(x=>[x]).length?[['AB = a','AD = b','∠A（°）']]:0,df:[[5,3,60]],run:(m,[a,b,t])=>a<=0||b<=0||t<=0||t>=180?'请输入有效数值':o(`周长 = ${f(2*(a+b))}；面积 = ab·sinA ≈ ${f(a*b*Math.sin(t*D))}；∠B = ∠D = ${f(180-t)}°；对角线 AC ≈ ${f(Math.sqrt(a*a+b*b+2*a*b*Math.cos(t*D)))}，BD ≈ ${f(Math.sqrt(a*a+b*b-2*a*b*Math.cos(t*D)))}`,dPar(a,b,t))}},
+{id:'9.7',t:'外接圆与内切圆',ex:pa('外接圆圆心（<b>外心</b>）= 三边中垂线的交点；内切圆圆心（<b>内心</b>）= 三条角平分线的交点。')+E('例题 1 作外接圆',ol('作 AB、BC 的中垂线，交点为 O','以 O 为圆心、OA 为半径作圆')+why('外心到三个顶点等距。'),dT(solveT(0,8,9,6),'c'))+E('例题 2 作内切圆',ol('作 ∠CAB、∠CBA 的平分线，交点为 O','过 O 作 AB 的垂线，垂足 D','以 O 为圆心、OD 为半径作圆')+why('内心到三边等距，OD 就是内切圆半径。'),dT(solveT(0,8,9,6),'i')),
+c:{sel:['外接圆','内切圆'],lb:[['BC=a','CA=b','AB=c'],['BC=a','CA=b','AB=c']],df:[[8,9,6],[8,9,6]],run:(m,[a,b,c])=>{let ts=solveT(0,a,b,c);if(!ts.length)return'这三条边不能构成三角形';let K=Math.sqrt((a+b+c)/2*((a+b+c)/2-a)*((a+b+c)/2-b)*((a+b+c)/2-c)),[x,y,z]=[a,b,c].sort((p,q)=>p-q),d=x*x+y*y-z*z;return o(`面积 ≈ ${f(K)}；外接圆半径 R = abc÷4K ≈ ${f(a*b*c/4/K)}（外心在${Math.abs(d)<1e-9?'斜边中点':d>0?'三角形内部':'三角形外部'}）；内切圆半径 r = 2K÷(a+b+c) ≈ ${f(2*K/(a+b+c))}（内心必在三角形内部）`,dT(ts,m?'i':'c'))}}},
+{id:'9.8',t:'正多边形的作图',ex:E('例题 1 作正六边形（等分正三角形）',ol('作正三角形 ACE','作 AC、AE 的中垂线交于 O','以 O 为圆心、OA 为半径作圆，交中垂线于 B、D、F，顺次连接'),dP(6,'t'))+E('例题 2 作边长为 3 的正六边形',ol('以 O 为圆心、3 为半径作圆，作直径 AD','分别以 A、D 为圆心、OA 为半径作弧，交圆于 B、F 与 C、E','顺次连接 AB、BC、CD、DE、EF、FA')+why('正六边形边长 = 外接圆半径。'),dP(6,'h'))+E('例题 3 作正八边形',ol('作圆与直径 AE，再作垂直的直径 CG','分别平分 ∠COE、∠EOG，得 D、F，反向延长得 H、B','顺次连接八个点'),dP(8,'o'))+'<p class="mu">并非每个正 n 边形都能尺规作图：3、4、5、6、8、10、12 可以，7、9、11 不行（高斯，18 世纪末）。</p>',
+c:{lb:[['边数 n（3–12）','边长 s']],df:[[6,3]],run:(m,[n,s])=>n!=Math.round(n)||n<3||n>12||s<=0?'n 须为 3–12 的整数，s 为正数':o(`每个内角 = ${f((n-2)*180/n)}°；外角 = 圆心角 = ${f(360/n)}°；周长 = ${f(n*s)}；外接圆半径 R = s÷(2sin(180°÷n)) ≈ ${f(s/(2*Math.sin(Math.PI/n)))}；${[3,4,5,6,8,10,12].includes(n)?'✅ 可以用尺规作出':'❌ 不能用尺规作出'}`,dP(n))}}
+];
+S[5].c.lb=[['AB = a','AD = b','∠A（°）']];
+S.forEach((s,i)=>{s.g=G[i];s.f=FL[i]});
+/*DOM*/
+var spd=.5;
+function syncSp(){document.querySelectorAll('.sp').forEach(s=>s.value=spd)}
+const rad=s=>s.replace(/√(\d+(?:\.\d+)?|[A-Za-z]\w*)/g,(m,x)=>`<span class="sq"><svg class="sh" viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M.5 12L2.5 10.5L5 19L10 0"/></svg><svg class="sb"><line x1="0" y1="0" x2="100%" y2="0"/></svg>${x}</span>`);
+function Cb(box,c){
+box.innerHTML='<h3>🧮 专属计算器</h3>'+(c.sel?'<select>'+c.sel.map((s,i)=>`<option value="${i}">${s}</option>`).join('')+'</select>':'')+'<div class="ci"></div><div class="co"></div>';
+const se=box.querySelector('select'),ci=box.querySelector('.ci'),co=box.querySelector('.co'),mo=()=>se?+se.value:0,
+run=()=>{let v=[...ci.querySelectorAll('input')].map(i=>parseFloat(i.value));co.innerHTML=rad(v.some(isNaN)?'请输入数字':c.run(mo(),v));syncSp()},
+bd=()=>{let m=mo();ci.innerHTML=c.lb[m].map((l,i)=>`<label>${l}<input type="number" step="any" value="${c.df[m][i]}"></label>`).join('');run()};
+if(se)se.onchange=bd;ci.oninput=run;bd()}
+function Q(box,mk,gate,rev){
+const go=()=>{
+const o=mk(),n=o.m.length,nf=o.f.length;let s=0,d=0,fs=0,fd=0;
+box.innerHTML='<h3>'+(rev?'📝 总复习测验':'✏️ 随堂测验')+'</h3><div class="mu pg"></div><div class="mq"></div><div class="fq"></div><div class="rs"></div><button class="b">🔄 换一批新题</button>';
+const pg=box.querySelector('.pg'),mq=box.querySelector('.mq'),fq=box.querySelector('.fq'),rs=box.querySelector('.rs');
+box.lastChild.onclick=go;
+const upd=()=>pg.textContent=`选择题 ${d}/${n} · 答对 ${s}`+(fq.innerHTML?` ｜ 作答题 ${fd}/${nf} · 答对 ${fs}`:''),
+end=()=>{let t=s+fs,T=n+nf,p=t/T;rs.innerHTML=rev?`<div class="res"><b>总分 ${t}/${T}</b>（${Math.round(p*100)}%）<br>${p>=.9?'🏆 优秀！尺规作图掌握得很牢':p>=.7?'👍 良好，再巩固做错的题':p>=.5?'🙂 及格，建议回看各节例题':'💪 加油！先复习例题并多用计算器'}</div>`:`<div class="res">本节完成：选择题 ${s}/${n}，作答题 ${fs}/${nf}。点“换一批新题”再练！</div>`},
+fin=()=>{if(!(rev||s>=gate)){rs.innerHTML='<div class="res">答对不足 3 题，作答题未解锁。看看解析，再点“换一批新题”挑战！</div>';return}
+fq.innerHTML='<h4>'+(rev?'填充题':'🔓 已解锁作答题')+'（输入数字）</h4>';
+o.f.forEach((q,i)=>{const c=document.createElement('div');c.className='q';c.innerHTML=`<p><b>${i+1}.</b> ${rad(q.q)}</p><input type="text" inputmode="decimal"><button class="b">提交</button>`;const inp=c.querySelector('input'),bt=c.querySelector('button');
+bt.onclick=()=>{let v=parseFloat((inp.value.match(/-?\d+\.?\d*/)||[''])[0]);if(isNaN(v))return;let ok=Math.abs(v-q.a)<.006;inp.disabled=bt.disabled=true;if(ok)fs++;fd++;c.insertAdjacentHTML('beforeend',`<p class="ex2 ${ok?'g':'x'}">${ok?'✅ 正确！':'❌ 正确答案：'+q.a}<br>${rad(q.e)}</p>`);upd();if(fd==nf)end()};fq.appendChild(c)});upd()};
+o.m.forEach((q,i)=>{const c=document.createElement('div');c.className='q';c.innerHTML=`<p><b>${i+1}.</b> ${rad(q.q)}</p>`;
+sh([q.a,...q.w]).forEach(t=>{const b=document.createElement('button');b.className='o';b.textContent=t;b.onclick=()=>{c.querySelectorAll('.o').forEach(x=>{x.disabled=true;if(x.textContent==q.a)x.classList.add('ok')});let ok=t==q.a;if(ok)s++;else b.classList.add('no');d++;c.insertAdjacentHTML('beforeend',`<p class="ex2 ${ok?'g':'x'}">${ok?'✅ 正确！':'❌ 错误，正确答案：'+q.a}<br>${rad(q.e)}</p>`);upd();if(d==n)fin()};c.appendChild(b)});mq.appendChild(c)});upd()};
+go()}
+const tb=$('#tb'),mn=$('#mn'),ls=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+let fz=+lg('fz9')||15;const af=d=>{fz=Math.max(12,Math.min(24,fz+d));document.documentElement.style.fontSize=fz+'px';ls('fz9',fz)},st=t=>{document.documentElement.dataset.th=t;$('#th').textContent=t=='d'?'☀️':'🌙';ls('th9',t)};
+$('#fm').onclick=()=>af(-1);$('#fp').onclick=()=>af(1);$('#th').onclick=()=>st(document.documentElement.dataset.th=='d'?'l':'d');af(0);st(lg('th9')||'l');
+S.forEach((s,i)=>{tb.insertAdjacentHTML('beforeend',`<button>${s.id} ${s.t}</button>`);const sc=document.createElement('section');sc.hidden=true;sc.innerHTML=`<h2>${s.id} ${s.t}</h2>${rad(s.ex)}<div class="cb"></div><div class="qb"></div>`;mn.appendChild(sc);Cb(sc.querySelector('.cb'),s.c);Q(sc.querySelector('.qb'),()=>({m:sh(s.g).slice(0,5).map(g=>g()),f:sh(s.f).slice(0,2).map(g=>g())}),3,0)});
+tb.insertAdjacentHTML('beforeend','<button>🏁 总复习</button>');
+const rv=document.createElement('section');rv.hidden=true;rv.innerHTML='<h2>🏁 总复习</h2><div class="ex">10 题选择 + 5 题填充，题目来自 9.1–9.8 的随机抽取，并加入总复习题中较难的题型（圆的滚动轨迹、重心、外接圆半径等）。全部完成后给出分数评估。</div><div class="qb"></div>';mn.appendChild(rv);
+Q(rv.querySelector('.qb'),()=>{let ss=sh(S);return{m:sh([...ss.slice(0,7).map(x=>P(x.g)()),...HM.map(g=>g())]),f:[...HF.map(g=>g()),...ss.slice(0,3).map(x=>P(x.f)())]}},0,1);
+const sw=i=>{[...tb.children].forEach((b,j)=>b.classList.toggle('on',j==i));[...mn.children].forEach((x,j)=>x.hidden=j!=i);tb.children[i].scrollIntoView({inline:'center',block:'nearest'});scrollTo(0,0)};
+[...tb.children].forEach((b,i)=>b.onclick=()=>sw(i));sw(0);
+const NS='http://www.w3.org/2000/svg';let tok=0;spd=+lg('sp9')||.5;
+const play=async fw=>{const my=++tok,svg=fw.querySelector('svg'),cp=fw.querySelector('.cp'),pb=fw.querySelector('.ps'),cap=(fw.dataset.cap||'').split('|'),dead=()=>my!=tok||!fw.isConnected,
+off=x=>{const b=x.querySelector('.ps');b.disabled=true;b.textContent='⏸ 暂停'};
+document.querySelectorAll('.fw').forEach(x=>{if(x._o!=null&&x!=fw){x.querySelector('svg').innerHTML=x._o;x._o=null;off(x)}});
+if(fw._o!=null)svg.innerHTML=fw._o;fw._o=svg.innerHTML;fw._p=false;pb.disabled=false;pb.textContent='⏸ 暂停';fw.querySelector('.sp').value=spd;
+const gs=[...svg.querySelectorAll(':scope>g[data-s]')].sort((a,b)=>a.dataset.s-b.dataset.s),pen=document.createElementNS(NS,'circle');
+pen.setAttribute('r',4.5);pen.setAttribute('class','pen');pen.style.display='none';gs.forEach(g=>g.style.display='none');svg.appendChild(pen);
+const isS=e=>!e.matches('.fo')&&e.tagName!='text'&&/(^|\s)[lard](\s|$)/.test(e.getAttribute('class')||''),
+tick=(ms,cb)=>new Promise(res=>{let el=0,last=performance.now();const fr=now=>{if(dead())return res();if(!fw._p)el=Math.max(0,el+(now-last)*spd);last=now;const t=Math.min(1,el/ms);if(cb)cb(t);if(t<1)requestAnimationFrame(fr);else res()};requestAnimationFrame(fr)}),
+fol=p=>svg.querySelectorAll('.fo').forEach(e=>{let a=e.dataset.from,j=e.dataset.proj;if(a){a=a.split(',');e.setAttribute('x1',a[0]);e.setAttribute('y1',a[1]);e.setAttribute('x2',p.x);e.setAttribute('y2',p.y)}else if(j){j=j.split(',').map(Number);let u=[Math.cos(j[2]*Math.PI/180),-Math.sin(j[2]*Math.PI/180)],k=(p.x-j[0])*u[0]+(p.y-j[1])*u[1];e.setAttribute('x1',p.x);e.setAttribute('y1',p.y);e.setAttribute('x2',j[0]+k*u[0]);e.setAttribute('y2',j[1]+k*u[1])}}),
+draw=(e,ms)=>{const len=e.getTotalLength();e.style.strokeDasharray=len;e.style.strokeDashoffset=len;pen.style.display='';return tick(ms,t=>{const p=e.getPointAtLength(t*len);e.style.strokeDashoffset=len*(1-t);pen.setAttribute('cx',p.x);pen.setAttribute('cy',p.y);fol(p)}).then(()=>{e.style.strokeDasharray='';e.style.strokeDashoffset=''})};
+for(const g of gs){if(dead())return;cp.innerHTML=rad('▶ '+(cap[g.dataset.s-1]||''));g.style.display='';const ks=[...g.children],ss=ks.filter(isS),ps=ks.filter(e=>!isS(e)&&!e.matches('.fo'));
+ps.forEach(e=>e.style.visibility='hidden');ss.forEach(e=>{const l=e.getTotalLength();e.style.strokeDasharray=l;e.style.strokeDashoffset=l});
+for(const e of ss){if(dead())return;await draw(e,Math.max(600,Math.min(1400,e.getTotalLength()*10)))}
+if(dead())return;pen.style.display='none';ps.forEach(e=>e.style.visibility='');await tick(700)}
+if(dead())return;svg.innerHTML=fw._o;fw._o=null;off(fw);cp.textContent='✅ 动画完成（已回到完成图），可再次播放'};
+document.addEventListener('click',e=>{const b=e.target.closest('.pl'),s=e.target.closest('.ps');if(b)play(b.closest('.fw'));else if(s){const w=s.closest('.fw');w._p=!w._p;s.textContent=w._p?'▶ 继续':'⏸ 暂停'}});
+document.addEventListener('change',e=>{if(e.target.matches('.sp')){spd=+e.target.value;ls('sp9',spd);syncSp()}});syncSp();
+</script>
+</body>
+</html>
