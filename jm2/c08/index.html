@@ -11,7 +11,7 @@ header{position:sticky;top:0;z-index:9;background:var(--card);border-bottom:1px 
 .top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
 h1{font-size:1.1rem;margin:0}button,select,input{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:.25rem .6rem}
 button{cursor:pointer}button:hover{border-color:var(--ac)}
-nav{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.35rem}nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+nav{display:flex;gap:.3rem;flex-wrap:nowrap;overflow-x:auto;margin-top:.35rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}nav::-webkit-scrollbar{display:none}nav button{flex:0 0 auto;white-space:nowrap}nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 main{max-width:860px;margin:0 auto;padding:.6rem}section{display:none}section.on{display:block}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:.7rem .9rem;margin:.6rem 0}
 h2{font-size:1.1rem;margin:.1rem 0 .4rem}.fm{background:var(--acl);border-radius:8px;padding:.5rem .8rem;margin:.4rem 0}
@@ -25,14 +25,35 @@ svg .l{stroke:var(--tx);fill:none;stroke-width:1.5}svg .f{stroke:var(--tx);fill:
 svg .I{fill:rgba(37,99,235,.35);stroke:var(--tx)}svg .II{fill:rgba(220,38,38,.3);stroke:var(--tx)}svg .III{fill:rgba(22,163,74,.3);stroke:var(--tx)}svg .d{stroke:var(--mut);stroke-dasharray:4;fill:none}svg .p{fill:var(--ac)}
 .lock{text-align:center;color:var(--mut);padding:.5rem}.bar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
 .out{white-space:pre-wrap;margin-top:.4rem;background:var(--bg);border-radius:8px;padding:.4rem .6rem}input[type=text],input[type=number]{width:7.5rem}
+.rt{display:inline-block;position:relative;padding-left:.8em;white-space:nowrap}.rt svg{position:absolute;left:0;top:0;width:.8em;height:100%;overflow:visible}.rt svg path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}.rd{display:inline-block;border-top:1.6px solid currentColor;padding:0 .12em;line-height:1.25}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.8em;line-height:1.1}.fr i{font-style:normal;padding:0 .15em}.fr i:first-child{border-bottom:1px solid currentColor}
+input.mi{width:4.2rem;padding:.25rem .3rem;text-align:center}input.mi.s{width:3.4rem}input.mi.w{width:7rem;text-align:left;padding:.25rem .5rem}.bar.nw{flex-wrap:nowrap;gap:.3rem}#rk{position:fixed;display:none;z-index:30;padding:.2rem .7rem;font-weight:700;font-size:1.1rem;background:var(--ac);color:#fff;border:0;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.pv{color:var(--mut);margin:.2rem 0}
 footer{text-align:center;color:var(--mut);font-size:.8rem;padding:1rem}
 @media(max-width:520px){.opts{grid-template-columns:1fr}}</style></head><body>
-<header><div class="top"><h1>📐 初二下册 第8章 毕氏定理</h1><div class="bar"><button onclick="fs(-1)">A−</button><button onclick="fs(1)">A+</button><button id="tb" onclick="th()">🌙 深色</button></div></div>
+<header id="hd"><div class="top"><h1>📐 初二下册 第8章 毕氏定理</h1><div class="bar"><button onclick="fs(-1)">A−</button><button onclick="fs(1)">A+</button><button id="tb" onclick="th()">🌙 深色</button></div></div>
 <nav id="nav"></nav></header><main id="m"></main>
+<button id="rk" type="button" tabindex="-1">√</button>
 <footer>© 蔡逸众 · ecchua79 · Chinese High School（华仁中学）</footer>
 <script>
 console.log("%c毕氏定理互动版 · 蔡逸众 / ecchua79 / Chinese High School","color:#2563eb");
 const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),P=a=>a[R(0,a.length-1)],sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>(""+s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const RS='<svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M0.5 13L2.8 11.5L5.5 19L9.5 0.8H10"/></svg>';
+function rad(s){s=""+s;let o="",i=0;while(i<s.length){let ch=s[i];if(ch=="√"){let j=i+1,rd="",op={"(":")","[":"]"}[s[j]];
+ if(op){let d=0,k=j;for(;k<s.length;k++){if(s[k]==s[j])d++;else if(s[k]==op){d--;if(!d)break}}if(k<s.length){rd=s.slice(j+1,k);j=k+1}}
+ if(!rd){let m=s.slice(j).match(/^[0-9A-Za-z.]+/);if(m){rd=m[0];j+=rd.length}}
+ o+=rd?`<span class="rt">${RS}<span class="rd">${rad(rd)}</span></span>`:"√";i=j}else{o+=ch;i++}}return o.replace(/½/g,'<span class="fr"><i>1</i><i>2</i></span>')}
+let CUR=null;
+function insEl(e){let a=e.selectionStart==null?e.value.length:e.selectionStart,b=e.selectionEnd==null?a:e.selectionEnd;e.value=e.value.slice(0,a)+"√"+e.value.slice(b);e.focus();try{e.setSelectionRange(a+1,a+1)}catch(x){}e.dispatchEvent(new Event("input"))}
+function showRk(e){CUR=e;let k=$("rk");k.style.display="block";let r=e.getBoundingClientRect(),w=k.offsetWidth,h=k.offsetHeight,top=$("hd").getBoundingClientRect().bottom,x=Math.max(4,Math.min(r.right-w,innerWidth-w-4)),y=r.top-h-4;if(y<top+2)y=r.bottom+4;k.style.left=x+"px";k.style.top=y+"px"}
+function hideRk(){CUR=null;$("rk").style.display="none"}
+(function(){const k=document.getElementById("rk"),go=ev=>{ev.preventDefault();if(CUR)insEl(CUR)};k.addEventListener("mousedown",go);k.addEventListener("touchstart",go,{passive:false});
+ const on=e=>{if(e.target.classList&&e.target.classList.contains("mi"))showRk(e.target)},off=e=>{if(e.target===CUR)hideRk()};
+ document.addEventListener("focus",on,true);document.addEventListener("blur",off,true);
+ addEventListener("scroll",()=>{if(CUR&&document.activeElement===CUR)showRk(CUR)},true);addEventListener("resize",()=>{if(CUR)showRk(CUR)})})();
+function pv(id){$(id+"v").innerHTML=rad(esc($(id).value))}
+const IB=(id,v,fn,c="")=>`<input type="text" class="mi ${c}" id="${id}" value="${v}" oninput="${fn}">`;
 const TR=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41]];
 const trip=()=>{let t=P(TR),k=t[2]<20?R(1,3):1;return t.map(x=>x*k)};
 function sq(N){if(N<=0)return null;let k=1;for(let i=2;i*i<=N;i++)if(N%(i*i)==0)k=i;let m=N/(k*k);return m==1?""+k:(k>1?k:"")+"√"+m}
@@ -82,7 +103,7 @@ const fAr=()=>{let t=trip();return{q:`直角三角形斜边 ${t[2]}，一条直�
 /* ---------- 8.3 题型 ---------- */
 const sg=()=>P([-1,1]);
 const gD1=()=>{let x1=R(-6,5),y1=R(-6,5),dx,dy;if(Math.random()<.5){let t=trip();dx=sg()*t[0];dy=sg()*t[1]}else{dx=sg()*R(1,8);dy=sg()*R(1,8)}let x2=x1+dx,y2=y1+dy,N=dx*dx+dy*dy;
- return{q:`求 A${pt(x1,y1)} 与 B${pt(x2,y2)} 两点的距离。`,svg:plot([[x1,y1,"A"],[x2,y2,"B"]],0,1),ans:sq(N),ws:[N,sq((x1+x2)**2+(y1+y2)**2),Math.abs(dx)+Math.abs(dy),sq(dx*dx+(y1+y2)**2)],fb:rd(N),exp:`Δx = ${x2} − ${x1<0?"("+x1+")":x1} = ${dx}，Δy = ${y2} − ${y1<0?"("+y1+")":y1} = ${dy}<br>d = √(${dx}² + ${dy}²) = √${N} = ${sq(N)}`}};
+ return{q:`求 A${pt(x1,y1)} 与 B${pt(x2,y2)} 两点的距离。`,svg:plot([[x1,y1,"A"],[x2,y2,"B"]],0,1),ans:sq(N),ws:[N,sq((x1+x2)**2+(y1+y2)**2),Math.abs(dx)+Math.abs(dy),sq(dx*dx+(y1+y2)**2)],fb:rd(N),exp:`Δx = ${x2} − ${x1<0?"("+x1+")":x1} = ${dx}，Δy = ${y2} − ${y1<0?"("+y1+")":y1} = ${dy}<br>d = √(${nb(dx)}² + ${nb(dy)}²) = √${N} = ${sq(N)}`}};
 const gDO=()=>{let t=trip(),a=sg()*t[0],b=sg()*t[1];if(Math.random()<.4){a=R(1,7)*sg();b=R(1,7)*sg()}let N=a*a+b*b;return{q:`点 P${pt(a,b)} 到原点 O 的距离是多少？`,svg:plot([[0,0,"O"],[a,b,"P"]],0,1),ans:sq(N),ws:[N,Math.abs(a)+Math.abs(b),sq(Math.abs(a*a-b*b)),sq(N+Math.abs(a*b))],fb:rd(N),exp:`d = √((${a})² + (${b})²) = √${N} = ${sq(N)}`}};
 const gD2=()=>{let x=R(-4,2),y=R(-4,2),p=R(1,3)*sg(),q=R(1,3)*sg(),t=R(1,2)*sg(),A=[x,y],B=[x+2*p,y+2*q],C=[x+p-t*q,y+q+t*p],L=sh(["A","B","C"]),pts=[A,B,C].map((v,i)=>[v[0],v[1],L[i]]),d=(u,v)=>(u[0]-v[0])**2+(u[1]-v[1])**2,
  S=[[0,1],[0,2],[1,2]].map(([i,j])=>({n:[L[i],L[j]].sort().join(""),v:d(pts[i],pts[j])})),pr=[[0,1],[0,2],[1,2]].filter(([i,j])=>S[i].v==S[j].v);
@@ -110,7 +131,7 @@ const gP13=()=>{let u=[R(1,6)*sg(),R(1,6)*sg()],v=P([[u[1],u[0]],[-u[1],u[0]],[u
  return{t:"第 13 题类型：用距离公式证明两线段相等",given:`A${pt(...A)}、B${pt(...B)}、C${pt(...C)}、D${pt(...D)}。证明 AB = CD。`,svg:plot([[...A,"A"],[...B,"B"],[...C,"C"],[...D,"D"]],0,0,2),st:[[`AB² = (${nb(B[0])} − ${nb(A[0])})² + (${nb(B[1])} − ${nb(A[1])})² =`,N],[`CD² = (${nb(D[0])} − ${nb(C[0])})² + (${nb(D[1])} − ${nb(C[1])})² =`,v[0]**2+v[1]**2]],cn:`AB² = CD² = ${N}，所以 AB = CD。`}};
 const gP14=()=>{let t=trip(),r=t[2],[x,y]=Math.random()<.5?[t[0],t[1]]:[t[1],t[0]];x*=sg();return{t:"第 14 题类型：用距离公式证明直角",given:`A${pt(r,0)}、B${pt(-r,0)}、C${pt(x,y)}。证明 ∠ACB = 90°。`,svg:plot([[r,0,"A"],[-r,0,"B"],[x,y,"C"]],1,0),st:[[`AC² = (${nb(x)} − ${r})² + ${y}² =`,(x-r)**2+y*y],[`BC² = (${nb(x)} − ${nb(-r)})² + ${y}² =`,(x+r)**2+y*y],[`AB² = (${r} − ${nb(-r)})² =`,4*r*r]],cn:`AC² + BC² = ${(x-r)**2+y*y} + ${(x+r)**2+y*y} = ${4*r*r} = AB²，由逆定理，∠ACB = 90°。`}};
 let PR=null;
-function prf(){PR=P([gP12,gP13,gP14])();$("prq").innerHTML=`<b>${PR.t}</b><p>${PR.given}</p>${PR.svg}`+PR.st.map((x,i)=>`<div class="bar"><span>第 ${i+1} 步：${x[0]}</span><input type="text" id="ps${i}"></div>`).join("")+`<button onclick="prc()">检查</button><div class="ex" id="prr"></div>`}
+function prf(){PR=P([gP12,gP13,gP14])();$("prq").innerHTML=rad(`<b>${PR.t}</b><p>${PR.given}</p>${PR.svg}`+PR.st.map((x,i)=>`<div class="bar"><span>第 ${i+1} 步：${x[0]}</span><input type="text" id="ps${i}"></div>`).join("")+`<button onclick="prc()">检查</button><div class="ex" id="prr"></div>`)}
 function prc(){let ok=0,h="";PR.st.forEach((x,i)=>{let g=Math.abs(parse($("ps"+i).value.trim())-x[1])<1e-9;if(g)ok++;h+=g?`✅ 第 ${i+1} 步正确<br>`:`❌ 第 ${i+1} 步应为 ${x[1]}<br>`});let e=$("prr");e.className="ex show";e.innerHTML=h+(ok==PR.st.length?"<b>结论：</b>"+PR.cn:"请修正后再检查。")}
 const gH=()=>{let sd=P([6,8,10,12,14,16]),L=R(6,16),N=L*L+sd*sd/2;return{q:`如图，三角形的高把底边分成左、右两段，右边的直角三角形中高与右段底边相等（图中短横线记号），右边斜边 ${sd}，左边一段底边 ${L}，求左边斜边 x。`,svg:`<svg viewBox="0 0 170 115" class="fig"><path class="f" d="M15 95H150L95 15Z"/><path class="l" d="M95 15V95M85 95V85H95M91 55H99M122 91V99"/><text x="40" y="45">x</text><text x="52" y="108">${L}</text><text x="128" y="50">${sd}</text></svg>`,ans:sq(N),ws:[sq(L*L+sd*sd),L+sd,sq(Math.abs(L*L-sd*sd/2)),N],fb:null,exp:`右边是等腰直角三角形，设高 h：h² + h² = ${sd}²，h² = ${sd*sd/2}<br>左边：x² = ${L}² + h² = ${L*L} + ${sd*sd/2} = ${N}<br>x = ${sq(N)}`}};
 const gI=()=>{let p,h1,q,x,d=0;if(Math.random()<.4)for(let i=0;i<40;i++){let k=R(5,40),L=legs(k);if(L.length>=2){let z=sh(L);[p,h1]=z[0];[q,x]=z[1];d=k;break}}
@@ -129,15 +150,15 @@ const ALL=SEC.flatMap(s=>s.mc),NEW=[gTrap,gSqA,gRA,gMid,gSqG,gShade,gPar,g2c,gH,
 function build(g){let x=g();x.o=mk(x.ans,x.ws,x.fb);x.ai=x.o.indexOf(""+x.ans);return x}
 function qh(x,i,id,lb){return`<div class="qc"><b>${lb}${i+1}.</b> ${x.q}${x.svg||""}<div class="opts">${x.o.map((t,j)=>`<button onclick="pick('${id}',${i},${j})">${"ABCD"[j]}. ${t}</button>`).join("")}</div><div class="ex" id="${id}e${i}"></div></div>`}
 function quiz(id){let s=SEC.find(z=>z.id==id),g=sh(s.mc).slice(0,5),f=sh(s.fl).slice(0,2);Q[id]={mc:g.map(build),fl:f.map(x=>x()),sc:0,dn:0,un:0};
- $(id+"q").innerHTML=Q[id].mc.map((x,i)=>qh(x,i,id,"选择题 ")).join("")+`<div class="lock" id="${id}l">🔒 5 题中答对 3 题或以上，解锁 2 道作答题（<span id="${id}p">0/5</span>）</div><div id="${id}f" style="display:none">${Q[id].fl.map((x,i)=>`<div class="qc"><b>作答题 ${i+1}.</b> ${x.q}${x.svg||""}<div class="bar"><input type="text" id="${id}i${i}" placeholder="如 13 或 4√2"><button onclick="fill('${id}',${i})">提交</button></div><div class="ex" id="${id}fe${i}"></div></div>`).join("")}</div>`}
+ $(id+"q").innerHTML=rad(Q[id].mc.map((x,i)=>qh(x,i,id,"选择题 ")).join("")+`<div class="lock" id="${id}l">🔒 5 题中答对 3 题或以上，解锁 2 道作答题（<span id="${id}p">0/5</span>）</div><div id="${id}f" style="display:none">${Q[id].fl.map((x,i)=>`<div class="qc"><b>作答题 ${i+1}.</b> ${x.q}${x.svg||""}<div class="bar"><input type="text" class="mi w" id="${id}i${i}" placeholder="如 13 或 4&#8730;2" oninput="pv('${id}i${i}')"><button onclick="fill('${id}',${i})">提交</button></div><div class="pv" id="${id}i${i}v"></div><div class="ex" id="${id}fe${i}"></div></div>`).join("")}</div>`)}
 const $=id=>document.getElementById(id.replace(/^#/,""));
 function pick(id,i,j){let q=Q[id].mc?Q[id].mc[i]:Q[id][i],c=$(id+"e"+i),b=c.previousElementSibling.children,ok=j==q.ai;if(q.d)return;q.d=1;b[j].classList.add(ok?"ok":"no");b[q.ai].classList.add("ok");
- c.className="ex show";c.innerHTML=(ok?"✅ 正确。":"❌ 错误，答案是 <b>"+q.ans+"</b>。")+"<br>"+q.exp;let S=Q[id];S.dn++;if(ok)S.sc++;
+ c.className="ex show";c.innerHTML=rad((ok?"✅ 正确。":"❌ 错误，答案是 <b>"+q.ans+"</b>。")+"<br>"+q.exp);let S=Q[id];S.dn++;if(ok)S.sc++;
  if(id=="rv"){$("rvs").textContent=`已答 ${S.dn}/10，答对 ${S.sc} 题`+(S.dn==10?` — 得分 ${S.sc*10}%`:"");return}
  $(id+"p").textContent=S.sc+"/5";if(S.sc>=3&&!S.un){S.un=1;$(id+"l").style.display="none";$(id+"f").style.display="block"}else if(S.dn==5&&S.sc<3)$(id+"l").innerHTML="本组答对 "+S.sc+" 题，未达 3 题。点上方「换一组题」再试 💪"}
 function fill(id,i){let x=Q[id].fl[i],u=parse($(id+"i"+i).value.trim()),e=$(id+"fe"+i);if(isNaN(u)){e.className="ex show";e.textContent="请输入数字或根式，如 5 或 4√2";return}
- let ok=Math.abs(u-x.val)<(/[.]/.test($(id+"i"+i).value)?.006:1e-9);e.className="ex show";e.innerHTML=(ok?"🎉 正确。":"❌ 不对，答案是 <b>"+x.disp+"</b>。")+"<br>"+x.exp}
-function rev(){Q.rv={mc:sh(sh(ALL).slice(0,6).concat(sh(NEW).slice(0,4))).map(build),sc:0,dn:0};$("rvq").innerHTML=Q.rv.mc.map((x,i)=>qh(x,i,"rv","第 ")).join("");$("rvs").textContent="已答 0/10"}
+ let ok=Math.abs(u-x.val)<(/[.]/.test($(id+"i"+i).value)?.006:1e-9);e.className="ex show";e.innerHTML=rad((ok?"🎉 正确。":"❌ 不对，答案是 <b>"+x.disp+"</b>。")+"<br>"+x.exp)}
+function rev(){Q.rv={mc:sh(sh(ALL).slice(0,6).concat(sh(NEW).slice(0,4))).map(build),sc:0,dn:0};$("rvq").innerHTML=rad(Q.rv.mc.map((x,i)=>qh(x,i,"rv","第 ")).join(""));$("rvs").textContent="已答 0/10"}
 /* ---------- 页面 ---------- */
 const pre=(n,a,b)=>`<div class="bar"><select id="${n}m" onchange="${n}()"></select></div>`;
 const INTRO={
@@ -146,26 +167,30 @@ s1:`<div class="fm"><b>毕氏定理</b>：直角三角形两直角边 a、b 的�
 <input type="range" id="pa" min="20" max="80" value="40" oninput="proof()" style="width:100%"><div id="pf"></div>
 <details><summary>📖 补充资料</summary>毕达哥拉斯约于公元前 500 年发现，欧几里得约在公元前 300 年证明；中国商高早在公元前 1100 年已发现，所以又称商高定理或勾股定理。</details>
 <details><summary>📘 课本例题</summary>例1：(a) 6、8 → c = √100 = 10；(b) 4、4 → c = √32 = 4√2。<br>例7：等腰 △ABC，AB=AC=13，BC=10：高 AD = √(13²−5²) = 12，面积 = ½×10×12 = 60 cm²。<br>例9：长方体 15×8×7：AC = 17，BG = √113，AG = √338 = 13√2 cm。<br>例11：直角边 8、6：AB = 10，CD = 面积×2÷AB = 48÷10 = 4.8 cm。</details>
-<div class="fm"><b>🧮 直角三角形求解器</b><div class="bar"><select id="t1m" onchange="t1r()"><option value="c">已知两直角边 a、b，求斜边 c</option><option value="b">已知斜边 c 与一直角边 a，求另一直角边 b</option></select></div><div class="bar"><span id="l1"></span><input type="number" id="t1a" oninput="t1()"><span id="l2"></span><input type="number" id="t1b" oninput="t1()"></div><div class="out" id="t1o"></div></div>`,
+<div class="fm"><b>🧮 直角三角形求解器</b><div class="bar"><select id="t1m" onchange="t1r()"><option value="c">已知两直角边 a、b，求斜边 c</option><option value="b">已知斜边 c 与一直角边 a，求另一直角边 b</option></select></div><div class="bar nw"><span id="l1"></span>${IB("t1a","3","t1()")}<span id="l2"></span>${IB("t1b","4","t1()")}</div><div class="out" id="t1o"></div></div>`,
 s2:`<div class="fm"><b>逆定理</b>：若 △ABC 三边满足 a² + b² = c²，则 △ABC 是直角三角形，且 c 为斜边。判断时只需看<b>最长边的平方</b>是否等于另两边平方和。</div>
 <details><summary>📖 证明（SSS）</summary>作 △PQR，∠R=90°，QR=a，PR=b。由毕氏定理 PQ² = a²+b² = c²，故 PQ = c。于是 △ABC ≅ △PQR（SSS），∠C = ∠R = 90°。</details>
 <details><summary>📘 课本例题</summary>(a) 8,15,17：64+225=289=17² ✓ 直角　(b) 10,24,26：100+576=676=26² ✓ 直角<br>(c) 4,3,2：9+4=13 ≠ 16，不是直角　(d) 1,2,√3：1+3=4=2² ✓ 直角</details>
-<div class="fm"><b>🧮 三角形判定器</b>（输入三边，可含根号，如 √3、2√5、sqrt(5)）<div class="bar"><input type="text" id="t2a" value="1" oninput="t2()"><input type="text" id="t2b" value="2" oninput="t2()"><input type="text" id="t2c" value="√3" oninput="t2()"></div><div class="out" id="t2o"></div></div>`,
+<div class="fm"><b>🧮 三角形判定器</b>（输入三边；点进输入格会出现 √ 键，如 √3、2√5）<div class="bar nw">${IB("t2a","1","t2()")}${IB("t2b","2","t2()")}${IB("t2c","&#8730;3","t2()")}</div><div class="out" id="t2o"></div></div>`,
 s3:`<div class="fm"><b>距离公式</b>：两点 (x₁, y₁)、(x₂, y₂) 的距离 d = √[(x₂−x₁)² + (y₂−y₁)²]。<br>作 AC ∥ x 轴、BC ∥ y 轴，则 AC=|x₂−x₁|，BC=|y₂−y₁|，△ABC 是直角三角形，由毕氏定理即得。</div>
 <details><summary>📘 课本例题</summary>例1：A(2,1)、B(8,9)：d = √(6²+8²) = 10；C(1,−2)、D(6,10)：d = 13；M(−3,1)、N(5,−5)：d = 10；P(−1,−1)、Q(−5,7)：d = √80 = 4√5。<br>例2：A(−2,1)、B(4,4)、C(1,−2)：AB = √45，AC = √18，BC = √45，AB = BC，故是等腰三角形。</details>
-<div class="fm"><b>🧮 距离计算器</b><div class="bar">A(<input type="number" id="t3a" value="1" oninput="t3()">,<input type="number" id="t3b" value="1" oninput="t3()">) B(<input type="number" id="t3c" value="5" oninput="t3()">,<input type="number" id="t3d" value="4" oninput="t3()">)</div><div class="out" id="t3o"></div><div id="t3f"></div></div>`};
-function t1r(){let c=$("t1m").value=="c";$("l1").textContent=c?"直角边 a =":"斜边 c =";$("l2").textContent=c?"直角边 b =":"直角边 a =";$("t1a").value=c?3:5;$("t1b").value=c?4:3;t1()}
-function t1(){let m=$("t1m").value,x=+$("t1a").value,y=+$("t1b").value,N=m=="c"?x*x+y*y:x*x-y*y,o=$("t1o");if(!(x>0&&y>0)||N<=0){o.textContent=m=="c"?"请输入两个正数":"请输入正数，且斜边 c 必须大于直角边 a";return}
- let r=Number.isInteger(x)&&Number.isInteger(y)?sq(N):sv(N).toFixed(3);o.textContent=m=="c"?`c² = a² + b² = ${x}² + ${y}² = ${N}\nc = √${N} = ${r}`:`b² = c² − a² = ${x}² − ${y}² = ${N}\nb = √${N} = ${r}`}
-function t2(){let raw=["t2a","t2b","t2c"].map(i=>$(i).value.trim()),v=raw.map(parse),o=$("t2o");if(v.some(x=>!(x>0))){o.textContent="请输入三个正数，可含根号，如 √3、2√5";return}
- let z=raw.map((r,i)=>[v[i],r]).sort((p,q)=>p[0]-q[0]),A=z[0][0]**2+z[1][0]**2,C=z[2][0]**2,f=x=>+x.toFixed(6),n=z.map(p=>p[1]);
- o.textContent=z[0][0]+z[1][0]<=z[2][0]+1e-9?`${n[0]} + ${n[1]} ≤ ${n[2]}，不能构成三角形`:`最长边 ${n[2]}：${n[0]}² + ${n[1]}² = ${f(A)}，${n[2]}² = ${f(C)}\n`+(Math.abs(A-C)<1e-9?"相等 → 直角三角形 ✓":A>C?"平方和 > 最长边平方 → 锐角三角形":"平方和 < 最长边平方 → 钝角三角形")}
-function t3(){let[a,b,c,d]=["t3a","t3b","t3c","t3d"].map(i=>+$(i).value),dx=c-a,dy=d-b,N=dx*dx+dy*dy,I=[a,b,c,d].every(Number.isInteger);$("t3o").textContent=`Δx = ${dx}，Δy = ${dy}\nd = √(${dx}² + ${dy}²) = √${N} = ${N==0?0:I?sq(N):sv(N).toFixed(3)}`;$("t3f").innerHTML=plot([[a,b,"A"],[c,d,"B"]],0,1).replace('class="fig"','class="fig fig2"')}
+<div class="fm"><b>🧮 距离计算器</b>（坐标可含根号；点进输入格会出现 √ 键）<div class="bar nw">A(${IB("t3a","1","t3()","s")},${IB("t3b","1","t3()","s")}) B(${IB("t3c","5","t3()","s")},${IB("t3d","4","t3()","s")})</div><div class="out" id="t3o"></div><div id="t3f"></div></div>`};
+function t1r(){let c=$("t1m").value=="c";$("l1").textContent=c?"a =":"c =";$("l2").textContent=c?"b =":"a =";$("t1a").value=c?"3":"5";$("t1b").value=c?"4":"3";t1()}
+function t1(){let m=$("t1m").value,ra=$("t1a").value.trim(),rb=$("t1b").value.trim(),x=parse(ra),y=parse(rb),o=$("t1o");if(!(x>0&&y>0)){o.innerHTML=rad("请输入两个正数（可点 √ 输入根号）");return}
+ let N=+(m=="c"?x*x+y*y:x*x-y*y).toFixed(6);if(N<=0){o.textContent="斜边 c 必须大于直角边 a";return}
+ let r=Number.isInteger(N)?sq(N):sv(N).toFixed(3),S=esc(ra),T=esc(rb);o.innerHTML=rad(m=="c"?`a = ${S}，b = ${T}\nc² = a² + b² = (${S})² + (${T})² = ${N}\nc = √${N} = ${r}`:`c = ${S}，a = ${T}\nb² = c² − a² = (${S})² − (${T})² = ${N}\nb = √${N} = ${r}`)}
+function t2(){let raw=["t2a","t2b","t2c"].map(i=>$(i).value.trim()),v=raw.map(parse),o=$("t2o");if(v.some(x=>!(x>0))){o.innerHTML=rad("请输入三个正数，可含根号，如 √3、2√5");return}
+ let z=raw.map((r,i)=>[v[i],r]).sort((p,q)=>p[0]-q[0]),A=z[0][0]**2+z[1][0]**2,C=z[2][0]**2,f=x=>+x.toFixed(6),n=z.map(p=>esc(p[1]));
+ o.innerHTML=rad(z[0][0]+z[1][0]<=z[2][0]+1e-9?`${n[0]} + ${n[1]} ≤ ${n[2]}，不能构成三角形`:`最长边 ${n[2]}：(${n[0]})² + (${n[1]})² = ${f(A)}，(${n[2]})² = ${f(C)}\n`+(Math.abs(A-C)<1e-9?"相等 → 直角三角形 ✓":A>C?"平方和 > 最长边平方 → 锐角三角形":"平方和 < 最长边平方 → 钝角三角形"))}
+function t3(){let r=["t3a","t3b","t3c","t3d"].map(i=>$(i).value.trim()),[a,b,c,d]=r.map(parse),o=$("t3o");if([a,b,c,d].some(isNaN)){o.innerHTML=rad("请输入数字，可含根号，如 √2、-3");$("t3f").innerHTML="";return}
+ let dx=c-a,dy=d-b,N=+(dx*dx+dy*dy).toFixed(6),f=x=>+x.toFixed(4),q=r.map(esc);
+ o.innerHTML=rad(`A(${q[0]}, ${q[1]})，B(${q[2]}, ${q[3]})\nΔx = ${f(dx)}，Δy = ${f(dy)}\nd = √(Δx² + Δy²) = `+(N==0?"0（两点重合）":`√${N} = ${Number.isInteger(N)?sq(N):sv(N).toFixed(3)}`));
+ $("t3f").innerHTML=plot([[f(a),f(b),"A"],[f(c),f(d),"B"]],0,1).replace('class="fig"','class="fig fig2"')}
 function proof(){let a=+$("pa").value,b=100-a,o=5,p=135,T=(x,y,w,h)=>`<path class="f" d="M${x} ${y}h${w}v${h}z"/>`;
  $("pf").innerHTML=`<svg viewBox="0 0 250 125" class="fig fig2"><path class="f" d="M${o} ${o}h${b}v${a}h-${b}zM${o+b} ${o+a}h${a}v${b}h-${a}z"/><path class="l" d="M${o} ${o+a}L${o+b} ${o}M${o+b} ${o+a+b}L${o+b+a} ${o+a}"/><path class="I" d="M${o+b} ${o}h${a}v${a}h-${a}z"/><path class="II" d="M${o} ${o+a}h${b}v${b}h-${b}z"/><text x="${o+b+a/2-5}" y="${o+a/2+4}">a²</text><text x="${o+b/2-5}" y="${o+a+b/2+4}">b²</text>
  <path class="f" d="M${p} ${o}h100v100h-100z"/><path class="III" d="M${p+a} ${o}L${p+100} ${o+a}L${p+b} ${o+100}L${p} ${o+b}Z"/><text x="${p+42}" y="58">c²</text><text x="5" y="120">a=${a/10}，b=${b/10}：a²+b² = ${(a*a+b*b)/100}</text><text x="135" y="120">c² = ${(a*a+b*b)/100}（面积相同）</text></svg>`}
 function start(){let H="";SEC.forEach((s,i)=>H+=`<section id="S${s.id}"><div class="card"><h2>${s.t}</h2>${INTRO[s.id]}</div><div class="card"><div class="bar"><h2 style="margin:0">✏️ 随堂测验</h2><button onclick="quiz('${s.id}')">🎲 换一组题</button></div><div id="${s.id}q"></div></div></section>`);
- H+=`<section id="Srv"><div class="card"><div class="bar"><h2 style="margin:0">🏁 总复习测试（10 题，含总复习题 8 的图形题）</h2><button onclick="rev()">🎲 重新出题</button></div><p id="rvs"></p><div id="rvq"></div></div><div class="card"><div class="bar"><h2 style="margin:0">📝 证明题引导（总复习题 8 第 12～14 题类型）</h2><button onclick="prf()">🎲 换一题</button></div><div id="prq"></div></div></section>`;$("m").innerHTML=H;
+ H+=`<section id="Srv"><div class="card"><div class="bar"><h2 style="margin:0">🏁 总复习测试（10 题，含总复习题 8 的图形题）</h2><button onclick="rev()">🎲 重新出题</button></div><p id="rvs"></p><div id="rvq"></div></div><div class="card"><div class="bar"><h2 style="margin:0">📝 证明题引导（总复习题 8 第 12～14 题类型）</h2><button onclick="prf()">🎲 换一题</button></div><div id="prq"></div></div></section>`;$("m").innerHTML=rad(H);
  const tabs=SEC.map(s=>[s.id,s.t.split(" ")[0]+" "+s.t.split(" ")[1]]).concat([["rv","总复习"]]);$("nav").innerHTML=tabs.map(t=>`<button data-k="${t[0]}" onclick="tab('${t[0]}')">${t[1]}</button>`).join("");
  SEC.forEach(s=>quiz(s.id));rev();t1r();t2();t3();proof();prf();let f=15;try{f=+localStorage.getItem("fs8")||15;if(localStorage.getItem("th8")=="dark")th()}catch(e){}sf(f);tab("s1")}
 function tab(k){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id=="S"+k));document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.k==k));scrollTo(0,0)}
