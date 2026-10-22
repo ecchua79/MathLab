@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="蔡逸众 ecchua79 | 峇株吧辖华仁中学蔡逸众制作">
+<!-- 峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79 -->
+<title>初三数学 第10章 几何变换</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1d1d24;--card:#fff;--bd:#d8d4e8;--ac:#6a4fd1;--ok:#168a4a;--no:#c62f3b;--mut:#6b6b7b;--a:#2563eb;--b:#e0562a;--grid:#cfe8d0;--hl:#efe9ff}
+[data-t=dark]{--bg:#14141c;--fg:#e8e8f0;--card:#1e1e2a;--bd:#3a3a52;--ac:#a894ff;--ok:#4ade80;--no:#ff7a85;--mut:#9a9ab0;--a:#6aa6ff;--b:#ff8f5e;--grid:#2c4a33;--hl:#2a2547}
+html{font-size:16px}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.75 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);padding:.4rem .6rem}
+header h1{font-size:1.05rem;margin:0 0 .3rem}.ctl{float:right}
+button{font:inherit;cursor:pointer;color:var(--fg)}
+.ctl button,#tabs button{border:1px solid var(--bd);background:var(--card);border-radius:8px;padding:.15rem .6rem;margin-left:.3rem}
+#tabs{display:flex;gap:.3rem;overflow-x:auto}#tabs button{margin:0;white-space:nowrap}#tabs .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:860px;margin:auto;padding:.6rem .8rem 3rem}h2{color:var(--ac)}h3{margin:1.2rem 0 .4rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:.7rem .9rem;margin:.6rem 0}
+.tag{background:var(--ac);color:#fff;border-radius:6px;padding:0 .5rem;font-weight:700}
+.stp{background:var(--hl);border-radius:8px;padding:.4rem .7rem;margin:.4rem 0}small{color:var(--mut)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:.3rem .9rem;margin:.3rem 0}
+input,select{font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:6px;padding:.1rem .3rem;max-width:100%}
+.row{margin:.3rem 0}.mut{color:var(--mut)}.g{color:var(--ok)}.r{color:var(--no)}
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.4rem}
+.op{text-align:left;border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:.3rem .6rem}
+.op:disabled{cursor:default;color:var(--fg)}.op.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.op.no{background:var(--no);color:#fff;border-color:var(--no)}
+.qq{border-top:1px dashed var(--bd);padding-top:.4rem;margin-top:.5rem}.ex{margin-top:.3rem}
+.pl{width:100%;max-width:440px;display:block;margin:.4rem auto;background:var(--card);border:1px solid var(--bd);border-radius:10px;color:var(--fg)}
+.af{width:100%;max-width:210px;display:block;margin:.3rem auto;color:var(--fg)}
+.rt{vertical-align:-6px}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.2}.fr i{font-style:normal;border-bottom:1px solid currentColor;padding:0 3px}
+.vec{display:inline-flex;flex-direction:column;vertical-align:middle;border-left:2px solid currentColor;border-right:2px solid currentColor;border-radius:6px;padding:0 6px;margin:0 3px;line-height:1.25;text-align:center}.vec i{font-style:normal}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--bd);padding:.2rem .4rem;font-size:.9rem}
+.an{border:1px solid var(--bd);border-radius:10px;padding:.4rem .6rem;margin:.5rem 0;background:var(--card)}.anc{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}.anc button{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:.1rem .6rem}.ant{min-height:3.2rem}
+#wm{position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.12;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='220'%3E%3Cg fill='%23888' font-family='sans-serif' text-anchor='middle'%3E%3Ctext x='160' y='95' font-size='17' transform='rotate(-25 160 95)'%3E峇株吧辖华仁中学蔡逸众制作%3C/text%3E%3Ctext x='160' y='125' font-size='13' transform='rotate(-25 160 125)'%3EMade by ecchua79%3C/text%3E%3C/g%3E%3C/svg%3E")}
+.hid{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;font-size:1px;user-select:none}
+footer{max-width:860px;margin:0 auto;padding:1rem .8rem 2rem;text-align:center;color:var(--mut);font-size:.85rem;border-top:1px solid var(--bd)}
+.figs{display:flex;gap:.5rem;flex-wrap:wrap}.figs>div{flex:1;min-width:150px;text-align:center}
+</style></head><body>
+<header><div class=ctl><button onclick="fs(-1)">A−</button><button onclick="fs(1)">A+</button><button onclick="th()">🌓 日/夜</button></div><h1>初三数学下册 · 第10章 几何变换</h1><nav id=tabs></nav></header>
+<main id=main></main>
+<script>
+const $=s=>document.querySelector(s);
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,P=a=>a[R(0,a.length-1)];
+const SH=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const nz=()=>{let v=0;while(!v)v=R(-6,6);return v};
+const f=n=>{n=Math.round(n*1e6)/1e6;if(Number.isInteger(n))return(n<0?'−':'')+Math.abs(n);for(let q=2;q<=12;q++){let p=n*q;if(Math.abs(p-Math.round(p))<1e-6)return(p<0?'−':'')+Math.abs(Math.round(p))+'/'+q}return(n<0?'−':'')+Math.abs(n).toFixed(2)};
+const g=n=>n<0?`(${f(n)})`:f(n);
+const pt=(p,l='')=>`${l}(${f(p[0])}, ${f(p[1])})`;
+const fr=(a,b)=>`<span class=fr><i>${a}</i><span>${b}</span></span>`;
+const vec=(a,b)=>`<span class=vec><i>${f(a)}</i><i>${f(b)}</i></span>`;
+const rt=s=>{s=''+s;const w=[...s].reduce((t,c)=>t+(/[0-9]/.test(c)?9.2:/[()²]/.test(c)?6.5:/[−+=]/.test(c)?10.5:9.5),4);return`<svg class=rt width="${w+14}" height="24" viewBox="0 0 ${w+14} 24"><path d="M1 14 L4 12 L7 20 L12 3 H${w+13}" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="14" y="19" font-size="16" fill="currentColor">${s}</text></svg>`};
+const sq=n=>{if(!n)return'0';let a=1,b=n;for(let i=2;i*i<=b;i++)while(b%(i*i)==0){b/=i*i;a*=i}return b==1?''+a:(a>1?a:'')+rt(b)};
+const sqf=n=>Number.isInteger(n)?sq(n):rt(f(n));
+const pn=s=>{s=(''+s).replace(/[−–]/g,'-').trim();let m=s.match(/^(-?\d+(?:\.\d+)?)\/(\d+)$/);return m?m[1]/m[2]:parseFloat(s)};
+const pp=s=>{const r=[],re=/(-?\d+(?:\.\d+)?(?:\/\d+)?)\s*[,，]\s*(-?\d+(?:\.\d+)?(?:\/\d+)?)/g;s=s.replace(/[−–]/g,'-');let m;while(m=re.exec(s))r.push([pn(m[1]),pn(m[2])]);return r};
+const norm=t=>{t=((t%360)+360)%360;return t>180?t-360:t};
+/* ---------- transformations ---------- */
+const RN={x:'x 轴',y:'y 轴',yx:'直线 y = x',ynx:'直线 y = −x',xk:'直线 x = k',yk:'直线 y = k'};
+function ap(s,p){let[x,y]=p;
+ if(s.t=='ref'){const k=s.k;return{x:[x,-y],y:[-x,y],yx:[y,x],ynx:[-y,-x],xk:[2*k-x,y],yk:[x,2*k-y]}[s.m]}
+ if(s.t=='tr')return[x+s.a,y+s.b];
+ if(s.t=='rot'){let[cx,cy]=s.c,dx=x-cx,dy=y-cy,t=((s.th%360)+360)%360,r=t==90?[-dy,dx]:t==180?[-dx,-dy]:t==270?[dy,-dx]:[dx,dy];return[cx+r[0],cy+r[1]]}
+ return[s.c[0]+s.k*(x-s.c[0]),s.c[1]+s.k*(y-s.c[1])]}
+function nm(s){if(s.t=='ref')return'对'+(s.m=='xk'?'直线 x = '+f(s.k):s.m=='yk'?'直线 y = '+f(s.k):RN[s.m])+'反射';
+ if(s.t=='tr')return'平移 '+vec(s.a,s.b);
+ if(s.t=='rot')return'绕 '+pt(s.c)+' '+(s.th>0?'逆':'顺')+'时针旋转 '+Math.abs(s.th)+'°';
+ return'以 '+pt(s.c)+' 为中心，放大因数 k = '+f(s.k)+' 放大'}
+function rule(s){if(s.t=='ref')return{x:'(x, y) → (x, −y)',y:'(x, y) → (−x, y)',yx:'(x, y) → (y, x)',ynx:'(x, y) → (−y, −x)',xk:`(x, y) → (${f(2*s.k)} − x, y)`,yk:`(x, y) → (x, ${f(2*s.k)} − y)`}[s.m];
+ if(s.t=='tr')return`(x, y) → (x + ${g(s.a)}, y + ${g(s.b)})`;
+ const z=!s.c[0]&&!s.c[1];
+ if(s.t=='rot'){const t=((s.th%360)+360)%360;return z?'(x, y) → '+(t==90?'(−y, x)':t==180?'(−x, −y)':'(y, −x)'):'P′ = 中心 + 旋转(P − 中心)'}
+ return z?`(x, y) → (${f(s.k)}x, ${f(s.k)}y)`:'P′ = 中心 + k·(P − 中心)'}
+function dt(s,p,q){const[x,y]=p;
+ if(s.t=='ref'&&s.m=='xk')return`2×${g(s.k)}−${g(x)} = ${f(q[0])}`;
+ if(s.t=='ref'&&s.m=='yk')return`2×${g(s.k)}−${g(y)} = ${f(q[1])}`;
+ if(s.t=='tr')return`(${f(x)}+${g(s.a)}, ${f(y)}+${g(s.b)})`;
+ if(s.t=='rot'||s.t=='dil'){const c=s.c;return`相对中心 (${f(x-c[0])}, ${f(y-c[1])}) → (${f(q[0]-c[0])}, ${f(q[1]-c[1])}) → 加回中心`}
+ return''}
+/* ---------- SVG helpers ---------- */
+const MK='<marker id="aa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#a33ad1"/></marker>';
+function plot(ps,dr,W=380,H=320){
+ const xs=ps.map(p=>p[0]).concat(0),ys=ps.map(p=>p[1]).concat(0);
+ const x0=Math.floor(Math.min(...xs))-1,x1=Math.ceil(Math.max(...xs))+1,y0=Math.floor(Math.min(...ys))-1,y1=Math.ceil(Math.max(...ys))+1;
+ const m=22,u=Math.min((W-2*m)/(x1-x0),(H-2*m)/(y1-y0)),ox=(W-u*(x1-x0))/2,oy=(H-u*(y1-y0))/2;
+ const X=x=>ox+(x-x0)*u,Y=y=>H-oy-(y-y0)*u,st=Math.max(1,Math.ceil(Math.max(x1-x0,y1-y0)/12));let s='';
+ for(let x=x0;x<=x1;x++)s+=`<line x1="${X(x)}" y1="${Y(y0)}" x2="${X(x)}" y2="${Y(y1)}" stroke="var(--grid)"/>`+(x%st==0&&x?`<text x="${X(x)}" y="${Y(0)+13}" font-size="10" text-anchor="middle">${x}</text>`:'');
+ for(let y=y0;y<=y1;y++)s+=`<line x1="${X(x0)}" y1="${Y(y)}" x2="${X(x1)}" y2="${Y(y)}" stroke="var(--grid)"/>`+(y%st==0&&y?`<text x="${X(0)-4}" y="${Y(y)+4}" font-size="10" text-anchor="end">${y}</text>`:'');
+ s+=`<line x1="${X(x0)}" y1="${Y(0)}" x2="${X(x1)}" y2="${Y(0)}" stroke="currentColor"/><line x1="${X(0)}" y1="${Y(y0)}" x2="${X(0)}" y2="${Y(y1)}" stroke="currentColor"/><text x="${X(x1)-8}" y="${Y(0)-5}" font-size="12" font-style="italic">x</text><text x="${X(0)+6}" y="${Y(y1)+10}" font-size="12" font-style="italic">y</text>`;
+ return`<svg class="pl" viewBox="0 0 ${W} ${H}" fill="currentColor">${s}${dr(X,Y,u)}</svg>`}
+const dot=(X,Y,p,l,c)=>`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="3.6" fill="${c}"/><text x="${X(p[0])+5}" y="${Y(p[1])-5}" font-size="13" font-weight="600" fill="${c}">${l}</text>`;
+const poly=(X,Y,ps,c,o)=>ps.length<2?'':`<${ps.length>2?'polygon':'polyline'} points="${ps.map(p=>X(p[0])+','+Y(p[1])).join(' ')}" fill="${ps.length>2?c:'none'}" fill-opacity="${o}" stroke="${c}" stroke-width="2"/>`;
+const ln=(X,Y,p,q,c,m,s)=>`<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="${c}" stroke-width="${s?2:1.4}" ${s?'':'stroke-dasharray="5,4"'} ${m?'marker-end="url(#aa)"':''}/>`;
+function arcR(cx,cy,a0,d,r,l,col,ar){const n=Math.max(6,Math.abs(d)/4|0),q=[];for(let i=0;i<=n;i++){const a=(a0+d*i/n)*Math.PI/180;q.push((cx+r*Math.cos(a)).toFixed(1)+','+(cy-r*Math.sin(a)).toFixed(1))}
+ const m=(a0+d/2)*Math.PI/180;return`<polyline points="${q.join(' ')}" fill="none" stroke="${col}" stroke-width="2" ${ar?'marker-end="url(#aa)"':''}/><text x="${cx+(r+15)*Math.cos(m)}" y="${cy-(r+15)*Math.sin(m)+4}" font-size="12" text-anchor="middle" font-weight="600" fill="${col}">${l}</text>`}
+const arc=(X,Y,c,a0,d,r,l,col)=>arcR(X(c[0]),Y(c[1]),a0,d,r,l,col,1);
+function aFig(t,lab){const c=[100,82],a0=20,L=72,pr=a=>[c[0]+L*Math.cos(a*Math.PI/180),c[1]-L*Math.sin(a*Math.PI/180)],A=pr(a0),B=pr(a0+t);
+ const ray=(p,d)=>`<line x1="${c[0]}" y1="${c[1]}" x2="${p[0]}" y2="${p[1]}" stroke="currentColor" ${d?'stroke-dasharray="5,4"':''}/>`;
+ return`<svg class="af" viewBox="0 0 200 170" fill="currentColor"><defs>${MK}</defs>${ray(A)}${ray(B,1)}${arcR(c[0],c[1],a0,t,30,lab,'#d9480f',1)}<circle cx="${c[0]}" cy="${c[1]}" r="3"/><text x="${c[0]-12}" y="${c[1]+14}" font-size="13">O</text><text x="${A[0]+4}" y="${A[1]-4}" font-size="13">A</text><text x="${B[0]+4}" y="${B[1]+(t<0?12:-4)}" font-size="13">A′</text></svg>`}
+function tf(a,dir){const h=92,s=h*Math.tan(a/2*Math.PI/180),A=[130,14],B=[130-s,14+h],C=[130+s,14+h];
+ return`<svg class="af" style="max-width:270px" viewBox="0 0 260 150" fill="currentColor"><defs>${MK}</defs><polygon points="${A} ${B} ${C}" fill="none" stroke="currentColor"/><text x="138" y="14" font-size="13">A</text><text x="${B[0]-14}" y="${B[1]+12}" font-size="13">B</text><text x="${C[0]+4}" y="${C[1]+12}" font-size="13">C</text>${arcR(A[0],A[1],-90-a/2,a,26,a+'°','#d9480f',0)}${dir>0?arcR(A[0],A[1],-90-a/2,a,54,'θ=?','#0b7285',1):arcR(A[0],A[1],-90+a/2,-a,54,'θ=?','#0b7285',1)}</svg>`}
+/* ---------- run steps ---------- */
+function run(st,pts){const L='ABCDEFGH',sg=[pts];let cur=pts,h='';
+ st.forEach((s,i)=>{const nx=cur.map(p=>ap(s,p));sg.push(nx);
+  h+=`<div class=stp><b>第 ${i+1} 步：${nm(s)}</b><br>规则：${rule(s)}<br>`+cur.map((p,j)=>`${L[j]}${"′".repeat(i)}${pt(p)} → ${L[j]}${"′".repeat(i+1)}${pt(nx[j])} <small>${dt(s,p,nx[j])}</small>`).join('<br>')+'</div>';cur=nx});
+ return anim(st,pts)+h+plotRun(st,sg)}
+function plotRun(st,sg){const all=[].concat(...sg);st.forEach(s=>s.c&&all.push(s.c));
+ return plot(all,(X,Y)=>{let o=`<defs>${MK}</defs>`;
+  st.forEach(s=>{if(s.t=='ref'){const B=80,l={x:[[-B,0],[B,0]],y:[[0,-B],[0,B]],yx:[[-B,-B],[B,B]],ynx:[[-B,B],[B,-B]],xk:[[s.k,-B],[s.k,B]],yk:[[-B,s.k],[B,s.k]]}[s.m];o+=ln(X,Y,l[0],l[1],'#a33ad1',0,1)}});
+  sg.forEach((ps,i)=>o+=poly(X,Y,ps,i==0?'var(--a)':i==sg.length-1?'var(--b)':'var(--mut)',.15));
+  st.forEach((s,i)=>{const A=sg[i],B=sg[i+1];
+   if(s.t=='ref'||s.t=='tr')A.forEach((p,j)=>o+=ln(X,Y,p,B[j],'#a33ad1',s.t=='tr'));
+   if(s.t=='dil')A.forEach((p,j)=>{const far=Math.hypot(p[0]-s.c[0],p[1]-s.c[1])>Math.hypot(B[j][0]-s.c[0],B[j][1]-s.c[1])?p:B[j];o+=ln(X,Y,s.c,far,'#a33ad1')});
+   if(s.t=='rot')A.forEach((p,j)=>{o+=ln(X,Y,s.c,p,'#a33ad1')+ln(X,Y,s.c,B[j],'#a33ad1');if(j<2&&(p[0]!=s.c[0]||p[1]!=s.c[1]))o+=arc(X,Y,s.c,Math.atan2(p[1]-s.c[1],p[0]-s.c[0])*180/Math.PI,s.th,24+15*j,s.th+'°',j?'#0b7285':'#d9480f')});
+   if(s.c)o+=dot(X,Y,s.c,'中心','#a33ad1')});
+  sg.forEach((ps,i)=>ps.forEach((p,j)=>o+=dot(X,Y,p,'ABCDEFGH'[j]+"′".repeat(i),i?'var(--b)':'var(--a)')));
+  return o})}
+/* ---------- solvers for presets ---------- */
+function vs(p,q){const a=q[0]-p[0],b=q[1]-p[1];
+ return anim([{t:'tr',a,b}],[p])+`<div class=stp>P${pt(p)} → P′${pt(q)}<br>PP′ = (x′−x, y′−y) = (${f(q[0])}−${g(p[0])}, ${f(q[1])}−${g(p[1])}) = ${vec(a,b)}<br>即向${a>=0?'右':'左'}移 ${f(Math.abs(a))} 个单位，再向${b>=0?'上':'下'}移 ${f(Math.abs(b))} 个单位；移动距离 |PP′| = ${rt(`${g(a)}²+${g(b)}²`)} = ${sqf(a*a+b*b)}</div>`+
+ plot([p,q],(X,Y)=>`<defs>${MK}</defs>`+ln(X,Y,p,[q[0],p[1]],'var(--mut)')+ln(X,Y,[q[0],p[1]],q,'var(--mut)')+ln(X,Y,p,q,'#a33ad1',1,1)+dot(X,Y,p,'P','var(--a)')+dot(X,Y,q,'P′','var(--b)'))}
+function fr3(A,A2,B,B2){const e=(P,Q)=>[Q[0]-P[0],Q[1]-P[1],(Q[0]**2+Q[1]**2-P[0]**2-P[1]**2)/2],e1=e(A,A2),e2=e(B,B2),d=e1[0]*e2[1]-e2[0]*e1[1];
+ const L=e=>`${f(e[0])}x ${e[1]<0?'−':'+'} ${f(Math.abs(e[1]))}y = ${f(e[2])}`;
+ let h=`<div class=stp>AA′ 的垂直平分线：${L(e1)}<br>BB′ 的垂直平分线：${L(e2)}</div>`;
+ if(Math.abs(d)<1e-9)return h+'<div class=stp>两条垂直平分线平行或重合，无法唯一确定旋转中心。</div>';
+ const O=[(e1[2]*e2[1]-e2[2]*e1[1])/d,(e1[0]*e2[2]-e2[0]*e1[2])/d],ang=p=>Math.atan2(p[1]-O[1],p[0]-O[0])*180/Math.PI;
+ let t=ang(A2)-ang(A);t=((t+540)%360)-180;if(t==-180)t=180;t=Math.round(t*10)/10;
+ let t2=ang(B2)-ang(B);t2=((t2+540)%360)-180;if(t2==-180)t2=180;t2=Math.round(t2*10)/10;
+ const dd=(P,Q)=>(P[0]-Q[0])**2+(P[1]-Q[1])**2,warn=Math.abs(dd(A,B)-dd(A2,B2))>1e-6?'<br><b class=r>注意：AB ≠ A′B′，这不是旋转！</b>':'';
+ h+=`<div class=stp>两条垂直平分线的交点就是旋转中心 O${pt(O)}<br>∠AOA′ = ${t}°，∠BOB′ = ${t2}°${Math.abs(t-t2)>0.2?'（不相等，说明不是旋转）':''} ⇒ ${t>0?'逆':'顺'}时针旋转 ${Math.abs(t)}°，旋转角度 θ = ${t}°${warn}</div>`;
+ return h+(t?anim([{t:'rot',c:O,th:t}],[A,B]):'')+plot([A,A2,B,B2,O],(X,Y)=>{let o=`<defs>${MK}</defs>`;
+  [[A,A2],[B,B2]].forEach(([p,q])=>{const m=[(p[0]+q[0])/2,(p[1]+q[1])/2],v=[-(q[1]-p[1]),q[0]-p[0]],n=Math.hypot(...v)||1;o+=ln(X,Y,[m[0]-v[0]/n*30,m[1]-v[1]/n*30],[m[0]+v[0]/n*30,m[1]+v[1]/n*30],'#a33ad1')});
+  [A,A2,B,B2].forEach(p=>o+=ln(X,Y,O,p,'var(--mut)'));
+  o+=poly(X,Y,[A,B],'var(--a)',0)+poly(X,Y,[A2,B2],'var(--b)',0);
+  if(A[0]!=O[0]||A[1]!=O[1])o+=arc(X,Y,O,ang(A),t,24,t+'°','#d9480f');
+  if(B[0]!=O[0]||B[1]!=O[1])o+=arc(X,Y,O,ang(B),t2,40,t2+'°','#0b7285');
+  return o+dot(X,Y,O,'O','#a33ad1')+dot(X,Y,A,'A','var(--a)')+dot(X,Y,B,'B','var(--a)')+dot(X,Y,A2,'A′','var(--b)')+dot(X,Y,B2,'B′','var(--b)')})}
+function fd(A,A2,B,B2){const v=[B[0]-A[0],B[1]-A[1]],w=[B2[0]-A2[0],B2[1]-A2[1]],n=v[0]**2+v[1]**2,n2=w[0]**2+w[1]**2;
+ if(!n)return'<div class=stp>A、B 不能重合。</div>';
+ const k=(v[0]*w[0]+v[1]*w[1])/n,cr=v[0]*w[1]-v[1]*w[0];
+ let h=`<div class=stp>AB = ${sqf(n)}，A′B′ = ${sqf(n2)}<br>放大因数 k = A′B′ ÷ AB = ${f(k)}</div>`;
+ if(Math.abs(cr)>1e-6||!k)return h+'<div class=stp>A′B′ 与 AB 不平行，不是放大变换。</div>';
+ if(Math.abs(k-1)<1e-9)return h+'<div class=stp>k = 1：图形不变（或只是平移）。</div>';
+ const O=[(A2[0]-k*A[0])/(1-k),(A2[1]-k*A[1])/(1-k)];
+ h+=`<div class=stp>由 A′ = O + k(A − O) 得 O = (A′ − kA) ÷ (1 − k) = ${pt(O)}<br>${k>1?'k > 1，图形被放大':k>0?'0 < k < 1，图形被缩小':'k < 0（课本只讨论 k > 0）'}；面积比（像 : 原）= k² = ${f(k*k)}</div>`;
+ return h+anim([{t:'dil',c:O,k}],[A,B])+plot([A,A2,B,B2,O],(X,Y)=>{let o='';[A2,B2].forEach(p=>o+=ln(X,Y,O,p,'#a33ad1'));[A,B].forEach(p=>o+=ln(X,Y,O,p,'#a33ad1'));
+  return o+poly(X,Y,[A,B],'var(--a)',0)+poly(X,Y,[A2,B2],'var(--b)',0)+dot(X,Y,O,'O','#a33ad1')+dot(X,Y,A,'A','var(--a)')+dot(X,Y,B,'B','var(--a)')+dot(X,Y,A2,'A′','var(--b)')+dot(X,Y,B2,'B′','var(--b)')})}
+/* ---------- animation ---------- */
+const AN=new WeakMap(),r2=x=>Math.round(x*100)/100;
+const rotp=(c,d,p)=>{const r=d*Math.PI/180,x=p[0]-c[0],y=p[1]-c[1];return[c[0]+x*Math.cos(r)-y*Math.sin(r),c[1]+x*Math.sin(r)+y*Math.cos(r)]};
+const apx=(s,p)=>s.t=='rot'?rotp(s.c,s.th,p):ap(s,p);
+function anim(st,pts){return`<div class="an" data-j="${encodeURIComponent(JSON.stringify({st,pts}))}"></div>`}
+function anInit(el){const d=JSON.parse(decodeURIComponent(el.dataset.j)),st=d.st,sg=[d.pts];st.forEach(s=>sg.push(sg[sg.length-1].map(p=>apx(s,p))));const ph=[];
+ st.forEach((s,i)=>{
+  if(s.t=='tr'){const x=s.a,y=s.b;if(x||!y)ph.push({i,s,tx:`先沿 x 方向${x>=0?'向右':'向左'}移动 ${f(Math.abs(x))} 个单位`,pos:(p,t)=>[p[0]+x*t,p[1]]});if(y)ph.push({i,s,p2:1,tx:`再沿 y 方向${y>=0?'向上':'向下'}移动 ${f(Math.abs(y))} 个单位`,pos:(p,t)=>[p[0]+x,p[1]+y*t]})}
+  else if(s.t=='ref')ph.push({i,s,tx:'从原像作反射轴的垂线，先垂直移到反射轴上',pos:(p,t)=>{const q=apx(s,p);return[p[0]+(q[0]-p[0])/2*t,p[1]+(q[1]-p[1])/2*t]}},{i,s,tx:'再沿垂线前进相同距离，到达反射轴另一侧（轴垂直平分 PP′）',pos:(p,t)=>{const q=apx(s,p);return[(p[0]+q[0])/2+(q[0]-p[0])/2*t,(p[1]+q[1])/2+(q[1]-p[1])/2*t]}});
+  else if(s.t=='rot')ph.push({i,s,tx:`绕中心${s.th>0?'逆':'顺'}时针旋转 ${f(Math.abs(s.th))}°（每点到中心的距离不变）`,pos:(p,t)=>rotp(s.c,s.th*t,p)});
+  else ph.push({i,s,tx:`每点沿中心射线移动，到中心的距离变为原来的 ${f(s.k)} 倍`,pos:(p,t)=>[s.c[0]+(1+(s.k-1)*t)*(p[0]-s.c[0]),s.c[1]+(1+(s.k-1)*t)*(p[1]-s.c[1])]})});
+ const N=ph.length,all=[].concat(...sg);
+ st.forEach((s,i)=>{if(s.c){all.push(s.c);if(s.t=='rot')sg[i].forEach(p=>{const r=Math.hypot(p[0]-s.c[0],p[1]-s.c[1]);[[r,0],[-r,0],[0,r],[0,-r]].forEach(e=>all.push([s.c[0]+e[0],s.c[1]+e[1]]))})}});
+ let XX,YY;
+ el.innerHTML='<b>🎬 动画演示：一步一步看变换</b>'+plot(all,(X,Y)=>{XX=X;YY=Y;return`<defs>${MK}</defs><g class="dy"></g>`})+'<div class=ant></div><div class=anc><button data-a=pp></button><button data-a=pv>◀ 上一步</button><button data-a=nx>下一步 ▶</button><label>速度 <select data-a=sp><option value=0.5>0.5×</option><option value=1 selected>1×</option><option value=2>2×</option><option value=3>3×</option></select></label></div>';
+ const GG=el.querySelector('.dy'),T=el.querySelector('.ant'),B=el.querySelector('[data-a=pp]'),a={u:0,sp:1,play:false,N};AN.set(el,a);
+ a.draw=()=>{const u=Math.max(0,Math.min(N,a.u)),k=Math.min(N-1,Math.floor(u)),x=Math.min(1,(u-k)/.78),t=x*x*(3-2*x),q=ph[k],s=q.s,L=sg[q.i],cur=L.map(p=>q.pos(p,t)),X=XX,Y=YY;
+  let o=poly(X,Y,sg[0],'var(--a)',.1);if(q.i)o+=poly(X,Y,L,'var(--mut)',.1);
+  if(s.t=='ref'){const W=80,l={x:[[-W,0],[W,0]],y:[[0,-W],[0,W]],yx:[[-W,-W],[W,W]],ynx:[[-W,W],[W,-W]],xk:[[s.k,-W],[s.k,W]],yk:[[-W,s.k],[W,s.k]]}[s.m];o+=ln(X,Y,l[0],l[1],'#a33ad1',0,1);L.forEach((p,j)=>o+=ln(X,Y,p,cur[j],'#a33ad1',1))}
+  if(s.t=='tr')L.forEach((p,j)=>{if(q.p2){const m=[p[0]+s.a,p[1]];o+=ln(X,Y,p,m,'#a33ad1',1)+ln(X,Y,m,cur[j],'#a33ad1',1)}else o+=ln(X,Y,p,cur[j],'#a33ad1',1)});
+  if(s.t=='dil')L.forEach((p,j)=>o+=ln(X,Y,s.c,sg[q.i+1][j],'#a33ad1'));
+  if(s.t=='rot')L.forEach((p,j)=>{o+=ln(X,Y,s.c,p,'#a33ad1')+ln(X,Y,s.c,cur[j],'#a33ad1');const dd=s.th*t;if(j<2&&Math.abs(dd)>.5&&(p[0]!=s.c[0]||p[1]!=s.c[1]))o+=arc(X,Y,s.c,Math.atan2(p[1]-s.c[1],p[0]-s.c[0])*180/Math.PI,dd,24+15*j,Math.round(dd)+'°',j?'#0b7285':'#d9480f')});
+  if(s.c)o+=dot(X,Y,s.c,'中心','#a33ad1');
+  o+=poly(X,Y,cur,'var(--b)',.25);
+  const pr="′".repeat(q.i+((!ph[k+1]||ph[k+1].i!=q.i)&&t>.98?1:0));
+  cur.forEach((p,j)=>o+=dot(X,Y,p,'ABCDEFGH'[j]+pr,'var(--b)'));
+  if(q.i||t>.02)sg[0].forEach((p,j)=>o+=dot(X,Y,p,'ABCDEFGH'[j],'var(--a)'));
+  GG.innerHTML=o;
+  T.innerHTML=`<b>${st.length>1?`第 ${q.i+1}/${st.length} 步 · `:''}动作 ${k+1}/${N}</b>：${q.tx}<br><small>点 A 的位置：(${f(r2(cur[0][0]))}, ${f(r2(cur[0][1]))})${u>=N?'　✔ 完成':''}</small>`};
+ a.btn=()=>{B.textContent=a.play?'⏸ 暂停':a.u>=N?'↺ 重播':'▶ 继续'};a.draw();a.btn();
+ if('IntersectionObserver' in window)new IntersectionObserver((es,ob)=>{if(es[0].isIntersecting){a.play=true;a.btn();ob.disconnect()}}).observe(el);else{a.play=true;a.btn()}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.tagName=='SELECT')return;const el=b.closest('.an'),a=el&&AN.get(el);if(!a)return;const z=b.dataset.a;
+ if(z=='pp'){if(a.u>=a.N){a.u=0;a.play=true}else a.play=!a.play}
+ if(z=='pv'){a.play=false;a.u=Math.max(0,Math.ceil(a.u-1e-9)-1)}
+ if(z=='nx'){a.play=false;a.u=Math.min(a.N,Math.floor(a.u+1e-9)+1)}
+ a.draw();a.btn()});
+document.addEventListener('change',e=>{const b=e.target.closest('[data-a=sp]');if(b)AN.get(b.closest('.an')).sp=+b.value});
+let lt=0;(function tick(ts){const dt=Math.min(.1,(ts-lt)/1000||0);lt=ts;document.querySelectorAll('.an[data-r]').forEach(el=>{const a=AN.get(el);if(a&&a.play){a.u+=dt*a.sp/1.9;if(a.u>=a.N){a.u=a.N;a.play=false}a.draw();a.btn()}});requestAnimationFrame(tick)})(0);
+const initAn=()=>document.querySelectorAll('.an:not([data-r])').forEach(el=>{el.dataset.r=1;anInit(el)});
+new MutationObserver(initAn).observe($('#main'),{childList:true,subtree:true});
+/* ---------- 连续几何变换器 ---------- */
+const cxs=i=>`<div class=row><b>第 ${i+1} 次</b> <select id=cx${i}t onchange="cxsw(${i})"><option value="">（不变换）</option><option value=ref>反射</option><option value=tr>平移</option><option value=rot>旋转</option><option value=dil>放大</option></select> <span data-f=ref hidden>${sel('cx'+i+'m')} k=${I('cx'+i+'k',1,3)}</span><span data-f=tr hidden>向量 (${I('cx'+i+'a',2,3)}, ${I('cx'+i+'b',1,3)})</span><span data-f=rot hidden>中心 ${I('cx'+i+'c','0,0',5)} <select id=cx${i}th><option value=90>逆时针 90°</option><option value=180>180°</option><option value=-90>顺时针 90°</option></select></span><span data-f=dil hidden>中心 ${I('cx'+i+'dc','0,0',5)} k=${I('cx'+i+'dk',2,4)}</span></div>`;
+function cxsw(i){const t=$('#cx'+i+'t'),v=t.value;t.parentNode.querySelectorAll('[data-f]').forEach(x=>x.hidden=x.dataset.f!=v)}
+function cxInit(){[['ref','x'],['tr'],['rot']].forEach((d,i)=>{$('#cx'+i+'t').value=d[0];if(d[1])$('#cx'+i+'m').value=d[1];cxsw(i)});$('#cx1a').value=3;$('#cx1b').value=1;cxsw(3);cx()}
+function cx(){const o=$('#cxo'),pts=pp($('#cxp').value).slice(0,4);if(!pts.length)return o.innerHTML='请输入 1–4 个点，例如 1,1; 3,1; 3,2';
+ const st=[];for(let i=0;i<4;i++){const t=$('#cx'+i+'t').value,v=d=>$('#cx'+i+d).value;
+  if(t=='ref')st.push({t,m:v('m'),k:pn(v('k'))||0});
+  else if(t=='tr'){const a=pn(v('a')),b=pn(v('b'));if(isNaN(a+b))return o.innerHTML=`第 ${i+1} 次的平移向量要填数字`;st.push({t,a,b})}
+  else if(t=='rot')st.push({t,c:pp(v('c'))[0]||[0,0],th:+v('th')});
+  else if(t=='dil'){const k=pn(v('dk'));if(!k)return o.innerHTML=`第 ${i+1} 次的放大因数不能为 0`;st.push({t,c:pp(v('dc'))[0]||[0,0],k})}}
+ if(!st.length)return o.innerHTML='请至少选择一次变换';
+ const fin=pts.map(p=>st.reduce((q,s)=>ap(s,q),p));
+ o.innerHTML=`<div class=stp><b>变换顺序：</b>${st.map(nm).join(' → ')}<br><b>最终的像：</b>${fin.map((p,j)=>'ABCD'[j]+"′".repeat(st.length)+pt(p)).join('，')}</div>`+run(st,pts)}
+/* ---------- calculators ---------- */
+const sel=(id,z)=>`<select id=${id}>${z?'<option value="">（无）</option>':''}${Object.entries(RN).map(([k,v])=>`<option value=${k}>${v}</option>`).join('')}</select>`;
+const mkr=(m,k)=>({t:'ref',m,k:pn(k)||0});
+function c1(){const pts=pp($('#c1p').value);if(!pts.length)return $('#c1o').innerHTML='请输入点坐标，例如 -2,3; 3,-4';
+ const s=[mkr($('#c1a').value,$('#c1ak').value)],b=$('#c1b').value;if(b)s.push(mkr(b,$('#c1bk').value));
+ let h=run(s,pts);
+ if(s.length==2){const r1=pts.map(p=>ap(s[1],ap(s[0],p))),r2=pts.map(p=>ap(s[0],ap(s[1],p))),same=r1.every((p,i)=>p[0]==r2[i][0]&&p[1]==r2[i][1]);
+  h+=`<div class=stp>交换顺序后的像：${r2.map((p,i)=>'ABCDEFGH'[i]+'*'+pt(p)).join('，')}<br>${same?'本例结果相同。':'<b>结果不同</b>——反射变换的顺序很重要！'}</div>`}
+ $('#c1o').innerHTML=h}
+function c2(){const pts=pp($('#c2p').value),s=[{t:'tr',a:pn($('#c2a').value),b:pn($('#c2b').value)}];if(!pts.length||isNaN(s[0].a+s[0].b))return $('#c2o').innerHTML='请输入点与向量';
+ const a2=pn($('#c2c').value),b2=pn($('#c2d').value);let h='';
+ if(!isNaN(a2+b2)){s.push({t:'tr',a:a2,b:b2});h=run(s,pts)+`<div class=stp>连续平移等于直接平移 ${vec(s[0].a+a2,s[0].b+b2)}（(a+c, b+d)，顺序可交换）</div>`}else h=run(s,pts);
+ $('#c2o').innerHTML=h}
+function c2b(){const p=pp($('#c2e').value)[0],q=pp($('#c2f').value)[0],r=pp($('#c2g').value)[0];if(!p||!q)return $('#c2bo').innerHTML='请输入 P 与 P′';
+ let h=vs(p,q);if(r)h+=run([{t:'tr',a:q[0]-p[0],b:q[1]-p[1]}],[r]);$('#c2bo').innerHTML=h}
+function c3(){const pts=pp($('#c3p').value),c=pp($('#c3c').value)[0]||[0,0];if(!pts.length)return;$('#c3o').innerHTML=run([{t:'rot',c,th:+$('#c3t').value}],pts)}
+function c3b(){const v=[1,2,3,4].map(i=>pp($('#r'+i).value)[0]);$('#c3bo').innerHTML=v.some(x=>!x)?'请输入四个点':fr3(...v)}
+function c4(){const pts=pp($('#c4p').value),c=pp($('#c4c').value)[0]||[0,0],k=pn($('#c4k').value);if(!pts.length||!k)return $('#c4o').innerHTML='请输入点与不为 0 的放大因数';
+ $('#c4o').innerHTML=run([{t:'dil',c,k}],pts)+`<div class=stp>线段长度变为 ${f(k)} 倍；面积变为 k² = ${f(k*k)} 倍。</div>`}
+function c4b(){const v=[1,2,3,4].map(i=>pp($('#d'+i).value)[0]);$('#c4bo').innerHTML=v.some(x=>!x)?'请输入四个点':fd(...v)}
+const I=(id,v,s=10)=>`<input id=${id} value="${v}" size=${s}>`;
+/* ---------- quiz engine ---------- */
+function mc(q,ans,wr,ex,fm=pt,fill,x=''){const o=[ans],k=new Set([JSON.stringify(ans)]);
+ for(const w of wr){const s=JSON.stringify(w);if(!k.has(s)){k.add(s);o.push(w)}}
+ let t=0;while(o.length<4&&t++<80&&fill){const w=fill(ans),s=JSON.stringify(w);if(!k.has(s)){k.add(s);o.push(w)}}
+ const m=SH(o.slice(0,4).map((v,i)=>[v,i]));return{q,o:m.map(a=>fm(a[0])),a:m.findIndex(a=>a[1]==0),ex,x}}
+const fP=a=>[a[0]+P([-2,-1,1,2]),a[1]+P([-2,-1,1,2])],fN=a=>a+P([-3,-2,-1,1,2,3]),fD=a=>a+P([-30,-20,20,30,60]);
+const fl=(q,ty,ans,ex,x='',u='')=>({q,ty,ans,ex,x,u});
+const rp=(m=6)=>[R(-m,m),R(-m,m)],pk=(a,n)=>SH(a).slice(0,n).map(h=>h()),cs=c=>{const d=P(c);return mc(d[0],d[1],d[2],d[3],x=>x)};
+const deg=v=>f(v)+'°',frs=a=>a.map(x=>fr(x[0],x[1]));
+const G={m:[[],[],[],[]],f:[[],[],[],[]]},HM=[],HF=[];
+/* 10.1 */
+G.m[0]=[
+()=>{const p=rp(),m=P(['x','y','yx','ynx']),s={t:'ref',m},a=ap(s,p);return mc(`点 A${pt(p)} 经${RN[m]}反射后的像是？`,a,['x','y','yx','ynx'].filter(z=>z!=m).map(z=>ap({t:'ref',m:z},p)),`${RN[m]}反射的规则是 ${rule(s)}，所以像为 ${pt(a)}。`,pt,fP)},
+()=>{const p=rp(),k=R(-4,5),m=P(['xk','yk']),s={t:'ref',m,k},a=ap(s,p);return mc(`点 A${pt(p)} 经直线 ${m=='xk'?'x':'y'} = ${f(k)} 反射后的像是？`,a,[ap({t:'ref',m:m=='xk'?'yk':'xk',k},p),[-a[0],a[1]],[a[0],-a[1]]],`像与原像到反射线等距：${dt(s,p,a)}，像为 ${pt(a)}。`,pt,fP)},
+()=>{const p=[nz(),nz()],m1=P(['x','y']),m2=P(['yx','ynx']),s1={t:'ref',m:m1},s2={t:'ref',m:m2},a=ap(s2,ap(s1,p)),b=ap(s1,ap(s2,p));return mc(`点 A${pt(p)} 先经${RN[m1]}反射，再经${RN[m2]}反射，像是？`,a,[b,ap(s1,p),ap(s2,p)],`先：${pt(p)} → ${pt(ap(s1,p))}；再：→ ${pt(a)}。若交换顺序得 ${pt(b)}，可见反射的顺序很重要。`,pt,fP)},
+()=>cs([['一图形经反射后，它的像与原图形的关系是？','全等，但顺序相反（逆时针变顺时针）',['全等，且顺序不变','相似但不全等','面积发生改变'],'反射保持长度与面积，但把逆时针序变成顺时针序。'],['在反射变换下，哪些点是不动点？','反射轴上的所有点',['原点','没有不动点','只有一个点'],'反射轴上的点到轴的距离为 0，像就是它自己。'],['若 A′ 是点 A 经直线 L 反射后的像，则 L 是线段 AA′ 的？','垂直平分线',['平行线','中线但不垂直','角平分线'],'作 AP⊥L 并延长到 A′ 使 A′P = AP，故 L 垂直且平分 AA′。'],['线段 AB 经反射后的像 A′B′ 与 AB 的关系？','等长',['A′B′ 是 AB 的 2 倍','A′B′ 一定较短','没有关系'],'反射保持线段长度。']]),
+()=>{const a=nz(),b=nz(),h=R(-3,4),s1={t:'ref',m:'xk',k:h},s2={t:'ref',m:'ynx'},B=ap(s2,ap(s1,[a,b])),C=ap(s1,ap(s2,[a,b])),n=(B[0]-C[0])**2+(B[1]-C[1])**2;
+ return mc(`点 A${pt([a,b])} 先经直线 x = ${f(h)} 反射再经 y = −x 反射得 B；先经 y = −x 反射再经 x = ${f(h)} 反射得 C。线段 BC 的长是？`,n,[n+R(1,3),n*2,Math.max(1,n-R(1,3)),n+4*R(1,3)],`B${pt(B)}，C${pt(C)}。BC² = (${f(B[0]-C[0])})² + (${f(B[1]-C[1])})² = ${n}，所以 BC = ${sq(n)}。`,sq,fN)}];
+G.f[0]=[
+()=>{const p=[nz(),nz()],k=R(-3,4),m=P(['xk','yk']),s={t:'ref',m,k},a=ap(s,p);return fl(`点 A${pt(p)} 经直线 ${m=='xk'?'x':'y'} = ${f(k)} 反射后的像的坐标是？`,'pt',a,`${rule(s)}，${dt(s,p,a)}，像为 ${pt(a)}。`)},
+()=>{const k=R(-3,5),a=nz(),b=nz(),a2=2*k-a;return fl(`点 A${pt([a,b])} 经直线 x = k 反射后的像是 A′${pt([a2,b])}，求 k。`,'num',k,`x = k 是 AA′ 的垂直平分线，k = (${f(a)}+${g(a2)})÷2 = ${f(k)}。`)},
+()=>{const a=R(-3,4),b=R(1,5),k=R(1,5),d=2*k-a;return fl(`点 (${f(a)}, ${f(b)}) 经直线 x = k 反射，再经直线 y = x 反射后的像是 (c, ${f(d)})，求 k。`,'num',k,`经 x=k：(2k−${g(a)}, ${f(b)})；再经 y=x：(${f(b)}, 2k−${g(a)})，故 2k−${g(a)} = ${f(d)}，k = ${f(k)}（c = ${f(b)}）。`)},
+()=>{const p=[nz(),nz()];return fl(`点 A${pt(p)} 先经 x 轴反射，再经 y 轴反射，像的坐标是？`,'pt',[-p[0],-p[1]],'先得 (x, −y)，再得 (−x, −y)；等于绕原点旋转 180°。')}];
+/* 10.2 */
+const tr=(a,b)=>({t:'tr',a,b});
+G.m[1]=[
+()=>{const p=rp(),v=[nz(),nz()],a=ap(tr(...v),p);return mc(`点 A${pt(p)} 经平移 ${vec(...v)} 后的像是？`,a,[[p[0]-v[0],p[1]-v[1]],[p[0]+v[1],p[1]+v[0]],[p[0]+v[0],p[1]-v[1]]],`(x+a, y+b) = (${f(p[0])}+${g(v[0])}, ${f(p[1])}+${g(v[1])}) = ${pt(a)}。`,pt,fP)},
+()=>{const p=rp(),q=rp(),v=[q[0]-p[0],q[1]-p[1]];return mc(`平移把点 ${pt(p,'P')} 移到 ${pt(q,'P′')}，平移向量 PP′ 是？`,v,[[-v[0],-v[1]],[v[1],v[0]],[p[0]-q[0],q[1]-p[1]]],`PP′ = (x′−x, y′−y) = (${f(q[0])}−${g(p[0])}, ${f(q[1])}−${g(p[1])}) = ${vec(...v)}。`,v=>vec(...v),fP)},
+()=>{const q=rp(),v=[nz(),nz()],a=[q[0]-v[0],q[1]-v[1]];return mc(`平移 ${vec(...v)} 把点 A 移到 A′${pt(q)}，则点 A 的坐标是？`,a,[[q[0]+v[0],q[1]+v[1]],[q[0]-v[1],q[1]-v[0]],[q[0]+v[0],q[1]-v[1]]],`逆向：A = A′ − 向量 = (${f(q[0])}−${g(v[0])}, ${f(q[1])}−${g(v[1])}) = ${pt(a)}。`,pt,fP)},
+()=>{const p=rp(),u=[nz(),nz()],v=[nz(),nz()],a=[p[0]+u[0]+v[0],p[1]+u[1]+v[1]];return mc(`点 P${pt(p)} 先经平移 ${vec(...u)}，再经平移 ${vec(...v)}，像是？`,a,[[p[0]+u[0]-v[0],p[1]+u[1]-v[1]],[p[0]+u[0],p[1]+u[1]],[p[0]-u[0]-v[0],p[1]-u[1]-v[1]]],`连续平移等于直接平移 (a+c, b+d) = ${vec(u[0]+v[0],u[1]+v[1])}，像为 ${pt(a)}。`,pt,fP)},
+()=>cs([['任何图形经平移后，它的像与原图形的关系是？','全等，且顺序不变',['全等，但顺序相反','相似但不全等','面积改变'],'平移保持形状、大小，也保持逆时针/顺时针的顺序。'],['在（非零向量的）平移之下，有不动点吗？','没有',['有一个','有无数个','只有原点'],'每一点都被移动了固定的距离，所以没有不动点。'],['两个连续平移 (a,b) 与 (c,d) 的顺序可以交换吗？','可以，结果都等于 (a+c, b+d)',['不可以','只有 a=c 时可以','只有 b=d 时可以'],'点 P 两种次序所得像都是 (x+a+c, y+b+d)。']]),
+()=>{const a=nz(),b=nz(),n=a*a+b*b;return mc(`平移 ${vec(a,b)} 把点移动的距离是？`,n,[n+R(1,3),n*2,Math.max(1,n-R(1,3)),n+4*R(1,3)],`距离 = ${rt(`${g(a)}²+${g(b)}²`)} = ${rt(n)} = ${sq(n)}。`,sq,fN)}];
+G.f[1]=[
+()=>{const p=rp(),u=[nz(),nz()],v=[nz(),nz()],a=[p[0]+u[0]+v[0],p[1]+u[1]+v[1]];return fl(`点 P${pt(p)} 先经平移 ${vec(...u)}，再经平移 ${vec(...v)}，像的坐标是？`,'pt',a,`两次平移合起来是 ${vec(u[0]+v[0],u[1]+v[1])}，像为 ${pt(a)}。`)},
+()=>{const p=rp(),q=rp();return fl(`平移把点 A${pt(p)} 移到 A′${pt(q)}，写出平移向量 AA′（填 (a, b)）。`,'vec',[q[0]-p[0],q[1]-p[1]],`(x′−x, y′−y) = (${f(q[0])}−${g(p[0])}, ${f(q[1])}−${g(p[1])}) = (${f(q[0]-p[0])}, ${f(q[1]-p[1])})。`)},
+()=>{const p=rp(),u=[nz(),nz()],w=[nz(),nz()],q=[p[0]+u[0]+w[0],p[1]+u[1]+w[1]];return fl(`点 A${pt(p)} 经平移 ${vec(...u)}，再经平移 BB′ 的像为 C${pt(q)}，求平移 BB′（填 (a, b)）。`,'vec',w,`BB′ = C − A − ${vec(...u)}：(${f(q[0])}−${g(p[0])}−${g(u[0])}, ${f(q[1])}−${g(p[1])}−${g(u[1])}) = (${f(w[0])}, ${f(w[1])})。`)},
+()=>{const p=[nz(),nz()],v=[nz(),nz()],a=ap(tr(...v),ap({t:'ref',m:'x'},p));return fl(`点 A${pt(p)} 先经 x 轴反射，再经平移 ${vec(...v)}，像的坐标是？`,'pt',a,`反射：${pt(ap({t:'ref',m:'x'},p))}；平移：${pt(a)}。注意：先平移再反射，结果一般不同。`)}];
+/* 10.3 */
+const rot=(c,th)=>({t:'rot',c,th});
+G.m[2]=[
+()=>{const p=rp(),t=P([90,-90,180]),a=ap(rot([0,0],t),p),w=[90,-90,180].filter(z=>z!=t).map(z=>ap(rot([0,0],z),p));return mc(`点 A${pt(p)} 以原点 O 为旋转中心，旋转角度 θ = ${t}°，像的坐标是？`,a,w.concat([[p[1],p[0]]]),`${rule(rot([0,0],t))}，所以像为 ${pt(a)}。`,pt,fP,aFig(t,'θ='+t+'°'))},
+()=>{const c=rp(3),p=[c[0]+nz(),c[1]+nz()],t=P([90,-90,180]),a=ap(rot(c,t),p);return mc(`点 A${pt(p)} 绕点 C${pt(c)} 旋转 ${t}°，像的坐标是？`,a,[ap(rot(c,-t),p),ap(rot([0,0],t),p),ap(rot(c,180),p)],`相对中心：${pt([p[0]-c[0],p[1]-c[1]])} → ${pt([a[0]-c[0],a[1]-c[1]])}，加回中心得 ${pt(a)}。`,pt,fP,aFig(t,'θ='+t+'°'))},
+()=>{const d=P([30,50,60,120]),dir=P(['顺','逆']),a=dir=='逆'?d:-d;return mc(`点 A 绕点 O 按${dir}时针方向旋转 ${d}°（如图），旋转角度 θ 是？`,a,[-a,180-a,a-180],'课本规定：逆时针方向取正号，顺时针方向取负号。',deg,fD,aFig(a,d+'°'))},
+()=>{const a=P([40,50,70,80,100]),dir=P([1,-1]);return mc(`△ABC 中 AB = AC，∠A = ${a}°（如图）。点 ${dir>0?'C 是点 B':'B 是点 C'} 绕点 A 旋转而得，旋转角度是？`,dir*a,[-dir*a,dir*(180-a)/2,dir*(180-a)],`旋转角度就是 ∠BAC = ${a}°；B→C 是逆时针（取正），C→B 是顺时针（取负），所以 θ = ${dir*a}°。`,deg,fD,tf(a,dir))},
+()=>{const t1=P([90,180,-90]),t2=P([90,180,-90]),a=norm(t1+t2);return mc(`图形先绕点 O 旋转 ${t1}°，再绕点 O 旋转 ${t2}°，等于直接绕点 O 旋转？`,a,[norm(t1-t2),a+90>180?a-90:a+90,t1],`同一中心的旋转角度相加：${t1}° + ${t2}° = ${t1+t2}° ≡ ${a}°。`,deg,()=>P([0,45,90,135,180,-45,-90,-135]))},
+()=>cs([['任何图形经旋转后，它的像与原图形的关系是？','全等，且顺序不变',['全等，但顺序相反','相似但不全等','面积改变'],'旋转保持形状与大小，也保持顺序。'],['在旋转变换下，不动点是？','旋转中心',['原点','没有不动点','任意一点'],'旋转中心到自己的距离为 0，位置不变。'],['绕定点旋转 180° 等于？','对该点作反射',['沿某直线反射','平移','放大'],'A′ 在 AO 的延长线上且 A′O = AO。'],['要确定旋转中心与旋转角度，至少需要？','两点及其像',['一点及其像','三点','只要旋转角度'],'中心在 AA′ 与 BB′ 垂直平分线的交点。']])];
+G.f[2]=[
+()=>{const c=rp(3),p=[c[0]+nz(),c[1]+nz()],t=P([90,-90,180]),a=ap(rot(c,t),p);return fl(`点 A${pt(p)} 绕点 C${pt(c)} 旋转 ${t}°，像的坐标是？`,'pt',a,`相对中心：${pt([p[0]-c[0],p[1]-c[1]])} → ${pt([a[0]-c[0],a[1]-c[1]])}，加回中心得 ${pt(a)}。`,aFig(t,'θ='+t+'°'))},
+()=>{const c=rp(3),p=[c[0]+R(1,4),c[1]+R(-4,4)],a=ap(rot(c,90),p),n=(p[0]-c[0])**2+(p[1]-c[1])**2;return fl(`点 A${pt(p)} 绕某点 O 按逆时针方向旋转 90° 后的像是 A′${pt(a)}，求旋转中心 O 的坐标。`,'pt',c,`O 在 AA′ 的垂直平分线上，且 ∠AOA′ = 90°。检验 O${pt(c)}：OA = OA′ = ${sq(n)}。`,aFig(90,'90°'))},
+()=>{const c=rp(3),t=P([90,-90]),A=[c[0]+nz(),c[1]+nz()],B=[c[0]+nz(),c[1]+nz()];if(A+''==B+'')B[0]+=3;const A2=ap(rot(c,t),A),B2=ap(rot(c,t),B);
+ return fl(`一旋转把 A${pt(A)}、B${pt(B)} 映到 A′${pt(A2)}、B′${pt(B2)}，求旋转中心的坐标。`,'pt',c,'分别作 AA′ 与 BB′ 的垂直平分线，交点就是旋转中心。（可用本页计算器验证）')},
+()=>{const c=rp(3),t=P([90,-90]),v=[R(-3,3),R(-3,3)],A=rp(),A2=ap(tr(...v),ap(rot(c,t),A));return fl(`点 A 绕点 P${pt(c)} 按${t>0?'逆':'顺'}时针方向旋转 90° 后，再经平移 ${vec(...v)} 的像为 A′${pt(A2)}，求点 A 的坐标。`,'pt',A,`逆向：先平移 ${vec(-v[0],-v[1])} 得 ${pt(ap(tr(-v[0],-v[1]),A2))}，再绕 P 旋转 ${-t}° 回到 ${pt(A)}。`,aFig(t,'90°'))},
+()=>{const t=P([90,-90,180]),p=[nz(),nz()],q=ap(rot([0,0],t),p);return fl(`点 A${pt(p)} 绕原点旋转后的像是 A′${pt(q)}，求旋转角度 θ（填 90、−90 或 180）。`,'num',t,`逐个检验：${t}° 的规则 ${rule(rot([0,0],t))} 恰好把 A 映到 A′。`,'','°')}];
+/* 10.4 */
+const KS=[[2,1],[3,1],[1,2],[2,3],[3,2],[1,3]],dl=(c,k)=>({t:'dil',c,k});
+G.m[3]=[
+()=>{const[m,n]=P(KS),k=m/n,p=[R(-4,4)*n,R(-4,4)*n],a=[k*p[0],k*p[1]];return mc(`以原点为放大中心，放大因数 k = ${f(k)}，点 A${pt(p)} 的像是？`,a,[[p[0]/k,p[1]/k],[k*p[1],k*p[0]],[-a[0],-a[1]]],`P(x, y) → (kx, ky) = (${f(k)}×${g(p[0])}, ${f(k)}×${g(p[1])}) = ${pt(a)}。`,pt,fP)},
+()=>{const[m,n]=P(KS),k=m/n,c=rp(3),p=[c[0]+R(-3,3)*n||c[0]+n,c[1]+R(-3,3)*n||c[1]+n],a=ap(dl(c,k),p);return mc(`以点 C${pt(c)} 为放大中心，放大因数 k = ${f(k)}，点 A${pt(p)} 的像是？`,a,[[k*p[0],k*p[1]],[c[0]+(p[0]-c[0])/k,c[1]+(p[1]-c[1])/k],[c[0]-(p[0]-c[0])*k,c[1]-(p[1]-c[1])*k]],`A′ = C + k(A − C)：相对中心 ${pt([p[0]-c[0],p[1]-c[1]])} 乘 ${f(k)} 得 ${pt([a[0]-c[0],a[1]-c[1]])}，加回中心得 ${pt(a)}。`,pt,fP)},
+()=>{const[m,n]=P(KS),k=m/n,L=R(1,6)*n;return mc(`线段 AB = ${L} cm，对点 O 以放大因数 ${f(k)} 放大后，A′B′ 的长是多少 cm？`,k*L,[L/k,L+m,L*m],`A′B′ ÷ AB = k，所以 A′B′ = ${f(k)}×${L} = ${f(k*L)} cm。`,x=>f(x)+' cm',fN)},
+()=>{const[m,n]=P(KS);return mc(`放大因数为 ${f(m/n)} 时，放大后图形的面积与原图形面积的比（像 : 原）是？`,`${m*m}:${n*n}`,[`${m}:${n}`,`${m*m}:${n}`,`${m}:${n*n}`],`面积比 = k² = (${m}:${n})² = ${m*m}:${n*n}。`,x=>x,()=>P([1,2,3,4,5,6,8,9])+':'+P([1,2,3,4,9]))},
+()=>{const[m,n]=P([[3,2],[5,3],[2,1],[4,3],[3,1]]),w=P([0,1,2]);
+ const A=[[fr(m+n,m),[fr(m,m+n),fr(n,m),fr(m+n,n)]],[fr(m,m+n),[fr(m,n),fr(n,m+n),fr(m+n,m)]],[fr(m,m+n),[fr(m,n),fr(n,m+n),fr(m+n,m)]]][w],Q=['线段 BC 是线段 DE 对点 A 放大而成，放大因数是？','AE ÷ AC 的值是？','DE ÷ BC 的值是？'][w];
+ return mc(`如图，DE ∥ BC，AD : DB = ${m} : ${n}。${Q}`,A[0],A[1],`DE ∥ BC ⇒ △ADE ∽ △ABC，AD : AB = ${m} : ${m+n}。△ADE 是 △ABC 缩小（k = ${m}/${m+n}），BC 是 DE 放大（k = ${m+n}/${m}）；AE/AC = DE/BC = ${m}/${m+n}。`,x=>x,null,`<svg class="af" style="max-width:240px" viewBox="0 0 260 180" fill="currentColor"><polygon points="130,10 30,165 230,165" fill="none" stroke="currentColor"/><line x1="70" y1="100" x2="190" y2="100" stroke="currentColor"/><text x="136" y="14" font-size="13">A</text><text x="12" y="172" font-size="13">B</text><text x="234" y="172" font-size="13">C</text><text x="50" y="98" font-size="13">D</text><text x="194" y="98" font-size="13">E</text></svg>`)},
+()=>cs([['当放大因数 0 < k < 1 时，图形？','被缩小',['被放大','不变','变成不相似的图形'],'k > 1 放大；k = 1 不变；0 < k < 1 缩小。'],['放大后的像与原图形的关系是？','相似',['全等','面积不变','没有关系'],'像的各边长与对应边的比值都等于 k，故相似。'],['已知一点及其像不能确定放大中心，要确定放大中心至少需要？','两点及其像（AA′ 与 BB′ 的交点）',['一点及其像','三点','只要 k'],'直线 AA′ 与直线 BB′ 的交点就是放大中心。'],['在放大变换下，不动点是？','放大中心',['任意一点','没有','原点'],'放大中心的像还是自己。']])];
+G.f[3]=[
+()=>{const[m,n]=P(KS),k=m/n,c=rp(3),p=[c[0]+nz()*n,c[1]+nz()*n],a=ap(dl(c,k),p);return fl(`以点 C${pt(c)} 为放大中心，k = ${f(k)}，点 A${pt(p)} 的像的坐标是？`,'pt',a,`A′ = C + k(A − C) = ${pt(a)}。`)},
+()=>{const k=P([2,3,4,1/2,2/3,3/2]),d=k==2/3||k==3/2?[3,2][+(k==3/2)]:2,O=rp(3),A=[O[0]+nz()*d,O[1]+nz()*d],A2=ap(dl(O,k),A);return fl(`点 A${pt(A)} 对点 O${pt(O)} 放大后的像是 A′${pt(A2)}，求放大因数 k（分数写成 2/3 的形式）。`,'num',k,`OA′ ÷ OA：横向 (${f(A2[0]-O[0])}) ÷ (${f(A[0]-O[0])}) = ${f(k)}，所以 k = ${f(k)}。`)},
+()=>{const k=P([2,3,4]),O=rp(3),A=[O[0]+nz(),O[1]+nz()],A2=ap(dl(O,k),A);return fl(`点 A${pt(A)} 经放大因数 ${k} 放大后的像是 A′${pt(A2)}，求放大中心的坐标。`,'pt',O,`A′ = O + k(A − O) ⇒ O = (A′ − kA) ÷ (1 − k) = ((${f(A2[0])}−${f(k*A[0])}) ÷ ${1-k}, (${f(A2[1])}−${f(k*A[1])}) ÷ ${1-k}) = ${pt(O)}。`)},
+()=>{const[m,n]=P([[2,1],[3,1],[3,2],[2,3]]),t=R(1,5),S=n*n*t;return fl(`图形面积为 ${S} cm²，对某点以放大因数 ${m}/${n} 放大后，像的面积是多少 cm²？`,'num',m*m*t,`面积乘 k² = (${m}/${n})² = ${m*m}/${n*n}：${S}×${m*m}/${n*n} = ${m*m*t}。`)}];
+/* hard (总复习) */
+HM.push(
+()=>{const h=R(-3,4),v=R(-3,4);return mc(`点经直线 x = ${f(h)} 反射后，再经直线 y = ${f(v)} 反射。在这两个连续变换下，不动点是？`,[h,v],[[v,h],[h,0],[0,v]],`两直线的交点 ${pt([h,v])} 在两条线上，两次反射都不动；这两个连续变换等于绕该点旋转 180°。`,pt,fP)},
+()=>{const a=R(-5,-1),k=R(1,5),a2=2*k-a,b=nz();return mc(`点 P${pt([a,b])} 经某反射后的像是 P′${pt([a2,b])}，反射轴是？`,'x = '+k,['x = '+(a2-a),'x = '+(a2+a),'y = '+b,'x = '+(k+1)],`P、P′ 的 y 坐标相同，反射轴是垂直线 x = (${f(a)}+${f(a2)})÷2 = ${k}。`,x=>x)},
+()=>{const k=R(2,5);return mc(`△ABC 对顶点 A 以放大因数 ${k} 放大后的像是 △A′B′C′，则 △A′B′C′ 与 △ABC 的面积比是？`,k*k,[k,2*k,k*k+k],`面积比 = k² = ${k}² = ${k*k}（像 : 原）；且 B′C′ ÷ BC = ${k}。`,x=>x+' : 1',fN)},
+()=>{const p=rp(),q=rp(),v=[q[0]-p[0],q[1]-p[1]],T=rp(),a=[T[0]+v[0],T[1]+v[1]];return mc(`一平移把点 P${pt(p)} 移到 P′${pt(q)}。点 T${pt(T)} 在此平移下的像是？`,a,[[T[0]-v[0],T[1]-v[1]],[T[0]+v[1],T[1]+v[0]],[q[0]+T[0],q[1]+T[1]]],`平移向量 = ${vec(...v)}，T′ = ${pt(a)}。`,pt,fP)},
+()=>{const p=[nz(),nz()],v=[nz(),nz()],a=ap({t:'ref',m:'x'},ap(tr(...v),p)),b=ap(tr(...v),ap({t:'ref',m:'x'},p));return mc(`点 A${pt(p)} 先经平移 ${vec(...v)}，再经 x 轴反射，像是？`,a,[b,ap(tr(...v),p),ap({t:'ref',m:'x'},p)],`先平移得 ${pt(ap(tr(...v),p))}，再反射得 ${pt(a)}。先反射再平移则得 ${pt(b)}，顺序不同结果一般不同。`,pt,fP)});
+HF.push(G.f[2][2],
+()=>{const k=P([2,3]),O=rp(3),A=[O[0]+nz(),O[1]+nz()],B=[O[0]+nz(),O[1]+nz()];if(A+''==B+'')B[1]+=2;const A2=ap(dl(O,k),A),B2=ap(dl(O,k),B);return fl(`一放大把 A${pt(A)}、B${pt(B)} 映到 A′${pt(A2)}、B′${pt(B2)}，求放大中心的坐标。`,'pt',O,`先求 k = A′B′ ÷ AB = ${k}，再由 O = (A′ − kA) ÷ (1 − k) 得 ${pt(O)}（直线 AA′ 与 BB′ 的交点）。`)},
+G.f[2][3],G.f[3][3]);
+function quiz(h,c){const U='q'+R(1,1e6);let M=c.mc(),Fq=[],done=0,sc=0,fdone=0,fsc=0;
+ h.innerHTML=`<div class=card><b>${c.title}</b> <span class=mut id=${U}s>已答 0/${M.length}</span>`+M.map((m,i)=>`<div class=qq id=${U}m${i}><p><b>${i+1}.</b> ${m.q}</p>${m.x||''}<div class=ops>${m.o.map((o,j)=>`<button class=op data-i=${i} data-j=${j}>${'ABCD'[j]}. ${o}</button>`).join('')}</div><div class=ex></div></div>`).join('')+`</div><div id=${U}f></div><div id=${U}r></div>`;
+ const Q=s=>h.querySelector(s);
+ function mcDone(){if(c.rev||sc>=c.need){Fq=c.fl();Q('#'+U+'f').innerHTML=`<div class=card><b>${c.rev?'填充题（5 题）':`✔ 选择题 ${sc}/${M.length}，达标！请完成 ${Fq.length} 道作答题`}</b>`+Fq.map((q,i)=>`<div class=qq id=${U}f${i}><p><b>作答 ${i+1}.</b> ${q.q}</p>${q.x}<div class=row>${q.ty=='num'?'<input class=fi size=6>'+q.u:'(<input class=fi size=4>, <input class=fi size=4>)'} <button class="btn ck" data-i=${i}>检查</button></div><div class=ex></div></div>`).join('')+'</div>'}
+  else Q('#'+U+'r').innerHTML=`<div class=card>选择题答对 ${sc}/${M.length}，需要答对 3 题或以上才能解锁作答题。<br><button class="btn re">换一组新题再试</button></div>`}
+ function fin(){let t=sc*6+fsc*8,m=t>=90?'🏆 优秀！变换掌握得很扎实。':t>=75?'👍 良好，再留意易错的顺序与符号。':t>=60?'🙂 及格，建议回到 10.1–10.4 重做计算器与测验。':'💪 需要加强，请先复习各节例题再挑战。';
+  Q('#'+U+'r').innerHTML=c.rev?`<div class=card><h3>总成绩：${t} / 100</h3>选择题 ${sc}/10（每题 6 分），作答题 ${fsc}/5（每题 8 分）<br>${m}<br><button class="btn re">重新挑战（全新题目）</button></div>`:`<div class=card>🎉 完成！选择题 ${sc}/5，作答题 ${fsc}/${Fq.length}。<br><button class="btn re">再来一组新题</button></div>`}
+ h.onclick=e=>{const b=e.target.closest('.op');
+  if(b){const i=+b.dataset.i,j=+b.dataset.j,q=M[i];if(q.d)return;q.d=1;h.querySelectorAll(`.op[data-i="${i}"]`).forEach(x=>{x.disabled=true;if(+x.dataset.j==q.a)x.classList.add('ok')});const ok=j==q.a;if(ok)sc++;else b.classList.add('no');
+   Q(`#${U}m${i} .ex`).innerHTML=(ok?'<b class=g>✔ 正确！</b> ':'<b class=r>✘ 错误。</b> ')+q.ex;done++;Q('#'+U+'s').textContent=`已答 ${done}/${M.length}`;if(done==M.length)mcDone();return}
+  const k=e.target.closest('.ck');
+  if(k){const i=+k.dataset.i,q=Fq[i],ins=[...h.querySelectorAll(`#${U}f${i} .fi`)],v=ins.map(x=>pn(x.value)),A=q.ty=='num'?[q.ans]:q.ans;
+   const ok=v.every((x,j)=>!isNaN(x)&&Math.abs(x-A[j])<1e-6);ins.forEach(x=>x.disabled=true);k.disabled=true;if(ok)fsc++;
+   Q(`#${U}f${i} .ex`).innerHTML=(ok?'<b class=g>✔ 正确！</b> ':`<b class=r>✘ 错误。</b> 正确答案：${q.ty=='num'?f(q.ans)+q.u:q.ty=='vec'?vec(...q.ans):pt(q.ans)}。<br>`)+q.ex;fdone++;if(fdone==Fq.length)fin();return}
+  if(e.target.closest('.re'))quiz(h,c)}}
+/* ---------- pages ---------- */
+const nt=a=>`<div class=card><ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+const exs=a=>a.map(([t,q,b])=>`<div class=card><span class=tag>${t}</span> ${q}${b}</div>`).join('');
+const P4=(A,B)=>[[0,0]];
+const sec=(n,t,notes,ex,calc)=>`<h2>${n} ${t}</h2>${nt(notes)}<h3>📖 课本例题解说</h3>${exs(ex)}<h3>🧮 专属计算器</h3>${calc}<h3>✏️ 随堂测验</h3><div id=qz></div>`;
+const PN=[
+()=>sec('10.1','反射',['山影倒映在湖中就是<b>反射</b>。点 A 对直线 XY（反射轴）的像 A′：作 AP ⊥ XY 并延长到 A′ 使 A′P = AP，即直线 XY <b>垂直平分</b> AA′。','坐标规则：x 轴 (x,y)→(x,−y)；y 轴 → (−x,y)；直线 y=x → (y,x)；直线 y=−x → (−y,−x)。','线段经反射后<b>等长</b>；图形的像与原图<b>全等，但顺序相反</b>（逆时针变顺时针）。反射轴上的点是不动点。','一图形先经变换 Ⅰ 再经变换 Ⅱ，一般与先 Ⅱ 后 Ⅰ 的结果<b>不同</b>。若图形在某直线反射下与自己重合，该直线就是对称轴（线对称）。'],
+ [['例题 1','已知点 A(−2,3)，B(3,−4)，C(4,2)，D(−3,0)。求这四点经 x 轴反射后的像。',run([{t:'ref',m:'x'}],[[-2,3],[3,-4],[4,2],[-3,0]])+'<p>结论：(x, y) 经 x 轴反射的像是 (x, −y)，即 y 坐标变号；D 在轴上，像就是它本身。</p>'],
+  ['例题 2','已知点 A(−2,3)，B(3,−4)，C(4,2)，D(−3,−1)。求这四点经直线 y = x 反射后的像。',run([{t:'ref',m:'yx'}],[[-2,3],[3,-4],[4,2],[-3,-1]])+'<p>结论：(x, y) 经直线 y = x 反射的像是 (y, x)；经 y = −x 则是 (−y, −x)。</p>'],
+  ['例题 3','△ABC 顶点 A(3,1)，B(4,1)，C(4,3)。(c) 先经直线 y = x 反射，再经 x 轴反射；(d) 先经 x 轴反射，再经直线 y = x 反射。',run([{t:'ref',m:'yx'},{t:'ref',m:'x'}],[[3,1],[4,1],[4,3]])+'<b>(d) 交换顺序：</b>'+run([{t:'ref',m:'x'},{t:'ref',m:'yx'}],[[3,1],[4,1],[4,3]])+'<p>两个结果不同——反射变换的顺序很重要。</p>']],
+ `<div class=card><div class=row>点坐标（多点用分号隔开）${I('c1p','-2,3; 3,-4; 4,2',26)}</div><div class=row>第 1 次反射 ${sel('c1a')} k = ${I('c1ak',1,3)}</div><div class=row>第 2 次反射 ${sel('c1b',1)} k = ${I('c1bk',1,3)}</div><button class=btn onclick=c1()>计算并作图</button><div id=c1o></div></div>`),
+()=>sec('10.2','平移',['平移是物体沿一定方向移动一定距离，由一个<b>向量</b>确定；方向与大小相同的向量视为相等。','序偶表示：向量 (a, b) 表示向右移 a、向上移 b（a、b 为负则向左、向下）。','若平移把 P(x,y) 移到 P′(x′,y′)，则 PP′ = (x′−x, y′−y)；反过来，在平移 (a, b) 下 P 的像为 (x+a, y+b)。','线段经平移后等长；图形的像与原图<b>全等且顺序不变</b>；平移没有不动点。两个连续平移 (a,b)、(c,d) 的顺序可交换，等于 (a+c, b+d)。'],
+ [['例题 1','用序偶表示平移：(a) A(2,1) → A′(−1,−3)；(b) B(−4,2) → B′(1,−1)。',vs([2,1],[-1,-3])+vs([-4,2],[1,-1])],
+  ['例题 2','在一平移下，点 A(3,−4) 的像为 A′(−1,−1)，求点 B(2,1) 的像。',vs([3,-4],[-1,-1])+run([tr(-4,3)],[[2,1]])],
+  ['例题 3','平移 AA′ = (2, −1)，BB′ = (−3, −2)，点 P(−2,4)。先 AA′ 再 BB′ 与先 BB′ 再 AA′ 的结果比较。',run([tr(2,-1),tr(-3,-2)],[[-2,4]])+run([tr(-3,-2),tr(2,-1)],[[-2,4]])+'<p>两种顺序都得 (−3, 1)，PP′ = (−1, −3)：连续平移的顺序可以交换。</p>']],
+ `<div class=card><b>① 求平移后的像</b><div class=row>点 ${I('c2p','-2,4; 3,1',20)}</div><div class=row>平移 1：(${I('c2a',2,3)}, ${I('c2b',-1,3)}) 　平移 2（可留空）：(${I('c2c','',3)}, ${I('c2d','',3)})</div><button class=btn onclick=c2()>计算并作图</button><div id=c2o></div></div>
+ <div class=card><b>② 由 P、P′ 求平移序偶</b><div class=row>P ${I('c2e','3,-4',6)} → P′ ${I('c2f','-1,-1',6)}　另求点 Q 的像（可留空）${I('c2g','2,1',6)}</div><button class=btn onclick=c2b()>求序偶</button><div id=c2bo></div></div>`),
+()=>sec('10.3','旋转',['图形绕定点（旋转中心）转动一个角度，叫<b>旋转</b>。点 A 绕 O 旋转到 A′，则 OA′ = OA，∠AOA′ = 旋转角度 θ。','规定：<b>逆时针</b>旋转角度取<b>正号</b>，<b>顺时针</b>取<b>负号</b>。','以原点为中心：90° → (−y, x)；180° → (−x, −y)；−90° → (y, −x)。','线段经旋转后等长；图形与原图<b>全等且顺序不变</b>；旋转 180° 等于对中心点反射（点对称）。','求旋转中心：作 AA′ 与 BB′ 的垂直平分线，交点即中心 O；量 ∠AOA′ 得旋转角度。旋转中心是不动点。',`<div class=figs><div>逆时针旋转 50°，θ = 50°${aFig(50,'θ=50°')}</div><div>顺时针旋转 50°，θ = −50°${aFig(-50,'θ=−50°')}</div><div>等腰 △ABC，∠A = 70°：B→C 的旋转角度 = 70°${tf(70,1)}</div></div>`],
+ [['例题 1','以原点 O 为旋转中心，90° 为旋转角度，求 A(3,4)，B(−2,1)，C(−4,−2)，D(1,−3) 旋转后的像。',run([rot([0,0],90)],[[3,4],[-2,1],[-4,-2],[1,-3]])+'<p>结论：绕原点旋转 90°，P(x, y) 的像是 P′(−y, x)。</p>'],
+  ['例题 2','以点 P(−1,2) 为旋转中心，−90° 为旋转角度，求 A(2,4)，B(−2,3)，C(−3,−2)，D(2,−2) 旋转后的像。',run([rot([-1,2],-90)],[[2,4],[-2,3],[-3,-2],[2,-2]])],
+  ['练习 10.3 第10题','旋转把 A(2,4)，B(−1,2) 映到 A′(6,2)，B′(4,5)，求旋转中心及旋转角度。',fr3([2,4],[6,2],[-1,2],[4,5])]],
+ `<div class=card><b>① 求旋转后的像</b><div class=row>点 ${I('c3p','3,4; -2,1; -4,-2; 1,-3',24)}</div><div class=row>旋转中心 ${I('c3c','0,0',6)} 　角度 <select id=c3t><option value=90>逆时针 90°</option><option value=180>180°</option><option value=-90>顺时针 90°（−90°）</option></select></div><button class=btn onclick=c3()>计算并作图</button><div id=c3o></div></div>
+ <div class=card><b>② 由 A、B 及其像求旋转中心与旋转角度</b><div class=row>A ${I('r1','2,4',5)} A′ ${I('r2','6,2',5)} B ${I('r3','-1,2',5)} B′ ${I('r4','4,5',5)}</div><button class=btn onclick=c3b()>求中心与角度</button><div id=c3bo></div></div>`),
+()=>sec('10.4','放大',['放大需要<b>放大中心</b> O。点 A 的像 A′ 在直线 OA 上，使 OA′ ÷ OA = k，k 叫<b>放大因数</b>。','以原点为中心、因数 k：P(x, y) → P′(kx, ky)。','线段放大后长度是原来的 k 倍；像与原图形<b>相似</b>，各对应边比 = k，面积比 = k²。','k > 1 放大；k = 1 不变；0 < k < 1 缩小。若 A、B 的像为 A′、B′，直线 AA′ 与 BB′ 的交点就是放大中心。','DE ∥ BC 时，△ADE 是 △ABC 对点 A 缩小而成；BC 是 DE 对点 A 放大而成。'],
+ [['例题 1','已知 A(3,3)，B(−6,3)，C(−6,−6)，D(3,−6)，求这四点对原点以放大因数 2/3 放大后的像。',run([dl([0,0],2/3)],[[3,3],[-6,3],[-6,-6],[3,-6]])+'<p>结论：P(x, y) 的像是 P′(kx, ky)。</p>'],
+  ['总复习题 6','△ABC 顶点 A(1,1)，B(1,−1)，C(2,2)，放大后 P(3,2)，Q(3,−2)，R(5,4)。求放大中心及放大因数。',fd([1,1],[3,2],[1,-1],[3,-2])+'<p>检验 C：O + 2(C − O) = (−1+6, 0+4) = (5, 4) ✓</p>'],
+  ['随堂练习 17','DE ∥ BC，AD : DB = 3 : 2。求 AE/AC、DE/BC，以及放大因数。',`<p>AD : AB = 3 : 5，所以 AE/AC = DE/BC = ${fr(3,5)}。BC 是 DE 对点 A 放大而成，放大因数 ${fr(5,3)}；△ADE 是 △ABC 对点 A 放大而成，放大因数 ${fr(3,5)}。</p><svg class="af" style="max-width:240px" viewBox="0 0 260 180" fill="currentColor"><polygon points="130,10 30,165 230,165" fill="none" stroke="currentColor"/><line x1="70" y1="100" x2="190" y2="100" stroke="currentColor"/><text x="136" y="14" font-size="13">A</text><text x="12" y="172" font-size="13">B</text><text x="234" y="172" font-size="13">C</text><text x="50" y="98" font-size="13">D</text><text x="194" y="98" font-size="13">E</text></svg>`]],
+ `<div class=card><b>① 求放大后的像</b><div class=row>点 ${I('c4p','3,3; -6,3; -6,-6; 3,-6',24)}</div><div class=row>放大中心 ${I('c4c','0,0',6)} 　放大因数 k ${I('c4k','2/3',5)}</div><button class=btn onclick=c4()>计算并作图</button><div id=c4o></div></div>
+ <div class=card><b>② 由 A、B 及其像求放大中心与放大因数</b><div class=row>A ${I('d1','1,1',5)} A′ ${I('d2','3,2',5)} B ${I('d3','1,-1',5)} B′ ${I('d4','3,-2',5)}</div><button class=btn onclick=c4b()>求中心与因数</button><div id=c4bo></div></div>`),
+()=>`<h2>连续几何变换器</h2>${nt(['输入最多 <b>4 个点</b>（用分号隔开），再设定最多 <b>4 次</b>连续变换：反射、平移、旋转、放大可以任意挑选，也可以同一种选好几次。','按“开始变换”后，上方动画会逐步演示每一次变换（平移先沿 x 再沿 y）；可暂停、上一步/下一步、调速度。','提醒：变换的顺序会影响结果——试试把两次变换的次序对调！'])}<div class=card><div class=row>点坐标（1–4 个）${I('cxp','1,1; 3,1; 3,2',24)}</div>${[0,1,2,3].map(cxs).join('')}<button class=btn onclick=cx()>▶ 开始变换</button><div id=cxo></div></div>`,
+()=>`<h2>总复习</h2><div class=card><table><tr><th></th><th>反射</th><th>平移</th><th>旋转</th><th>放大</th></tr><tr><td>图形关系</td><td>全等</td><td>全等</td><td>全等</td><td>相似</td></tr><tr><td>顺序</td><td>相反</td><td>不变</td><td>不变</td><td>不变</td></tr><tr><td>不动点</td><td>反射轴上的点</td><td>无</td><td>旋转中心</td><td>放大中心</td></tr><tr><td>坐标规则</td><td>x轴 (x,−y)<br>y=x (y,x)</td><td>(x+a, y+b)</td><td>90°：(−y, x)<br>180°：(−x, −y)</td><td>(kx, ky)</td></tr></table></div><div class=card>10 道选择题（每题 6 分）+ 5 道填充题（每题 8 分），题目抽自 10.1–10.4 并加入总复习题里较难的题型，每次都是全新题目。</div><div id=qz></div>`];
+const TB=['10.1 反射','10.2 平移','10.3 旋转','10.4 放大','连续几何变换器','总复习'];
+function go(i){[...$('#tabs').children].forEach((b,j)=>b.classList.toggle('on',j==i));$('#main').innerHTML=PN[i]();
+ if(i==4)cxInit();else quiz($('#qz'),i<4?{title:'随堂测验：5 道选择题（答对 3 题或以上解锁 2 道作答题）',need:3,mc:()=>pk(G.m[i],5),fl:()=>pk(G.f[i],2)}:{title:'总复习：10 道选择题',rev:1,mc:()=>SH([].concat(...G.m.map(a=>pk(a,2)),pk(HM,2))),fl:()=>SH([].concat(...G.f.map(a=>pk(a,1)),pk(HF,1)))});scrollTo(0,0)}
+let z=16;function fs(d){z=Math.max(12,Math.min(26,z+d*2));document.documentElement.style.fontSize=z+'px'}
+function th(){const r=document.documentElement;r.dataset.t=r.dataset.t=='dark'?'':'dark'}
+if(matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.dataset.t='dark';
+$('#tabs').innerHTML=TB.map((t,i)=>`<button onclick="go(${i})">${t}</button>`).join('');go(0);
+
+/* ---------- 水印 / 隐藏水印 / footer ---------- */
+(function(){document.body.dataset.made='ecchua79';
+ const mk=()=>{const b=document.body;
+  if(!document.getElementById('wm')){const d=document.createElement('div');d.id='wm';b.appendChild(d)}
+  if(!document.querySelector('.hid')){const d=document.createElement('div');d.className='hid';d.setAttribute('aria-hidden','true');d.textContent='峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79';b.appendChild(d)}
+  if(!document.querySelector('footer')){const f=document.createElement('footer');f.innerHTML='© 峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79<br>初三数学下册 · 第10章 几何变换 · 互动课程';b.appendChild(f)}};
+ mk();setInterval(mk,1500);new MutationObserver(mk).observe(document.body,{childList:true});
+ console.log('%c峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79','color:#6a4fd1')})();
+</script></body></html>
