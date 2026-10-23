@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh"><head><!-- 峇株吧辖华仁中学蔡逸众制作 | 华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | Made by ecchua79 · 未经许可请勿盗用 -->
+<meta charset="utf-8"><meta name="author" content="峇株吧辖华仁中学蔡逸众制作 / Made by ecchua79"><meta name="copyright" content="ecchua79"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高一数学 第1章 直角坐标系与直线 · 互动课程</title>
+<style>
+:root{--bg:#f4f6fb;--cd:#fff;--tx:#1b2333;--mu:#5b6578;--ac:#2563eb;--ok:#16a34a;--no:#dc2626;--bd:#d3d9e6;--fs:16px}
+[data-t=dark]{--bg:#0b1020;--cd:#151c33;--tx:#e6ebf7;--mu:#9aa6c4;--ac:#60a5fa;--ok:#4ade80;--no:#f87171;--bd:#2a3556}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:var(--fs)/1.7 "PingFang SC","Microsoft YaHei",sans-serif}
+header{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--cd);border-bottom:1px solid var(--bd)}
+h1{font-size:1.15em;margin:0}.ctl button,.ar{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:.9em}
+nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;background:var(--cd);border-bottom:1px solid var(--bd)}
+#tabs{display:flex;gap:6px;overflow-x:auto;flex:1;padding:8px 6px;scrollbar-width:thin;cursor:grab;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+#tabs button{flex:none;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:.95em;white-space:nowrap}
+#tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}.ar{margin:0 4px;flex:none}
+main{max-width:900px;margin:0 auto;padding:12px}h2{font-size:1.3em;margin:.4em 0}h3{margin:1.2em 0 .4em;border-left:5px solid var(--ac);padding-left:8px}h4{margin:.2em 0}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;margin:10px 0}
+.steps{margin:6px 0;padding-left:1.4em}.steps li{margin:4px 0}.ans{background:rgba(37,99,235,.12);border-radius:8px;padding:6px 10px;font-weight:700;margin:6px 0}.err{color:var(--no)}
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0}.fg label{display:flex;flex-direction:column;font-size:.85em;color:var(--mu)}
+input,select{font:inherit;padding:5px 7px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);width:100%}
+button.go,.nb,.ck,.ld{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:6px 14px;cursor:pointer;font:inherit;margin:6px 6px 6px 0}.ms{margin-bottom:6px}
+.q{border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:10px 0;background:var(--cd)}.op{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.op button{background:var(--bg);color:var(--tx);border:2px solid var(--bd);border-radius:8px;padding:6px 10px;text-align:left;font:inherit;cursor:pointer}.op button i{font-style:normal;font-weight:700;color:var(--ac);margin-right:4px}
+.op button:disabled{opacity:1;cursor:default;color:var(--tx)}.op .ok{border-color:var(--ok);background:rgba(22,163,74,.2)}.op .no{border-color:var(--no);background:rgba(220,38,38,.2)}
+.ex{margin-top:6px;font-size:.92em;color:var(--mu)}.in{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.in input{width:110px}.good{color:var(--ok);font-weight:700}.bad{color:var(--no);font-weight:700}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25}.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 .2em}.fr b{font-weight:400;padding:0 .2em}
+svg.rd{overflow:visible}svg.rd text{fill:currentColor;font-family:inherit}svg.rd path{stroke:currentColor;fill:none}
+.plot{width:100%;max-width:440px;display:block;margin:6px auto;background:var(--cd);border:1px solid var(--bd);border-radius:10px}
+.plot .gl{stroke:var(--bd);stroke-width:1;fill:none}.plot .ax{stroke:var(--mu);stroke-width:1.6;fill:none}.plot .tx{fill:var(--tx);font-size:11px}
+.plot .c0{stroke:var(--mu);fill:none}.plot .c1{stroke:var(--ac);fill:none}.plot .c2{stroke:#e67e22;fill:none}.plot .c3{stroke:var(--ok);fill:none}
+.plot .q1{fill:var(--no)}.plot .q2{fill:#e67e22}.plot .q3{fill:var(--ok)}.plot polygon{fill:rgba(37,99,235,.15);stroke:var(--ac);stroke-width:2}
+.rs{font-weight:700;margin:8px 0}
+.an{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:6px;margin:8px 0}.an .vw svg{width:100%;max-width:560px;display:block;margin:auto}.an .cp{min-height:3.4em;font-size:.92em}.an button{margin:2px;padding:3px 9px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);cursor:pointer;font:inherit;font-size:.9em}
+.vw .tx{fill:var(--tx);font-size:13px}.vw .c1{stroke:var(--ac);fill:var(--ac)}.vw .c2{stroke:#e67e22;fill:#e67e22}.vw .hl{fill:rgba(250,204,21,.25)}
+#wm{position:fixed;inset:0;z-index:60;pointer-events:none;user-select:none;-webkit-user-select:none}
+.hw{position:absolute!important;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;font-size:1px;pointer-events:none}
+@media print{#wm{display:block!important}}
+footer{text-align:center;color:var(--mu);font-size:.8em;padding:18px}
+</style></head><body>
+<header><h1>《数学》高一上册 · 第1章 直角坐标系与直线</h1><div class="ctl"><button id="fm">A−</button> <button id="f0">A</button> <button id="fp">A+</button> <button id="th">🌙 夜间</button></div></header>
+<nav><button class="ar" id="tl">‹</button><div id="tabs"></div><button class="ar" id="tr">›</button></nav>
+<main id="main"></main><footer>峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79 · 离线可用，无需联网</footer>
+<script>
+const $=s=>document.querySelector(s),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pk=a=>a[R(0,a.length-1)],rp=(a,b)=>{let v=0;while(!v)v=R(a,b);return v};
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),N=x=>String(x).replace(/-/g,'−'),rn=x=>+x.toFixed(6);
+const fr=(n,d=1)=>{if(d<0){n=-n;d=-d}let g=gcd(n,d)||1;return{n:n/g,d:d/g}};
+const fa=(a,b)=>fr(a.n*b.d+b.n*a.d,a.d*b.d),fs=(a,b)=>fr(a.n*b.d-b.n*a.d,a.d*b.d),fm=(a,b)=>fr(a.n*b.n,a.d*b.d),fd=(a,b)=>fr(a.n*b.d,a.d*b.n),fv=f=>f.n/f.d;
+const F=(t,b)=>`<span class="fr"><i>${t}</i><b>${b}</b></span>`;
+const fT=f=>f.d==1?N(f.n):(f.n<0?'−':'')+F(Math.abs(f.n),f.d),pa=f=>f.n<0?`(${fT(f)})`:fT(f),pn=x=>x<0?`(${N(x)})`:N(x);
+const ff=s=>{let k=10**((s.split('.')[1]||'').length);return fr(Math.round(parseFloat(s)*k),k)};
+const pf=s=>{let m=s.replace('−','-').match(/^(-?\d+(?:\.\d+)?)(?:\/(-?\d+(?:\.\d+)?))?$/);if(!m)return null;let b=m[2]?ff(m[2]):fr(1);return b.n?fd(ff(m[1]),b):null};
+const sq=n=>{let o=1,i=n;for(let k=2;k*k<=i;k++)while(i%(k*k)==0){i/=k*k;o*=k}return[o,i]};
+const rs=n=>{let[o,i]=sq(n);return i==1?''+o:(o>1?o:'')+`√{${i}}`};
+const rr=(c,i)=>{let t=(c.n==1?'':c.n)+`√{${i}}`;return c.d==1?t:F(t,c.d)};
+const M=s=>s.replace(/⟦([^¦⟧]*)¦([^⟧]*)⟧/g,(_,a,b)=>F(a,b)).replace(/√\{([^}]*)\}/g,'<svg class="rd"><text>$1</text><path/></svg>');
+function fixR(){document.querySelectorAll('svg.rd').forEach(s=>{let f=parseFloat(getComputedStyle(s).fontSize),t=s.firstChild,p=s.lastChild;if(+s.dataset.f==f)return;t.setAttribute('font-size',f);t.setAttribute('x',.62*f);t.setAttribute('y',1.12*f);let w=t.getComputedTextLength();if(!w)return;s.dataset.f=f;let W=.62*f+w+.1*f;s.setAttribute('width',W);s.setAttribute('height',1.3*f);s.style.verticalAlign=-.18*f+'px';p.setAttribute('stroke-width',.075*f);p.setAttribute('d',`M${.05*f} ${.74*f}L${.17*f} ${.68*f}L${.33*f} ${1.2*f}L${.55*f} ${.2*f}H${W}`)})}
+new MutationObserver(()=>{fixR();initAn()}).observe(document.body,{childList:true,subtree:true});
+const eq=(a,b,c)=>{let s='';[[a,'x'],[b,'y'],[c,'']].forEach(([k,v])=>{if(!k)return;let m=Math.abs(k),t=(m==1&&v)?v:m+v;s+=s?(k<0?' − ':' + ')+t:(k<0?'−':'')+t});return s+' = 0'};
+const pr=(x,y)=>`(${N(x)}, ${N(y)})`,prf=(x,y)=>`(${fT(x)}, ${fT(y)})`,t2=v=>N(+(+v).toFixed(2)),lb=(n,x,y)=>`${n}(${t2(x)}, ${t2(y)})`,dg=t=>+t.toFixed(1);
+const qd=(x,y)=>!x||!y?'坐标轴上（不属于任何象限）':x>0&&y>0?'第一象限':x<0&&y>0?'第二象限':x<0?'第三象限':'第四象限';
+/* ---------- 作图：等比例坐标系，含弧线(角)与直角记号 ---------- */
+function plot(o){let X0=[0],Y0=[0];[...(o.p||[]),...(o.b||[]),...(o.g||[])].forEach(p=>{X0.push(p[0]);Y0.push(p[1])});
+let x0=Math.min(...X0)-1.5,x1=Math.max(...X0)+1.5,y0=Math.min(...Y0)-1.5,y1=Math.max(...Y0)+1.5,W=360,H=290,s=Math.min((W-20)/(x1-x0),(H-20)/(y1-y0));
+const X=x=>10+(x-x0)*s,Y=y=>H-10-(y-y0)*s,C=['c0','c1','c2','c3'];let h='',st=Math.max(1,Math.ceil(Math.max(x1-x0,y1-y0)/10));
+for(let i=Math.ceil(x0/st)*st;i<=x1;i+=st)h+=`<path class="gl" d="M${X(i)} 0V${H}"/>`+(i?`<text class="tx" x="${X(i)}" y="${Y(0)+12}" text-anchor="middle">${N(i)}</text>`:'');
+for(let i=Math.ceil(y0/st)*st;i<=y1;i+=st)h+=`<path class="gl" d="M0 ${Y(i)}H${W}"/>`+(i?`<text class="tx" x="${X(0)-4}" y="${Y(i)+4}" text-anchor="end">${N(i)}</text>`:'');
+h+=`<path class="ax" d="M0 ${Y(0)}H${W}M${X(0)} 0V${H}"/><text class="tx" x="${X(0)-9}" y="${Y(0)+13}">O</text><text class="tx" x="${W-10}" y="${Y(0)-5}">x</text><text class="tx" x="${X(0)+5}" y="10">y</text>`;
+if(o.g)h+=`<polygon points="${o.g.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`;
+(o.l||[]).forEach(([a,b,c,k,d])=>{let p,q;if(b){p=[x0,(-c-a*x0)/b];q=[x1,(-c-a*x1)/b]}else{p=[-c/a,y0];q=[-c/a,y1]}h+=`<path class="${C[k]}" ${d?'stroke-dasharray="6 4"':''} stroke-width="2" d="M${X(p[0])} ${Y(p[1])}L${X(q[0])} ${Y(q[1])}"/>`});
+(o.s||[]).forEach(([a,b,c,d,k,z])=>h+=`<path class="${C[k||0]}" ${z?'stroke-dasharray="5 4"':''} stroke-width="2" d="M${X(a)} ${Y(b)}L${X(c)} ${Y(d)}"/>`);
+(o.a||[]).forEach(([cx,cy,r,a1,a2,tx,k])=>{let A=a1*Math.PI/180,B=a2*Math.PI/180,M2=(A+B)/2,px=X(cx),py=Y(cy);h+=`<path class="${C[k]}" stroke-width="2" d="M${px+r*Math.cos(A)} ${py-r*Math.sin(A)}A${r} ${r} 0 ${a2-a1>180?1:0} 0 ${px+r*Math.cos(B)} ${py-r*Math.sin(B)}"/><text class="tx" x="${px+(r+16)*Math.cos(M2)}" y="${py-(r+16)*Math.sin(M2)+4}" text-anchor="middle">${tx}</text>`});
+(o.q||[]).forEach(([x,y,ux,uy,vx,vy])=>{let l1=Math.hypot(ux,uy),l2=Math.hypot(vx,vy),a=[ux/l1*10,-uy/l1*10],b=[vx/l2*10,-vy/l2*10],px=X(x),py=Y(y);h+=`<path class="c0" stroke-width="1.5" d="M${px+a[0]} ${py+a[1]}L${px+a[0]+b[0]} ${py+a[1]+b[1]}L${px+b[0]} ${py+b[1]}"/>`});
+(o.t||[]).forEach(([x,y,tx,dy])=>h+=`<text class="tx" style="font-weight:700;fill:var(--ac);font-size:14px" x="${X(x)}" y="${Y(y)+(dy||-8)}" text-anchor="middle">${tx}</text>`);
+(o.p||[]).forEach(([x,y,n,k])=>h+=`<circle class="q${k||1}" cx="${X(x)}" cy="${Y(y)}" r="4"/>`+(n?`<text class="tx" x="${X(x)+7}" y="${Y(y)-7}">${n}</text>`:''));
+return`<svg class="plot" viewBox="0 0 ${W} ${H}">${h}</svg>`}
+
+const fig12=()=>{const T=(x,y,s)=>`<text class="tx" style="font-size:13px" x="${x}" y="${y}" text-anchor="middle">${s}</text>`,
+Dt=(x,y,n,k)=>`<circle class="q${k}" cx="${x}" cy="${y}" r="4.5"/>`+T(x,y+18,n),Ln=(a,b,y)=>`<path class="c0" stroke-width="2" d="M${a} ${y}H${b}"/>`,
+Br=(a,b,y,s,up)=>{let d=up?-1:1;return`<path class="c1" stroke-width="1.8" d="M${a} ${y}v${8*d}H${b}v${-8*d}"/>`+T((a+b)/2,y+d*8+(up?-5:16),s)};let h='';
+h+=T(180,18,'① 内分：P 在线段 AB 之内　AP : PB = m : n')+Ln(40,320,60)+Br(40,208,50,'m',1)+Br(208,320,50,'n',1)+Dt(40,60,'A',1)+Dt(208,60,'P',3)+Dt(320,60,'B',1);
+h+=T(180,108,'② 外分：Q 在线段 AB 的延长线上　AQ : QB = m : n（m > n）')+Ln(40,320,150)+Br(40,320,140,'m',1)+Br(208,320,160,'n',0)+Dt(40,150,'A',1)+Dt(208,150,'B',1)+Dt(320,150,'Q',3);
+h+=T(180,208,'③ 中点：m = n = 1，AM = MB')+Ln(40,320,250)+Br(40,180,240,'m = 1',1)+Br(180,320,240,'n = 1',1)+Dt(40,250,'A',1)+Dt(180,250,'M',3)+Dt(320,250,'B',1);
+return`<div class="card"><b>图示：m、n 的意思</b><svg class="plot" viewBox="0 0 360 285">${h}</svg>m 对应靠近 A 的那一段（AP 或 AQ），n 对应靠近 B 的那一段（PB 或 QB）。</div>`};
+const fig13=()=>{let A=[1,2],B=[5,3],C=[3,6],foot=(p,n)=>[p[0],0,n,2],ds=p=>[p[0],p[1],p[0],0,2,1];
+let f1=plot({g:[A,B,C],p:[[...A,'A',1],[...B,'B',1],[...C,'C',1],foot(A,'F'),foot(C,'E'),foot(B,'D')],s:[ds(A),ds(B),ds(C)]}),
+Q=[[1,1],[6,2],[5,5],[1,4]],f2=plot({g:Q,p:Q.map((p,i)=>[...p,'ABCD'[i],1]),s:[[1,1,5,5,2,1]]});
+return`<div class="card"><b>图示 ①：为什么公式长这样？</b>${f1}△ABC 的面积 = 梯形 AFEC + 梯形 CEDB − 梯形 AFDB（左、右两块加起来，减去底下大块）。把梯形面积（上底＋下底）× 高 × ⟦1¦2⟧ 展开，就得到「向下箭头乘积和 − 向上箭头乘积和」再乘 ⟦1¦2⟧。<br><b>图示 ②：多边形拆成三角形</b>${f2}四边形 ABCD = △ABC + △ACD；任何多边形都能这样拆，鞋带公式等于一次算完所有三角形。</div>`};
+const anim=pts=>`<div class="an" data-p='${JSON.stringify(pts.map(p=>[fv(p[0]),fv(p[1])]))}' data-s="0" data-play="1"><b>动画：向下 / 向上相乘</b><div class="vw"></div><div class="cp"></div><div><button data-a="p">⏸ 暂停</button><button data-a="b">⏪ 上一步</button><button data-a="n">⏭ 下一步</button><button data-a="r">🔄 重播</button></div></div>`;
+function drawAn(el){let P=JSON.parse(el.dataset.p),k=P.length,s=+el.dataset.s,Q=P.concat([P[0]]),X=i=>46+i*62,y0=44,y1=116,W=X(k)+40,svg='',cap;
+const ar=(x1,y1_,x2,y2,c,w,d)=>{let a=Math.atan2(y2-y1_,x2-x1),hx=x2-9*Math.cos(a),hy=y2-9*Math.sin(a);return`<g class="${c}"><path d="M${x1} ${y1_}L${hx} ${hy}" stroke-width="${w}" ${d?'stroke-dasharray="6 4"':''}/><polygon stroke="none" points="${x2},${y2} ${hx+4*Math.sin(a)},${hy-4*Math.cos(a)} ${hx-4*Math.sin(a)},${hy+4*Math.cos(a)}"/></g>`};
+Q.forEach((p,i)=>svg+=`<text class="tx" x="${X(i)}" y="${y0+5}" text-anchor="middle" style="font-size:16px">${t2(p[0])}</text><text class="tx" x="${X(i)}" y="${y1+5}" text-anchor="middle" style="font-size:16px">${t2(p[1])}</text><text class="tx" x="${X(i)}" y="${y1+30}" text-anchor="middle" style="font-size:12px;opacity:.7">${'ABCDE'[i%k]}${i==k?'(重复)':''}</text>`);
+svg+=`<text class="tx" x="8" y="${y0+5}" style="font-size:12px;opacity:.7">x</text><text class="tx" x="8" y="${y1+5}" style="font-size:12px;opacity:.7">y</text>`;
+let S1=0,S2=0;for(let j=1;j<=Math.min(s,k);j++){let q=Q[j-1][0]*Q[j][1];S1+=q;svg+=ar(X(j-1)+16,y0+8,X(j)-16,y1-8,'c1',j==s?3.6:2);if(j==s)cap=`<b style="color:var(--ac)">↘ 实线向下第 ${j} 步</b>：${t2(Q[j-1][0])} × ${t2(Q[j][1])} = ${t2(rn(q))}；累计 S₁ = ${t2(rn(S1))}`}
+for(let j=1;j<=s-k&&j<=k;j++){let q=Q[j-1][1]*Q[j][0];S2+=q;svg+=ar(X(j-1)+16,y1-8,X(j)-16,y0+8,'c2',k+j==s?3.6:2,1);if(k+j==s)cap=`<b style="color:#e67e22">↗ 虚线向上第 ${j} 步</b>：${t2(Q[j-1][1])} × ${t2(Q[j][0])} = ${t2(rn(q))}；累计 S₂ = ${t2(rn(S2))}`}
+if(s==0)cap='准备：把顶点坐标排成上下两行，第一点重复写在最后一列。先画实线 ↘（x 乘下一列的 y），再画虚线 ↗（y 乘下一列的 x）。';
+if(s==2*k+1){let a=Math.abs(S1-S2);cap=`S₁（实线和）= ${t2(rn(S1))}，S₂（虚线和）= ${t2(rn(S2))}；面积 = ⟦1¦2⟧|${t2(rn(S1))} − ${t2(rn(S2))}| = ⟦1¦2⟧ × ${t2(rn(a))} = <b>${t2(rn(a/2))}</b>`}
+el.querySelector('.vw').innerHTML=`<svg viewBox="0 0 ${W} 150">${svg}</svg>`;el.querySelector('.cp').innerHTML=M(cap);el.querySelector('[data-a=p]').textContent=el.dataset.play=='1'?'⏸ 暂停':'▶ 继续'}
+function initAn(){document.querySelectorAll('.an:not([data-d])').forEach(e=>{e.dataset.d=1;drawAn(e)})}
+document.addEventListener('click',e=>{let b=e.target.closest('.an button');if(!b)return;let el=b.closest('.an'),a=b.dataset.a,n=2*JSON.parse(el.dataset.p).length+2,s=+el.dataset.s;
+if(a=='p')el.dataset.play=el.dataset.play=='1'?'0':'1';else{el.dataset.play='0';if(a=='n')s=(s+1)%n;if(a=='b')s=(s+n-1)%n;if(a=='r'){s=0;el.dataset.play='1'}el.dataset.s=s}drawAn(el)});
+setInterval(()=>document.querySelectorAll('.an').forEach(el=>{if(el.dataset.play=='1'&&el.offsetParent){el.dataset.s=(+el.dataset.s+1)%(2*JSON.parse(el.dataset.p).length+2);drawAn(el)}}),1400);
+/* ---------- 1.4 / 1.5 辅助 ---------- */
+const sl=(a,b,c,d)=>{let dx=fs(c,a);return dx.n?fd(fs(d,b),dx):null};
+const ang=m=>m?(Math.atan(fv(m))*180/Math.PI+180)%180:90;
+const LN=(a,b,c,d)=>{let A=fv(d)-fv(b),B=fv(a)-fv(c);return[A,B,-(A*fv(a)+B*fv(b))]};
+const ia=(a,b,c,d,r,k)=>{let[A,B,C]=LN(a,b,c,d),th=ang(sl(a,b,c,d));if(!A)return null;return[-C/A,0,r,0,th,`θ=${dg(th)}°`,k]};
+const gen=(px,py,m)=>{let A,B,C;if(!m){A=fr(1);B=fr(0);C=fm(px,fr(-1))}else{A=m;B=fr(-1);C=fs(py,fm(m,px))}let l=[A.d,B.d,C.d].reduce((x,y)=>x*y/gcd(x,y)),a=A.n*l/A.d,b=B.n*l/B.d,c=C.n*l/C.d,g=gcd(gcd(a,b),c)||1;a/=g;b/=g;c/=g;if(a<0||(!a&&b<0)){a=-a;b=-b;c=-c}return[a,b,c]};
+const si=(m,c)=>{let t=m.n?((m.n==1&&m.d==1)?'x':(m.n==-1&&m.d==1)?'−x':fT(m)+'x'):'';return t+(c.n?(t?(c.n<0?' − ':' + ')+fT(fr(Math.abs(c.n),c.d)):fT(c)):(t?'':'0'))};
+const sg=f=>f.n<0?`+ ${fT(fr(-f.n,f.d))}`:f.n>0?`− ${fT(f)}`:'';
+const fin=(px,py,m,st,ref,nm='P',ex=[])=>{let[a,b,c]=gen(px,py,m),s=[...st];
+s.push(m?`点斜式：y ${sg(py)} = ${fT(m)}(x ${sg(px)})`:`斜率不存在 ⇒ 直线垂直于 x 轴，方程式：x = ${fT(px)}`);
+if(m)s.push(`斜截式：y = ${si(m,fs(py,fm(m,px)))}`);s.push(`一般式：${eq(a,b,c)}`,`x 截距 = ${a?fT(fr(-c,a)):'无'}；y 截距 = ${b?fT(fr(-c,b)):'无'}`);
+let X=fv(px),Y=fv(py),bd=[];if(a)bd.push([-c/a,0]);if(b)bd.push([0,-c/b]);
+return{s,a:eq(a,b,c),f:plot({p:[[X,Y,lb(nm,X,Y),3],...ex],b:bd,l:[[a,b,c,1],...(ref?[[...ref,2,1]]:[])]})}};
+const mOf=(a,b)=>b?fr(-a,b):null,perp=m=>!m?fr(0):m.n==0?null:fd(fr(-1),m);
+/* ---------- 1.7 辅助 ---------- */
+const pd=(x0,y0,a,b,c)=>{let v=fa(fa(fm(fr(a),x0),fm(fr(b),y0)),fr(c)),nu=fr(Math.abs(v.n),v.d),n=a*a+b*b,[o,i]=sq(n),tt=fd(v,fr(n)),Qx=fs(x0,fm(tt,fr(a))),Qy=fs(y0,fm(tt,fr(b)));
+return{v,nu,n,o,i,Qx,Qy,res:i==1?fT(fr(nu.n,nu.d*o)):rr(fr(nu.n,nu.d*o*i),i),val:fv(nu)/Math.sqrt(n)}};
+const dsteps=(x0,y0,a,b,c,pre=[])=>{let d=pd(x0,y0,a,b,c),X=fv(x0),Y=fv(y0),fig=[];
+let s=[...pre,'公式：d = ⟦|ax₀ + by₀ + c|¦√{a² + b²}⟧',`分子：|${pn(a)}×${pa(x0)} + ${pn(b)}×${pa(y0)} + ${pn(c)}| = |${fT(d.v)}| = ${fT(d.nu)}`,`分母：√{${pn(a)}² + ${pn(b)}²} = √{${d.n}}${d.i==1?' = '+d.o:d.o>1?` = ${d.o}√{${d.i}}`:''}`,
+`d = ${F(fT(d.nu),`√{${d.n}}`)} = ${d.res}${d.i>1?'（分母有理化）':''}　≈ ${d.val.toFixed(3)}`,`垂足 Q = P − t(a, b)，t = ⟦ax₀+by₀+c¦a²+b²⟧　⇒ Q = ${prf(d.Qx,d.Qy)}`];
+let Qx=fv(d.Qx),Qy=fv(d.Qy),p=[[X,Y,lb('P',X,Y),1]],sg_=[],q=[];if(d.nu.n){p.push([Qx,Qy,lb('Q',Qx,Qy),3]);sg_.push([X,Y,Qx,Qy,3,1]);q.push([Qx,Qy,-b,a,X-Qx,Y-Qy])}
+return{s,a:`d = ${d.res}`,f:plot({p,s:sg_,q,l:[[a,b,c,1]]})}};
+/* ---------- 出题引擎 ---------- */
+const mc=(q,a,c,e)=>{let u=[...new Set(c.map(String))].filter(x=>x!=a),k=1;while(u.length<3)u.push(String(+a.replace(/[^\d.-]/g,'')+k++));let o=sh([a,...sh(u).slice(0,3)]);return{q,o,a:o.indexOf(a),e}};
+const fq=(q,a,e,k='n')=>({q,a,e,k});
+const ar2=p=>p.reduce((s,a,i)=>{let b=p[(i+1)%p.length];return s+a[0]*b[1]-b[0]*a[1]},0);
+const pv=(n,x,y)=>{let l=[x,y].sort((p,q)=>fv(p)-fv(q));return`${n} = ${fT(l[0])} 或 ${n} = ${fT(l[1])}`};
+const PY=[[3,4,5],[5,12,13],[8,15,17],[6,8,10],[7,24,25]],PG=[[3,4],[4,3],[6,8],[5,12],[12,5],[8,6]];
+const half=x=>N(x/2),tri=()=>{let p;do{p=[0,1,2].map(()=>[R(-5,5),R(-5,5)])}while(!ar2(p));return p};
+const lk=kind=>()=>{let p=rp(-4,4),q=rp(-4,4),u=rp(-2,2),t=rp(-2,2),a=R(-4,4),b=R(-4,4),c=R(-4,4),d=R(-4,4),Bx=a+q*u,By=b+p*u,k,tx,ans,cd,ex;
+if(kind==0){ans=d+p*t;tx=`已知直线 AB 与直线 CD 平行，A${pr(a,b)}、B${pr(Bx,By)}、C${pr(c,d)}、D${pr(c+q*t,'k')}，求 k。`;cd=[d-p*t,d+q*t,d-q*t,ans+1,ans-1];ex=`mAB = ⟦${N(p*u)}¦${N(q*u)}⟧；mCD = ⟦k − ${pn(d)}¦${N(q*t)}⟧；平行 ⇒ 斜率相等 ⇒ k = ${ans}`}
+else if(kind==1){ans=By-q*t;tx=`已知 A${pr(a,b)}、B${pr(Bx,By)}、C${pr(Bx+p*t,'k')}，且 AB ⊥ BC，求 k。`;cd=[By+q*t,By+p*t,By-p*t,ans+1,ans-1];ex=`mAB = ${fT(fr(p,q))}；垂直 ⇒ mAB × mBC = −1 ⇒ mBC = ${fT(fr(-q,p))}；⟦k − ${pn(By)}¦${N(p*t)}⟧ = ${fT(fr(-q,p))} ⇒ k = ${ans}`}
+else{ans=b+p*t;tx=`已知 A${pr(a,b)}、B${pr(Bx,By)}、C${pr(a+q*t,'k')} 三点在同一直线上，求 k。`;cd=[b-p*t,b+q*t,b-q*t,ans+1,ans-1];ex=`共线 ⇒ mAB = mAC：${fT(fr(p,q))} = ⟦k − ${pn(b)}¦${N(q*t)}⟧ ⇒ k = ${ans}`}
+return{tx,ans,cd:cd.map(String),ex}};
+const lkM=kind=>()=>{let o=lk(kind)();return mc(o.tx,''+o.ans,o.cd,o.ex)},lkF=()=>{let o=lk(R(0,2))();return fq(o.tx,fr(o.ans),o.ex)};
+const L2=()=>{let x,y,a,b,p,q;do{x=R(-5,5);y=rp(-5,5);a=rp(-4,4);b=rp(-4,4);p=rp(-4,4);q=rp(-4,4)}while(a*q-p*b==0);return{x,y,l:[[a,b,-(a*x+b*y)],[p,q,-(p*x+q*y)]]}};
+const H2=()=>{let a=rp(-3,3),b=rp(1,3),mx=R(-3,3),my=R(-3,3),t=rp(-2,2),c=-(a*mx+b*my);return fq(`直线 l：${eq(a,b,c)} 是线段 CD 的垂直平分线，点 C 的坐标为 ${pr(mx-t*a,my-t*b)}，求点 D 的坐标。`,[fr(mx+t*a),fr(my+t*b)],`CD ⊥ l，故 CD 沿 (${N(a)}, ${N(b)}) 方向；设 M 为 CD 与 l 的交点，则 M = ${pr(mx,my)}（在 l 上），D = 2M − C = ${pr(mx+t*a,my+t*b)}`,'p')};
+const H3=()=>{let n=R(1,3),m=n+1,a=rp(-4,4),bx=R(-4,4),by=R(-4,4),qx=m*bx-n*a,p=m*by-n*(a+2);return fq(`已知 A 是直线 y = x + 2 上的一点，B${pr(bx,by)}。若点 Q(${N(qx)}, p) 外分 AB 成 ${m}:${n}，求 p。`,fr(p),`设 A(a, a + 2)。外分点 Q = ⟦${m}B − ${n}A¦${m}−${n}⟧。由横坐标：${m}×${pn(bx)} − ${n}a = ${N(qx)} ⇒ a = ${N(a)}；再由纵坐标得 p = ${m}×${pn(by)} − ${n}×${N(a+2)} = ${N(p)}`)};
+const H5=()=>{let m0=rp(-4,4),g=R(1,3),h=-m0*(1+g);return fq(`直线 l₁：x + my + 1 = 0 与 l₂：(m ${h<0?'−':'+'} ${Math.abs(h)})x + ${g}y + 3 = 0 互相垂直，求 m。`,fr(m0),`垂直 ⇒ a₁a₂ + b₁b₂ = 0：(m ${h<0?'−':'+'} ${Math.abs(h)}) + ${g}m = 0 ⇒ ${1+g}m = ${N(-h)} ⇒ m = ${N(m0)}`)};
+</script>
+<script>
+/* ---------- 各小节数据 ---------- */
+const D3=['3',-2,-3,1,-5,3,-1,4,4,0,-2],sub='₁₂₃₄₅';
+const S=[
+{tab:'1.1 距离公式',id:'1.1',t:'直角坐标系与距离公式',k:'四象限：(＋,＋)第一象限，(−,＋)第二象限，(−,−)第三象限，(＋,−)第四象限；坐标轴上的点不属于任何象限。<br>距离公式（毕氏定理）：AB = √{(x₂ − x₁)² + (y₂ − y₁)²}',
+modes:[{n:'两点距离 + 象限',f:[['x₁','2'],['y₁','4'],['x₂','-3'],['y₂','16']],r:v=>{let[x1,y1,x2,y2]=v.map(fv),dx=rn(x2-x1),dy=rn(y2-y1),n=rn(dx*dx+dy*dy),ok=Number.isInteger(n),r=ok?rs(n):''+rn(Math.sqrt(n));
+return{s:['公式：AB = √{(x₂ − x₁)² + (y₂ − y₁)²}',`代入：AB = √{(${pn(x2)} − ${pn(x1)})² + (${pn(y2)} − ${pn(y1)})²}`,`化简：AB = √{(${N(dx)})² + (${N(dy)})²} = √{${N(rn(dx*dx))} + ${N(rn(dy*dy))}} = √{${n}}`,ok?`最简根式：AB = ${r}`:`AB ≈ ${r}`,`象限：A 在${qd(x1,y1)}；B 在${qd(x2,y2)}`],
+a:`AB = ${r}${ok&&sq(n)[1]>1?`　≈ ${Math.sqrt(n).toFixed(3)}`:''}　（AB² = ${n}）`,
+f:plot({p:[[x1,y1,lb('A',x1,y1),1],[x2,y2,lb('B',x2,y2),1]],s:[[x1,y1,x2,y2,1],...(dx&&dy?[[x1,y1,x2,y1,0,1],[x2,y1,x2,y2,0,1]]:[])],q:dx&&dy?[[x2,y1,Math.sign(x1-x2),0,0,Math.sign(y2-y1)]]:[]})}}}],
+ex:[{t:'例题 1',q:'求两点 A(2, 4) 及 B(−3, 16) 之间的距离。',m:0,v:[2,4,-3,16]},{t:'习题 1.1 第1题',q:'A(3, −7)、B(−1, 4) 是正方形相邻的两个顶点，求正方形的面积。（面积 = AB²）',m:0,v:[3,-7,-1,4]}],
+mc:[()=>{let x=rp(-8,8),y=rp(-8,8),i=x>0&&y>0?0:x<0&&y>0?1:x<0?2:3,Q=['第一象限','第二象限','第三象限','第四象限'];return mc(`点 A${pr(x,y)} 在哪个象限？`,Q[i],Q.filter((_,j)=>j!=i),`横坐标${x>0?'为正':'为负'}、纵坐标${y>0?'为正':'为负'} ⇒ ${Q[i]}。`)},
+()=>{let a=R(-5,5),b=R(-5,5),dx=rp(-6,6),dy=rp(-6,6),n=dx*dx+dy*dy;return mc(`求 A${pr(a,b)} 与 B${pr(a+dx,b+dy)} 之间的距离。`,rs(n),[rs(n+2*Math.abs(dx*dy)),''+(Math.abs(dx)+Math.abs(dy)),rs(Math.abs(dx*dx-dy*dy)||n+3),rs(n+1),rs(n-1),rs(n+4)],`AB = √{(${N(dx)})² + (${N(dy)})²} = √{${n}} = ${rs(n)}`)},
+()=>{let a=R(-5,5),b=R(-5,5),dx=rp(-6,6),dy=rp(-6,6),n=dx*dx+dy*dy;return mc(`A${pr(a,b)}、B${pr(a+dx,b+dy)} 是正方形相邻的两个顶点，求正方形的面积。`,''+n,[''+2*n,rs(n),''+(Math.abs(dx)+Math.abs(dy)),''+(n+2*Math.abs(dx*dy)),''+(n+1)],`面积 = AB² = (${N(dx)})² + (${N(dy)})² = ${n}`)}],mh:[],
+fl:[()=>{let t=pk(PY),a=R(-5,5),b=R(-5,5),sx=pk([1,-1]),sy=pk([1,-1]);return fq(`求 A${pr(a,b)} 与 B${pr(a+sx*t[0],b+sy*t[1])} 之间的距离。`,fr(t[2]),`AB = √{${t[0]}² + ${t[1]}²} = √{${t[0]**2+t[1]**2}} = ${t[2]}`)},
+()=>{let a=R(-5,5),b=R(-5,5),dx=rp(-7,7),dy=rp(-7,7),n=dx*dx+dy*dy;return fq(`已知 A${pr(a,b)}、B${pr(a+dx,b+dy)}，求 AB² 的值。`,fr(n),`AB² = (${N(dx)})² + (${N(dy)})² = ${n}`)}]},
+
+{tab:'1.2 定比分点',id:'1.2',t:'定比分点',pre:fig12,k:'内分点（AP:PB = m:n）：P = ( ⟦mx₂ + nx₁¦m + n⟧ ， ⟦my₂ + ny₁¦m + n⟧ )<br>外分点（AQ:QB = m:n）：把 n 换成 −n，Q = ( ⟦mx₂ − nx₁¦m − n⟧ ， ⟦my₂ − ny₁¦m − n⟧ )<br>中点（m = n = 1）：M = ( ⟦x₁ + x₂¦2⟧ ， ⟦y₁ + y₂¦2⟧ )',
+modes:[{n:'求内分点 / 外分点',f:[['x₁ (A)','-7'],['y₁ (A)','1'],['x₂ (B)','3'],['y₂ (B)','6'],['m','3'],['n','2'],['类型','内分',['内分','外分']]],r:v=>{let[a,b,c,d,m,n,t]=v,ex=t=='外分',k=ex?fs(m,n):fa(m,n),o=ex?'−':'+';if(!k.n)return{e:'外分时 m 不能等于 n'};
+const g=(p,q)=>fd(ex?fs(fm(m,q),fm(n,p)):fa(fm(m,q),fm(n,p)),k),X=g(a,c),Y=g(b,d),ln=(nm,p,q,Z)=>`${nm} = ⟦${fT(m)}×${pa(q)} ${o} ${fT(n)}×${pa(p)}¦${fT(m)} ${o} ${fT(n)}⟧ = ${fT(Z)}`,
+A=[fv(a),fv(b)],B=[fv(c),fv(d)],P=[fv(X),fv(Y)];
+return{s:[`${t}公式：P = ⟦m·B ${o} n·A¦m ${o} n⟧，比值 m:n = ${fT(m)}:${fT(n)}`,ln('x',a,c,X),ln('y',b,d,Y),ex?'提示：外分点在线段 AB 的延长线上；比较 m、n 可知它靠近 B（m>n）或靠近 A（m<n）':'内分点落在线段 AB 之内'],a:`P = ${prf(X,Y)}`,
+f:plot({p:[[A[0],A[1],lb('A',...A),1],[B[0],B[1],lb('B',...B),1],[P[0],P[1],lb('P',...P),3]],s:[ex?[...A,...P,1]:[...A,...B,1]],t:ex?[[(A[0]+P[0])/2,(A[1]+P[1])/2,'m'],[(B[0]+P[0])/2,(B[1]+P[1])/2,'n',16]]:[[(A[0]+P[0])/2,(A[1]+P[1])/2,'m'],[(P[0]+B[0])/2,(P[1]+B[1])/2,'n']]})}}},
+{n:'已知端点 A 与内分点 P，求 B',f:[['x₁ (A)','2'],['y₁ (A)','3'],['xₚ (P)','6'],['yₚ (P)','7'],['m','4'],['n','3']],r:v=>{let[a,b,px,py,m,n]=v;if(!m.n)return{e:'m 不能为 0'};const g=(p,q)=>fd(fs(fm(fa(m,n),q),fm(n,p)),m),X=g(a,px),Y=g(b,py),ln=(nm,p,q,Z)=>`${nm} = ⟦(m+n)×${pa(q)} − n×${pa(p)}¦m⟧ = ⟦(${fT(m)}+${fT(n)})×${pa(q)} − ${fT(n)}×${pa(p)}¦${fT(m)}⟧ = ${fT(Z)}`,A=[fv(a),fv(b)],P=[fv(px),fv(py)],B=[fv(X),fv(Y)];
+return{s:['由 P = ⟦m·B + n·A¦m+n⟧ 反解 B：B = ⟦(m+n)·P − n·A¦m⟧',ln('x₂',a,px,X),ln('y₂',b,py,Y),'提示：m = n = 1 时，P 就是中点，已知中点求另一端点也用这里'],a:`B = ${prf(X,Y)}`,f:plot({p:[[A[0],A[1],lb('A',...A),1],[P[0],P[1],lb('P',...P),3],[B[0],B[1],lb('B',...B),1]],s:[[...A,...B,1]],t:[[(A[0]+P[0])/2,(A[1]+P[1])/2,'m'],[(P[0]+B[0])/2,(P[1]+B[1])/2,'n']]})}}}],
+ex:[{t:'例题 2',q:'已知 A(−7, 1)、B(3, 6)，求内分线段 AB 成 3:2 的点 P。',m:0,v:[-7,1,3,6,3,2,'内分']},{t:'例题 3',q:'已知 A(2, 3)，点 P(6, 7) 内分 AB 成 4:3，求点 B。',m:1,v:[2,3,6,7,4,3]},
+{t:'例题 5（中点）',q:'已知 A(2, −4)，M(−1, 3) 是线段 AB 的中点，求点 B。（中点即 1:1）',m:1,v:[2,-4,-1,3,1,1]},{t:'例题 6（外分）',q:'已知 A(−7, 1)、B(3, 6)，Q 外分 AB 成 3:2，求点 Q。',m:0,v:[-7,1,3,6,3,2,'外分']}],
+mc:[()=>{let m=R(1,4),n=R(1,4),a=R(-6,6),b=R(-6,6),u=rp(-3,3),w=rp(-3,3),Bx=a+u*(m+n),By=b+w*(m+n),ex=m!=n?prf(fr(m*Bx-n*a,m-n),fr(m*By-n*b,m-n)):pr(a+3*u,b+3*w);
+return mc(`已知 A${pr(a,b)}、B${pr(Bx,By)}，求内分线段 AB 成 ${m}:${n} 的点 P 的坐标。`,pr(a+m*u,b+m*w),[pr(a+n*u,b+n*w),prf(fr(a+Bx,2),fr(b+By,2)),ex,pr(a+m*u,b-m*w),pr(a+(m+1)*u,b+(m+1)*w)],`P = ( ⟦${m}×${pn(Bx)} + ${n}×${pn(a)}¦${m+n}⟧ ， ⟦${m}×${pn(By)} + ${n}×${pn(b)}¦${m+n}⟧ ) = ${pr(a+m*u,b+m*w)}`)},
+()=>{let a=R(-6,6),b=R(-6,6),u=rp(-4,4),w=rp(-4,4);return mc(`M${pr(a+u,b+w)} 是线段 AB 的中点，A${pr(a,b)}，求点 B 的坐标。`,pr(a+2*u,b+2*w),[pr(2*a+u,2*b+w),pr(u,w),pr(a+u,b+w),pr(a+2*u,b-2*w),pr(a-2*u,b-2*w)],`中点公式：B = 2M − A = (2×${pn(a+u)} − ${pn(a)}，2×${pn(b+w)} − ${pn(b)}) = ${pr(a+2*u,b+2*w)}`)},
+()=>{let n=R(1,3),m=n+R(1,2),a=R(-5,5),b=R(-5,5),u=rp(-3,3),w=rp(-3,3);return mc(`已知 A${pr(a,b)}、B${pr(a+(m-n)*u,b+(m-n)*w)}，点 Q 外分线段 AB 成 ${m}:${n}，求点 Q 的坐标。`,pr(a+m*u,b+m*w),[prf(fr(m*(a+(m-n)*u)+n*a,m+n),fr(m*(b+(m-n)*w)+n*b,m+n)),pr(a+n*u,b+n*w),pr(a-m*u,b-m*w),pr(a+(m-n)*u,b+(m-n)*w),pr(a+m*u,b-m*w)],`外分：Q = ⟦${m}B − ${n}A¦${m}−${n}⟧ = ${pr(a+m*u,b+m*w)}`)}],mh:[],
+fl:[()=>{let m=R(1,4),n=R(1,4),a=R(-6,6),b=R(-6,6),u=rp(-3,3),w=rp(-3,3);return fq(`已知 A${pr(a,b)}、B${pr(a+u*(m+n),b+w*(m+n))}，求内分线段 AB 成 ${m}:${n} 的点 P 的坐标。`,[fr(a+m*u),fr(b+m*w)],`P = ( ⟦${m}x₂ + ${n}x₁¦${m+n}⟧ ， ⟦${m}y₂ + ${n}y₁¦${m+n}⟧ ) = ${pr(a+m*u,b+m*w)}`,'p')},
+()=>{let m=R(1,4),n=R(1,4),a=R(-6,6),b=R(-6,6),u=rp(-3,3),w=rp(-3,3);return fq(`已知 A${pr(a,b)}，点 P${pr(a+m*u,b+m*w)} 内分线段 AB 成 ${m}:${n}，求点 B 的坐标。`,[fr(a+(m+n)*u),fr(b+(m+n)*w)],`B = ⟦(m+n)P − nA¦m⟧ = ⟦(${m+n})×${pn(a+m*u)} − ${n}×${pn(a)}¦${m}⟧，… = ${pr(a+(m+n)*u,b+(m+n)*w)}`,'p')}]},
+
+{tab:'1.3 多边形面积',id:'1.3',t:'多边形的面积',pre:fig13,k:'三角形：S = ⟦1¦2⟧ |(x₁y₂ + x₂y₃ + x₃y₁) − (y₁x₂ + y₂x₃ + y₃x₁)|<br>多边形：顶点按逆时针排列，首点重复写在最后；↘ 向下箭头乘积之和 − ↗ 向上箭头乘积之和，取绝对值再除以 2。逆时针得正值，顺时针得负值。',
+modes:[{n:'顶点坐标求面积',f:D3.map((d,i)=>i?[(i%2?'x':'y')+sub[Math.ceil(i/2)-1],''+d]:['顶点数','3',['3','4','5']]),r:v=>{let k=+v[0],pts=[];for(let i=0;i<k;i++)pts.push([v[1+2*i],v[2+2*i]]);
+let cx=pts.reduce((s,p)=>s+fv(p[0]),0)/k,cy=pts.reduce((s,p)=>s+fv(p[1]),0)/k;pts.sort((p,q)=>Math.atan2(fv(p[1])-cy,fv(p[0])-cx)-Math.atan2(fv(q[1])-cy,fv(q[0])-cx));
+let Q=pts.concat([pts[0]]),S1=fr(0),S2=fr(0),t1=[],t2=[];for(let i=0;i<k;i++){let[a,b]=Q[i],[c,d]=Q[i+1];S1=fa(S1,fm(a,d));S2=fa(S2,fm(b,c));t1.push(`${pa(a)}×${pa(d)}`);t2.push(`${pa(b)}×${pa(c)}`)}
+let Dd=fs(S1,S2),A=fm(fr(Math.abs(Dd.n),Dd.d),fr(1,2));
+return{s:[`按逆时针排列顶点（首点重复写在最后）：${Q.map(p=>prf(p[0],p[1])).join(' → ')}`,`↘ 向下箭头乘积之和 = ${t1.join(' + ')} = ${fT(S1)}`,`↗ 向上箭头乘积之和 = ${t2.join(' + ')} = ${fT(S2)}`,`面积 = ⟦1¦2⟧ × |${fT(S1)} − ${pa(S2)}| = ⟦1¦2⟧ × ${fT(fr(Math.abs(Dd.n),Dd.d))} = ${fT(A)}`],a:`面积 = ${fT(A)}（平方单位）`,
+f:anim(pts)+plot({p:pts.map((p,i)=>[fv(p[0]),fv(p[1]),lb('ABCDE'[i],fv(p[0]),fv(p[1])),1]),g:pts.map(p=>[fv(p[0]),fv(p[1])])})}}}],
+ex:[{t:'例题 7',q:'已知三角形的顶点为 (−2, −3)、(1, −5)、(3, −1)，求面积。',m:0,v:D3},{t:'例题 9',q:'求以 (−3, −1)、(−1, 4)、(5, 0)、(4, 4)、(0, −2) 为顶点的凸五边形的面积。',m:0,v:['5',-3,-1,-1,4,5,0,4,4,0,-2]},
+{t:'例题 8（含参数）',q:'△ABC 的顶点 A(1, 4)、B(−2, −1)、C(s, s+3)，面积为 4，求 s。',h:'代入公式：↘ = 1×(−1) + (−2)(s+3) + s×4 = 2s − 7；↗ = 4×(−2) + (−1)×s + (s+3)×1 = −5。<br>面积 = ⟦1¦2⟧|(2s − 7) − (−5)| = ⟦1¦2⟧|2s − 2| = 4 ⇒ |2s − 2| = 8 ⇒ 2s − 2 = 8 或 2s − 2 = −8。<br><b>s = 5 或 s = −3</b>。'}],
+mc:[()=>{let p=tri(),D=ar2(p),[a,b,c]=p,dn=a[0]*b[1]+b[0]*c[1]+c[0]*a[1],up=a[1]*b[0]+b[1]*c[0]+c[1]*a[0],A=Math.abs(D);return mc(`求以 ${pr(...a)}、${pr(...b)}、${pr(...c)} 为顶点的三角形的面积。`,half(A),[N(A),half(A+2),half(A+4),half(Math.abs(A-2)||A+6),N(A/2+2)],`↘ = ${N(dn)}，↗ = ${N(up)}；面积 = ⟦1¦2⟧|${N(dn)} − ${pn(up)}| = ⟦1¦2⟧×${A} = ${half(A)}`)},
+()=>{let p=[[R(1,6),R(1,6)],[-R(1,6),R(1,6)],[-R(1,6),-R(1,6)],[R(1,6),-R(1,6)]],A=Math.abs(ar2(p));return mc(`求以 ${p.map(x=>pr(...x)).join('、')}（依逆时针顺序）为顶点的四边形的面积。`,half(A),[N(A),half(A+2),half(A+4),half(A-2),half(A+6)],`用鞋带公式：向下箭头乘积和 − 向上箭头乘积和 = ${A}，面积 = ⟦${A}¦2⟧ = ${half(A)}`)}],
+mh:[()=>{let A,B,c,f0,k,s0,Fv,f;do{A=[R(-4,4),R(-4,4)];B=[R(-4,4),R(-4,4)];c=R(1,4);f=s=>ar2([A,B,[s,s+c]]);f0=f(0);k=f(1)-f0;s0=R(-4,6);Fv=f(s0)}while(!k||!Fv);
+let s1=fr(-Fv-f0,k),T=Math.abs(Fv)/2,w=pv('s',fr(s0),s1);return mc(`△ABC 的顶点 A${pr(...A)}、B${pr(...B)}、C(s, s ${c>0?'+':'−'} ${Math.abs(c)})，面积为 ${N(T)}，求 s。`,w,[pv('s',fr(s0),fm(s1,fr(-1))),pv('s',fr(-s0),s1),pv('s',fr(s0),fa(s1,fr(1))),pv('s',fa(fr(s0),fr(1)),s1),`s = ${s0}`],`面积 = ⟦1¦2⟧|${N(k)}s ${f0<0?'−':'+'} ${Math.abs(f0)}| = ${N(T)} ⇒ ${N(k)}s ${f0<0?'−':'+'} ${Math.abs(f0)} = ±${N(2*T)}，解得 ${w}`)}],
+fl:[()=>{let p=tri(),A=Math.abs(ar2(p));return fq(`求以 ${p.map(x=>pr(...x)).join('、')} 为顶点的三角形的面积。`,fr(A,2),`面积 = ⟦1¦2⟧|↘ − ↗| = ⟦1¦2⟧ × ${A} = ${half(A)}`)},
+()=>{let p=[[R(1,6),R(1,6)],[-R(1,6),R(1,6)],[-R(1,6),-R(1,6)],[R(1,6),-R(1,6)]],A=Math.abs(ar2(p));return fq(`求以 ${p.map(x=>pr(...x)).join('、')}（依逆时针顺序）为顶点的四边形的面积。`,fr(A,2),`↘ − ↗ = ${A}，面积 = ⟦${A}¦2⟧ = ${half(A)}`)}]},
+
+{tab:'1.4 斜率',id:'1.4',t:'直线的斜率',k:'斜率 m = ⟦y₂ − y₁¦x₂ − x₁⟧；平行于 x 轴 m = 0；平行于 y 轴斜率不存在。<br>l₁ ∥ l₂ ⇔ m₁ = m₂；l₁ ⊥ l₂ ⇔ m₁·m₂ = −1；三点共线 ⇔ 任两段斜率相等。<br>倾斜角 θ 满足 tan θ = m（图中以弧线标出 θ；两条线的弧半径不同以便区分）。',
+modes:[{n:'两点求斜率与倾斜角',f:[['x₁','-3'],['y₁','1'],['x₂','6'],['y₂','3']],r:v=>{let[a,b,c,d]=v;if(!fs(a,c).n&&!fs(b,d).n)return{e:'A、B 是同一个点'};let m=sl(a,b,c,d),th=ang(m),A=[fv(a),fv(b)],B=[fv(c),fv(d)],ar=ia(a,b,c,d,30,3);
+return{s:['公式：m = ⟦y₂ − y₁¦x₂ − x₁⟧',m?`代入：m = ⟦${pa(d)} − ${pa(b)}¦${pa(c)} − ${pa(a)}⟧ = ⟦${fT(fs(d,b))}¦${fT(fs(c,a))}⟧ = ${fT(m)}`:'x₂ − x₁ = 0，分母为 0 ⇒ 斜率不存在（直线平行于 y 轴）',m?(m.n>0?'m > 0：直线向右上方倾斜':m.n<0?'m < 0：直线向右下方倾斜':'m = 0：直线平行于 x 轴'):'直线垂直于 x 轴',`倾斜角 θ ≈ ${dg(th)}°（tan θ = m）`],a:`m = ${m?fT(m):'不存在'}　θ ≈ ${dg(th)}°`,
+f:plot({p:[[...A,lb('A',...A),1],[...B,lb('B',...B),1]],l:[[...LN(a,b,c,d),1]],a:ar?[ar]:[],b:ar?[[ar[0],0]]:[]})}}},
+{n:'判断 AB 与 CD：平行 / 垂直',f:[['x₁ (A)','-1'],['y₁ (A)','-2'],['x₂ (B)','5'],['y₂ (B)','1'],['x₃ (C)','4'],['y₃ (C)','3'],['x₄ (D)','8'],['y₄ (D)','5']],r:v=>{let[a,b,c,d,e,f,g,h]=v;if((!fs(a,c).n&&!fs(b,d).n)||(!fs(e,g).n&&!fs(f,h).n))return{e:'同一条线上的两点不能相同'};
+let m1=sl(a,b,c,d),m2=sl(e,f,g,h),pp=m1&&m2?fm(m1,m2):null,rel;
+if(!m1&&!m2)rel='两线都平行于 y 轴 ⇒ 互相平行';else if(!m1||!m2)rel=(m1||m2).n==0?'一条平行于 x 轴、一条平行于 y 轴 ⇒ 互相垂直':'一条斜率不存在、另一条不为 0 ⇒ 既不平行也不垂直';
+else rel=!fs(m1,m2).n?'m₁ = m₂ ⇒ 互相平行':(pp.n==-1&&pp.d==1?'m₁ × m₂ = −1 ⇒ 互相垂直':'m₁ ≠ m₂ 且 m₁ × m₂ ≠ −1 ⇒ 既不平行也不垂直');
+let a1=ia(a,b,c,d,26,1),a2=ia(e,f,g,h,42,2);
+return{s:[`mAB = ${m1?fT(m1):'不存在'}`,`mCD = ${m2?fT(m2):'不存在'}`,pp?`m₁ × m₂ = ${fT(pp)}`:'（有一条斜率不存在，直接比较方向）',rel],a:rel.split('⇒')[1].trim().replace(/^/,'结论：AB 与 CD '),
+f:plot({p:[[fv(a),fv(b),'A',1],[fv(c),fv(d),'B',1],[fv(e),fv(f),'C',2],[fv(g),fv(h),'D',2]],l:[[...LN(a,b,c,d),1],[...LN(e,f,g,h),2]],a:[a1,a2].filter(Boolean),b:[a1,a2].filter(Boolean).map(z=>[z[0],0])})}}},
+{n:'三点是否共线',f:[['x₁ (A)','1'],['y₁ (A)','2'],['x₂ (B)','3'],['y₂ (B)','6'],['x₃ (C)','5'],['y₃ (C)','10']],r:v=>{let[a,b,c,d,e,f]=v,m1=sl(a,b,c,d),m2=sl(c,d,e,f),cr=fs(fm(fs(c,a),fs(f,b)),fm(fs(d,b),fs(e,a))),ok=!cr.n;
+return{s:[`mAB = ${m1?fT(m1):'不存在'}，mBC = ${m2?fT(m2):'不存在'}`,ok?'两段斜率相等且共用点 B ⇒ 三点共线':'两段斜率不相等 ⇒ 三点不共线'],a:ok?'A、B、C 三点共线 ✔':'A、B、C 三点不共线 ✘',f:plot({p:[[fv(a),fv(b),'A',1],[fv(c),fv(d),'B',1],[fv(e),fv(f),'C',1]],l:[[...LN(a,b,c,d),ok?3:1]]})}}}],
+ex:[{t:'例题 11(a)',q:'求经过 A(−3, 1) 及 B(6, 3) 的直线斜率。',m:0,v:[-3,1,6,3]},{t:'例题 11(b)',q:'求经过 P(3, 5) 及 Q(6, 3) 的直线斜率。',m:0,v:[3,5,6,3]},{t:'例题 12',q:'证明 A(1, 2)、B(3, 6)、C(5, 10) 三点共线。',m:2,v:[1,2,3,6,5,10]},
+{t:'例题 16（AB ∥ CD）',q:'A(−1,−2)、B(5,1)、C(4,3)、D(8,5)，证明 AB ∥ CD。',m:1,v:[-1,-2,5,1,4,3,8,5]},{t:'例题 16（AB ⊥ BC）',q:'同上，证明 AB ⊥ BC。（把 B、C 看成第二条线的两点）',m:1,v:[-1,-2,5,1,5,1,4,3]},
+{t:'例题 15（含参数）',q:'A(−2, 5)、B(k, −1)、C(5, 1)，若 AB ⊥ BC，求 k。',h:'mAB = ⟦−1−5¦k+2⟧ = ⟦−6¦k+2⟧；mBC = ⟦1+1¦5−k⟧ = ⟦2¦5−k⟧。<br>垂直 ⇒ mAB·mBC = −1 ⇒ −12 = −(k+2)(5−k) ⇒ k² − 3k + 2 = 0 ⇒ (k−1)(k−2) = 0。<br><b>k = 1 或 k = 2</b>。'}],
+mc:[()=>{let a=R(-5,5),b=R(-5,5),dx=rp(-6,6),dy=R(-6,6),m=fr(dy,dx);return mc(`求经过 A${pr(a,b)} 与 B${pr(a+dx,b+dy)} 的直线的斜率。`,fT(m),[fT(fr(dx,dy||1)),fT(fr(-dy,dx)),fT(fr(dy+2,dx)),fT(fr(dy-1,dx)),fT(fr(dy,dx+(dx>0?1:-1)))],`m = ⟦${pn(b+dy)} − ${pn(b)}¦${pn(a+dx)} − ${pn(a)}⟧ = ⟦${N(dy)}¦${N(dx)}⟧ = ${fT(m)}`)},lkM(0),lkM(1),lkM(2)],mh:[],
+fl:[()=>{let a=R(-5,5),b=R(-5,5),dx=rp(-6,6),dy=R(-6,6),m=fr(dy,dx);return fq(`求经过 A${pr(a,b)} 与 B${pr(a+dx,b+dy)} 的直线的斜率（可用分数如 3/2）。`,m,`m = ⟦${N(dy)}¦${N(dx)}⟧ = ${fT(m)}`)},lkF]},
+
+{tab:'1.5 直线方程式',id:'1.5',t:'直线方程式',k:'点斜式：y − y₁ = m(x − x₁)；斜截式：y = mx + c（c 为 y 截距）；一般式：ax + by + c = 0，斜率 = ⟦−a¦b⟧。<br>平行：斜率相同；垂直：斜率为负倒数。线段 AB 的垂直平分线：过 AB 中点，斜率为 ⟦−1¦mAB⟧。',
+modes:[{n:'已知一点与斜率',f:[['x₁','3'],['y₁','2'],['m','-2']],r:v=>fin(v[0],v[1],v[2],['用点斜式：y − y₁ = m(x − x₁)'])},
+{n:'已知两点',f:[['x₁','3'],['y₁','-4'],['x₂','-7'],['y₂','6']],r:v=>{let[a,b,c,d]=v,m=sl(a,b,c,d);return fin(a,b,m,[m?`斜率 m = ⟦${pa(d)} − ${pa(b)}¦${pa(c)} − ${pa(a)}⟧ = ${fT(m)}`:'x₁ = x₂，斜率不存在'],null,'A',[[fv(c),fv(d),lb('B',fv(c),fv(d)),3]])}},
+{n:'过点且平行于 ax+by+c=0',f:[['x₁','5'],['y₁','3'],['a','2','i'],['b','-1','i'],['c','3','i']].map(f=>f.slice(0,2).concat(f[2]?[f[2]]:[])),r:v=>{let[a,b,pa_,pb,pc]=v;if(!pa_&&!pb)return{e:'a、b 不能同时为 0'};let m=mOf(pa_,pb);return fin(a,b,m,[`已知直线 ${eq(pa_,pb,pc)} 的斜率 = ${m?fT(m):'不存在'}`,'平行 ⇒ 斜率相同'],[pa_,pb,pc])}},
+{n:'过点且垂直于 ax+by+c=0',f:[['x₁','2'],['y₁','1'],['a','2','i'],['b','-1','i'],['c','5','i']],r:v=>{let[a,b,pa_,pb,pc]=v;if(!pa_&&!pb)return{e:'a、b 不能同时为 0'};let ml=mOf(pa_,pb),m=perp(ml);return fin(a,b,m,[`已知直线 ${eq(pa_,pb,pc)} 的斜率 = ${ml?fT(ml):'不存在'}`,`垂直 ⇒ 斜率为负倒数：m = ${m?fT(m):'不存在'}`],[pa_,pb,pc])}},
+{n:'线段 AB 的垂直平分线',f:[['x₁ (A)','1'],['y₁ (A)','3'],['x₂ (B)','-5'],['y₂ (B)','1']],r:v=>{let[a,b,c,d]=v;if(!fs(a,c).n&&!fs(b,d).n)return{e:'A、B 是同一个点'};let mx=fd(fa(a,c),fr(2)),my=fd(fa(b,d),fr(2)),m1=sl(a,b,c,d),m=perp(m1);
+return fin(mx,my,m,[`中点 M = (${fT(mx)}, ${fT(my)})`,`mAB = ${m1?fT(m1):'不存在'}`,`垂直平分线斜率 = ${m?fT(m):'不存在'}，且过 M`],null,'M',[[fv(a),fv(b),'A',1],[fv(c),fv(d),'B',1]])}}],
+ex:[{t:'例题 19',q:'求过点 (3, 2) 且斜率为 −2 的直线的 y 截距。',m:0,v:[3,2,-2]},{t:'例题 20',q:'求过点 (3, −4) 与点 (−7, 6) 的直线方程式。',m:1,v:[3,-4,-7,6]},{t:'例题 21',q:'求与 2x − y + 3 = 0 平行且通过点 (5, 3) 的直线方程式。',m:2,v:[5,3,2,-1,3]},{t:'例题 23',q:'已知 A(1, 3)、B(−5, 1)，求线段 AB 的垂直平分线方程式。',m:4,v:[1,3,-5,1]}],
+mc:[()=>{let m=rp(-4,4),x=rp(-4,4),y=R(-6,6),c=y-m*x;return mc(`一直线的斜率为 ${N(m)}，且经过点 ${pr(x,y)}，求它的 y 截距。`,N(c),[N(y+m*x),N(-c),N(m*x),N(y+m),N(c+1)],`y − ${pn(y)} = ${N(m)}(x − ${pn(x)}) ⇒ y = ${N(m)}x + ${N(c)}，y 截距 = ${N(c)}`)},
+()=>{let a=rp(-6,6),b=rp(-6,6),c=rp(-9,9),m=fr(-a,b);return mc(`求直线 ${eq(a,b,c)} 的斜率。`,fT(m),[fT(fr(a,b)),fT(fr(b,a)),fT(fr(-b,a)),fT(fr(-a,b+1||2)),fT(fr(-a-1,b))],`ax + by + c = 0 ⇒ y = ⟦−a¦b⟧x − ⟦c¦b⟧，斜率 = ⟦−a¦b⟧ = ${fT(m)}`)},
+()=>{let m=rp(-3,3),c=rp(-5,5),x1=R(-3,-1),x2=R(1,3),[a,b,cc]=gen(fr(x1),fr(m*x1+c),fr(m));return mc(`求经过 A${pr(x1,m*x1+c)} 与 B${pr(x2,m*x2+c)} 的直线方程式。`,eq(a,b,cc),[eq(a,b,-cc),eq(a,-b,cc),eq(b,a,cc),eq(a,b,cc+1),eq(a,b,cc-1)],`m = ${N(m)}；y − ${pn(m*x1+c)} = ${N(m)}(x − ${pn(x1)}) ⇒ ${eq(a,b,cc)}`)}],
+mh:[()=>{let dx=rp(-3,3),dy=rp(-3,3),mx=R(-3,3),my=R(-3,3),m=fr(-dx,dy),[a,b,c]=gen(fr(mx),fr(my),m),w=gen(fr(mx),fr(my),fr(dx,dy)),z=gen(fr(mx-dx),fr(my-dy),m),y=gen(fr(mx),fr(my),fr(dy,dx));
+return mc(`已知 A${pr(mx-dx,my-dy)}、B${pr(mx+dx,my+dy)}，求线段 AB 的垂直平分线方程式。`,eq(a,b,c),[eq(...w),eq(...z),eq(...y),eq(a,b,c+1),eq(a,-b,c)],`中点 M = ${pr(mx,my)}；mAB = ${fT(fr(dy,dx))}；垂直平分线斜率 = ${fT(m)}；方程式 ${eq(a,b,c)}`)}],
+fl:[()=>{let m=rp(-3,3),c=rp(-5,5),x1=R(-3,-1),x2=R(1,3);return fq(`求经过 A${pr(x1,m*x1+c)} 与 B${pr(x2,m*x2+c)} 的直线的 y 截距。`,fr(c),`m = ${N(m)}，y − ${pn(m*x1+c)} = ${N(m)}(x − ${pn(x1)}) ⇒ y = ${N(m)}x + ${N(c)}，y 截距 = ${N(c)}`)},
+()=>{let dx=rp(-3,3),dy=rp(-3,3),mx=R(-3,3),my=R(-3,3),t=rp(-2,2),k=mx-dy*t;return fq(`线段 AB 的端点为 A${pr(mx-dx,my-dy)}、B${pr(mx+dx,my+dy)}。若点 (k, ${N(my+dx*t)}) 在 AB 的垂直平分线上，求 k。`,fr(k),`垂直平分线过 M${pr(mx,my)}，方向满足 ${N(dx)}(x − ${pn(mx)}) + ${N(dy)}(y − ${pn(my)}) = 0；代入 y = ${N(my+dx*t)} 得 k = ${N(k)}`)}]},
+
+{tab:'1.6 直线交点',id:'1.6',t:'两条直线的交点',k:'解联立方程式 ⇒ 交点。设 l₁：a₁x + b₁y + c₁ = 0，l₂：a₂x + b₂y + c₂ = 0，D = a₁b₂ − a₂b₁。<br>D ≠ 0：相交于一点；D = 0：平行（不重合）或重合。垂直 ⇔ a₁a₂ + b₁b₂ = 0。',
+modes:[{n:'两直线关系与交点',f:[['a₁','1','i'],['b₁','5','i'],['c₁','-35','i'],['a₂','3','i'],['b₂','2','i'],['c₂','-27','i']],r:v=>{let[a1,b1,c1,a2,b2,c2]=v;if(!(a1||b1)||!(a2||b2))return{e:'a、b 不能同时为 0'};let D=a1*b2-a2*b1,bd=[[-6,-6],[6,6]],s=[`l₁：${eq(a1,b1,c1)}　l₂：${eq(a2,b2,c2)}`,`D = a₁b₂ − a₂b₁ = ${pn(a1)}×${pn(b2)} − ${pn(a2)}×${pn(b1)} = ${N(D)}`],a,f;
+if(D){let x=fr(b1*c2-b2*c1,D),y=fr(a2*c1-a1*c2,D),dp=a1*a2+b1*b2;s.push('D ≠ 0 ⇒ 斜率不同，相交于一点；x = ⟦b₁c₂ − b₂c₁¦D⟧，y = ⟦a₂c₁ − a₁c₂¦D⟧',`x = ⟦${pn(b1)}×${pn(c2)} − ${pn(b2)}×${pn(c1)}¦${pn(D)}⟧ = ${fT(x)}`,`y = ⟦${pn(a2)}×${pn(c1)} − ${pn(a1)}×${pn(c2)}¦${pn(D)}⟧ = ${fT(y)}`,`垂直检验：a₁a₂ + b₁b₂ = ${N(dp)}${dp?'（≠ 0，不垂直）':'（= 0，两直线互相垂直）'}`);a=`交点 = ${prf(x,y)}`;f=plot({p:[[fv(x),fv(y),lb('交点',fv(x),fv(y)),3]],b:bd,l:[[a1,b1,c1,1],[a2,b2,c2,2]]})}
+else{let same=a1*c2-a2*c1==0&&b1*c2-b2*c1==0;s.push(same?'D = 0 且常数项成同一比例 ⇒ 两直线重合，有无限多个交点':'D = 0 但常数项比例不同 ⇒ 平行但不重合，没有交点');a=same?'重合（无限多个交点）':'平行（没有交点）';f=plot({p:[],b:bd,l:[[a1,b1,c1,1],[a2,b2,c2,same?1:2,same]]})}
+return{s,a,f}}}],
+ex:[{t:'例题 24',q:'求直线 l₁：x + 5y − 35 = 0 与 l₂：3x + 2y − 27 = 0 的交点坐标。',m:0,v:[1,5,-35,3,2,-27]},{t:'平行情形',q:'l₁：3x + 2y − 27 = 0 与 l₂：6x + 4y + 5 = 0（斜率相同、截距不同）。',m:0,v:[3,2,-27,6,4,5]},
+{t:'例题 25（含参数）',q:'直线 (k+2)x + (2k+3)y − 8 = 0 与 (3k−1)x − (k+5)y + 7 = 0 的交点在 y 轴上，求 k。',h:'交点在 y 轴 ⇒ x = 0：(2k+3)y = 8 ⇒ y = ⟦8¦2k+3⟧；(k+5)y = 7 ⇒ y = ⟦7¦k+5⟧。<br>⟦8¦2k+3⟧ = ⟦7¦k+5⟧ ⇒ 8k + 40 = 14k + 21 ⇒ <b>k = 19/6</b>。'}],
+mc:[()=>{let o=L2(),[l1,l2]=o.l;return mc(`求直线 ${eq(...l1)} 与 ${eq(...l2)} 的交点坐标。`,pr(o.x,o.y),[pr(o.y,o.x),pr(-o.x,o.y),pr(o.x,-o.y),pr(o.x+1,o.y),pr(o.x,o.y+1)],`联立解方程组，得 x = ${N(o.x)}，y = ${N(o.y)}，交点 ${pr(o.x,o.y)}`)},
+()=>{let s=R(0,3),a=rp(-3,3),b=rp(-3,3),c=rp(-6,6),l2,r,O=['平行但不重合','重合','垂直相交','相交于一点但不垂直'];
+if(s==0)l2=[2*a,2*b,2*c+rp(-3,3)];else if(s==1)l2=[2*a,2*b,2*c];else if(s==2)l2=[b,-a,rp(-6,6)];else{do{l2=[rp(-3,3),rp(-3,3),rp(-6,6)]}while(a*l2[1]-l2[0]*b==0||a*l2[0]+b*l2[1]==0)}
+return mc(`直线 ${eq(a,b,c)} 与直线 ${eq(...l2)} 的位置关系是？`,O[s],O.filter((_,i)=>i!=s),s==0?'a₁b₂ − a₂b₁ = 0，但常数项比例不同 ⇒ 平行':s==1?'三个系数成同一比例 ⇒ 重合':s==2?'a₁a₂ + b₁b₂ = 0 ⇒ 垂直':'D ≠ 0 且 a₁a₂ + b₁b₂ ≠ 0 ⇒ 相交但不垂直')}],
+mh:[()=>{let o,k0,p,d;do{o=L2()}while(!o.y);k0=rp(-4,4);p=rp(-4,4);d=p*o.x+k0*o.y;return mc(`直线 ${eq(...o.l[0])}、${eq(...o.l[1])} 相交于 Q，且直线 ${N(p)}x + ky = ${N(d)} 也经过 Q，求 k。`,N(k0),[N(-k0),N(k0+1),N(k0-1),N(k0+2),N(-k0+1)],`先求交点 Q = ${pr(o.x,o.y)}；代入：${N(p)}×${pn(o.x)} + k×${pn(o.y)} = ${N(d)} ⇒ k = ${N(k0)}`)}],
+fl:[()=>{let o=L2(),[l1,l2]=o.l;return fq(`求直线 ${eq(...l1)} 与 ${eq(...l2)} 的交点坐标。`,[fr(o.x),fr(o.y)],`联立解得 x = ${N(o.x)}，y = ${N(o.y)}`,'p')},
+()=>{let o,k0=rp(-4,4),p=rp(-4,4);do{o=L2()}while(!o.y);let d=p*o.x+k0*o.y;return fq(`直线 ${eq(...o.l[0])}、${eq(...o.l[1])} 的交点在直线 ${N(p)}x + ky = ${N(d)} 上，求 k。`,fr(k0),`交点 ${pr(o.x,o.y)} 代入：${N(p)}×${pn(o.x)} + k×${pn(o.y)} = ${N(d)} ⇒ k = ${N(k0)}`)}]},
+
+{tab:'1.7 点线距离',id:'1.7',t:'点到直线的距离',k:'点 P(x₀, y₀) 到直线 l：ax + by + c = 0 的距离：d = ⟦|ax₀ + by₀ + c|¦√{a² + b²}⟧。<br>两条平行线之间的距离：在其中一条线上任取一点，再求它到另一条线的距离。',
+modes:[{n:'点到直线的距离',f:[['x₀','4'],['y₀','2'],['a','2','i'],['b','1','i'],['c','-5','i']],r:v=>{if(!v[2]&&!v[3])return{e:'a、b 不能同时为 0'};return dsteps(v[0],v[1],v[2],v[3],v[4])}},
+{n:'两平行线之间的距离',f:[['a₁','5','i'],['b₁','3','i'],['c₁','-9','i'],['a₂','10','i'],['b₂','6','i'],['c₂','4','i']],r:v=>{let[a1,b1,c1,a2,b2,c2]=v;if(!(a1||b1)||a1*b2-a2*b1)return{e:'两直线必须平行（a₁b₂ = a₂b₁）且系数不全为 0'};let x=b1?fr(0):fr(-c1,a1),y=b1?fr(-c1,b1):fr(0);
+return dsteps(x,y,a2,b2,c2,[`l₁：${eq(a1,b1,c1)}　l₂：${eq(a2,b2,c2)}`,`在 l₁ 上取点 P = ${prf(x,y)}，再求 P 到 l₂ 的距离`])}}],
+ex:[{t:'例题 27',q:'求点 P(4, 2) 到直线 2x + y − 5 = 0 的距离。',m:0,v:[4,2,2,1,-5]},{t:'例题 28(a)',q:'求点 P(2, −3) 到直线 3x − 4y + 12 = 0 的距离。',m:0,v:[2,-3,3,-4,12]},{t:'例题 29',q:'求直线 5x + 3y − 9 = 0 与 10x + 6y + 4 = 0 之间的距离。',m:1,v:[5,3,-9,10,6,4]},
+{t:'例题 30（含参数）',q:'点 P 在直线 y = x + 2 上，且到直线 x − 3y − 4 = 0 的距离为 √{10}，求 P。',h:'设 P(a, a+2)：⟦|a − 3(a+2) − 4|¦√{10}⟧ = √{10} ⇒ |−2a − 10| = 10。<br>−2a − 10 = 10 ⇒ a = −10；−2a − 10 = −10 ⇒ a = 0。<br><b>P(−10, −8) 或 P(0, 2)</b>。'}],
+mc:[()=>{let[a0,b0]=pk(PG),a=a0*pk([1,-1]),b=b0*pk([1,-1]),o=Math.hypot(a,b),x=R(-6,6),y=R(-6,6),c,v;do{c=rp(-12,12);v=a*x+b*y+c}while(!v);let V=Math.abs(v);return mc(`求点 P${pr(x,y)} 到直线 ${eq(a,b,c)} 的距离。`,fT(fr(V,o)),[fT(fr(V,a*a+b*b)),fT(fr(V,Math.abs(a)+Math.abs(b))),fT(fr(V+1,o)),fT(fr(Math.abs(a*x+b*y),o)),fT(fr(V+3,o))],`d = ⟦|${pn(a)}×${pn(x)} + ${pn(b)}×${pn(y)} + ${pn(c)}|¦√{${pn(a)}² + ${pn(b)}²}⟧ = ⟦${V}¦${o}⟧ = ${fT(fr(V,o))}`)},
+()=>{let a,b,n,x=R(-5,5),y=R(-5,5),c,v;do{a=rp(-4,4);b=rp(-4,4);n=a*a+b*b}while(sq(n)[1]==1);do{c=rp(-9,9);v=a*x+b*y+c}while(!v);let V=Math.abs(v),[o,i]=sq(n);
+return mc(`求点 P${pr(x,y)} 到直线 ${eq(a,b,c)} 的距离。`,rr(fr(V,o*i),i),[rr(fr(V+1,o*i),i),rr(fr(V+2,o*i),i),fT(fr(V,n)),rr(fr(V,o),i),rr(fr(V+3,o*i),i)],`d = ⟦${V}¦√{${n}}⟧ = ${rr(fr(V,o*i),i)}（分母有理化）`)},
+()=>{let[a0,b0]=pk(PG),a=a0,b=b0,o=Math.hypot(a,b),c1=rp(-9,9),c2,Dd;do{c2=rp(-20,20);Dd=Math.abs(c2-2*c1)}while(!Dd);return mc(`求直线 ${eq(a,b,c1)} 与直线 ${eq(2*a,2*b,c2)} 之间的距离。`,fT(fr(Dd,2*o)),[fT(fr(Dd,o)),fT(fr(Dd,a*a+b*b)),fT(fr(Math.abs(c2-c1),o)),fT(fr(Dd,4*o)),fT(fr(Dd+2,2*o))],`把 l₂ 化为 ${eq(a,b,c2/2)}（同除以 2），再用平行线距离：d = ⟦|${N(c2/2)} − ${pn(c1)}|¦${o}⟧ = ${fT(fr(Dd,2*o))}`)}],
+mh:[()=>{let x0,b0,Dd,s,u;for(;;){x0=R(-4,4);Dd=R(1,4);s=pk([1,-1]);u=5*Dd*s;let t=4*x0+12-u;if(t%3==0){b0=t/3;break}}let b1=fr(4*x0+12+u,3);
+return mc(`已知点 A(${N(x0)}, b) 到直线 4x − 3y + 12 = 0 的距离为 ${Dd}，求 b。`,pv('b',fr(b0),b1),[pv('b',fr(b0),fm(b1,fr(-1))),pv('b',fr(-b0),b1),pv('b',fa(fr(b0),fr(1)),b1),pv('b',fr(b0),fa(b1,fr(1))),`b = ${b0}`],`⟦|4×${pn(x0)} − 3b + 12|¦5⟧ = ${Dd} ⇒ |${N(4*x0+12)} − 3b| = ${5*Dd} ⇒ ${pv('b',fr(b0),b1)}`)}],
+fl:[()=>{let[a0,b0]=pk(PG),a=a0*pk([1,-1]),b=b0*pk([1,-1]),o=Math.hypot(a,b),x=R(-6,6),y=R(-6,6),k=R(1,5),sg_=pk([1,-1]),c=sg_*o*k-(a*x+b*y);return fq(`求点 P${pr(x,y)} 到直线 ${eq(a,b,c)} 的距离。`,fr(k),`d = ⟦|${pn(a)}×${pn(x)} + ${pn(b)}×${pn(y)} + ${pn(c)}|¦√{${pn(a)}² + ${pn(b)}²}⟧ = ⟦${o*k}¦${o}⟧ = ${k}`)},
+()=>{let[a,b]=pk(PG),o=Math.hypot(a,b),c1=rp(-9,9),k=R(1,4),c2=2*c1+pk([1,-1])*2*o*k;return fq(`求直线 ${eq(a,b,c1)} 与直线 ${eq(2*a,2*b,c2)} 之间的距离。`,fr(k),`l₂ 化为 ${eq(a,b,c2/2)}；d = ⟦|${N(c2/2)} − ${pn(c1)}|¦${o}⟧ = ⟦${o*k}¦${o}⟧ = ${k}`)}]}
+];
+</script>
+<script>
+/* ---------- 界面 ---------- */
+function runMode(md,raw){let v=[];for(let i=0;i<md.f.length;i++){let t=md.f[i][2],s=String(raw[i]).trim();if(Array.isArray(t))v.push(s);else if(t=='i'){let k=Number(s);if(s===''||!Number.isInteger(k))return{e:`请输入整数（${md.f[i][0]}）`};v.push(k)}else{let f=pf(s);if(!f)return{e:`请输入有效数字（${md.f[i][0]}），可用分数如 3/2`};v.push(f)}}return md.r(v)}
+function show(el,r){el.innerHTML=M(r.e?`<div class="err">⚠ ${r.e}</div>`:`<ol class="steps">${r.s.map(x=>`<li>${x}</li>`).join('')}</ol><div class="ans">${r.a}</div>${r.f||''}`)}
+function calc(root,modes){root.innerHTML=`${modes.length>1?'<select class="ms">'+modes.map((m,i)=>`<option value="${i}">${m.n}</option>`).join('')+'</select>':''}<div class="fg"></div><button class="go">计算 / 生成解答</button><div class="out"></div>`;
+let ms=root.querySelector('.ms'),fg=root.querySelector('.fg'),out=root.querySelector('.out'),cm=0;
+const run=()=>show(out,runMode(modes[cm],[...fg.querySelectorAll('input,select')].map(e=>e.value)));
+const build=vals=>{let m=modes[cm];fg.innerHTML=m.f.map((f,i)=>{let d=String(vals?vals[i]:f[1]);return`<label>${f[0]}${Array.isArray(f[2])?`<select>${f[2].map(o=>`<option${o==d?' selected':''}>${o}</option>`).join('')}</select>`:`<input value="${d}">`}</label>`}).join('');run()};
+root.querySelector('.go').onclick=run;fg.oninput=run;fg.onchange=run;if(ms)ms.onchange=()=>{cm=+ms.value;build()};build();
+return{set:(m,v)=>{cm=m;if(ms)ms.value=m;build(v)}}}
+const mk=(l,n)=>{let r=[];while(r.length<n)r.push(...sh(l));return r.slice(0,n).map(([f,t])=>{let q=f();q.sec=t;return q})};
+function quiz(root,c){function go(){let m=c.m(),f=c.f(),done=0,ok=0,fdn=0,fk=0,bad=new Set;
+root.innerHTML=`<div><b>选择题</b>　<span class="pg"></span></div><div class="ml"></div><div class="fb"></div><div class="rs"></div><button class="nb">🔄 换一组新题</button>`;
+let ml=root.querySelector('.ml'),pg=root.querySelector('.pg'),fb=root.querySelector('.fb'),rs=root.querySelector('.rs');
+const upd=()=>pg.textContent=`已完成 ${done}/${m.length}，答对 ${ok}`;upd();
+const final=()=>{let tot=ok+2*fk,mx=m.length+2*f.length,p=Math.round(100*tot/mx),wk=[...bad].sort().join('、');
+rs.innerHTML=c.rev?`<div class="card">🎯 总分：<b>${tot} / ${mx}</b>（${p}%）　选择题 ${ok}/${m.length}，填充题 ${fk}/${f.length}（填充每题 2 分）<br>${p>=90?'🏆 优秀！直角坐标系与直线掌握得很扎实。':p>=75?'👍 良好，再留意出错的题型就更完美。':p>=60?'🙂 及格，建议回到相关小节再练一遍。':'💪 需要加强，请逐节重做小节测验。'}${wk?`<br>建议复习：${wk}`:''}</div>`:`本节成绩：选择题 ${ok}/${m.length}，填充题 ${fk}/${f.length}。${fk==f.length?'🎉 全部答对！':'可以点“换一组新题”继续练习。'}`};
+const showFill=()=>{fb.innerHTML=`<b>填充题</b>（${f.length} 题，可输入分数如 3/2）`;f.forEach((q,i)=>{let d=document.createElement('div');d.className='q';
+d.innerHTML=M(`<p><b>${i+1}.</b> ${q.q}</p><div class="in">${q.k=='p'?'x = <input> y = <input>':'答案 = <input>'}<button class="ck">检查</button></div><div class="ex"></div>`);fb.append(d);
+d.querySelector('.ck').onclick=()=>{let ins=[...d.querySelectorAll('input')],v=ins.map(x=>pf(x.value.trim())),A=q.k=='p'?q.a:[q.a];if(v.some(x=>!x)){d.querySelector('.ex').textContent='请先填写有效数字';return}
+let g=v.every((x,j)=>!fs(x,A[j]).n);ins.forEach(x=>x.disabled=true);d.querySelector('.ck').disabled=true;d.querySelector('.ex').innerHTML=M(`<span class="${g?'good':'bad'}">${g?'✅ 正确！':'❌ 错误，正确答案：'+(q.k=='p'?prf(A[0],A[1]):fT(A[0]))}</span><br>${q.e}`);
+d.style.borderColor=g?'var(--ok)':'var(--no)';fdn++;if(g)fk++;else bad.add(q.sec);if(fdn==f.length)final()}})};
+const after=()=>{if(c.rev||ok>=c.pass){rs.innerHTML=c.rev?'':`🎉 答对 ${ok} 题，解锁填充题！`;showFill()}else rs.innerHTML=`本组答对 ${ok}/${m.length}，需答对 ${c.pass} 题或以上才能挑战填充题。点“换一组新题”再试一次！`};
+m.forEach((q,qi)=>{let d=document.createElement('div');d.className='q';d.innerHTML=M(`<p><b>${qi+1}.</b> ${q.q}</p><div class="op">${q.o.map((o,j)=>`<button data-j="${j}"><i>${'ABCD'[j]}.</i>${o}</button>`).join('')}</div><div class="ex" hidden></div>`);ml.append(d);
+d.querySelectorAll('.op button').forEach(b=>b.onclick=()=>{let j=+b.dataset.j,g=j==q.a,bs=d.querySelectorAll('.op button');bs.forEach((x,k)=>{x.disabled=true;if(k==q.a)x.classList.add('ok');else if(k==j)x.classList.add('no')});
+let e=d.querySelector('.ex');e.hidden=false;e.innerHTML=M(`<span class="${g?'good':'bad'}">${g?'✅ 正确！':'❌ 错误，正确答案是 '+'ABCD'[q.a]}</span><br>${q.e}`);done++;if(g)ok++;else bad.add(q.sec);upd();if(done==m.length)after()})});
+root.querySelector('.nb').onclick=go}go()}
+/* 总复习 */
+const REV={tab:'总复习',id:'总复习',t:'总复习',k:S.map(s=>`<b>${s.id}</b> ${s.k}`).join('<br><br>')};
+const allMc=S.flatMap(s=>s.mc.map(f=>[f,s.id])),allMh=S.flatMap(s=>s.mh.map(f=>[f,s.id])),allFl=S.flatMap(s=>s.fl.map(f=>[f,s.id]));
+const tabs=$('#tabs'),main=$('#main');let mv=0;
+[...S,REV].forEach((s,i)=>{let b=document.createElement('button');b.textContent=s.tab;b.onclick=()=>{if(mv){mv=0;return}sel(i)};tabs.append(b);
+let p=document.createElement('section');p.className='panel';p.hidden=true;p.innerHTML=`<h2>${s.id} ${s.t}</h2><div class="card">${M(s.k)}</div>${s.pre?M(s.pre()):''}`;main.append(p);
+if(s===REV){p.insertAdjacentHTML('beforeend','<h3>📝 总复习测验（10 题选择 + 5 题填充）</h3><p>题目取自 1.1–1.7 各小节题型，并加入课本总复习题中较难的类型（垂直平分线、参数面积、点线距参数、对称点、垂直条件等）。每次进入都是新题。</p><div class="qz"></div>');
+quiz(p.querySelector('.qz'),{rev:1,m:()=>sh([...mk(allMh,4),...mk(sh(allMc).slice(0,6),6)]),f:()=>sh([...mk([[H2,'1.5'],[H3,'1.2'],[H5,'1.6']],3),...mk(allFl,2)])});return}
+p.insertAdjacentHTML('beforeend','<h3>📘 课本例题解说</h3><div class="exs"></div><h3>🧮 专属计算器</h3><div class="card cal"></div><h3>📝 随堂测验（5 题选择 → 答对 3 题或以上解锁 2 题填充）</h3><div class="qz"></div>');
+let C=calc(p.querySelector('.cal'),s.modes),box=p.querySelector('.exs');
+s.ex.forEach(e=>{let d=document.createElement('div');d.className='card';d.innerHTML=`<h4>${e.t}</h4><p>${M(e.q)}</p><div class="o"></div>`;box.append(d);let o=d.querySelector('.o');
+if(e.h)o.innerHTML=M(e.h);else{show(o,runMode(s.modes[e.m],e.v));let bt=document.createElement('button');bt.className='ld';bt.textContent='放入计算器试试 ↓';bt.onclick=()=>{C.set(e.m,e.v);p.querySelector('.cal').scrollIntoView({behavior:'smooth'})};d.append(bt)}});
+quiz(p.querySelector('.qz'),{pass:3,m:()=>mk([...s.mc,...s.mh].map(f=>[f,s.id]),5),f:()=>mk(s.fl.map(f=>[f,s.id]),2)})});
+function sel(i){document.querySelectorAll('.panel').forEach((p,j)=>p.hidden=j!=i);[...tabs.children].forEach((b,j)=>b.classList.toggle('on',j==i));tabs.children[i].scrollIntoView({inline:'center',block:'nearest'});scrollTo({top:0});fixR()}
+sel(0);
+let dn=0,sx=0,sl0=0;tabs.onpointerdown=e=>{if(e.pointerType!='mouse')return;dn=1;mv=0;sx=e.clientX;sl0=tabs.scrollLeft};
+addEventListener('pointermove',e=>{if(dn){let d=e.clientX-sx;if(Math.abs(d)>5)mv=1;tabs.scrollLeft=sl0-d}});addEventListener('pointerup',()=>{dn=0;setTimeout(()=>mv=0,50)});
+$('#tl').onclick=()=>tabs.scrollBy({left:-220});$('#tr').onclick=()=>tabs.scrollBy({left:220});
+let fz=16;const setF=n=>{fz=Math.max(12,Math.min(28,n));document.documentElement.style.setProperty('--fs',fz+'px');setTimeout(fixR,30)};
+$('#fm').onclick=()=>setF(fz-2);$('#f0').onclick=()=>setF(16);$('#fp').onclick=()=>setF(fz+2);
+$('#th').onclick=()=>{let d=document.documentElement,k=d.dataset.t=='dark'?'':'dark';d.dataset.t=k;$('#th').textContent=k?'☀️ 白天':'🌙 夜间'};
+fixR();
+</script><script>
+/* 水印：浮水印(可见) + 隐藏水印(DOM隐藏文字 + 零宽字符 + 防删除) */
+(function(){const V=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+const zw=s=>[...s].map(c=>c.charCodeAt(0).toString(2).padStart(16,'0').replace(/0/g,'\u200b').replace(/1/g,'\u200c')).join('\u200d');
+const SIG=zw('ecchua79·蔡逸众');
+function tile(){let w=340,h=190,x=[];V.forEach((v,i)=>x.push(`<text x="${20+(i%2)*40}" y="${40+i*38}" font-size="${i==3?15:17}" fill="#888" fill-opacity=".16" font-family="sans-serif" transform="rotate(-24 ${w/2} ${h/2})">${v}</text>`));
+return`url("data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">${x.join('')}</svg>`)}")`}
+function put(){if(!document.getElementById('wm')){let d=document.createElement('div');d.id='wm';d.style.backgroundImage=tile();document.body.appendChild(d)}
+let w=document.getElementById('wm');if(w&&(w.style.display=='none'||w.style.opacity=='0'||w.style.visibility=='hidden')){w.style.cssText='';w.style.backgroundImage=tile()}
+document.querySelectorAll('h1,h2').forEach(e=>{if(!e.dataset.z){e.dataset.z=1;e.append(document.createTextNode(SIG))}});
+['footer','main'].forEach(s=>{let e=document.querySelector(s);if(e&&!e.querySelector('.hw')){let h=document.createElement('span');h.className='hw';h.textContent=V.join(' | ')+' | ecchua79.github.io/ScienceLab';e.appendChild(h)}})}
+put();setInterval(put,2000);new MutationObserver(put).observe(document.body,{childList:true});
+console.log('%c'+V[0]+' · Made by ecchua79','color:#2563eb;font-weight:bold')})();
+</script>
+</body></html>

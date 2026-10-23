@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!-- ============================================================
+  高一上册 第2章 一元二次方程式与二次函数 · 互动课程
+  制作：蔡逸众 (ecchua79) · 峇株吧辖华仁中学 Chinese High School
+  Made by 蔡逸众 / ecchua79 / Chinese High School. 未经许可请勿转载。
+============================================================ -->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 (ecchua79) · Chinese High School 峇株吧辖华仁中学">
+<meta name="copyright" content="© 蔡逸众 ecchua79 Chinese High School">
+<title>第2章 一元二次方程式与二次函数 · 互动课程</title>
+<style>
+/* © 蔡逸众 · ecchua79 · Chinese High School 华仁中学 */
+:root{--bg:#f4f6fb;--cd:#fff;--tx:#1d2433;--mut:#6b7590;--ac:#2563eb;--ok:#16a34a;--bad:#dc2626;--c2:#ea580c;--c3:#7c3aed;--bd:#d9dfec;--hl:#eef3ff}
+[data-theme=dark]{--bg:#0e1320;--cd:#172033;--tx:#e7ebf6;--mut:#93a0bb;--ac:#6aa5ff;--ok:#4ade80;--bad:#f87171;--c2:#fb923c;--c3:#a78bfa;--bd:#2a3550;--hl:#1c2945}
+*{box-sizing:border-box}
+html{font-size:15px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--cd);border-bottom:1px solid var(--bd)}
+header h1{font-size:1.1rem;margin:0}
+.ctl button,.btn{border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:8px;padding:4px 10px;font-size:.9rem;cursor:pointer}
+.btn{background:var(--ac);color:#fff;border-color:var(--ac)}
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;padding:8px 10px;background:var(--bg);border-bottom:1px solid var(--bd);-webkit-overflow-scrolling:touch}
+.tabs button{flex:0 0 auto;border:1px solid var(--bd);background:var(--cd);color:var(--tx);padding:6px 12px;border-radius:18px;font-size:.95rem;cursor:pointer}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:820px;margin:0 auto;padding:10px}
+.pane{display:none}.pane.on{display:block}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin:10px 0}
+.card h3{margin:0 0 6px;font-size:1.05rem;color:var(--ac)}
+.intro{background:var(--hl);border-left:4px solid var(--ac)}
+.fig{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.fig figure{margin:0;text-align:center;font-size:.8rem;color:var(--mut)}
+svg{max-width:100%;height:auto}
+svg text{fill:var(--tx);font-size:10px}
+.ax{stroke:var(--mut);stroke-width:1}.gr{stroke:var(--bd);stroke-width:.6}
+.cv{stroke:var(--ac);stroke-width:2.2;fill:none}.ln{stroke:var(--c2);stroke-width:2;fill:none}
+.sy{stroke:var(--c3);stroke-width:1;stroke-dasharray:4 3}
+.pt{fill:var(--c3)}.pa{fill:var(--ac)}.pb{fill:var(--c2)}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;line-height:1.2;font-size:.92em}
+.fr i{font-style:normal;border-bottom:1px solid currentColor;padding:0 3px}.fr b{font-weight:400}
+.rt{display:inline-flex;align-items:stretch;vertical-align:middle;white-space:nowrap;margin:0 1px}.rt svg{overflow:visible;fill:none;stroke:currentColor;stroke-linejoin:miter}.rt .rh{width:.75em;flex:none}.rt .rb{position:relative;display:inline-block;padding:.2em 1px 0 0;line-height:1.15}.rt .rl{position:absolute;left:-1px;top:0;width:calc(100% + 1px);height:2px}
+.row{display:flex;flex-wrap:nowrap;align-items:center;gap:4px;margin:4px 0;white-space:nowrap}
+.ci{width:3.8em;padding:3px 4px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx);font-size:.95rem;text-align:center}
+.out{margin-top:6px;font-size:.95rem}.out div{margin:2px 0}
+.q{border:1px solid var(--bd);border-radius:10px;padding:8px 10px;margin:8px 0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.opt{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px;padding:6px;font-size:.95rem;cursor:pointer;text-align:center}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.opt.bad{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fb{margin-top:6px;font-size:.92rem}.fb .g{color:var(--ok);font-weight:700}.fb .r{color:var(--bad);font-weight:700}
+.exp{background:var(--hl);border-radius:8px;padding:6px 8px;margin-top:4px}
+.mut{color:var(--mut);font-size:.85rem}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:14px 8px 24px}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden;opacity:.07}
+#wm span{position:absolute;font-size:10px;white-space:nowrap;transform:rotate(-25deg);color:var(--tx)}
+</style>
+</head>
+<body>
+<header>
+ <h1>📐 第2章 一元二次方程式与二次函数</h1>
+ <div class="ctl"><button id="fm">A−</button> <button id="fp">A+</button> <button id="th">🌙 夜间</button></div>
+</header>
+<nav class="tabs" id="tabs"></nav>
+<main id="main"></main>
+<footer>峇株吧辖华仁中学 Chinese High School 出品<br>蔡逸众老师 制作 · ecchua79 · © 版权所有</footer>
+<div id="wm"></div>
+<script>
+/* © 蔡逸众 / ecchua79 / Chinese High School */
+console.log('%c高一上册第2章互动课程 · 蔡逸众 (ecchua79) · Chinese High School','color:#2563eb;font-weight:bold');
+const $=(s,e=document)=>e.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[rnd(0,a.length-1)];
+const nz=(a,b)=>{let v=0;while(!v)v=rnd(a,b);return v};
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const isInt=v=>Math.abs(v-Math.round(v))<1e-9;
+function fr(v){if(isInt(v))return null;for(let d=2;d<=64;d++){const n=Math.round(v*d);if(Math.abs(v-n/d)<1e-9){const g=gcd(n,d);return[n/g,d/g]}}return null}
+function N(v){if(!isFinite(v))return'?';if(isInt(v))return String(Math.round(v)).replace('-','−');const f=fr(v);if(f)return(f[0]<0?'−':'')+`<span class="fr"><i>${Math.abs(f[0])}</i><b>${f[1]}</b></span>`;return String(Number(v.toFixed(2))).replace('-','−')}
+function T(v){if(isInt(v))return String(Math.round(v)).replace('-','−');const f=fr(v);if(f)return(f[0]<0?'−':'')+Math.abs(f[0])+'/'+f[1];return String(Number(v.toFixed(2))).replace('-','−')}
+const sg=v=>v<0?`(${N(v)})`:N(v);
+const rt=x=>`<span class="rt"><svg class="rh" viewBox="0 0 12 24" preserveAspectRatio="none"><path d="M0.6 14.5 L3 12.8 L6 22.5 L11.4 1 L12.5 1" vector-effect="non-scaling-stroke" style="stroke-width:1.5px"/></svg><span class="rb"><svg class="rl" viewBox="0 0 10 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="10" y2="1" vector-effect="non-scaling-stroke" style="stroke-width:1.5px"/></svg>${x}</span></span>`;
+const F=(n,d)=>`<span class="fr"><i>${n}</i><b>${d}</b></span>`;
+function lab(x,y,s,anc){anc=anc||'start';const sw=t=>[...t].reduce((a,c)=>a+(c.charCodeAt(0)>255?10:5.6),0),re=/([−-]?\d+(?:\.\d+)?)\/(\d+)/g,ps=[];let last=0,m;while((m=re.exec(s))){if(m.index>last)ps.push(['t',s.slice(last,m.index)]);ps.push(['f',m[1],m[2]]);last=re.lastIndex}if(last<s.length)ps.push(['t',s.slice(last)]);const wd=p=>p[0]=='t'?sw(p[1]):Math.max(sw(p[1]),sw(p[2]))+4,tot=ps.reduce((a,p)=>a+wd(p),0);let cx=anc=='middle'?x-tot/2:anc=='end'?x-tot:x,o='';ps.forEach(p=>{const w=wd(p);if(p[0]=='t')o+=`<text x="${cx}" y="${y}">${p[1]}</text>`;else o+=`<text x="${cx+w/2}" y="${y-5}" text-anchor="middle">${p[1]}</text><line class="ax" x1="${cx+1}" y1="${y-3.5}" x2="${cx+w-1}" y2="${y-3.5}"/><text x="${cx+w/2}" y="${y+6}" text-anchor="middle">${p[2]}</text>`;cx+=w});return o}
+function surd(D){let s=1;for(let i=2;i*i<=D;i++)while(D%(i*i)==0){D/=i*i;s*=i}return{s,r:D}}
+const sh=(s,r)=>(s>1?s:'')+(r>1?rt(r):'');
+const cf=(c,v='x')=>c==1?v:c==-1?'−'+v:N(c)+v;
+function P(a,b,c){let s='';if(a)s+=cf(a,'x²');if(b)s+=(b>0&&s?'+':'')+cf(b);if(c||!s)s+=(c>0&&s?'+':'')+N(c);return s}
+const lineS=(m,n)=>m==0?N(n):cf(m)+(n>0?'+'+N(n):n<0?N(n):'');
+function vf(a,h,k){const hx=h==0?'x':'(x'+(h>0?'−'+N(h):'+'+N(-h))+')';return`y=${a==1?'':a==-1?'−':N(a)}${hx}²${k>0?'+'+N(k):k<0?N(k):''}`}
+function parseNum(s){s=String(s).replace(/[−－—]/g,'-').trim();if(!s)return NaN;const m=s.match(/^(-?[\d.]+)\s*\/\s*(-?[\d.]+)$/);return m?parseFloat(m[1])/parseFloat(m[2]):Number(s)}
+/* ---------- SVG ---------- */
+let uid=0;
+function plotQ(a,b,c,o={}){
+ const W=o.w||320,H=o.h||230,f=x=>a*x*x+b*x+c,h=-b/(2*a),k=f(h),D=b*b-4*a*c,pts=(o.pts||[]).slice();
+ if(o.m!=null){const B=b-o.m,C=c-o.n,D2=B*B-4*a*C;if(D2>=0)[-1,1].forEach((s,i)=>{if(!(D2<1e-12&&i)){const x=(-B+s*Math.sqrt(D2))/(2*a),y=o.m*x+o.n;pts.push([x,y,'('+T(x)+', '+T(y)+')'])}})}
+ const xs=[h-3,h+3,-1,1];if(D>=0){const s=Math.sqrt(D)/(2*Math.abs(a));xs.push(h-s-1,h+s+1)}pts.forEach(p=>xs.push(p[0]));
+ const x0=Math.min(...xs),x1=Math.max(...xs),Wd=x1-x0,ys=[0,k];for(let i=0;i<=40;i++)ys.push(f(x0+Wd*i/40));
+ let y0=Math.min(...ys),y1=Math.max(...ys);
+ if(a>0)y1=Math.min(y1,Math.min(k,0)+1.3*Wd);else y0=Math.max(y0,Math.max(k,0)-1.3*Wd);
+ pts.forEach(p=>{y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])});
+ const pad=(y1-y0)*.1||1;y0-=pad;y1+=pad;
+ const sx=(W-24)/Wd,sy=(H-20)/(y1-y0),X=x=>12+(x-x0)*sx,Y=y=>H-10-(y-y0)*sy,id='c'+(++uid);
+ const ay=y0<=0&&y1>=0?Y(0):H-10,axx=x0<=0&&x1>=0?X(0):12;
+ const st=r=>r<=10?1:r<=24?2:r<=60?5:r<=120?10:r<=300?20:50,xt=st(Wd),yt=st(y1-y0);let g='';
+ for(let v=Math.ceil(x0/xt)*xt;v<=x1;v+=xt)if(v){g+=`<line class="gr" x1="${X(v)}" y1="0" x2="${X(v)}" y2="${H}"/><text x="${X(v)-3}" y="${Math.min(ay+10,H-1)}">${v}</text>`}
+ for(let v=Math.ceil(y0/yt)*yt;v<=y1;v+=yt)if(v){g+=`<line class="gr" x1="0" y1="${Y(v)}" x2="${W}" y2="${Y(v)}"/><text x="${axx+2}" y="${Y(v)-2}">${v}</text>`}
+ let d='';for(let i=0;i<=100;i++){const x=x0+Wd*i/100;d+=(i?'L':'M')+X(x).toFixed(1)+','+Y(f(x)).toFixed(1)}
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}"><clipPath id="${id}"><rect width="${W}" height="${H}"/></clipPath>${g}<line class="ax" x1="0" y1="${ay}" x2="${W}" y2="${ay}"/><line class="ax" x1="${axx}" y1="0" x2="${axx}" y2="${H}"/><text x="${W-8}" y="${ay-3}">x</text><text x="${axx+3}" y="9">y</text><g clip-path="url(#${id})">`;
+ if(!o.noax)s+=`<line class="sy" x1="${X(h)}" y1="0" x2="${X(h)}" y2="${H}"/>`;
+ s+=`<path class="cv" d="${d}"/>`;
+ if(o.m!=null)s+=`<line class="ln" x1="${X(x0)}" y1="${Y(o.m*x0+o.n)}" x2="${X(x1)}" y2="${Y(o.m*x1+o.n)}"/>`;
+ s+='</g>';pts.forEach(p=>{const px=X(p[0]),py=Y(p[1]);s+=`<circle class="pt" cx="${px}" cy="${py}" r="3.5"/>`;if(p[2])s+=lab(px+(px>W-70?-5:5),py-10,p[2],px>W-70?'end':'start')});
+ return s+'</svg>'}
+function rootLine(items){
+ const vs=items.map(i=>i[0]).concat(0),mn=Math.min(...vs)-1,mx=Math.max(...vs)+1,W=320,X=v=>12+(v-mn)/(mx-mn)*(W-24);
+ let s=`<svg viewBox="0 0 ${W} 80" width="${W}"><line class="ax" x1="8" y1="40" x2="${W-8}" y2="40"/>`;
+ const st=mx-mn<=14?1:mx-mn<=30?2:5;for(let v=Math.ceil(mn/st)*st;v<=mx;v+=st)s+=`<line class="ax" x1="${X(v)}" y1="37" x2="${X(v)}" y2="43"/><text x="${X(v)-3}" y="53" style="fill:var(--mut)">${v}</text>`;
+ items.forEach(i=>{const x=X(i[0]),c=i[2]=='b'?'pb':i[2]=='m'?'pt':'pa',up=i[2]!='b';s+=`<circle class="${c}" cx="${x}" cy="40" r="4.5"/>${lab(x,up?26:70,i[1],'middle')}`});
+ return s+'</svg>'}
+function rectD(k){return`<svg viewBox="0 0 220 130" width="220">${k?'<line x1="30" y1="20" x2="190" y2="20" style="stroke:var(--mut);stroke-width:5"/><text x="100" y="12">墙</text>':''}<rect x="50" y="20" width="120" height="80" style="fill:var(--hl);stroke:var(--c2);stroke-width:2.5"/><text x="105" y="116">x m</text><text x="178" y="64">y m</text><text x="28" y="64">y m</text>${k?'':'<text x="105" y="16">x m</text>'}</svg>`}
+/* ---------- 出题引擎辅助 ---------- */
+function W(v,l){const s=new Set([N(v)]);let w=[];for(const x of l)if(isFinite(x)){const t=N(x);if(!s.has(t)){s.add(t);w.push(t)}}w=shuf(w).slice(0,3);for(let d=1;w.length<3;d++)for(const x of[v+d,v-d]){const t=N(x);if(!s.has(t)&&w.length<3){s.add(t);w.push(t)}}return{ans:N(v),wr:w}}
+function WS(ans,l,pad){const s=new Set([ans]);let w=[];for(const t of l)if(!s.has(t)){s.add(t);w.push(t)}w=shuf(w).slice(0,3);for(let i=1;w.length<3;i++){const t=pad(i);if(!s.has(t)){s.add(t);w.push(t)}}return{ans,wr:w}}
+const pt2=(x,y)=>`(${N(x)}, ${N(y)})`,pt2s=(x,y)=>`(${T(x)}, ${T(y)})`;
+const nat=['两个相异实根','两个相等实根','没有实根','无法判断'];
+/* ---------- 各节题目生成器 ---------- */
+const G11=()=>{const a=nz(-4,4),b=rnd(-8,8),c=nz(-6,6),v=b*b-4*a*c;return{q:`方程式 ${P(a,b,c)}=0 的判别式 Δ=b²−4ac 的值是？`,...W(v,[b*b+4*a*c,4*a*c-b*b,b*b-2*a*c,b-4*a*c,-b*b-4*a*c]),e:`a=${N(a)}，b=${N(b)}，c=${N(c)}<br>Δ=${sg(b)}²−4(${sg(a)})(${sg(c)})=<b>${N(v)}</b>`,fa:{t:'n',v},ef:()=>plotQ(a,b,c)}};
+const G12=()=>{const t=rnd(0,2);let a,b,c,D;do{a=nz(-4,4);b=rnd(-7,7);c=nz(-6,6);D=b*b-4*a*c;if(t==1){const r=nz(-4,4);a=nz(-3,3);b=-2*a*r;c=a*r*r;D=0}}while(t==0?D<=0:t==2?D>=0:false);
+ const alt=b!=0&&Math.random()<.5,eq=alt?`${P(a,0,c)}=${cf(-b)}`:`${P(a,b,c)}=0`,ix=t==0?0:t==1?1:2;
+ const o=WS(nat[ix],nat.filter((_,i)=>i!=ix),i=>'x'+i);
+ return{q:`不解方程式，判别 ${eq} 的根的性质。`,...o,e:(alt?`移项化为一般式：${P(a,b,c)}=0<br>`:'')+`Δ=${sg(b)}²−4(${sg(a)})(${sg(c)})=${N(D)} ${D>0?'>':D<0?'<':'='} 0 ⟹ <b>${nat[ix]}</b>`,ef:()=>plotQ(a,b,c)}};
+const G13=()=>{const n=rnd(2,7);const o=WS('±'+2*n,['+'+2*n,'±'+n,'±'+4*n,'±'+n*n,'±'+(2*n+1),'±'+(2*n-1)].map(x=>x[0]=='+'?String(2*n):x),i=>'±'+(7*n+i));
+ return{q:`关于 x 的方程式 x²+kx+${n*n}=0 有两个相等实根，求 k 的值。`,...o,e:`Δ=k²−4(1)(${n*n})=0 ⟹ k²=${4*n*n} ⟹ k=±${2*n}`,fq:`关于 x 的方程式 x²+kx+${n*n}=0 有两个相等实根，求 k 的<b>正值</b>。`,fa:{t:'n',v:2*n},fans:String(2*n)}};
+const G14=()=>{const a=rnd(1,4),b=rnd(3,10),c0=b*b/(4*a),v=Math.floor(c0)+1;return{q:`关于 x 的方程式 ${P(a,-b,0)}+k=0 没有实根，求整数 k 的最小值。`,...W(v,[Math.floor(c0),Math.ceil(c0),v+1,Math.round(c0)]),e:`Δ=(−${b})²−4(${a})k<0 ⟹ ${b*b}−${4*a}k<0 ⟹ k>${N(c0)}<br>最小整数 k=<b>${v}</b>`,fa:{t:'n',v},ef:()=>plotQ(a,-b,v)}};
+const G21=()=>{let r1,r2;do{r1=nz(-6,6);r2=nz(-6,6)}while(r1==r2);const p=r1+r2,q=r1*r2,t=rnd(0,2),eq=P(1,-p,q);
+ const info=`α+β=${N(p)}，αβ=${N(q)}`,ef=()=>rootLine([[r1,'α='+T(r1)],[r2,'β='+T(r2)],[p/2,'中点','m']]);
+ if(t==0){const v=p*p-2*q;return{q:`已知 α、β 是方程式 ${eq}=0 的两根，求 α²+β² 的值。`,...W(v,[p*p+2*q,p*p-q,p*p-4*q,p*p]),e:`${info}<br>α²+β²=(α+β)²−2αβ=${sg(p)}²−2(${sg(q)})=<b>${N(v)}</b>`,fa:{t:'n',v},ef}}
+ if(t==1){const v=p*p-4*q;return{q:`已知 α、β 是方程式 ${eq}=0 的两根，求 (α−β)² 的值。`,...W(v,[p*p-2*q,p*p+4*q,p*p-q,Math.abs(r1-r2)]),e:`${info}<br>(α−β)²=(α+β)²−4αβ=${sg(p)}²−4(${sg(q)})=<b>${N(v)}</b>`,fa:{t:'n',v},ef}}
+ const v=p/q;return{q:`已知 α、β 是方程式 ${eq}=0 的两根，求 <span class="fr"><i>1</i><b>α</b></span>+<span class="fr"><i>1</i><b>β</b></span> 的值。`,...W(v,[q/p,-p/q,p*q,p/(2*q)]),e:`${info}<br><span class="fr"><i>1</i><b>α</b></span>+<span class="fr"><i>1</i><b>β</b></span>=<span class="fr"><i>α+β</i><b>αβ</b></span>=<span class="fr"><i>${N(p)}</i><b>${N(q)}</b></span>=<b>${N(v)}</b>`,fa:{t:'n',v},ef}};
+const G22=()=>{let m,n;do{m=nz(-7,7);n=nz(-7,7)}while(m==n);const s=m+n,p=m*n;const o=WS(P(1,-s,p)+'=0',[P(1,s,p),P(1,-s,-p),P(1,s,-p),P(1,-p,s)].map(x=>x+'=0'),i=>P(1,-s+i,p)+'=0');
+ return{q:`以 ${m} 及 ${n} 为两根（二次项系数为 1）的一元二次方程式是？`,...o,e:`两根之和=${N(s)}，两根之积=${N(p)}<br>x²−(两根之和)x+(两根之积)=0 ⟹ <b>${o.ans}</b>`,ef:()=>rootLine([[m,T(m)],[n,T(n)]])}};
+const G23=()=>{let S,d;do{S=rnd(2,14);d=rnd(1,6)}while((S-d)%2);const v=(S*S-d*d)/4,a=(S-d)/2;return{q:`已知方程式 x²−${S}x+m=0 的一根比另一根大 ${d}，求 m 的值。`,...W(v,[(S*S+d*d)/4,S*S-d*d,(S*S-d*d)/2,S*d]),e:`设两根为 α 与 α+${d}：2α+${d}=${S} ⟹ α=${a}，另一根 ${a+d}<br>m=αβ=${a}×${a+d}=<b>${v}</b>`,fa:{t:'n',v},ef:()=>rootLine([[a,'α='+a],[a+d,'α+'+d+'='+(a+d)],[S/2,'中点','m']])}};
+const G24=()=>{const b=rnd(-6,6),c=nz(-6,6),t=nz(-3,3),ns=-b+2*t,np=c-b*t+t*t,sgt=t>0?'+'+t:'−'+(-t);const o=WS(P(1,-ns,np)+'=0',[P(1,-ns,c+b*t+t*t),P(1,b,np),P(1,-ns,c+t*t),P(1,-(-b-2*t),np)].map(x=>x.endsWith('=0')?x:x+'=0'),i=>P(1,-ns+i,np)+'=0');
+ return{q:`设方程式 ${P(1,b,c)}=0 的两根为 α、β，求以 α${sgt} 及 β${sgt} 为两根的一元二次方程式。`,...o,e:`α+β=${N(-b)}，αβ=${N(c)}<br>新两根之和=(α+β)${t>0?'+':'−'}${2*Math.abs(t)}=${N(ns)}<br>新两根之积=αβ${t>0?'+':'−'}${Math.abs(t)}(α+β)+${t*t}=${N(np)}<br>⟹ <b>${o.ans}</b>`}};
+const G31=()=>{const a=pick([-3,-2,-1,1,2,3]),h=nz(-4,4),k=rnd(-7,7),b=-2*a*h,c=a*h*h+k;const o=WS(pt2(h,k),[pt2(-h,k),pt2(h,-k),pt2(-h,-k),pt2(h,c),pt2(-h,c)],i=>pt2(h,k+i));
+ return{q:`求二次函数 y=${P(a,b,c)} 的顶点坐标。`,...o,e:`配方：${vf(a,h,k)}<br>顶点 (h, k)=<b>${o.ans}</b>，对称轴 x=${N(h)}，开口${a>0?'向上（最低点）':'向下（最高点）'}`,fq:`求二次函数 y=${P(a,b,c)} 的顶点坐标（写成 (x, y)）。`,fa:{t:'p',v:[h,k]},fans:o.ans,ef:()=>plotQ(a,b,c,{pts:[[h,k,'顶点'+pt2s(h,k)]]})}};
+const G32=()=>{const a=pick([-3,-2,-1,1,2,3]),h=nz(-4,4),k=rnd(-7,7),b=-2*a*h,c=a*h*h+k;return{q:`不作图，求函数 y=${P(a,b,c)} 的${a>0?'最小':'最大'}值。`,...W(k,[c,-k,h,k+c,-c]),e:`配方：${vf(a,h,k)}<br>a ${a>0?'>':'<'} 0，当 x=${N(h)} 时 y 有${a>0?'最小':'最大'}值 <b>${N(k)}</b>`,fa:{t:'n',v:k},ef:()=>plotQ(a,b,c,{pts:[[h,k,'顶点'+pt2s(h,k)]]})}};
+const G33=()=>{let r1,r2;do{r1=rnd(-5,5);r2=rnd(-5,5)}while(r1==r2);const a=pick([-2,-1,1,2]),v=(r1+r2)/2,fx=r=>r==0?'x':'(x'+(r>0?'−'+r:'+'+(-r))+')';
+ return{q:`已知抛物线 y=${a==1?'':a==-1?'−':a}${fx(r1)}${fx(r2)}，求其对称轴 x= ？`,...W(v,[r1+r2,(r1-r2)/2,r1*r2,(r1+r2)/4]),e:`与 x 轴交点为 (${r1}, 0) 与 (${r2}, 0)<br>对称轴经过两交点中点：x=<span class="fr"><i>${r1}+${sg(r2)}</i><b>2</b></span>=<b>${N(v)}</b>`,fq:`已知抛物线 y=${a==1?'':a==-1?'−':a}${fx(r1)}${fx(r2)}，求对称轴 x 的值。`,fa:{t:'n',v},ef:()=>plotQ(a,-a*(r1+r2),a*r1*r2,{pts:[[r1,0,'('+r1+',0)'],[r2,0,'('+r2+',0)']]})}};
+const G34=()=>{const k=rnd(0,1),L=k?pick([16,24,32,40,48]):pick([24,32,40,48,60,80]),v=k?L*L/8:L*L/16;
+ return{q:k?`一边靠墙，另三边用长 ${L} m 的篱笆围成长方形场地（图），最大面积是多少 m²？`:`用长 ${L} m 的篱笆围成一个长方形菜园，最大面积是多少 m²？`,fig:rectD(k),...W(v,k?[L*L/16,L*L/4,L*L/32,L*L/6]:[L*L/8,L*L/4,L*L/32,(L/2)*(L/2)]),e:k?`2y+x=${L} ⟹ y=${F(`${L}−x`,2)}，面积 A=x·${F(`${L}−x`,2)}=−${F(1,2)}(x−${L/2})²+${v}<br>x=${L/2} 时最大，最大面积 <b>${N(v)} m²</b>`:`x+y=${L/2}，A=x(${L/2}−x)=−(x−${L/4})²+${v}<br>x=${L/4} 时最大，最大面积 <b>${N(v)} m²</b>`,fa:{t:'n',v},ef:()=>k?plotQ(-.5,L/2,0,{pts:[[L/2,v,'最大 '+T(v)]],noax:1}):plotQ(-1,L/2,0,{pts:[[L/4,v,'最大 '+T(v)]],noax:1})}};
+const G35=()=>{const b=pick([4,6,8,10]),c=rnd(1,9),v=c+b*b/4;return{q:`小龙将石头向上抛，t 秒后离地高度 h=−t²+${b}t+${c}（m），求石头达到的最大高度（m）。`,...W(v,[c+b*b/2,b*b/4,c+b,c+b/2]),e:`h=−(t−${b/2})²+${v}<br>t=${b/2} 秒时最高，最大高度 <b>${N(v)} m</b>`,fa:{t:'n',v},ef:()=>plotQ(-1,b,c,{pts:[[b/2,v,'最高 '+T(v)]]})}};
+const G41=()=>{const tt=rnd(0,2);let a,b,c,m,n,D;a=pick([1,1,2,-1]);b=rnd(-5,5);c=rnd(-5,5);
+ if(tt==1){const p=rnd(-3,3);m=2*a*p+b;n=a*p*p+b*p+c-m*p}else{do{m=rnd(-4,4);n=rnd(-6,6);D=(b-m)**2-4*a*(c-n)}while(tt==0?D<=0:D>=0)}
+ D=(b-m)**2-4*a*(c-n);const cnt=D>0?2:D==0?1:0;return{q:`抛物线 y=${P(a,b,c)} 与直线 y=${lineS(m,n)} 有几个交点？`,...W(cnt,[0,1,2,3].filter(x=>x!=cnt).concat([4])),e:`联立：${P(a,b,c)}=${lineS(m,n)} ⟹ ${P(a,b-m,c-n)}=0<br>Δ=${sg(b-m)}²−4(${sg(a)})(${sg(c-n)})=${N(D)} ${D>0?'>0 ⟹ 相交于两点':D==0?'=0 ⟹ 相切（一个交点）':'<0 ⟹ 没有交点'}<br>交点个数 <b>${cnt}</b>`,ef:()=>plotQ(a,b,c,{m,n})}};
+const G42=()=>{let b,m;do{b=rnd(-6,6);m=rnd(-4,4)}while((b-m)%2||b==m);const c=rnd(-5,5),v=c-(b-m)**2/4;return{q:`抛物线 y=${P(1,b,c)} 与直线 y=${m==0?'':cf(m)+'+'}n 相切，求 n 的值。`,...W(v,[c+(b-m)**2/4,c-(b+m)**2/4,(b-m)**2/4-c,c-(b-m)**2/2]),e:`联立：${P(1,b-m,c)}−n=0，即 x²+(${N(b-m)})x+(${N(c)}−n)=0<br>相切 ⟹ Δ=0：(${N(b-m)})²−4(${N(c)}−n)=0 ⟹ n=<b>${N(v)}</b>`,fa:{t:'n',v},ef:()=>plotQ(1,b,c,{m,n:v})}};
+const G43=()=>{const a=pick([1,2]),p=rnd(-3,3),b=rnd(-4,4),c=rnd(-5,5),m=2*a*p+b,q=a*p*p+b*p+c,n=q-m*p;const o=WS(pt2(p,q),[pt2(-p,q),pt2(p,-q),pt2(p,n),pt2(-p,-q),pt2(p,c)],i=>pt2(p+i,q));
+ return{q:`直线 y=${lineS(m,n)} 与抛物线 y=${P(a,b,c)} 相切，求切点坐标。`,...o,e:`联立：${P(a,b-m,c-n)}=0，Δ=0 有等根<br>x=<span class="fr"><i>${N(m-b)}</i><b>${2*a}</b></span>=${N(p)}，代入直线 y=${N(m*p+n)}<br>切点 <b>${o.ans}</b>`,fq:`直线 y=${lineS(m,n)} 与抛物线 y=${P(a,b,c)} 相切，求切点坐标（写成 (x, y)）。`,fa:{t:'p',v:[p,q]},fans:o.ans,ef:()=>plotQ(a,b,c,{m,n})}};
+const G44=()=>{const b=pick([-6,-4,-2,2,4,6]),c=rnd(-5,5),v=c-b*b/4;const o=WS('k>'+N(v),['k<'+N(v),'k≥'+N(v),'k>'+N(c+b*b/4),'k>'+N(-v)],i=>'k>'+N(v+i));
+ return{q:`抛物线 y=${P(1,b,c)} 与直线 y=k 有两个交点，求 k 的取值范围。`,...o,e:`${P(1,b,c)}=k ⟹ ${P(1,b,c)}−k=0<br>Δ=${sg(b)}²−4(${N(c)}−k)>0 ⟹ 4k>${N(4*v)} ⟹ <b>${o.ans}</b>`,ef:()=>plotQ(1,b,c,{m:0,n:v+1})}};
+const G45=()=>{const a=rnd(1,4),s=rnd(3,9),c0=s*s/(4*a),v=Math.floor(c0)+1;return{q:`若抛物线 y=${cf(a,'x²')}+m 与直线 y=${s}x 不相交，求整数 m 的最小值。`,...W(v,[Math.floor(c0),Math.ceil(c0),v+1,Math.round(c0)]),e:`${cf(a,'x²')}+m=${s}x ⟹ ${P(a,-s,0)}+m=0<br>不相交 ⟹ Δ<0：${s*s}−${4*a}m<0 ⟹ m>${N(c0)}，最小整数 <b>${v}</b>`,fa:{t:'n',v},ef:()=>plotQ(a,0,v,{m:s,n:0})}};
+const H1=()=>{const b=pick([2,4,6]),h=pick([-4,-3,-2,-1,1,2,3,4]),k=-b/(2*h),c=rnd(1,9);return{q:`已知函数 y=kx²+${b}x+${c} 的对称轴是 x=${h}，求 k 的值。`,...W(k,[b/(2*h),-b/h,-2*h/b,b/h]),e:`对称轴 x=−<span class="fr"><i>${b}</i><b>2k</b></span>=${h} ⟹ k=<b>${N(k)}</b><br>此时函数 ${k>0?'最小':'最大'}值 = ${N(c+b*h/2)}`,fa:{t:'n',v:k},ef:()=>plotQ(k,b,c)}};
+const H2=()=>{const p=pick([40,50,60]),d=pick([2,3,4]),x0=pick([5,10,15,20]),q=2*d*x0+d*p,R=d*(p+x0)**2;return{q:`某商店以每件 RM${p} 销售一款商品，每天售出 ${q} 件。售价每提高 RM1，日销量减少 ${d} 件。每件应定价多少 (RM)，才使每日总收益最大？`,...W(p+x0,[x0,p+2*x0,p+x0/2,p-x0]),e:`设提价 x：收益 R=(${p}+x)(${q}−${d}x)=−${d}x²+${q-d*p}x+${p*q}<br>x=<span class="fr"><i>${q-d*p}</i><b>${2*d}</b></span>=${x0} 时最大，定价 <b>RM${p+x0}</b>，最大收益 RM${R}`,fq:`某商店以每件 RM${p} 销售一款商品，每天售出 ${q} 件。售价每提高 RM1，日销量减少 ${d} 件。求每日最大总收益 (RM)。`,fa:{t:'n',v:R},fans:'RM'+R,ef:()=>plotQ(-d,q-d*p,p*q,{pts:[[x0,R,'最大 '+R]],noax:1})}};
+const H3=()=>{const n=rnd(2,9),t=pick([4,8,9,12,16]),S=t+2*n;return{q:`若方程式 x(x+k)=${n} 的两根的平方和是 ${S}，求 k² 的值。`,...W(t,[S+2*n,S-n,S,S-4*n]),e:`x²+kx−${n}=0：α+β=−k，αβ=−${n}<br>α²+β²=(α+β)²−2αβ=k²+${2*n}=${S} ⟹ k²=<b>${t}</b>`,fa:{t:'n',v:t}}};
+/* ---------- 课文例题与计算器 ---------- */
+const fg=(a,b,c,cap,o={})=>`<figure>${plotQ(a,b,c,Object.assign({w:200,h:150},o))}<br>${cap}</figure>`;
+function lcm(a,b){return a/gcd(a,b)*b}
+const TABS=[
+{id:'2.1',title:'2.1 判别式',
+ intro:'一般式 <b>ax²+bx+c=0 (a≠0)</b>，判别式 <b>Δ=b²−4ac</b>：Δ>0 两个相异实根；Δ=0 两个相等实根；Δ<0 没有实根。几何意义：抛物线 y=ax²+bx+c 与 x 轴有 2 个 / 1 个（相切）/ 0 个交点。',
+ ex:[{t:'例题2　不解方程式，判别根的性质',q:'(a) 5x²−6x=0　(c) 4x²−4x+1=0　(d) 3x²−x+3=0',s:'(a) Δ=(−6)²−4(5)(0)=36>0 ⟹ 两个相异实根<br>(c) Δ=(−4)²−4(4)(1)=0 ⟹ 两个相等实根<br>(d) Δ=(−1)²−4(3)(3)=−35<0 ⟹ 没有实根',f:fg(5,-6,0,'(a) Δ>0：交 x 轴两点')+fg(4,-4,1,'(c) Δ=0：与 x 轴相切')+fg(3,-1,3,'(d) Δ<0：不与 x 轴相交')},
+  {t:'例题4　若 2x²+k=5x 没有实根，求 k 的取值范围',q:'',s:'化为一般式 2x²−5x+k=0<br>没有实根 ⟹ Δ<0：(−5)²−4(2)k<0 ⟹ 25−8k<0 ⟹ k>'+N(25/8),f:fg(2,-5,4,'取 k=4：抛物线在 x 轴上方，无交点')},
+  {t:'例题6　y=4x²−28x+m 是完全平方式，求 m',q:'',s:'完全平方式 ⟹ y=0 有两个相等实根 ⟹ Δ=0<br>(−28)²−4(4)m=0 ⟹ m=49，y=4x²−28x+49=(2x−7)²',f:fg(4,-28,49,'切于 x 轴 ('+N(3.5)+', 0)',{w:240,h:160})}],
+ calc:{rows:[[['a',1],['b',-6],['c',5]]],lb:['a=','b=','c='],
+  run(v){const{a,b,c}=v;if(!a)return{h:'a 不能为 0（否则不是二次方程式）'};const D=b*b-4*a*c;let h=`<div>一般式：<b>${P(a,b,c)}=0</b></div><div>Δ=b²−4ac=${sg(b)}²−4(${sg(a)})(${sg(c)})=<b>${N(D)}</b></div><div>Δ${D>0?'>0':D<0?'<0':'=0'} ⟹ <b>${nat[D>0?0:D==0?1:2]}</b></div>`;
+   if(D>=0){let A=a,B=b;if(a<0){A=-a;B=-b}const x1=(-b+Math.sqrt(D))/(2*a),x2=(-b-Math.sqrt(D))/(2*a);
+    if(isInt(D)&&isInt(Math.sqrt(D)))h+=`<div>解：${D==0?'x₁=x₂=':'x₁='}${N(x1)}${D==0?'':'，x₂='+N(x2)}</div>`;else if(isInt(D)){const u=surd(D);h+=`<div>x=<span class="fr"><i>${B?N(-B)+' ':''}± ${sh(u.s,u.r)}</i><b>${2*A}</b></span>≈ ${N(x1)}，${N(x2)}</div>`}else h+=`<div>x₁≈${N(x1)}，x₂≈${N(x2)}</div>`}
+   return{h,svg:plotQ(a,b,c)}}}},
+{id:'2.2',title:'2.2 根与系数',
+ intro:'若 ax²+bx+c=0 的两根为 α、β，则 <b>α+β=−'+F('b','a')+'，αβ='+F('c','a')+'</b>。常用：α²+β²=(α+β)²−2αβ；(α−β)²=(α+β)²−4αβ。以 α、β 为两根的方程式：<b>x²−(两根之和)x+(两根之积)=0</b>。',
+ ex:[{t:'例题8　已知两根为 '+F(1,5)+' 及 −1，求方程式',q:'',s:'解法一：(x−'+F(1,5)+')(x+1)=0 ⟹ (5x−1)(x+1)=0 ⟹ <b>5x²+4x−1=0</b><br>解法二：两根之和=−'+F(4,5)+'，两根之积=−'+F(1,5)+' ⟹ x²+'+F(4,5)+'x−'+F(1,5)+'=0 ⟹ 5x²+4x−1=0',f:`<figure>${rootLine([[.2,'1/5'],[-1,'−1']])}</figure>`},
+  {t:'例题11　α、β 是 x²−5x+1=0 两根 (α>β)，求 α²+β²、α−β、α²−β²',q:'',s:'α+β=5，αβ=1<br>α²+β²=(α+β)²−2αβ=25−2=<b>23</b><br>(α−β)²=(α+β)²−4αβ=25−4=21，α>β ⟹ α−β=<b>'+rt(21)+'</b><br>α²−β²=(α+β)(α−β)=<b>5'+rt(21)+'</b>',f:`<figure>${rootLine([[(5+Math.sqrt(21))/2,'α≈4.79'],[(5-Math.sqrt(21))/2,'β≈0.21'],[2.5,'中点=5/2','m']])}</figure>`},
+  {t:'例题14　x²+x=2 的两根为 α、β，求以 α−1、β−1 为两根的方程式',q:'',s:'x²+x−2=0：α+β=−1，αβ=−2<br>新和=(α+β)−2=−3；新积=αβ−(α+β)+1=−2+1+1=0<br>⟹ <b>x²+3x=0</b>',f:`<figure>${rootLine([[1,'α=1'],[-2,'β=−2'],[0,'α−1=0','b'],[-3,'β−1=−3','b']])}<br>蓝：原两根　橙：新两根（整体左移 1）</figure>`}],
+ calc:{rows:[[['a',1],['b',-5],['c',1]],[['r1','2'],['r2','−1/3']]],lb:['a=','b=','c=','两根 r₁=','r₂='],
+  run(v){const{a,b,c}=v;let h='';let svg='';if(!a)h='a 不能为 0';else{const p=-b/a,q=c/a,D=b*b-4*a*c;h=`<div>α+β=−${F('b','a')}=<b>${N(p)}</b>，αβ=${F('c','a')}=<b>${N(q)}</b></div><div>α²+β²=(α+β)²−2αβ=<b>${N(p*p-2*q)}</b></div><div>(α−β)²=(α+β)²−4αβ=<b>${N(p*p-4*q)}</b>${D>=0?'，|α−β|='+(isInt(p*p-4*q)&&p*p-4*q>0&&!isInt(Math.sqrt(p*p-4*q))?rt(p*p-4*q):N(Math.sqrt(p*p-4*q))):'（Δ<0，无实根）'}</div>`+(c?`<div><span class="fr"><i>1</i><b>α</b></span>+<span class="fr"><i>1</i><b>β</b></span>=${F('α+β','αβ')}=<b>${N(p/q)}</b></div>`:'');
+   if(D>=0){const s=Math.sqrt(D)/(2*Math.abs(a));svg=rootLine([[p/2+s,'α≈'+T(Math.round((p/2+s)*100)/100)],[p/2-s,'β≈'+T(Math.round((p/2-s)*100)/100)],[p/2,'中点','m']])}}
+   const r1=parseNum(v.r1),r2=parseNum(v.r2);if(isFinite(r1)&&isFinite(r2)){let s=r1+r2,pr=r1*r2,L=1;[s,pr].forEach(x=>{const f=fr(x);if(f)L=lcm(L,f[1])});h+=`<div style="margin-top:6px">由两根 ${N(r1)}、${N(r2)} 作方程式：x²−(${N(s)})x+(${N(pr)})=0${L>1?' ⟹ 乘 '+L+'：':' ⟹ '}<b>${P(L,-s*L,pr*L)}=0</b></div>`}
+   return{h,svg}}}},
+{id:'2.3',title:'2.3 图像与最值',
+ intro:'配方：<b>y=a(x−h)²+k</b>。顶点 (h,k)，对称轴 x=h；a>0 开口向上，x=h 时有最小值 k；a<0 开口向下，x=h 时有最大值 k。作图：求 y 轴交点 (0,c)、x 轴交点（解 y=0）、顶点与对称轴。',
+ ex:[{t:'例题16　作 y=x²−2x−3 的图像',q:'',s:'x=0：y=−3，交 y 轴 (0,−3)<br>y=0：(x−3)(x+1)=0 ⟹ 交 x 轴 (3,0)、(−1,0)<br>配方 y=(x−1)²−4，开口向上，顶点 (1,−4)，对称轴 x=1',f:`<figure>${plotQ(1,-2,-3,{pts:[[1,-4,'(1,−4)'],[3,0,'(3,0)'],[-1,0,'(−1,0)'],[0,-3,'(0,−3)']]})}</figure>`},
+  {t:'例题17　作 y=−x²−4x−1 的图像',q:'',s:'y=−(x²+4x)−1=−[(x+2)²−4]−1=−(x+2)²+3<br>a<0 开口向下，顶点 (−2,3)（最高点），对称轴 x=−2，交 y 轴 (0,−1)',f:`<figure>${plotQ(-1,-4,-1,{pts:[[-2,3,'(−2,3)'],[0,-1,'(0,−1)']]})}</figure>`},
+  {t:'例题22　40 m 篱笆围长方形菜园，怎样围面积最大？',q:'',s:'2x+2y=40 ⟹ y=20−x<br>A=x(20−x)=−(x−10)²+100<br>x=10 时 A 最大 =100，此时 y=10：围成边长 10 m 的正方形，最大面积 <b>100 m²</b>',f:`<figure>${rectD(0)}</figure><figure>${plotQ(-1,20,0,{pts:[[10,100,'(10,100)']],noax:1,w:240,h:170})}</figure>`}],
+ calc:{rows:[[['a',1],['b',-2],['c',-3]]],lb:['a=','b=','c='],
+  run(v){const{a,b,c}=v;if(!a)return{h:'a 不能为 0'};const h=-b/(2*a),k=c-b*b/(4*a),D=b*b-4*a*c;let o=`<div>配方：<b>${vf(a,h,k)}</b></div><div>开口${a>0?'向上':'向下'}；顶点 <b>${pt2(h,k)}</b>；对称轴 <b>x=${N(h)}</b></div><div>x=${N(h)} 时 y 有<b>${a>0?'最小':'最大'}值 ${N(k)}</b></div><div>交 y 轴：(0, ${N(c)})</div>`;
+   const pts=[[h,k,'顶点'+pt2s(h,k)],[0,c,'(0,'+T(c)+')']];if(D>=0){const s=Math.sqrt(D)/(2*Math.abs(a));o+=`<div>交 x 轴：(${N(h-s)}, 0)${D>0?'、('+N(h+s)+', 0)':''}</div>`;pts.push([h-s,0,''],[h+s,0,''])}else o+='<div>与 x 轴没有交点（Δ<0）</div>';
+   return{h:o,svg:plotQ(a,b,c,{pts})}}}},
+{id:'2.4',title:'2.4 抛物线与直线',
+ intro:'抛物线 y=ax²+bx+c 与直线 y=mx+n 联立，代入消元得 <b>ax²+(b−m)x+(c−n)=0</b>，再看判别式：Δ>0 相交于两点；Δ=0 相切（一个交点）；Δ<0 没有交点。',
+ ex:[{t:'例题23　y=x²+(2k−1)x+k² 与 x 轴的交点个数',q:'',s:'Δ=(2k−1)²−4k²=1−4k<br>(a) 一个交点：k='+F(1,4)+'　(b) 两个交点：k<'+F(1,4)+'　(c) 没有交点：k>'+F(1,4),f:fg(1,-.5,.0625,'k='+F(1,4)+'：相切')+fg(1,-3,1,'k=−1：两个交点')+fg(1,1,1,'k=1：没有交点')},
+  {t:'例题24　y=x²−2kx+k² 与 y=2x−1 相交，求 k 的范围',q:'',s:'x²−2kx+k²=2x−1 ⟹ x²−2(k+1)x+(k²+1)=0<br>Δ=4(k+1)²−4(k²+1)=8k ≥ 0 ⟹ <b>k≥0</b>',f:fg(1,-2,1,'k=1：两个交点',{m:2,n:-1})+fg(1,0,0,'k=0：相切',{m:2,n:-1})},
+  {t:'例题25　证明 y=1−x² 与 y=2(1−x) 相切，求切点',q:'',s:'1−x²=2−2x ⟹ x²−2x+1=0，Δ=(−2)²−4=0 ⟹ 相切<br>(x−1)²=0 ⟹ x=1，y=1−1²=0，切点 <b>(1, 0)</b>',f:`<figure>${plotQ(-1,0,1,{m:-2,n:2})}</figure>`}],
+ calc:{rows:[[['a',1],['b',-4],['c',3]],[['m',1],['n',-1]]],lb:['抛物线 a=','b=','c=','直线 y=mx+n：m=','n='],
+  run(v){const{a,b,c,m,n}=v;if(!a)return{h:'a 不能为 0'};const B=b-m,C=c-n,D=B*B-4*a*C;let o=`<div>联立：${P(a,b,c)}=${lineS(m,n)} ⟹ <b>${P(a,B,C)}=0</b></div><div>Δ=${sg(B)}²−4(${sg(a)})(${sg(C)})=<b>${N(D)}</b> ⟹ ${D>0?'相交于<b>两点</b>':D==0?'<b>相切</b>（一个交点）':'<b>没有交点</b>'}</div>`;
+   if(D>=0){const s=Math.sqrt(D),xs=D==0?[-B/(2*a)]:[(-B-s)/(2*a),(-B+s)/(2*a)];o+='<div>交点：'+xs.map(x=>pt2(x,m*x+n)).join('、')+'</div>'}
+   return{h:o,svg:plotQ(a,b,c,{m,n})}}}}
+];
+TABS[0].gens=[[G11,1],[G12,0],[G13,1],[G14,1]];
+TABS[1].gens=[[G21,1],[G22,0],[G23,1],[G24,0]];
+TABS[2].gens=[[G31,1],[G32,1],[G33,1],[G34,1],[G35,1]];
+TABS[3].gens=[[G41,0],[G42,1],[G43,1],[G44,0],[G45,1]];
+const HARD=[[H1,1],[H2,1],[H3,1]],ALL=[].concat(...TABS.map(t=>t.gens));
+const pickG=(l,n)=>{const r=shuf(l).slice(0,n);while(r.length<n)r.push(pick(l));return r};
+/* ---------- 测验组件 ---------- */
+function grade(fa,s){s=String(s).replace(/[−－—]/g,'-').replace(/[（）]/g,m=>m=='（'?'(':')').trim();if(fa.t=='n'){const x=parseNum(s.replace(/^[a-zA-Z²]*=/,'').replace(/^RM/i,''));return isFinite(x)&&Math.abs(x-fa.v)<1e-6}
+ const m=s.match(/-?\d+(?:\.\d+)?(?:\s*\/\s*\d+)?/g);if(!m||m.length<2)return false;const n=m.map(parseNum);return Math.abs(n[0]-fa.v[0])<1e-6&&Math.abs(n[1]-fa.v[1])<1e-6}
+function Quiz(root,list,nM,nF,rev){
+ function start(){
+  let sc=0,dn=0,fs=0,fd=0;root.innerHTML='';
+  const head=el('div','mut'),mb=el('div'),fb=el('div'),rs=el('div');root.append(head,mb,fb,rs);
+  const upd=()=>head.innerHTML=`选择题：已答 ${dn}/${nM}，答对 ${sc}`+(fb.children.length?`　｜　作答题：已答 ${fd}/${nF}，答对 ${fs}`:'');
+  let ms;if(rev){const hd=pickG(HARD,2).map(x=>x[0]);ms=hd.concat(pickG(ALL.filter(x=>!HARD.includes(x)),nM-2).map(x=>x[0]))}else ms=pickG(list,nM).map(x=>x[0]);
+  const allDone=()=>{const tot=sc+fs,all=nM+nF,pc=Math.round(tot/all*100);
+   rs.innerHTML=`<div class="card intro"><b>${rev?'总复习成绩':'本节成绩'}：${tot}/${all}（${pc}%）</b><br>选择题 ${sc}/${nM}　作答题 ${fs}/${nF}<br>${pc>=90?'🏆 优秀！掌握得非常扎实。':pc>=70?'👍 良好，再检查错题就更稳了。':pc>=50?'🙂 及格，建议回看例题与计算器再试一次。':'💪 继续加油，先看例题再重新出题。'}</div>`;
+   const b=el('button','btn','🔄 换一组新题');b.onclick=start;rs.append(b)};
+  const mcDone=()=>{if(dn<nM)return;
+   if(!rev&&sc<3){rs.innerHTML=`<div class="card">本组答对 ${sc}/${nM}，需答对 3 题以上才能解锁作答题。回看例题后再试一组吧！</div>`;const b=el('button','btn','🔄 重新出题');b.onclick=start;rs.append(b);return}
+   const pool=rev?[pickG(HARD.filter(x=>x[1]),1)[0]].concat(pickG(ALL.filter(x=>x[1]&&!HARD.includes(x)),nF-1)):pickG(list.filter(x=>x[1]),nF);
+   fb.append(el('h3','','✍️ 作答题'+(rev?'':'（已解锁）')));pool.forEach((x,i)=>fb.append(fillCard(x[0](),i)));upd()};
+  function mcCard(g,i){const c=el('div','q',`<b>第 ${i+1} 题</b>　${g.q}${g.fig?'<div class="fig">'+g.fig+'</div>':''}`),os=el('div','opts'),f=el('div','fb');let lock=0;
+   shuf([g.ans].concat(g.wr)).forEach(t=>{const b=el('button','opt',t);b.onclick=()=>{if(lock)return;lock=1;dn++;const ok=t===g.ans;if(ok)sc++;b.classList.add(ok?'ok':'bad');[...os.children].forEach(x=>{if(x.innerHTML===g.ans)x.classList.add('ok')});
+    f.innerHTML=`<span class="${ok?'g':'r'}">${ok?'✅ 正确！':'❌ 错误，正确答案：'+g.ans}</span><div class="exp">${g.e}${g.ef?'<div class="fig">'+g.ef()+'</div>':''}</div>`;upd();mcDone()};os.append(b)});c.append(os,f);return c}
+  function fillCard(g,i){const c=el('div','q',`<b>作答 ${i+1}</b>　${g.fq||g.q}${g.fig?'<div class="fig">'+g.fig+'</div>':''}`),r=el('div','row'),inp=el('input','ci');inp.style.width='9em';inp.placeholder=g.fa.t=='p'?'(x, y)':'答案';const b=el('button','btn','提交'),f=el('div','fb');
+   b.onclick=()=>{if(b.disabled||!inp.value.trim())return;b.disabled=inp.disabled=true;fd++;const ok=grade(g.fa,inp.value);if(ok)fs++;f.innerHTML=`<span class="${ok?'g':'r'}">${ok?'✅ 正确！':'❌ 错误，正确答案：'+(g.fans||g.ans)}</span><div class="exp">${g.e}${g.ef?'<div class="fig">'+g.ef()+'</div>':''}</div>`;upd();if(fd==nF)allDone()};
+   r.append(inp,b);c.append(r,f);return c}
+  ms.map(f=>f()).forEach((g,i)=>mb.append(mcCard(g,i)));upd()}
+ start()}
+/* ---------- 页面搭建 ---------- */
+function calcCard(t){const C=t.calc,card=el('div','card');card.innerHTML=`<h3>🧮 ${t.title.split(' ')[0]} 专属计算器</h3><div class="mut">输入数值（可用分数如 −1/3），自动生成解答与图像</div>`;
+ const ins={};let k=0;C.rows.forEach(r=>{const row=el('div','row');r.forEach(([n,d])=>{row.append(el('span','',C.lb[k++]));const i=el('input','ci');i.value=d;i.inputMode='text';ins[n]=i;row.append(i)});card.append(row)});
+ const out=el('div','out'),sv=el('div','fig');card.append(out,sv);
+ const go=()=>{const v={};for(const n in ins){v[n]=n[0]=='r'?ins[n].value:parseNum(ins[n].value)}
+  const bad=Object.keys(v).filter(n=>n[0]!='r'&&!isFinite(v[n]));if(bad.length){out.innerHTML='请输入有效数字';sv.innerHTML='';return}
+  const r=C.run(v);out.innerHTML=r.h;sv.innerHTML=r.svg||''};
+ Object.values(ins).forEach(i=>i.addEventListener('input',go));go();return card}
+function build(){
+ const tabs=$('#tabs'),main=$('#main');
+ TABS.forEach((t,i)=>{
+  const p=el('section','pane');p.id='p'+i;
+  p.append(el('div','card intro',`<h3>${t.title}</h3>${t.intro}`));
+  t.ex.forEach(e=>p.append(el('div','card',`<h3>${e.t}</h3>${e.q?'<div>'+e.q+'</div>':''}<div class="exp">${e.s}</div><div class="fig">${e.f}</div>`)));
+  p.append(calcCard(t));
+  const qc=el('div','card');qc.append(el('h3','','📝 随堂小测（5 题选择 · 答对 3 题解锁 2 题作答）'));const qb=el('div');qc.append(qb);p.append(qc);Quiz(qb,t.gens,5,2,false);
+  main.append(p)});
+ const p=el('section','pane');p.id='p'+TABS.length;
+ p.append(el('div','card intro','<h3>总复习</h3>从 2.1–2.4 各节随机抽题，并加入课本总复习题中较难的题型（对称轴求参数、利润最值、根的平方和）。共 <b>10 题选择 + 5 题作答</b>，每次题目都不同。'));
+ const rc=el('div','card'),rb=el('div');rc.append(rb);p.append(rc);Quiz(rb,ALL,10,5,true);main.append(p);
+ const names=TABS.map(t=>t.title).concat(['📋 总复习']);
+ names.forEach((n,i)=>{const b=el('button','',n);b.onclick=()=>show(i);tabs.append(b)});
+ function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',i==j));[...main.children].forEach((s,j)=>s.classList.toggle('on',i==j));window.scrollTo(0,0);tabs.children[i].scrollIntoView({inline:'center',block:'nearest'})}
+ show(0)}
+build();
+/* 主题 / 字号 */
+let fz=15;try{fz=+localStorage.getItem('fz')||15}catch(e){}
+const setF=v=>{fz=Math.max(12,Math.min(22,v));document.documentElement.style.fontSize=fz+'px';try{localStorage.setItem('fz',fz)}catch(e){}};setF(fz);
+$('#fm').onclick=()=>setF(fz-1);$('#fp').onclick=()=>setF(fz+1);
+function setT(d){document.documentElement.dataset.theme=d?'dark':'light';$('#th').textContent=d?'☀️ 白天':'🌙 夜间';try{localStorage.setItem('dk',d?1:'')}catch(e){}}
+let dk=false;try{dk=!!localStorage.getItem('dk')}catch(e){}setT(dk);$('#th').onclick=()=>{dk=!dk;setT(dk)};
+/* 浮水印 */
+(function(){const w=$('#wm'),t='蔡逸众 · ecchua79 · Chinese High School';for(let y=-5;y<14;y++)for(let x=-1;x<4;x++){const s=document.createElement('span');s.textContent=t;s.style.left=(x*300+(y%2)*130)+'px';s.style.top=(y*80)+'px';w.append(s)}})();
+</script>
+</body>
+</html>
