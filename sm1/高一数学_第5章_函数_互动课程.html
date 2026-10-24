@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh" data-t="l">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79">
+<title>高一数学上册 第5章 函数 · 互动课程</title>
+<!-- 峇株吧辖华仁中学蔡逸众制作 · 华仁中学蔡逸众制作 · 峇株吧辖蔡逸众制作 · Made by ecchua79 -->
+<style>
+:root{--bg:#f4f7fc;--fg:#1c2433;--card:#fff;--ac:#2563eb;--ac2:#e11d48;--ok:#16a34a;--mut:#64748b;--line:#d5dbe6;--hi:#fde68a}
+[data-t=d]{--bg:#0b1020;--fg:#e5ecff;--card:#141b34;--ac:#60a5fa;--ac2:#fb7185;--ok:#4ade80;--mut:#94a3b8;--line:#2a3558;--hi:#854d0e}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.75 system-ui,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%}
+header{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:.5rem .8rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+header h1{font-size:1.05rem;margin:0;flex:1;min-width:10rem}
+.tools button,.bt{background:var(--ac);color:#fff;border:0;border-radius:.5rem;padding:.35rem .7rem;font:inherit;font-size:.9rem;cursor:pointer}
+.tools button{margin-left:.25rem;background:var(--card);color:var(--fg);border:1px solid var(--line)}
+nav{position:sticky;top:2.9rem;z-index:15;display:flex;gap:.4rem;overflow-x:auto;padding:.5rem .6rem;background:var(--bg);scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;user-select:none}
+nav button{flex:none;scroll-snap-align:center;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:2rem;padding:.4rem .9rem;font:inherit;font-size:.92rem;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:56rem;margin:0 auto;padding:.5rem .8rem 3rem}
+.sec{display:none}.sec.on{display:block}
+h2{font-size:1.35rem;margin:.6rem 0}h3{font-size:1.05rem;margin:.4rem 0}
+.card,.ex,.calc,.quiz,.def{background:var(--card);border:1px solid var(--line);border-radius:.8rem;padding:.8rem 1rem;margin:.8rem 0}
+.def{border-left:5px solid var(--ac)}
+.ex h3{color:var(--ac)}
+.row{display:flex;flex-wrap:wrap;gap:.6rem}.row figure{flex:1 1 15rem;margin:0}
+figcaption{font-weight:700;color:var(--ac2)}
+.gs{width:100%;max-width:26rem;height:auto;display:block;margin:.2rem auto;color:var(--fg)}
+.ff{display:flex;flex-wrap:wrap;gap:.5rem;align-items:flex-end}
+.ff label{font-size:.85rem;color:var(--mut);display:flex;flex-direction:column}
+.ff input,.ff select,.qc input{font:inherit;font-size:1rem;padding:.3rem .45rem;border:1px solid var(--line);border-radius:.4rem;background:var(--bg);color:var(--fg);width:5.5rem}
+.ff input[data-k=xs]{width:11rem}.ff select{width:auto}
+.out{margin-top:.6rem}
+table{border-collapse:collapse;margin:.3rem 0}td,th{border:1px solid var(--line);padding:.15rem .6rem;text-align:center}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .2em}.fr>span:last-child{padding:0 .2em}
+.rt{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 .1em}
+.rt svg{width:.75em;overflow:visible;margin-top:.12em;flex:none}
+.rt path{fill:none;stroke:currentColor;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.rt>span{border-top:1.5px solid currentColor;margin-top:.12em;padding:0 .15em;line-height:1.3}
+.qc{border-top:1px solid var(--line);padding:.6rem 0}
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.4rem;margin-top:.4rem}
+.op{font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:.5rem;padding:.4rem;cursor:pointer;text-align:center}
+.op.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.op.bad{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.good{color:var(--ok);font-weight:700}.bad{color:var(--ac2);font-weight:700}
+.sc{font-weight:700;margin:.5rem 0;padding:.5rem .8rem;border-radius:.6rem;background:var(--hi)}
+.sol{margin:.5rem 0;padding:.5rem .7rem;border-left:4px solid var(--ok);background:var(--bg);border-radius:.4rem;font-size:.95rem;line-height:1.7}
+.tag{display:inline-block;padding:0 .6rem;border-radius:1rem;margin:.1rem;background:var(--bg);border:1px solid var(--line)}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:1.2rem .5rem 2rem;border-top:1px solid var(--line)}
+.wm{position:fixed;inset:0;z-index:50;pointer-events:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200'><text x='24' y='110' transform='rotate(-20 160 100)' font-size='18' fill='%23888' fill-opacity='.07'>峇株吧辖华仁中学蔡逸众制作</text></svg>")}
+</style>
+</head>
+<body>
+<div class="wm"></div>
+<div style="position:absolute;left:-9999px;font-size:0;height:0;overflow:hidden" aria-hidden="true">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</div>
+<header><h1>高一数学上册 · 第5章 函数</h1><div class="tools"><button id="fm" title="字体缩小">A−</button><button id="f0" title="默认">A</button><button id="fp" title="字体放大">A+</button><button id="th">🌙 夜间</button></div></header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer>© 峇株吧辖华仁中学 · 蔡逸众制作 &nbsp;|&nbsp; Made by ecchua79<br>仅供教学使用 · 未经许可请勿转载或售卖</footer>
+<script>
+const $=(s,r=document)=>r.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)];
+const nz=(a,b)=>{let v;do v=R(a,b);while(!v);return v};
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const M=n=>(n<0?'−':'')+Math.abs(n),T=n=>Math.round(n*100)/100,N=(...a)=>a.forEach(x=>{if(!isFinite(x))throw 0});
+const nums=s=>s.split(/[,，\s]+/).filter(Boolean).map(Number);
+const frac=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+const rt=s=>`<span class="rt"><svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M.3 12.5L3 10.5 5.2 18 9.6 .7H10"/></svg><span>${s}</span></span>`;
+const fm=n=>{n=+n;if(Number.isInteger(n))return M(n);for(let d=2;d<=24;d++){const m=n*d;if(Math.abs(m-Math.round(m))<1e-9)return(n<0?'−':'')+frac(Math.abs(Math.round(m)),d)}return M(+n.toFixed(3))};
+function poly(a,b,c,v='x'){let s='';const t=(k,p)=>{if(!k)return;const ab=Math.abs(k);s+=(k<0?'−':(s?'+':''))+(p?(ab==1?'':ab)+p:ab)};t(a,v+'²');t(b,v);t(c,'');return s||'0'}
+const lin=(a,b)=>poly(0,a,b),sgn=n=>n<0?'−'+(-n):'+'+n,sqx=h=>h==0?'x²':`(x${h>0?'−'+h:'+'+(-h)})²`;
+let U=0;
+/* ---------- SVG 工具 ---------- */
+function graph(o){
+ const W=o.w||340,H=o.h||280,m=o.mini?14:26,id='c'+(U++),cs=o.fns||[];let[x0,x1]=o.xr;
+ const smp=cs.map(c=>{const p=[],n=260;if(c.par){for(let i=0;i<=n;i++)p.push(c.par(c.t[0]+(c.t[1]-c.t[0])*i/n))}else{const a=c.dom?c.dom[0]:x0,b=c.dom?c.dom[1]:x1;for(let i=0;i<=n;i++){const x=a+(b-a)*i/n;let y;try{y=c.f(x)}catch(e){y=NaN}p.push([x,y])}}return p});
+ let yr=o.yr;
+ if(!yr){let lo=0,hi=0;smp.forEach((p,i)=>{if(cs[i].nf)return;p.forEach(q=>{if(isFinite(q[1])&&q[0]>=x0&&q[0]<=x1){lo=Math.min(lo,q[1]);hi=Math.max(hi,q[1])}})});(o.pts||[]).forEach(q=>{lo=Math.min(lo,q.y);hi=Math.max(hi,q.y)});lo=Math.max(lo,-30);hi=Math.min(hi,30);const pd=Math.max((hi-lo)*.1,.5);yr=[Math.floor(lo-pd),Math.ceil(hi+pd)];if(yr[1]-yr[0]<4)yr=[yr[0]-1,yr[1]+2]}
+ const[y0,y1]=yr,sx=x=>m+(x-x0)/(x1-x0)*(W-2*m),sy=y=>H-m-(y-y0)/(y1-y0)*(H-2*m);
+ const nice=r=>[1,2,5,10,20,50].find(s=>s>=r/(o.mini?5:9))||100,stx=nice(x1-x0),sty=nice(y1-y0);
+ const ax=Math.min(Math.max(sx(0),m),W-m),ay=Math.min(Math.max(sy(0),m),H-m);
+ let g=`<svg viewBox="0 0 ${W} ${H}" class="gs"><defs><clipPath id="${id}"><rect x="${m}" y="${m}" width="${W-2*m}" height="${H-2*m}"/></clipPath></defs>`;
+ if(o.bx)g+=`<rect x="${sx(o.bx[0])}" y="${m}" width="${sx(o.bx[1])-sx(o.bx[0])}" height="${H-2*m}" fill="#2563eb" opacity=".13"/>`;
+ if(o.by)g+=`<rect x="${m}" y="${sy(o.by[1])}" width="${W-2*m}" height="${sy(o.by[0])-sy(o.by[1])}" fill="#e11d48" opacity=".13"/>`;
+ const tx=(x,y,t,a)=>`<text x="${x}" y="${y}" font-size="9" text-anchor="${a}" fill="var(--mut)">${t}</text>`;
+ for(let x=Math.ceil(x0/stx)*stx;x<=x1;x+=stx){g+=`<line x1="${sx(x)}" y1="${m}" x2="${sx(x)}" y2="${H-m}" stroke="var(--line)" stroke-width=".6"/>`;if(x&&!o.mini)g+=tx(sx(x),Math.min(ay+11,H-m+11),M(x),'middle')}
+ for(let y=Math.ceil(y0/sty)*sty;y<=y1;y+=sty){g+=`<line x1="${m}" y1="${sy(y)}" x2="${W-m}" y2="${sy(y)}" stroke="var(--line)" stroke-width=".6"/>`;if(y&&!o.mini)g+=tx(ax-3,sy(y)+3,M(y),'end')}
+ g+=`<line x1="${m-4}" y1="${ay}" x2="${W-m+4}" y2="${ay}" stroke="currentColor" stroke-width="1.2"/><line x1="${ax}" y1="${H-m+4}" x2="${ax}" y2="${m-4}" stroke="currentColor" stroke-width="1.2"/>`;
+ g+=`<text x="${W-m+2}" y="${ay-4}" font-size="11" fill="currentColor">x</text><text x="${ax+5}" y="${m-5}" font-size="11" fill="currentColor">y</text>`;
+ const pal=['#2563eb','#e11d48','#16a34a','#d97706'];
+ (o.vl||[]).forEach(l=>g+=`<line x1="${sx(l.x)}" y1="${m}" x2="${sx(l.x)}" y2="${H-m}" stroke="${l.c||'#d97706'}" stroke-width="1.4" ${l.dash?'stroke-dasharray="5 4"':''}/>${l.lab?`<text x="${sx(l.x)+3}" y="${m+10}" font-size="10" fill="${l.c||'#d97706'}">${l.lab}</text>`:''}`);
+ (o.hl||[]).forEach(l=>g+=`<line x1="${m}" y1="${sy(l.y)}" x2="${W-m}" y2="${sy(l.y)}" stroke="${l.c||'#d97706'}" stroke-width="1.4" ${l.dash?'stroke-dasharray="5 4"':''}/>${l.lab?`<text x="${W-m-3}" y="${sy(l.y)-3}" font-size="10" text-anchor="end" fill="${l.c||'#d97706'}">${l.lab}</text>`:''}`);
+ smp.forEach((p,i)=>{const c=cs[i],col=c.c||pal[i%4];let d='',pen=false,py=null,vp=[];
+  p.forEach(([x,y])=>{if(!isFinite(y)){pen=false;py=null;return}if(py!==null&&Math.abs(y-py)>(y1-y0)*1.5)pen=false;d+=(pen?'L':'M')+sx(x).toFixed(1)+' '+sy(y).toFixed(1);pen=true;py=y;if(x>=x0&&x<=x1&&y>=y0&&y<=y1)vp.push([x,y])});
+  g+=`<path d="${d}" clip-path="url(#${id})" fill="none" stroke="${col}" stroke-width="2.2" ${c.dash?'stroke-dasharray="5 4"':''}/>`;
+  if(c.lab&&vp.length){const q=vp[Math.floor(vp.length*(c.lp||.8))]||vp[vp.length-1];g+=`<text x="${Math.min(sx(q[0])+4,W-m-4)}" y="${Math.max(sy(q[1])-6,m+9)}" font-size="${o.mini?9:11}" fill="${col}" ${sx(q[0])>W-m-60?'text-anchor="end"':''}>${c.lab}</text>`}});
+ (o.pts||[]).forEach(q=>{g+=`<circle cx="${sx(q.x)}" cy="${sy(q.y)}" r="3.6" fill="${q.open?'var(--card)':(q.c||'#e11d48')}" stroke="${q.c||'#e11d48'}" stroke-width="1.6"/>`;if(q.l)g+=`<text x="${sx(q.x)+5}" y="${sy(q.y)-5}" font-size="${o.mini?9:10.5}" fill="currentColor">${q.l}</text>`});
+ if(o.ex)g+=o.ex(sx,sy);
+ return g+'</svg>'}
+function mapSvg(A,B,P,o={}){
+ const n=Math.max(A.length,B.length),H=44+n*26,W=290,id='m'+(U++),ya=(i,L)=>30+(i+.5)*(H-36)/L,cy=(30+H-6)/2,ry=(H-34)/2,hi=new Set(o.hi||[]),bad=new Set(o.bad||[]);
+ const mk=(s,c)=>`<marker id="${id}${s}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4 0 8z" fill="${c}"/></marker>`;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="gs"><defs>${mk('a','#2563eb')}${mk('b','#e11d48')}</defs>`;
+ s+=`<ellipse cx="62" cy="${cy}" rx="42" ry="${ry}" fill="none" stroke="currentColor"/><ellipse cx="228" cy="${cy}" rx="42" ry="${ry}" fill="none" stroke="currentColor"/><text x="62" y="16" text-anchor="middle" font-size="13" fill="currentColor">${o.la||'A'}</text><text x="228" y="16" text-anchor="middle" font-size="13" fill="currentColor">${o.lb||'B'}</text>`;
+ B.forEach((t,j)=>{const y=ya(j,B.length);if(hi.has(j))s+=`<rect x="206" y="${y-11}" width="44" height="22" rx="8" fill="var(--hi)"/>`;s+=`<text x="228" y="${y+4}" text-anchor="middle" font-size="13" fill="currentColor">${t}</text>`});
+ A.forEach((t,i)=>{s+=`<text x="62" y="${ya(i,A.length)+4}" text-anchor="middle" font-size="13" fill="currentColor">${t}</text>`});
+ (o.miss||[]).forEach(i=>s+=`<text x="26" y="${ya(i,A.length)+5}" font-size="14" fill="#e11d48">✗</text>`);
+ P.forEach(([i,j],k)=>{const b=bad.has(k);s+=`<line x1="82" y1="${ya(i,A.length)}" x2="205" y2="${ya(j,B.length)}" stroke="${b?'#e11d48':'#2563eb'}" stroke-width="1.6" marker-end="url(#${id}${b?'b':'a'})"/>`});
+ return s+'</svg>'}
+function flow(it,lab){const n=it.length,id='f'+(U++);let s=`<svg viewBox="0 0 ${n*120} 70" class="gs" style="max-width:${n*9}rem"><defs><marker id="${id}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4 0 8z" fill="#e11d48"/></marker></defs>`;
+ it.forEach((t,i)=>{const cx=i*120+60;s+=`<rect x="${cx-40}" y="28" width="80" height="30" rx="7" fill="var(--card)" stroke="var(--ac)" stroke-width="1.6"/><text x="${cx}" y="48" text-anchor="middle" font-size="12" fill="currentColor">${t}</text>`;if(i<n-1)s+=`<line x1="${cx+42}" y1="43" x2="${cx+78}" y2="43" stroke="#e11d48" stroke-width="1.8" marker-end="url(#${id})"/><text x="${cx+60}" y="34" text-anchor="middle" font-size="12" fill="#e11d48">${lab[i]||''}</text>`});return s+'</svg>'}
+const sroot=(x,y,t,fs=12)=>{const w=t.length*fs*.62+4;return `<path d="M${x} ${y-fs*.35}l${fs*.25} -${fs*.15} ${fs*.3} ${fs*.9} ${fs*.45} -${fs*1.25}h${w}" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="${x+fs+2}" y="${y}" font-size="${fs}" fill="currentColor">${t}</text>`};
+const ex=(t,b)=>`<div class="ex"><h3>${t}</h3>${b}</div>`,fig=(t,s,d)=>`<figure><figcaption>${t}</figcaption>${s}<p>${d}</p></figure>`;
+/* ---------- 题目引擎 ---------- */
+const Q=(q,a,d,e)=>({q,a:String(a),d:d.map(String),e}),F=(q,a,e)=>({q,a,e});
+const sol=q=>q.e?`<div class="sol">💡 <b>解析：</b>${q.e}</div>`:'';
+const mapF=(A,f,o)=>{const ys=A.map(f),B=[...new Set(ys)].sort((a,b)=>a-b);return mapSvg(A.map(M),B.map(M),A.map((x,i)=>[i,B.indexOf(ys[i])]),o)};
+const injSvg=(m,n)=>mapSvg([...Array(m)].map((_,i)=>String(i+1)),[...Array(n)].map((_,i)=>'abcdefghi'[i]),[...Array(m)].map((_,i)=>[i,i]),{hi:[...Array(n-m)].map((_,i)=>m+i)});
+const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹';
+const pN=(c,v='x')=>{let s='';for(let i=c.length-1;i>=0;i--){const k=c[i];if(!k)continue;const ab=+Math.abs(k).toFixed(4),p=i==0?'':i==1?v:v+String(i).split('').map(d=>SUP[d]).join('');s+=(k<0?'−':(s?'+':''))+(i==0?ab:(ab==1?'':ab)+p)}return s||'0'};
+const pm=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>r[i+j]+=x*y));return r};
+const pa=(a,b)=>{const r=Array(Math.max(a.length,b.length)).fill(0);a.forEach((x,i)=>r[i]+=x);b.forEach((x,i)=>r[i]+=x);return r};
+const pc=(g,f)=>{let r=[0],pw=[1];g.forEach(k=>{r=pa(r,pm([k],pw));pw=pm(pw,f)});return r};
+const pe=(c,x)=>c.reduceRight((s,k)=>s*x+k,0);
+const hard=()=>{for(;;){const a=nz(2,4),b=nz(-4,4),d=nz(-4,4),k=(a*d+b-d)/b;if(Number.isInteger(k)&&k)return F(`设 f(x)=${lin(a,b)}，g(x)=kx${sgn(d)}。若 g∘f=f∘g，则 k = ？`,k,`f(g(x))=${a}(kx${sgn(d)})${sgn(b)}=${a}kx${sgn(a*d+b)}；g(f(x))=k(${lin(a,b)})${sgn(d)}=${a}kx${sgn(b)}k${sgn(d)}（常数项为 ${b}k${sgn(d)}）。两者相等，比较常数项：${M(a*d+b)}=${b}k${sgn(d)} ⇒ k=${k}。`)}};
+/* ---------- 各小节内容 ---------- */
+const S=[
+{t:'5.1 函数的定义',
+def:`<div class="def"><b>函数：</b>f:A→B，对 A 中<b>每一个</b>元素，B 中都有<b>唯一</b>元素与它对应。只有「一对一」「多对一」是函数；「一对多」或「有元素没有像」都不是。<br>y=f(x)：x 叫<b>自变量（原像）</b>，y 叫<b>因变量（像）</b>。表示法：解析法、范氏图示法、列表法、图像法。</div>`,
+ex:()=>[ex('例题1　判断下列对应是否为函数',`<div class="row">${[
+ fig('(a) f',mapSvg(['1','2','3','4'],['a','b','c'],[[0,0],[1,1],[2,1]],{miss:[3]}),'4 没有像 ⇒ <b>不是</b>函数'),
+ fig('(b) g',mapSvg(['1','2','3'],['a','b','c','d'],[[0,0],[1,1],[2,2],[2,3]],{bad:[2,3]}),'3 有两个像 c、d ⇒ <b>不是</b>函数'),
+ fig('(c) h',mapSvg(['1','2','3'],['a','b'],[[0,0],[1,0],[2,1]]),'每个元素恰有一个像（多对一）⇒ <b>是</b>函数')].join('')}</div>`),
+ (()=>{const A=[-3,0,1,2,3],ys=A.map(x=>x*x+2),B=[...new Set(ys)].sort((a,b)=>a-b);
+ return ex('例题5、6　自变量与函数值',`<p>f(x)=x²+2：f(0)=2，f(1)=3，f(2)=6。反过来，f(x)=11 ⇒ x²+2=11 ⇒ (x+3)(x−3)=0 ⇒ x=−3 或 3（<b>多对一</b>：两个自变量对应同一函数值）。</p>${mapSvg(A.map(M),B.map(String),A.map((x,i)=>[i,B.indexOf(ys[i])]),{lb:'值'})}<p>g(x)=2x−3：g(1)=−1，g(−2)=−7，g(a)=2a−3，g(x−2)=2(x−2)−3=2x−7。</p>`)})()],
+calc:{t:'🧮 函数值计算器　f(x)=ax²+bx+c',f:[['a','a',1],['b','b',0],['c','c',2],['xs','x 的值（逗号分隔）','-3,-1,0,1,3'],['y0','求 f(x)=','11']],
+ run:v=>{const a=+v.a,b=+v.b,c=+v.c,y0=+v.y0,xs=nums(v.xs);N(a,b,c,y0);if(!xs.length)throw 0;const f=x=>a*x*x+b*x+c,ys=xs.map(f),B=[...new Set(ys)].map(y=>+y.toFixed(4)),yy=ys.map(y=>+y.toFixed(4));
+ let s=`<p><b>解：</b>f(x)=${poly(a,b,c)}，逐一代入：</p><table><tr><th>x</th>${xs.map(x=>`<td>${M(x)}</td>`).join('')}</tr><tr><th>f(x)</th>${yy.map(y=>`<td>${M(y)}</td>`).join('')}</tr></table>`;
+ s+=`<p>每个 x 都只有<b>唯一</b>的 f(x) ⇒ <b>是函数</b>${B.length<xs.length?'（有不同的 x 对应同一值，属「多对一」）':'（一对一）'}。</p>`+mapSvg(xs.map(M),B.map(M),yy.map((y,i)=>[i,B.indexOf(y)]),{lb:'f(x)'});
+ const C=c-y0;s+=`<p>解 f(x)=${M(y0)}：${poly(a,b,C)}=0　`;
+ if(!a)s+=b?`⇒ x=${fm(-C/b)}`:'（无法确定）';else{const D=b*b-4*a*C;if(D<0)s+='⇒ 判别式 D='+D+'<0，<b>无实数解</b>（没有原像）';else if(D==0)s+=`⇒ x=${fm(-b/(2*a))}（一个原像）`;else s+=`⇒ x=${frac(`${M(-b)} ± ${rt(D)}`,M(2*a))} ≈ ${T((-b+Math.sqrt(D))/(2*a))} 或 ${T((-b-Math.sqrt(D))/(2*a))}（两个原像）`}
+ return s+'</p>'}},
+m:[()=>{const a=nz(-5,5),b=nz(-9,9),k=R(-4,4);return Q(`设 f(x)=${lin(a,b)}，则 f(${M(k)}) = ？`,a*k+b,[a*k-b,a+k+b,-a*k+b],`f(${M(k)})=${M(a)}×(${M(k)})${sgn(b)}=${M(a*k)}${sgn(b)}=${M(a*k+b)}`)},
+ ()=>{const a=nz(-4,4),b=nz(-9,9),k=R(1,4);return Q(`设 f(x)=${poly(a,0,b)}，则 f(${M(-k)}) = ？`,a*k*k+b,[-a*k*k+b,a*k+b,-a*k+b],`f(${M(-k)})=${M(a)}×(${M(-k)})²${sgn(b)}=${M(a)}×${k*k}${sgn(b)}=${M(a*k*k+b)}（负数的平方是正数）`)},
+ ()=>{const t=R(0,3),A=t==1?['1','2','3','4']:['1','2','3'],P=t==0?[[0,0],[1,1],[2,1]]:[[0,0],[1,1],[2,2]];if(t==2)P.push([2,0]);const ok=t==0||t==3;return Q(`A={${A}}，B={a,b,c}，对应：${P.map(([i,j])=>`${A[i]}→${'abc'[j]}`).join('，')}。它是函数吗？`,ok?'是函数':'不是函数',[ok?'不是函数':'是函数'],`${ok?'每个元素都恰有一个像，':t==1?'4 没有像，':'3 有两个像 c 与 a，'}所以${ok?'<b>是</b>':'<b>不是</b>'}函数。`+mapSvg(A,['a','b','c'],P,{miss:t==1?[3]:[],bad:t==2?[2,3]:[]}))},
+ ()=>{const a=nz(-4,4),b=nz(-9,9),x=R(-5,5);return Q(`设 f(x)=${lin(a,b)}。若 f(x)=${M(a*x+b)}，则 x = ？`,x,[x+1,-x,a*x],`${lin(a,b)}=${M(a*x+b)} ⇒ ${M(a)}x=${M(a*x)} ⇒ x=${M(x)}`)},
+ ()=>{const c=R(1,8),k=R(1,4);return Q(`设 f(x)=x²−${c}，且 f(x)=${k*k-c}。x 共有几个值？`,2,[0,1,3],`x²−${c}=${k*k-c} ⇒ x²=${k*k} ⇒ x=${k} 或 x=−${k}，共 <b>2</b> 个（水平线交图像两点）。`+graph({mini:1,w:200,h:160,fns:[{f:x=>x*x-c}],xr:[-5,5],hl:[{y:k*k-c,dash:1}],pts:[{x:k,y:k*k-c},{x:-k,y:k*k-c}]}))}],
+fl:[()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-9,9),k=R(-3,3);return F(`设 f(x)=${poly(a,b,c)}，求 f(${M(k)})。`,a*k*k+b*k+c,`f(${M(k)})=${M(a)}·(${M(k)})²${sgn(b)}·(${M(k)})${sgn(c)}=${M(a*k*k)}${sgn(b*k)}${sgn(c)}=${M(a*k*k+b*k+c)}`)},
+ ()=>{const a=nz(2,5),b=nz(-9,9),x=R(-5,5);return F(`设 f(x)=${lin(a,b)}。若 f(x)=${M(a*x+b)}，求 x。`,x,`${lin(a,b)}=${M(a*x+b)} ⇒ ${M(a)}x=${M(a*x)} ⇒ x=${M(x)}`)}]},
+{t:'5.2 定义域与值域',
+def:`<div class="def"><b>定义域</b> D<sub>f</sub>＝自变量 x 的取值集合 A；<b>对应域</b>＝B；<b>值域</b> R<sub>f</sub>＝所有像的集合（R<sub>f</sub>⊆B）。<br>定义域未注明时，取使 f(x) 有意义的所有实数：${rt('□')}要求 □≥0；${frac(1,'□')}要求 □≠0。<br>几何意义：定义域＝图像在 x 轴的范围，值域＝图像在 y 轴的范围；<b>垂直线测试</b>：任何垂直于 x 轴的直线与函数图像至多交于一点。</div>`,
+ex:()=>[(()=>{const A=[-3,-2,-1,0,1,2],B=[-3,-1,1,3,5,6,7,8,9],ys=A.map(x=>2*x+3);return ex('例题8　f:x→2x+3',`<p>A={−3,−2,−1,0,1,2}，B={−3,−1,1,3,5,6,7,8,9}。</p>${mapSvg(A.map(M),B.map(M),A.map((x,i)=>[i,B.indexOf(ys[i])]),{hi:ys.map(y=>B.indexOf(y)),lb:'B（对应域）'})}<p>D<sub>f</sub>=A；值域（黄色）R<sub>f</sub>={−3,−1,1,3,5,7}。6、8、9 在 B 中却没有原像，所以不属于值域。</p>`)})(),
+ ex('例题10　从图像读定义域与值域（f(x)=2x²，−3≤x≤2）',graph({fns:[{f:x=>2*x*x,dom:[-3,2],lab:'y=2x²',lp:.3}],xr:[-4,3],yr:[-2,20],bx:[-3,2],by:[0,18],pts:[{x:-3,y:18,l:'(−3,18)'},{x:2,y:8,l:'(2,8)'}]})+'<p>蓝色带＝定义域 D<sub>f</sub>=[−3,2]；红色带＝值域 R<sub>f</sub>=[0,18]（最低点 (0,0)，最高点 (−3,18)）。</p>'),
+ ex('例题11　垂直线测试',`<div class="row">${fig('(a) y=x−2',graph({mini:1,w:170,h:150,fns:[{f:x=>x-2}],xr:[-3,4],yr:[-4,3],vl:[{x:1,dash:1}],pts:[{x:1,y:-1}]}),'垂直线只交一点 ⇒ <b>是</b>函数')}${fig('(b) x=y²',graph({mini:1,w:170,h:150,fns:[{par:t=>[t*t,t],t:[-2,2]}],xr:[-1,4],yr:[-3,3],vl:[{x:1,dash:1}],pts:[{x:1,y:1},{x:1,y:-1}]}),'垂直线交两点 ⇒ <b>不是</b>函数')}</div>`)],
+calc:{t:'🧮 值域计算器　f(x)=ax²+bx+c，p≤x≤q',f:[['a','a',1],['b','b',-2],['c','c',3],['p','p',-1],['q','q',4]],
+ run:v=>{const a=+v.a,b=+v.b,c=+v.c,p=+v.p,q=+v.q;N(a,b,c,p,q);if(!(p<q))throw 0;const f=x=>a*x*x+b*x+c,cand=[p,q],xv=a?-b/(2*a):NaN;if(a&&p<=xv&&xv<=q)cand.push(xv);const vs=cand.map(f),lo=Math.min(...vs),hi=Math.max(...vs);
+ return `<p><b>解：</b>f(x)=${poly(a,b,c)}，定义域 D<sub>f</sub>=[${p}, ${q}]。</p><p>端点：f(${M(p)})=${fm(f(p))}，f(${M(q)})=${fm(f(q))}${cand.length>2?`；顶点 x=${fm(xv)} 在区间内，f(${fm(xv)})=${fm(f(xv))}`:'；顶点不在区间内（函数在区间上单调）'}。</p><p>最小值 ${fm(lo)}，最大值 ${fm(hi)} ⇒ <b>值域 R<sub>f</sub>=[${fm(lo)}, ${fm(hi)}]</b></p>`+graph({fns:[{f,dom:[p,q],lab:'y=f(x)',lp:.2}],xr:[p-2,q+2],bx:[p,q],by:[lo,hi],pts:[{x:p,y:f(p)},{x:q,y:f(q)}].concat(cand.length>2?[{x:xv,y:f(xv),c:'#16a34a'}]:[])})}},
+m:[()=>{const k=R(2,3),c=R(-3,3);return Q(`A={−${k},…,${k}}（整数），f:A→R，f(x)=x²${c?sgn(c):''}。值域中有几个元素？`,k+1,[2*k+1,k,k+2],`x=n 与 x=−n 的像相同，所以像只有 ${[...Array(k+1).keys()].map(i=>i*i+c).join('、')}，共 <b>${k+1}</b> 个。`+mapF([...Array(2*k+1)].map((_,i)=>i-k),x=>x*x+c))},
+ ()=>{const h=R(-2,3),k=R(-4,4),p=h-R(1,3),q=h+R(1,4);return Q(`f(x)=${sqx(h)}${k?sgn(k):''}，${p}≤x≤${q}，则 f 的最小值为？`,k,[(p-h)**2+k,(q-h)**2+k,k+1],`顶点 x=${h} 在区间 [${p}, ${q}] 内，且 (x−${h})²≥0，所以最小值在 x=${h} 取得：${k}。`+graph({mini:1,w:220,h:170,fns:[{f:x=>(x-h)**2+k,dom:[p,q]}],xr:[p-1,q+1],bx:[p,q],pts:[{x:h,y:k,l:'最小'}]}))},
+ ()=>{const h=R(-2,3),k=R(-4,4),r=R(1,3),p=h-r,q=h+r+R(1,3);const f=x=>(x-h)**2+k;return Q(`f(x)=${sqx(h)}${k?sgn(k):''}，${p}≤x≤${q}，则 f 的最大值为？`,Math.max(f(p),f(q)),[f(h),Math.min(f(p),f(q)),k],`开口向上，最大值在离顶点较远的端点：f(${p})=${f(p)}，f(${q})=${f(q)}，取较大者 <b>${Math.max(f(p),f(q))}</b>。`+graph({mini:1,w:220,h:170,fns:[{f,dom:[p,q]}],xr:[p-1,q+1],bx:[p,q],pts:[{x:p,y:f(p),l:String(f(p))},{x:q,y:f(q),l:String(f(q))}]}))},
+ ()=>{const a=R(1,6);return Q(`f(x)=${rt('x−'+a)} 的定义域是？`,`x≥${a}`,[`x≤${a}`,`x>${a}`,`x≠${a}`],`根号内必须 ≥0：x−${a}≥0 ⇒ x≥${a}。`+graph({mini:1,w:200,h:150,fns:[{f:x=>Math.sqrt(x-a),dom:[a,a+8]}],xr:[a-2,a+8],pts:[{x:a,y:0}]}))},
+ ()=>{const a=R(1,6);return Q(`f(x)=${frac(1,'x−'+a)} 的定义域是？`,`x≠${a}`,[`x≠${-a}`,'x≠0',`x>${a}`],`分母不能为 0：x−${a}≠0 ⇒ x≠${a}（图像在 x=${a} 处断开）。`+graph({mini:1,w:200,h:150,fns:[{f:x=>1/(x-a)}],xr:[a-5,a+5],yr:[-5,5],vl:[{x:a,dash:1}]}))}],
+fl:[()=>{const h=R(-2,3),k=R(-4,4),r=R(1,3),p=h-r,q=h+r+R(1,3);const f=x=>(x-h)**2+k;return F(`f(x)=${sqx(h)}${k?sgn(k):''}，${p}≤x≤${q}，求 f 的最大值。`,Math.max(f(p),f(q)),`开口向上，最大值在离顶点较远的端点：f(${p})=${f(p)}，f(${q})=${f(q)}，取较大者 ${Math.max(f(p),f(q))}。`+graph({mini:1,w:220,h:170,fns:[{f,dom:[p,q]}],xr:[p-1,q+1],bx:[p,q],pts:[{x:p,y:f(p),l:String(f(p))},{x:q,y:f(q),l:String(f(q))}]}))},
+ ()=>{const a=R(1,9);return F(`f(x)=${frac(3,'x−'+a)}，定义域中不能取的 x 值是？`,a,`分母 x−${a} 不能为 0 ⇒ x=${a}。`)}]},
+{t:'5.3 图像与变换',
+def:`<div class="def"><b>图像变换口诀</b>（h,k,a>0）<br>y=f(x)+k：上移 k；y=f(x)−k：下移 k　｜　y=f(x−h)：右移 h；y=f(x+h)：左移 h<br>y=−f(x)：对 x 轴反射；y=f(−x)：对 y 轴反射　｜　y=af(x)：纵向伸缩 a 倍；y=f(ax)：横向缩为原来的 ${frac(1,'a')}<br>配方法：y=ax²+bx+c ⇒ y=a(x−h)²+k，顶点 (h,k)，对称轴 x=h；a>0 开口向上，a<0 开口向下。</div>`,
+ex:()=>[ex('例题13　y=2x² → 2(x−3)² → 2(x−3)²+2',graph({fns:[{f:x=>2*x*x,dash:1,c:'#94a3b8',lab:'y=2x²',lp:.62},{f:x=>2*(x-3)**2,dash:1,c:'#2563eb',lab:'y=2(x−3)²',lp:.9},{f:x=>2*(x-3)**2+2,c:'#e11d48',lab:'y=2(x−3)²+2',lp:.95}],xr:[-2,7],yr:[-1,18],pts:[{x:3,y:2,l:'顶点(3,2)'}]})+'<p>① 画 y=2x²；② 右移 3 个单位得 y=2(x−3)²；③ 上移 2 个单位得 y=2(x−3)²+2。</p>'),
+ ex('例题14　y=3x²+6x+1',graph({fns:[{f:x=>3*x*x,dash:1,c:'#94a3b8',lab:'y=3x²',lp:.75},{f:x=>3*(x+1)**2,dash:1,c:'#2563eb',lab:'y=3(x+1)²',lp:.2},{f:x=>3*x*x+6*x+1,c:'#e11d48',lab:'y=3x²+6x+1',lp:.9}],xr:[-4,3],yr:[-3,14],pts:[{x:-1,y:-2,l:'顶点(−1,−2)'}],vl:[{x:-1,dash:1,lab:'x=−1'}]})+'<p>配方：3x²+6x+1=3(x+1)²−2。y=3x² 左移 1 个单位、再下移 2 个单位，顶点 (−1,−2)，对称轴 x=−1。</p>'),
+ ex('例题16　定义域与值域',`<div class="row">${fig('f(x)='+rt('x−3'),graph({mini:1,w:170,h:150,fns:[{f:x=>Math.sqrt(x-3),dom:[3,9]}],xr:[-1,9],yr:[-1,4],pts:[{x:3,y:0}]}),'x−3≥0 ⇒ D<sub>f</sub>=[3,∞)，R<sub>f</sub>=[0,∞)')}${fig('g(x)='+frac(1,'x−2'),graph({mini:1,w:170,h:150,fns:[{f:x=>1/(x-2)}],xr:[-4,8],yr:[-5,5],vl:[{x:2,dash:1}],hl:[{y:0,dash:1}]}),'x≠2 ⇒ D<sub>g</sub>={x|x≠2}，R<sub>g</sub>={y|y≠0}')}</div>`)],
+calc:{t:'🧮 配方计算器　y=ax²+bx+c → y=a(x−h)²+k',f:[['a','a',3],['b','b',6],['c','c',1]],
+ run:v=>{const a=+v.a,b=+v.b,c=+v.c;N(a,b,c);if(!a)throw 0;const h=-b/(2*a),k=c-b*b/(4*a),A=a==1?'':a==-1?'−':fm(a);
+ return `<p><b>解：</b>y=${poly(a,b,c)}</p><p>= ${A}(x${h>0?'−':'+'}${fm(Math.abs(h))})²${k>=0?'+':'−'}${fm(Math.abs(k))}</p><p>顶点 (${fm(h)}, ${fm(k)})，对称轴 x=${fm(h)}，开口${a>0?'向上（有最小值 '+fm(k)+'）':'向下（有最大值 '+fm(k)+'）'}。</p><p>作法：y=ax² ⇒ ${h==0?'不需左右平移':'向'+(h>0?'右':'左')+'移 '+fm(Math.abs(h))+' 个单位'} ⇒ ${k==0?'不需上下平移':'向'+(k>0?'上':'下')+'移 '+fm(Math.abs(k))+' 个单位'}。</p>`+graph({fns:[{f:x=>a*x*x,dash:1,c:'#94a3b8',lab:'y=ax²',lp:.85},{f:x=>a*x*x+b*x+c,lab:'y=f(x)',lp:.9}],xr:[Math.floor(h)-4,Math.ceil(h)+4],pts:[{x:h,y:k,l:`(${T(h)}, ${T(k)})`}],vl:[{x:h,dash:1,lab:'x='+T(h)}]})}},
+m:[()=>{const a=nz(-3,3),h=nz(-5,5),k=nz(-6,6);return Q(`抛物线 y=${a==1?'':a==-1?'−':a}${sqx(h)}${k?sgn(k):''} 的顶点的 x 坐标是？`,h,[-h,k,-k],`顶点式 y=a(x−h)²+k 的顶点是 (h,k)。括号里是 x${h>0?'−'+h:'+'+(-h)}，所以 h=${h}。`+graph({mini:1,w:220,h:170,fns:[{f:x=>a*(x-h)**2+k}],xr:[h-4,h+4],pts:[{x:h,y:k,l:`(${h},${k})`}],vl:[{x:h,dash:1}]}))},
+ ()=>{const m=R(1,4),c=R(-3,6);return Q(`y=x²+${2*m}x${sgn(c)} 的最小值是？`,c-m*m,[c+m*m,c-2*m,c],`配方：x²+${2*m}x${sgn(c)}=(x+${m})²${sgn(c-m*m)}（加减 ${m*m}），开口向上，最小值 <b>${c-m*m}</b>。`+graph({mini:1,w:220,h:170,fns:[{f:x=>x*x+2*m*x+c}],xr:[-m-4,-m+4],pts:[{x:-m,y:c-m*m,l:'最小'}]}))},
+ ()=>{const o=[['向右平移 h 个单位','y=f(x−h)'],['向左平移 h 个单位','y=f(x+h)'],['向上平移 k 个单位','y=f(x)+k'],['向下平移 k 个单位','y=f(x)−k'],['对 x 轴作反射','y=−f(x)'],['对 y 轴作反射','y=f(−x)']],t=pick(o);return Q(`将 y=f(x) 的图像${t[0]}，得到？`,t[1],shuf(o.filter(x=>x!=t)).slice(0,3).map(x=>x[1]),`「${t[0]}」对应 <b>${t[1]}</b>。记忆：左右平移改 x（且「加减相反」：右移是 x−h，左移是 x+h）；上下平移直接加减在 f(x) 外；反射加负号（−f(x) 对 x 轴，f(−x) 对 y 轴）。`)},
+ ()=>{const a=nz(-4,4),h=nz(-5,5),k=nz(-6,6);return Q(`抛物线 y=${a==1?'':a==-1?'−':a}${sqx(h)}${k?sgn(k):''} 的对称轴是？`,`x=${h}`,[`x=${-h}`,`y=${k}`,`x=${k}`],`对称轴通过顶点：y=a(x−h)²+k 的对称轴是 x=h。括号里 x${h>0?'−'+h:'+'+(-h)}，所以 x=${h}。`+graph({mini:1,w:220,h:170,fns:[{f:x=>a*(x-h)**2+k}],xr:[h-4,h+4],pts:[{x:h,y:k}],vl:[{x:h,dash:1,lab:'x='+h}]}))},
+ ()=>{const h=R(1,5),k=R(1,5);return Q(`将 y=2x² 先向右移 ${h} 个单位，再向上移 ${k} 个单位，得到？`,`y=2(x−${h})²+${k}`,[`y=2(x+${h})²+${k}`,`y=2(x−${h})²−${k}`,`y=2(x+${h})²−${k}`],`右移 ${h}：x 换成 x−${h}；上移 ${k}：整体加 ${k} ⇒ y=2(x−${h})²+${k}，顶点 (${h},${k})。`+graph({mini:1,w:230,h:180,fns:[{f:x=>2*x*x,dash:1,c:'#94a3b8'},{f:x=>2*(x-h)**2+k,lab:'结果',lp:.9}],xr:[-3,h+3],pts:[{x:h,y:k}]}))}],
+fl:[()=>{const m=R(1,5),c=R(-4,8);return F(`y=x²+${2*m}x${sgn(c)} 的对称轴为 x=？`,-m,`x²+${2*m}x${sgn(c)}=(x+${m})²${sgn(c-m*m)}，顶点式的对称轴是 x=−${m}。`)},
+ ()=>{const m=R(1,5),c=R(-4,8);return F(`y=x²−${2*m}x${sgn(c)} 的最小值为？`,c-m*m,`x²−${2*m}x${sgn(c)}=(x−${m})²${sgn(c-m*m)}，开口向上，最小值 ${c-m*m}（在 x=${m}）。`)}]},
+{t:'5.4 合成函数',
+def:`<div class="def"><b>合成函数：</b>(g∘f)(x)=g(f(x))——先做 f，再做 g。要求 f 的值域 ⊆ g 的定义域（R<sub>f</sub>⊆D<sub>g</sub>）。<br>一般情况下 g∘f ≠ f∘g（顺序不同，结果通常不同）；但 (f∘g)∘h = f∘(g∘h)。</div>`,
+ex:()=>[ex('例题17　f(x)=x²+1，g(x)=2x+1',`${flow(['x','x²+1','2x²+3'],['f','g'])}<p>(g∘f)(x)=g(x²+1)=2(x²+1)+1=<b>2x²+3</b></p>${flow(['x','2x+1','4x²+4x+2'],['g','f'])}<p>(f∘g)(x)=f(2x+1)=(2x+1)²+1=<b>4x²+4x+2</b>　⇒ g∘f≠f∘g</p>`+graph({fns:[{f:x=>2*x*x+3,lab:'g∘f',lp:.85},{f:x=>4*x*x+4*x+2,lab:'f∘g',lp:.7}],xr:[-3,3],yr:[0,30]})),
+ ex('例题20　已知 f(x)=2x+1，求 g 使 f∘g=6x+11',`<p>f(g(x))=6x+11 ⇒ 2g(x)+1=6x+11 ⇒ 2g(x)=6x+10 ⇒ <b>g(x)=3x+5</b></p><p>验算（取 x=1）：g(1)=8，f(8)=17，而 6(1)+11=17 ✓</p>${flow(['1','g(1)=8','f(8)=17'],['g','f'])}`)],
+calc:{t:'🧮 合成函数计算器　f、g 可含 x³、x²、x 与常数项',f:[['a3','f：x³ 系数',0],['a2','f：x² 系数',1],['a1','f：x 系数',0],['a0','f：常数项',1],['b3','g：x³ 系数',0],['b2','g：x² 系数',0],['b1','g：x 系数',2],['b0','g：常数项',1],['x0','x₀',2]],
+ run:v=>{const f=[+v.a0,+v.a1,+v.a2,+v.a3],g=[+v.b0,+v.b1,+v.b2,+v.b3],x0=+v.x0;N(...f,...g,x0);const gf=pc(g,f),fg=pc(f,g),eq=gf.length==fg.length&&gf.every((k,i)=>Math.abs(k-fg[i])<1e-9),F1=pe(f,x0),G1=pe(g,x0);
+ return `<p><b>解：</b>f(x)=${pN(f)}，g(x)=${pN(g)}</p><p>(g∘f)(x)=g(f(x))=g(${pN(f)}) ⇒ <b>${pN(gf)}</b></p><p>(f∘g)(x)=f(g(x))=f(${pN(g)}) ⇒ <b>${pN(fg)}</b></p><p>${eq?'两者<b>恒等</b>。':'两者<b>不恒等</b>（g∘f≠f∘g）。'}</p><p>x₀=${x0}：f(${x0})=${T(F1)}，(g∘f)(${x0})=${T(pe(gf,x0))}；g(${x0})=${T(G1)}，(f∘g)(${x0})=${T(pe(fg,x0))}。</p>`+flow([String(x0),String(T(F1)),String(T(pe(gf,x0)))],['f','g'])+flow([String(x0),String(T(G1)),String(T(pe(fg,x0)))],['g','f'])+graph({fns:[{f:x=>pe(gf,x),lab:'g∘f',lp:.85},{f:x=>pe(fg,x),c:'#16a34a',lab:'f∘g',lp:.5}],xr:[-3,3],pts:[{x:x0,y:pe(gf,x0),l:'g∘f'},{x:x0,y:pe(fg,x0),c:'#16a34a',l:'f∘g'}]})}},
+m:[()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),d=nz(-5,5),k=R(-3,3);const gf=c*(a*k+b)+d;return Q(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}，则 (g∘f)(${M(k)}) = ？`,gf,[a*(c*k+d)+b,gf+1,c*a*k+d],`先 f 后 g：f(${M(k)})=${M(a*k+b)}，g(${M(a*k+b)})=${M(gf)}。`+flow([M(k),M(a*k+b),M(gf)],['f','g']))},
+ ()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),d=nz(-5,5),k=R(-3,3);const fg=a*(c*k+d)+b;return Q(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}，则 (f∘g)(${M(k)}) = ？`,fg,[c*(a*k+b)+d,fg-1,a*c*k+b],`先 g 后 f：g(${M(k)})=${M(c*k+d)}，f(${M(c*k+d)})=${M(fg)}。`+flow([M(k),M(c*k+d),M(fg)],['g','f']))},
+ ()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),d=nz(-5,5);return Q(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}，(g∘f)(x)=${lin(c*a,0).replace(/x$/,'x')}+□，□ = ？`,c*b+d,[a*d+b,b+d,c*b],`(g∘f)(x)=g(${lin(a,b)})=${M(c)}(${lin(a,b)})${sgn(d)}=${lin(c*a,c*b+d)}，常数项 <b>${M(c*b+d)}</b>。`)},
+ ()=>{const p=nz(-4,4),m=nz(2,4),n=nz(-4,4);return Q(`f(x)=x²${sgn(p)}，g(x)=${lin(m,n)}，则 (g∘f)(x) = ？`,poly(m,0,m*p+n),[poly(m,0,p+n),poly(m*m,0,m*p+n),poly(1,0,m*p+n)],`g(f(x))=${m}(x²${sgn(p)})${sgn(n)}=${poly(m,0,m*p)}${sgn(n)}=${poly(m,0,m*p+n)}（别忘了 ${m} 要乘进括号里的常数）。`)},
+ ()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),d=nz(-5,5),gf=c*(a+b)+d,fg=a*(c+d)+b;return Q(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}。(g∘f)(1) 与 (f∘g)(1) 是否相等？`,gf==fg?'相等':'不相等',[gf==fg?'不相等':'相等'],`(g∘f)(1)=g(f(1))=g(${M(a+b)})=${M(gf)}；(f∘g)(1)=f(g(1))=f(${M(c+d)})=${M(fg)}。${gf==fg?'两者相等。':'两者不相等（g∘f 与 f∘g 一般不同）。'}`+flow(['1',M(a+b),M(gf)],['f','g'])+flow(['1',M(c+d),M(fg)],['g','f']))}],
+fl:[()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),d=nz(-5,5),k=R(-3,3);return F(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}，求 (g∘f)(${M(k)})。`,c*(a*k+b)+d,`先 f：f(${M(k)})=${M(a*k+b)}；再 g：g(${M(a*k+b)})=${M(c*(a*k+b)+d)}。`+flow([M(k),M(a*k+b),M(c*(a*k+b)+d)],['f','g']))},
+ ()=>{const p=nz(-4,4),m=nz(2,4),n=nz(-4,4),k=R(-2,3);return F(`f(x)=${lin(m,n)}，g(x)=x²${sgn(p)}，求 (g∘f)(${M(k)})。`,(m*k+n)**2+p,`先 f：f(${M(k)})=${M(m*k+n)}；再 g：g(${M(m*k+n)})=(${M(m*k+n)})²${sgn(p)}=${M((m*k+n)**2+p)}。`+flow([M(k),M(m*k+n),M((m*k+n)**2+p)],['f','g']))}]},
+{t:'5.5 一对一与映成',
+def:`<div class="def"><b>一对一（单射）：</b>B 中每个元素在 A 中<b>至多一个</b>原像。图像上：任何水平线与图像至多交于一点。<br><b>映成（满射）：</b>B 中每个元素在 A 中<b>至少一个</b>原像（值域＝对应域）。<br><b>一一映成（双射）：</b>既一对一又映成 ⇒ 才有反函数。</div>`,
+ex:()=>[ex('例题22　水平线测试（R→R）',`<div class="row">${[
+ ['(a) f(x)=2x',x=>2*x,[-3,3],[-5,5],2,[[1,2]],'交一点 ⇒ 一对一'],['(b) f(x)=|x|',Math.abs,[-3,3],[-1,5],1,[[-1,1],[1,1]],'1 有两个原像 ±1 ⇒ 不一对一'],
+ ['(c) f(x)=x³+1',x=>x**3+1,[-2,2],[-6,10],2,[[1,2]],'交一点 ⇒ 一对一'],['(d) f(x)=x²−4',x=>x*x-4,[-3,3],[-5,6],0,[[-2,0],[2,0]],'0 有两个原像 ±2 ⇒ 不一对一']
+ ].map(([t,f,xr,yr,k,P,d])=>fig(t,graph({mini:1,w:170,h:150,fns:[{f}],xr,yr,hl:[{y:k,dash:1}],pts:P.map(([x,y])=>({x,y}))}),d)).join('')}</div>`),
+ ex('例题24 与图示　一对一／映成／一一映成',`<div class="row">${fig('一对一，但不映成',mapSvg(['1','2','3'],['a','b','c','d'],[[0,0],[1,1],[2,2]],{hi:[3]}),'d（黄）没有原像 ⇒ 不映成')}${fig('映成，但不一对一',mapSvg(['1','2','3','4'],['a','b','c'],[[0,0],[1,0],[2,1],[3,2]]),'a 有两个原像 ⇒ 不一对一')}${fig('一一映成',mapSvg(['1','2','3'],['a','b','c'],[[0,1],[1,2],[2,0]]),'一对一 ＋ 映成 ⇒ 有反函数')}</div>`)],
+calc:{t:'🧮 水平线测试器　选择函数并拖动水平线 y=k',f:[['t','函数类型','lin',[['lin','y=ax+b'],['quad','y=ax²+b'],['cube','y=ax³+b'],['abs','y=a|x|+b'],['sqrt','y=a√x+b（x≥0）']]],['a','a',1],['b','b',0],['k','水平线 y=k',4]],
+ run:v=>{const a=+v.a,b=+v.b,k=+v.k,t=v.t;N(a,b,k);const D={lin:[x=>a*x+b,a!=0,a!=0],quad:[x=>a*x*x+b,false,false],cube:[x=>a*x**3+b,a!=0,a!=0],abs:[x=>a*Math.abs(x)+b,false,false],sqrt:[x=>a*Math.sqrt(x)+b,a!=0,false]}[t],f=D[0],r=a?(k-b)/a:NaN;let P=[],cnt;
+ if(t=='lin'||t=='cube')cnt=a?1:(k==b?'∞':0),a&&P.push([t=='lin'?r:Math.cbrt(r),k]);
+ else if(t=='sqrt')cnt=a&&r>=0?1:0,cnt&&P.push([r*r,k]);
+ else{cnt=!a?(k==b?'∞':0):r>0?2:r==0?1:0;if(a&&r>=0){const s=t=='quad'?Math.sqrt(r):r;P.push([s,k]);if(r>0)P.push([-s,k])}}
+ const ok=(x)=>x?'<span class="good">✔ 是</span>':'<span class="bad">✘ 否</span>',one=D[1],on=D[2],dm=t=='sqrt'?'[0,∞)→R':'R→R';
+ return `<p>函数 ${dm}，水平线 y=${k} 与图像交于 <b>${cnt}</b> 点。</p><p>一对一：${ok(one)}（${one?'任何水平线至多交一点':'存在水平线交两点或更多'}）　映成：${ok(on)}（${on?'值域为 R':'值域不是整个 R'}）　一一映成：${ok(one&&on)}${one&&on?'，<b>有反函数</b>':''}</p>`+graph({fns:[{f,dom:t=='sqrt'?[0,5]:undefined,lab:'y=f(x)',lp:.9}],xr:[-5,5],hl:[{y:k,dash:1,lab:'y='+k}],pts:P.map(([x,y])=>({x,y,l:`(${T(x)}, ${y})`}))})}},
+m:[()=>{const c1=R(-4,4),c2=nz(-4,4),a1=nz(-3,3),a2=nz(1,3),o=[[lin(a1,c1),x=>a1*x+c1,1],[poly(a2,0,c1),x=>a2*x*x+c1,0],[`x³${sgn(c2)}`,x=>x**3+c2,1],[`|x|${sgn(c2)}`,x=>Math.abs(x)+c2,0]],t=pick(o),k=t[1](2);return Q(`f:R→R，f(x)=${t[0]}。f 是一对一函数吗？`,t[2]?'是':'不是',[t[2]?'不是':'是'],(t[2]?`水平线 y=${k} 只与图像交于一点，每个函数值只有一个原像 ⇒ <b>是</b>一对一。`:`水平线 y=${k} 与图像交于 x=±2 两点，${k} 有两个原像 ⇒ <b>不是</b>一对一。`)+graph({mini:1,w:200,h:160,fns:[{f:t[1]}],xr:[-4,4],hl:[{y:k,dash:1}],pts:t[2]?[{x:2,y:k}]:[{x:2,y:k},{x:-2,y:k}]}))},
+ ()=>{const c1=R(-4,4),c2=nz(-4,4),a1=nz(-3,3),o=[[lin(a1,c1),x=>a1*x+c1,1,0],[poly(1,0,c1),x=>x*x+c1,0,c1],[`x³${sgn(c2)}`,x=>x**3+c2,1,0],[`|x|${sgn(c2)}`,x=>Math.abs(x)+c2,0,c2]],t=pick(o),k=t[2]?t[1](2):t[3]-2;return Q(`f:R→R，f(x)=${t[0]}。f 是映成函数吗？`,t[2]?'是':'不是',[t[2]?'不是':'是'],(t[2]?`任何实数 y 都能找到原像（例如 y=${k} 的原像是 x=2），值域为 R ⇒ <b>是</b>映成。`:`图像最低只到 ${t[3]}，水平线 y=${k} 与图像没有交点，${k} 没有原像 ⇒ <b>不是</b>映成。`)+graph({mini:1,w:200,h:160,fns:[{f:t[1]}],xr:[-4,4],yr:t[2]?undefined:[t[3]-5,t[3]+10],hl:[{y:k,dash:1}],pts:t[2]?[{x:2,y:k}]:[]}))},
+ ()=>{const m=R(2,4),n=m+R(1,3);return Q(`A 有 ${m} 个元素，B 有 ${n} 个元素，f:A→B 是一对一函数，则 B 中没有原像的元素有几个？`,n-m,[m,n,n+m],`一对一：A 的 ${m} 个元素各占用 B 中不同的 1 个元素，B 剩下 ${n}−${m}=${n-m} 个（黄色）没有原像。`+injSvg(m,n))},
+ ()=>Q('若某条水平线与函数 y=f(x) 的图像交于两点，则 f：','不是一对一函数',['不是映成函数','是一一映成函数','是一对一函数'],'交于两点，表示这个函数值有<b>两个原像</b>，违反「一对一」（至多一个原像），所以不是一对一函数，也就不是一一映成。至于是否映成，由这个条件无法判断。'+graph({mini:1,w:200,h:160,fns:[{f:x=>x*x}],xr:[-3,3],hl:[{y:4,dash:1}],pts:[{x:2,y:4},{x:-2,y:4}]})),
+ ()=>{const c2=nz(-4,4),a1=nz(1,3),c1=R(-4,4),o=[[`x³${sgn(c2)}`,x=>x**3+c2,1,0],[lin(a1,c1),x=>a1*x+c1,1,0],[poly(1,0,c1),x=>x*x+c1,0,c1],[`|x|${sgn(c2)}`,x=>Math.abs(x)+c2,0,c2]],t=pick(o),k=t[1](2);return Q(`f:R→R，f(x)=${t[0]}，则 f 是？`,t[2]?'一一映成':'一对一与映成皆不是',['一对一但不映成','映成但不一对一',t[2]?'一对一与映成皆不是':'一一映成'],(t[2]?'任何水平线都恰好交图像于一点 ⇒ 既一对一又映成 ⇒ <b>一一映成</b>。':`水平线 y=${k}（红）交两点 ⇒ 不一对一；水平线 y=${t[3]-2}（绿）不相交 ⇒ 不映成。`)+graph({mini:1,w:200,h:160,fns:[{f:t[1]}],xr:[-4,4],yr:t[2]?undefined:[t[3]-5,k+3],hl:[{y:k,dash:1}].concat(t[2]?[]:[{y:t[3]-2,dash:1,c:'#16a34a'}]),pts:t[2]?[{x:2,y:k}]:[{x:2,y:k},{x:-2,y:k}]}))}],
+fl:[()=>{const m=R(2,5);return F(`A 有 ${m} 个元素，f:A→B 是一对一函数，则 f 的值域有几个元素？`,m,`一对一 ⇒ 不同的元素有不同的像，所以 ${m} 个元素恰有 ${m} 个不同的像。`+injSvg(m,m))},
+ ()=>{const m=R(2,4),n=m+R(1,4);return F(`A 有 ${m} 个元素，B 有 ${n} 个元素，f:A→B 是一对一函数，B 中没有原像的元素有几个？`,n-m,`值域占 ${m} 个，B 剩下 ${n}−${m}=${n-m} 个（黄色）没有原像。`+injSvg(m,n))}]},
+{t:'5.6 反函数',
+def:`<div class="def"><b>反函数：</b>f:A→B 是<b>一一映成</b>函数时，才存在 f⁻¹：y=f(x) ⇔ x=f⁻¹(y)。<br>求法：设 y=f⁻¹(x) ⇒ x=f(y) ⇒ 解出 y。　f⁻¹ 的定义域＝f 的值域，f⁻¹ 的值域＝f 的定义域。<br>f 与 f⁻¹ 的图像对称于直线 y=x；(fog)⁻¹ = g⁻¹∘f⁻¹。</div>`,
+ex:()=>[ex('例题28　f(x)=2x+4 的反函数',`<p>设 y=f⁻¹(x)，则 x=f(y)=2y+4 ⇒ y=${frac('x−4',2)}，即 <b>f⁻¹(x)=${frac('x−4',2)}</b>。</p>`+graph({fns:[{f:x=>2*x+4,lab:'y=f(x)',lp:.9},{f:x=>(x-4)/2,c:'#16a34a',lab:'y=f⁻¹(x)',lp:.9},{f:x=>x,dash:1,c:'#94a3b8',lab:'y=x',lp:.95}],xr:[-6,6],yr:[-6,6],pts:[{x:0,y:4,l:'(0,4)'},{x:4,y:0,c:'#16a34a',l:'(4,0)'}]})+'<p>点 (0,4) 在 f 上，对称点 (4,0) 在 f⁻¹ 上：两图像对称于 y=x。</p>'),
+ ex('例题29(b)　g(x)=x²（x≥0）的反函数',`<p>g:R⁺∪{0}→R⁺∪{0} 是一一映成。设 y=g⁻¹(x) ⇒ x=y² ⇒ y=${rt('x')}。故 g⁻¹(x)=${rt('x')}。</p>`+graph({fns:[{f:x=>x*x,dom:[0,2.5],lab:'y=x²',lp:.8},{f:Math.sqrt,dom:[0,6],c:'#16a34a',lp:.9},{f:x=>x,dash:1,c:'#94a3b8',lab:'y=x',lp:.95}],xr:[-1,6],yr:[-1,6],ex:(sx,sy)=>`<text x="${sx(3.7)}" y="${sy(3)}" font-size="11" fill="#16a34a">y=</text>`+`<g style="color:#16a34a">${sroot(sx(4.15),sy(3),'x',11)}</g>`})),
+ ex('例题30　f(x)=3x+2，g(x)=2x−5',`<p>f⁻¹(x)=${frac('x−2',3)}，g⁻¹(x)=${frac('x+5',2)}。</p><p>(f∘g)(x)=3(2x−5)+2=6x−13 ⇒ (f∘g)⁻¹(x)=${frac('x+13',6)}</p><p>(g⁻¹∘f⁻¹)(x)=${frac(`${frac('x−2',3)}+5`,2)}=${frac('x+13',6)} ✓　⇒ <b>(f∘g)⁻¹ = g⁻¹∘f⁻¹</b>（顺序要反过来）</p>${flow(['x','g(x)','f(g(x))'],['g','f'])}${flow(['f(g(x))','g(x)','x'],['f⁻¹','g⁻¹'])}`)],
+calc:{t:'🧮 反函数计算器　f(x)=ax+b',f:[['a','a',2],['b','b',4],['p','取点 x=',1]],
+ run:v=>{const a=+v.a,b=+v.b,p=+v.p;N(a,b,p);if(!a)throw 0;const f=x=>a*x+b,fi=x=>(x-b)/a,q=f(p),num=b==0?'x':'x'+(b>0?'−'+b:'+'+(-b));
+ return `<p><b>解：</b>设 y=f⁻¹(x)，则 x=f(y)=${lin(a,b).replace(/x/g,'y')}</p>`+`<p>⇒ ${M(a)}y = x${b?(b>0?'−'+b:'+'+(-b)):''} ⇒ y=${frac(num,M(a))}</p><p><b>f⁻¹(x)=${frac(num,M(a))}</b>　验算：f(f⁻¹(x))=x ✓</p><p>点 P(${p}, ${T(q)}) 在 f 上 ⇒ 点 Q(${T(q)}, ${p}) 在 f⁻¹ 上。</p>`+graph({fns:[{f,lab:'y=f(x)',lp:.9},{f:fi,c:'#16a34a',lab:'y=f⁻¹(x)',lp:.9},{f:x=>x,dash:1,c:'#94a3b8',lab:'y=x',lp:.95}],xr:[-8,8],yr:[-8,8],pts:[{x:p,y:q,l:'P'},{x:q,y:p,c:'#16a34a',l:'Q'}]})}},
+m:[()=>{const a=nz(-4,4),b=nz(-9,9),x=R(-5,5),k=a*x+b,L=Math.max(8,Math.abs(k)+2,Math.abs(x)+2);return Q(`f(x)=${lin(a,b)}，则 f⁻¹(${M(k)}) = ？`,x,[x+1,-x,k],`f⁻¹(${M(k)}) 就是满足 f(x)=${M(k)} 的 x：${lin(a,b)}=${M(k)} ⇒ ${M(a)}x=${M(k-b)} ⇒ x=${M(x)}。`+graph({fns:[{f:t=>a*t+b,lab:'f',lp:.9},{f:t=>(t-b)/a,c:'#16a34a',lab:'f⁻¹',lp:.9},{f:t=>t,dash:1,c:'#94a3b8'}],xr:[-L,L],yr:[-L,L],pts:[{x:x,y:k,l:'f'},{x:k,y:x,c:'#16a34a',l:'f⁻¹'}]}))},
+ ()=>{const a=R(2,5),b=nz(-6,6),n=s=>'x'+(s>0?'−'+s:'+'+(-s));return Q(`f(x)=${lin(a,b)} 的反函数 f⁻¹(x) = ？`,frac(n(b),a),[frac(n(-b),a),frac('x',a),`${a}x${sgn(-b)}`],`设 y=f⁻¹(x)，则 x=f(y)=${lin(a,b).replace(/x/g,'y')} ⇒ ${a}y=${n(b)} ⇒ y=${frac(n(b),a)}。（常数项移到另一边要变号。）`+graph({fns:[{f:t=>a*t+b,lab:'f',lp:.8},{f:t=>(t-b)/a,c:'#16a34a',lab:'f⁻¹',lp:.9},{f:t=>t,dash:1,c:'#94a3b8'}],xr:[-8,8],yr:[-8,8]}))},
+ ()=>{const c=nz(-4,4);return Q('下列由 R 映到 R 的函数中，哪一个有反函数？',`f(x)=x³${sgn(c)}`,[`f(x)=x²${sgn(c)}`,`f(x)=|x|${sgn(c)}`,`f(x)=${c}`],'只有<b>一一映成</b>的函数才有反函数。x²、|x| 的水平线会交两点（不一对一）；常数函数所有 x 都对应同一个值（既不一对一也不映成）；只有 x³ 的任何水平线都恰交一点。'+`<div class="row">${[['x³'+sgn(c),x=>x**3+c],['x²'+sgn(c),x=>x*x+c],['|x|'+sgn(c),x=>Math.abs(x)+c]].map(([l,f])=>graph({mini:1,w:150,h:130,fns:[{f,lab:l,lp:.7}],xr:[-3,3],hl:[{y:c+2,dash:1}]})).join('')}</div>`)},
+ ()=>{const m=R(-6,9),k=R(-4,6);return Q(`已知 f(${k})=${m}，则 f⁻¹(${m}) = ？`,k,[m,-k,k+m],`反函数把「像」换回「原像」：f(${k})=${M(m)} ⇔ f⁻¹(${M(m)})=${k}。`+mapSvg([String(k)],[M(m)],[[0,0]],{la:'x',lb:'f(x)'}))},
+ ()=>Math.random()<.5?Q('函数 g(x)=x²（x≥0）的反函数是？',rt('x'),[`−${rt('x')}`,frac(1,'x²'),'x²'],`设 y=g⁻¹(x)，则 x=y² ⇒ y=${rt('x')}（因为 y≥0，取正根）。图中 x² 与 ${rt('x')} 对称于 y=x。`+graph({fns:[{f:t=>t*t,dom:[0,2.5],lab:'g',lp:.8},{f:Math.sqrt,dom:[0,6],c:'#16a34a',lp:.9},{f:t=>t,dash:1,c:'#94a3b8'}],xr:[-1,6],yr:[-1,6]})):(()=>{const p=R(-3,5),q=R(-4,6);return Q(`点 (${p}, ${q}) 在 y=f(x) 的图像上，则 f⁻¹ 的图像上必有点？`,`(${q}, ${p})`,[`(${p}, ${-q})`,`(${-p}, ${q})`,`(${-q}, ${-p})`],`f 与 f⁻¹ 的图像对称于直线 y=x，对称时横、纵坐标互换：(${p}, ${q}) ↔ (${q}, ${p})。`+graph({fns:[{f:t=>t,dash:1,c:'#94a3b8',lab:'y=x'}],xr:[-8,8],yr:[-8,8],pts:[{x:p,y:q,l:`(${p},${q})`},{x:q,y:p,c:'#16a34a',l:`(${q},${p})`}]}))})()],
+fl:[()=>{const a=nz(-4,4),b=nz(-9,9),x=R(-5,5),k=a*x+b;return F(`f(x)=${lin(a,b)}，求 f⁻¹(${M(k)})。`,x,`解 f(x)=${M(k)}：${lin(a,b)}=${M(k)} ⇒ ${M(a)}x=${M(k-b)} ⇒ x=${M(x)}。`)},
+ ()=>{const a=nz(2,4),b=nz(-6,6),q=R(-3,4);return F(`f(x)=${lin(a,b)}，且 f⁻¹(p)=${M(q)}，求 p。`,a*q+b,`f⁻¹(p)=${M(q)} ⇔ f(${M(q)})=p ⇒ p=${a}(${M(q)})${sgn(b)}=${M(a*q+b)}。`)}]},
+{t:'🏆 总复习',review:1}];
+/* ---------- 测验组件 ---------- */
+function quiz(box,cfg){
+ box.innerHTML='';const st={r:0,n:0,f:0,w:{}},mq=cfg.mc(),fq=cfg.fl(),H=document.createElement('div'),Res=document.createElement('div'),Fh=document.createElement('div');box.append(H,Res,Fh);
+ const opts=q=>{let o=[...new Set([q.a,...q.d])],n=+q.a,i=1;while(o.length<4&&isFinite(n)&&q.a.trim()!==''){const c=String(n+(i%2?1:-1)*Math.ceil(i/2));if(!o.includes(c))o.push(c);i++}return shuf(o)};
+ H.innerHTML=`<h3>📝 选择题（${mq.length} 题）</h3>`;
+ mq.forEach((q,i)=>{const c=document.createElement('div');c.className='qc';c.innerHTML=`<div>第 ${i+1} 题　${q.q}</div><div class="ops"></div><div class="fb"></div>`;const ops=$('.ops',c);
+  opts(q).forEach(o=>{const b=document.createElement('button');b.className='op';b.innerHTML=o;b.onclick=()=>{ops.querySelectorAll('button').forEach(x=>{x.disabled=1;x.style.cursor='default'});const ok=o==q.a;b.classList.add(ok?'ok':'bad');if(!ok)ops.querySelectorAll('button').forEach(x=>{if(x.innerHTML==q.a)x.classList.add('ok')});$('.fb',c).innerHTML=(ok?'<span class="good">✔ 正确！</span>':'<span class="bad">✘ 错误，正确答案已标示。</span>')+sol(q);if(ok)st.r++;else if(q.tag!=null)st.w[q.tag]=1;if(++st.n==mq.length)after()};ops.append(b)});H.append(c)});
+ function after(){const need=cfg.need;
+  if(cfg.rev){Res.innerHTML=`<div class="sc">选择题：答对 ${st.r}/${mq.length}。请继续完成下面的 ${fq.length} 道填充题。</div>`;fills()}
+  else if(st.r>=need){Res.innerHTML=`<div class="sc">答对 ${st.r}/${mq.length} 题 🎉 通关！请完成 ${fq.length} 道填充题。</div>`;fills()}
+  else Res.innerHTML=`<div class="sc">答对 ${st.r}/${mq.length} 题，需答对 ${need} 题以上才能挑战填充题。<br><button class="bt" id="rt">🔄 重新出题</button></div>`,$('#rt',Res).onclick=()=>quiz(box,cfg)}
+ function fills(){Fh.innerHTML=`<h3>✏️ 填充题（${fq.length} 题）</h3>`;let fd=0,fr=0;
+  fq.forEach((q,i)=>{const c=document.createElement('div');c.className='qc';c.innerHTML=`<div>第 ${i+1} 题　${q.q}</div><div style="margin-top:.4rem"><input inputmode="decimal" placeholder="答案"> <button class="bt">确认</button> <span class="fb"></span></div>`;const inp=$('input',c),bt=$('button',c);
+   const go=()=>{const v=parseFloat(inp.value.replace(/[−–]/g,'-'));if(isNaN(v))return;inp.disabled=bt.disabled=1;const ok=Math.abs(v-q.a)<1e-6;$('.fb',c).innerHTML=(ok?'<span class="good">✔ 正确！</span>':`<span class="bad">✘ 错误，答案是 ${M(q.a)}</span>`)+sol(q);if(ok)fr++;else if(q.tag!=null)st.w[q.tag]=1;if(++fd==fq.length)fin(fr)};bt.onclick=go;inp.onkeydown=e=>{if(e.key=='Enter')go()};Fh.append(c)})}
+ function fin(fr){const tot=st.r+fr,all=mq.length+fq.length;
+  if(!cfg.rev){Fh.insertAdjacentHTML('beforeend',`<div class="sc">本节完成：选择题 ${st.r}/${mq.length}，填充题 ${fr}/${fq.length}。<button class="bt" id="rt2">🔄 再来一组</button></div>`);$('#rt2',Fh).onclick=()=>quiz(box,cfg);return}
+  const p=Math.round(tot/all*100),w=Object.keys(st.w).map(i=>`<span class="tag">${S[i].t}</span>`).join('');
+  Fh.insertAdjacentHTML('beforeend',`<div class="sc" style="font-size:1.1rem">总分：${tot}/${all}（${p}%）<br>${p>=85?'🌟 优秀！函数概念掌握得很扎实。':p>=65?'👍 良好，再巩固错题即可。':p>=45?'📘 及格边缘，建议回到各小节重做练习。':'💪 加油！先把每节的例题和计算器看一遍。'}${w?`<br>建议复习：${w}`:''}<br><button class="bt" id="rt3">🔄 重新测验</button></div>`);$('#rt3',Fh).onclick=()=>quiz(box,cfg)}}
+const tg=(g,i)=>()=>Object.assign(g(),{tag:i});
+function revCfg(){const pool=[],fpool=[];S.forEach((s,i)=>{if(s.m){pool.push(s.m.map(g=>tg(g,i)));fpool.push(s.fl.map(g=>tg(g,i)))}});
+ return{rev:1,mc:()=>{const a=pool.map(p=>pick(p)),rest=pool.flat().filter(g=>!a.includes(g));a.push(...shuf(rest).slice(0,3));a.push(()=>{const a=nz(-3,3),b=nz(-5,5),c=nz(2,3),d=nz(-5,5),x=R(-3,3),k=a*c*x+a*d+b;return Q(`f(x)=${lin(a,b)}，g(x)=${lin(c,d)}，则 (f∘g)⁻¹(${M(k)}) = ？`,x,[x+1,-x,x-1],`(f∘g)(x)=${a}(${lin(c,d)})${sgn(b)}=${lin(a*c,a*d+b)}。令 ${lin(a*c,a*d+b)}=${M(k)} ⇒ x=${M(x)}，所以 (f∘g)⁻¹(${M(k)})=${M(x)}。`)});return shuf(a).slice(0,10).map(g=>g())},
+ fl:()=>{const a=shuf(fpool.map(p=>pick(p))).slice(0,3).map(g=>g());a.push(Object.assign(hard(),{tag:3}));a.push((()=>{const m=nz(1,4),s=nz(-5,5),k=R(-3,3);return Object.assign(F(`已知 f(x)=x−${m}，且 (g∘f)(x)=${poly(1,-2*m,m*m+s)}，求 g(${M(k)})。`,k*k+s,`(g∘f)(x)=${poly(1,-2*m,m*m+s)}=(x−${m})²${sgn(s)}，而 f(x)=x−${m}，所以 g(u)=u²${sgn(s)}。g(${M(k)})=${M(k*k)}${sgn(s)}=${M(k*k+s)}。`),{tag:3})})());return shuf(a)}}}
+/* ---------- 页面组装 ---------- */
+const nav=$('#nav'),main=$('#main');
+function calcInit(box,c){box.innerHTML=`<h3>${c.t}</h3><div class="ff">${c.f.map(([k,l,v,o])=>`<label>${l}${o?`<select data-k="${k}">${o.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}</select>`:`<input data-k="${k}" value="${v}" inputmode="decimal">`}</label>`).join('')}<button class="bt">计算 ▶</button></div><div class="out"></div>`;
+ const out=$('.out',box),go=()=>{const v={};box.querySelectorAll('[data-k]').forEach(i=>v[i.dataset.k]=i.value.replace(/[−–]/g,'-'));try{out.innerHTML=c.run(v)}catch(e){out.innerHTML='<p class="bad">⚠ 输入有误，请检查数值（例如区间 p<q、a≠0）。</p>'}};$('.bt',box).onclick=go;box.onkeydown=e=>{if(e.key=='Enter')go()};box.onchange=e=>{if(e.target.tagName=='SELECT')go()};go()}
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.t;b.onclick=()=>show(i);nav.append(b);
+ const sec=document.createElement('section');sec.className='sec';sec.id='s'+i;
+ if(s.review){sec.innerHTML=`<h2>${s.t}</h2><div class="card">本测验由 5.1–5.6 的题目引擎随机抽题，并加入课本总复习题较难的类型：<b>10 题选择题</b>，全部作答后出现 <b>5 题填充题</b>，完成后显示总分评估。每次题目都不同。</div><div class="quiz"></div>`;sec.dataset.rev=1}
+ else{sec.innerHTML=`<h2>${s.t}</h2>${s.def}<div class="ex-w"></div><div class="calc"></div><div class="quiz"></div>`}
+ main.append(sec)});
+const built={};
+function show(i){document.querySelectorAll('.sec').forEach((e,j)=>e.classList.toggle('on',i==j));[...nav.children].forEach((b,j)=>{b.classList.toggle('on',i==j);if(i==j)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})});
+ if(!built[i]){built[i]=1;const s=S[i],sec=$('#s'+i);if(s.review)quiz($('.quiz',sec),revCfg());else{$('.ex-w',sec).innerHTML=s.ex().join('');calcInit($('.calc',sec),s.calc);quiz($('.quiz',sec),{need:3,mc:()=>shuf(s.m).slice(0,5).map(g=>g()),fl:()=>shuf(s.fl).slice(0,2).map(g=>g())})}}
+ scrollTo({top:0})}
+/* 导航滑动（鼠标拖拽 + 滚轮） */
+let dn=0,sx0=0,sl=0;nav.onpointerdown=e=>{if(e.pointerType=='mouse'){dn=1;sx0=e.clientX;sl=nav.scrollLeft}};addEventListener('pointerup',()=>dn=0);nav.onpointermove=e=>{if(dn)nav.scrollLeft=sl-(e.clientX-sx0)};nav.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){nav.scrollLeft+=e.deltaY;e.preventDefault()}},{passive:false});
+/* 字号与主题 */
+let fs=16;const rf=()=>{document.documentElement.style.fontSize=fs+'px';try{localStorage.setItem('fs5',fs)}catch(e){}},th=$('#th');
+const setT=t=>{document.documentElement.dataset.t=t;th.textContent=t=='d'?'☀️ 白天':'🌙 夜间';try{localStorage.setItem('th5',t)}catch(e){}};
+$('#fm').onclick=()=>{fs=Math.max(12,fs-1);rf()};$('#fp').onclick=()=>{fs=Math.min(26,fs+1);rf()};$('#f0').onclick=()=>{fs=16;rf()};th.onclick=()=>setT(document.documentElement.dataset.t=='d'?'l':'d');
+try{fs=+localStorage.getItem('fs5')||16;rf();setT(localStorage.getItem('th5')||'l')}catch(e){}
+show(0);
+</script>
+</body>
+</html>

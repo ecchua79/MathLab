@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 / ecchua79 / Chinese High School (华仁中学) · 高一上册 第6章 不等式 互动版 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 ecchua79 Chinese High School 华仁中学"><title>高一上册 第6章 不等式</title>
+<style>
+/* © 蔡逸众 · ecchua79 · Chinese High School */
+:root{--bg:#fff;--fg:#1d2433;--c:#eef2f9;--bd:#c3cddd}.dk{--bg:#12161f;--fg:#e5e9f2;--c:#1d2331;--bd:#3a4458}
+html{font-size:15px}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.5 system-ui,sans-serif}
+header{display:flex;gap:5px;align-items:center;padding:5px 10px;position:sticky;top:0;background:var(--bg);z-index:5}
+h1{font-size:1rem;margin:0;flex:1}h2{font-size:1.1rem;margin:6px 0}h3{font-size:.95rem;margin:8px 0 2px}p{margin:4px 0}
+button,select,input{font:inherit;color:var(--fg);background:var(--c);border:1px solid var(--bd);border-radius:6px;padding:2px 7px}
+input{width:3em;text-align:center;margin:0 2px}.fi{width:5em}
+nav{display:flex;overflow-x:auto;gap:6px;padding:4px 10px;white-space:nowrap;position:sticky;top:38px;background:var(--bg);z-index:4}
+nav .on{background:#2563eb;color:#fff}main{padding:4px 10px;max-width:740px;margin:auto}
+.box{background:var(--c);border-radius:10px;padding:6px 10px;margin:5px 0}
+svg.fg{max-width:100%;background:var(--bg);border-radius:8px}svg text{fill:currentColor}
+.ob{fill:var(--bg);stroke:#16a34a;stroke-width:2}.cb{fill:#16a34a}
+.fr{display:inline-block;vertical-align:middle;text-align:center}.fr i{display:block;font-style:normal;padding:0 3px}.fr i:first-child{border-bottom:1.5px solid}
+.o{display:block;width:100%;text-align:left;margin:3px 0}.g{background:#16a34a55}.b{background:#dc262655}
+table{border-collapse:collapse}td,th{border:1px solid var(--bd);padding:1px 6px}
+footer{text-align:center;font-size:.72rem;opacity:.75;padding:10px}
+#wm{position:fixed;inset:-20%;pointer-events:none;z-index:9;display:flex;flex-wrap:wrap;gap:30px;font-size:.55rem;opacity:.07;transform:rotate(-20deg)}
+</style></head><body>
+<header><h1>高一上册 第6章 不等式</h1><button id=fm>A−</button><button id=fp>A+</button><button id=th>🌓</button></header>
+<nav></nav><main></main>
+<footer>© 蔡逸众 老师制作 · ecchua79 · 峇株吧辖华仁中学 Chinese High School</footer>
+<div id=wm></div><div style="display:none">蔡逸众|ecchua79|Chinese High School|华仁中学</div>
+<script>
+console.log('%c© 蔡逸众 / ecchua79 / Chinese High School','color:#2563eb');
+const $=s=>document.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),
+sh=a=>{a=a.slice();for(let i=a.length;i>1;){const j=R(0,--i);[a[i],a[j]]=[a[j],a[i]]}return a},
+N=v=>v<0?'−'+-v:''+v,gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),sg=v=>v<0?'−'+-v:'+'+v,d2=v=>+v.toFixed(2),
+fr=(n,d)=>d==1?n:`<span class=fr><i>${n}</i><i>${d}</i></span>`,
+rat=(n,d)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return fr(N(n/g),d/g)},
+sq=t=>{const W=8+String(t).length*5.8;return `<svg style="vertical-align:-.25em" width="${W/10}em" height="1.35em" viewBox="0 0 ${W} 13.5"><path d="M.5 8L2.2 7L4 11.5L6.6 1.5H${W-.5}" fill=none stroke=currentColor stroke-width=1.1 /><text x=7.4 y=11.2 font-size=10>${t}</text></svg>`},
+lin=(m,n)=>m==0?N(n):(m==1?'':m==-1?'−':N(m))+'x'+(n?sg(n):''),
+q2=(a,b,c)=>(a==1?'':a==-1?'−':N(a))+'x²'+(b?(b==1?'+':b==-1?'−':sg(b))+'x':'')+(c?sg(c):''),
+eq2=(a,b)=>(a?(a==1?'':a==-1?'−':N(a))+'x':'')+(b?(b==1?(a?'+':''):b==-1?'−':(a?sg(b):N(b)))+'y':''),
+lt=(x,y,s,an='middle')=>`<text x=${x} y=${y} font-size=10 text-anchor=${an}>${String(s).replace(/√(\d+)/g,'<tspan text-decoration=overline>√$1</tspan>')}</text>`,
+OP={'>':'<','<':'>','≥':'≤','≤':'≥'};
+function A(x0,x1,y0,y1,W=320,H=240){const X=v=>20+(v-x0)/(x1-x0)*(W-40),Y=v=>H-20-(v-y0)/(y1-y0)*(H-40);
+ let s=`<line x1=${X(x0)} x2=${X(x1)} y1=${Y(0)} y2=${Y(0)} stroke=gray /><line y1=${Y(y0)} y2=${Y(y1)} x1=${X(0)} x2=${X(0)} stroke=gray />`;
+ const a=Math.max(1,Math.ceil((x1-x0)/8)),b=Math.max(1,Math.ceil((y1-y0)/8));
+ for(let i=Math.ceil(x0);i<=x1;i+=a)if(i)s+=lt(X(i),Y(0)+10,N(i));
+ for(let i=Math.ceil(y0);i<=y1;i+=b)if(i)s+=lt(X(0)-3,Y(i)+3,N(i),'end');
+ return{X,Y,s,W,H}}
+const svg=(g,b)=>`<svg class=fg viewBox="0 0 ${g.W} ${g.H}">${g.s}${b}</svg>`;
+function clip(P,a,b,c){const o=[];for(let i=0;i<P.length;i++){const p=P[i],q=P[(i+1)%P.length],fp=a*p[0]+b*p[1]-c,fq=a*q[0]+b*q[1]-c;if(fp<=0)o.push(p);if(fp*fq<0){const t=fp/(fp-fq);o.push([p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1])])}}return o}
+function SS(c,rel,lead=1){const n=c.length,P=[],eq=rel=='≥'||rel=='≤',pos=rel=='>'||rel=='≥';
+ for(let i=0;i<=n;i++){const s=((n-i)%2?-1:1)*lead;P.push({r:1,i,in:pos?s>0:s<0,s});if(i<n)P.push({r:0,i,in:eq&&!c[i].den})}
+ const runs=[];let k=0;while(k<P.length){if(!P[k].in){k++;continue}let e=k;while(e+1<P.length&&P[e+1].in)e++;runs.push([k,e]);k=e+1}
+ const t=runs.map(([s,e])=>{const a=P[s],b=P[e];if(s==e&&!a.r)return 'x='+c[a.i].l;let lo='',hi='';
+  if(a.r){if(a.i>0)lo=c[a.i-1].l+'&lt;'}else lo=c[a.i].l+'≤';
+  if(b.r){if(b.i<n)hi='&lt;'+c[b.i].l}else hi='≤'+c[b.i].l;
+  return lo&&!hi?'x'+(lo.endsWith('≤')?'≥':'&gt;')+lo.replace(/(&lt;|≤)$/,''):lo||hi?lo+'x'+hi:'全体实数'}).join(' 或 ')||'无解';
+ return{t,P}}
+function NL(c,P){const n=c.length,X=i=>n>1?50+i*220/(n-1):160;let s=`<line x1=10 x2=310 y1=50 y2=50 stroke=gray />`;
+ P.forEach(p=>{if(p.r){const x1=p.i?X(p.i-1):10,x2=p.i<n?X(p.i):310;if(p.in)s+=`<line x1=${x1} x2=${x2} y1=50 y2=50 stroke=#2563eb stroke-width=6 />`;s+=lt((x1+x2)/2,34,p.s>0?'＋':'－')}
+  else s+=`<circle cx=${X(p.i)} cy=50 r=5 class=${p.in?'cb':'ob'} />`+lt(X(p.i),72,c[p.i].s)});
+ return `<svg class=fg viewBox="0 0 320 90">${s}</svg>`}
+/* ===== 计算器 ===== */
+const r1=({a,b,c,d})=>{const m=a+b-c-d,n=a*b-c*d,Y=Math.max(5,Math.abs(n)+10*Math.abs(m)+2),g=A(-10,10,-Y,Y),x0=-n/m;
+ const E=`(x${sg(a)})(x${sg(b)})`,F=`(x${sg(c)})(x${sg(d)})`;
+ const v=m==0?(n>0?'恒大于 0，∴ 前者 > 后者':n<0?'恒小于 0，∴ 前者 < 后者':'恒等于 0，两者相等'):`当 x>${rat(-n,m)} 时前者${m>0?'>':'<'}后者；当 x<${rat(-n,m)} 时前者${m>0?'<':'>'}后者`;
+ return `<p>${E}−${F} = (x²${sg(a+b)}x${sg(a*b)})−(x²${sg(c+d)}x${sg(c*d)}) = <b>${lin(m,n)}</b></p><p>${v}</p>`+svg(g,`<polyline points="${[-10,10].map(x=>g.X(x)+','+g.Y(m*x+n)).join(' ')}" fill=none stroke=#2563eb stroke-width=2 />`+lt(160,14,'差 = '+lin(m,n))+(m&&Math.abs(x0)<=10?`<circle cx=${g.X(x0)} cy=${g.Y(0)} r=4 class=cb />`:''))};
+const r2=({a,b,c,rel})=>{if(!a)return'a 不能为 0';let nt='';
+ if(a<0){a=-a;b=-b;c=-c;rel=OP[rel];nt=`<p>两边同乘 −1（不等号反向）：${q2(a,b,c)} ${rel} 0</p>`}
+ const D=b*b-4*a*c,f=x=>a*x*x+b*x+c,vx=-b/(2*a),sD=Math.round(Math.sqrt(D)),st=rel=='<'||rel=='>',
+ ok=y=>rel=='>'?y>1e-9:rel=='<'?y<-1e-9:rel=='≥'?y>-1e-9:y<1e-9;let t,rs=[],h=`<p>Δ=b²−4ac=${D}</p>`;
+ if(D>0){let k=1,m=D;for(let i=2;i*i<=m;i++)while(m%(i*i)==0){m/=i*i;k*=i}
+  rs=[-1,1].map(s=>{const x=(-b+s*Math.sqrt(D))/(2*a),dec=N(d2(x));
+   if(sD*sD==D)return{v:x,l:rat(-b+s*sD,2*a),s:dec};
+   const g=gcd(gcd(b,k),2*a),p=-b/g,q=k/g,dn=2*a/g,e=(p?N(p):'')+(s<0?'−':p?'+':'')+(q>1?q:'');
+   return{v:x,l:fr(e+sq(m),dn),s:dn==1?e+'√'+m:'≈'+dec}});
+  t=SS(rs,rel).t;h+=`<p>求根公式：x = ${rs[0].l} 或 ${rs[1].l}</p>`}
+ else if(D==0){rs=[{v:vx,l:rat(-b,2*a),s:N(d2(vx))}];t={'>':'x≠'+rs[0].l,'≥':'全体实数','<':'无解','≤':'x='+rs[0].l}[rel];h+=`<p>完全平方：${a==1?'':a}(x${sg(-vx)})² ${rel} 0</p>`}
+ else{t=rel=='>'||rel=='≥'?'全体实数':'无解';h+='<p>Δ<0：图像与 x 轴无交点</p>'}
+ const ct=D>=0?rs.map(r=>r.v):[vx],lo=Math.min(...ct)-(D>0?2.5:4),hi=Math.max(...ct)+(D>0?2.5:4),y0=Math.min(f(vx),0)-1,y1=Math.max(3,-y0),g=A(lo,hi,y0,y1);
+ let pl='',seg='',run=null;
+ for(let i=0;i<=200;i++){const x=lo+(hi-lo)*i/200;if(i%2==0)pl+=g.X(x)+','+g.Y(f(x))+' ';const o=ok(f(x));if(o&&run===null)run=x;if((!o||i==200)&&run!==null){seg+=`<line x1=${g.X(run)} x2=${g.X(x)} y1=${g.Y(0)} y2=${g.Y(0)} stroke=#16a34a stroke-width=6 />`;run=null}}
+ const cs=rs.map(r=>`<circle cx=${g.X(r.v)} cy=${g.Y(0)} r=4 class=${st?'ob':'cb'} />`+lt(g.X(r.v),g.Y(0)+22,r.s)).join('');
+ return nt+h+`<p>解集：<b>${t}</b></p>`+svg(g,`<polyline points="${pl}" fill=none stroke=#2563eb stroke-width=2 />${seg}${cs}`)};
+const r3=({p,r,q,rel})=>{const ps=[p,r].filter(v=>v!==''&&!isNaN(v));if(!ps.length||isNaN(q))return'请填写根';
+ const c=[...ps.map(v=>({v,den:0})),{v:q,den:1}].sort((a,b)=>a.v-b.v);
+ if(c.some((x,i)=>i&&x.v==c[i-1].v))return'各根须互不相同';c.forEach(x=>{x.l=x.s=N(x.v)});
+ const {t,P}=SS(c,rel);return `<p>${fr(ps.map(v=>`(x${sg(-v)})`).join(''),`x${sg(-q)}`)} ${rel} 0（右边已为 0）</p><p>各根：${c.map(x=>x.l+(x.den?'（分母，必空心）':'')).join('、')}；由右至左符号 ＋－＋－… 交替</p><p>解集：<b>${t}</b></p>`+NL(c,P)};
+const r4=({a,b,rel,c,px,py,ex=[],q1})=>{if(!a&&!b)return'a、b 不能同时为 0';
+ const L=Math.min(Math.max(6,Math.max(0,...ex.map(p=>Math.ceil(Math.max(Math.abs(p[0]),Math.abs(p[1])))+1)),Math.ceil(1.3*Math.max(a?Math.abs(c/a):0,b?Math.abs(c/b):0))),40),g=A(-L,L,-L,L),le=rel=='<'||rel=='≤',s=le?1:-1,
+ P0=clip([[-L,-L],[L,-L],[L,L],[-L,L]],s*a,s*b,s*c),P=q1?clip(clip(P0,-1,0,0),0,-1,0):P0,st=rel=='<'||rel=='>',
+ tp=c?[0,0]:a?[1,0]:[0,1],v=a*tp[0]+b*tp[1],okp=rel=='<'?v<c:rel=='>'?v>c:rel=='≤'?v<=c:v>=c,
+ ln=b?[-L,L].map(x=>[x,(c-a*x)/b]):[-L,L].map(y=>[c/a,y]);
+ let ck='',cf='';
+ if(!isNaN(px)&&!isNaN(py)){const w=a*px+b*py,ok2=rel=='<'?w<c:rel=='>'?w>c:rel=='≤'?w<=c:w>=c,on=Math.abs(w-c)<1e-9;
+  ck=`<p>④ 检验点 (${N(px)}, ${N(py)})：${eq2(a,b)} = ${N(a)}×${px<0?'('+N(px)+')':px} ${b<0?'−':'+'} ${Math.abs(b)}×${py<0?'('+N(py)+')':py} = ${N(+w.toFixed(4))}，${N(+w.toFixed(4))} ${rel} ${N(c)} ${ok2?'成立':'不成立'}${on?'（点在边界线上，'+(st?'虚线上的点不属于解）':'实线上的点属于解）'):''}　<b>∴ 该点${ok2?'在':'不在'}所表示的区域内 ${ok2?'✅':'❌'}</b></p>`;
+  cf=`<circle cx=${g.X(px)} cy=${g.Y(py)} r=5 fill=${ok2?'#16a34a':'#dc2626'} stroke=#fff />`+lt(g.X(px)+7,g.Y(py)+12,`(${N(px)},${N(py)})`,'start')}
+ return `<p>① 画直线 ${eq2(a,b)} = ${N(c)}：${st?'虚线（不含边界）':'实线（含边界）'}</p><p>② 截距：${a?`x 轴 (${rat(c,a)}, 0)`:''} ${b?`　y 轴 (0, ${rat(c,b)})`:''}</p><p>③ 取点 (${tp}) 代入：${v} ${rel} ${N(c)} ${okp?'成立':'不成立'}，阴影在${okp?'含':'不含'}该点的一侧</p>${ck}`+
+ svg(g,`<polygon points="${P.map(p=>g.X(p[0])+','+g.Y(p[1])).join(' ')}" fill=#2563eb55 />`+`<polyline points="${ln.map(p=>g.X(p[0])+','+g.Y(p[1])).join(' ')}" fill=none stroke=#2563eb stroke-width=2 ${st?'stroke-dasharray="5 4"':''} />`+`<circle cx=${g.X(tp[0])} cy=${g.Y(tp[1])} r=3 class=cb />`+lt(g.X(tp[0])+6,g.Y(tp[1])-4,'测试点','start')+cf+ex.map(p=>`<circle cx=${g.X(p[0])} cy=${g.Y(p[1])} r=${p[2]?4.5:2.5} fill=${p[3]||'#16a34a'} />`+(p[2]?lt(g.X(p[0])+6,g.Y(p[1])-5,p[2],'start'):'')).join(''))};
+let LPl;const LP=(cs,p,q)=>{LPl=[cs,p,q];const M=Math.max(...cs.map(([a,b,c])=>Math.max(a?c/a:0,b?c/b:0)));let P=[[0,0],[M,0],[M,M],[0,M]];cs.forEach(([a,b,c])=>P=clip(P,a,b,c));
+ const V=[];P.forEach(v=>{if(!V.some(u=>Math.hypot(u[0]-v[0],u[1]-v[1])<1e-6))V.push(v)});return{V,Z:V.map(v=>d2(p*v[0]+q*v[1])),M,P}};
+const r5=({a1,b1,c1,a2,b2,c2,p,q,mode})=>{const cs=[[a1,b1,c1],[a2,b2,c2]];if([a1,b1,c1,a2,b2,c2,p,q].some(isNaN)||cs.some(x=>x.some(y=>y<=0)))return'约束的系数须为正数（x≥0, y≥0 已默认）';
+ const{V,Z,M,P}=LP(cs,p,q),mx=mode=='最大',zb=mx?Math.max(...Z):Math.min(...Z),bi=Z.indexOf(zb),g=A(-M*.08,M*1.1,-M*.08,M*1.1);
+ const U=M*1.1,L=-M*.08,line=(a,b,c)=>(b?[L,U].map(x=>[x,(c-a*x)/b]):[[c/a,L],[c/a,U]]).map(p=>g.X(p[0])+','+g.Y(p[1])).join(' ');
+ return `<p>约束：${eq2(a1,b1)}≤${c1}，${eq2(a2,b2)}≤${c2}，x≥0，y≥0；目标 z=${eq2(p,q).replace('y','y')}</p><table><tr><th>顶点</th><th>z=${p}x+${q}y</th></tr>${V.map((v,i)=>`<tr${i==bi?' style="font-weight:bold;background:#16a34a44"':''}><td>(${d2(v[0])}, ${d2(v[1])})</td><td>${Z[i]}</td></tr>`).join('')}</table><p>${mode}值 z = <b>${zb}</b>，在顶点 (${d2(V[bi][0])}, ${d2(V[bi][1])}) 取得</p>`+
+ svg(g,`<polygon points="${P.map(p=>g.X(p[0])+','+g.Y(p[1])).join(' ')}" fill=#f59e0b55 />`+cs.map(([a,b,c])=>`<polyline points="${line(a,b,c)}" fill=none stroke=#2563eb stroke-width=1.5 />`).join('')+`<polyline points="${line(p,q,zb)}" fill=none stroke=#dc2626 stroke-dasharray="4 3" />`+V.map((v,i)=>`<circle cx=${g.X(v[0])} cy=${g.Y(v[1])} r=3.5 class=cb />`+lt(g.X(v[0])+5,g.Y(v[1])-5,`(${d2(v[0])},${d2(v[1])})`,'start')).join('')+lt(300,14,'红虚线：z='+zb,'end'))};
+const lpFig=(cs,p,q)=>{const{V,Z,M,P}=LP(cs,p,q),zb=Math.max(...Z),bi=Z.indexOf(zb),g=A(-M*.08,M*1.1,-M*.08,M*1.1),U=M*1.1,L=-M*.08,pt=a=>g.X(a[0])+','+g.Y(a[1]),
+ line=(a,b,c)=>(b?[L,U].map(x=>[x,(c-a*x)/b]):[[c/a,L],[c/a,U]]).map(pt).join(' ');
+ return '<br>'+svg(g,`<polygon points="${P.map(pt).join(' ')}" fill=#f59e0b55 />`+cs.map(([a,b,c])=>`<polyline points="${line(a,b,c)}" fill=none stroke=#2563eb stroke-width=1.5 />`).join('')+`<polyline points="${line(p,q,zb)}" fill=none stroke=#dc2626 stroke-dasharray="4 3" />`+V.map((v,i)=>`<circle cx=${g.X(v[0])} cy=${g.Y(v[1])} r=${i==bi?5:3.5} ${i==bi?'fill=#dc2626':'class=cb'} />`+lt(g.X(v[0])+6,g.Y(v[1])-6,`(${d2(v[0])},${d2(v[1])}) z=${Z[i]}`,'start')).join('')+lt(310,14,'红点：最大 z='+zb,'end'))};
+/* ===== 出题引擎 ===== */
+const svgOf=h=>(h.match(/<svg class=fg[\s\S]*<\/svg>/)||[''])[0],
+dot=(g,x,y,t,c='#dc2626')=>`<circle cx=${g.X(x)} cy=${g.Y(y)} r=4 fill=${c} />`+lt(g.X(x)+6,g.Y(y)-5,t,'start'),
+fplot=(fs,x0,x1,y0,y1,ex,brk)=>{const g=A(x0,x1,y0,y1);let b='';fs.forEach(([f,col,lab,xl])=>{let seg=[],out='';const fl=()=>{if(seg.length>1)out+=`<polyline points="${seg.join(' ')}" fill=none stroke=${col} stroke-width=2 />`;seg=[]};
+ for(let i=0;i<=240;i++){const x=x0+(x1-x0)*i/240,y=f(x);if(!isFinite(y)||Math.abs(y)>1e3||(brk!==undefined&&Math.abs(x-brk)<.06))fl();else seg.push(g.X(x)+','+g.Y(y))}fl();b+=out+(lab?lt(g.X(xl),g.Y(f(xl))-6,lab):'')});return svg(g,b+(ex?ex(g):''))},
+rows=R2=>{const all=R2.flatMap(r=>r[1].map(p=>p[0])),mn=Math.min(...all,0),mx=Math.max(...all,0),X=v=>25+(v-mn)/(mx-mn||1)*270;let b='';
+ R2.forEach(([t,ps],i)=>{const y=40+i*70;b+=`<line x1=15 x2=305 y1=${y} y2=${y} stroke=gray />`+lt(15,y-20,t,'start')+`<line x1=${X(0)} x2=${X(0)} y1=${y-4} y2=${y+4} stroke=gray />`+ps.map(([v,l])=>`<circle cx=${X(v)} cy=${y} r=4 fill=#2563eb />`+lt(X(v),y+16,l+'='+N(v))).join('')});
+ return `<svg class=fg viewBox="0 0 320 ${R2.length*70+10}">${b}</svg>`};
+let FG=[];
+
+const ch=(q,a,w,e,f)=>({q,a:''+a,w:[...new Set([...w,'无解','全体实数','x=0','x≠0'].map(String))].filter(x=>x!=a).slice(0,3),e,f});
+const cmp=(Lh,Rh,s,e)=>ch(`${e[0]}`,Lh+s+Rh,[...['>','<','='].filter(x=>x!=s).map(x=>Lh+(x=='<'?'&lt;':x)+Rh),'无法确定'],e[1]);
+const G=[
+[()=>{let a,b,c,d,df;do{a=R(-7,7);b=R(-7,7);c=R(-7,7);d=a+b-c;df=a*b-c*d}while(!df||Math.abs(d)>9);
+ const E=`(x${sg(a)})(x${sg(b)})`,F=`(x${sg(c)})(x${sg(d)})`;
+ {const cx=-(a+b)/2,f1=x=>(x+a)*(x+b),f2=x=>(x+c)*(x+d),y0=Math.min(f1(cx),f2(cx))-3,Fg='<br>'+fplot([[f1,'#2563eb','前者',cx+3.5],[f2,'#dc2626','后者',cx-3.5]],cx-6,cx+6,y0,y0+30,g=>lt(160,14,'两条抛物线上下平移，差恒为 '+N(df)));FG=[Fg,Fg]}
+ return ch(`比较 ${E} 与 ${F} 的大小（x∈R）`,df>0?'前者大':'前者小',[df>0?'前者小':'前者大','相等','随 x 的值而定'],`作差：${E}−${F} = ${N(df)} ${df>0?'>':'<'} 0`,[`${E}−${F} 的值（常数）是？`,df,`x 项抵消：${a*b}−(${c*d}) = ${df}`])},1],
+[()=>{const k=R(0,2);if(k==0)FG=['<br>'+rows([['取 x=−4, y=−2 为例',[[-4,'x'],[-2,'y']]],['平方后',[[16,'x²'],[4,'y²']]]])];if(k==0)return cmp('x²','y²','>',['已知 x&lt;y&lt;0，比较 x² 与 y² 的大小','性质：负数越小，平方越大。如 −3<−1 但 9>1']);
+ if(k==1)FG=['<br>'+rows([['a=1 < b=3',[[1,'a'],[3,'b']]],['乘 c=−1 后（次序反了）',[[-1,'ac'],[-3,'bc']]]])];if(k==1)return cmp('ac','bc','>',['已知 a&lt;b，c&lt;0，比较 ac 与 bc 的大小','性质4：乘以负数，不等号反向']);
+ const x=R(2,5),y=R(0,x-1);FG=['<br>'+rows([['m>n，如 m=3, n=1',[[1,'n'],[3,'m']]],[`n 加 ${y}，m 加 ${x}`,[[1+y,'n+'+y],[3+x,'m+'+x]]]])];return cmp(`m+${x}`,`n+${y}`,'>',[`已知 m>n，比较 m+${x} 与 n+${y} 的大小`,`m>n 且 ${x}>${y}，由性质3相加得 m+${x}>n+${y}`])},0],
+[()=>{const n=R(1,6),k=R(1,9),S=r=>`x²+${n*n} ${r} ${2*n}x`;
+ FG=['<br>'+fplot([[x=>x*x+n*n,'#2563eb','x²+'+n*n,n+3],[x=>2*n*x,'#dc2626',2*n+'x',n-3.2]],n-4,n+4,Math.min(0,2*n*(n-4))-2,(n+4)**2+n*n,g=>dot(g,n,2*n*n,'x='+n+' 时相切')),'<br>'+fplot([[x=>(x-n)**2+k,'#2563eb',`(x${sg(-n)})²+${k}`,n+3]],n-4,n+4,-1,k+18,g=>dot(g,n,k,'最小值 '+k))];
+ return ch(`比较 x²+${n*n} 与 ${2*n}x 的大小（x∈R）`,S('≥'),[S('>'),S('<'),S('≤')],`作差：x²−${2*n}x+${n*n} = (x${sg(-n)})² ≥ 0，x=${n} 时取等号`,[`x²−${2*n}x+${n*n+k} 的最小值是？`,k,`= (x${sg(-n)})²+${k} ≥ ${k}`])},1],
+/*6.2*/
+[()=>{let p,q;do{p=R(-6,6);q=R(-6,6)}while(q-p<2);const rel=sh(['<','>','≤','≥'])[0],S=(p,q,r)=>SS([{v:p,l:N(p)},{v:q,l:N(q)}],r).t,tg={'<':'≤','≤':'<','>':'≥','≥':'>'}[rel];
+ FG=['<br>'+svgOf(r2({a:1,b:-(p+q),c:p*q,rel})),'<br>'+svgOf(r2({a:1,b:-(p+q),c:p*q,rel:'≤'}))];return ch(`解不等式 ${q2(1,-(p+q),p*q)} ${rel} 0`,S(p,q,rel),[S(p,q,OP[rel]),S(p,q,tg),S(-q,-p,rel),S(p,q+1,rel),S(p-1,q,rel)],`因式分解：(x${sg(-p)})(x${sg(-q)}) ${rel} 0，根为 ${N(p)}、${N(q)}，开口向上，解为 ${S(p,q,rel)}`,[`不等式 (x${sg(-p)})(x${sg(-q)}) ≤ 0 的整数解共有几个？`,q-p+1,`${N(p)}≤x≤${N(q)}，共 ${q-p+1} 个`])},1],
+[()=>{let m,n;do{m=R(2,8);n=R(m+2,14)}while((m+n)%2);const s=m+n,S=(a,b)=>`${a}≤x≤${b}`;
+ {const cv=[x=>x*(s-x),'#2563eb','面积',s*.8],ln=[x=>m*n,'#dc2626','面积 = '+m*n,1.2];
+ FG=['<br>'+fplot([cv,ln],0,s,-2,(s/2)**2+4,g=>dot(g,m,m*n,'x='+m)+dot(g,n,m*n,'x='+n)+`<line x1=${g.X(m)} x2=${g.X(n)} y1=${g.Y(0)} y2=${g.Y(0)} stroke=#16a34a stroke-width=6 />`),'<br>'+fplot([cv],0,s,-2,(s/2)**2+4,g=>dot(g,s/2,(s/2)**2,'最大 '+(s/2)**2))]}
+ return ch(`用长 ${2*s} m 的篱笆围成长方形，一边长 x m，面积至少 ${m*n} m²，求 x 的取值范围`,S(m,n),[`x≤${m} 或 x≥${n}`,`${m}&lt;x&lt;${n}`,S(m,s),S(n,s)],`另一边 ${s}−x：x(${s}−x)≥${m*n} ⇒ x²−${s}x+${m*n}≤0 ⇒ (x−${m})(x−${n})≤0，故 ${S(m,n)}`,[`同上，围出的面积最大是多少 m²？`,(s/2)**2,`x=${s/2} 时面积最大 = ${s/2}×${s/2} = ${(s/2)**2}`])},1],
+[()=>{const h=R(-5,5),k=R(1,6),rel=sh(['<','>','≤','≥'])[0],a=rel=='<'||rel=='≤'?'无解':'全体实数';
+ FG=['<br>'+svgOf(r2({a:1,b:-2*h,c:h*h+k,rel}))];return ch(`解不等式 ${q2(1,-2*h,h*h+k)} ${rel} 0`,a,[a=='无解'?'全体实数':'无解','x='+N(h),'x≠'+N(h)],`配方：(x${sg(-h)})²+${k} ≥ ${k} > 0 恒成立，所以${a}`)},0],
+/*6.3*/
+[()=>{let p,q;do{p=R(-6,6);q=R(-6,6)}while(p==q);const rel=sh(['<','>','≤','≥'])[0],H=(p,q,r,dq=1)=>SS([{v:p,l:N(p),den:0},{v:q,l:N(q),den:dq}].sort((a,b)=>a.v-b.v),r).t;
+ FG=['<br>'+svgOf(r3({p,r:'',q,rel})),'<br>'+svgOf(r3({p,r:'',q,rel:'≤'}))];return ch(`解不等式 ${fr(`x${sg(-p)}`,`x${sg(-q)}`)} ${rel} 0`,H(p,q,rel),[H(p,q,rel,0),H(p,q,OP[rel]),H(-p,-q,rel),H(q,p,rel)],`分子根 ${N(p)}，分母根 ${N(q)}（分母不能为 0，必空心），列符号表得 ${H(p,q,rel)}`,[`${fr(`x${sg(-p)}`,`x${sg(-q)}`)} ≤ 0 的整数解共有几个？`,Math.abs(q-p),`取 ${N(p)}，不取 ${N(q)}，其间整数共 ${Math.abs(q-p)} 个`])},1],
+[()=>{const v=[];while(v.length<3){const t=R(-6,6);if(!v.includes(t))v.push(t)}const[p,r,q]=v,rel=sh(['<','>','≤','≥'])[0],
+ H=(rl,di)=>SS(v.map((t,i)=>({v:t,l:N(t),den:i==di?1:0})).sort((a,b)=>a.v-b.v),rl).t,E=fr(`(x${sg(-p)})(x${sg(-r)})`,`x${sg(-q)}`);
+ let cnt=0;for(let x=-10;x<=10;x++)if(x!=q&&(x-p)*(x-r)/(x-q)<=1e-9)cnt++;
+ FG=['<br>'+svgOf(r3({p,r,q,rel})),'<br>'+svgOf(r3({p,r,q,rel:'≤'}))];return ch(`解不等式 ${E} ${rel} 0`,H(rel,2),[H(rel,-1),H(OP[rel],2),H(rel,0),H(rel,1)],`三个根 ${v.map(N).join('、')}，其中 ${N(q)} 为分母根；由右至左符号 ＋－＋－ 交替`,[`在 −10≤x≤10 中，${E} ≤ 0 的整数解共有几个？`,cnt,`逐一检验（x=${N(q)} 除外）共 ${cnt} 个`])},1],
+[()=>{let a,b;do{a=R(-5,5);b=R(-5,5)}while(a==b);const tr=a<b,an=tr?'x>'+N(-b):'x<'+N(-b);
+ {const f=x=>(x+a)/(x+b);FG=['<br>'+fplot([[f,'#2563eb']],-b-6,-b+6,-5,7,g=>{let sg2='';for(let i=0;i<=300;i++){const x=-b-6+12*i/300;if(Math.abs(x+b)>.05&&f(x)<1)sg2+=`<line x1=${g.X(x)} x2=${g.X(x)+1.6} y1=${g.Y(0)} y2=${g.Y(0)} stroke=#16a34a stroke-width=6 />`}
+ return `<line x1=${g.X(-b)} x2=${g.X(-b)} y1=0 y2=240 stroke=#999 stroke-dasharray="4 3" />`+lt(g.X(-b)+4,12,'x='+N(-b),'start')+`<line x1=20 x2=300 y1=${g.Y(1)} y2=${g.Y(1)} stroke=#dc2626 />`+lt(300,g.Y(1)-4,'y=1','end')+sg2},-b)]}
+ return ch(`解不等式 ${fr('x'+sg(a),'x'+sg(b))} < 1`,an,[tr?'x<'+N(-b):'x>'+N(-b),tr?'全体实数':'无解',`x${tr?'>':'<'}${N(-a)}`],`移项：${fr(N(a-b),'x'+sg(b))} < 0，分子 ${N(a-b)} ${tr?'<':'>'} 0，故需 x${sg(b)} ${tr?'>':'<'} 0，得 ${an}。不能直接去分母！`)},0],
+/*6.4*/
+[()=>{const m=sh([-2,-1,1,2])[0],k=R(-3,3),rel=R(0,1)?'>':'<',xs=sh([-3,-2,-1,0,1,2,3]).slice(0,4),d=()=>R(1,3),sd=rel=='>'?1:-1,
+ P=[[xs[0],m*xs[0]+k+sd*d()],[xs[1],m*xs[1]+k],[xs[2],m*xs[2]+k-sd*d()],[xs[3],m*xs[3]+k-sd*d()]],S=p=>`(${N(p[0])}, ${N(p[1])})`;
+ const n=R(3,8);{const ex=P.map((p,i)=>[p[0],p[1],S(p),i?'#dc2626':'#16a34a']),lat=[];for(let x=0;x<=n;x++)for(let y=0;y<=n-x;y++)lat.push([x,y,'','#16a34a']);
+ FG=['<br>'+svgOf(r4({a:-m,b:1,rel,c:k,px:NaN,py:NaN,ex})),'<br>'+svgOf(r4({a:1,b:1,rel:'≤',c:n,px:NaN,py:NaN,ex:lat,q1:1}))]}
+ return ch(`下列哪个点在 y ${rel} ${lin(m,k)} 所表示的区域内？`,S(P[0]),P.slice(1).map(S),`代入检验：只有 ${S(P[0])} 满足 y ${rel} ${lin(m,k)}；落在直线上的点不满足严格不等式`,[`满足 x≥0, y≥0, x+y≤${n} 的整数点 (x, y) 共有几个？`,(n+1)*(n+2)/2,`x=0,1,…,${n} 时 y 有 ${n+1},${n},…,1 个，共 ${(n+1)*(n+2)/2} 个`])},1],
+[()=>{const a=R(1,4)*sh([-1,1])[0],b=R(1,3)*sh([-1,1])[0],c=R(-6,6),rel=sh(['<','>','≤','≥'])[0],st=rel=='<'||rel=='>',up=(rel=='>'||rel=='≥')!=(b<0),O=(s,u)=>`${s?'虚线':'实线'}，阴影在直线${u?'上':'下'}方`,xc=R(-5,5);
+ FG=['<br>'+svgOf(r4({a,b,rel,c,px:NaN,py:NaN})),'<br>'+svgOf(r4({a,b,rel:'≤',c:a*xc,px:NaN,py:NaN,ex:[[xc,0,`(${N(xc)}, 0)`,'#dc2626']]}))];return ch(`不等式 ${eq2(a,b)} ${rel} ${N(c)} 的图像是`,O(st,up),[O(!st,up),O(st,!up),O(!st,!up)],`${rel=='<'||rel=='>'?'严格不等号→虚线':'含等号→实线'}；解出 y 时 ${b<0?'除以负数，不等号反向':'除以正数，不等号不变'}，阴影在直线${up?'上':'下'}方`,[`直线 ${eq2(a,b)} = ${N(a*xc)} 与 x 轴交点的横坐标是？`,xc,`令 y=0：${N(a)}x=${N(a*xc)}，x=${xc}`])},1],
+/*6.5*/
+[()=>{let s,m,p,q,r;do{s=R(8,20);m=R(3,s-3);p=R(1,9);q=R(1,9);r=LP([[1,1,s],[1,0,m]],p,q)}while(p==q||new Set(r.Z).size<4);const mx=Math.max(...r.Z),T=`求 z=${p}x+${q}y 的最大值，其中 x≥0，y≥0，x+y≤${s}，x≤${m}`;
+ return ch(T,mx,r.Z.filter(z=>z!=mx),`可行区域顶点 ${r.V.map(v=>`(${d2(v[0])},${d2(v[1])})`).join('、')}，z 依次为 ${r.Z.join('、')}，最大 ${mx}`,[T,mx,`比较各顶点的 z：${r.Z.join('、')}，最大为 ${mx}`])},1],
+[()=>{let X,Y,a1,b1,a2,b2,p,q,r,t=0;do{X=R(2,10);Y=R(2,10);a1=R(1,4);b1=R(1,4);a2=R(1,4);b2=R(1,4);p=R(1,9);q=R(1,9);r=LP([[a1,b1,a1*X+b1*Y],[a2,b2,a2*X+b2*Y]],p,q);t++}
+ while(t<500&&(a1*b2==a2*b1||!r.V.every(v=>v.every(z=>Math.abs(z-Math.round(z))<1e-6))||new Set(r.Z).size<4));
+ const mx=Math.max(...r.Z),T=`某厂生产 A、B 两种产品，每周生产 x 件 A、y 件 B。机器一每周限 ${a1*X+b1*Y} 小时（A 每件 ${a1} 小时，B 每件 ${b1} 小时），机器二限 ${a2*X+b2*Y} 小时（A 每件 ${a2} 小时，B 每件 ${b2} 小时）；利润 A 每件 RM${p}，B 每件 RM${q}。最大利润为多少 RM？`;
+ return ch(T,mx,r.Z.filter(z=>z!=mx),`约束：${eq2(a1,b1)}≤${a1*X+b1*Y}，${eq2(a2,b2)}≤${a2*X+b2*Y}，x,y≥0；顶点 ${r.V.map(v=>`(${d2(v[0])},${d2(v[1])})`).join('、')}，z=${p}x+${q}y 分别为 ${r.Z.join('、')}，最大 RM${mx}`,[T,mx,`比较各顶点的 z：${r.Z.join('、')}，最大为 ${mx}`])},1]];
+for(let i=0;i<11;i++){const f=G[i][0];G[i][0]=()=>{FG=[];const o=f();if(FG[0])o.e+=FG[0];if(o.f&&FG[1])o.f[2]+=FG[1];return o}}
+[11,12].forEach(i=>{const f=G[i][0];G[i][0]=()=>{const o=f(),F=lpFig(...LPl);o.e+=F;o.f[2]+=F;return o}});
+function quiz(h,pool,nm,nf,need,rev){
+ const go=()=>{const pick=(n,fo)=>{const a=[];while(a.length<n)a.push(...sh(fo?pool.filter(g=>g[1]):pool));return a.slice(0,n).map(g=>g[0]())},Q=pick(nm),F=pick(nf,1);let sc=0,n=0,fs=0,fd=0;
+  h.innerHTML='<h4>选择题（点击选项即锁定）</h4>'+Q.map((o,i)=>{o.o=sh([o.a,...o.w]);return `<div class=box data-i=${i}><b>${i+1}.</b> ${o.q}${o.o.map((t,j)=>`<button class=o data-j=${j}>${t}</button>`).join('')}<div class=x></div></div>`}).join('')+'<div class=fz></div>';
+  const fin=()=>{const z=h.querySelector('.fz');z.innerHTML=`<div class=box><b>选择题 ${sc}/${nm}</b> ${sc>=need?'— 解锁填充题 ✔':'— 未达 3 题，请再试'}</div>`+(sc>=need?F.map((o,i)=>`<div class=box data-f=${i}><b>填${i+1}.</b> ${o.f[0]} <input class=fi> <button class=sb>提交</button><div class=x></div></div>`).join(''):'<button class=rt>重新出题</button>')};
+  h.onclick=e=>{const b=e.target.closest('button');if(!b)return;const bx=b.closest('.box');
+   if(b.classList.contains('rt'))return go();
+   if(b.classList.contains('o')){if(bx.dataset.d)return;bx.dataset.d=1;const o=Q[bx.dataset.i],ok=o.o[b.dataset.j]==o.a;
+    bx.querySelectorAll('.o').forEach(x=>{if(o.o[x.dataset.j]==o.a)x.classList.add('g')});if(!ok)b.classList.add('b');if(ok)sc++;
+    bx.querySelector('.x').innerHTML=(ok?'✅ 正确　':'❌ 错误　')+o.e;if(++n==nm)fin()}
+   else if(b.classList.contains('sb')){if(bx.dataset.d)return;bx.dataset.d=1;const o=F[bx.dataset.f],ok=Math.abs(parseFloat(bx.querySelector('input').value.replace('−','-'))-o.f[1])<1e-6;
+    if(ok)fs++;bx.querySelector('.x').innerHTML=(ok?'✅ 正确　':`❌ 错误，答案 ${o.f[1]}　`)+o.f[2];
+    if(++fd==nf){const t=sc+fs,tt=nm+nf;h.querySelector('.fz').insertAdjacentHTML('beforeend',`<div class=box><b>填充 ${fs}/${nf}</b>${rev?`　总分 <b>${t}/${tt}</b>　${t>=tt*.85?'🏆 优秀':t>=tt*.65?'👍 良好':t>=tt*.5?'🙂 及格':'💪 继续加油'}`:''}　<button class=rt>重新出题</button></div>`)}}}};
+ go()}
+/* ===== 页面 ===== */
+const SEL={rel:['<','≤','>','≥'],mode:['最大','最小']};
+const TT=[
+{n:'6.1 不等式性质',ex:'例题2：比较两个长方形面积',run:r1,lay:['(x+','$a',')(x+','$b',') 与 (x+','$c',')(x+','$d',')'],xv:{a:7,b:-5,c:5,d:-3},df:{a:2,b:3,c:1,d:-1},g:[0,1,2],
+ note:'作差比较：a−b>0⇒a>b。性质①传递 ②两边加同数 ③同向相加 ④乘正数不变、乘负数反向 ⑤正数同向相乘。例题2：作差后 x 项抵消，差为常数 −20，故前者小；图为「差」的图像。'},
+{n:'6.2 一元二次不等式',ex:'例题10：x²−2x−2≤0（含根号）',run:r2,lay:['$a','x²+','$b','x+','$c',' ','$rel',' 0'],xv:{a:1,b:-2,c:-2,rel:'≤'},df:{a:1,b:-2,c:-3,rel:'<'},g:[3,4,5],
+ note:'先化为 a>0。Δ>0：大于取两边、小于取中间；Δ=0、Δ<0 利用完全平方非负。绿色粗线为解集，空心＝不含端点。'},
+{n:'6.3 分式不等式',ex:'例题15：(x−6)/(x+3)<0',run:r3,lay:['分子根 ','$p',' ','$r','(可空) 分母根 ','$q',' ','$rel',' 0'],xv:{p:6,r:'',q:-3,rel:'<'},df:{p:1,r:2,q:3,rel:'≥'},g:[6,7,8],
+ note:'移项使右边为 0 → 通分 → 因式分解 → 数线标符号（由右至左 ＋－＋－）。分母的根一律空心。'},
+{n:'6.4 二元一次不等式',ex:'例题20：2x+y≤3',run:r4,lay:['$a','x+','$b','y ','$rel',' ','$c','<br>检验点 (','$px',' , ','$py',') 是否在区域内？'],xv:{a:2,b:1,rel:'≤',c:3,px:0,py:0},df:{a:4,b:-3,rel:'≥',c:6,px:3,py:1},g:[9,10],
+ note:'画边界线（＞、＜虚线；≥、≤实线），再取测试点代入，决定阴影侧。'},
+{n:'6.5 线性规划',ex:'例题27：最大利润',run:r5,lay:['$a1','x+','$b1','y≤','$c1','；','$a2','x+','$b2','y≤','$c2','<br>z=','$p','x+','$q','y，求','$mode'],xv:{a1:1,b1:2,c1:50,a2:1,b2:1,c2:30,p:30,q:50,mode:'最大'},df:{a1:2,b1:1,c1:12,a2:1,b2:3,c2:15,p:3,q:2,mode:'最大'},g:[11,12],
+ note:'约束条件 → 可行区域 → 平移目标直线（红虚线）→ 最优解在顶点。'}];
+const form=(T,df)=>T.lay.map(x=>{if(x[0]!='$')return x;const k=x.slice(1);return SEL[k]?`<select data-n=${k}>${SEL[k].map(o=>`<option${o==df[k]?' selected':''}>${o}</option>`).join('')}</select>`:`<input data-n=${k} value="${df[k]}">`}).join('');
+const read=b=>{const v={};b.querySelectorAll('[data-n]').forEach(e=>v[e.dataset.n]=e.tagName=='SELECT'?e.value:parseFloat(e.value.replace('−','-')));return v};
+const nav=$('nav'),main=$('main'),secs=[];
+TT.forEach((T,i)=>{nav.insertAdjacentHTML('beforeend',`<button>${T.n}</button>`);
+ main.insertAdjacentHTML('beforeend',`<section hidden><h2>${T.n}</h2><div class=box>${T.note}</div><h3>课本${T.ex}</h3><div class="box e"></div><h3>计算器</h3><div class=box><div class=f>${form(T,T.df)}</div><div class=out></div></div><h3>练习</h3><div class=qz></div></section>`);
+ const s=main.lastElementChild,f=s.querySelector('.f'),o=s.querySelector('.out'),upd=()=>{try{o.innerHTML=T.run(read(f))}catch(e){o.textContent='请检查输入'}};
+ s.querySelector('.e').innerHTML=T.run(T.xv);f.oninput=f.onchange=upd;upd();quiz(s.querySelector('.qz'),T.g.map(k=>G[k]),5,2,3);secs.push(s)});
+nav.insertAdjacentHTML('beforeend','<button>总复习</button>');
+main.insertAdjacentHTML('beforeend','<section hidden><h2>总复习（10 选择 + 5 填充）</h2><p>题目来自 6.1–6.5，每次随机生成。</p><div class=qz></div></section>');
+quiz(main.lastElementChild.querySelector('.qz'),G,10,5,0,1);secs.push(main.lastElementChild);
+const show=i=>{secs.forEach((s,j)=>s.hidden=j!=i);[...nav.children].forEach((b,j)=>b.classList.toggle('on',j==i))};
+[...nav.children].forEach((b,i)=>b.onclick=()=>{show(i);scrollTo(0,0)});show(0);
+let fs=15;try{fs=+localStorage.fs||15;if(localStorage.dk=='1')document.documentElement.classList.add('dk')}catch(e){}
+const setF=v=>{fs=Math.min(22,Math.max(12,v));document.documentElement.style.fontSize=fs+'px';try{localStorage.fs=fs}catch(e){}};setF(fs);
+$('#fm').onclick=()=>setF(fs-1);$('#fp').onclick=()=>setF(fs+1);
+$('#th').onclick=()=>{const c=document.documentElement.classList.toggle('dk');try{localStorage.dk=c?1:0}catch(e){}};
+$('#wm').innerHTML=Array(120).fill('<span>蔡逸众 · ecchua79 · Chinese High School</span>').join('');
+</script></body></html>

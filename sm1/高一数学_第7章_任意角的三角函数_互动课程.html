@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!-- 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>高一数学 第7章 任意角的三角函数</title>
+<style>
+:root{--bg:#f5f3ee;--fg:#1c2230;--cd:#fff;--ac:#c2185b;--ac2:#0a7c76;--mu:#6a7083;--bd:#d8d3c8;--fs:16px}
+:root[data-t=d]{--bg:#11141e;--fg:#e5e8f1;--cd:#1b1f2e;--ac:#ff6fa6;--ac2:#4fd8cb;--mu:#99a1b8;--bd:#343a50}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:var(--fs)/1.75 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:14px 14px 4px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding-top:calc(14px + env(safe-area-inset-top))}
+h1{font-size:1.25em;margin:0}h3{margin:1.2em 0 .4em;color:var(--ac)}
+.ctl button,#tabs button,.btn,.op,.ck,.rs{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--cd);color:var(--fg);border-radius:8px;padding:5px 11px}
+#tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 14px;position:sticky;top:0;background:var(--bg);z-index:5;scrollbar-width:thin}
+#tabs button{white-space:nowrap;flex:none}#tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:860px;margin:auto;padding:6px 14px 40px}.p{display:none}.p.on{display:block}
+.card,.calc,.q{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:10px 0}
+.calc{border-color:var(--ac2)}.calc input,.calc select,.in{font:inherit;width:84px;padding:4px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--fg)}
+.calc select{width:auto}.mu{color:var(--mu)}.cen,.g2,.g4{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.g4>div{text-align:center;width:46%;min-width:150px}
+.six{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px 12px}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.3}.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 4px}.fr b{font-weight:400;padding:0 4px}
+.rt{vertical-align:-.4em}.rt text{fill:currentColor;font-size:16px}
+svg text{fill:var(--fg);font-size:12px}svg .t{fill:var(--mu);font-style:italic}.l1{fill:var(--ac)}.l2{fill:var(--ac2)}
+.dg{width:100%;max-width:250px}.gr{width:100%;max-width:520px}.ax{stroke:var(--mu);stroke-width:1.2}.ds{stroke:var(--mu);stroke-dasharray:4 3;fill:none}
+.a1,.a2,.cv{fill:none;stroke-width:2.2}.a1{stroke:var(--ac)}.a2{stroke:var(--ac2)}.cv{stroke:var(--ac)}.gt{font-size:10px;text-anchor:middle}.gy{font-size:10px;text-anchor:end}
+.op{display:block;width:100%;text-align:left;margin:5px 0}.op.ok{background:#1b8f4a;color:#fff;border-color:#1b8f4a}.op.bad{background:#c62828;color:#fff;border-color:#c62828}
+.ex{margin-top:8px;padding:8px 10px;border-left:3px solid var(--ac2);background:var(--bg);border-radius:6px}
+table{border-collapse:collapse;margin:6px 0}td,th{border:1px solid var(--bd);padding:4px 10px;text-align:center}
+.btn,.ck,.rs{background:var(--ac2);color:#000;border:0}#wm{position:fixed;inset:-20%;pointer-events:none;opacity:.055;transform:rotate(-24deg);display:flex;flex-wrap:wrap;gap:46px 70px;font-size:20px;z-index:9;overflow:hidden}
+footer{text-align:center;color:var(--mu);font-size:.8em;padding:16px 14px calc(22px + env(safe-area-inset-bottom))}
+</style></head><body>
+<div id="wm"></div><span aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">峇株吧辖华仁中学蔡逸众制作 ecchua79 ©2026 hidden-mark:cai-ch7</span>
+<header><h1>高一数学 · 第7章 任意角的三角函数</h1><div class="ctl"><button onclick="fz(-1)">A−</button> <button onclick="fz(0)">A</button> <button onclick="fz(1)">A+</button> <button onclick="th()">☀/🌙</button></div></header>
+<nav id="tabs"></nav><main id="m"></main>
+<footer>峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79<br>仅供课堂教学使用，未经许可请勿转载或售卖 · 离线可用</footer>
+<script>
+const $=s=>document.querySelector(s),R_=n=>Math.floor(Math.random()*n),pk=a=>a[R_(a.length)],gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),sn=n=>(n<0?'−':'')+Math.abs(n);
+const sq=n=>{let t=1;for(let i=2;i*i<=n;i++)while(n%(i*i)==0){n/=i*i;t*=i}return[t,n]};
+const NM=['sin','cos','tan','cosec','sec','cot'],Q=n=>'第'+'一二三四'[n-1]+'象限';
+const cx=document.createElement('canvas').getContext('2d');cx.font='16px system-ui,"PingFang SC","Microsoft YaHei",sans-serif';
+const rt=s=>{const w=Math.ceil(cx.measureText(String(s)).width)+5,W=w+13;return `<svg class=rt width=${W/16}em height=1.625em viewBox="0 0 ${W} 26"><path d="M1 15l3-2 3.5 9 5.5-19H${W}" fill=none stroke=currentColor stroke-width=1.4 stroke-linejoin=round /><text x=15.5 y=21>${s}</text></svg>`};
+const fr=(n,d)=>`<span class=fr><i>${n}</i><b>${d}</b></span>`;
+const ex=(p,q)=>{if(!p[0])return'0';let[t,m]=sq(p[1]*q[1]),k=p[0]*t,d=q[0]*q[1],g=gcd(k,d);k/=g;d/=g;const n=m>1?(k>1?k:'')+rt(m):k;return d>1?fr(n,d):n};
+const mk=n=>[Math.abs(n),1,Math.sign(n)],dv=a=>a[2]*a[0]*Math.sqrt(a[1]),rad=(X,Y)=>{const[t,m]=sq(X[0]**2*X[1]+Y[0]**2*Y[1]);return[t,m,1]};
+const six=(X,Y,r)=>[[Y,r],[X,r],[Y,X],[r,Y],[r,X],[X,Y]].map(([a,b])=>b[0]==0?'<span class=mu>不存在</span>':a[0]==0?'0':(a[2]*b[2]<0?'−':'')+ex(a,b));
+const qd=a=>{const n=((a%360)+360)%360;return n%90==0?0:Math.floor(n/90)+1};
+const P2=(r,d)=>[r*Math.cos(d*Math.PI/180),-r*Math.sin(d*Math.PI/180)].map(v=>v.toFixed(1));
+const arc=(a0,a1,r0,r1)=>{let s='',n=Math.max(2,Math.ceil(Math.abs(a1-a0)/4));for(let i=0;i<=n;i++)s+=(i?'L':'M')+P2(r0+(r1-r0)*i/n,a0+(a1-a0)*i/n).join(' ');return s};
+function dg(ang,o={}){const n=((ang%360)+360)%360;let S=`<line x1=-120 y1=0 x2=120 y2=0 class=ax /><line x1=0 y1=118 x2=0 y2=-118 class=ax /><text x=108 y=-5 class=t>x</text><text x=6 y=-106 class=t>y</text><text x=-12 y=12 class=t>O</text>`;
+ const[tx,ty]=P2(100,ang);
+ if(o.p){const[px,py]=P2(90,ang).map(Number);if(n%180)S+=`<line x1=${px} y1=${py} x2=${px} y2=0 class=ds />`;
+  if(n%90){const dx=px>0?-7:7,dy=py<0?-7:7;S+=`<path d="M${px+dx} 0v${dy}h${-dx}" class=ds />`}
+  S+=`<circle cx=${px} cy=${py} r=4 fill=var(--ac) /><text x=${px+(px>=0?6:-6)} y=${py+(py>0?14:-7)} style="text-anchor:${px>=0?'start':'end'}">${o.pl||''}</text>`}
+ S+=`<line x1=0 y1=0 x2=${tx} y2=${ty} stroke=var(--ac) stroke-width=2.5 /><path d="${arc(0,ang,16,16+Math.min(Math.abs(ang)/360,3)*4.5)}" class=a1 />`;
+ S+=`<text x=-120 y=-106 class=l1>${o.n||'α'} = ${o.s||ang+'°'}</text>`;
+ if(n%90){const[rs,re]=n<90?[0,n]:n<180?[n,180]:n<270?[180,n]:[n,360],[lx,ly]=P2(54,(rs+re)/2);
+  S+=`<path d="${arc(rs,re,40,40)}" class=a2 /><text x=${lx} y=${ly} class=l2>θ</text><text x=-120 y=-90 class=l2>相伴锐角 θ = ${re-rs}°</text>`}
+ return `<svg class=dg viewBox="-125 -125 250 250">${S}</svg>`}
+function gr(i,m){const sx=.56,sy=36,X=d=>(d*sx).toFixed(1),Y=v=>(-v*sy).toFixed(1),f=[Math.sin,Math.cos,Math.tan][i];
+ let S=`<line x1=-200 y1=0 x2=200 y2=0 class=ax /><line x1=0 y1=100 x2=0 y2=-100 class=ax /><text x=-5 y=${Y(1)} class=gy>1</text><text x=-5 y=${Y(-1)} class=gy>−1</text>`;
+ for(let k=-4;k<=4;k++)if(k){const x=X(k*90),a=Math.abs(k),s=k<0?'−':'';S+=`<line x1=${x} y1=-3 x2=${x} y2=3 class=ax />`+(k%2?`<text x=${x} y=14 class=gt>${s}${a>1?a:''}π</text><line x1=${x-9} y1=17 x2=${x+9} y2=17 class=ax /><text x=${x} y=29 class=gt>2</text>`:`<text x=${x} y=14 class=gt>${s}${a/2>1?a/2:''}π</text>`)}
+ const seg=(a,b)=>{let d='',pen=0;for(let t=a;t<=b;t+=3){const v=f(t*Math.PI/180);if(Math.abs(v)>2.6){pen=0;continue}d+=(pen?'L':'M')+X(t)+' '+Y(v);pen=1}return d};
+ if(i==2)S+=[-270,-90,90,270].map(c=>`<line x1=${X(c)} y1=-100 x2=${X(c)} y2=100 class=ds />`).join('');
+ S+=`<path d="${i<2?seg(-360,360):[[-360,-273],[-267,-93],[-87,87],[93,267],[273,360]].map(([a,b])=>seg(a,b)).join('')}" class=cv />`;
+ if(m!=null){const v=f(m*Math.PI/180);if(Math.abs(v)<=2.6)S+=`<circle cx=${X(m)} cy=${Y(v)} r=5 fill=var(--ac) />`}
+ return `<svg class=gr viewBox="-200 -100 400 200">${S}</svg>`}
+const lab=a=>a[0]==0?'0':(a[2]<0?'−':'')+(a[1]>1?(a[0]>1?a[0]:'')+rt(a[1]):a[0]),labt=a=>a[0]==0?'0':(a[2]<0?'−':'')+(a[1]>1?(a[0]>1?a[0]:'')+'√'+a[1]:a[0]);
+function res6(X,Y,Rr){const v=six(X,Y,Rr),d=[['y','r'],['x','r'],['y','x'],['r','y'],['r','x'],['x','y']],g={x:lab(X),y:lab(Y),r:lab(Rr)};
+ return `<div class=six>`+NM.map((n,i)=>`<div>${n}α = ${fr(d[i][0],d[i][1])} = ${fr(g[d[i][0]],g[d[i][1]])} = <b>${v[i]}</b></div>`).join('')+`</div><div class=cen>${dg(Math.atan2(dv(Y),dv(X))*180/Math.PI,{p:1,pl:`P(${labt(X)}, ${labt(Y)})`})}</div>`}
+const pt=(x,y)=>{if(!x&&!y)return'原点不能作为终边上的点（r＞0）';const X=mk(x),Y=mk(y),Rr=rad(X,Y),s=x*x+y*y;
+ return `<p>r = ${rt(`(${sn(x)})²+(${sn(y)})²`)} = ${rt(s)}${Rr[0]>1||Rr[1]==1?` = ${Rr[0]>1&&Rr[1]>1?Rr[0]:Rr[1]==1?Rr[0]:''}${Rr[1]>1?rt(Rr[1]):''}`:''}</p>`+res6(X,Y,Rr)};
+function sol(i,p,q,Qd){if(!q||!p)return'分子、分母都不能为 0';const S=[[1,2],[1,4],[1,3]][i%3],a=Math.abs(p),b=Math.abs(q),m=[['y','r'],['x','r'],['y','x'],['r','y'],['r','x'],['x','y']][i],K={};K[m[0]]=a;K[m[1]]=b;
+ if(Math.sign(p*q)!=(S.includes(Qd)?1:-1))return'⚠ 函数值的正负与所选象限不符（请用 ASTC 口诀检查）';
+ const sx=Qd==1||Qd==4?1:-1,sy=Qd<3?1:-1,n=K.r==null?K.x**2+K.y**2:K.x==null?K.r**2-K.y**2:K.r**2-K.x**2;
+ if(n<=0)return'⚠ 这个比值不可能出现（例如 |sin α| 不能大于 1）';const[t,mm]=sq(n);
+ const X=K.x==null?[t,mm,sx]:[K.x,1,sx],Y=K.y==null?[t,mm,sy]:[K.y,1,sy],Rr=K.r==null?[t,mm,1]:[K.r,1,1];
+ return `<p>${NM[i]}α = ${(p*q<0?'−':'')+fr(a,b)}，α 在${Q(Qd)}：x ${sx>0?'＞':'＜'} 0，y ${sy>0?'＞':'＜'} 0。取 ${m[0]} = ${a}，${m[1]} = ${b}，再用勾股定理求第三边：${rt(n)}${mm==1?' = '+t:t>1?' = '+t+rt(mm):''}</p>`+res6(X,Y,Rr)}
+function ang3(i,a){const n=((a%360)+360)%360,q=qd(a),vs=(X,Y,r)=>`<div class=six>`+six(X,Y,r).map((v,j)=>`<div>${NM[j]} ${a}° = <b>${v}</b></div>`).join('')+'</div>';
+ if(!q){const c=Math.round(Math.cos(n*Math.PI/180)),s=Math.round(Math.sin(n*Math.PI/180));return `<p>${a}° 的终边在坐标轴上，不属于任何象限。</p>`+vs(mk(c),mk(s),[1,1,1])+dg(a)}
+ const rf=n<90?n:n<180?180-n:n<270?n-180:360-n,pos=[[1,2],[1,4],[1,3]][i%3].includes(q);
+ let h=`<p>${a}° 的终边在${Q(q)}，相伴锐角 θ = ${rf}°。${NM[i]} 在${Q(q)}为${pos?'正':'负'}值，∴ <b>${NM[i]} ${a}° = ${pos?'':'−'}${NM[i]} ${rf}°</b></p>`;
+ if([30,45,60].includes(rf)){const B={30:[[1,3],[1,1],[2,1]],45:[[1,1],[1,1],[1,2]],60:[[1,1],[1,3],[2,1]]}[rf];h+=vs([...B[0],q==1||q==4?1:-1],[...B[1],q<3?1:-1],[...B[2],1])}
+ else{const f=[Math.sin,Math.cos,Math.tan,x=>1/Math.sin(x),x=>1/Math.cos(x),x=>1/Math.tan(x)][i];h+=`<p>${NM[i]} ${a}° ≈ <b>${f(a*Math.PI/180).toFixed(4)}</b>（计算器）</p>`}
+ return h+`<div class=cen>${dg(a)}</div>`}
+const opt=a=>a.map((t,i)=>`<option value=${i}>${t}</option>`).join('');
+/* ---- calculators ---- */
+const C={
+ 1(){const a=+$('#a1').value;if(isNaN(a))return;const k=Math.floor(a/360),n=a-360*k,q=qd(a);$('#o1').innerHTML=`<p>${a}° = 360°×(${k}) + ${n}°，终边与 ${n}° 相同。</p><p>${q?`终边在<b>${Q(q)}</b>，所以是${Q(q)}角。`:'终边落在坐标轴上，<b>不属于任何象限</b>。'}</p><div class=cen>${dg(a)}</div>`},
+ 2(){$('#o2').innerHTML=pt(+$('#x2').value,+$('#y2').value)},
+ 3(){const a=+$('#a3').value;if(!isNaN(a))$('#o3').innerHTML=ang3(+$('#f3').value,a)},
+ 4(){$('#o4').innerHTML=sol(+$('#g4').value,+$('#p4').value,+$('#q4').value,+$('#Q4').value)},
+ 5(){const i=+$('#f5').value,a=+$('#a5').value;if(isNaN(a))return;const k=((a%180)+180)%180,v=i==2&&k==90?null:[Math.sin,Math.cos,Math.tan][i](a*Math.PI/180);
+  $('#o5').innerHTML=`<p>${['sin','cos','tan'][i]} ${a}° = <b>${v==null?'不存在（图像在此有渐近线）':v.toFixed(4)}</b>；最小正周期 ${i==2?'180°（π）':'360°（2π）'}。</p><div class=g2>${dg(a,{p:1,pl:'(cos, sin)'})}${gr(i,a%360)}</div>`}};
+const calc=(t,h,id)=>`<div class=calc><h3 style="margin-top:0">🧮 ${t}</h3>${h}<div id=o${id}></div></div>`;
+const inp=(id,v,l)=>`<label>${l} <input id=${id} type=number value=${v}></label> `,B=n=>`<button class=btn onclick="C[${n}]()">计算</button>`;
+const FN=opt(NM),QS=opt(['第一象限','第二象限','第三象限','第四象限']).replace(/value=(\d)/g,(m,d)=>'value='+(+d+1));
+/* ---- tab content ---- */
+const astc=`<svg class=dg viewBox="-125 -125 250 250"><line x1=-120 y1=0 x2=120 y2=0 class=ax /><line x1=0 y1=120 x2=0 y2=-120 class=ax /><text x=40 y=-50 class=l1 font-size=14>A 全正</text><text x=-85 y=-50 class=l2>S 仅 sin 正</text><text x=-85 y=60 class=l2>T 仅 tan 正</text><text x=40 y=60 class=l1>C 仅 cos 正</text><text x=100 y=-5 class=t>x</text><text x=6 y=-108 class=t>y</text></svg>`;
+const gen=(i,a)=>`<div>${ang3(i,a)}</div>`;
+const TABS=[
+['7.1 象限',()=>`<div class=card>平面被 x 轴、y 轴分成 I、II、III、IV 四个象限（逆时针）。角的顶点在原点，始边固定在正 x 轴，按<b>终边所在象限</b>决定角的象限。终边落在坐标轴上的角（0°、90°、180°、270°、360°…）<b>不属于任何象限</b>。</div>
+<h3>例题 1　绘出下列各角并判别象限</h3><div class=card><div class=g4><div>${dg(35)}(a) 35° 属第一象限</div><div>${dg(-140)}(b) −140° 属第三象限</div><div>${dg(680)}(c) 680° = 360°+320°，属第四象限</div><div>${dg(150,{s:'5π/6'})}(d) 5π/6 = 150°，属第二象限</div></div></div>`+calc('象限计算器（任意整数角度）',inp('a1',680,'角度')+'° '+B(1),1)],
+['7.2 定义',()=>`<div class=card>在角 α 的终边上任取一点 P(x, y)，令 OP = r，r = ${rt('x²+y²')} ＞ 0（x、y 可正、可负、可为零）：<div class=six><div>sin α = ${fr('y','r')}</div><div>cosec α = ${fr('r','y')}</div><div>cos α = ${fr('x','r')}</div><div>sec α = ${fr('r','x')}</div><div>tan α = ${fr('y','x')}</div><div>cot α = ${fr('x','y')}</div></div>
+<p class=mu>注意：终边在 x 轴上时 y = 0，cot、cosec 不存在；终边在 y 轴上时 x = 0，tan、sec 不存在。</p></div><h3>例题 1　P(−3, 4) 是角 α 终边上一点，求六个三角函数值</h3><div class=card>${pt(-3,4)}</div>`+calc('任意点 P(x, y) 的六个三角函数',inp('x2',-3,'x')+inp('y2',4,'y')+B(2),2)],
+['7.3 求值',()=>`<h3>各象限的正负（ASTC）</h3><div class=card><div class=cen>${astc}</div><p>A（All）全正；S：只有 sin（及 cosec）为正；T：只有 tan（及 cot）为正；C：只有 cos（及 sec）为正。</p>
+<table><tr><th></th><th>0°</th><th>90°</th><th>180°</th><th>270°</th></tr>${[0,1,2].map(i=>`<tr><td>${NM[i]} θ</td>`+[0,90,180,270].map(n=>`<td>${six(mk(Math.round(Math.cos(n*Math.PI/180))),mk(Math.round(Math.sin(n*Math.PI/180))),[1,1,1])[i].replace('不存在','没有定义')}</td>`).join('')+'</tr>').join('')}</table></div>
+<h3>相伴锐角</h3><div class=card>象限角 α 的终边与 x 轴所夹的锐角 θ 叫相伴锐角。f(α) = ±f(θ)，正负由 α 所在象限决定。（图中绿色弧 = 相伴锐角，红色弧 = α 本身，半径不同以便区分。）</div>
+<h3>例题 1　sin α = −${fr(1,3)}，180°＜α＜270°，求 cos α、tan α</h3><div class=card>${sol(0,-1,3,3)}</div>
+<h3>例题 2　sec α = ${fr(3,2)} 且 tan α＜0，求 cosec α、cot α（α 在第四象限）</h3><div class=card>${sol(4,3,2,4)}</div>
+<h3>例题 3　化为锐角三角函数：(a) sin 565°　(b) cosec(−285°)</h3><div class=card>${ang3(0,565)}${ang3(3,-285)}</div>
+<h3>例题 4　不用计算机：sin 210°、cos 300°、tan(−150°)、cot(−480°)</h3><div class=card>${ang3(0,210)}${ang3(1,300)}${ang3(2,-150)}${ang3(5,-480)}</div>
+<h3>正角与负角、90°±θ 的关系</h3><div class=card><div class=six><div>sin(−θ) = −sin θ</div><div>cos(−θ) = cos θ</div><div>tan(−θ) = −tan θ</div><div>sin(90°+θ) = cos θ</div><div>cos(90°+θ) = −sin θ</div><div>tan(90°+θ) = −cot θ</div><div>sin(90°−θ) = cos θ</div><div>cos(90°−θ) = sin θ</div><div>tan(90°−θ) = cot θ</div></div>
+<p><b>例题 5</b> 化简（把 θ 当作锐角，如 θ=30°）：(a) cosec(720°+θ) = cosec θ；(b) cos(−π+θ) = −cos θ；(c) sec(−450°+θ) = sec(90°−θ) = cosec θ；(d) cot(−${fr('π',2)}−θ) = cot(${fr('π',2)}−θ) = tan θ。</p><div class=g4><div>${dg(750,{n:'720°+θ'})}</div><div>${dg(-150,{n:'−π+θ',s:'−150°'})}</div><div>${dg(-420,{n:'−450°+θ',s:'−420°'})}</div><div>${dg(-120,{n:'−π/2−θ',s:'−120°'})}</div></div></div>`
+ +calc('① 角度求值 / 化为锐角函数',`<select id=f3>${FN}</select> `+inp('a3',565,'角')+'° '+B(3),3)+calc('② 已知一个函数值与象限，求其余',`<select id=g4>${FN}</select> α = ${inp('p4',-1,'分子')}÷${inp('q4',3,'分母')}<select id=Q4>${QS}</select><br>`+'<button class=btn onclick="C[4]()">求其余五个</button>',4)],
+['7.4 图像',()=>`<div class=card><b>y = sin x</b>（周期 2π，−1 ≤ sin x ≤ 1；sin x = 0 ⇒ x = kπ；x = ${fr('π',2)} 时最大值 1，x = ${fr('3π',2)} 时最小值 −1）<div class=cen>${gr(0)}</div></div>
+<div class=card><b>y = cos x</b>（周期 2π，−1 ≤ cos x ≤ 1；cos x = 0 ⇒ x = ${fr('π',2)}、${fr('3π',2)}…；x = 0、±2π 时最大值 1，x = ±π 时最小值 −1）<div class=cen>${gr(1)}</div></div>
+<div class=card><b>y = tan x</b>（周期 π，无最大、最小值；在 x = ±${fr('π',2)}、±${fr('3π',2)} 没有定义，虚线为渐近线）<div class=cen>${gr(2)}</div></div>`+calc('函数图像探索：输入角度，看单位圆与图像上的对应点',`<select id=f5>${opt(['sin','cos','tan'])}</select> x = ${inp('a5',150,'')}° `+B(5),5)],
+['总复习',()=>`<div class=card><b>要点</b>：①象限角与终边相同；②r = ${rt('x²+y²')}，六个函数的定义；③ASTC 判正负；④相伴锐角化简；⑤sin、cos 周期 2π，tan 周期 π。</div><div id=qz9></div>`]];
+/* ---- quiz generators ---- */
+const mc=(q,r,w,e)=>{const u=[...new Set(w.filter(x=>x!=r))].sort(()=>Math.random()-.5).slice(0,3),o=[r,...u].sort(()=>Math.random()-.5);return{q,o,a:o.indexOf(r),e}},fb=(q,a,e)=>({q,a,e}),neg=s=>s[0]=='−'?s.slice(1):'−'+s;
+const pickT=()=>{const t=pk([[3,4,5],[5,12,13],[8,15,17],[7,24,25],[6,8,10],[20,21,29]]);return Math.random()<.5?t:[t[1],t[0],t[2]]};
+const rn=()=>{let a;do a=R_(3001)-1500;while(a%90==0);return a};
+const F=(n,d)=>{if(n==0)return'0';const g=gcd(n,d);n/=g;d/=g;if(d<0){n=-n;d=-d}return d==1?sn(n):(n<0?'−':'')+fr(Math.abs(n),d)};
+const G={
+mc:[[ // 7.1
+ ()=>{const a=rn(),q=qd(a),k=Math.floor(a/360);return mc(`角 ${a}° 的终边落在哪个象限？`,Q(q),[1,2,3,4].map(Q),`${a}° = 360°×(${k}) + ${a-360*k}°，终边与 ${a-360*k}° 相同，在${Q(q)}。`+dg(a))},
+ ()=>{const k=R_(13)-4,q=((k%4)+4)%4+1;return mc(`若 ${90*k}° ＜ θ ＜ ${90*k+90}°，则 θ 属于第几象限角？`,Q(q),[1,2,3,4].map(Q),`${90*k}° 到 ${90*k+90}° 的终边扫过一个象限，减去整圈后落在${Q(q)}。`)},
+ ()=>{const a=R_(300)-100|1,j=pk([-2,-1,1,2,3]),r=a+360*j;return mc(`下列哪个角与 ${a}° 的终边相同？`,r+'°',[(r+30)+'°',(r-90)+'°',(r+180)+'°'],`${r}° − ${a}° = ${360*j}° = 360°×${j}，是 360° 的整数倍，所以终边相同。`)}],
+[ // 7.2
+ ()=>{const[a,b,c]=pickT(),sx=pk([1,-1]),sy=pk([1,-1]),i=R_(6),v=six(mk(sx*a),mk(sy*b),[c,1,1]);return mc(`P(${sn(sx*a)}, ${sn(sy*b)}) 是角 α 终边上的一点，求 ${NM[i]} α。`,v[i],v.concat(v.map(neg)),pt(sx*a,sy*b))},
+ ()=>{const[a,b,c]=pickT(),x=pk([1,-1])*a,y=pk([1,-1])*b;return mc(`点 (${sn(x)}, ${sn(y)}) 到原点的距离 r = ？`,''+c,[c+1,c-1,a+b].map(String),pt(x,y))}],
+[ // 7.3
+ ()=>{const a=rn(),i=R_(6),p=[[1,2],[1,4],[1,3]][i%3].includes(qd(a));return mc(`${NM[i]} ${a}° 是正值还是负值？`,p?'正值':'负值',['正值','负值','等于 0','不存在'],ang3(i,a))},
+ ()=>{let a,rf;do{a=pk([-1,1])*(100+R_(900));if(a%90==0)continue;const n=((a%360)+360)%360;rf=n<90?n:n<180?180-n:n<270?n-180:360-n}while(a%90==0||rf==45);const i=R_(6),q=qd(a),s=[[1,2],[1,4],[1,3]][i%3].includes(q)?'':'−';return mc(`化 ${NM[i]} ${a}° 为锐角的三角函数。`,`${s}${NM[i]} ${rf}°`,[`${neg(s||'+')=='−'?'−':''}${NM[i]} ${rf}°`.replace('+',''),`${s}${NM[i]} ${90-rf}°`,`${s?'':'−'}${NM[i]} ${90-rf}°`],ang3(i,a))},
+ ()=>{const ref=pk([30,45,60]),q=1+R_(4),n=[ref,180-ref,180+ref,360-ref][q-1],a=n+360*(R_(5)-2),i=R_(6),B={30:[[1,3],[1,1],[2,1]],45:[[1,1],[1,1],[1,2]],60:[[1,1],[1,3],[2,1]]}[ref],v=six([...B[0],q==1||q==4?1:-1],[...B[1],q<3?1:-1],[...B[2],1]);return mc(`不用计算机，求 ${NM[i]} ${a}° 的值。`,v[i],v.concat(v.map(neg)).concat(['1','−1']),ang3(i,a))},
+ ()=>{const q=1+R_(4),s=[1,1,-1,-1][q-1],c=[1,-1,-1,1][q-1],t=s*c,A=pk([[0,'sin',s],[1,'cos',c],[2,'tan',t]]),Bq=pk([[0,'sin',s],[1,'cos',c],[2,'tan',t]].filter(x=>x[0]!=A[0])),z=x=>x>0?'＞':'＜';return mc(`若 ${A[1]} θ ${z(A[2])} 0 且 ${Bq[1]} θ ${z(Bq[2])} 0，则 θ 属于第几象限？`,Q(q),[1,2,3,4].map(Q),`${A[1]}θ ${z(A[2])}0、${Bq[1]}θ ${z(Bq[2])}0 同时成立，只有${Q(q)}（用 ASTC 检查）。`+astc)},
+ ()=>{const[a,b,c]=pickT(),q=1+R_(4),sx=q==1||q==4?1:-1,sy=q<3?1:-1,v=six(mk(sx*a),mk(sy*b),[c,1,1]),i=R_(3),j=pk([0,1,2].filter(x=>x!=i));return mc(`已知 ${NM[i]} α = ${v[i]}，且 α 是${Q(q)}角，求 ${NM[j]} α。`,v[j],v.concat(v.map(neg)),sol(i,(v[i][0]=='−'?-1:1)*[sy*b,sx*a,sy*b][i],[c,c,sx*a][i],q))}],
+[ // 7.4
+ ()=>{const i=R_(3);return mc(`函数 y = ${['sin','cos','tan'][i]} x 的最小正周期是？`,i<2?'2π':'π',['2π','π',fr('π',2),'4π'],`sin、cos 每隔 2π 重复；tan 每隔 π 重复。`+gr(i))},
+ ()=>{const ev=['0','π','2π','−π','−2π'],od=[fr('π',2),fr('3π',2),fr('−π',2),fr('−3π',2)],t=R_(3);return mc(t==0?'下列哪个 x 使 sin x = 0？':t==1?'下列哪个 x 使 cos x = 0？':'下列哪个 x 使 tan x 没有定义？',t==0?pk(ev):pk(od),t==0?od:ev,`看图：sin 的零点在 kπ；cos 的零点与 tan 的渐近线在 ${fr('π',2)} 的奇数倍。`+gr(t==2?2:t))},
+ ()=>{const m=R_(2);return mc(`y = ${m?'cos':'sin'} x 的最大值与最小值分别是？`,'1 与 −1',['1 与 0','2 与 −2','1 与 −2','无最大、最小值'],`对任何实数 x，−1 ≤ ${m?'cos':'sin'} x ≤ 1。`+gr(m))}]],
+fb:[[
+ ()=>{const a=rn();return fb(`${a}° 是第几象限角？（填 1、2、3 或 4）`,qd(a),dg(a))},
+ ()=>{const n=10+R_(340);if(n%90==0)return G.fb[0][1]();const k=pk([-5,-3,-2,-1,1,2,3,4,10]);return fb(`在 0°～360° 内，与 ${n+360*k}° 终边相同的角是 ____ °`,n,`${n+360*k} − 360×(${k}) = ${n}`)}],
+[()=>{const[a,b,c]=pickT(),x=pk([1,-1])*a,y=pk([1,-1])*b;return fb(`P(${sn(x)}, ${sn(y)}) 在角 α 的终边上，求 r。`,c,pt(x,y))},
+ ()=>{const[a,b,c]=pickT(),x=pk([1,-1])*a,y=pk([1,-1])*b;return fb(`P(${sn(x)}, ${sn(y)}) 在角 α 的终边上，求 tan α。（填分数，如 −3/4）`,y/x,pt(x,y))}],
+[()=>{const[a,b,c]=pickT(),q=1+R_(4),sx=q==1||q==4?1:-1,sy=q<3?1:-1;return fb(`已知 sin α = ${F(sy*b,c)}，α 是${Q(q)}角，求 cos α。（填分数，如 −4/5）`,sx*a/c,sol(0,sy*b,c,q))},
+ ()=>{const s=pk([30,150,210,330]),c=pk([60,120,240,300]),v=Math.sign(Math.sin(s*Math.PI/180))*.5+Math.sign(Math.cos(c*Math.PI/180))*.5;return fb(`不用计算机，求 sin ${s}° + cos ${c}° 的值。`,v,ang3(0,s)+ang3(1,c))}],
+[()=>{const n=2+R_(4);return fb(`方程 sin x = 0 在 0 ≤ x ≤ ${n}π 内有几个解？`,n+1,'x = 0、π、2π…、'+n+'π，共 '+(n+1)+' 个。'+gr(0))},
+ ()=>{const n=2+R_(4);return fb(`方程 cos x = 0 在 0 ≤ x ≤ ${n}π 内有几个解？`,n,`cos x = 0 的解是 ${fr('π',2)}、${fr('3π',2)}…，每隔 π 一个，共 ${n} 个。`+gr(1))}]]};
+const H1=()=>{const a=1+R_(4),b=2+R_(4);if(3*b==2*a)return H1();const n=2*b-3*a,d=3*b-2*a;return{n,d,a,b}};
+const HM=()=>{const{n,d,a,b}=H1();return mc(`已知 tan θ = −${fr(a,b)}，求 ${fr('3 sin θ + 2 cos θ','2 sin θ + 3 cos θ')} 的值。`,F(n,d),[F(2*b+3*a,3*b+2*a),F(-n,d),F(3*a+2*b,3*b-2*a),F(2*b-3*a,3*b+2*a)],`分子分母同除以 cos θ：${fr('3 tan θ + 2','2 tan θ + 3')} = ${fr(`3(−${a}/${b})+2`,`2(−${a}/${b})+3`)} = ${F(n,d)}`)},
+HF=()=>{const{n,d,a,b}=H1();return fb(`已知 tan θ = −${fr(a,b)}，求 ${fr('3 sin θ + 2 cos θ','2 sin θ + 3 cos θ')}。（填分数或小数）`,n/d,`分子分母同除以 cos θ，得 ${fr('3 tan θ + 2','2 tan θ + 3')} = ${F(n,d)}`)},
+H2=()=>{const[a,b,c]=pickT(),s=1+R_(3),y=-b*s;return mc(`已知 (${sn(-a*s)}, y) 是角 θ 终边上的一点，且 cos θ = −${fr(a,c)}，sin θ ＜ 0，求 y。`,sn(y),[sn(-y),sn(y-s),sn(s*c),sn(-y+s)],`cos θ = x/r ⇒ r = ${c*s}，y² = r² − x²，sin θ＜0 故 y = ${sn(y)}。`)},
+H2f=()=>{const[a,b,c]=pickT(),s=1+R_(3);return fb(`已知 (${sn(-a*s)}, y) 在角 θ 终边上，r = ${c*s}，sin θ ＜ 0，求 y。`,-b*s,`y² = ${c*s}² − ${a*s}² = ${(b*s)**2}，sin θ＜0 ⇒ y = ${sn(-b*s)}`)};
+/* ---- quiz engine ---- */
+const pn=s=>{s=s.trim().replace('−','-');if(s.includes('/')){const[a,b]=s.split('/');return a/b}return s===''?NaN:+s};
+function quiz(sel,MC,FB,nm,nf,th,rev){const box=$(sel);let st;
+ function go(){st={s:0,d:0,f:0,fs:0,Q:Array.from({length:nm},()=>pk(MC)()),F:Array.from({length:nf},()=>pk(FB)())};
+  box.innerHTML=`<h3>${rev?`总复习：${nm} 题选择 + ${nf} 题填充`:`随堂测验：${nm} 题选择（答对 ${th} 题或以上，可做 ${nf} 题填充）`}</h3>`+st.Q.map((q,i)=>`<div class=q><p><b>${i+1}.</b> ${q.q}</p>${q.o.map((o,j)=>`<button class=op data-i=${i} data-j=${j}>${'ABCD'[j]}. ${o}</button>`).join('')}<div class=ex hidden></div></div>`).join('')+`<div class=res></div><div class=fbs></div>`}
+ function end(){const t=st.s+st.fs,tot=nm+nf;box.querySelector('.res').innerHTML=`<div class=card><b>${rev?`总分 ${t} / ${tot}（${Math.round(100*t/tot)}%）`:`选择 ${st.s}/${nm}，填充 ${st.fs}/${nf}`}</b><br>${t/tot>=.85?'🏆 优秀！三角函数的基础非常扎实。':t/tot>=.6?'👍 良好，请回看错题解析，再练一次。':'📘 需要加强：先复习 ASTC 与相伴锐角，再重新出题挑战。'}<br><button class=rs>🔄 重新出题</button></div>`}
+ box.onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.classList.contains('rs'))return go();
+  if(b.classList.contains('op')){const i=+b.dataset.i,q=st.Q[i],d=b.parentNode;if(d.dataset.l)return;d.dataset.l=1;
+   d.querySelectorAll('.op').forEach((x,j)=>{x.disabled=1;if(j==q.a)x.classList.add('ok');else if(x==b)x.classList.add('bad')});
+   const ok=+b.dataset.j==q.a;ok&&st.s++;const x=d.querySelector('.ex');x.hidden=0;x.innerHTML=`<b>${ok?'✅ 正确':'❌ 错误'}，答案是 ${'ABCD'[q.a]}</b><br>${q.e}`;
+   if(++st.d==nm){if(st.s>=th)box.querySelector('.fbs').innerHTML=`<h3>填充题</h3>`+st.F.map((f,k)=>`<div class=q><p><b>填${k+1}.</b> ${f.q}</p><input class=in id=fi${k}> <button class=ck data-k=${k}>检查</button><div class=ex hidden></div></div>`).join('');
+    else{box.querySelector('.res').innerHTML=`<div class=card>选择题答对 ${st.s}/${nm}，未达 ${th} 题，暂不开放填充题。看看解析再来一次！<br><button class=rs>🔄 重新出题</button></div>`}}}
+  if(b.classList.contains('ck')){const k=+b.dataset.k,f=st.F[k],v=pn($('#fi'+k).value);if(isNaN(v))return;b.disabled=1;$('#fi'+k).disabled=1;const ok=Math.abs(v-f.a)<.011;ok&&st.fs++;
+   const x=b.nextElementSibling;x.hidden=0;x.innerHTML=`<b>${ok?'✅ 正确':'❌ 错误'}，答案：${Math.round(f.a*1000)/1000}</b><br>${f.e}`;if(++st.f==nf)end()}};
+ go()}
+/* ---- init ---- */
+const MCall=G.mc.flat().concat(HM,H2),FBall=G.fb.flat().concat(HF,H2f);
+$('#tabs').innerHTML=TABS.map((t,i)=>`<button onclick="sw(${i})">${t[0]}</button>`).join('');
+$('#m').innerHTML=TABS.map((t,i)=>`<section class=p>${t[1]()}${i<4?`<div id=qz${i}></div>`:''}</section>`).join('');
+function sw(i){document.querySelectorAll('.p').forEach((p,j)=>p.classList.toggle('on',i==j));document.querySelectorAll('#tabs button').forEach((b,j)=>{b.classList.toggle('on',i==j);if(i==j)b.scrollIntoView({inline:'center',block:'nearest'})});scrollTo(0,0)}
+G.mc.forEach((m,i)=>quiz('#qz'+i,m,G.fb[i],5,2,3));
+quiz('#qz9',MCall,FBall,10,5,0,1);
+[1,2,3,4,5].forEach(n=>C[n]());sw(0);
+let fs=16;function fz(d){fs=d?Math.min(26,Math.max(12,fs+2*d)):16;document.documentElement.style.setProperty('--fs',fs+'px')}
+function th(){const r=document.documentElement;r.dataset.t=r.dataset.t=='d'?'l':'d';try{localStorage.setItem('t7',r.dataset.t)}catch(e){}}
+try{document.documentElement.dataset.t=localStorage.getItem('t7')||(matchMedia('(prefers-color-scheme:dark)').matches?'d':'l')}catch(e){}
+$('#wm').innerHTML=Array(60).fill('<span>蔡逸众制作 · ecchua79</span>').join('');
+console.log('%c峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79','color:#c2185b');
+</script></body></html>
