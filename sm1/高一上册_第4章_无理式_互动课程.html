@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 · ecchua79 · Chinese High School 华仁中学 · 《数学》第4章 无理式 互动课程 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School (华仁中学)">
+<title>第4章 无理式 · 互动课程</title>
+<style>
+/* © 蔡逸众 ecchua79 Chinese High School */
+:root{--bg:#f4f6f1;--cd:#fff;--ink:#1c2a24;--mu:#5d6b63;--ac:#1d6b4f;--ok:#15803d;--bad:#b91c1c;--bd:#cfd8cf;--fs:16px}
+[data-t=d]{--bg:#111a16;--cd:#1a2621;--ink:#e6efe9;--mu:#9db0a5;--ac:#5fd3a2;--ok:#4ade80;--bad:#f87171;--bd:#2e4038}
+*{box-sizing:border-box}html{font-size:var(--fs)}
+body{margin:0;color:var(--ink);font-family:"Noto Serif SC","Songti SC",Georgia,serif;line-height:1.55;background:var(--bg) linear-gradient(var(--bd) 1px,transparent 1px) 0 0/100% 24px;background-blend-mode:soft-light}
+header{display:flex;align-items:center;gap:.5rem;padding:.4rem .7rem;background:var(--cd);border-bottom:2px solid var(--ac);position:sticky;top:0;z-index:6}
+header h1{font-size:1.05rem;margin:0;flex:1}header button{font-size:.9rem}
+button{font:inherit;color:inherit;background:var(--cd);border:1px solid var(--bd);border-radius:6px;padding:.25rem .6rem;cursor:pointer}
+nav{display:flex;gap:.35rem;overflow-x:auto;white-space:nowrap;padding:.4rem .6rem;background:var(--cd);border-bottom:1px solid var(--bd);position:sticky;top:2.6rem;z-index:5;-webkit-overflow-scrolling:touch}
+nav button{flex:none}nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:760px;margin:0 auto;padding:.6rem}
+h2{font-size:1.2rem;margin:.4rem 0;border-left:5px solid var(--ac);padding-left:.5rem}h3{font-size:1.05rem;margin:.8rem 0 .3rem}h4{margin:.3rem 0;font-size:1rem}
+.cd,.q,.rule,.ex{background:var(--cd);border:1px solid var(--bd);border-radius:8px;padding:.5rem .7rem;margin:.5rem 0}
+.rule{border-left:5px solid var(--ac)}.ex .t{font-weight:700;color:var(--ac)}
+.ci{display:flex;flex-wrap:wrap;gap:.4rem .7rem}.ci label{font-size:.85rem;color:var(--mu)}.ci input{width:4.2rem;font:inherit;margin-left:.2rem;padding:.1rem .25rem;background:var(--bg);color:var(--ink);border:1px solid var(--bd);border-radius:4px}
+.co p{margin:.3rem 0}
+.op{display:block;width:100%;text-align:left;margin:.3rem 0;padding:.4rem .6rem}.op.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.op.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fb{margin-top:.3rem;font-size:.92rem}.row{display:flex;gap:.4rem}.in{flex:1;min-width:0;font:inherit;padding:.3rem;background:var(--bg);color:var(--ink);border:1px solid var(--bd);border-radius:4px}
+.sc{font-weight:700;margin:.6rem 0}
+.rd{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 .05em}
+.rd>.ix{font-size:.55em;align-self:flex-start;margin:.1em -.3em 0 0;vertical-align:baseline}
+.tk{width:.75em;flex:none;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.3}.tk path{vector-effect:non-scaling-stroke}
+.rv{border-top:1.3px solid currentColor;padding:.1em .15em 0 .05em;display:inline-flex;align-items:center}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .1em}.fr>span:first-child{border-bottom:1.3px solid currentColor;padding:0 .2em}
+sup{font-size:.7em}
+.fg{width:100%;max-width:420px;display:block;margin:.3rem auto}.fg .l{stroke:var(--ink);fill:none;stroke-width:1.6}.fg .a{stroke:var(--ac);fill:none;stroke-width:2.2}
+.fg text{fill:var(--ink);font-size:14px;font-family:inherit}.fg .gp{fill:none;stroke-width:1.8;stroke-dasharray:4 3}
+footer{text-align:center;color:var(--mu);font-size:.8rem;padding:1rem .5rem 2rem}
+.wm{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}.wm span{position:absolute;font-size:9px;opacity:.1;transform:rotate(-25deg);white-space:nowrap}
+</style></head><body>
+<header><h1>第4章 无理式</h1><button id="tm">🌓</button><button id="fm">A−</button><button id="fp">A+</button></header>
+<nav id="nav"></nav><main id="main"></main>
+<footer>© 蔡逸众 · ecchua79 · Chinese High School（华仁中学）出品<span hidden data-wm="蔡逸众|ecchua79|Chinese High School"></span></footer>
+<script>
+/* © 蔡逸众 ecchua79 Chinese High School */
+console.log('%c第4章 无理式 互动课程 © 蔡逸众 / ecchua79 / Chinese High School','color:#1d6b4f');
+const R=n=>Math.floor(Math.random()*n),ri=(a,b)=>a+R(b-a+1),pk=a=>a[R(a.length)],gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),lcm=(a,b)=>a/gcd(a,b)*b;
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=R(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+/* 排版：~n{根号} @{分子}{分母} ^{上标} —— 根号用 SVG 画，横线盖住整个被开方式 */
+const rad=(n,r)=>`<span class="rd">${n?`<sup class="ix">${n}</sup>`:''}<svg class="tk" viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M0 12L2 10.5L5 19.5L10 .5"/></svg><span class="rv">${r}</span></span>`;
+const fr=(a,b)=>`<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+function M(s){let i=0;const P=()=>{let o='';while(i<s.length&&s[i]!='}'){const c=s[i];
+ if(c=='~'){i++;let n='';while(/[\dnmp]/.test(s[i]))n+=s[i++];i++;const r=P();i++;o+=rad(n,r)}
+ else if(c=='@'){i+=2;const a=P();i+=2;const b=P();i++;o+=fr(a,b)}
+ else if(c=='^'){i+=2;const e=P();i++;o+='<sup>'+e+'</sup>'}
+ else{o+=c=='-'?'−':c=='*'?'×':c;i++}}return o};return P()}
+const rt=(n,m)=>`~${n>2?n:''}{${m}}`,sg=n=>n<0?'-'+-n:'+'+n;
+function sx(m,n){let k=1;for(let i=2;i**n<=m;i++)while(m%(i**n)==0){m/=i**n;k*=i}return[k,m]}
+const tm=(c,m,n=2)=>m==1?''+c:(c==1?'':c==-1?'-':c)+rt(n,m);
+function ss(t){const o={};t.forEach(([c,m])=>{const[k,r]=sx(m,2);o[r]=(o[r]||0)+c*k});const ks=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(k=>o[k]);if(!ks.length)return'0';
+ return ks.map((k,i)=>{const c=o[k],a=Math.abs(c);return(c<0?'-':i?'+':'')+(k==1?a:(a==1?'':a)+rt(2,k))}).join('')}
+const Q=(q,a,w,e,v)=>({q,a:''+a,w:[...new Set(w.map(String))].filter(x=>x!=a).slice(0,3),e,v});
+const mk=(g,f)=>{let x;for(let i=0;i<60;i++){x=g();if(x.w.length>=3&&(!f||x.v!=null))return x}return x};
+/* ---------- SVG 图 ---------- */
+const W=(w,h,b)=>`<svg class="fg" viewBox="0 0 ${w} ${h}">${b}</svg>`,CL=['#2563eb','#16a34a','#d97706','#9333ea','#db2777'];
+const rl=(n,m)=>m==1?'':(n>2?'³⁴⁵⁶⁷⁸⁹'[n-3]:'')+'√<tspan text-decoration="overline">'+m+'</tspan>';
+function fT(n,it){let T=0;it.forEach(x=>T+=x[1]);const u=28,x0=30;let s=`<path class="l" d="M4 70L9 66L16 90L${x0-6} 38H${x0+T*u+6}"/><text x="2" y="60" style="font-size:11px">${n}</text>`,cx=x0,c=0;
+ it.forEach(([y,e])=>{const g=Math.floor(e/n);for(let j=0;j<e;j++)s+=`<text x="${cx+j*u+u/2}" y="82" text-anchor="middle">${y}</text>`;
+  for(let k=0;k<g;k++){const gx=cx+k*n*u,col=CL[c++%5],m=gx+n*u/2;s+=`<rect class="gp" x="${gx+2}" y="52" width="${n*u-4}" height="40" rx="7" style="stroke:${col}"/><path d="M${m} 50V28M${m-4} 33L${m} 27L${m+4} 33" style="stroke:${col};stroke-width:2;fill:none"/><text x="${m}" y="18" text-anchor="middle" style="fill:${col};font-weight:700">${y}</text>`}
+  cx+=e*u});return W(x0+T*u+14,100,s)}
+function nl(b,a){const R=Math.max(Math.abs(b),3)+1,st=Math.ceil(R/6),X=v=>160+v*140/R;let s=`<path class="l" d="M10 62H310"/>`;
+ for(let i=-R;i<=R;i++)if(i%st==0)s+=`<path class="l" d="M${X(i)} 57V67"/><text x="${X(i)}" y="84" text-anchor="middle">${i}</text>`;
+ s+=`<circle cx="${X(b)}" cy="62" r="5" fill="#2563eb"/>`;
+ if(a!=b)s+=`<path class="a" d="M${X(b)} 54Q${(X(a)+X(b))/2} 4 ${X(a)} 54"/><text x="${(X(a)+X(b))/2}" y="18" text-anchor="middle">取绝对值</text>`;
+ return W(320,96,s+`<circle cx="${X(a)}" cy="62" r="6" fill="#16a34a"/>`)}
+function fU(L){const l=L.reduce((a,r)=>lcm(a,r[0]),1),u=Math.min(26,250/l);let s='',y=6;
+ L.forEach(([n])=>{for(let j=0;j<l;j++)s+=`<rect x="${70+j*u}" y="${y}" width="${u-2}" height="22" rx="4" fill="${CL[Math.floor(j/n)%5]}" opacity=".85"/>`;s+=`<text x="2" y="${y+16}">根指数 ${n}</text>`;y+=30});
+ return W(76+l*u,y+16,s+`<text x="70" y="${y+10}">每行补成 ${l} 格（L.C.M.）</text>`)}
+function fB(t){const g={};let y=4,s='';t.forEach(([c,l])=>g[l]=(g[l]||0)+c);const lab=Object.keys(g),col={};lab.forEach((l,i)=>col[l]=CL[i]);
+ const row=(c,l)=>{const n=Math.min(Math.abs(c),14);for(let j=0;j<n;j++)s+=`<circle cx="${14+j*20}" cy="${y+10}" r="8" fill="${c<0?'none':col[l]}" stroke="${col[l]}" stroke-width="2"/>`;s+=`<text x="${14+n*20+4}" y="${y+15}">${c>0?'+':''}${c}${l}</text>`;y+=26};
+ t.forEach(([c,l])=>row(c,l));y+=4;s+=`<path class="l" d="M4 ${y}H316"/>`;y+=6;lab.forEach(l=>{if(g[l])row(g[l],l)});return W(320,y+6,s)}
+function fSq(x,y){const a=Math.sqrt(x),b=Math.sqrt(y),k=170/(a+b),A=a*k,B=b*k,o=20,t=(X,Y,v)=>`<text x="${X}" y="${Y+5}" text-anchor="middle">${v}</text>`;
+ return W(220,210,`<rect x="${o}" y="${o}" width="${A}" height="${A}" fill="#2563eb" opacity=".35"/><rect x="${o+A}" y="${o+A}" width="${B}" height="${B}" fill="#16a34a" opacity=".35"/><rect x="${o+A}" y="${o}" width="${B}" height="${A}" fill="#d97706" opacity=".3"/><rect x="${o}" y="${o+A}" width="${A}" height="${B}" fill="#d97706" opacity=".3"/><rect class="l" x="${o}" y="${o}" width="${A+B}" height="${A+B}"/>`+t(o+A/2,o+A/2,x)+t(o+A+B/2,o+A+B/2,y)+t(o+A+B/2,o+A/2,rl(2,x*y))+t(o+A/2,o+A+B/2,rl(2,x*y))+`<text x="${o+(A+B)/2}" y="14" text-anchor="middle">边长 ${rl(2,x)}+${rl(2,y)}</text>`)}
+function fL(a,b,d){const s=b*Math.sqrt(d);if(!(a>0&&b>0)||s>=a)return'';const k=150/a,A=a*k,S=s*k;
+ return W(220,190,`<rect class="l" x="20" y="24" width="${A}" height="${A}" fill="#2563eb" opacity=".3"/><rect x="${20+A-S}" y="24" width="${S}" height="${S}" fill="#dc2626" opacity=".5"/><text x="${20+A/2-20}" y="${24+A/2+36}">a² = ${a*a}</text><text x="${20+A-S/2}" y="${24+S/2+5}" text-anchor="middle" style="font-size:11px">${b*b*d}</text><text x="110" y="16" text-anchor="middle">a²−b²d = ${a*a-b*b*d}（有理数）</text>`)}
+function fP(p,q,rs){const xl=-p-1,xr=Math.max(-p,0,...rs)+3,H=Math.sqrt(Math.max(xr+p,1)),yt=Math.max(H,xr+q,1)+1,yb=Math.min(-H,xl+q,-1)-1,w=320,h=210,X=x=>10+(x-xl)*(w-20)/(xr-xl),Y=y=>10+(yt-y)*(h-20)/(yt-yb);
+ let c='',b='';for(let x=-p;x<=xr+1e-9;x+=(xr+p)/60){const y=Math.sqrt(Math.max(x+p,0));c+=(c?'L':'M')+X(x)+' '+Y(y);b+=(b?'L':'M')+X(x)+' '+Y(-y)}
+ let s=`<clipPath id="cp"><rect width="${w}" height="${h}"/></clipPath><g clip-path="url(#cp)"><path class="a" d="${c}"/><path d="${b}" style="stroke:#dc2626;fill:none;stroke-dasharray:5 4;stroke-width:1.6"/><path d="M${X(xl)} ${Y(xl+q)}L${X(xr)} ${Y(xr+q)}" style="stroke:#d97706;stroke-width:2;fill:none"/>`;
+ if(xl<0&&xr>0)s+=`<path class="l" d="M${X(0)} 0V${h}" style="stroke-width:.8"/>`;if(yt>0&&yb<0)s+=`<path class="l" d="M0 ${Y(0)}H${w}" style="stroke-width:.8"/>`;s+='</g>';
+ rs.forEach(r=>{const ok=r+q>=-1e-9&&r+p>=-1e-9;s+=`<circle cx="${X(r)}" cy="${Y(r+q)}" r="6" fill="${ok?'#16a34a':'none'}" stroke="${ok?'#16a34a':'#dc2626'}" stroke-width="2.5"/><text x="${X(r)+8}" y="${Y(r+q)-8}" style="font-size:12px">x=${+r.toFixed(2)}${ok?'':'（增根）'}</text>`});
+ return W(w,h,s+`<text x="12" y="${h-5}" style="font-size:11px">绿线=上支√　红虚线=下支−√　橙线=y=x+q</text>`)}
+const eC=(()=>{const X=x=>30+(x+8)*11,Y=y=>95-y*10,P=(x,y,l,c)=>`<circle cx="${X(x)}" cy="${Y(y)}" r="4.5" fill="${c}"/><text x="${X(x)+6}" y="${Y(y)-6}" style="font-size:12px">${l}</text>`,Ln=(a,b,c)=>`<path d="M${X(a[0])} ${Y(a[1])}L${X(b[0])} ${Y(b[1])}" style="stroke:${c};fill:none;stroke-width:1.6"/>`;
+ return W(290,190,`<path class="l" d="M10 ${Y(0)}H285M${X(0)} 5V185" style="stroke-width:.8"/>`+Ln([-6,0],[0,-6],'#2563eb')+Ln([12,6],[0,-6],'#2563eb')+Ln([-6,0],[0,2],'#16a34a')+Ln([12,6],[0,2],'#16a34a')+P(-6,0,'A','#888')+P(12,6,'B','#888')+P(0,-6,'C₁(0,−6)','#2563eb')+P(0,2,'C₂(0,2)','#16a34a'))})();
+/* ---------- 出题引擎（每次随机） ---------- */
+const G1=[
+()=>{const n=ri(2,5),b=pk([-1,1])*ri(2,9),e=n%2==0,a=e?Math.abs(b):b;return Q(`${rt(n,`(${b})^{${n}}`)}=?`,a,[b,-a,Math.abs(b),a+n,Math.abs(b**n),a-n],`n=${n} 是${e?'偶':'奇'}数：${e?'结果取绝对值 |'+b+'|='+a:'结果就是 '+b}。`,a)},
+()=>{const n=ri(2,5),e=n%2==0,neg=e?R(4)==0:R(2),a=(neg?-1:1)*ri(2,20);return e&&neg?Q(`(${rt(n,a)})^{${n}}=?`,'无意义',[a,-a,a**n],'偶次根号下不能是负数，在实数范围内无意义。'):Q(`(${rt(n,a)})^{${n}}=?`,a,[-a,a**n,a*n],'(ⁿ√a)ⁿ=a（根式有意义时）。',a)},
+()=>{const n=pk([2,3,4]),k=ri(2,3),L=n*k,a=ri(2,9);return Q(`${rt(n,a)}=${rt(L,a+'^{□}')}，□=?`,k,[L,n,k+1,L-n+1,L+1],`根指数与指数同乘 ${k}：根指数 ${n}→${L}，指数 1→${k}。`,k)},
+()=>{let a,b;do{a=ri(2,7);b=ri(2,13)}while(a**3==b*b);const x=a**3>b*b;return Q(`比较 ${rt(2,a)} 与 ${rt(3,b)}，较大的是？`,x?rt(2,a):rt(3,b),[x?rt(3,b):rt(2,a),'两者相等','无法比较'],`化为 6 次根式：${rt(6,a**3)} 与 ${rt(6,b*b)}，比较 ${a**3} 与 ${b*b}。`)},
+()=>{const n=pk([2,4,6]),k=ri(2,30);return Q('下列哪一个在实数范围内无意义？',rt(n,-k),[rt(3,-ri(2,30)),rt(5,-ri(2,30)),rt(n,k)],'偶次根号下不能是负数；奇次根号可以。')}];
+const G2=[
+()=>{const n=pk([2,3,4]),k=ri(2,4),m=ri(2,3),b=k**n;return Q(`${b}^{@{${m}}{${n}}}=?`,k**m,[k*m,b*m,k**m*n,k**m+1],`${b}^{@{${m}}{${n}}}=${rt(n,b+'^{'+m+'}')}=(${rt(n,b)})^{${m}}=${k}^{${m}}=${k**m}`,k**m)},
+()=>{const n=pk([2,2,3]),k=ri(2,5),r=n==2?pk([2,3,5,6,7]):pk([2,3,4,5,6]),m=k**n*r;return Q(`${rt(n,m)}=?`,tm(k,r,n),[tm(k**n,r,n),tm(r,k,n),tm(k,r*n,n),tm(k+1,r,n)],`${m}=${k}^{${n}}×${r}，${k}^{${n}} 开出来是 ${k}，移到根号外。`,n==2?k*Math.sqrt(r):null)},
+()=>{const n=pk([2,3]),c=ri(2,6),r=ri(2,7);return Q(`${c}${rt(n,r)}=${rt(n,'□')}，□=?`,c**n*r,[c*r,c+r,c**(n+1)*r,c*n*r],`${c} 要先乘方 ${n} 次再移进根号：${c}^{${n}}×${r}=${c**n*r}`,c**n*r)},
+()=>{const n=pk([2,3]),a=ri(2,6),t=ri(2,3),b=a**(n-1)*t**n;return Q(`${rt(n,a)}×${rt(n,b)}=?`,a*t,[a*b,a*t*n,a+b,a*t+1],`同次根式相乘：${rt(n,a)}×${rt(n,b)}=${rt(n,a*b)}=${rt(n,`${a*t}^{${n}}`)}=${a*t}`,a*t)},
+()=>{const n=pk([2,3,4]),t=ri(2,3),m=n*t,a=ri(2,5);return Q(`(${rt(n,a)})^{${m}}=?`,a**t,[a**m,a**n,a*t,a+t],`(${rt(n,a)})^{${n}}=${a}，所以原式=${a}^{${t}}=${a**t}`,a**t)}];
+const G3=[
+()=>{const r=pk([2,3,5,6,7]),k=ri(2,5),j=ri(1,4),s=pk([1,-1]),res=k+s*j;if(res<2)return G3[0]();const o=s>0?'+':'-';
+ return Q(`${rt(2,k*k*r)}${o}${rt(2,j*j*r)}=?`,tm(res,r),[rt(2,k*k*r+s*j*j*r),tm(res+1,r),tm(res-1,r),tm(k+j,r)],`先化简：${tm(k,r)}${o}${tm(j,r)}，合并同类根式：(${k}${o}${j})${rt(2,r)}=${tm(res,r)}`,res*Math.sqrt(r))},
+()=>{const a=ri(2,5),b=ri(2,5);return Q(`${rt(2,a)}×${rt(3,b)}=?`,rt(6,a**3*b**2),[rt(6,a*b),rt(5,a*b),rt(6,a**2*b**3),rt(6,a**3*b**3)],`L.C.M.(2,3)=6：${rt(2,a)}=${rt(6,a**3)}，${rt(3,b)}=${rt(6,b**2)}，相乘得 ${rt(6,a**3*b**2)}。`)},
+()=>{const x=pk([3,5,6,7,10,11]),y=pk([2,3,5,6,7].filter(v=>v<x)),s=pk([1,-1]),p=x+y,q=x*y;if(Number.isInteger(Math.sqrt(q)))return G3[2]();const o=s>0?'+':'-',n=s>0?'-':'+';
+ return Q(`${rt(2,`${p}${o}2${rt(2,q)}`)}=?`,`${rt(2,x)}${o}${rt(2,y)}`,[`${rt(2,x)}${n}${rt(2,y)}`,`${rt(2,p)}${o}${rt(2,q)}`,`${rt(2,x+1)}${o}${rt(2,y)}`,rt(2,p+q)],`找 x、y 使 x+y=${p}，xy=${q}：x=${x}，y=${y}。原式=${rt(2,`(${rt(2,x)}${o}${rt(2,y)})^{2}`)}=${rt(2,x)}${o}${rt(2,y)}`,Math.sqrt(x)+s*Math.sqrt(y))},
+()=>{const a=ri(2,9),b=ri(2,9);if(a==b)return G3[3]();if(R(2))return Q(`(${rt(2,a)}+${rt(2,b)})(${rt(2,a)}-${rt(2,b)})=?`,a-b,[a+b,b-a,a*b,a+b-2],`平方差公式：${a}−${b}=${a-b}`,a-b);
+ return Q(`(${rt(2,a)}+${rt(2,b)})^{2}=?`,ss([[a+b,1],[2,a*b]]),[a+b,ss([[a+b,1],[1,a*b]]),ss([[a-b,1],[2,a*b]]),ss([[a+b,1],[-2,a*b]])],`完全平方：${a}+${b}+2${rt(2,a*b)}，再化简根式。`,a+b+2*Math.sqrt(a*b))},
+()=>{const S=[2,3,5,6,7,10,14,15],a=pk(S),b=pk(S),m=a*b;return Q(`${rt(2,a)}×${rt(2,b)}=?`,ss([[1,m]]),[rt(2,m),rt(2,a+b),m,ss([[2,m]])],`${rt(2,a)}×${rt(2,b)}=${rt(2,m)}，再把平方因数开出来。`,Math.sqrt(m))}];
+const G4=[
+()=>{const a=ri(1,6),b=ri(1,4),d=pk([2,3,5,6,7]);return Q(`${a}+${tm(b,d)} 的最简有理化因式是？`,`${a}-${tm(b,d)}`,[`${a}+${tm(b,d)}`,`-${a}-${tm(b,d)}`,`${a*a}-${tm(b,d)}`,`${a}-${b}`],`互为共轭：(${a}+${tm(b,d)})(${a}-${tm(b,d)})=${a*a}-${b*b*d}=${a*a-b*b*d}，是有理数。`,a-b*Math.sqrt(d))},
+()=>{const d=pk([2,3,5,6,7]),p=ri(2,12),g=gcd(p,d),nu=p/g,de=d/g;return Q(`@{${p}}{${rt(2,d)}}=?`,de==1?tm(nu,d):`@{${tm(nu,d)}}{${de}}`,[`@{${p}}{${d}}`,tm(p,d),`@{${tm(nu,d)}}{${de*d}}`,`@{${p}}{${d*d}}`],`分子分母同乘 ${rt(2,d)}：@{${p}×${rt(2,d)}}{${d}}，再约分。`,p/Math.sqrt(d))},
+()=>{const d=pk([2,3,5,6]),a=ri(3,7),t=ri(1,3),den=a*a-d,p=den*t;return Q(`@{${p}}{${a}+${rt(2,d)}}=?`,ss([[t*a,1],[-t,d]]),[ss([[t*a,1],[t,d]]),ss([[a,1],[-1,d]]),`@{${p}}{${den}}`,ss([[t*a-t*d,1]])],`分母乘共轭：(${a}+${rt(2,d)})(${a}-${rt(2,d)})=${a*a}-${d}=${den}；分子 ${p}(${a}-${rt(2,d)}) 除以 ${den}。`,p/(a+Math.sqrt(d)))},
+()=>{const k=ri(2,9);return Q(`@{1}{${rt(2,k+1)}+${rt(2,k)}}=?`,ss([[1,k+1],[-1,k]]),[ss([[1,k+1],[1,k]]),ss([[1,k],[-1,k+1]]),'1',`@{1}{${2*k+1}}`],`乘共轭 ${rt(2,k+1)}-${rt(2,k)}：分母=${k+1}−${k}=1。`,1/(Math.sqrt(k+1)+Math.sqrt(k)))},
+()=>{const P=[2,3,5,7],a=pk(P),b=pk(P.filter(v=>v!=a));return Q(`@{${rt(2,a)}}{${rt(2,b)}}=?`,`@{${rt(2,a*b)}}{${b}}`,[`@{${rt(2,a)}}{${b}}`,`@{${rt(2,a*b)}}{${b*b}}`,`@{${rt(2,a*b)}}{${a}}`,`@{${rt(2,a*b)}}{${a*b}}`],`同乘 ${rt(2,b)}：@{${rt(2,a)}×${rt(2,b)}}{${b}}=@{${rt(2,a*b)}}{${b}}`,Math.sqrt(a/b))}];
+const G5=[
+()=>{for(;;){const q=-ri(2,5),t=ri(1,3),s=t-q,p=t*t-s,s2=1-2*q-s;if(s2+q<0&&s2!=s){const B=2*q-1,C=q*q-p;
+ return Q(`解方程：${rt(2,'x'+(p?sg(p):''))}=x${sg(q)}`,`x=${s}`,[`x=${s2}`,`x=${s} 或 x=${s2}`,'无解',`x=${-s}`],`两边平方：x^{2}${sg(B)}x${C?sg(C):''}=0，得 x=${s} 或 x=${s2}。检验：x=${s2} 时右边=${s2+q}<0，是增根，舍去。`,s)}}},
+()=>{const a=ri(1,9),b=ri(2,7);return Q(`解方程：${rt(2,'x+'+a)}=${b}`,`x=${b*b-a}`,[`x=${b-a}`,`x=${b*b+a}`,`x=${b*b-a} 或 x=${a-b*b}`,`x=${b+a}`],`两边平方：x+${a}=${b*b}，x=${b*b-a}。检验：${rt(2,b*b)}=${b} ✓`,b*b-a)},
+()=>{const a=ri(1,9),b=ri(2,6);return Q(`解方程：${rt(2,'x-'+a)}=-${b}`,'无解',[`x=${a+b*b}`,`x=${a-b*b}`,`x=${b*b-a}`],`算术平方根不可能是负数；平方得 x=${a+b*b} 是增根，代入不成立。`)}];
+const GS=[G1,G2,G3,G4,G5],FH=[G3[2],G3[3],G4[2],G4[3],G4[4],G5[0],G5[1],G2[3]];
+function chk(s,v){s=s.replace(/\s/g,'').replace(/−/g,'-').replace(/×/g,'*').replace(/÷/g,'/').replace(/^x=/,'').replace(/sqrt\(/g,'√(');let bad=0;s.replace(/√(\d+)/g,(_,n)=>{for(let k=2;k*k<=n;k++)if(n%(k*k)==0)bad=1});if(bad)return'sq';
+ const e=s.replace(/√(\d+(?:\.\d+)?)/g,'Math.sqrt($1)').replace(/√\(/g,'Math.sqrt(').replace(/(\d|\))(?=Math|\()/g,'$1*').replace(/\^/g,'**');
+ if(!e||/[^\d+\-*/().]/.test(e.replace(/Math\.sqrt/g,'')))return'bad';
+ try{const r=Function('"use strict";return('+e+')')();return Number.isFinite(r)?(Math.abs(r-v)<1e-6?'ok':'no'):'bad'}catch(x){return'bad'}}
+/* ---------- 例题（课本） ---------- */
+const EX=[[
+{t:'例题1 (d)(f)',q:'~3{(-5)^{3}}　~4{(-2)^{4}}',s:'奇次根：~3{(-5)^{3}}=-5（保持原数）<br>偶次根：~4{(-2)^{4}}=|-2|=2（取绝对值）',f:nl(-5,-5)+nl(-2,2)},
+{t:'例题3 (a)(d)',q:'~5{a^{10}}　~9{-27x^{3}y^{6}}',s:'~5{a^{10}}=~5{a^{2×5}}=a^{2}（10 个 a，每 5 个一组，出 2 个）<br>~9{-27x^{3}y^{6}}=-~9{(3xy^{2})^{3}}=-~3{3xy^{2}}',f:fT(5,[['a',10]])},
+{t:'例题4 (b)',q:'化为同次根式：~{3}，~3{-5}，~4{2}',s:'L.C.M.(2,3,4)=12<br>~{3}=~12{3^{6}}=~12{729}；~3{-5}=-~12{5^{4}}=-~12{625}；~4{2}=~12{2^{3}}=~12{8}',f:fU([[2,3],[3,5],[4,2]])}],
+[
+{t:'例题5 (a)(c)',q:'~3{8×27}　~3{xy^{2}}·~3{x^{2}yz}',s:'~3{8×27}=~3{2^{3}}·~3{3^{3}}=2×3=6<br>~3{xy^{2}}·~3{x^{2}yz}=~3{x^{3}y^{3}z}=xy~3{z}',f:fT(3,[['2',3],['3',3]])+fT(3,[['x',3],['y',3],['z',1]])},
+{t:'例题6 (a)(b) 因式外移',q:'~{x^{3}y^{2}}　~3{x^{6}y^{4}}',s:'~{x^{3}y^{2}}=xy~{x}<br>~3{x^{6}y^{4}}=x^{2}y~3{y}',f:fT(2,[['x',3],['y',2]])+fT(3,[['x',6],['y',4]])},
+{t:'例题7 (a) 因式内移',q:'a~{ab}',s:'a~{ab}=~{a^{2}}·~{ab}=~{a^{3}b}（外面的 a 要乘方 2 次再进去）',f:fT(2,[['a',3],['b',1]])},
+{t:'例题8 (a)(b) 最简根式',q:'~{16t^{5}}　~3{8a^{4}b^{5}}',s:'~{16t^{5}}=~{4^{2}t^{4}·t}=4t^{2}~{t}<br>~3{8a^{4}b^{5}}=2ab~3{ab^{2}}',f:fT(2,[['2',4],['t',5]])+fT(3,[['2',3],['a',4],['b',5]])}],
+[
+{t:'例题10 (a) 加减',q:'~{8}+~3{54}-6~3{@{2}{27}}+3~{18}',s:'=2~{2}+3~3{2}-2~3{2}+9~{2}=11~{2}+~3{2}（同类根式才能合并）',f:fB([[2,rl(2,2)],[3,rl(3,2)],[-2,rl(3,2)],[9,rl(2,2)]])},
+{t:'例题11 (a) 乘法',q:'3~3{4}×2~3{6}',s:'=6~3{4×6}=6~3{8×3}=6(2~3{3})=12~3{3}',f:fT(3,[['2',3],['3',1]])},
+{t:'例题12 (a) 异次根式',q:'~{2}×~3{3}',s:'L.C.M.(2,3)=6：=~6{2^{3}}·~6{3^{2}}=~6{8×9}=~6{72}',f:fU([[2,2],[3,3]])},
+{t:'例题14、15 双重根式',q:'~{5+2~{6}}　~{7-2~{10}}',s:'x+y=5，xy=6 → x=3，y=2：~{5+2~{6}}=~{(~{3}+~{2})^{2}}=~{3}+~{2}<br>~{7-2~{10}}=~{(~{5}-~{2})^{2}}=~{5}-~{2}',f:fSq(3,2)+fSq(5,2)}],
+[
+{t:'例题17 (c)、18 (b)',q:'3+~{2} 的有理化因式；@{~{6}+~{3}}{~{6}-~{3}}',s:'(3+~{2})(3-~{2})=9-2=7，有理化因式是 3-~{2}<br>@{~{6}+~{3}}{~{6}-~{3}}=@{(~{6}+~{3})^{2}}{6-3}=@{9+6~{2}}{3}=3+2~{2}',f:fL(3,1,2)}],
+[
+{t:'例题19',q:'解 ~{x-1}=x-3',s:'平方：x−1=x^{2}−6x+9 → x^{2}−7x+10=0 → x=2 或 5<br>检验：x=2 时左=1，右=−1 ✗（增根）；x=5 时 2=2 ✓。答案 x=5',f:fP(-1,-3,[2,5])},
+{t:'例题20',q:'A(-6,0)、B(12,6)，C(0,c)，2AC=BC',s:'2~{6^{2}+c^{2}}=~{12^{2}+(c-6)^{2}} → c^{2}+4c−12=0 → c=−6 或 2<br>两边都是距离（≥0），平方不会产生增根，所以不用检验。',f:eC}]];
+/* ---------- 计算器 ---------- */
+function cal(t,fs,fn){const d=document.createElement('div');d.className='cd';d.innerHTML=`<h4>🧮 ${t}</h4><div class="ci">${fs.map(f=>`<label>${f[0]}<input type="number" value="${f[1]}" min="${f[2]}" max="${f[3]}" data-k="${f[4]}"></label>`).join('')}</div><div class="co"></div>`;
+ const run=()=>{const v={};let ok=1;d.querySelectorAll('input').forEach(i=>{let x=Math.round(+i.value);if(!isFinite(x)||i.value==='')ok=0;v[i.dataset.k]=Math.min(+i.max,Math.max(+i.min,x))});const o=d.querySelector('.co');try{o.innerHTML=ok?fn(v):'请输入数字'}catch(e){o.textContent='请检查输入'}};
+ d.addEventListener('input',run);run();return d}
+const c41a=()=>cal('根式的意义：ⁿ√(bⁿ) 与 (ⁿ√b)ⁿ',[['根指数 n',3,2,9,'n'],['b',-2,-99,99,'b']],({n,b})=>{const e=n%2==0,a=e?Math.abs(b):b;
+ return `<p>${M(rt(n,`(${b})^{${n}}`)+'='+(e?`|${b}|=${a}（偶次，取绝对值）`:`${b}（奇次，等于原数）`))}</p><p>${b<0&&e?M(`(${rt(n,b)})^{${n}}`)+'：偶次根号下为负，在实数范围内无意义。':M(`(${rt(n,b)})^{${n}}=${b}`)}</p>`+nl(b,a)});
+const c41b=()=>cal('化为同次根式并比较大小',[['根指数1',2,2,6,'n1'],['被开方数1',3,1,99,'a1'],['根指数2',3,2,6,'n2'],['被开方数2',5,1,99,'a2']],({n1,a1,n2,a2})=>{const L=lcm(n1,n2),k1=L/n1,k2=L/n2,A=BigInt(a1)**BigInt(k1),B=BigInt(a2)**BigInt(k2),c=A>B?'>':A<B?'<':'=';
+ return `<p>L.C.M.(${n1},${n2})=${L}</p><p>${M(`${rt(n1,a1)}=${rt(L,`${a1}^{${k1}}`)}=${rt(L,A)}`)}</p><p>${M(`${rt(n2,a2)}=${rt(L,`${a2}^{${k2}}`)}=${rt(L,B)}`)}</p><p>被开方数：${A} ${c} ${B}，所以 ${M(rt(n1,a1))} ${c} ${M(rt(n2,a2))}</p>`+fU([[n1,a1],[n2,a2]])});
+const c42=()=>cal('最简根式：ⁿ√m（因式外移）',[['根指数 n',3,2,6,'n'],['被开方数 m',54,2,9999,'m']],({n,m})=>{const f=[];let t=m;for(let p=2;p<=t;p++){let e=0;while(t%p==0){t/=p;e++}if(e)f.push([p,e])}const[k,r]=sx(m,n);
+ return `<p>${m} = ${M(f.map(([p,e])=>e>1?p+'^{'+e+'}':p).join('×'))}（每 ${n} 个相同因数一组，出 1 个）</p><p>${M(rt(n,m)+'='+tm(k,r,n))}${k==1?'（已是最简）':''}</p>`+fT(n,f.map(([p,e])=>[''+p,e]))});
+const c43a=()=>cal('根式加减：c₁√m₁ + c₂√m₂ + c₃√m₃',[['c₁',1,-9,9,'c1'],['m₁',8,1,99,'m1'],['c₂',1,-9,9,'c2'],['m₂',18,1,99,'m2'],['c₃',-2,-9,9,'c3'],['m₃',2,1,99,'m3']],v=>{const T=[[v.c1,v.m1],[v.c2,v.m2],[v.c3,v.m3]],S=T.map(([c,m])=>{const[k,r]=sx(m,2);return[c*k,r]}),
+ ex=T.map(([c,m],i)=>(i&&c>0?'+':'')+(c==1?'':c==-1?'-':c)+rt(2,m)).join(''),st=S.map(([c,r],i)=>(i&&c>0?'+':'')+tm(c,r)).join('');
+ return `<p>${M(ex)}</p><p>先化最简：${M(st)}</p><p>合并同类根式：${M(ss(T))}</p>`+fB(S.map(([c,r])=>[c,rl(2,r)]))});
+const c43b=()=>cal('双重根式：√(p ± 2√q)',[['p',5,2,99,'p'],['q',6,1,999,'q'],['符号 +1/−1',1,-1,1,'s']],({p,q,s})=>{s=s<0?-1:1;const D=p*p-4*q,d=Math.sqrt(D),o=s>0?'+':'-',L=rt(2,`${p}${o}2${rt(2,q)}`),h=`<p>${M(L)}：找 x、y 使 x+y=${p}，xy=${q}</p>`;
+ if(D<0||!Number.isInteger(d)||(p+d)%2)return h+'<p>找不到整数 x、y，不能再化简。</p>';const x=(p+d)/2,y=(p-d)/2;if(y<=0)return h+'<p>y ≤ 0，无法化简。</p>';
+ return h+`<p>x=${x}，y=${y}</p><p>${M(L+'='+rt(2,`(${rt(2,x)}${o}${rt(2,y)})^{2}`)+'='+rt(2,x)+o+rt(2,y))}</p>`+fSq(x,y)});
+const c44=()=>cal('有理化分母：p ÷ (a + b√d)',[['p',4,1,99,'p'],['a',3,-9,9,'a'],['b',1,-9,9,'b'],['d',5,2,99,'d']],v=>{let{p,a,b,d}=v;const[k,r]=sx(d,2);b*=k;d=r;if(d==1||b==0)return'<p>d 不能是完全平方数，b 不能为 0。</p>';const den=a*a-b*b*d;if(!den)return'<p>分母乘共轭后为 0，无法有理化。</p>';
+ const bi=(a,b)=>(a?a:'')+(b<0?'-':a?'+':'')+(Math.abs(b)==1?'':Math.abs(b))+rt(2,d),D=bi(a,b),C=bi(a,-b);let n1=p*a,n2=-p*b,dd=den;if(dd<0){n1=-n1;n2=-n2;dd=-dd}const g=gcd(gcd(n1,n2),dd),nu=ss([[n1/g,1],[n2/g,d]]);
+ return `<p>${M(`@{${p}}{${D}}=@{${p}(${C})}{(${D})(${C})}=@{${p}(${C})}{${a}^{2}-${b*b}×${d}}=@{${p}(${C})}{${den}}`)}</p><p><b>${M(dd/g==1?nu:`@{${nu}}{${dd/g}}`)}</b></p>`+fL(a,b,d)});
+const c45=()=>cal('无理方程：√(x+p) = x+q',[['p',-1,-20,20,'p'],['q',-3,-9,9,'q']],({p,q})=>{const B=2*q-1,C=q*q-p,D=B*B-4*C,xp='x'+(p?sg(p):''),xq='x'+(q?sg(q):'');
+ let h=`<p>${M(rt(2,xp)+'='+xq)}</p><p>两边平方：${M(xp+'=('+xq+')^{2}')} → ${M('x^{2}'+sg(B)+'x'+(C?sg(C):'')+'=0')}</p>`;
+ if(D<0)return h+'<p>判别式 &lt; 0，没有实数根 → 原方程无解。</p>'+fP(p,q,[]);
+ const rs=[(-B+Math.sqrt(D))/2,(-B-Math.sqrt(D))/2].filter((r,i,a)=>i==0||r!=a[0]),f=r=>+r.toFixed(3),good=rs.filter(r=>r+p>=-1e-9&&r+q>=-1e-9);
+ return h+rs.map(r=>`<p>x=${f(r)}：左边 ${r+p<0?'无意义':M(rt(2,f(r+p)))+'='+f(Math.sqrt(r+p))}，右边=${f(r+q)} → ${r+p>=-1e-9&&r+q>=-1e-9?'✅ 成立':'❌ 增根，舍去'}</p>`).join('')+`<p><b>${good.length?'原方程的解：'+good.map(r=>'x='+f(r)).join('，'):'原方程无解'}</b></p>`+fP(p,q,rs)});
+const TB=[
+{n:'4.1 根式·无理式',r:'~n{a^{n}}=a（n 奇）；~n{a^{n}}=|a|（n 偶）　(~n{a})^{n}=a　~np{a^{mp}}=~n{a^{m}}',c:[c41a,c41b]},
+{n:'4.2 分数指数·最简根式',r:'a^{@{m}{n}}=~n{a^{m}}=(~n{a})^{m}　~n{ab}=~n{a}·~n{b}　~m{~n{a}}=~mn{a}',c:[c42]},
+{n:'4.3 根式的运算',r:'同类根式才能合并　~{a}×~{b}=~{ab}　~{a+b±2~{ab}}=~{a}±~{b}（a>b）',c:[c43a,c43b]},
+{n:'4.4 有理化因式·分母',r:'(~{a}+~{b})(~{a}-~{b})=a-b　分子分母同乘“有理化因式”',c:[c44]},
+{n:'4.5 无理方程',r:'平方 → 解整式方程 → 必须代回原方程检验（可能有增根）',c:[c45]},
+{n:'总复习',rev:1}];
+/* ---------- 测验 ---------- */
+function quiz(set,gate,rev){const el=document.createElement('div'),[gens,fg]=set(),nm=gens.length,nf=fg.length;let done=0,ok=0,fd=0,fok=0;const note=document.createElement('div');note.className='sc';
+ el.innerHTML=`<h3>📝 ${rev?'总复习测验':'小测验'}：${nm} 题选择${rev?'＋'+nf+' 题作答':'，答对 '+gate+' 题或以上可做 '+nf+' 题作答题'}</h3>`;
+ const retry=()=>{const b=document.createElement('button');b.textContent='🔄 换一组新题';b.onclick=()=>el.replaceWith(quiz(set,gate,rev));el.appendChild(b)};
+ gens.forEach((g,i)=>{const x=mk(g),c=document.createElement('div');c.className='q';c.innerHTML=`<div class="qt">${i+1}. ${M(x.q)}</div>`+sh([[x.a,1],...x.w.map(w=>[w,0])]).map(([t,k])=>`<button class="op" data-k="${k}">${M(t)}</button>`).join('')+'<div class="fb"></div>';
+  c.onclick=e=>{const b=e.target.closest('.op');if(!b||c.dataset.l)return;c.dataset.l=1;c.querySelectorAll('.op').forEach(p=>{p.disabled=true;if(p.dataset.k=='1')p.classList.add('ok')});const good=b.dataset.k=='1';if(!good)b.classList.add('no');ok+=good;done++;c.querySelector('.fb').innerHTML=(good?'✅ 正确！':'❌ 错误。')+' '+M(x.e||'');if(done==nm)after()};el.appendChild(c)});
+ el.appendChild(note);
+ function after(){note.textContent=`选择题：${ok}/${nm}`;if(ok>=gate)fills();else{note.textContent+=`　未达 ${gate} 题，不能进入作答题，再练一组吧！`;retry()}}
+ function fills(){const w=document.createElement('div');w.innerHTML='<h4>✍️ 作答题（写最简形式；可点 √ 键，如 3√2、2+√5、5/2）</h4>';
+  fg.forEach((g,i)=>{const x=mk(g,1),c=document.createElement('div');c.className='q';c.innerHTML=`<div class="qt">${i+1}. ${M(x.q)}</div><div class="row"><input class="in" autocomplete="off"><button class="sq" type="button">√</button><button class="ck" type="button">提交</button></div><div class="fb"></div>`;
+   const inp=c.querySelector('.in'),fb=c.querySelector('.fb');c.querySelector('.sq').onclick=()=>{inp.value+='√';inp.focus()};
+   c.querySelector('.ck').onclick=()=>{if(c.dataset.l)return;const r=chk(inp.value,x.v);if(r=='sq'){fb.textContent='⚠️ 根号里还有能开出来的平方因数，请化到最简。';return}if(r=='bad'){fb.textContent='⚠️ 格式看不懂，请检查。';return}
+    c.dataset.l=1;inp.disabled=true;const good=r=='ok';fok+=good;fd++;fb.innerHTML=(good?'✅ 正确！':'❌ 错误。')+' 答案：'+M(x.a)+'<br>'+M(x.e||'');if(fd==nf)fin()};w.appendChild(c)});el.insertBefore(w,note)}
+ function fin(){const t=ok+fok,T=nm+nf;note.innerHTML=`选择题 ${ok}/${nm}；作答题 ${fok}/${nf}`+(rev?`<br>总分 ${t}/${T}（${Math.round(t/T*100)}%）：${t/T>=.85?'🏆 优秀！':t/T>=.65?'👍 良好':t/T>=.5?'🙂 及格，再巩固一下':'💪 加油，回到各节再练习'}`:'');retry()}
+ return el}
+/* ---------- 页面 ---------- */
+if(typeof document!='undefined'){
+ const H=document.documentElement,nav=document.getElementById('nav'),main=document.getElementById('main'),P={};let fs=16;
+ try{H.dataset.t=localStorage.getItem('wt')||'';fs=+localStorage.getItem('wf')||16}catch(e){}
+ const setF=d=>{fs=Math.min(24,Math.max(12,fs+d));H.style.setProperty('--fs',fs+'px');try{localStorage.setItem('wf',fs)}catch(e){}};setF(0);
+ document.getElementById('fm').onclick=()=>setF(-1);document.getElementById('fp').onclick=()=>setF(1);
+ document.getElementById('tm').onclick=()=>{H.dataset.t=H.dataset.t=='d'?'':'d';try{localStorage.setItem('wt',H.dataset.t)}catch(e){}};
+ function build(i){const t=TB[i],p=document.createElement('section');p.innerHTML=`<h2>${t.n}</h2>`;
+  if(t.rev){p.insertAdjacentHTML('beforeend','<div class="rule">综合第 4.1–4.5 节与总复习题中较难的题型：10 题选择＋5 题作答，完成后给出分数评估。每次题目都不同。</div>');
+   p.appendChild(quiz(()=>[GS.flatMap(g=>sh(g).slice(0,2)),sh(FH).slice(0,5)],0,1));return p}
+  p.insertAdjacentHTML('beforeend',`<div class="rule">${M(t.r)}</div><h3>📖 课本例题解说</h3>`);
+  EX[i].forEach(e=>p.insertAdjacentHTML('beforeend',`<div class="ex"><div class="t">${e.t}</div><div>${M(e.q)}</div><div style="margin-top:.3rem">${M(e.s)}</div>${e.f}</div>`));
+  p.insertAdjacentHTML('beforeend','<h3>🧮 计算器</h3>');t.c.forEach(c=>p.appendChild(c()));
+  const rep=n=>{let a=[];while(a.length<n)a=a.concat(sh(GS[i]));return a.slice(0,n)};
+  p.appendChild(quiz(()=>[rep(5),rep(2)],3,0));return p}
+ function show(i){[...nav.children].forEach((b,j)=>b.classList.toggle('on',i==j));[...main.children].forEach(p=>p.hidden=true);if(!P[i]){P[i]=build(i);main.appendChild(P[i])}P[i].hidden=false;scrollTo(0,0);nav.children[i].scrollIntoView({inline:'center',block:'nearest'})}
+ TB.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>show(i);nav.appendChild(b)});show(0);
+ const w=document.createElement('div');w.className='wm';for(let i=0;i<24;i++){const s=document.createElement('span');s.textContent='蔡逸众 · ecchua79 · Chinese High School';s.style.left=(i%4)*28-6+'%';s.style.top=Math.floor(i/4)*17+'%';w.appendChild(s)}document.body.appendChild(w);
+}
+if(typeof module!='undefined')module.exports={GS,FH,mk,chk,M,ss,sx};
+</script></body></html>

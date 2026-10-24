@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<html lang="zh" data-t="l"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Made by ecchua79 · 峇株吧辖华仁中学蔡逸众制作"><title>高一数学 第3章 多项式 · 互动课程</title>
+<style>
+:root{--bg:#f4f7fb;--fg:#1b2333;--cd:#fff;--ac:#2563eb;--bd:#d3dbea;--ok:#16a34a;--no:#dc2626;--fs:17px}
+[data-t=d]{--bg:#0a0f1f;--fg:#e4eaff;--cd:#141b33;--ac:#7aa9ff;--bd:#2b3659}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:var(--fs)/1.75 system-ui,"Microsoft YaHei",sans-serif}
+header{position:sticky;top:0;z-index:50;background:var(--cd);border-bottom:1px solid var(--bd);padding:8px 12px}
+.top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.top h1{font-size:1.05em;margin:0;flex:1;min-width:180px}
+button,input,select{font:inherit;color:inherit}.ctl{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:2px 10px;cursor:pointer}
+#tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;cursor:grab;scrollbar-width:thin;scroll-snap-type:x proximity}
+#tabs button{flex:none;scroll-snap-align:start;border:1px solid var(--bd);background:var(--bg);border-radius:20px;padding:4px 14px;cursor:pointer;white-space:nowrap}
+#tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:920px;margin:0 auto;padding:14px 12px 30px}.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin:14px 0}
+h2{margin:.4em 0}h3{margin:.2em 0;color:var(--ac)}.note{border-left:4px solid var(--ac);padding:2px 12px;background:var(--bg)}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.25}.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 3px}.fr b{font-weight:400;padding:0 3px}
+sup{font-size:.7em}svg.rd{vertical-align:middle;overflow:visible}.rp{fill:none;stroke:var(--fg);stroke-width:1.8}
+svg.gr{width:100%;max-width:620px;display:block;margin:8px auto;background:var(--bg);border:1px solid var(--bd);border-radius:8px}
+svg text{fill:var(--fg);font-size:14px}.ax{stroke:var(--fg);stroke-width:1.2}.cv{fill:none;stroke:var(--ac);stroke-width:2.5}.pt{fill:#f59e0b;stroke:var(--fg)}.lb{font-size:13px}.tk{font-size:11px;text-anchor:middle}
+.b0{fill:#3b82f6}.b1{fill:#f59e0b}.b2{fill:#10b981}
+.in{display:flex;flex-wrap:wrap;gap:10px;align-items:end}.in label{display:flex;flex-direction:column;font-size:.9em}.in input,.in select{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:5px 8px;min-width:120px}
+.go{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:7px 16px;cursor:pointer}
+.op{display:block;width:100%;text-align:left;margin:5px 0;padding:6px 12px;border:1px solid var(--bd);background:var(--bg);border-radius:8px;cursor:pointer}
+.op.ok{background:var(--ok);color:#fff}.op.no{background:var(--no);color:#fff}.q{border-bottom:1px dashed var(--bd);padding:6px 0}.msg{font-weight:700;margin:8px 0}
+.fi input{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:5px 8px;width:140px}
+#wm{position:fixed;inset:-20%;z-index:9999;pointer-events:none;display:flex;flex-wrap:wrap;gap:200px 240px;transform:rotate(-25deg);opacity:.035;font-size:18px;font-weight:400;overflow:hidden;color:var(--fg)}
+svg .stg{transition:opacity .5s}.anc{text-align:center;margin:4px 0 10px}.anc select{border:1px solid var(--bd);background:var(--bg);border-radius:6px}
+footer{text-align:center;font-size:.8em;padding:16px;border-top:1px solid var(--bd);opacity:.8}
+</style></head><body>
+<header><div class="top"><h1>高一数学上册 · 第3章 多项式</h1>
+<button class="ctl" onclick="fz2(-1)">A−</button><button class="ctl" onclick="fz2(0)">A</button><button class="ctl" onclick="fz2(1)">A+</button>
+<button class="ctl" id="th" onclick="th()">🌙 夜间</button></div><div id="tabs"></div></header>
+<main id="main"></main>
+<footer>© 2026 峇株吧辖华仁中学 · 蔡逸众 制作 ｜ Made by ecchua79 ｜ 仅供教学使用，未经许可请勿转载</footer>
+<div id="wm" aria-hidden="true"></div>
+<div id="hw" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;font-size:1px">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</div>
+<script>
+const $=(s,e=document)=>e.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)],sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const F=(n,d=1)=>{if(d<0){n=-n;d=-d}let g=gcd(n,d)||1;return[n/g,d/g]};
+const ad=(a,b)=>F(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),mu=(a,b)=>F(a[0]*b[0],a[1]*b[1]),dv=(a,b)=>F(a[0]*b[1],a[1]*b[0]),ng=a=>[-a[0],a[1]],num=a=>a[0]/a[1];
+const fr=(n,d)=>`<span class=fr><i>${n}</i><b>${d}</b></span>`;
+const fh=a=>a[1]==1?(a[0]<0?'−'+-a[0]:''+a[0]):(a[0]<0?'−':'')+fr(Math.abs(a[0]),a[1]);
+const P=a=>a.map(x=>F(x)),ps=s=>s.split(/[,，\s]+/).filter(x=>x!=='').map(Number);
+const pstr=(p,v='x')=>{let n=p.length-1,o='';p.forEach((c,i)=>{if(!c[0])return;let e=n-i,a=[Math.abs(c[0]),c[1]],cs=(a[0]==1&&a[1]==1&&e>0)?'':fh(a);let t=cs+(e?v+(e>1?'<sup>'+e+'</sup>':''):'');o+=o?(c[0]<0?' − ':' + ')+t:(c[0]<0?'−':'')+t});return o||'0'};
+const ev=(p,x)=>p.reduce((s,c)=>ad(mu(s,x),c),F(0)),evn=(p,x)=>p.reduce((s,c)=>s*x+num(c),0);
+const trim=p=>{let i=0;while(i<p.length-1&&!p[i][0])i++;return p.slice(i)};
+const mulP=(p,q)=>{let r=Array(p.length+q.length-1).fill(0).map(_=>F(0));p.forEach((a,i)=>q.forEach((b,j)=>r[i+j]=ad(r[i+j],mu(a,b))));return r};
+const addP=(p,q,s=1)=>{let n=Math.max(p.length,q.length),a=Array(n-p.length).fill(F(0)).concat(p),b=Array(n-q.length).fill(F(0)).concat(q);return trim(a.map((x,i)=>ad(x,s>0?b[i]:ng(b[i]))))};
+function ld(f,g){let r=f.slice(),q=[],st=[],dg=g.length;while(r.length>=dg){let c=dv(r[0],g[0]),sub=g.map(x=>mu(x,c));q.push(c);for(let i=0;i<dg;i++)r[i]=ad(r[i],ng(sub[i]));r.shift();st.push({c,sub,rem:r.slice()})}
+ while(r.length&&!r[0][0])r.shift();return{q,r,st}}
+const rad=r=>{let w=26+String(r).length*11;return`<svg class=rd width=${w} height=30 viewBox="0 0 ${w} 30"><path class=rp d="M2 18L6 15L11 27L19 3H${w-2}"/><text x=22 y=24 style="font-size:19px">${r}</text></svg>`};
+const tm=(c,e,f)=>{let a=Math.abs(c);return(c<0?'−':f?'':'+')+(a==1&&e>0?'':a)+(e?'x':'')+(e>1?`<tspan dy="-7" style="font-size:11px">${e}</tspan><tspan dy="7">&#8203;</tspan>`:'')};
+let DID=0;
+function dsvg(f,g,d){if(![...f,...g,...d.st.flatMap(s=>s.sub)].every(c=>c[1]==1)||!d.st.length)return'';
+ let id='dv'+(++DID),n=f.length-1,dg=g.length,cw=54,x0=80+dg*34,cx=e=>x0+(n-e)*cw,W=cx(0)+cw/2+30,yy=56,o='',base='';
+ const row=(a,top,y)=>{let t='',fst=1,z=1;a.forEach((c,j)=>{if(!c[0])return;z=0;t+=`<text x="${cx(top-j)}" y="${y}" text-anchor="middle">${tm(c[0],top-j,fst)}</text>`;fst=0});if(z)t+=`<text x="${cx(0)}" y="${y}" text-anchor="middle">0</text>`;return t};
+ base+=`<line class=ax x1=${x0-cw/2} x2=${W-8} y1=30 y2=30 /><text x=8 y=56>${g.map((c,j)=>tm(c[0],dg-1-j,j==0)).join('')} )</text>`+row(f,n,56);
+ const G_=(t,c)=>`<g class=stg data-c="${c}">${t}</g>`;
+ d.st.forEach((s,i)=>{let y1=yy+28,k=`第${i+1}步`;
+  o+=G_(`<text x="${cx(n-i)}" y="22" text-anchor="middle">${tm(s.c[0],n-i-dg+1,i==0)}</text>`,`${k}①：用目前被除式的首项 ÷ 除式首项，得商的下一项`);
+  o+=G_(`<text x="${cx(n-i)-cw/2-4}" y=${y1} text-anchor="end">−</text>`+row(s.sub,n-i,y1)+`<line class=ax x1=${cx(n-i)-cw/2} x2=${W-8} y1=${y1+8} y2=${y1+8} />`,`${k}②：商的这一项 × 除式，对齐次数写在下面，画横线`);
+  o+=G_(row(s.rem,n-i-1,y1+30),`${k}③：相减，得新的余式（其余各项照抄下来）`);yy=y1+30});
+ let ctl=`<div class=anc><button class=go id=${id}p onclick="anim('${id}','play')">▶ 播放</button> <button class=ctl onclick="anim('${id}','reset')">⏮ 重置</button> <button class=ctl onclick="anim('${id}','next')">⏭ 下一步</button> 速度 <select onchange="anim('${id}','speed',this.value)"><option value=.5>0.5×</option><option value=1 selected>1×</option><option value=2>2×</option><option value=4>4×</option></select><div id=${id}c class=note>点「播放」逐步观看长除法；也可「下一步」手动前进。</div></div>`;
+ return`<svg id=${id} viewBox="0 0 ${W} ${yy+24}" class=gr>${base}${o}</svg>`+ctl}
+const AN={};
+function anim(id,c,v){let s=document.getElementById(id),g=[...s.querySelectorAll('.stg')],a=AN[id]=AN[id]||{k:g.length,sp:1},b=document.getElementById(id+'p'),cp=document.getElementById(id+'c');
+ const show=k=>{a.k=k;g.forEach((e,i)=>e.style.opacity=i<k?1:0);cp.textContent=k?g[k-1].dataset.c+(k==g.length?'。完成！':''):'准备开始…'},stop=()=>{clearInterval(a.t);a.t=0;b.textContent='▶ 播放'},start=()=>{clearInterval(a.t);a.t=setInterval(()=>{if(a.k>=g.length)stop();else show(a.k+1)},1100/a.sp);b.textContent='⏸ 暂停'};
+ if(c=='play'){if(a.t)stop();else{if(a.k>=g.length)show(0);start()}}else if(c=='reset'){stop();show(0)}else if(c=='next'){stop();show(Math.min(g.length,a.k+1))}else if(c=='speed'){a.sp=+v;if(a.t)start()}}
+function plot(p,pts,W=460,H=260){let xs=pts.map(a=>a[0]),lo=Math.min(-2,...xs)-1.5,hi=Math.max(2,...xs)+1.5,s=[];for(let i=0;i<=160;i++){let x=lo+(hi-lo)*i/160;s.push([x,evn(p,x)])}
+ let m=Math.max(1,...s.map(a=>Math.abs(a[1])),...pts.map(a=>Math.abs(a[1]))),yl=-m*1.15,yh=m*1.15;const X=x=>40+(x-lo)/(hi-lo)*(W-60),Y=y=>H-25-(y-yl)/(yh-yl)*(H-50);
+ let o=`<svg viewBox="0 0 ${W} ${H}" class=gr><line class=ax x1=25 x2=${W-8} y1=${Y(0)} y2=${Y(0)} />`;if(lo<0)o+=`<line class=ax x1=${X(0)} x2=${X(0)} y1=8 y2=${H-8} />`;
+ for(let k=Math.ceil(lo);k<=hi;k++)if(k)o+=`<text class=tk x=${X(k)} y=${Y(0)+14}>${k}</text>`;
+ o+=`<polyline class=cv points="${s.map(a=>X(a[0]).toFixed(1)+','+Y(a[1]).toFixed(1)).join(' ')}" />`;
+ pts.forEach(a=>o+=`<circle class=pt cx=${X(a[0])} cy=${Y(a[1])} r=5 /><text class=lb x=${X(a[0])+7} y=${Y(a[1])-9}>${a[2]}</text>`);return o+'</svg>'}
+function bars(ps,nm){let m=Math.max(...ps.map(p=>p.length)),mx=Math.max(1,...ps.flat().map(c=>Math.abs(num(c)))),bw=22,gw=ps.length*bw+16,W=30+m*gw,z=120,o=`<svg viewBox="0 0 ${W} 250" class=gr><line class=ax x1=8 x2=${W-8} y1=${z} y2=${z} />`;
+ nm.forEach((t,j)=>o+=`<rect class=b${j} x=${10+j*90} y=6 width=12 height=12 /><text x=${26+j*90} y=17 class=lb>${t}</text>`);
+ for(let e=0;e<m;e++){let gx=14+(m-1-e)*gw;ps.forEach((p,j)=>{let c=num(p[p.length-1-e]||F(0)),h=c/mx*85,x=gx+j*bw;o+=`<rect class=b${j} x=${x} y=${h>=0?z-h:z} width=${bw-2} height=${Math.abs(h)} /><text class=tk x=${x+bw/2-1} y=${h>=0?z-h-3:z-h+11}>${+c.toFixed(2)}</text>`});o+=`<text class=tk x=${gx+ps.length*bw/2} y=240>x${e>1?'^'+e:e?'':'⁰'}</text>`}return o+'</svg>'}
+const qroot=(a,b,c)=>{let D=b*b-4*a*c;if(D<0)return null;let s=1;for(let k=2;k*k<=D;k++)if(D%(k*k)==0)s=k;let r=D/s/s,B=-b,den=2*a,g=gcd(gcd(B,s),den);B/=g;s/=g;den/=g;if(den<0){den=-den;B=-B}
+ let nu=(B?B:'')+'±'+(s>1?s:'')+rad(r);return{h:den==1?nu:fr(nu,den),n:[(-b+Math.sqrt(D))/2/a,(-b-Math.sqrt(D))/2/a]}};
+const divs=n=>{n=Math.abs(n);let r=[];for(let i=1;i<=n;i++)if(n%i==0)r.push(i);return r};
+function fz(f){let n=f.map(x=>x[0]),g=0;n.forEach(x=>g=gcd(g,x));if(n[0]<0)g=-g;let cur=n.map(x=>F(x/g)),fs=[];
+ while(cur.length>1&&cur[cur.length-1][0]==0){fs.push([1,0]);cur.pop()}
+ while(cur.length>2){let hit=0,A=divs(cur[0][0]),B=divs(cur[cur.length-1][0]);for(let p of A){for(let q of B)for(let sg of[1,-1]){if(gcd(p,q)!=1)continue;let a=F(sg*q,p);if(!ev(cur,a)[0]){fs.push([p,sg*q]);cur=ld(cur,P([p,-sg*q])).q;hit=1;break}}if(hit)break}if(!hit)break}
+ if(cur.length==2){fs.push([cur[0][0],-cur[1][0]]);cur=[F(1)]}return{g,fs,rest:cur}}
+const facStr=z=>(Math.abs(z.g)!=1?z.g:z.g<0?'−':'')+z.fs.map(a=>'('+pstr(P([a[0],-a[1]]))+')').join('').replace(/^\(x\)$/,'x')+(z.rest.length>1?'('+pstr(z.rest)+')':'');
+function cand(f){let a=f[0][0],b=f[f.length-1][0];return`<p>有理根候选 <b>±${fr('q','p')}</b>：p 整除领导系数 ${a}（${divs(a).join('、')}），q 整除常数项 ${b}（${divs(b).join('、')}）</p>`}
+function rem(f,p,q){let a=F(q,p),v=ev(f,a),g=P([p,-q]),d=ld(f,g);
+ return`<p>除式 ${pstr(g)}，即 a = ${fh(a)}</p><p>余式定理：余式 = f(${fh(a)}) = ${pstr(f,'('+fh(a)+')')} = <b>${fh(v)}</b></p><p>商式 ${pstr(d.q)}，余式 ${pstr(d.r)}　（f = g·Q + R）</p>`+dsvg(f,g,d)+plot(f,[[num(a),num(v),`f(${num(a).toFixed(num(a)%1?2:0)})=${num(v).toFixed(num(v)%1?2:0)}`]])}
+const C={
+1(v){let f=P(ps(v[0])),g=P(ps(v[1])),op=v[2],o=`<p>f(x) = ${pstr(f)}，g(x) = ${pstr(g)}</p><p>f 是 <b>${f.length-1}</b> 次多项式，领导系数 <b>${fh(f[0])}</b>，常数项 <b>${fh(f[f.length-1])}</b></p>`;
+ if(op=='/'){let d=ld(f,g);return o+`<p>长除法：商式 Q = ${pstr(d.q)}，余式 R = ${pstr(d.r)}</p><p>验证：g·Q + R = ${pstr(addP(mulP(g,d.q),d.r))}</p>`+dsvg(f,g,d)}
+ let r=op=='*'?mulP(f,g):addP(f,g,op=='+'?1:-1);return o+`<p>f ${op=='*'?'×':op=='+'?'+':'−'} g = <b>${pstr(r)}</b>（${r.length-1} 次）</p>`+bars([f,g,r],['f','g','结果'])},
+2(v){return rem(P(ps(v[0])),+v[1],+v[2])},
+3(v){let f=P(ps(v[0])),p=+v[1],q=+v[2],a=F(q,p),r=ev(f,a),o=rem(f,p,q);return o+(r[0]?`<p class=note>f(${fh(a)}) ≠ 0，所以 ${pstr(P([p,-q]))} <b>不是</b> f(x) 的因式。</p>`:`<p class=note>f(${fh(a)}) = 0，所以 ${pstr(P([p,-q]))} <b>是</b> f(x) 的因式，f(x) = (${pstr(P([p,-q]))})(${pstr(ld(f,P([p,-q])).q)})。</p>`)},
+4(v){let f=P(ps(v[0])),z=fz(f),rs=z.fs.map(a=>[a[1]/a[0],0,fh(F(a[1],a[0]))]);return`<p>f(x) = ${pstr(f)}</p><p>① 公因式：各项系数的最大公因数 <b>${Math.abs(z.g)}</b>${z.fs.some(a=>a[0]==1&&a[1]==0)?'，且每项含 x':''}</p>${f.length>2?cand(z.rest.length>1||z.fs.length?f.map(c=>c):f):''}<p>② 因式定理逐一验算，得一次因式 ${z.fs.map(a=>'('+pstr(P([a[0],-a[1]]))+')').join('、')||'（无）'}</p><p class=note>③ 结果：f(x) = <b>${facStr(z)}</b>${z.rest.length>1?'（二次因式在有理数范围内不能再分解）':''}</p>`+plot(f,rs)},
+5(v){let f=P(ps(v[0])),z=fz(f),xs=[],h=[];z.fs.forEach(a=>{let r=F(a[1],a[0]);xs.push([num(r),0,'']);h.push(fh(r))});let t=`<p>方程式 ${pstr(f)} = 0</p><p>分解：${facStr(z)} = 0</p>`;
+ if(z.rest.length==3){let q=qroot(z.rest[0][0],z.rest[1][0],z.rest[2][0]);if(q){h.push(q.h);q.n.forEach(n=>xs.push([n,0,'']));t+=`<p>二次因式用公式：x = ${fr('−b ± '+rad('b²−4ac'),'2a')}</p>`}else t+=`<p>二次因式 ${pstr(z.rest)} 的 Δ &lt; 0，无实数解。</p>`}
+ else if(z.rest.length>3)t+='<p>余下因式在有理数范围内不能分解，请用换元法或数值法。</p>';
+ return t+`<p class=note>解：x = ${h.join('，')||'（无实数解）'}</p>`+plot(f,xs)}};
+const rc=(d,lo=-5,hi=5)=>{let c=[pick([1,2,3,-1,-2,4])];for(let i=0;i<d;i++)c.push(R(lo,hi));return c};
+const Lx=(p,q)=>pstr(P([p,-q])),prod=r=>r.reduce((p,a)=>mulP(p,P([1,-a])),P([1])),fac=r=>r.map(a=>'('+Lx(1,a)+')').join(''),rt3=()=>sh([-4,-3,-2,-1,1,2,3,4]).slice(0,3);
+const flip=(r,k)=>r.map((a,i)=>i==k?-a:a),pe=(c)=>pstr(P(c));
+const mk=(q,a,w,e)=>({q,a,w,e}),sg=n=>n<0?'− '+(-n):'+ '+n,pv=n=>n<0?'('+String(n).replace('-','−')+')':''+n,rts=r=>r.map(a=>[a,0,`(${a},0)`]);
+const crossSvg=(a,b)=>`<svg viewBox="0 0 320 170" class=gr><text x=60 y=36>x</text><text x=210 y=36>${sg(a)}</text><text x=60 y=100>x</text><text x=210 y=100>${sg(b)}</text><line class=ax x1=75 y1=44 x2=205 y2=88 /><line class=ax x1=205 y1=44 x2=75 y2=88 /><text class=lb x=10 y=18>交叉相乘：</text><text class=lb x=40 y=135>x·${b} + ${a}·x = ${a+b}x（中项）</text><text class=lb x=40 y=158>x·x = x²，${a}×${b} = ${a*b}（首项、末项）</text></svg>`;
+const sqSvg=(k,m)=>`<svg viewBox="0 0 350 150" class=gr><path d="M10 15H120V85H85V125H10Z" style="fill:#3b82f655;stroke:var(--fg)"/><rect x=85 y=85 width=35 height=40 style="fill:none;stroke:var(--fg);stroke-dasharray:4"/><text class=lb x=50 y=10>${k}x</text><text class=lb x=125 y=60>${k}x</text><text class=lb x=92 y=108>${m}</text><text class=lb x=22 y=75>(${k}x)² − ${m}²</text><text x=148 y=75>→</text><rect x=180 y=30 width=150 height=70 style="fill:#10b98155;stroke:var(--fg)"/><text class=lb x=210 y=24>宽 ${k}x + ${m}</text><text class=lb x=200 y=70>高 ${k}x − ${m}</text></svg>`;
+const G={1:{mc:[
+ ()=>{let d=R(2,5),c=rc(d);return mk(`多项式 ${pe(c)} 是几次多项式？`,d,0,`看最高次项：它是 ${c[0]}x<sup>${d}</sup>（系数 ${c[0]}≠0），所以是 <b>${d}</b> 次，领导系数是 ${c[0]}。下图的柱子是各项系数。`+bars([P(c)],['系数']))},
+ ()=>{let d=R(3,5),c=rc(d),k=R(1,d-1);return mk(`${pe(c)} 中 x<sup>${k}</sup> 项的系数是？`,c[d-k],0,`从最高次往低次数到 x<sup>${k}</sup> 的位置，系数是 <b>${c[d-k]}</b>（系数为 0 的项会被省略不写）。`+bars([P(c)],['系数']))},
+ ()=>{let a=R(1,3),b=R(2,3),f=P(rc(a)),g=P(rc(b));return mk(`f(x) = ${pstr(f)}，g(x) = ${pstr(g)}，f(x)g(x) 是几次多项式？`,a+b,0,`两项相乘时「系数相乘、次数相加」，最高次项为 x<sup>${a}</sup>·x<sup>${b}</sup> = x<sup>${a+b}</sup>，且领导系数相乘不为 0，所以是 <b>${a+b}</b> 次。`+bars([f,g,mulP(f,g)],['f','g','f·g']))},
+ ()=>{let a=R(-3,3)||2,b=R(-3,3),c=R(-4,4),r=R(1,9),g=P([1,-a]),f=addP(mulP(g,P([1,b,c])),P([r])),d=ld(f,g);return mk(`多项式 ${pstr(f)} 除以 ${Lx(1,a)} 的余式是？`,r,0,`用长除法：商式 ${pstr(d.q)}，余式 <b>${r}</b>。余式次数必须小于除式次数（1 次），所以是常数。可按「播放」观看每一步。`+dsvg(f,g,d))}],
+ fi:[()=>{let a=R(1,4),b=R(-4,4),c=R(-3,3),p=mulP(P([1,b,c]),P([1,a]));return{q:`(${pe([1,b,c])})(${pe([1,a])}) 展开后 x<sup>2</sup> 项的系数是？`,a:a+b,e:`展开：${pstr(p)}。x² 项来自 x²·a 与 bx·x，即 ${a} + ${pv(b)} = <b>${a+b}</b>。`+bars([p],['系数'])}},
+ ()=>{let a=R(1,3),b=R(-3,3),c=R(-3,3),m=-(a**3+b*a*a+c*a),f=P([1,b,c,m]);return{q:`若 ${Lx(1,a)} 能整除 ${pe([1,b,c,0])} + m，求 m 的值。`,a:m,e:`整除 ⇒ 余式为 0 ⇒ f(${a}) = 0：${a**3} ${sg(b*a*a)} ${sg(c*a)} + m = 0，得 m = <b>${m}</b>。图中曲线在 x=${a} 穿过 x 轴。`+plot(f,rts([a]))}}]},
+2:{mc:[
+ ()=>{let a=pick([-3,-2,-1,1,2,3]),f=P(rc(3)),v=ev(f,F(a));return mk(`${pstr(f)} 除以 ${Lx(1,a)} 的余数是？`,num(v),0,`余式定理：余数 = f(${a}) = ${pstr(f,'('+a+')')} = <b>${num(v)}</b>。图中的点就是 (${a}, f(${a}))。`+plot(f,[[a,num(v),`f(${a})=${num(v)}`]]))},
+ ()=>{let a=pick([-3,-2,-1,1,2,3]),f=P(rc(2)),v=ev(f,F(-a));return mk(`${pstr(f)} 除以 ${Lx(1,-a)} 所得的余数是？`,num(v),0,`除式 x + ${a} = x − (${-a})，所以取 a = ${-a}：余数 = f(${-a}) = ${pstr(f,'('+(-a)+')')} = <b>${num(v)}</b>。`+plot(f,[[-a,num(v),`f(${-a})=${num(v)}`]]))},
+ ()=>{let m=R(-4,4),a=pick([2,3,-2]),r=a**3+m*a*a+a+1,f=P([1,m,1,1]);return mk(`x³ + m x² + x + 1 除以 ${Lx(1,a)} 余数为 ${r}，m 的值是？`,m,0,`余式定理：f(${a}) = ${r}，即 ${a**3} + ${a*a}m + ${a} + 1 = ${r}，${a*a}m = ${r-a**3-a-1}，m = <b>${m}</b>。`+plot(f,[[a,r,`f(${a})=${r}`]]))}],
+ fi:[()=>{let m=R(-3,3),n=R(-4,4),f=P([2,m,n,1]),R1=17+4*m+2*n,R2=-1+m-n;return{q:`f(x) = 2x³ + m x² + n x + 1 除以 x − 2 余 ${R1}，除以 x + 1 余 ${R2}，求 m + n。`,a:m+n,e:`f(2)=${R1}：16+4m+2n+1=${R1} ⇒ 2m+n=${(R1-17)/2}。f(−1)=${R2}：−2+m−n+1=${R2} ⇒ m−n=${R2+1}。两式相加 3m=${(R1-17)/2+R2+1}，m=${m}，n=${n}，所以 m+n=<b>${m+n}</b>。`+plot(f,[[2,R1,`f(2)=${R1}`],[-1,R2,`f(−1)=${R2}`]])}},
+ ()=>{let p=R(-4,4),a=R(1,3),r=a**3+p*a*a-4,f=P([1,p,0,-4]);return{q:`f(x) = x³ + p x² − 4 除以 ${Lx(1,a)} 余数为 ${r}，求 p。`,a:p,e:`f(${a}) = ${r}：${a**3} + ${a*a}p − 4 = ${r}，${a*a}p = ${r-a**3+4}，p = <b>${p}</b>。`+plot(f,[[a,r,`f(${a})=${r}`]])}}]},
+3:{mc:[
+ ()=>{let r=rt3(),k=R(0,2),f=prod(r),ws=[r[k]+1,-r[k],r[k]+2].filter(x=>!r.includes(x));return mk(`下列哪一个是 ${pstr(f)} 的因式？`,Lx(1,r[k]),ws.map(x=>Lx(1,x)),`因式定理：f(a)=0 ⇔ x−a 是因式。f(${r[k]}) = 0，所以 ${Lx(1,r[k])} 是因式；其余选项代入后不为 0。图中曲线穿过 x 轴的位置就是 f(a)=0 的 a。`+plot(f,rts(r)))},
+ ()=>{let a=pick([1,2,3,-1,-2]),k=R(-4,4),c=R(-3,3),d=-(a**3+k*a*a+c*a),f=P([1,k,c,d]);return mk(`${Lx(1,a)} 是 x³ + k x² + ${c<0?'('+c+')':c}x + ${d<0?'('+d+')':d} 的因式，求 k。`,k,0,`因式 ⇒ f(${a}) = 0：${a**3} + ${a*a}k ${sg(c*a)} ${sg(d)} = 0，得 k = <b>${k}</b>。`+plot(f,rts([a])))}],
+ fi:[()=>{let r=rt3(),c=-r[0]*r[1]*r[2],p=-(r[0]+r[1]+r[2]),q=r[0]*r[1]+r[0]*r[2]+r[1]*r[2],f=P([1,p,q,c]);return{q:`x³ + p x² + q x + ${c} 能被 ${Lx(1,r[0])} 及 ${Lx(1,r[1])} 整除，求 p + q。`,a:p+q,e:`f(${r[0]})=0 与 f(${r[1]})=0 列出两个方程，解得 p=${p}，q=${q}（第三个因式为 x−${r[2]}），所以 p+q=<b>${p+q}</b>。`+plot(f,rts(r))}},
+ ()=>{let a=pick([1,2,3]),k=R(-5,5),b=pick([-3,-2,-1,1,2,3]),C=a**4+k*a*a+b*a;return{q:`${Lx(1,a)} 能整除 x⁴ + k x² ${sg(b)}x ${sg(-C)}，求 k。`,a:k,e:`f(${a})=0：${a**4} + ${a*a}k ${sg(b*a)} ${sg(-C)} = 0，得 k = <b>${k}</b>。`+plot(P([1,0,k,b,-C]),rts([a]))}}]},
+4:{mc:[
+ ()=>{let r=rt3(),f=prod(r);return mk(`因式分解 ${pstr(f)}：`,fac(r),[0,1,2].map(k=>fac(flip(r,k))),`用因式定理试根（候选为常数项 ${f[3][0]} 的因数）：f(${r[0]})=0、f(${r[1]})=0、f(${r[2]})=0，所以 f(x) = ${fac(r)}。图中三个交点就是三个根。`+plot(f,rts(r)))},
+ ()=>{let k=R(2,5),m=R(2,6);return mk(`因式分解 ${k*k}x² − ${m*m}：`,`(${k}x+${m})(${k}x−${m})`,[`(${k}x−${m})<sup>2</sup>`,`(${k*k}x+${m})(x−${m})`,`(${k}x+${m})<sup>2</sup>`],`平方差公式 a² − b² = (a+b)(a−b)，其中 a=${k}x，b=${m}：${k*k}x² − ${m*m} = (${k}x)² − ${m}² = (${k}x+${m})(${k}x−${m})。几何上，大正方形挖去小正方形后可重拼成长方形：`+sqSvg(k,m))},
+ ()=>{let a=R(2,4);return mk(`因式分解 x³ − ${a**3}：`,`(x−${a})(${pstr(P([1,a,a*a]))})`,[`(x−${a})(${pstr(P([1,-a,a*a]))})`,`(x+${a})(${pstr(P([1,-a,a*a]))})`,`(x−${a})(x²+${a*a})`],`立方差公式 a³ − b³ = (a−b)(a²+ab+b²)，a=x，b=${a}：x³−${a**3} = (x−${a})(x²+${a}x+${a*a})。验算：展开 ${pstr(mulP(P([1,-a]),P([1,a,a*a])))}。`+plot(P([1,0,0,-(a**3)]),rts([a])))},
+ ()=>{let g=R(2,6),c=R(1,4),d=R(1,5);return mk(`因式分解 ${g*c}x² + ${g*d}x：`,`${g}x(${c}x+${d})`,[`${g}(${c}x+${d})`,`x(${g*c}x+${g*d})`,`${g}x(${c}x−${d})`],`先抽取公因式：系数 ${g*c}、${g*d} 的最大公因数是 ${g}，且每项都含 x，所以公因式 ${g}x。${g*c}x² + ${g*d}x = ${g}x(${c}x + ${d})。验算：${g}x·${c}x = ${g*c}x²，${g}x·${d} = ${g*d}x ✓。`)}],
+ fi:[()=>{let r=rt3(),f=prod(r);return{q:`${pstr(f)} 因式分解为 (x − a)(x − b)(x − c)，求 a + b + c。`,a:r[0]+r[1]+r[2],e:`试根得 f(${r[0]})=f(${r[1]})=f(${r[2]})=0，所以 f = ${fac(r)}，a+b+c = ${r.map(pv).join(' + ')} = <b>${r[0]+r[1]+r[2]}</b>。`+plot(f,rts(r))}},
+ ()=>{let a=R(1,6),b=R(1,6);return{q:`x² + k x + ${a*b} = (x + ${a})(x + ${b})，求 k。`,a:a+b,e:`交叉相乘：中项系数 = ${a} + ${b} = <b>${a+b}</b>。`+crossSvg(a,b)}}]},
+5:{mc:[
+ ()=>{let r=rt3(),f=prod(r),s=x=>'x = '+x.slice().sort((p,q)=>p-q).join('，');return mk(`解 ${pstr(f)} = 0：`,s(r),[0,1,2].map(k=>s(flip(r,k))),`分解为 ${fac(r)} = 0，每个因式分别为 0：${r.map(a=>'x'+sg(-a)+' = 0').join('，')}，所以 ${s(r)}。图中曲线与 x 轴的交点就是方程式的实数解。`+plot(f,rts(r)))},
+ ()=>{let a=R(1,4),b=R(1,4),f=P([1,0,b-a*a,0,-a*a*b]);return mk(`方程式 (x² − ${a*a})(x² + ${b}) = 0 有几个实数根？`,2,0,`x² − ${a*a} = 0 ⇒ x = ±${a}（2 个）；x² + ${b} = 0 ⇒ x² = −${b} 无实数解。共 <b>2</b> 个。图中曲线只与 x 轴相交 2 次。`+plot(f,rts([a,-a])))},
+ ()=>{let r=rt3(),f=prod(r);return mk(`方程式 ${pstr(f)} = 0 的三个实数根之和是？`,r[0]+r[1]+r[2],0,`分解得 ${fac(r)} = 0，根为 ${r.join('、')}，和 = <b>${r[0]+r[1]+r[2]}</b>（也等于 x² 项系数的相反数 ${-f[1][0]}）。`+plot(f,rts(r)))}],
+ fi:[()=>{let r=rt3(),f=prod(r);return{q:`解 ${pstr(f)} = 0，求最大的根。`,a:Math.max(...r),e:`分解得 ${fac(r)} = 0，根为 ${r.slice().sort((p,q)=>p-q).join('、')}，最大的是 <b>${Math.max(...r)}</b>。`+plot(f,rts(r))}},
+ ()=>{let a=R(1,4),b=a+R(1,3),f=P([1,0,-(a*a+b*b),0,a*a*b*b]);return{q:`解 ${pstr(f)} = 0，求最大的根（提示：令 u = x²）。`,a:b,e:`令 u = x²：u² − ${a*a+b*b}u + ${a*a*b*b} = (u − ${a*a})(u − ${b*b}) = 0，所以 x² = ${a*a} 或 ${b*b}，x = ±${a}、±${b}，最大根 <b>${b}</b>。图中共 4 个交点。`+plot(f,rts([a,-a,b,-b]))}}]}};
+const HARD=()=>{let n=R(10,30)*2+R(0,1),c=R(1,5),ev_=n%2==0,e=`设余式为 ux + v。f(1) = 1 + ${c} = u + v；f(−1) = ${ev_?1:-1} + ${c} = −u + v。`+(ev_?`解得 u = 0，v = ${1+c}，余式 <b>${1+c}</b>。`:`解得 u = 1，v = ${c}，余式 <b>x + ${c}</b>。`)+`（n 为${ev_?'偶':'奇'}数时 (−1)<sup>n</sup> = ${ev_?1:-1}）`;return mk(`x<sup>${n}</sup> + ${c} 除以 x² − 1 所得的余式是？（总复习·较难）`,ev_?''+(1+c):pstr(P([1,c])),ev_?[pstr(P([1,c])),''+c,''+(1-c)]:[''+(1+c),pstr(P([1,-c])),''+c],e)};
+function quiz(el,mcs,nM,fis,nF,need,fin){let S={m:0,ok:0,f:0,fo:0},A=sh(mcs),B=sh(fis);el.innerHTML='';
+ const done=()=>{if(S.f<nF)return;let tot=S.ok+S.fo,all=nM+nF,pc=tot/all;el.insertAdjacentHTML('beforeend',`<div class=msg>${fin?`总分：${tot} / ${all}（${Math.round(pc*100)}%）— ${pc>=.9?'🏆 优秀！掌握非常扎实':pc>=.7?'👍 良好，再巩固错题':pc>=.5?'🙂 及格，建议重看各节例题':'💪 需加强，请回到各小节重新练习'}`:`本节成绩：选择 ${S.ok}/${nM}，填充 ${S.fo}/${nF}`}</div>`)};
+ const fill=()=>{let h=document.createElement('div');h.innerHTML=`<h3>${fin?'填充题':'作答题'}</h3>`;el.append(h);for(let i=0;i<nF;i++){let g=B[i%B.length](),d=document.createElement('div');d.className='q fi';d.innerHTML=`<p><b>${i+1}.</b> ${g.q}</p>答：<input> <button class=go>提交</button> <span></span>`;h.append(d);d.querySelector('button').onclick=function(){let inp=d.querySelector('input');if(inp.disabled||!inp.value.trim())return;inp.disabled=1;this.disabled=1;let n=s=>s.replace(/[\s，]/g,'').replace(/[−–]/g,'-'),ok=n(inp.value)==n(''+g.a);S.f++;if(ok)S.fo++;d.querySelector('span').innerHTML=ok?'<b style="color:var(--ok)">✔ 正确</b>':`<b style="color:var(--no)">✘ 错误，答案：${g.a}</b>`;if(g.e)d.insertAdjacentHTML('beforeend',`<div class=note>💡 解析：${g.e}</div>`);done()}}};
+ for(let i=0;i<nM;i++){let g=A[i%A.length](),a=g.a,o;if(typeof a=='number'){o=[a];sh([-3,-2,-1,1,2,3,4]).forEach(d=>{if(o.length<4)o.push(a+d)})}else o=[a,...[...new Set(g.w)].filter(x=>x!=a).slice(0,3)];o=sh(o.map(String));
+  let d=document.createElement('div');d.className='q';d.innerHTML=`<p><b>${i+1}.</b> ${g.q}</p>`+o.map((x,j)=>`<button class=op data-c=${x==a?1:0}>${'ABCD'[j]}. ${x}</button>`).join('');el.append(d);
+  d.querySelectorAll('.op').forEach(b=>b.onclick=()=>{if(d.dataset.l)return;d.dataset.l=1;d.querySelectorAll('.op').forEach(x=>{if(x.dataset.c==1)x.classList.add('ok')});if(b.dataset.c==1)S.ok++;else b.classList.add('no');S.m++;if(g.e)d.insertAdjacentHTML('beforeend',`<div class=note>💡 解析（${b.dataset.c==1?'答对了 ✔':'答错了 ✘，正确答案：'+a}）：${g.e}</div>`);
+   if(S.m==nM){if(fin||S.ok>=need){el.insertAdjacentHTML('beforeend',`<div class=msg>选择题 ${S.ok}/${nM}${fin?'':' — 🎉 达标，解锁作答题！'}</div>`);fill()}else el.insertAdjacentHTML('beforeend',`<div class=msg style="color:var(--no)">答对 ${S.ok} 题，需答对 ${need} 题以上才能解锁作答题，请点「换一组新题」再试。</div>`)}})}
+ let nx=el.nextElementSibling;if(nx&&nx.dataset.rr)nx.remove();let r=document.createElement('button');r.className='go';r.dataset.rr=1;r.textContent='🔄 换一组新题';r.onclick=()=>quiz(el,mcs,nM,fis,nF,need,fin);el.after(r)}
+const T=[
+{n:'3.1 多项式',c:1,intro:`<p>一元 n 次多项式：aₙxⁿ+…+a₁x+a₀（aₙ≠0），aₙ 为<b>领导系数</b>，a₀ 为<b>常数项</b>。加减＝合并同类项；乘法＝系数相乘、次数相加；除法用长除法：<b>f = g·Q + R</b>，且 R 的次数 &lt; g 的次数；R = 0 时 g 是 f 的因式。</p>`,
+ fl:[['f(x) 系数（高次→低次，逗号分隔）','2,-4,3'],['g(x) 系数','5,1,0,-1'],['运算',['+','-','*','/'],['＋ 加','－ 减','× 乘','÷ 除']]],
+ ex:[['例题4(a)','已知 f(x)=2x²−4x+3，g(x)=5x³+x²−1，求 f(x)+g(x)。',['2,-4,3','5,1,0,-1','+']],['例题5','已知 f(x)=3x²−2，g(x)=4x²+3x−5，求 f(x)g(x)。',['3,0,-2','4,3,-5','*']],['例题6','计算 (6x⁴−x³−22x²+17x−3)÷(2x−3)。',['6,-1,-22,17,-3','2,-3','/']],['例题7','计算 (8x⁴+24x³−42x²)÷(2x²+6x−9)。',['8,24,-42,0,0','2,6,-9','/']]]},
+{n:'3.2 余式定理',c:2,intro:`<p><b>余式定理</b>：f(x) 除以 x−a 的余式 = f(a)；除以 ax−b 的余式 = f(${fr('b','a')})。</p><p>求系数时，把已知余数代入 f(a)=R，列方程组即可；除式是二次时，余式设为 ax+b。</p>`,
+ fl:[['f(x) 系数','1,-4,7,-6'],['除式 px−q 中的 p','1'],['除式 px−q 中的 q','1']],
+ ex:[['例题12','f(x)=x³−4x²+7x−6，求 f(x) 除以 x−1 的余数，并算 f(1)。',['1,-4,7,-6','1','1']],['例题13','f(x)=x³−4x²+3x−10，求 f(x) 除以 x−4 的余数。',['1,-4,3,-10','1','4']],['例题14','求 8x³−10 除以 2x+1 的余数。',['8,0,0,-10','2','-1']]]},
+{n:'3.3 因式定理',c:3,intro:`<p><b>因式定理</b>：x−a 是 f(x) 的因式 ⇔ f(a)=0；ax−b 是因式 ⇔ f(${fr('b','a')})=0。图像上：f(a)=0 表示曲线穿过 x 轴于 (a,0)。</p>`,
+ fl:[['f(x) 系数','1,-5,0,7,-3'],['除式 px−q 中的 p','1'],['除式 px−q 中的 q','1']],
+ ex:[['例题18','判断 x−1 是否是 x⁴−5x³+7x−3 的因式。',['1,-5,0,7,-3','1','1']],['例题19','证明 f(x)=8x³−12x²+6x−1 有因式 2x−1。',['8,-12,6,-1','2','1']],['反例','判断 x−2 是否是 x³−x−6 的因式（对照余数不为0的情形）。',['1,0,-1,-6','1','1']]]},
+{n:'3.4 因式分解',c:4,intro:`<p>五大技巧：①抽取公因式 ②交叉相乘 ③公式（平方差、立方和差、完全平方/立方）④分组分解 ⑤因式定理。<br>有理根候选：若 px−q 是整系数 f 的因式（p、q 互质），则 p | aₙ，q | a₀。</p>`,
+ fl:[['f(x) 系数（整数）','1,8,19,12']],
+ ex:[['例题24','因式分解 12x²+30x。',['12,30,0']],['例题31','因式分解 x³−x²−4x+4。',['1,-1,-4,4']],['例题32','因式分解 x³+8x²+19x+12。',['1,8,19,12']],['例题33','因式分解 12x³+8x²−3x−2。',['12,8,-3,-2']]]},
+{n:'3.5 解高次方程式',c:5,intro:`<p>先因式分解 f(x)=(x−a₁)(x−a₂)…=0，则 x=a₁、a₂…。二次因式无法分解时用公式 x=${fr('−b ± '+rad('b²−4ac'),'2a')}；Δ&lt;0 无实数解。特殊形式可用<b>换元法</b>（如 u=x²−x）。</p>`,
+ fl:[['f(x) 系数（整数）','1,7,14,6']],
+ ex:[['例题35','解 2x³+3x²−8x−12=0。',['2,3,-8,-12']],['例题36','解 x³+7x²+14x+6=0。',['1,7,14,6']],['例题37','解 3x³+4x²+4x+1=0。',['3,4,4,1']],['习题3.5(4)','解 4x⁴−5x²+1=0。',['4,0,-5,0,1']]]},
+{n:'总复习3',c:0,intro:`<p>综合题：从 3.1～3.5 随机抽题，并加入课本总复习较难题型（如 x<sup>n</sup>+c 除以 x²−1 的余式）。完成 10 题选择 + 5 题填充后给出评估。</p><p class=note>重点：f=gQ+R；f(a)=R；f(a)=0⇔x−a 是因式；有理根候选 ±q/p；高次方程先找根再降次。</p>`}];
+let cur=0;
+function run(i,v){try{if(v.some(x=>x===''))throw 0;let h=C[T[i].c](v);return h}catch(e){return'<p style="color:var(--no)">输入有误，请检查（系数用逗号分隔，且为整数）。</p>'}}
+function render(i){cur=i;let t=T[i];document.querySelectorAll('#tabs button').forEach((b,k)=>b.classList.toggle('on',k==i));let m=$('#main');
+ let h=`<h2>${t.n}</h2><div class=card>${t.intro}</div>`;
+ if(t.c){h+=`<h3>📖 课本例题讲解</h3>`+t.ex.map((e,k)=>`<div class=card><b>${e[0]}</b>　${e[1]}<div id=ex${k}></div></div>`).join('');
+  h+=`<h3>🧮 ${t.n} 专属计算器</h3><div class=card><div class=in>${t.fl.map((f,k)=>Array.isArray(f[1])?`<label>${f[0]}<select id=in${k}>${f[1].map((o,j)=>`<option value="${o}">${f[2][j]}</option>`).join('')}</select></label>`:`<label>${f[0]}<input id=in${k} value="${f[1]}"></label>`).join('')}<button class=go id=calc>计算并作图</button></div><div id=res></div></div>`}
+ h+=`<h3>✏️ 选择题</h3><div class=card id=qz></div>`;m.innerHTML=h;
+ if(t.c){t.ex.forEach((e,k)=>{let v=e[2].slice();if(t.c>=4)v=v;$('#ex'+k).innerHTML=run(i,v)});
+  const go=()=>$('#res').innerHTML=run(i,t.fl.map((_,k)=>$('#in'+k).value.trim()));$('#calc').onclick=go;go();
+  quiz($('#qz'),G[t.c].mc,5,G[t.c].fi,2,3,0)}
+ else{let mc=Object.values(G).flatMap(g=>g.mc).concat([HARD,HARD]),fi=Object.values(G).flatMap(g=>g.fi);$('#qz').previousElementSibling.textContent='✏️ 总复习：10 题选择 + 5 题填充';quiz($('#qz'),mc,10,fi,5,0,1)}
+ window.scrollTo(0,0)}
+const tb=$('#tabs');T.forEach((t,i)=>{let b=document.createElement('button');b.textContent=t.n;b.onclick=()=>render(i);tb.append(b)});
+let dn=0,sx=0,sl=0;tb.onpointerdown=e=>{dn=1;sx=e.clientX;sl=tb.scrollLeft};addEventListener('pointerup',()=>dn=0);tb.onpointermove=e=>{if(dn&&e.pointerType=='mouse')tb.scrollLeft=sl-(e.clientX-sx)};
+let fs=17;function fz2(d){fs=d?Math.min(26,Math.max(13,fs+d*2)):17;document.documentElement.style.setProperty('--fs',fs+'px')}
+function th(){let d=document.documentElement.dataset.t=='d'?'l':'d';document.documentElement.dataset.t=d;$('#th').textContent=d=='d'?'☀️ 日间':'🌙 夜间'}
+const WM=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'],hwT=$('#hw').outerHTML;
+$('#wm').innerHTML=Array.from({length:16},(_,i)=>`<span>${WM[i%4]}</span>`).join('');
+setInterval(()=>{if(!$('#hw'))document.body.insertAdjacentHTML('beforeend',hwT);if(!$('#wm')||!$('footer'))location.reload()},3000);
+console.log('%c峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79','color:#2563eb');
+render(0);
+</script></body></html>
