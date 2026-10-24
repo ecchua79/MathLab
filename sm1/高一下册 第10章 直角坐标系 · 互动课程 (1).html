@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 (ecchua79) · Chinese High School 华仁中学 · 高一下册 第10章 直角坐标系 互动课程 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="author" content="蔡逸众 ecchua79 · Chinese High School"><title>高一下册 第10章 直角坐标系 · 互动课程</title>
+<style>/* © 蔡逸众 ecchua79 · Chinese High School */
+:root{--bg:#f6f8fc;--fg:#1c2434;--cd:#fff;--bd:#d8deea;--ac:#2563eb;--ok:#16a34a;--no:#dc2626;--gr:#e1e7f1;--okb:#d9f7e4;--nob:#fde0e0;--sol:#fff7d6}
+:root[data-theme=dark]{--bg:#12161f;--fg:#e6ebf5;--cd:#1b2230;--bd:#33405a;--ac:#6ea0ff;--ok:#4ade80;--no:#ff7b7b;--gr:#2a3447;--okb:#12392a;--nob:#43211f;--sol:#2d2a18}
+*{box-sizing:border-box}html{font-size:15px}
+body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.55 system-ui,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:env(safe-area-inset-bottom,0)}
+#top{position:sticky;top:0;z-index:5;background:var(--cd);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top,0)}
+header{display:flex;align-items:center;gap:.35rem;padding:.35rem .6rem}header h1{font-size:1rem;margin:0;flex:1}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--cd);color:var(--fg);border-radius:.4rem;padding:.2rem .55rem}
+#tabs{display:flex;overflow-x:auto;gap:.3rem;padding:0 .6rem .4rem;white-space:nowrap;-webkit-overflow-scrolling:touch}
+#tabs button{flex:none}#tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:780px;margin:auto;padding:.5rem}.cd{background:var(--cd);border:1px solid var(--bd);border-radius:.6rem;padding:.6rem .7rem;margin:.6rem 0}
+h2{font-size:1.15rem;margin:.1rem 0 .3rem}h3{font-size:1rem;margin:.1rem 0 .3rem;color:var(--ac)}
+.sol{background:var(--sol);border-radius:.4rem;padding:.4rem .6rem;margin-top:.3rem;overflow-x:auto}
+.fm{background:var(--sol);border-radius:.4rem;padding:.35rem .6rem;margin:.3rem 0;overflow-x:auto}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25;font-size:.95em}
+.fr>span:first-child{border-bottom:1.4px solid currentColor;padding:0 .2em}.fr>span:last-child{padding:0 .2em}
+.rd{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 .1em}
+.rs{width:.8em;flex:none;fill:none;stroke:currentColor;stroke-width:1.4}.rs path{vector-effect:non-scaling-stroke}
+.rr{border-top:1.4px solid currentColor;padding:0 .15em}
+svg.fig{display:block;width:100%;max-width:340px;margin:.3rem auto}
+.gd{stroke:var(--gr);stroke-width:.6}.ax{stroke:var(--fg);stroke-width:1.1}.sg{stroke:var(--ac);stroke-width:1.8}.sg.d{stroke-dasharray:4 3;stroke-width:1.2;opacity:.85}.sg.r{stroke:var(--no)}
+.pt{fill:var(--no)}.pt.b{fill:var(--ac)}.pf{fill:var(--ac);fill-opacity:.13;stroke:none}
+svg text{fill:var(--fg);font-size:11px}svg .tk{font-size:9px;opacity:.75}svg .it{font-style:italic}svg .pl{font-weight:700;fill:var(--no)}svg .lb{font-size:10.5px;fill:var(--ac)}
+.rad,.ra{fill:none;stroke:var(--fg);stroke-width:1.1}.ra{stroke:var(--no)}
+.ni{width:3.4em;padding:.15rem .2rem;border:1px solid var(--bd);border-radius:.3rem;background:var(--bg);color:var(--fg);font:inherit;text-align:center}
+.row{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;margin:.2rem 0}
+.qh{font-weight:700;color:var(--ac)}.op{display:block;width:100%;text-align:left;margin:.28rem 0;padding:.45rem .6rem}
+.op.ok{background:var(--okb);border-color:var(--ok)}.op.no{background:var(--nob);border-color:var(--no)}.op:disabled{color:var(--fg);opacity:1}
+.ex{margin-top:.4rem;padding:.4rem .6rem;border-left:4px solid var(--ac);background:var(--sol);border-radius:.3rem;overflow-x:auto}
+.bn{padding:.5rem;border-radius:.5rem;background:var(--sol);font-weight:700;margin:.5rem 0}.pv{min-height:1.4em;color:var(--ac)}
+.fi{width:100%;padding:.35rem;border:1px solid var(--bd);border-radius:.3rem;background:var(--bg);color:var(--fg);font:inherit}
+footer{text-align:center;font-size:.8rem;opacity:.75;padding:1rem .5rem 2rem}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:9;overflow:hidden}#wm div{width:220%;margin:-35% -60%;transform:rotate(-24deg);display:flex;flex-wrap:wrap;gap:3.2rem 2.4rem;font-size:.5rem;opacity:.08;color:var(--fg)}
+.hw{font-size:1px;opacity:.02;position:absolute}
+</style></head><body>
+<div id="top"><header><h1>高一下册 · 第10章 直角坐标系</h1><button id="fm">A−</button><button id="fp">A+</button><button id="th">🌓</button></header><nav id="tabs"></nav></div>
+<main id="app"></main>
+<footer>峇株吧辖华仁中学 Chinese High School 出品<br>蔡逸众老师 制作 · ecchua79<span class="hw">蔡逸众 ecchua79 Chinese High School 华仁中学</span></footer>
+<div id="wm"></div>
+<script>
+console.log('%c© 蔡逸众 (ecchua79) · Chinese High School 华仁中学','color:#2563eb;font-weight:bold');
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[ri(0,a.length-1)],sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),nz=r=>{let v=0;while(!v)v=ri(-r,r);return v},rp=r=>[ri(-r,r),ri(-r,r)];
+const N=v=>v<0?'−'+(-v):''+v,par=v=>v<0?'('+N(v)+')':''+v,pn=(c,x,y)=>`${c}(${N(x)}, ${N(y)})`;
+const FR=(a,b)=>`<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+const RH=x=>`<span class="rd"><svg class="rs" viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M.5 12L2.5 10.5L5 19L9.5 .7"/></svg><span class="rr">${x}</span></span>`;
+function Q(n,d=1){if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}}
+const QH=r=>r.d==1?N(r.n):(r.n<0?'−':'')+FR(Math.abs(r.n),r.d),qv=r=>r.n/r.d;
+const an=(x,d=1)=>{const r=Q(x,d);return{k:'n',r,h:QH(r),v:[qv(r)]}};
+const ap=(x,y,dx=1,dy=1)=>{const a=Q(x,dx),b=Q(y,dy);return{k:'p',a,b,h:`(${QH(a)}, ${QH(b)})`,v:[qv(a),qv(b)]}};
+const am=L=>{L=L.slice().sort((a,b)=>qv(a)-qv(b));return{k:'m',L,h:L.map(QH).join(' 或 '),v:L.map(qv)}};
+function sq(m){let a=1,b=m;for(let i=Math.floor(Math.sqrt(m));i>1;i--)if(m%(i*i)==0){a=i;b=m/(i*i);break}return[a,b]}
+const as=m=>{const[a,b]=sq(m);return{k:'s',m,h:b==1?''+a:(a>1?a:'')+RH(b),v:[Math.sqrt(m)]}};
+const tx=h=>({k:'t',h,v:null}),labS=m=>{const[a,b]=sq(m);return b==1?''+a:(a>1?a:'')+'√'+b};
+function mut(a){const d=pick([1,-1,2,-2,3,-3]);
+ if(a.k=='n')return an(a.r.n+d*a.r.d,a.r.d);
+ if(a.k=='p')return Math.random()<.5?ap(a.a.n+d*a.a.d,a.b.n,a.a.d,a.b.d):ap(a.a.n,a.b.n+d*a.b.d,a.a.d,a.b.d);
+ if(a.k=='s')return as(Math.max(1,a.m+pick([1,-1,2,-2,4,-4,5,9])));
+ const L=a.L.map(x=>Q(x.n,x.d)),i=ri(0,L.length-1);L[i]=Q(L[i].n+d*L[i].d,L[i].d);return am(L)}
+function opts(q){const a=q.ans,seen=new Set([a.h]),w=[];(q.wr||[]).forEach(x=>{if(x&&x.h&&!seen.has(x.h)){seen.add(x.h);w.push(x)}});
+ for(let t=0;w.length<3&&t<80&&a.k!='t';t++){const x=mut(a);if(!seen.has(x.h)){seen.add(x.h);w.push(x)}}return sh([a,...w.slice(0,3)])}
+function txt(x,y,s,c=''){const m=/^(\d*)√(\d+)$/.exec(s);if(!m)return`<text x="${x}" y="${y}" text-anchor="middle" class="${c}">${s}</text>`;
+ const f=11,a=m[1],b=m[2],aw=a.length*f*.62,bw=b.length*f*.62,x0=x-(aw+f*.8+bw)/2,rx=x0+aw;
+ return`<text x="${x0}" y="${y}" class="${c}">${a}</text><path class="rad" d="M${rx} ${y-4}L${rx+2.5} ${y-6}L${rx+5} ${y+1}L${rx+8} ${y-11}H${rx+10+bw}"/><text x="${rx+9}" y="${y}" class="${c}">${b}</text>`}
+function plot(o){const P=o.pts||[],S=o.segs||[],C=o.circ,PL=o.poly,xs=[0],ys=[0];
+ P.forEach(p=>{xs.push(p[0]);ys.push(p[1])});S.forEach(s=>{xs.push(s[0],s[2]);ys.push(s[1],s[3])});(PL||[]).forEach(p=>{xs.push(p[0]);ys.push(p[1])});
+ if(C){xs.push(C[0]-C[2],C[0]+C[2]);ys.push(C[1]-C[2],C[1]+C[2])}
+ const x0=Math.floor(Math.min(...xs))-1,x1=Math.ceil(Math.max(...xs))+1,y0=Math.floor(Math.min(...ys))-1,y1=Math.ceil(Math.max(...ys))+1,W=320,H=250,
+ sc=Math.min((W-28)/(x1-x0),(H-28)/(y1-y0)),ox=(W-sc*(x1-x0))/2,oy=(H-sc*(y1-y0))/2,X=x=>ox+(x-x0)*sc,Y=y=>H-oy-(y-y0)*sc,st=Math.ceil(Math.max(x1-x0,y1-y0)/10);let g='';
+ for(let i=x0;i<=x1;i++)g+=`<line class="gd" x1="${X(i)}" x2="${X(i)}" y1="${Y(y0)}" y2="${Y(y1)}"/>`;
+ for(let j=y0;j<=y1;j++)g+=`<line class="gd" x1="${X(x0)}" x2="${X(x1)}" y1="${Y(j)}" y2="${Y(j)}"/>`;
+ g+=`<line class="ax" x1="${X(x0)}" x2="${X(x1)}" y1="${Y(0)}" y2="${Y(0)}"/><line class="ax" x1="${X(0)}" x2="${X(0)}" y1="${Y(y0)}" y2="${Y(y1)}"/><text x="${X(x1)-5}" y="${Y(0)-4}" class="it">x</text><text x="${X(0)+5}" y="${Y(y1)+9}" class="it">y</text><text x="${X(0)-8}" y="${Y(0)+11}" class="tk">O</text>`;
+ for(let i=Math.ceil(x0/st)*st;i<=x1;i+=st)if(i)g+=`<text x="${X(i)}" y="${Y(0)+11}" text-anchor="middle" class="tk">${N(i)}</text>`;
+ for(let j=Math.ceil(y0/st)*st;j<=y1;j+=st)if(j)g+=`<text x="${X(0)-3}" y="${Y(j)+3}" text-anchor="end" class="tk">${N(j)}</text>`;
+ if(PL)g+=`<polygon class="pf" points="${PL.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`;
+ if(C)g+=`<circle class="sg" fill="none" cx="${X(C[0])}" cy="${Y(C[1])}" r="${C[2]*sc}"/>`;
+ if(o.guide)P.slice(0,o.guide).forEach(p=>g+=`<line class="sg d" x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(p[0])}" y2="${Y(0)}"/><line class="sg d" x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(0)}" y2="${Y(p[1])}"/>`);
+ S.forEach(s=>{g+=`<line class="sg ${s[4]||''}" x1="${X(s[0])}" y1="${Y(s[1])}" x2="${X(s[2])}" y2="${Y(s[3])}"/>`;
+  if(s[5]!=null){const dx=X(s[2])-X(s[0]),dy=Y(s[3])-Y(s[1]),l=Math.hypot(dx,dy)||1;g+=txt((X(s[0])+X(s[2]))/2-dy/l*11,(Y(s[1])+Y(s[3]))/2+dx/l*11+3,''+s[5],'lb')}});
+ (o.ra||[]).forEach(r=>{const l1=Math.hypot(r[2],r[3])||1,l2=Math.hypot(r[4],r[5])||1,a=[r[2]/l1*9,-r[3]/l1*9],b=[r[4]/l2*9,-r[5]/l2*9],vx=X(r[0]),vy=Y(r[1]);g+=`<path class="ra" d="M${vx+a[0]} ${vy+a[1]}l${b[0]} ${b[1]}L${vx+b[0]} ${vy+b[1]}"/>`});
+ P.forEach(p=>g+=`<circle class="pt ${p[3]||''}" cx="${X(p[0])}" cy="${Y(p[1])}" r="3.2"/><text x="${X(p[0])+5}" y="${Y(p[1])-5}" class="pl">${p[2]}</text>`);
+ return`<svg class="fig" viewBox="0 0 ${W} ${H}">${g}</svg>`}
+/* ---------- steps helpers ---------- */
+function distSteps(A,B,nm){const dx=B[0]-A[0],dy=B[1]-A[1],m=dx*dx+dy*dy,fin=as(m).h,r=RH(m);
+ const L=[`${nm} = ${RH(`(${par(B[0])} − ${par(A[0])})² + (${par(B[1])} − ${par(A[1])})²`)}`,`= ${RH(dx*dx+' + '+dy*dy)}`,`= ${r}`];if(fin!==r)L.push('= '+fin);return L.join('<br>')}
+function divSteps(A,B,m,n,ext){const op=ext?'−':'+',den=ext?m-n:m+n,nu=i=>ext?m*B[i]-n*A[i]:m*B[i]+n*A[i];
+ const f=i=>`${FR(`(${m})(${par(B[i])}) ${op} (${n})(${par(A[i])})`,`${m} ${op} ${n}`)} = ${QH(Q(nu(i),den))}`;
+ return{P:[Q(nu(0),den),Q(nu(1),den)],h:`x = ${f(0)}<br>y = ${f(1)}`}}
+const S2=P=>{let s=0;P.forEach((p,i)=>{const q=P[(i+1)%P.length];s+=p[0]*q[1]-q[0]*p[1]});return s};
+function areaSteps(P){const n=P.length,T1=[],T2=[];let t1=0,t2=0;
+ P.forEach((p,i)=>{const q=P[(i+1)%n];T1.push(`(${par(p[0])})(${par(q[1])})`);T2.push(`(${par(q[0])})(${par(p[1])})`);t1+=p[0]*q[1];t2+=q[0]*p[1]});
+ const S=t1-t2,h=FR(1,2),r=QH(Q(Math.abs(S),2));
+ return{t1,t2,S,html:`面积 = ${h} | (${T1.join(' + ')}) − (${T2.join(' + ')}) |<br>= ${h} | ${t1} − ${par(t2)} |<br>= ${h} | ${N(S)} |<br>= <b>${r}</b> 平方单位${S?`<br><small>顶点按${S>0?'逆':'顺'}时针排列，所以算得${S>0?'正':'负'}值，取绝对值。</small>`:'<br><small>面积为 0，三点共线。</small>'}`}}
+function crossSVG(P){const Pp=P.concat([P[0]]),n=Pp.length,w=44,H=70,cx=i=>22+i*w;let s='';
+ for(let i=0;i<n-1;i++){s+=`<line x1="${cx(i)+7}" y1="20" x2="${cx(i+1)-7}" y2="${H-22}" stroke="#d97706" stroke-width="1.6" marker-end="url(#ah)"/><line x1="${cx(i)+7}" y1="${H-22}" x2="${cx(i+1)-7}" y2="20" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah2)"/>`}
+ Pp.forEach((p,i)=>s+=`<text x="${cx(i)}" y="13" text-anchor="middle">${N(p[0])}</text><text x="${cx(i)}" y="${H-7}" text-anchor="middle">${N(p[1])}</text>`);
+ return`<svg class="fig" style="max-width:${n*w+10}px" viewBox="0 0 ${n*w+10} ${H}"><defs><marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#d97706"/></marker><marker id="ah2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#2563eb"/></marker></defs>${s}</svg><small>实线（↘）两数相乘后相加；虚线（↗）两数相乘后相减。</small>`}
+const tri=(P,nm='ABC')=>P.map((p,i)=>[p[0],p[1],nm[i]]);
+/* ---------- generators ---------- */
+const QN=['第一象限','第二象限','第三象限','第四象限'];
+function g1a(){const x=nz(7),y=nz(7),k=x>0?(y>0?0:3):(y>0?1:2);
+ return{q:`点 ${pn('P',x,y)} 位于哪一个象限？`,fig:plot({pts:[[x,y,'P']],guide:1}),ans:tx(QN[k]),wr:QN.filter((_,i)=>i!=k).map(tx),exp:`横坐标 ${N(x)} ${x>0?'>':'<'} 0，纵坐标 ${N(y)} ${y>0?'>':'<'} 0，所以点在<b>${QN[k]}</b>。<br><small>第一象限(+,+)，第二(−,+)，第三(−,−)，第四(+,−)</small>`}}
+function g1b(){const x=nz(6),y=nz(6),k=ri(0,2),nm=['x 轴','y 轴','原点'][k],R=[[x,-y],[-x,y],[-x,-y]],r=R[k];
+ return{q:`点 ${pn('P',x,y)} 关于${nm}的对称点 P′ 的坐标是？`,fig:plot({pts:[[x,y,'P']],guide:1}),efig:plot({pts:[[x,y,'P'],[r[0],r[1],'P′','b']],segs:[[x,y,r[0],r[1],'d']]}),
+ ans:ap(...r),wr:R.filter((_,i)=>i!=k).map(z=>ap(...z)).concat([ap(y,x)]),exp:['关于 x 轴对称：横坐标不变，纵坐标变号 → (x, −y)','关于 y 轴对称：纵坐标不变，横坐标变号 → (−x, y)','关于原点对称：横、纵坐标都变号 → (−x, −y)'][k]+`<br>P′ = ${pn('',r[0],r[1])}`}}
+function g1c(){const x=nz(8),y=nz(8),ax=ri(0,1),v=ax?x:y;
+ return{q:`点 ${pn('P',x,y)} 到 ${ax?'y':'x'} 轴的距离是多少？`,fig:plot({pts:[[x,y,'P']],guide:1}),efig:plot({pts:[[x,y,'P']],segs:ax?[[x,y,0,y,'',Math.abs(x)]]:[[x,y,x,0,'',Math.abs(y)]]}),
+ ans:an(Math.abs(v)),wr:[an(Math.abs(ax?y:x)),an(v),an(x+y)],exp:`点到 ${ax?'y':'x'} 轴的距离 = ${ax?'|横坐标|':'|纵坐标|'} = |${N(v)}| = <b>${Math.abs(v)}</b>`}}
+function g1d(){const x=ri(-7,7),y=ri(-7,7);if(!x&&!y)return g1d();
+ return{q:'图中点 P 的坐标是？',fig:plot({pts:[[x,y,'P']]}),efig:plot({pts:[[x,y,'P']],guide:1}),ans:ap(x,y),wr:[ap(y,x),ap(-x,y),ap(x,-y),ap(-x,-y)],exp:`从 P 向 x 轴作垂线，得横坐标 ${N(x)}；向 y 轴作垂线，得纵坐标 ${N(y)}。<br>P = ${pn('',x,y)}（注意：先横后纵）`}}
+function g2a(){let A,B;if(Math.random()<.5){const T=pick([[3,4],[5,12],[6,8],[8,15]]);A=rp(5);B=[A[0]+pick([-1,1])*T[0],A[1]+pick([-1,1])*T[1]]}else{A=rp(6);B=rp(6);if(A[0]==B[0]&&A[1]==B[1])B[0]+=3}
+ const dx=B[0]-A[0],dy=B[1]-A[1],m=dx*dx+dy*dy,C=[B[0],A[1]];
+ return{q:`求 ${pn('A',...A)}、${pn('B',...B)} 两点之间的距离。`,fig:plot({pts:tri([A,B],'AB')}),
+ efig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B,'',labS(m)],[...A,...C,'d',Math.abs(dx)],[...C,...B,'d',Math.abs(dy)]],ra:dx&&dy?[[...C,A[0]-C[0],0,0,B[1]-C[1]]]:[]}),
+ ans:as(m),wr:[as((dx+dy)**2),as(Math.abs(dx*dx-dy*dy)||m+1),as((A[0]+B[0])**2+(A[1]+B[1])**2),an(m),an(Math.abs(dx)+Math.abs(dy))],exp:distSteps(A,B,'AB')}}
+function g2b(){const dx=ri(1,6),dy=ri(1,8),bx=ri(-4,4),by=ri(-5,5),ay=by+pick([-1,1])*dy,m1=bx+dx,m2=bx-dx,m=dx*dx+dy*dy;
+ return{q:`若 A(m, ${N(ay)}) 与 ${pn('B',bx,by)} 两点的距离为 ${as(m).h}，求 m 的值。`,fig:plot({pts:[[bx,by,'B']],segs:[[bx-9,ay,bx+9,ay,'d','A 在此线上']]}),
+ efig:plot({pts:[[bx,by,'B'],[m1,ay,'A₁','b'],[m2,ay,'A₂','b']],segs:[[m1,ay,bx,by],[m2,ay,bx,by]]}),ans:am([Q(m1),Q(m2)]),wr:[am([Q(m1)]),am([Q(m2)]),am([Q(-m1),Q(-m2)]),am([Q(bx+dy),Q(bx-dy)])],
+ exp:`(m − ${par(bx)})² + (${N(ay)} − ${par(by)})² = ${m}<br>(m − ${par(bx)})² = ${m} − ${dy*dy} = ${dx*dx}<br>m − ${par(bx)} = ±${dx}<br>m = <b>${m1}</b> 或 <b>${m2}</b>`}}
+function g2c(){let A,B;do{A=rp(5);B=rp(5)}while(A[0]==B[0]);const nu=B[0]**2+B[1]**2-A[0]**2-A[1]**2,de=2*(B[0]-A[0]);
+ return{q:`点 P 在 x 轴上，且与 ${pn('A',...A)}、${pn('B',...B)} 两点等距，求 P 的坐标。`,fig:plot({pts:tri([A,B],'AB')}),
+ efig:plot({pts:[...tri([A,B],'AB'),[nu/de,0,'P','b']],segs:[[A[0],A[1],nu/de,0,'d'],[B[0],B[1],nu/de,0,'d']]}),ans:ap(nu,0,de,1),wr:[ap(-nu,0,de,1),ap(A[0]+B[0],0,2,1),ap(0,nu,1,de),ap(nu,0,-de,1)],
+ exp:`设 P(t, 0)，PA = PB，即 PA² = PB²：<br>(t − ${par(A[0])})² + ${A[1]**2} = (t − ${par(B[0])})² + ${B[1]**2}<br>${N(-2*A[0])}t + ${A[0]**2+A[1]**2} = ${N(-2*B[0])}t + ${B[0]**2+B[1]**2}<br>t = ${QH(Q(nu,de))}`}}
+function g2d(){const A=rp(6);let B=rp(6);if(A[0]==B[0]&&A[1]==B[1])B=[A[0]+2,A[1]+1];const dx=B[0]-A[0],dy=B[1]-A[1],m=dx*dx+dy*dy;
+ return{q:`${pn('A',...A)} 与 ${pn('B',...B)} 是一个正方形相邻的两个顶点，求这个正方形的面积。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),
+ ans:an(m),wr:[as(m),an(2*m),an(m,2),an((Math.abs(dx)+Math.abs(dy))**2)],exp:`边长² = AB² = ${dx*dx} + ${dy*dy} = ${m}<br>正方形面积 = 边长² = <b>${m}</b> 平方单位`}}
+function mkTri(mode){const want={r:'直角三角形',ir:'等腰直角三角形',iso:'等腰三角形',sc:'一般三角形'}[mode];
+ for(let i=0;i<300;i++){const V=rp(4),a=nz(3),b=nz(3);let P;
+  if(mode=='r'||mode=='ir'){const k=mode=='ir'?1:pick([2,3]);P=[V,[V[0]+a,V[1]+b],[V[0]-b*k,V[1]+a*k]]}
+  else if(mode=='iso'){const t=pick([2,3]);P=[V,[V[0]+2*a,V[1]+2*b],[V[0]+a-b*t,V[1]+b+a*t]]}else P=[rp(5),rp(5),rp(5)];
+  if(S2(P)&&cls(P)==want)return P}return[[0,0],[3,0],[0,4]]}
+function cls(P){const d=[[0,1],[1,2],[0,2]].map(([i,j])=>(P[i][0]-P[j][0])**2+(P[i][1]-P[j][1])**2).sort((a,b)=>a-b),iso=d[0]==d[1]||d[1]==d[2],rt=d[0]+d[1]==d[2];return rt&&iso?'等腰直角三角形':rt?'直角三角形':iso?'等腰三角形':'一般三角形'}
+const d2=(a,b)=>(a[0]-b[0])**2+(a[1]-b[1])**2;
+function g2e(){const P=sh(mkTri(pick(['r','r','ir','sc','iso']))),nm=sh(['P','Q','R']),rv=[0,1,2].find(i=>{const j=(i+1)%3,k=(i+2)%3;return(P[j][0]-P[i][0])*(P[k][0]-P[i][0])+(P[j][1]-P[i][1])*(P[k][1]-P[i][1])==0});
+ const T=[...['P','Q','R'].map(c=>`∠${c} 是直角`),'此三角形不是直角三角形'],pt=(i)=>pn(nm[i],...P[i]),ix=c=>nm.indexOf(c),ans=rv==null?T[3]:`∠${nm[rv]} 是直角`,
+ L=[[0,1],[1,2],[0,2]].map(([i,j])=>[nm[i]+nm[j],d2(P[i],P[j])]);
+ return{q:`点 ${[0,1,2].map(pt).join('、')} 构成三角形，哪一个叙述正确？`,fig:plot({poly:P,pts:tri(P,nm.join(''))}),efig:plot({poly:P,pts:tri(P,nm.join('')),ra:rv==null?[]:[[...P[rv],...P[(rv+1)%3].map((v,i)=>v-P[rv][i]),...P[(rv+2)%3].map((v,i)=>v-P[rv][i])]]}),
+ ans:tx(ans),wr:T.filter(t=>t!=ans).map(tx),exp:L.map(l=>`${l[0]}² = ${l[1]}`).join('，')+`<br>`+(rv==null?'任意两边的平方和都不等于第三边的平方，所以<b>不是直角三角形</b>。':`最长边² = ${Math.max(...L.map(l=>l[1]))} = 另两边²之和，由毕氏定理逆定理，<b>∠${nm[rv]} = 90°</b>。`)}}
+function g2f(){const a=nz(8),b=nz(8),m=a*a+b*b;
+ return{q:`O 为圆心，A 为圆上的一点（图）。已知 ${pn('A',a,b)}，求圆的半径。`,fig:plot({pts:[[0,0,'O','b'],[a,b,'A']],circ:[0,0,Math.sqrt(m)]}),efig:plot({pts:[[0,0,'O','b'],[a,b,'A']],circ:[0,0,Math.sqrt(m)],segs:[[0,0,a,b,'',labS(m)]]}),
+ ans:as(m),wr:[an(Math.abs(a)+Math.abs(b)),an(m),as(Math.abs(a*a-b*b)||m+1),an(Math.max(Math.abs(a),Math.abs(b)))],exp:distSteps([0,0],[a,b],'OA')+'<br>半径 = OA'}}
+function g3a(){const A=rp(6),B=rp(6),m=ri(1,4),n=ri(1,4),d=divSteps(A,B,m,n,0),P=d.P.map(qv);
+ const w=(i,s)=>s?Q(m*A[i]+n*B[i],m+n):Q(m*B[i]+n*A[i],m+n);
+ return{q:`已知 ${pn('A',...A)}、${pn('B',...B)}。点 P 内分线段 AB 成 ${m} : ${n}，求 P 的坐标。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),
+ efig:plot({pts:[...tri([A,B],'AB'),[P[0],P[1],'P','b']],segs:[[...A,...P,'',m],[...P,...B,'d',n]]}),ans:ap(d.P[0].n,d.P[1].n,d.P[0].d,d.P[1].d),
+ wr:[ap(w(0,1).n,w(1,1).n,w(0,1).d,w(1,1).d),ap(A[0]+B[0],A[1]+B[1],2,2),ap(m*B[0]+n*A[0],m*B[1]+n*A[1]),ap(m*B[0]+n*A[0],m*B[1]+n*A[1],m,m)],exp:`P = ${FR('mx₂ + nx₁','m + n')}，${FR('my₂ + ny₁','m + n')}，m = ${m}，n = ${n}<br>`+d.h}}
+function g3b(){const A=rp(8),B=rp(8);return{q:`求连接 ${pn('A',...A)} 与 ${pn('B',...B)} 两点之线段的中点坐标。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),
+ efig:plot({pts:[...tri([A,B],'AB'),[(A[0]+B[0])/2,(A[1]+B[1])/2,'M','b']],segs:[[...A,...B]]}),ans:ap(A[0]+B[0],A[1]+B[1],2,2),wr:[ap(A[0]+B[0],A[1]+B[1]),ap(B[0]-A[0],B[1]-A[1],2,2),ap(A[0]-B[0],A[1]-B[1],2,2),ap(A[0]+B[0],A[1]+B[1],2,1)],
+ exp:`x = ${FR(`${N(A[0])} + ${par(B[0])}`,2)} = ${QH(Q(A[0]+B[0],2))}<br>y = ${FR(`${N(A[1])} + ${par(B[1])}`,2)} = ${QH(Q(A[1]+B[1],2))}`}}
+function g3c(){const A=rp(6),M=rp(6),B=[2*M[0]-A[0],2*M[1]-A[1]];
+ return{q:`线段的一个端点是 ${pn('A',...A)}，中点是 ${pn('M',...M)}，求另一个端点 B 的坐标。`,fig:plot({pts:[[...A,'A'],[...M,'M','b']],segs:[[...A,...M]]}),efig:plot({pts:[[...A,'A'],[...M,'M','b'],[...B,'B']],segs:[[...A,...B]]}),
+ ans:ap(...B),wr:[ap(M[0]-A[0],M[1]-A[1]),ap(M[0]+A[0],M[1]+A[1]),ap(2*A[0]-M[0],2*A[1]-M[1]),ap(B[0],-B[1])],exp:`设 B(p, q)：${FR(`${N(A[0])} + p`,2)} = ${N(M[0])}，${FR(`${N(A[1])} + q`,2)} = ${N(M[1])}<br>p = ${B[0]}，q = ${B[1]}`}}
+function g3d(){const A=rp(6),B=rp(6);let m=ri(1,5),n=ri(1,5);if(m==n)n++;const d=divSteps(A,B,m,n,1),P=d.P.map(qv);
+ return{q:`已知 ${pn('A',...A)}、${pn('B',...B)}，点 P 在 AB 的延长线上，且 ${FR('AP','PB')} = ${FR(m,n)}（P 外分 AB 成 ${m} : ${n}），求 P 的坐标。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),
+ efig:plot({pts:[...tri([A,B],'AB'),[P[0],P[1],'P','b']],segs:[[...A,...B],[...(m>n?B:A),...P,'d']]}),ans:ap(d.P[0].n,d.P[1].n,d.P[0].d,d.P[1].d),
+ wr:[(()=>{const x=divSteps(A,B,m,n,0).P;return ap(x[0].n,x[1].n,x[0].d,x[1].d)})(),ap(m*B[0]+n*A[0],m*B[1]+n*A[1],m-n,m-n),ap(n*B[0]-m*A[0],n*B[1]-m*A[1],n-m,n-m)],
+ exp:`外分点：${m>n?'AP > PB，P 在 B 的外侧':'AP < PB，P 在 A 的外侧'}<br>P = ${FR('mx₂ − nx₁','m − n')}，${FR('my₂ − ny₁','m − n')}<br>`+d.h}}
+function g3e(){const A=rp(7),B=rp(7),d=divSteps(A,B,1,2,0).P,P=d.map(qv);
+ return{q:`${pn('A',...A)}、${pn('B',...B)} 为线段 AB 的两个端点，P、R 是线段 AB 的两个三等分点（AP = PR = RB，P 靠近 A）。求点 P 的坐标。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),efig:plot({pts:[...tri([A,B],'AB'),[P[0],P[1],'P','b'],[(A[0]+2*B[0])/3,(A[1]+2*B[1])/3,'R','b']],segs:[[...A,...B]]}),
+ ans:ap(d[0].n,d[1].n,d[0].d,d[1].d),wr:[ap(A[0]+2*B[0],A[1]+2*B[1],3,3),ap(A[0]+B[0],A[1]+B[1],2,2),ap(2*A[0]+B[0],2*A[1]+B[1],2,2),ap(B[0]-A[0],B[1]-A[1],3,3)],exp:`P 靠近 A，AP : PB = 1 : 2，所以 P 内分 AB 成 1 : 2。<br>`+divSteps(A,B,1,2,0).h}}
+function g3f(){const a=ri(1,9),b=ri(1,9),y1=ri(-5,5),y2=ri(-5,5),P=[-a,y1],Qp=[b,y2],ry=y1+(y2-y1)*a/(a+b);
+ return{q:`连接 ${pn('P',...P)}、${pn('Q',...Qp)} 的线段与 y 轴相交于点 R，求 ${FR('PR','PQ')} 的值。`,fig:plot({pts:tri([P,Qp],'PQ'),segs:[[...P,...Qp]]}),efig:plot({pts:[...tri([P,Qp],'PQ'),[0,ry,'R','b']],segs:[[...P,...Qp]]}),
+ ans:an(a,a+b),wr:[an(a,b),an(b,a+b),an(a+b,a),an(b,a)],exp:`P、Q 的横坐标到 y 轴的距离为 ${a} 与 ${b}，平行线截线段成比例：<br>PR : RQ = ${a} : ${b}<br>${FR('PR','PQ')} = ${FR(a,`${a} + ${b}`)} = ${QH(Q(a,a+b))}`}}
+function g3g(){const A=rp(6),B=rp(6),C=rp(6),D=[A[0]+C[0]-B[0],A[1]+C[1]-B[1]];if(S2([A,B,C])==0)return g3g();
+ return{q:`${pn('A',...A)}、${pn('B',...B)}、${pn('C',...C)} 是平行四边形 ABCD 的三个顶点，求顶点 D 的坐标。`,fig:plot({poly:[A,B,C],pts:tri([A,B,C])}),efig:plot({poly:[A,B,C,D],pts:tri([A,B,C,D],'ABCD')}),
+ ans:ap(...D),wr:[ap(A[0]+B[0]-C[0],A[1]+B[1]-C[1]),ap(B[0]+C[0]-A[0],B[1]+C[1]-A[1]),ap(A[0]+C[0],A[1]+C[1],2,2),ap(B[0]+A[0]+C[0],B[1]+A[1]+C[1])],
+ exp:`对角线 AC、BD 互相平分，中点相同：<br>${FR(`${N(A[0])} + ${par(C[0])}`,2)} = ${FR(`${N(B[0])} + x`,2)}，${FR(`${N(A[1])} + ${par(C[1])}`,2)} = ${FR(`${N(B[1])} + y`,2)}<br>D = <b>${pn('',...D)}</b>`}}
+function g4a(){let P=[rp(5),rp(5),rp(5)];if(Math.random()<.2){const k=pick([2,-1,3]);P[2]=[P[0][0]+k*(P[1][0]-P[0][0]),P[0][1]+k*(P[1][1]-P[0][1])]}
+ const r=areaSteps(P),A=Math.abs(r.S);
+ return{q:`求以 ${P.map((p,i)=>pn('ABC'[i],...p)).join('、')} 为顶点的三角形面积。`,fig:plot({poly:P,pts:tri(P)}),efig:crossSVG(P),ans:an(A,2),wr:[an(A),an(-r.S||1,2),an(Math.abs(r.t1+r.t2),2),an(Math.abs(r.S)+2,2)],exp:r.html}}
+function g4b(){const k=nz(3),c=ri(-4,4),X=sh([-4,-3,-2,-1,1,2,3,4,5,6]).slice(0,3),Y=X.map(x=>k*x+c),a=Y[1]-Y[2],c0=X[1]*Y[2]+X[2]*Y[0]-X[1]*Y[0]-X[2]*Y[1];
+ return{q:`若 (p, ${N(Y[0])})、(${N(X[1])}, ${N(Y[1])}) 及 (${N(X[2])}, ${N(Y[2])}) 三点共线，求 p 的值。`,fig:plot({pts:[[X[1],Y[1],'B'],[X[2],Y[2],'C']],segs:[[X[1],Y[1],X[2],Y[2]]]}),efig:plot({pts:[[X[0],Y[0],'A'],[X[1],Y[1],'B'],[X[2],Y[2],'C']],segs:[[X[0],Y[0],X[2],Y[2]]]}),
+ ans:an(X[0]),wr:[an(-X[0]),an(X[0]+1),an(X[0]-1),an(Y[0])],exp:`三点共线 ⇔ 面积 = 0。<br>展开得：${N(a)}p ${c0<0?'−':'+'} ${Math.abs(c0)} = 0<br>p = <b>${X[0]}</b>`}}
+function g4c(){let A,B,yv,c1,c2,S;do{A=rp(5);B=rp(5);yv=ri(-6,6);c2=B[0]-A[0];c1=A[0]*B[1]-B[0]*A[1];S=Math.abs(c1+c2*yv)}while(!c2||!S);
+ const Y=[Q(S-c1,c2),Q(-S-c1,c2)];
+ return{q:`一三角形的面积为 ${QH(Q(S,2))} 平方单位，两个顶点为 ${pn('A',...A)}、${pn('B',...B)}，第三个顶点 C 在 y 轴上。求 C 的纵坐标（有两解）。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B]]}),
+ efig:plot({pts:[...tri([A,B],'AB'),[0,qv(Y[0]),'C₁','b'],[0,qv(Y[1]),'C₂','b']],segs:[[...A,...B],[...A,0,qv(Y[0]),'d'],[...B,0,qv(Y[0]),'d'],[...A,0,qv(Y[1]),'d'],[...B,0,qv(Y[1]),'d']]}),
+ ans:am(Y),wr:[am([Y[0]]),am([Y[1]]),am(Y.map(y=>Q(-y.n,y.d))),am([Q(S-c1,-c2),Q(S+c1,c2)])],exp:`设 C(0, y)。面积 = ${FR(1,2)} | ${N(c1)} ${c2<0?'−':'+'} ${Math.abs(c2)}y | = ${QH(Q(S,2))}<br>${N(c1)} ${c2<0?'−':'+'} ${Math.abs(c2)}y = ±${S}<br>y = ${QH(Y[0])} 或 ${QH(Y[1])}`}}
+function g4d(){const P=[rp(5),rp(5),rp(5)];if(!S2(P))return g4d();const S=Math.abs(S2(P)),r=areaSteps(P);
+ return{q:`${P.map((p,i)=>pn('ABC'[i],...p)).join('、')} 是平行四边形的三个顶点，求这个平行四边形的面积。`,fig:plot({poly:P,pts:tri(P)}),ans:an(S),wr:[an(S,2),an(2*S),an(S+1),an(S,4)],exp:r.html+`<br>对角线把平行四边形分成两个全等三角形，<br>平行四边形面积 = 2 × ${QH(Q(S,2))} = <b>${S}</b> 平方单位`}}
+function polyPts(n){let P;do{const c=[ri(-1,1),ri(-1,1)],r0=Math.random()*360;P=[];for(let i=0;i<n;i++){const a=(r0+i*360/n+ri(-18,18))*Math.PI/180,r=ri(3,7);P.push([c[0]+Math.round(r*Math.cos(a)),c[1]+Math.round(r*Math.sin(a))])}}while(new Set(P.map(String)).size<n||Math.abs(S2(P))<10);
+ if(Math.random()<.5)P.reverse();const k=ri(0,n-1);return P.slice(k).concat(P.slice(0,k))}
+const polyG=n=>()=>{const P=polyPts(n),nm='ABCDE'.slice(0,n),r=areaSteps(P),A=Math.abs(r.S),w=P.slice();[w[1],w[2]]=[w[2],w[1]];
+ return{q:`依次连接 ${P.map((p,i)=>pn(nm[i],...p)).join('、')} 成${n==4?'四':'五'}边形，求它的面积。`,fig:plot({pts:tri(P,nm)}),efig:plot({poly:P,pts:tri(P,nm)})+crossSVG(P),ans:an(A,2),wr:[an(A),an(Math.abs(S2(w)),2),an(Math.abs(S2(P.slice(0,3))),2),an(Math.abs(r.t1+r.t2),2)],exp:r.html}};
+const g5a=polyG(4),g5b=polyG(5);
+function g5c(){const a=nz(5),b=nz(5);if(a==b)return g5c();const A=[a,b],C=[b,a],B=[a+b,a+b];
+ return{q:`菱形 OABC 的三个顶点是 O(0, 0)、${pn('A',...A)}、${pn('B',...B)}，求顶点 C 的坐标。`,fig:plot({pts:[[0,0,'O','b'],[...A,'A'],[...B,'B']],segs:[[0,0,...A],[...A,...B]]}),efig:plot({poly:[[0,0],A,B,C],pts:[[0,0,'O','b'],[...A,'A'],[...B,'B'],[...C,'C']]}),
+ ans:ap(...C),wr:[ap(-b,-a),ap(a,-b),ap(B[0]-a,B[1]+b),ap(2*a,2*b)],exp:`菱形对角线 OB、AC 互相平分，中点相同：<br>${FR(`0 + ${par(B[0])}`,2)} = ${FR(`${N(a)} + x`,2)} → x = ${b}<br>${FR(`0 + ${par(B[1])}`,2)} = ${FR(`${N(b)} + y`,2)} → y = ${a}<br>C = <b>${pn('',b,a)}</b>（可验证 OA = OC）`}}
+function g5d(){const a=nz(5),b=nz(5);if(a==b)return g5d();const P=[[0,0],[a,b],[a+b,a+b],[b,a]],r=areaSteps(P),A=Math.abs(r.S);
+ return{q:`菱形 OABC 的顶点为 O(0, 0)、${pn('A',a,b)}、${pn('B',a+b,a+b)}、${pn('C',b,a)}，求菱形的面积。`,fig:plot({poly:P,pts:[[0,0,'O','b'],[a,b,'A'],[a+b,a+b,'B'],[b,a,'C']]}),ans:an(A,2),wr:[an(A),an(Math.abs(a*b)),an(a*a+b*b),an(A,4)],exp:r.html}}
+function h1(){const A=rp(4),w=[nz(4),nz(4)],B=[A[0]+2*w[0],A[1]+2*w[1]],M=[A[0]+w[0],A[1]+w[1]],C=rp(6),m=d2(C,M);if(!S2([A,B,C]))return h1();
+ return{q:`${pn('A',...A)}、${pn('B',...B)}、${pn('C',...C)} 是三角形的三个顶点，求由点 C 所作的中线长度。`,fig:plot({poly:[A,B,C],pts:tri([A,B,C])}),efig:plot({poly:[A,B,C],pts:[...tri([A,B,C]),[...M,'M','b']],segs:[[...C,...M,'d',labS(m)]]}),
+ ans:as(m),wr:[as(d2(C,A)),as(d2(C,B)),an(m),as(d2(C,[A[0]+B[0],A[1]+B[1]]))],exp:`AB 的中点 M = ${pn('',...M)}<br>`+distSteps(C,M,'CM')}}
+h1.fl=1;
+function h2(){const k=ri(1,2),u=pick([[3,4],[4,3]]).map(v=>v*k*pick([1,-1])),A=rp(4),C=[A[0]+u[0],A[1]+u[1]];let B,c;do{B=rp(6);c=Math.abs(u[0]*(B[1]-A[1])-u[1]*(B[0]-A[0]))}while(!c);
+ const t=((B[0]-A[0])*u[0]+(B[1]-A[1])*u[1])/(u[0]**2+u[1]**2),H=[A[0]+t*u[0],A[1]+t*u[1]];
+ return{q:`三角形 ABC 的顶点为 ${pn('A',...A)}、${pn('B',...B)}、${pn('C',...C)}。求由顶点 B 到 AC 边上的高。`,fig:plot({poly:[A,B,C],pts:tri([A,B,C])}),efig:plot({poly:[A,B,C],pts:[...tri([A,B,C]),[H[0],H[1],'H','b']],segs:[[...B,...H,'d']]}),
+ ans:an(c,5*k),wr:[an(c,10*k),an(2*c,5*k),an(c,k),an(c,25*k)],exp:`面积 = ${FR(1,2)}|…| = ${QH(Q(c,2))}<br>AC = ${RH(`${u[0]**2} + ${u[1]**2}`)} = ${5*k}<br>高 = ${FR('2 × 面积','AC')} = ${FR(c,5*k)} = <b>${QH(Q(c,5*k))}</b>`}}
+h2.fl=1;
+function h3(){const P=mkTri(pick(['r','ir','iso','sc'])),c=cls(P),T=['直角三角形','等腰直角三角形','等腰三角形','一般三角形'],L=[['AB',0,1],['BC',1,2],['AC',0,2]];
+ return{q:`三角形的顶点为 ${P.map((p,i)=>pn('ABC'[i],...p)).join('、')}，判断它是哪一种三角形。`,fig:plot({poly:P,pts:tri(P)}),ans:tx(c),wr:T.filter(t=>t!=c).map(tx),exp:L.map(l=>`${l[0]}² = ${d2(P[l[1]],P[l[2]])}`).join('，')+`<br>→ <b>${c}</b>`}}
+[g1b,g1c,g1d,g2a,g2b,g2c,g2d,g2f,g3a,g3b,g3c,g3d,g3e,g3f,g3g,g4a,g4b,g4c,g4d,g5a,g5b,g5c,g5d].forEach(f=>f.fl=1);
+const G1=[g1a,g1b,g1c,g1d],G2=[g2a,g2b,g2c,g2d,g2e,g2f],G3=[g3a,g3b,g3c,g3d,g3e,g3f,g3g],G4=[g4a,g4b,g4c,g4d],G5=[g5a,g5b,g5c,g5d],HARD=[h1,h2,h3];
+//==UI==
+const $=s=>document.querySelector(s),app=$('#app'),tabs=$('#tabs');
+function nums(s){s=s.replace(/−/g,'-').replace(/sqrt/g,'√').replace(/(\d*\.?\d*)\s*√\s*\(?(\d+\.?\d*)\)?/g,(m,a,b)=>(a===''?1:+a)*Math.sqrt(+b)).replace(/(-?\d+\.?\d*)\s*\/\s*(\d+\.?\d*)/g,(m,a,b)=>+a/+b);return(s.match(/-?\d+\.?\d*/g)||[]).map(Number)}
+function chk(a,s){const v=nums(s);if(!a.v||!v.length)return false;const eq2=(x,y)=>Math.abs(x-y)<=.02*Math.max(1,Math.abs(y)/10);
+ if(a.k=='m'){if(v.length!=a.v.length)return false;v.sort((x,y)=>x-y);return v.every((x,i)=>eq2(x,a.v[i]))}
+ if(a.k=='p')return v.length==2&&eq2(v[0],a.v[0])&&eq2(v[1],a.v[1]);return v.length==1&&eq2(v[0],a.v[0])}
+const pv=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/(\d*)√(\d+)/g,(m,a,b)=>a+RH(b)).replace(/(-?\d+)\s*\/\s*(\d+)/g,(m,a,b)=>FR(a,b));
+function pickG(gens,k,must,nm){if(!k)return[];const r=sh(must||[]).slice(0,nm||0),rest=sh(gens.filter(g=>!r.includes(g)));while(r.length<k)r.push(rest.pop()||pick(gens));return sh(r)}
+function mcCard(q,i,cb){const d=document.createElement('div');d.className='cd';d.innerHTML=`<div class="qh">选择题 ${i}</div><div>${q.q}</div>${q.fig||''}<div class="ops"></div><div class="ex" hidden></div>`;
+ const ops=d.querySelector('.ops'),ex=d.querySelector('.ex');q.o=opts(q);
+ q.o.forEach(o=>{const b=document.createElement('button');b.className='op';b.innerHTML=o.h;b.onclick=()=>{const ok=o===q.ans;[...ops.children].forEach((c,j)=>{c.disabled=true;if(q.o[j]===q.ans)c.classList.add('ok')});if(!ok)b.classList.add('no');
+  ex.hidden=false;ex.innerHTML=`<b>${ok?'✔ 答对了！':'✘ 答错了。正确答案：'+q.ans.h}</b><br>${q.exp}${q.efig||''}`;cb(ok)};ops.append(b)});return d}
+function flCard(q,i,cb){const d=document.createElement('div');d.className='cd';d.innerHTML=`<div class="qh">作答题 ${i}</div><div>${q.q}</div>${q.fig||''}<div class="row"><input class="fi" placeholder="输入答案，如 (3, 4)、2√10、5/2" style="flex:1"><button class="rt">√</button><button class="sb">提交</button></div><div class="pv"></div><div class="ex" hidden></div>`;
+ const inp=d.querySelector('.fi'),ex=d.querySelector('.ex');inp.oninput=()=>d.querySelector('.pv').innerHTML=pv(inp.value);
+ d.querySelector('.rt').onpointerdown=e=>{e.preventDefault();const s=inp.selectionStart||inp.value.length;inp.value=inp.value.slice(0,s)+'√'+inp.value.slice(inp.selectionEnd||s);inp.focus();inp.setSelectionRange(s+1,s+1);inp.oninput()};
+ d.querySelector('.sb').onclick=()=>{if(!inp.value.trim()||inp.disabled)return;const ok=chk(q.ans,inp.value);inp.disabled=true;d.querySelector('.sb').disabled=true;ex.hidden=false;ex.innerHTML=`<b>${ok?'✔ 答对了！':'✘ 答错了。正确答案：'+q.ans.h}</b><br>${q.exp}${q.efig||''}`;cb(ok)};return d}
+function quiz(el,gens,c){el.innerHTML='';const st={m:0,s:0,f:0,fs:0},mg=pickG(gens,c.mc,c.must,c.nm),fg=pickG(gens.filter(g=>g.fl),c.fl,c.mustF,c.nmF),mb=document.createElement('div'),sm=document.createElement('div'),fb=document.createElement('div');el.append(mb,sm,fb);
+ const re=()=>{const b=document.createElement('button');b.textContent='🔄 重新出题';b.onclick=()=>{quiz(el,gens,c);el.scrollIntoView()};return b};
+ mg.forEach((g,i)=>mb.append(mcCard(g(),i+1,ok=>{st.m++;st.s+=ok;if(st.m==c.mc)after()})));
+ function after(){const pass=st.s>=c.gate;sm.innerHTML=`<div class="bn">选择题 ${st.s} / ${c.mc} ${pass?(c.fl?'🎉 解锁作答题！':''):'；未达 '+c.gate+' 题，作答题未解锁，再试一次吧！'}</div>`;
+  if(!pass){sm.append(re());return}fg.forEach((g,i)=>fb.append(flCard(g(),i+1,ok=>{st.f++;st.fs+=ok;if(st.f==c.fl)end()})));if(!c.fl)end()}
+ function end(){const t=st.s+st.fs,T=c.mc+c.fl,p=t/T,r=p>=.9?'🏆 优秀！':p>=.7?'👍 良好':p>=.5?'🙂 及格，继续加油':'💪 需要多练习，回头看看例题与计算器';
+  const b=document.createElement('div');b.className='bn';b.innerHTML=`${c.total?`总分 ${t} / ${T}（${Math.round(p*100)}%）<br>${r}<br>选择题 ${st.s}/${c.mc}，作答题 ${st.fs}/${c.fl}`:`本节成绩：选择 ${st.s}/${c.mc}，作答 ${st.fs}/${c.fl}`}<br>`;b.append(re());fb.append(b);b.scrollIntoView({block:'center'})}}
+/* calculators */
+const ni=(id,v)=>`<input type="number" step="any" id="${id}" value="${v}" class="ni">`,gv=(b,id)=>parseFloat(b.querySelector('#'+id).value),isI=(...a)=>a.every(Number.isInteger);
+const BAD='<span style="color:var(--no)">请输入整数。</span>';
+function c1(b){b.innerHTML=`<div class="row">P(${ni('x',-3)}, ${ni('y',5)})</div><div class="out"></div>`;const o=b.querySelector('.out'),u=()=>{const x=gv(b,'x'),y=gv(b,'y');if(isNaN(x)||isNaN(y))return o.innerHTML='请输入数字。';
+ const q=x==0&&y==0?'原点':x==0?'y 轴上':y==0?'x 轴上':QN[x>0?(y>0?0:3):(y>0?1:2)];
+ o.innerHTML=`${plot({pts:[[x,y,'P'],[x,-y,'P₁','b'],[-x,y,'P₂','b'],[-x,-y,'P₃','b']],guide:1})}<p>位置：<b>${q}</b><br>到 x 轴距离 = |${N(y)}| = <b>${Math.abs(y)}</b>；到 y 轴距离 = |${N(x)}| = <b>${Math.abs(x)}</b><br>关于 x 轴：P₁(${N(x)}, ${N(-y)})；关于 y 轴：P₂(${N(-x)}, ${N(y)})；关于原点：P₃(${N(-x)}, ${N(-y)})</p>`};b.oninput=u;u()}
+function c2(b){b.innerHTML=`<div class="row">A(${ni('a',2)}, ${ni('b',4)}) B(${ni('c',-3)}, ${ni('d',16)})</div><div class="out"></div>`;const o=b.querySelector('.out'),u=()=>{const A=[gv(b,'a'),gv(b,'b')],B=[gv(b,'c'),gv(b,'d')];if(!isI(...A,...B))return o.innerHTML=BAD;
+ const dx=B[0]-A[0],dy=B[1]-A[1],m=dx*dx+dy*dy,C=[B[0],A[1]];o.innerHTML=plot({pts:tri([A,B],'AB'),segs:[[...A,...B,'',labS(m)],[...A,...C,'d',Math.abs(dx)],[...C,...B,'d',Math.abs(dy)]],ra:dx&&dy?[[...C,A[0]-C[0],0,0,B[1]-C[1]]]:[]})+`<div class="sol">${distSteps(A,B,'AB')}<br>≈ ${Math.sqrt(m).toFixed(3)}</div>`};b.oninput=u;u()}
+function c3(b){b.innerHTML=`<div class="row">A(${ni('a',-5)}, ${ni('b',2)}) B(${ni('c',7)}, ${ni('d',4)})</div><div class="row">m : n = ${ni('m',2)} : ${ni('n',1)} <select id="t" class="ni" style="width:auto"><option value="0">内分</option><option value="1">外分</option></select></div><div class="out"></div>`;
+ const o=b.querySelector('.out'),u=()=>{const A=[gv(b,'a'),gv(b,'b')],B=[gv(b,'c'),gv(b,'d')],m=gv(b,'m'),n=gv(b,'n'),e=+b.querySelector('#t').value;if(!isI(...A,...B,m,n)||m<=0||n<=0)return o.innerHTML='请输入整数（m、n 为正整数）。';if(e&&m==n)return o.innerHTML='外分时 m ≠ n。';
+ const d=divSteps(A,B,m,n,e),P=d.P.map(qv);o.innerHTML=plot({pts:[...tri([A,B],'AB'),[P[0],P[1],'P','b']],segs:e?[[...A,...B],[...(m>n?B:A),...P,'d']]:[[...A,...P,'',m],[...P,...B,'d',n]]})+`<div class="sol">${e?'外分':'内分'}：${FR('mx₂ '+(e?'−':'+')+' nx₁',e?'m − n':'m + n')}，${FR('my₂ '+(e?'−':'+')+' ny₁',e?'m − n':'m + n')}<br>${d.h}<br><b>P = (${QH(d.P[0])}, ${QH(d.P[1])})</b>${m==n&&!e?'（即中点）':''}</div>`};b.oninput=u;b.onchange=u;u()}
+function c4(b){b.innerHTML=`<div class="row">A(${ni('a',-2)}, ${ni('b',-3)}) B(${ni('c',3)}, ${ni('d',-1)}) C(${ni('e',1)}, ${ni('f',-5)})</div><div class="out"></div>`;const o=b.querySelector('.out'),u=()=>{const P=[[gv(b,'a'),gv(b,'b')],[gv(b,'c'),gv(b,'d')],[gv(b,'e'),gv(b,'f')]];if(!isI(...P.flat()))return o.innerHTML=BAD;
+ const r=areaSteps(P);o.innerHTML=plot({poly:P,pts:tri(P)})+crossSVG(P)+`<div class="sol">${r.html}<br>${r.S==0?'<b>三点共线 ✔</b>':'三点不共线'}</div>`};b.oninput=u;u()}
+function c5(b){b.innerHTML=`<div>按顺序输入各顶点，用分号隔开：</div><input class="fi" id="p" value="-3,-1; -1,4; 4,4; 5,0; 0,-2"><div class="out"></div>`;const o=b.querySelector('.out'),u=()=>{const v=(b.querySelector('#p').value.replace(/−/g,'-').match(/-?\d+/g)||[]).map(Number);if(v.length%2||v.length<6||v.length>16)return o.innerHTML='请至少输入 3 个顶点（最多 8 个），格式 x,y; x,y; …';
+ const P=[];for(let i=0;i<v.length;i+=2)P.push(v.slice(i,i+2));const r=areaSteps(P);o.innerHTML=plot({poly:P,pts:tri(P,'ABCDEFGH')})+crossSVG(P)+`<div class="sol">${r.html}</div>`};b.oninput=u;u()}
+/* examples */
+const exDist=(A,B,nm)=>{const dx=B[0]-A[0],dy=B[1]-A[1],m=dx*dx+dy*dy;return{q:`求 ${pn('A',...A)}、${pn('B',...B)} 两点之间的距离。`,fig:plot({pts:tri([A,B],'AB'),segs:[[...A,...B,'',labS(m)],[...A,B[0],A[1],'d',Math.abs(dx)],[B[0],A[1],...B,'d',Math.abs(dy)]],ra:dx&&dy?[[B[0],A[1],A[0]-B[0],0,0,B[1]-A[1]]]:[]}),sol:distSteps(A,B,'AB')}};
+const med=(a,b,c,nm)=>{const M=[(a[0]+b[0])/2,(a[1]+b[1])/2];return`${nm[1]}${nm[2]} 边的中点 = ${pn('',...M)}<br>${distSteps(c,M,nm[0]+'M')}`};
+const TABS=[
+{title:'10.1 直角坐标系',info:()=>`<p><b>学习目标：</b>① 距离公式求两点距离 ② 分比公式求分点坐标与线段比值 ③ 用顶点坐标求三角形面积、证明三点共线 ④ 多边形面积。</p><div class="fm">横轴（x 轴）与纵轴（y 轴）互相垂直，交点为<b>原点 O</b>。平面内的点 P 与有序实数对（序偶）(x, y) 一一对应。<br>象限：第一(+, +)、第二(−, +)、第三(−, −)、第四(+, −)；到 x 轴的距离 = |y|，到 y 轴的距离 = |x|。</div>`,
+ ex:[()=>({t:'课本 图10-2',q:'写出图中点 A、B、C、D、E 的坐标。',fig:plot({pts:[[3,4,'A'],[-3,-5,'B'],[-4,2,'C'],[2,0,'D'],[2,-3,'E']],guide:5}),sol:'A(3, 4)：第一象限<br>B(−3, −5)：第三象限<br>C(−4, 2)：第二象限<br>D(2, 0)：在 x 轴上<br>E(2, −3)：第四象限'})],calc:c1,gens:G1,cfg:{mc:5,fl:2,gate:3}},
+{title:'10.2 距离公式',info:()=>`<div class="fm">A(x₁, y₁)、B(x₂, y₂)：作 AC ∥ x 轴，BC ∥ y 轴，则 C(x₂, y₁)，AC = |x₂ − x₁|，BC = |y₂ − y₁|，由毕氏定理：<br>AB = ${RH('(x₂ − x₁)² + (y₂ − y₁)²')}</div>`,
+ ex:[()=>exDist([2,4],[-3,16]),()=>exDist([-4,3],[2,11]),()=>{const P=[2,-2],Qp=[-2,2],R=[0,4];return{q:`证明点 ${pn('P',...P)}、${pn('Q',...Qp)}、${pn('R',...R)} 为一直角三角形的顶点坐标。`,fig:plot({poly:[P,Qp,R],pts:tri([P,Qp,R],'PQR'),ra:[[...Qp,4,-4,2,2]]}),
+  sol:`${distSteps(P,Qp,'PQ')}<br>${distSteps(P,R,'PR')}<br>${distSteps(Qp,R,'QR')}<br>∵ PQ² + QR² = 32 + 8 = 40 = PR²<br>∴ 由毕氏定理的逆定理，△PQR 是直角三角形（∠Q = 90°）。`}}],calc:c2,gens:G2,cfg:{mc:5,fl:2,gate:3}},
+{title:'10.3 分比公式',info:()=>`<div class="fm"><b>内分</b>：P 内分 AB 成 m : n（AP : PB = m : n）<br>P = (${FR('mx₂ + nx₁','m + n')}, ${FR('my₂ + ny₁','m + n')})<br><b>中点</b>（m = n = 1）：M = (${FR('x₁ + x₂',2)}, ${FR('y₁ + y₂',2)})<br><b>外分</b>：P 在延长线上，${FR('AP','PB')} = ${FR('m','n')}：P = (${FR('mx₂ − nx₁','m − n')}, ${FR('my₂ − ny₁','m − n')})</div>`,
+ ex:[()=>{const A=[-5,2],B=[7,4],d=divSteps(A,B,2,1,0);return{q:`已知 A(−5, 2)、B(7, 4)，求内分线段 AB 成 2 : 1 的点 P 的坐标。`,fig:plot({pts:[[-5,2,'A'],[7,4,'B'],[3,10/3,'P','b']],segs:[[-5,2,3,10/3,'',2],[3,10/3,7,4,'d',1]]}),sol:d.h+`<br>∴ P = (3, ${FR(10,3)})`}},
+ ()=>({q:'已知 A(−2, 5)、B(p, q)，若 P(0, 8) 内分线段 AB 成 1 : 3，求点 B 的坐标。',fig:plot({pts:[[-2,5,'A'],[0,8,'P','b'],[6,17,'B']],segs:[[-2,5,0,8,'',1],[0,8,6,17,'d',3]]}),sol:`0 = ${FR('(1)(p) + (3)(−2)','1 + 3')} = ${FR('p − 6',4)} → p = 6<br>8 = ${FR('(1)(q) + (3)(5)','1 + 3')} → 32 = q + 15 → q = 17<br>∴ B(6, 17)`}),
+ ()=>{const A=[3,-4],B=[-9,2],d=divSteps(A,B,1,4,1);return{q:`线段 AB 的端点为 A(3, −4)、B(−9, 2)，P 为其外分点且 ${FR('AP','PB')} = ${FR(1,4)}，求 P 的坐标。`,fig:plot({pts:[[3,-4,'A'],[-9,2,'B'],[7,-6,'P','b']],segs:[[3,-4,-9,2],[3,-4,7,-6,'d']]}),sol:`AP < PB，P 较接近 A，在 BA 的延长线上。<br>`+d.h+`<br>∴ P(7, −6)`}},
+ ()=>{const P=[1,3],Qp=[5,11],R=[9,5],M=[[3,7],[7,8],[5,4]];return{q:'已知 P(1, 3)、Q(5, 11)、R(9, 5) 为三角形的顶点，求该三角形三条中线的长。',fig:plot({poly:[P,Qp,R],pts:[...tri([P,Qp,R],'PQR'),[3,7,'M₁','b'],[7,8,'M₂','b'],[5,4,'M₃','b']],segs:[[...R,3,7,'d'],[...P,7,8,'d'],[...Qp,5,4,'d']]}),
+  sol:med(Qp,P,R,'RPQ').replace('PQ 边','PQ 边')+'<br><br>'+med(Qp,R,P,'PQR')+'<br><br>'+med(R,P,Qp,'QRP')}}],calc:c3,gens:G3,cfg:{mc:5,fl:2,gate:3}},
+{title:'10.4 三角形的面积',info:()=>`<div class="fm">△ABC 的面积 = ${FR(1,2)} | (x₁y₂ + x₂y₃ + x₃y₁) − (x₂y₁ + x₃y₂ + x₁y₃) |</div><p>记忆法：把 x、y 坐标排成两行，最后重复第一点；↘ 的积相加，↗ 的积相减，除以 2 取绝对值。逆时针排列得正值，顺时针得负值。<br><b>三点共线 ⇔ 面积 = 0。</b></p>`,
+ ex:[()=>{const P=[[-2,-3],[3,-1],[1,-5]],r=areaSteps(P);return{q:'求由三点 (−2, −3)、(3, −1)、(1, −5) 所形成的三角形面积。',fig:plot({poly:P,pts:tri(P)})+crossSVG(P),sol:r.html}},
+ ()=>({q:'三角形面积为 3 平方单位，两个顶点为 A(3, 1)、B(1, −3)，第三个顶点 C 在 y 轴上，求 C 的坐标。',fig:plot({pts:[[3,1,'A'],[1,-3,'B'],[0,-8,'C₁','b'],[0,-2,'C₂','b']],segs:[[3,1,1,-3],[3,1,0,-8,'d'],[1,-3,0,-8,'d'],[3,1,0,-2,'d'],[1,-3,0,-2,'d']]}),sol:`设 C(0, y)：${FR(1,2)} | (−9 + y + 0) − (1 + 0 + 3y) | = 3<br>| −10 − 2y | = 6 → −10 − 2y = ±6<br>y = −8 或 y = −2<br>∴ C(0, −8) 或 C(0, −2)`}),
+ ()=>{const P=[[0,3],[4,5],[-8,-1]],r=areaSteps(P);return{q:'证明三点 (0, 3)、(4, 5)、(−8, −1) 共线。',fig:plot({pts:tri(P),segs:[[-8,-1,4,5]]}),sol:r.html+'<br>三点无法构成有面积的图形，所以它们在同一直线上。'}}],calc:c4,gens:G4,cfg:{mc:5,fl:2,gate:3}},
+{title:'10.5 多边形的面积',info:()=>`<div class="fm">四边形 ABCD 的面积 = ${FR(1,2)} | (x₁y₂ + x₂y₃ + x₃y₄ + x₄y₁) − (x₂y₁ + x₃y₂ + x₄y₃ + x₁y₄) |</div><p>五边形或更多边的多边形可仿此计算：先确定各顶点位置，取任一顶点为起点，按<b>顺序</b>（顺时针或逆时针）排列，最后重复第一点。</p>`,
+ ex:[()=>{const P=[[-3,-1],[-1,4],[4,4],[5,0],[0,-2]],r=areaSteps(P);return{q:'求一个以 (−3, −1)、(−1, 4)、(4, 4)、(5, 0)、(0, −2) 为顶点的五边形的面积。',fig:plot({poly:P,pts:tri(P,'ABCDE')})+crossSVG(P),sol:r.html}}],calc:c5,gens:G5,cfg:{mc:5,fl:2,gate:3}},
+{title:'总复习',total:1,info:()=>`<p>10 题选择 + 5 题作答，题目取自 10.1–10.5，并含课本总复习题中较难的题型（中线长、三角形的高、判断三角形类型）。作答题在选择题完成后出现。</p>`,gens:[...G1,...G2,...G3,...G4,...G5,...HARD],cfg:{mc:10,fl:5,gate:0,must:HARD,nm:2,mustF:[h1,h2],nmF:1,total:1}}];
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',j==i));const T=TABS[i];app.innerHTML='';
+ const add=h=>{const d=document.createElement('div');d.className='cd';d.innerHTML=h;app.append(d);return d};
+ add(`<h2>${T.title}</h2>`+T.info());(T.ex||[]).forEach((f,k)=>{const e=f();add(`<h3>例题 ${k+1}${e.t?' · '+e.t:''}</h3><div>${e.q}</div>${e.fig||''}<div class="sol"><b>解</b><br>${e.sol}</div>`)});
+ if(T.calc){const d=add(`<h3>🧮 ${T.title.split(' ')[0]} 计算器</h3><div class="cb"></div>`);T.calc(d.querySelector('.cb'))}
+ const d=add(`<h3>✍️ ${T.total?'总复习测验':'小测验'}</h3><div class="qb"></div>`);quiz(d.querySelector('.qb'),T.gens,T.cfg);scrollTo(0,0);tabs.children[i].scrollIntoView({inline:'center',block:'nearest'})}
+TABS.forEach((T,i)=>{const b=document.createElement('button');b.textContent=T.title;b.onclick=()=>show(i);tabs.append(b)});
+let fs=15;try{fs=+localStorage.getItem('fs')||15}catch(e){}const setFs=v=>{fs=Math.max(12,Math.min(22,v));document.documentElement.style.fontSize=fs+'px';try{localStorage.setItem('fs',fs)}catch(e){}};setFs(fs);
+$('#fm').onclick=()=>setFs(fs-1);$('#fp').onclick=()=>setFs(fs+1);
+let th=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';try{th=localStorage.getItem('th')||th}catch(e){}const setTh=v=>{th=v;document.documentElement.dataset.theme=v;try{localStorage.setItem('th',v)}catch(e){}};setTh(th);$('#th').onclick=()=>setTh(th=='dark'?'light':'dark');
+$('#wm').innerHTML='<div>'+Array(90).fill('<span>蔡逸众 · ecchua79 · Chinese High School</span>').join('')+'</div>';
+show(0);
+</script></body></html>

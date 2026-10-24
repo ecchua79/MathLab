@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79">
+<title>高一数学 第8章 任意三角形的解法</title>
+<!-- 峇株吧辖蔡逸众制作 / 华仁中学蔡逸众制作 / Made by ecchua79 -->
+<style>
+:root{--bg:#f6f8fc;--fg:#1b2333;--cd:#fff;--ac:#2563eb;--wa:#e11d48;--tf:rgba(37,99,235,.08);--bd:#d6dde9;--ok:#16a34a;--no:#dc2626}
+[data-th=dark]{--bg:#0b1020;--fg:#e6ebf5;--cd:#141b30;--ac:#60a5fa;--wa:#fb7185;--tf:rgba(96,165,250,.13);--bd:#2a3556;--ok:#4ade80;--no:#f87171}
+*{box-sizing:border-box}html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--cd);border-bottom:1px solid var(--bd)}
+h1{font-size:1.1rem;margin:0}header button,.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:6px 12px;font-size:.9rem;cursor:pointer}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 10px;background:var(--bg);border-bottom:1px solid var(--bd);-webkit-overflow-scrolling:touch}
+nav button{flex:none;border:1px solid var(--bd);background:var(--cd);color:var(--fg);border-radius:20px;padding:6px 14px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:900px;margin:auto;padding:12px 12px 70px}
+section{display:none}section.on{display:block}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:12px 0}
+.card h3{margin:.2em 0 .5em;color:var(--ac)}.box{background:var(--tf);border-left:4px solid var(--ac);padding:8px 12px;border-radius:6px;margin:8px 0}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;font-size:.95em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}.fr>span:last-child{padding:0 .25em}
+.rt{display:inline-flex;align-items:stretch;vertical-align:middle}.rt svg{width:.8em;min-height:1.2em}
+.rt path{fill:none;stroke:currentColor;stroke-width:1.5;vector-effect:non-scaling-stroke}.rt .ov{border-top:1.5px solid currentColor;padding:.1em .2em 0 .1em}
+.dgs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.dg{width:100%;max-width:330px;background:var(--cd);border:1px dashed var(--bd);border-radius:8px}
+.dg text{fill:var(--fg);font-size:12px;text-anchor:middle}.dg .ang{fill:var(--wa);font-weight:bold}.dg .vt{font-weight:bold;font-size:14px;fill:var(--ac)}
+.st p{margin:.4em 0}.nt{color:var(--wa);font-weight:bold}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin:8px 0}.row label{font-size:.85rem;display:flex;flex-direction:column}
+input,select{font-size:1rem;padding:6px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--fg);width:7.5em}select{width:auto}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.ops button{padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font-size:1rem;cursor:pointer}
+.ops button.ok{background:var(--ok);color:#fff}.ops button.bad{background:var(--no);color:#fff}
+.qc{border-top:1px solid var(--bd);padding:8px 0}.ex{background:var(--tf);padding:8px 10px;border-radius:8px;margin-top:6px}
+.good{color:var(--ok);font-weight:bold}.err{color:var(--no);font-weight:bold}
+footer{position:fixed;bottom:0;left:0;right:0;text-align:center;font-size:.75rem;padding:6px;background:var(--cd);border-top:1px solid var(--bd);z-index:6}
+#wmf{position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Ctext x='20' y='120' fill='%23888' font-size='15' transform='rotate(-25 150 100)'%3E%E5%B3%87%E6%A0%AA%E5%B7%B4%E8%BE%96%E5%8D%8E%E4%BB%81%E4%B8%AD%E5%AD%A6%E8%94%A1%E9%80%B8%E4%BC%97%E5%88%B6%E4%BD%9C%20%C2%B7%20ecchua79%3C/text%3E%3C/svg%3E")}
+#wmb{position:fixed;right:8px;bottom:36px;z-index:9;pointer-events:none;font-size:.7rem;opacity:.35;animation:fl 12s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translate(-40vw,-30vh)}}
+</style></head><body>
+<header><h1>📐 高一数学下册 · 第8章 任意三角形的解法</h1><div><button onclick="fs(-1)">A−</button> <button onclick="fs(1)">A+</button> <button onclick="th()">🌓 日/夜</button></div></header>
+<nav id="nav"></nav><main id="main"></main>
+<footer>© 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79 · 仅供教学使用，未经许可请勿转载</footer>
+<div id="wmf"></div><div id="wmb">Made by ecchua79</div>
+<div id="wmh" style="position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;opacity:0;font-size:1px;color:transparent;user-select:none">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</div>
+<script>
+const D=Math.PI/180,sin=x=>Math.sin(x*D),cos=x=>Math.cos(x*D),asin=x=>Math.asin(x)/D,acos=x=>Math.acos(Math.max(-1,Math.min(1,x)))/D;
+const f2=x=>(+x).toFixed(2),R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.round(R(a,b)),P=a=>a[RI(0,a.length-1)];
+const F=(n,d)=>`<span class=fr><span>${n}</span><span>${d}</span></span>`;
+const RT=s=>`<span class=rt><svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M0 12L3 10L6 19.5L10 .8"/></svg><span class=ov>${s}</span></span>`;
+const HF=F(1,2);
+/* ---------- 主题与字号 ---------- */
+let fz=16;try{fz=+localStorage.fz||16;document.documentElement.dataset.th=localStorage.th||'light'}catch(e){}
+function fs(d){fz=Math.max(12,Math.min(26,fz+d*2));document.documentElement.style.fontSize=fz+'px';try{localStorage.fz=fz}catch(e){}}
+function th(){const h=document.documentElement,n=h.dataset.th=='dark'?'light':'dark';h.dataset.th=n;try{localStorage.th=n}catch(e){}}
+document.documentElement.style.fontSize=fz+'px';
+/* ---------- 三角形作图（角弧半径各不同） ---------- */
+function tri(t,m,circ,lab){const W=300,H=circ?230:190,p=34,Ap=[t.c*cos(t.B),t.c*sin(t.B)],Cp=[t.a,0],Bp=[0,0],sw=k=>m==null||m.includes(k),LV=k=>lab?lab['ABC'.indexOf(k)]:k,LS=n=>lab?lab['abc'.indexOf(n)].toLowerCase():n;
+ const Rw=t.a/(2*sin(t.A)),OC=circ?[t.a/2,((t.a/2-Ap[0])**2+Ap[1]**2-t.a*t.a/4)/(2*Ap[1])]:0;
+ const mn=circ?Math.min(0,Ap[0],OC[0]-Rw):Math.min(0,Ap[0]),mx=circ?Math.max(t.a,Ap[0],OC[0]+Rw):Math.max(t.a,Ap[0]),y0=circ?Math.min(0,OC[1]-Rw):0,y1=circ?Math.max(Ap[1],OC[1]+Rw):Ap[1],s=Math.min((W-2*p)/(mx-mn),(H-2*p)/(y1-y0));
+ const T=q=>[p+(q[0]-mn)*s,H-p-(q[1]-y0)*s],V={A:T(Ap),B:T(Bp),C:T(Cp)};
+ const g=[0,1].map(i=>(V.A[i]+V.B[i]+V.C[i])/3),out=(v,k)=>{const d=[v[0]-g[0],v[1]-g[1]],l=Math.hypot(...d)||1;return[v[0]+d[0]/l*k,v[1]+d[1]/l*k]};
+ let h=`<svg class=dg viewBox="0 0 ${W} ${H}">`+(circ?(()=>{const o=T(OC);return `<circle cx=${o[0]} cy=${o[1]} r=${Rw*s} fill=none stroke="var(--fg)" stroke-dasharray="4 3"/><circle cx=${o[0]} cy=${o[1]} r=2.5 fill="var(--fg)"/><line x1=${o[0]} y1=${o[1]} x2=${V.A[0]} y2=${V.A[1]} stroke="var(--fg)" stroke-dasharray="2 2"/><text x=${o[0]+10} y=${o[1]+14}>O</text><text x=${(o[0]+V.A[0])/2+16} y=${(o[1]+V.A[1])/2}>R=${m==null?f2(Rw):'?'}</text>`})():'')+`<polygon points="${V.A} ${V.B} ${V.C}" fill="var(--tf)" stroke="var(--ac)" stroke-width="2"/>`;
+ const O={A:['B','C'],B:['C','A'],C:['A','B']},rad={A:18,B:25,C:32};
+ for(const k of 'ABC'){const v=V[k],[x,y]=O[k],u=q=>{const d=[V[q][0]-v[0],V[q][1]-v[1]],l=Math.hypot(...d);return[d[0]/l,d[1]/l]};
+  const u1=u(x),u2=u(y),r=rad[k],cr=u1[0]*u2[1]-u1[1]*u2[0];
+  h+=`<path d="M${v[0]+r*u1[0]} ${v[1]+r*u1[1]}A${r} ${r} 0 0 ${cr>0?1:0} ${v[0]+r*u2[0]} ${v[1]+r*u2[1]}" fill=none stroke="var(--wa)" stroke-width="2"/>`;
+  let b=[u1[0]+u2[0],u1[1]+u2[1]];const bl=Math.hypot(...b)||1,lr=r+15;
+  h+=`<text class=ang x=${v[0]+b[0]/bl*lr} y=${v[1]+b[1]/bl*lr+4}>${sw(k)?f2(t[k])+'°':'?'}</text>`;
+  const q=out(v,15);h+=`<text class=vt x=${q[0]} y=${q[1]+5}>${LV(k)}</text>`}
+ const sd=[['a','B','C'],['b','C','A'],['c','A','B']];
+ for(const[n,x,y]of sd){const m=[(V[x][0]+V[y][0])/2,(V[x][1]+V[y][1])/2],q=out(m,13);h+=`<text x=${q[0]} y=${q[1]+4}><tspan font-style=italic>${LS(n)}</tspan>=${sw(n)?f2(t[n]):'?'}</text>`}
+ return h+'</svg>'}
+function tw(al,be,d,hid){const Y=150,P=28,Q=125,S=230,Ry=40,h=d*sin(al)*sin(be)/sin(be-al),va=Math.atan2(Y-Ry,S-P)/D,vb=Math.atan2(Y-Ry,S-Q)/D;
+ const ar=(x,r,a)=>`<path d="M${x+r} ${Y}A${r} ${r} 0 0 0 ${x+r*cos(a)} ${Y-r*sin(a)}" fill=none stroke="var(--wa)" stroke-width="2"/>`;
+ return `<svg class=dg viewBox="0 0 300 190"><text x=8 y=14 style="text-anchor:start;font-size:10px">示意图（未按比例）</text><line x1=10 y1=${Y} x2=290 y2=${Y} stroke="var(--fg)"/><polygon points="${P},${Y} ${S},${Y} ${S},${Ry}" fill="var(--tf)" stroke="var(--ac)" stroke-width="2"/><line x1=${Q} y1=${Y} x2=${S} y2=${Ry} stroke="var(--ac)" stroke-width="2"/>
+ ${ar(P,40,va)}${ar(Q,26,vb)}<text class=ang x=${P+60} y=${Y-10}>${f2(al)}°</text><text class=ang x=${Q+46} y=${Y-24}>${f2(be)}°</text>
+ <text class=vt x=${P} y=${Y+16}>P</text><text class=vt x=${Q} y=${Y+16}>Q</text><text class=vt x=${S} y=${Y+16}>S</text><text class=vt x=${S+8} y=${Ry-4}>R</text>
+ <text x=${(P+Q)/2} y=${Y+34}>d=${f2(d)}</text><line x1=${P} y1=${Y+22} x2=${Q} y2=${Y+22} stroke="var(--fg)"/><text x=${S+36} y=${(Y+Ry)/2}>h=${hid?'?':f2(h)}</text></svg>`}
+/* ---------- 解三角形核心 ---------- */
+const mk=(A,B,a)=>{const C=180-A-B;return{a,b:a*sin(B)/sin(A),c:a*sin(C)/sin(A),A,B,C}};
+const mkS=(a,b,c)=>({a,b,c,A:acos((b*b+c*c-a*a)/(2*b*c)),B:acos((c*c+a*a-b*b)/(2*c*a)),C:acos((a*a+b*b-c*c)/(2*a*b))});
+const mkA=(b,c,A)=>mkS(Math.sqrt(b*b+c*c-2*b*c*cos(A)),b,c);
+const bad=s=>({ts:[],steps:`<p class=err>${s}</p>`});
+function sAAS(A,B,a){if(A+B>=180)return bad('∠A+∠B 必须小于 180°');const t=mk(A,B,a);
+ return{ts:[t],steps:`<p>∠C = 180° − ${A}° − ${B}° = ${f2(t.C)}°</p><p>正弦定律：${F('b','sin B')} = ${F('a','sin A')}，b = ${F(`${a}×sin ${B}°`,`sin ${A}°`)} = <b>${f2(t.b)}</b></p><p>c = ${F(`${a}×sin ${f2(t.C)}°`,`sin ${A}°`)} = <b>${f2(t.c)}</b></p>`}}
+function sSSA(a,b,A){const x=b*sin(A)/a;if(A>=180)return bad('∠A 必须小于 180°');
+ if(x>1+1e-9)return bad(`sin B = ${f2(x)} > 1，无解（构不成三角形）。`);
+ const B1=asin(Math.min(1,x)),Bs=[B1];if(Math.abs(B1-90)>1e-6&&A+180-B1<180-1e-9)Bs.push(180-B1);
+ let s=`<p>正弦定律：${F('a','sin A')} = ${F('b','sin B')}，sin B = ${F(`${b}×sin ${A}°`,a)} = ${f2(x)}</p>`;
+ const ts=Bs.map((B,i)=>{const C=180-A-B,c=a*sin(C)/sin(A);s+=`<p><b>${Bs.length>1?'解'+(i+1)+'：':''}</b>B = ${f2(B)}°，C = 180° − ${A}° − ${f2(B)}° = ${f2(C)}°，c = ${F(`${a}×sin ${f2(C)}°`,`sin ${A}°`)} = <b>${f2(c)}</b></p>`;return{a,b,c,A,B,C}});
+ if(ts.length>1)s+='<p class=nt>⚠ B 可取锐角或钝角，条件实际上可得两个不同的三角形。</p>';return{ts,steps:s}}
+function sSAS(b,c,A){if(A>=180)return bad('∠A 必须小于 180°');const t=mkA(b,c,A);
+ return{ts:[t],steps:`<p>余弦定律：a² = b² + c² − 2bc cos A，a = ${RT(`${b}² + ${c}² − 2(${b})(${c})cos ${A}°`)} = <b>${f2(t.a)}</b></p><p>cos B = ${F('a² + c² − b²','2ac')} = ${F(`(${f2(t.a)})²+(${c})²−(${b})²`,`2(${f2(t.a)})(${c})`)}，B = <b>${f2(t.B)}°</b></p><p>C = 180° − ${A}° − ${f2(t.B)}° = <b>${f2(t.C)}°</b></p>`}}
+function sSSS(a,b,c){if(a+b<=c||b+c<=a||a+c<=b)return bad('任意两边之和必须大于第三边');const t=mkS(a,b,c);
+ return{ts:[t],steps:`<p>cos A = ${F('b² + c² − a²','2bc')} = ${F(`${b}²+${c}²−${a}²`,`2(${b})(${c})`)}，A = <b>${f2(t.A)}°</b></p><p>cos B = ${F('c² + a² − b²','2ca')} = ${F(`${c}²+${a}²−${b}²`,`2(${c})(${a})`)}，B = <b>${f2(t.B)}°</b></p><p>C = 180° − ${f2(t.A)}° − ${f2(t.B)}° = <b>${f2(t.C)}°</b></p>`}}
+function sTower(al,be,d){if(!(al>0&&al<be&&be<90))return bad('需满足 0 < α < β < 90°');const q=d*sin(al)/sin(be-al),h=q*sin(be);
+ return{svg:tw(al,be,d),steps:`<p>∠PRQ = ${be}° − ${al}° = ${be-al}°</p><p>△PRQ 正弦定律：${F('QR','sin '+al+'°')} = ${F(d,'sin '+(be-al)+'°')}，QR = ${F(`${d}×sin ${al}°`,`sin ${be-al}°`)} = ${f2(q)}</p><p>△RQS：RS = QR × sin ${be}° = <b>${f2(h)}</b></p>`}}
+const area=r=>{if(!r.ts.length)return r;const t=r.ts[0],S=.5*t.b*t.c*sin(t.A);r.steps+=`<p class=box>面积 = ${HF} bc sin A = ${HF} × ${f2(t.b)} × ${f2(t.c)} × sin ${f2(t.A)}° = <b>${f2(S)} 平方单位</b></p>`;return r};
+/* ---------- 各节资料 ---------- */
+function lab(r,L){const mp=c=>{const i='ABC'.indexOf(c);return i>=0?L[i]:L['abc'.indexOf(c)].toLowerCase()};
+ r.lab=L;r.steps=r.steps.split(/(<[^>]*>)/).map(x=>x[0]=='<'?x:x.replace(/(?<![A-Za-z])[abcABC]{1,2}(?![A-Za-z])/g,m=>[...m].map(mp).join(''))).join('');return r}
+const LB={A:['∠A (°)'],B:['∠B (°)']};
+const TABS=[
+{id:'8.1',n:'正弦定律',th:`<div class=box><b>正弦定律</b>：${F('a','sin A')} = ${F('b','sin B')} = ${F('c','sin C')} = 2R（R 为外接圆半径）<br>即 a : b : c = sin A : sin B : sin C。适用于锐角、直角、钝角三角形。</div><p>推导：作高 AD = c sin B = b sin C，所以 ${F('b','sin B')} = ${F('c','sin C')}。已知「两角一边」或「两边及其中一边的对角」时用正弦定律；后者要小心<b>两解</b>。</p><p>外接圆：三角形三个顶点都在圆上，O 为圆心，R 为半径（下图虚线圆）。</p><div class=dgs>${tri(mk(50,60,6),null,1)}</div>`,
+ ex:[['例题1 两角一边','课本：△ABC中，AB=2.3 cm，∠B=72°，∠C=81°，求AC的长度。',()=>lab(sAAS(81,72,2.3),'CBA')],
+ ['例题2 SSA（一解）','课本：△PQR中，PQ=5.7 cm，PR=8.6 cm，∠Q=132°，求∠R。钝角 Q 的对边 PR 最大，所以 ∠R 必为锐角。',()=>lab(sSSA(8.6,5.7,132),'QRP')],
+ ['例题3 SSA（两解）','课本：△ABC中，∠A=30°，AB=10 cm，BC=8 cm，解△ABC。因 BC<AB 且 BC>AB·sin 30°，∠C 有锐角、钝角两种可能，可得两个三角形。',()=>lab(sSSA(8,10,30),'ACB')]],
+ md:[['两角一边 AAS/ASA',[['A','∠A (°)',81],['B','∠B (°)',72],['a','边 a',2.3]],v=>sAAS(v.A,v.B,v.a)],['两边及一对角 SSA',[['a','边 a',8],['b','边 b',10],['A','∠A (°)',30]],v=>sSSA(v.a,v.b,v.A)]],
+ g:()=>G1},
+{id:'8.2',n:'余弦定律',th:`<div class=box><b>余弦定律</b>：a² = b² + c² − 2bc cos A（b²、c² 同理）<br>cos A = ${F('b² + c² − a²','2bc')}，cos B = ${F('c² + a² − b²','2ca')}，cos C = ${F('a² + b² − c²','2ab')}</div><p>已知「两边及夹角」(SAS) 或「三边」(SSS) 时用余弦定律。当 A = 90° 时，cos A = 0，余弦定律就变成毕氏定理。大边对大角。</p>`,
+ ex:[['例题1 SAS','课本：AB=4.3，AC=2.6，∠A=79°，解△ABC。（c=4.3，b=2.6）',()=>sSAS(2.6,4.3,79)],['例题2 SSS','课本：a=7，b=10，c=6，求三个内角。',()=>sSSS(7,10,6)],
+ ['例题3 边长比含根号','课本：a:b:c = '+RT(3)+' : '+RT(4)+' : '+RT(5)+'，求最大内角。设 a='+RT('3')+'k，b='+RT('4')+'k，c='+RT('5')+'k，C 最大：',()=>({ts:[mkS(Math.sqrt(3),2,Math.sqrt(5))],steps:`<p>cos C = ${F('a² + b² − c²','2ab')} = ${F(`(${RT('3')}k)² + (${RT('4')}k)² − (${RT('5')}k)²`,`2(${RT('3')}k)(${RT('4')}k)`)} = ${F('2k²',`4${RT('3')}k²`)} = ${F(1,`2${RT('3')}`)}</p><p>C = <b>73.22°</b></p>`})]],
+ md:[['两边夹角 SAS',[['b','边 b',2.6],['c','边 c',4.3],['A','夹角 ∠A (°)',79]],v=>sSAS(v.b,v.c,v.A)],['三边 SSS',[['a','边 a',7],['b','边 b',10],['c','边 c',6]],v=>sSSS(v.a,v.b,v.c)]],
+ g:()=>G2},
+{id:'8.3',n:'三角测量问题',th:`<div class=box>解题步骤：① 画图并标出已知的仰角、俯角、方位角；② 找出含已知量的三角形；③ 选用正弦或余弦定律；④ 再用直角三角形求高度。<br>仰角与俯角都是与<b>水平线</b>的夹角；方位角从正北顺时针量起（三位数）。</div>`,
+ ex:[['例题1 吉隆坡塔','课本：从平地两点 P、Q 测得塔顶 R 的仰角为 68° 及 81°，PQ=103.42 m，求塔高。',()=>sTower(68,81,103.42)]],
+ md:[['双仰角求高度',[['al','P处仰角α (°)',68],['be','Q处仰角β (°)',81],['d','PQ距离 d (m)',103.42]],v=>sTower(v.al,v.be,v.d)],['余弦定律求距离 (SAS)',[['b','AC (m)',150],['c','BC (m)',100],['A','∠ACB (°)',60]],v=>sSAS(v.b,v.c,v.A)]],
+ g:()=>G3},
+{id:'8.4',n:'三角形的面积',th:`<div class=box><b>面积公式</b>：S = ${HF}ab sin C = ${HF}bc sin A = ${HF}ca sin B<br>两角一边：先求第三个角，再用正弦定律求一边；三边：先用余弦定律求一角。</div>`,
+ ex:[['例题1 SAS','课本：△PQR中，PQ=6.05 cm，PR=9.68 cm，∠QPR=72°，求△PQR的面积。',()=>lab(area(sSAS(9.68,6.05,72)),'PQR')],['例题2 两角一边','课本：△ABC中，∠A=45°，∠B=65°，c=5.8 cm，求△ABC的面积。',()=>lab(area(sAAS(70,65,5.8)),'CBA')],['例题3 三边','课本：AB=9.5，AC=8.1，BC=6，求面积。',()=>area(sSSS(6,8.1,9.5))]],
+ md:[['两边夹角',[['b','边 b',9.68],['c','边 c',6.05],['A','夹角 ∠A (°)',72]],v=>area(sSAS(v.b,v.c,v.A))],['两角一边',[['A','∠A (°)',70],['B','∠B (°)',65],['a','边 a',5.8]],v=>area(sAAS(v.A,v.B,v.a))],['三边',[['a','边 a',6],['b','边 b',8.1],['c','边 c',9.5]],v=>area(sSSS(v.a,v.b,v.c))]],
+ g:()=>G4}];
+/* ---------- 题目生成引擎（每次随机） ---------- */
+const rs=()=>{let a,b,c;do{a=RI(4,11);b=RI(4,11);c=RI(4,11)}while(a+b<=c+1||b+c<=a+1||a+c<=b+1);return[a,b,c]};
+var G1=[()=>{const A=RI(35,80),B=RI(30,75),a=RI(4,12),t=mk(A,B,a);return{q:`在△ABC中，∠A=${A}°，∠B=${B}°，a=${a} cm，求 b（cm）。`,v:t.b,u:' cm',t,gv:'ABa',exp:`${F('b','sin B')} = ${F('a','sin A')}，b = ${F(`${a}×sin ${B}°`,`sin ${A}°`)} = ${f2(t.b)} cm。`}},
+()=>{const A=RI(30,85),B=RI(40,70),a=RI(4,12),t=mk(A,B,a),v=a/(2*sin(A));return{q:`△ABC中，a=${a} cm，∠A=${A}°，求外接圆半径 R（cm）。（图中虚线圆为△ABC的外接圆：A、B、C 三点都在圆上，O 为圆心，OA=R）`,v,u:' cm',t,gv:'Aa',circ:1,exp:`${F('a','sin A')} = 2R，R = ${F(a,`2×sin ${A}°`)} = ${f2(v)} cm。`}},
+()=>{const b=RI(4,8),a=b+RI(1,4),A=RI(35,80),x=b*sin(A)/a,B=asin(x),t=mk(A,B,a);return{q:`△ABC中，a=${a} cm，b=${b} cm，∠A=${A}°（a>b，故∠B为锐角），求∠B（°）。`,v:B,u:'°',t,gv:'Aab',exp:`sin B = ${F(`${b}×sin ${A}°`,a)} = ${f2(x)}，B = ${f2(B)}°（a>b，B 必小于 A，只有锐角一解）。`}}];
+var G2=[()=>{const b=RI(4,10),c=RI(4,10),A=RI(40,120),t=mkA(b,c,A);return{q:`△ABC中，b=${b} cm，c=${c} cm，∠A=${A}°，求 a（cm）。`,v:t.a,u:' cm',t,gv:'bcA',exp:`a² = ${b}²+${c}²−2(${b})(${c})cos ${A}°，a = ${RT(`${b}²+${c}²−2(${b})(${c})cos ${A}°`)} = ${f2(t.a)} cm。`}},
+()=>{const[a,b,c]=rs(),t=mkS(a,b,c),m=Math.max(a,b,c),k=a==m?'A':b==m?'B':'C',[x,y,z]=k=='A'?[a,b,c]:k=='B'?[b,c,a]:[c,a,b];return{q:`△ABC中，a=${a}，b=${b}，c=${c}，求最大内角（°）。`,v:t[k],u:'°',t,gv:'abc',exp:`大边对大角，最大角为 ${k}（对边 ${x}）：cos ${k} = ${F(`${y}²+${z}²−${x}²`,`2×${y}×${z}`)}，${k} = ${f2(t[k])}°。`}}];
+var G3=[()=>{const al=RI(30,60),be=al+RI(10,25),d=RI(20,80),r=sTower(al,be,d),h=d*sin(al)*sin(be)/sin(be-al);return{q:`从平地 P、Q 两点（P、Q、塔底 S 同在一直线，PQ=${d} m）测得塔顶 R 的仰角分别是 ${al}° 与 ${be}°，求塔高（m）。`,v:h,u:' m',svg:tw(al,be,d,1),svgF:r.svg,exp:r.steps}}];
+var G4=[()=>{const b=RI(4,10),c=RI(4,10),A=RI(30,130),t=mkA(b,c,A),v=.5*b*c*sin(A);return{q:`△ABC中，b=${b} cm，c=${c} cm，∠A=${A}°，求面积（cm²）。`,v,u:' cm²',t,gv:'bcA',exp:`S = ${HF}bc sin A = ${HF}×${b}×${c}×sin ${A}° = ${f2(v)} cm²。`}},
+()=>{const[a,b,c]=rs(),t=mkS(a,b,c),v=.5*b*c*sin(t.A);return{q:`△ABC中，a=${a} cm，b=${b} cm，c=${c} cm，求面积（cm²）。`,v,u:' cm²',t,gv:'abc',exp:`先求 A：cos A = ${F(`${b}²+${c}²−${a}²`,`2×${b}×${c}`)}，A = ${f2(t.A)}°；S = ${HF}bc sin A = ${f2(v)} cm²。`}},
+()=>{const A=RI(35,80),B=RI(40,70),a=RI(4,10),t=mk(A,B,a),v=.5*t.b*t.c*sin(A);return{q:`△ABC中，∠A=${A}°，∠B=${B}°，a=${a} cm，求面积（cm²）。`,v,u:' cm²',t,gv:'ABa',exp:`C=${180-A-B}°；b = ${F(`${a}×sin ${B}°`,`sin ${A}°`)} = ${f2(t.b)}，c = ${f2(t.c)}；S = ${HF}bc sin A = ${f2(v)} cm²。`}}];
+var GH=[()=>{const[m,n,p]=P([[3,5,7],[5,7,8],[2,3,4],[3,4,6],[4,5,7],[7,8,10]]),t=mkS(m,n,p),v=t.C;return{q:`△ABC中 a:b:c = ${m}:${n}:${p}，求最大内角 C（°）。`,v,u:'°',t,gv:'abc',exp:`设 a=${m}k，b=${n}k，c=${p}k：cos C = ${F(`${m}²+${n}²−${p}²`,`2×${m}×${n}`)}，C = ${f2(v)}°。`}},
+()=>{const a=RI(5,12),b=RI(5,12),th=RI(40,80),t=mkA(a,b,180-th),v=t.c>0?t.a:0;return{q:`平行四边形边长 ${a} cm 与 ${b} cm，夹角为 ${th}°（较小角），求较长的对角线（cm）。`,v,u:' cm',t,gv:'bcA',exp:`较长对角线所对的角是 180°−${th}° = ${180-th}°：d² = ${a}²+${b}²−2(${a})(${b})cos ${180-th}°，d = ${RT(`${a}²+${b}²−2(${a})(${b})cos ${180-th}°`)} = ${f2(v)} cm。`}},
+()=>{const v1=RI(20,40),v2=RI(20,40),h=P([1,2]),th=RI(10,90),de=RI(40,110),d1=v1*h,d2=v2*h,t=mkA(d1,d2,de),v=t.a;return{q:`两船同时离开码头 A：甲船以 ${v1} 海里/小时沿方位角 ${th}°，乙船以 ${v2} 海里/小时沿方位角 ${th+de}° 航行，${h} 小时后两船相距多少海里？（图中 A 为码头）`,v,u:' 海里',t,gv:'bcA',exp:`两船航向夹角 = ${th+de}°−${th}° = ${de}°；AB=${d1}，AC=${d2}：距离 = ${RT(`${d1}²+${d2}²−2(${d1})(${d2})cos ${de}°`)} = ${f2(v)} 海里。`}},
+()=>{const b=RI(4,9),c=RI(5,10),A=RI(25,70),S=Math.round(.5*b*c*sin(A)*100)/100,x=2*S/(b*c),v=asin(x),t=mkA(b,c,v);return{q:`锐角△ABC的面积是 ${S} cm²，AB=${c} cm，AC=${b} cm，求∠BAC（°）。`,v,u:'°',t,gv:'bc',exp:`S = ${HF}bc sin A，sin A = ${F(`2×${S}`,`${b}×${c}`)} = ${f2(x)}；A 为锐角，故 A = ${f2(v)}°。`}}];
+/* ---------- 测验组件 ---------- */
+const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+function opts(v,u){const ks=sh(u=='°'?[.06,-.06,.12,-.12,.2,-.2]:[.08,-.08,.18,-.18,.3,-.3]).slice(0,3);return sh([v,...ks.map(k=>{let w=v*(1+k);if(u=='°'&&w>=179)w=v*(1-Math.abs(k));return w})])}
+const dg=(g,f)=>(f&&g.svgF)||g.svg||(g.t?tri(g.t,f?null:g.gv,g.circ):'');
+function quiz(el,mg,fg,nM,nF,pass,fin){let sc=0,dn=0,fd=0,fsc=0;
+ el.innerHTML=`<h3>${fin?'总复习':'随堂测验'}：选择题（${nM}题）</h3><div class=mc></div><div class=rs></div><div class=fl></div>`;
+ const mc=el.querySelector('.mc'),rs_=el.querySelector('.rs'),fl=el.querySelector('.fl');
+ for(let i=0;i<nM;i++){const g=P(mg)(),os=opts(g.v,g.u),c=document.createElement('div');c.className='qc';
+  c.innerHTML=`<b>${i+1}.</b> ${g.q}<div class=dgs>${dg(g)}</div><div class=ops></div><div class=ex hidden></div>`;
+  os.forEach(o=>{const b=document.createElement('button');b.textContent=f2(o)+g.u;b.onclick=()=>{const ok=o===g.v;c.querySelector('.dgs').innerHTML=dg(g,1);c.querySelectorAll('button').forEach((x,j)=>{x.disabled=true;if(os[j]===g.v)x.classList.add('ok')});if(!ok)b.classList.add('bad');
+   const e=c.querySelector('.ex');e.hidden=false;e.innerHTML=`<span class=${ok?'good':'err'}>${ok?'✔ 答对了！':'✘ 答错了'}</span> 正确答案：<b>${f2(g.v)}${g.u}</b><br>${g.exp}`;if(ok)sc++;if(++dn==nM)fin2()};c.querySelector('.ops').append(b)});mc.append(c)}
+ function fin2(){if(pass&&sc<pass){rs_.innerHTML=`<p class=err>选择题答对 ${sc}/${nM}，需答对 ${pass} 题或以上才能挑战作答题。</p><button class=btn>🔄 重新出题</button>`;rs_.querySelector('button').onclick=()=>quiz(el,mg,fg,nM,nF,pass,fin);return}
+  rs_.innerHTML=`<p class=good>选择题 ${sc}/${nM}${pass?'，解锁作答题！':''}</p>`;fl.innerHTML=`<h3>作答题（${nF}题，答案取两位小数）</h3>`;
+  for(let i=0;i<nF;i++){const g=P(fg)(),c=document.createElement('div');c.className='qc';
+   c.innerHTML=`<b>${i+1}.</b> ${g.q}<div class=dgs>${dg(g)}</div><div class=row><input type=number step=any placeholder="答案"><span>${g.u}</span><button class=btn>提交</button></div><div class=ex hidden></div>`;
+   c.querySelector('button').onclick=function(){const x=parseFloat(c.querySelector('input').value);if(isNaN(x))return;const ok=Math.abs(x-g.v)<=Math.max(.02,Math.abs(g.v)*.003);
+    this.disabled=true;c.querySelector('input').disabled=true;c.querySelector('.dgs').innerHTML=dg(g,1);const e=c.querySelector('.ex');e.hidden=false;e.innerHTML=`<span class=${ok?'good':'err'}>${ok?'✔ 正确！':'✘ 不正确（你的答案 '+x+'）'}</span> 正确答案：<b>${f2(g.v)}${g.u}</b><br>${g.exp}`;if(ok)fsc++;if(++fd==nF)end()};fl.append(c)}}
+ function end(){const tot=sc+fsc,all=nM+nF,pc=Math.round(tot/all*100),m=pc>=90?'🏆 优秀！掌握得非常好。':pc>=70?'👍 良好，再巩固错题即可。':pc>=50?'🙂 及格，建议重读例题再试。':'💪 请先复习各节例题与计算器，再来挑战。';
+  fl.insertAdjacentHTML('beforeend',`<div class=card><h3>${fin?'总复习成绩':'本节成绩'}</h3>选择题 ${sc}/${nM}，作答题 ${fsc}/${nF}，总分 <b>${tot}/${all}</b>（${pc}%）<br>${m}<br><button class=btn>🔄 再来一组新题</button></div>`);fl.lastChild.querySelector('button').onclick=()=>quiz(el,mg,fg,nM,nF,pass,fin)}}
+/* ---------- 页面构建 ---------- */
+const nav=document.getElementById('nav'),main=document.getElementById('main');
+function show(i){[...nav.children].forEach((b,j)=>b.classList.toggle('on',i==j));[...main.children].forEach((s,j)=>s.classList.toggle('on',i==j));scrollTo(0,0);nav.children[i].scrollIntoView({inline:'center',block:'nearest'})}
+const out=r=>`<div class=dgs>${r.svg||r.ts.map(t=>tri(t,null,0,r.lab)).join('')}</div><div class=st>${r.steps}</div>`;
+TABS.forEach((T,i)=>{const s=document.createElement('section'),pool=T.g();
+ s.innerHTML=`<div class=card><h3>${T.id} ${T.n}</h3>${T.th}</div><div class=card><h3>📖 课本例题详解</h3><div class=exs></div></div><div class=card><h3>🧮 ${T.id} 专属计算器</h3><div class=row><label>题型<select></select></label></div><div class=inp></div><button class=btn>计算并作图</button><div class=co></div></div><div class=card id=qz></div>`;
+ T.ex.forEach(e=>{const d=document.createElement('div');d.innerHTML=`<h4>${e[0]}</h4><p>${e[1]}</p>`+out(e[2]());d.style.borderTop='1px solid var(--bd)';s.querySelector('.exs').append(d)});
+ const sel=s.querySelector('select'),inp=s.querySelector('.inp');T.md.forEach((m,j)=>sel.add(new Option(m[0],j)));
+ const draw=()=>{const m=T.md[sel.value];inp.innerHTML='<div class=row>'+m[1].map(f=>`<label>${f[1]}<input type=number step=any data-k=${f[0]} value=${f[2]}></label>`).join('')+'</div>'};sel.onchange=draw;draw();
+ s.querySelector('.btn').onclick=()=>{const v={};inp.querySelectorAll('input').forEach(x=>v[x.dataset.k]=parseFloat(x.value));if(Object.values(v).some(x=>!(x>0)))return s.querySelector('.co').innerHTML='<p class=err>请输入大于 0 的数字</p>';s.querySelector('.co').innerHTML=out(T.md[sel.value][2](v))};
+ s.querySelector('.btn').click();quiz(s.querySelector('#qz'),pool,pool,5,2,3);
+ main.append(s);const b=document.createElement('button');b.textContent=T.id+' '+T.n;b.onclick=()=>show(i);nav.append(b)});
+{const s=document.createElement('section');s.innerHTML=`<div class=card><h3>📝 总复习</h3><p>抽取 8.1–8.4 各节题型，并加入总复习题中较难的题目（边比求角、平行四边形对角线、方位角航行、已知面积求角）。10 题选择 + 5 题作答，完成后显示分数评估。</p></div><div class=card id=qz></div>`;
+ const easy=[...G1,...G2,...G3,...G4],all=[...easy,...GH,...GH];quiz(s.querySelector('#qz'),all,[...GH,...GH,...G3,...G2],10,5,0,true);main.append(s);
+ const b=document.createElement('button');b.textContent='总复习';b.onclick=()=>show(TABS.length);nav.append(b)}
+show(0);
+/* 水印守护 */
+setInterval(()=>{if(!document.getElementById('wmf')||!document.getElementById('wmh')||!document.querySelector('footer')){location.reload()}},4000);
+</script></body></html>
