@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高一数学下册 第9章 三角恒等式与三角方程式 互动课程 | 峇株吧辖华仁中学蔡逸众制作</title>
+<meta name="author" content="Made by ecchua79"><!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<style>
+:root{--bg:#0b1220;--fg:#e6edf7;--card:#141e33;--ac:#22d3ee;--ok:#22c55e;--bad:#ef4444;--bd:#2b3b5c;--fs:17px}
+[data-t=l]{--bg:#f6f8fc;--fg:#162033;--card:#fff;--ac:#0b7bb5;--ok:#15803d;--bad:#c62828;--bd:#c9d3e6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:var(--fs)/1.7 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}h1{font-size:1.1em;margin:0}
+button,select,input{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:4px 10px}button{cursor:pointer}
+#tabs{display:flex;overflow-x:auto;gap:6px;padding:6px 10px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--bd);scrollbar-width:thin}
+#tabs button{white-space:nowrap;flex:none}#tabs .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:900px;margin:auto;padding:10px 12px 90px}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:12px 0}
+h2,h3{color:var(--ac);margin:.3em 0}.fm{overflow-wrap:anywhere;overflow-x:auto;background:rgba(34,211,238,.1);border-left:4px solid var(--ac);padding:6px 10px;border-radius:6px;margin:6px 0}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25}.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}
+.rt{display:inline-block;position:relative;padding:.12em 0 0 .9em;margin-left:.05em}.rt svg{position:absolute;top:0;height:100%;overflow:visible}.rt .rs{left:0;width:.85em}.rt .rb{left:.85em;right:0;width:calc(100% - .85em)}.rt path{fill:none;stroke:currentColor;stroke-width:1.3}
+.sv{width:100%;max-width:300px;display:block;margin:6px auto;color:var(--fg)}.sv text{fill:currentColor;font-size:11px}
+.o{display:block;width:100%;text-align:left;margin:6px 0}.o.ok{background:var(--ok);color:#fff}.o.no{background:var(--bad);color:#fff}
+.ex{display:none;margin-top:6px;padding:8px;border:1px dashed var(--bd);border-radius:8px}.ex.s{display:block}.gd{color:var(--ok);font-weight:700}.bd{color:var(--bad);font-weight:700}
+input[type=text]{width:9em}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden;opacity:.035;font-size:12px;font-weight:400;transform:rotate(-25deg);line-height:3.6;white-space:pre;color:var(--fg)}
+footer{text-align:center;padding:16px;font-size:.8em;border-top:1px solid var(--bd);opacity:.85}.hid{position:absolute;opacity:.01;font-size:1px;height:1px;overflow:hidden;user-select:none}
+</style></head><body>
+<div id="wm"></div><span class="hid">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</span>
+<header><h1>高一数学下册 · 第9章 三角恒等式与三角方程式</h1><div>字号 <button onclick="fz(-1)">A-</button><button onclick="fz(0)">A</button><button onclick="fz(1)">A+</button> <button id="th" onclick="th()">☀ 白天</button></div></header>
+<nav id="tabs"></nav><main id="m"></main>
+<footer>© 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79 · 仅供教学使用，未经许可请勿转载</footer>
+<script>
+const D=Math.PI/180,$=s=>document.querySelector(s),ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pk=a=>a[ri(0,a.length-1)],sh=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+let fs=17;function fz(d){fs=d?Math.min(28,Math.max(12,fs+2*d)):17;document.documentElement.style.setProperty('--fs',fs+'px')}
+function th(){const r=document.documentElement,l=r.dataset.t=='l';r.dataset.t=l?'':'l';$('#th').textContent=l?'☀ 白天':'🌙 黑夜'}
+$('#wm').textContent=Array(60).fill('峇株吧辖华仁中学蔡逸众制作    Made by ecchua79    '.repeat(4)).join('\n');
+// ---- 数学排版：分数⟦分子|分母⟧ 根号√⟨内容⟩ ----
+const M=s=>{let p;do{p=s;s=s.replace(/√⟨([^⟨⟩]*)⟩/g,(_,x)=>`<span class=rt><svg class=rs viewBox="0 0 10 10" preserveAspectRatio="none"><path d="M0 6L1.5 5.5 3 9.5 5 .5H10" vector-effect="non-scaling-stroke"/></svg><svg class=rb viewBox="0 0 10 10" preserveAspectRatio="none"><path d="M0 .5H10" vector-effect="non-scaling-stroke"/></svg><span>${x}</span></span>`).replace(/⟦([^⟦⟧|]*)\|([^⟦⟧]*)⟧/g,(_,a,b)=>`<span class=fr><span>${a}</span><span>${b}</span></span>`)}while(s!=p);return s};
+const g=(a,b)=>b?g(b,a%b):Math.abs(a);
+const fr=(n,d=1)=>{const k=g(n,d)||1;n/=k;d/=k;if(d<0){n=-n;d=-d}return d==1?`${n}`:(n<0?'−':'')+`⟦${Math.abs(n)}|${d}⟧`};
+function tf(x){if(Math.abs(x)<1e-9)return'0';for(let d=1;d<=300;d++){const n=Math.round(x*d);if(Math.abs(x*d-n)<1e-7)return fr(n,d)}
+ for(let d=1;d<=12;d++){const k=x*d,m=Math.round(k*k);if(m>1&&Math.abs(k*k-m)<1e-7)return(x<0?'−':'')+(d==1?`√⟨${m}⟩`:`⟦√⟨${m}⟩|${d}⟧`)}const R=k=>Number.isInteger(Math.sqrt(k))?''+Math.sqrt(k):`√⟨${k}⟩`;
+ for(let d=1;d<=12;d++)for(let m=2;m<=36;m++)for(let n=1;n<m;n++)for(const a of[1,-1])for(const b of[1,-1])if(Math.abs((a*Math.sqrt(m)+b*Math.sqrt(n))/d-x)<1e-9){const t=(a>0?'':'−')+R(m)+(b>0?'+':'−')+R(n);return d==1?t:`⟦${t}|${d}⟧`}
+ return x.toFixed(4)}
+const pv=s=>{s=(s+'').replace('−','-').trim();if(s.includes('/')){const[a,b]=s.split('/');return parseFloat(a)/parseFloat(b)}return parseFloat(s)};
+// ---- SVG：单位圆（角度弧线半径依序递增以便区分）----
+function circ(o){const cx=120,cy=115,R=85,P=a=>[cx+R*Math.cos(a*D),cy-R*Math.sin(a*D)],C=['#f59e0b','#22d3ee','#a3e635','#f472b6'];
+let s=`<svg viewBox="0 0 240 230" class=sv><path d="M8 115H234M120 8V224" stroke="currentColor" opacity=".45"/><circle cx=120 cy=115 r=85 fill=none stroke=currentColor opacity=.55 /><text x=226 y=110>x</text><text x=125 y=16>y</text>`;
+if(o.h!=null)s+=`<path d="M20 ${cy-o.h*R}H220" stroke="#ef4444" stroke-dasharray="4 3"/><text x=2 y=${cy-o.h*R-3} fill=#ef4444>${o.hl||''}</text>`;
+if(o.v!=null)s+=`<path d="M${cx+o.v*R} 20V210" stroke="#ef4444" stroke-dasharray="4 3"/><text x=${cx+o.v*R+3} y=24>${o.hl||''}</text>`;
+(o.arcs||[]).forEach((r,i)=>{const rr=22+i*13,f=r.f,t=r.t,p1=[cx+rr*Math.cos(f*D),cy-rr*Math.sin(f*D)],p2=[cx+rr*Math.cos(t*D),cy-rr*Math.sin(t*D)],m=(f+t)/2,lr=rr+(i%2?10:9);
+s+=`<path d="M${p1} A${rr} ${rr} 0 ${t-f>180?1:0} 0 ${p2}" fill=none stroke="${C[i%4]}" stroke-width=2 /><text x=${cx+lr*Math.cos(m*D)-8} y=${cy-lr*Math.sin(m*D)+4} fill="${C[i%4]}" style="fill:${C[i%4]}">${r.l||''}</text>`});
+(o.rays||[]).forEach((r,i)=>{const[x,y]=P(r.a);s+=`<path d="M${cx} ${cy}L${x} ${y}" stroke="${C[(i+1)%4]}" stroke-width=1.8 /><circle cx=${x} cy=${y} r=3.5 fill="${C[(i+1)%4]}" /><text x=${x+(x>cx?5:-30)} y=${y+(y>cy?14:-4)}>${r.l||''}</text>`;
+ if(o.proj&&i==0)s+=`<path d="M${x} ${y}V115" stroke=currentColor stroke-dasharray="3 3" opacity=.7 /><text x=${x+3} y=${(y+115)/2}>${o.pl?o.pl[0]:''}</text><text x=${(x+cx)/2-6} y=${y>115?y-4:131}>${o.pl?o.pl[1]:''}</text>`});
+(o.pts||[]).forEach(r=>{const[x,y]=P(r.a);s+=`<circle cx=${x} cy=${y} r=4 fill=#ef4444 /><path d="M${cx} ${cy}L${x} ${y}" stroke=#ef4444 opacity=.5 /><text x=${x+(x>cx?5:-36)} y=${y+(y>cy?14:-5)}>${r.l}</text>`});
+return s+'</svg>'}
+const ell=(a,b)=>`<svg viewBox="0 0 240 200" class=sv><path d="M8 100H234M120 8V192" stroke=currentColor opacity=.45 /><ellipse cx=120 cy=100 rx=${a} ry=${b} fill=none stroke=#22d3ee stroke-width=2 /><text x=${120+a+3} y=96>(${'½'},0)</text><text x=125 y=${100-b-3}>(0,⅓)</text><text x=20 y=20>4x²+9y²=1 的图形：椭圆</text></svg>`;
+// ---- 例题 ----
+const A=(a,b,c)=>circ({rays:[{a:a,l:''}],arcs:[{f:0,t:a,l:b}],proj:1,pl:c});
+const EX=[[ // 9.1
+{t:'例题1',q:'已知 sinA=⟦4|5⟧，求 cosA 的可能值。',s:'由 sin²A+cos²A=1：<br>cos²A=1−(⟦4|5⟧)²=⟦9|25⟧<br>cosA=±⟦3|5⟧<br>（sinA>0，A 在第一或第二象限，故 cosA=⟦3|5⟧ 或 −⟦3|5⟧）',g:circ({rays:[{a:53.13,l:'A'},{a:126.87,l:"A'"}],arcs:[{f:0,t:53.13,l:'A'},{f:0,t:126.87,l:"A'"}],h:.8,hl:'4/5'})},
+{t:'例题2',q:'已知 x=⟦1|2⟧sinθ，y=⟦1|3⟧cosθ，求 x 与 y 的关系式。',s:'sinθ=2x，cosθ=3y<br>代入 sin²θ+cos²θ=1：(2x)²+(3y)²=1<br>得 4x²+9y²=1',g:ell(60,40)},
+{t:'例题4（证明）',q:'证明 tanθ+cotθ=secθ cosecθ。',s:'tanθ+cotθ=⟦sinθ|cosθ⟧+⟦cosθ|sinθ⟧=⟦sin²θ+cos²θ|cosθ sinθ⟧=⟦1|cosθ sinθ⟧=secθ cosecθ',g:A(40,'θ',['sinθ','cosθ'])}],
+[ // 9.2
+{t:'例题1(a)',q:'求 sin10°cos50°+cos10°sin50° 的值。',s:'= sin(10°+50°)=sin60°=⟦√⟨3⟩|2⟧',g:circ({rays:[{a:10,l:'10°'},{a:60,l:'60°'}],arcs:[{f:0,t:10,l:'10°'},{f:10,t:60,l:'50°'}]})},
+{t:'例题2(a)',q:'不使用计算机，求 sin75°。',s:'sin75°=sin(45°+30°)=sin45°cos30°+cos45°sin30°<br>=⟦√⟨2⟩|2⟧×⟦√⟨3⟩|2⟧+⟦√⟨2⟩|2⟧×⟦1|2⟧=⟦√⟨6⟩+√⟨2⟩|4⟧',g:circ({rays:[{a:45,l:'45°'},{a:75,l:'75°'}],arcs:[{f:0,t:45,l:'45°'},{f:45,t:75,l:'30°'}]})},
+{t:'例题4',q:'不使用计算机，求 tan15°。',s:'tan15°=tan(60°−45°)=⟦tan60°−tan45°|1+tan60°tan45°⟧=⟦√⟨3⟩−1|1+√⟨3⟩⟧<br>有理化 = 2−√⟨3⟩',g:circ({rays:[{a:45,l:'45°'},{a:60,l:'60°'}],arcs:[{f:0,t:45,l:'45°'},{f:45,t:60,l:'15°'}]})},
+{t:'例题5',q:'已知 sinα=⟦3|5⟧，sinβ=⟦5|13⟧，α、β 为锐角，求 sin(α−β)。',s:'cosα=⟦4|5⟧，cosβ=⟦12|13⟧<br>sin(α−β)=sinαcosβ−cosαsinβ=⟦3|5⟧·⟦12|13⟧−⟦4|5⟧·⟦5|13⟧=⟦16|65⟧',g:circ({rays:[{a:36.87,l:'α'},{a:22.62,l:'β'}],arcs:[{f:0,t:22.62,l:'β'},{f:0,t:36.87,l:'α'}]})},
+{t:'例题6',q:'已知 sinα=⟦3|5⟧（90°<α<180°），cosβ=⟦5|13⟧（270°<β<360°），求 sin(α+β)。',s:'cosα=−⟦4|5⟧，sinβ=−⟦12|13⟧<br>sin(α+β)=⟦3|5⟧·⟦5|13⟧+(−⟦4|5⟧)(−⟦12|13⟧)=⟦15|65⟧+⟦48|65⟧=⟦63|65⟧',g:circ({rays:[{a:143.13,l:'α'},{a:292.62,l:'β'}],arcs:[{f:0,t:143.13,l:'α'},{f:0,t:292.62,l:'β'}]})}],
+[ // 9.3
+{t:'例题1(a)',q:'求 2sin15°cos15° 的值。',s:'= sin(2×15°)=sin30°=⟦1|2⟧',g:circ({rays:[{a:15,l:'15°'},{a:30,l:'30°'}],arcs:[{f:0,t:15,l:'A'},{f:0,t:30,l:'2A'}]})},
+{t:'例题2',q:'已知 sinA=⟦3|5⟧，90°≤A≤180°，求 sin2A、cos2A、tan2A。',s:'cosA=−⟦4|5⟧，tanA=−⟦3|4⟧<br>sin2A=2sinAcosA=−⟦24|25⟧<br>cos2A=1−2sin²A=⟦7|25⟧<br>tan2A=⟦2tanA|1−tan²A⟧=−⟦24|7⟧',g:circ({rays:[{a:143.13,l:'A'},{a:286.26,l:'2A'}],arcs:[{f:0,t:143.13,l:'A'},{f:0,t:286.26,l:'2A'}]})},
+{t:'例题10',q:'用半角公式求 sin15°。',s:'sin15°=√⟨⟦1−cos30°|2⟧⟩=√⟨⟦2−√⟨3⟩|4⟧⟩=⟦√⟨6⟩−√⟨2⟩|4⟧<br>（15° 在第一象限，取正值）',g:circ({rays:[{a:15,l:'15°'},{a:30,l:'30°'}],arcs:[{f:0,t:15,l:'A/2'},{f:0,t:30,l:'A'}]})}],
+[ // 9.4
+{t:'例题1',q:'解 sinx=⟦1|2⟧，0°<x<360°。',s:'sinx>0 ⇒ 第一、二象限，相伴锐角 30°<br>x=30°，180°−30°=150°',g:circ({h:.5,hl:'1/2',pts:[{a:30,l:'30°'},{a:150,l:'150°'}],arcs:[{f:0,t:30,l:''},{f:180,t:150,l:''}]})},
+{t:'例题2',q:'解 sinx=−⟦1|2⟧，0°<x<360°。',s:'sinx<0 ⇒ 第三、四象限，相伴锐角 30°<br>x=180°+30°=210°，360°−30°=330°',g:circ({h:-.5,hl:'−1/2',pts:[{a:210,l:'210°'},{a:330,l:'330°'}],arcs:[{f:180,t:210,l:''},{f:330,t:360,l:''}]})},
+{t:'例题12',q:'解 3tan²x−tanx−4=0，0°<x<360°。',s:'(3tanx−4)(tanx+1)=0<br>tanx=⟦4|3⟧ ⇒ x=53°8′，233°8′<br>tanx=−1 ⇒ x=135°，315°',g:circ({pts:[{a:53.13,l:"53°8'"},{a:135,l:'135°'},{a:233.13,l:"233°8'"},{a:315,l:'315°'}]})},
+{t:'例题13',q:'解 cos2x+3cosx+2=0，0≤x<2π。',s:'2cos²x−1+3cosx+2=0 ⇒ (2cosx+1)(cosx+1)=0<br>cosx=−⟦1|2⟧ ⇒ x=⟦2π|3⟧，⟦4π|3⟧；cosx=−1 ⇒ x=π',g:circ({v:-.5,hl:'−1/2',pts:[{a:120,l:'2π/3'},{a:180,l:'π'},{a:240,l:'4π/3'}]})}]];
+const FM=[
+ ['sin²A+cos²A=1','1+tan²A=sec²A','1+cot²A=cosec²A','tanA=⟦sinA|cosA⟧'],
+ ['sin(A±B)=sinAcosB±cosAsinB','cos(A±B)=cosAcosB∓sinAsinB','tan(A±B)=⟦tanA±tanB|1∓tanAtanB⟧'],
+ ['sin2A=2sinAcosA','cos2A=cos²A−sin²A=2cos²A−1=1−2sin²A','tan2A=⟦2tanA|1−tan²A⟧','sin⟦A|2⟧=±√⟨⟦1−cosA|2⟧⟩，cos⟦A|2⟧=±√⟨⟦1+cosA|2⟧⟩'],
+ ['先求一个周期内的解，再按象限(ASTC)找出相伴角','可用因式分解、代入平方关系，或 a sinx+b cosx=R cos(x−α)']];
+
+const P3=(l,a)=>({a,l}),PT=(...a)=>circ({pts:a.map(x=>P3(x[1],x[0]))}),RA=(a,b,la,lb,lc)=>circ({rays:[{a:a,l:la},{a:a+b,l:lc}],arcs:[{f:0,t:a,l:la},{f:a,t:a+b,l:lb}]});
+EX[0].push(
+{t:'例题3（证明）',q:'证明 (sinθ+cosθ)²=1+2sinθcosθ。',s:'(sinθ+cosθ)²=sin²θ+2sinθcosθ+cos²θ<br>=(sin²θ+cos²θ)+2sinθcosθ=1+2sinθcosθ',g:A(40,'θ',['sinθ','cosθ'])},
+{t:'例题5（证明·较难）',q:'证明 ⟦sinθ|1+cosθ⟧+⟦1+cosθ|sinθ⟧=2cosecθ。',s:'通分：=⟦sin²θ+(1+cosθ)²|sinθ(1+cosθ)⟧<br>=⟦sin²θ+1+2cosθ+cos²θ|sinθ(1+cosθ)⟧=⟦2+2cosθ|sinθ(1+cosθ)⟧<br>=⟦2(1+cosθ)|sinθ(1+cosθ)⟧=⟦2|sinθ⟧=2cosecθ',g:A(60,'θ',['sinθ','1+cosθ'])},
+{t:'例题6（两种证法）',q:'证明 ⟦1−2cos²A|sinA cosA⟧=tanA−cotA。',s:'证法1（右→左）：tanA−cotA=⟦sin²A−cos²A|sinA cosA⟧=⟦(1−cos²A)−cos²A|sinA cosA⟧=⟦1−2cos²A|sinA cosA⟧<br>证法2（左→右）：把 1 换成 sin²A+cos²A，得 ⟦sin²A−cos²A|sinA cosA⟧=⟦sinA|cosA⟧−⟦cosA|sinA⟧=tanA−cotA',g:A(35,'A',['sinA','cosA'])});
+EX[1].push(
+{t:'例题1(b)',q:'求 cos85°cos25°+sin85°sin25° 的值。',s:'=cos(85°−25°)=cos60°=⟦1|2⟧',g:RA(25,60,'25°','60°','85°')},
+{t:'例题2(b)',q:'不使用计算机，求 cos15°。',s:'cos15°=cos(60°−45°)=cos60°cos45°+sin60°sin45°<br>=⟦1|2⟧×⟦√⟨2⟩|2⟧+⟦√⟨3⟩|2⟧×⟦√⟨2⟩|2⟧=⟦√⟨2⟩+√⟨6⟩|4⟧',g:RA(45,15,'45°','15°','60°')},
+{t:'例题3',q:'求 ⟦tan32°+tan13°|1−tan32°tan13°⟧ 的值。',s:'=tan(32°+13°)=tan45°=1',g:RA(32,13,'32°','13°','45°')},
+{t:'例题7（证明）',q:'证明 ⟦sin(A−B)|cosA cosB⟧=tanA−tanB。',s:'⟦sinAcosB−cosAsinB|cosAcosB⟧=⟦sinAcosB|cosAcosB⟧−⟦cosAsinB|cosAcosB⟧=⟦sinA|cosA⟧−⟦sinB|cosB⟧=tanA−tanB',g:circ({rays:[{a:50,l:'A'},{a:20,l:'B'}],arcs:[{f:0,t:20,l:'B'},{f:20,t:50,l:'A−B'},{f:0,t:50,l:'A'}]})});
+EX[2].push(
+{t:'例题5（证明）',q:'证明 cos⁴x−sin⁴x=cos2x。',s:'cos⁴x−sin⁴x=(cos²x+sin²x)(cos²x−sin²x)=1·cos2x=cos2x',g:circ({rays:[{a:30,l:'x'},{a:60,l:'2x'}],arcs:[{f:0,t:30,l:'x'},{f:0,t:60,l:'2x'}]})},
+{t:'例题7（证明）',q:'证明 tanθ+cotθ=2cosec2θ。',s:'tanθ+cotθ=⟦sin²θ+cos²θ|sinθcosθ⟧=⟦1|sinθcosθ⟧=⟦2|2sinθcosθ⟧=⟦2|sin2θ⟧=2cosec2θ',g:circ({rays:[{a:25,l:'θ'},{a:50,l:'2θ'}],arcs:[{f:0,t:25,l:'θ'},{f:0,t:50,l:'2θ'}]})},
+{t:'三倍角公式推导（较难）',q:'导出 sin3A=3sinA−4sin³A。',s:'sin3A=sin(2A+A)=sin2AcosA+cos2AsinA<br>=(2sinAcosA)cosA+(1−2sin²A)sinA<br>=2sinA(1−sin²A)+sinA−2sin³A=3sinA−4sin³A',g:circ({rays:[{a:20,l:'A'},{a:60,l:'3A'}],arcs:[{f:0,t:20,l:'A'},{f:0,t:60,l:'3A'}]})},
+{t:'例题11（半角证明）',q:'证明 cot⟦A|2⟧−tan⟦A|2⟧=2cotA。',s:'左边=⟦cos²⟦A|2⟧−sin²⟦A|2⟧|sin⟦A|2⟧cos⟦A|2⟧⟧=⟦cosA|⟦1|2⟧sinA⟧=⟦2cosA|sinA⟧=2cotA（分母用 sinA=2sin⟦A|2⟧cos⟦A|2⟧）',g:circ({rays:[{a:35,l:'A/2'},{a:70,l:'A'}],arcs:[{f:0,t:35,l:'A/2'},{f:0,t:70,l:'A'}]})});
+EX[3].push(
+{t:'例题3',q:'解 tan⟦x|2⟧=−√⟨3⟩，0°<x<360°。',s:'0°<⟦x|2⟧<180°，tan<0 ⇒ ⟦x|2⟧ 在第二象限，相伴锐角 60°<br>⟦x|2⟧=180°−60°=120° ⇒ x=240°',g:circ({rays:[{a:120,l:'x/2'},{a:240,l:'x'}],arcs:[{f:0,t:120,l:'x/2'},{f:0,t:240,l:'x'}]})},
+{t:'例题5（无解）',q:'解 2cosθ−2=√⟨3⟩。',s:'cosθ=1+⟦√⟨3⟩|2⟧≈1.87>1<br>但 −1≤cosθ≤1，故原方程无解',g:circ({v:1,hl:'cosθ=1.87 超出范围'})},
+{t:'例题6',q:'解 sin(270°−x)=cos292°，0°<x<360°。',s:'cos292°=cos68°=sin22°>0，−90°<270°−x<270°<br>270°−x=22° 或 158° ⇒ x=248° 或 112°',g:PT([112,'112°'],[248,'248°'])},
+{t:'例题7',q:'解 tan(180°−x)=3cot(−x)，−180°<x<180°。',s:'−tanx=−⟦3|tanx⟧ ⇒ tan²x=3 ⇒ tanx=±√⟨3⟩<br>x=±60°，±120°',g:PT([60,'60°'],[120,'120°'],[240,'−120°'],[300,'−60°'])},
+{t:'例题8',q:'解 5sinθ=4cosθ，0°<θ<360°。',s:'两边除以 5cosθ：tanθ=⟦4|5⟧>0 ⇒ 第一或第三象限<br>θ=38°39′，180°+38°39′=218°39′',g:PT([38.66,"38°39'"],[218.66,"218°39'"])},
+{t:'例题9',q:'解 4cosθ=3secθ，0°<θ<360°。',s:'4cos²θ=3 ⇒ cosθ=±⟦√⟨3⟩|2⟧，任意象限<br>θ=30°，150°，210°，330°',g:PT([30,'30°'],[150,'150°'],[210,'210°'],[330,'330°'])},
+{t:'例题14（因式分解）',q:'解 sin2x−2sinx+cosx−1=0，−π≤x≤π。',s:'2sinxcosx−2sinx+cosx−1=0 ⇒ 2sinx(cosx−1)+(cosx−1)=0<br>(cosx−1)(2sinx+1)=0 ⇒ cosx=1 或 sinx=−⟦1|2⟧<br>x=0，−⟦π|6⟧，−⟦5π|6⟧',g:PT([0,'0'],[330,'−π/6'],[210,'−5π/6'])},
+{t:'例题15（辅助角法）',q:'解 3cosx+√⟨3⟩sinx=3，0°≤x<360°。',s:'设 3cosx+√⟨3⟩sinx=Rcos(x−α)=Rcosαcosx+Rsinαsinx<br>Rcosα=3，Rsinα=√⟨3⟩ ⇒ R=√⟨9+3⟩=2√⟨3⟩，tanα=⟦√⟨3⟩|3⟧，α=30°<br>2√⟨3⟩cos(x−30°)=3 ⇒ cos(x−30°)=⟦√⟨3⟩|2⟧<br>−30°≤x−30°<330° ⇒ x−30°=±30° ⇒ x=0°，60°',g:circ({pts:[{a:0,l:'0°'},{a:60,l:'60°'}],rays:[{a:30,l:'α=30°'}],arcs:[{f:0,t:30,l:'α'}]})},
+{t:'例题16（辅助角法）',q:'解 sinx−√⟨3⟩cosx=√⟨2⟩，0°<x≤360°。',s:'设 sinx−√⟨3⟩cosx=Rsin(x−α)=Rsinxcosα−Rcosxsinα<br>Rcosα=1，Rsinα=√⟨3⟩ ⇒ R=2，tanα=√⟨3⟩，α=60°<br>2sin(x−60°)=√⟨2⟩ ⇒ sin(x−60°)=⟦√⟨2⟩|2⟧<br>x−60°=45°，135° ⇒ x=105°，195°',g:circ({pts:[{a:105,l:'105°'},{a:195,l:'195°'}],rays:[{a:60,l:'α=60°'}],arcs:[{f:0,t:60,l:'α'}]})});
+
+const K2=(a,b)=>circ({rays:[{a:a,l:'θ'},{a:b,l:'2θ'}],arcs:[{f:0,t:a,l:'θ'},{f:0,t:b,l:'2θ'}]}),KH=(a)=>circ({rays:[{a:2*a,l:'θ'},{a:a,l:'θ/2'}],arcs:[{f:0,t:a,l:'θ/2'},{f:0,t:2*a,l:'θ'}]});
+const PF=[[],[],[
+{t:'证明 1（课本练习9.3 第11题）',q:'证明 (1−cos2θ)cotθ=sin2θ。',g:K2(30,60),s:['思路：左边含 cos2θ，先用倍角公式把它换成只含 sinθ 的式子，再化简。','第1步：cos2θ=1−2sin²θ，所以 1−cos2θ=2sin²θ。','第2步：cotθ=⟦cosθ|sinθ⟧，左边=2sin²θ·⟦cosθ|sinθ⟧。','第3步：约去一个 sinθ：=2sinθcosθ。','第4步：由倍角公式 2sinθcosθ=sin2θ=右边。∎']},
+{t:'证明 2（练习9.3 第12题）',q:'证明 ⟦sin2A|cos2A−1⟧=−cotA。',g:K2(35,70),s:['思路：分子用 sin2A=2sinAcosA，分母用 cos2A=1−2sin²A，使两边都变成 sinA、cosA。','第1步：分母 cos2A−1=(1−2sin²A)−1=−2sin²A。','第2步：分子 sin2A=2sinAcosA，所以左边=⟦2sinAcosA|−2sin²A⟧。','第3步：约去 2sinA：=−⟦cosA|sinA⟧=−cotA=右边。∎']},
+{t:'证明 3（练习9.3 第13题·较难）',q:'证明 ⟦sin3A|sinA⟧−⟦cos3A|cosA⟧=2。',g:circ({rays:[{a:20,l:'A'},{a:60,l:'3A'}],arcs:[{f:0,t:20,l:'A'},{f:0,t:60,l:'3A'}]}),s:['思路：不必展开三倍角公式。先通分，分子会变成 sin(3A−A) 的样子。','第1步：通分：左边=⟦sin3AcosA−cos3AsinA|sinAcosA⟧。','第2步：分子符合 sin(X−Y)=sinXcosY−cosXsinY，其中 X=3A，Y=A，所以分子=sin(3A−A)=sin2A。','第3步：分母 sinAcosA=⟦1|2⟧sin2A，故左边=⟦sin2A|⟦1|2⟧sin2A⟧=2=右边。∎']},
+{t:'证明 4（练习9.3 第15题）',q:'证明 cos2A+cosA=(2cosA−1)(cosA+1)。',g:K2(40,80),s:['思路：左边有 cos2A 与 cosA，把 cos2A 换成只含 cosA 的形式，再因式分解。','第1步：用 cos2A=2cos²A−1，左边=2cos²A−1+cosA=2cos²A+cosA−1。','第2步：十字相乘：2cos²A+cosA−1=(2cosA−1)(cosA+1)。','第3步：展开检验：(2cosA−1)(cosA+1)=2cos²A+2cosA−cosA−1=2cos²A+cosA−1 ✔。∎']},
+{t:'证明 5（练习9.3 第16题·较难）',q:'证明 ⟦cosA−sinA|cosA+sinA⟧=sec2A−tan2A。',g:K2(25,50),s:['思路：右边含 2A，左边含 A。把左边分子分母同乘 (cosA−sinA)，分母就会变成 cos²A−sin²A=cos2A。','第1步：左边=⟦(cosA−sinA)²|(cosA+sinA)(cosA−sinA)⟧。','第2步：分母=cos²A−sin²A=cos2A。','第3步：分子=cos²A−2sinAcosA+sin²A=1−sin2A。','第4步：左边=⟦1−sin2A|cos2A⟧=⟦1|cos2A⟧−⟦sin2A|cos2A⟧=sec2A−tan2A=右边。∎']},
+{t:'证明 6（练习9.3 第18题）',q:'证明 sin2A+2sinA=4sinAcos²⟦A|2⟧。',g:KH(30),s:['思路：右边含半角 A/2，左边含 2A、A。先化左边为 2sinA(1+cosA)，再用半角关系 1+cosA=2cos²⟦A|2⟧。','第1步：sin2A=2sinAcosA，左边=2sinAcosA+2sinA=2sinA(cosA+1)。','第2步：由 cosA=2cos²⟦A|2⟧−1 得 1+cosA=2cos²⟦A|2⟧。','第3步：左边=2sinA·2cos²⟦A|2⟧=4sinAcos²⟦A|2⟧=右边。∎']},
+{t:'证明 7（练习9.3 第20题·半角）',q:'证明 ⟦1+cosθ|1−cosθ⟧=cot²⟦θ|2⟧。',g:KH(40),s:['思路：半角公式把 1±cosθ 变成平方形式。','第1步：1+cosθ=2cos²⟦θ|2⟧（由 cosθ=2cos²⟦θ|2⟧−1）。','第2步：1−cosθ=2sin²⟦θ|2⟧（由 cosθ=1−2sin²⟦θ|2⟧）。','第3步：左边=⟦2cos²⟦θ|2⟧|2sin²⟦θ|2⟧⟧=⟦cos²⟦θ|2⟧|sin²⟦θ|2⟧⟧=cot²⟦θ|2⟧=右边。∎']},
+{t:'证明 8（练习9.3 第24题）',q:'证明 cot⟦A|2⟧−cotA=cosecA。',g:KH(35),s:['思路：先把 cot(A/2) 化为含 A 的式子：cot⟦A|2⟧=⟦cos⟦A|2⟧|sin⟦A|2⟧⟧。','第1步：分子分母同乘 2cos⟦A|2⟧：cot⟦A|2⟧=⟦2cos²⟦A|2⟧|2sin⟦A|2⟧cos⟦A|2⟧⟧=⟦1+cosA|sinA⟧。','第2步：左边=⟦1+cosA|sinA⟧−⟦cosA|sinA⟧=⟦1|sinA⟧。','第3步：=cosecA=右边。∎']}],
+[
+{t:'证明 1（辅助角公式推导）',q:'证明：a sinx+b cosx=R sin(x+α)，其中 R=√⟨a²+b²⟩，tanα=⟦b|a⟧（a>0）。',g:circ({rays:[{a:53.13,l:'(a,b)'}],arcs:[{f:0,t:53.13,l:'α'}],proj:1,pl:['b','a']}),s:['思路：右边用两角和公式展开，再与左边比较 sinx、cosx 的系数。','第1步：R sin(x+α)=R sinxcosα+R cosxsinα=(Rcosα)sinx+(Rsinα)cosx。','第2步：比较系数：Rcosα=a，Rsinα=b。','第3步：两式平方相加：R²(cos²α+sin²α)=a²+b² ⇒ R=√⟨a²+b²⟩。','第4步：两式相除：tanα=⟦b|a⟧。因此 a sinx+b cosx=R sin(x+α)。∎（图中 (a,b) 点与原点的距离即为 R，α 为该射线与 x 轴的夹角）']},
+{t:'解方程 2（总复习题9 第22题）',q:'解 cosx+√⟨3⟩sinx=1，0°≤x<360°。',g:circ({pts:[{a:0,l:'0°'},{a:120,l:'120°'}],rays:[{a:60,l:'α=60°'}],arcs:[{f:0,t:60,l:'α'}]}),s:['思路：形如 a cosx+b sinx=c，用辅助角化成单一余弦。','第1步：设 cosx+√⟨3⟩sinx=Rcos(x−α)=Rcosαcosx+Rsinαsinx，得 Rcosα=1，Rsinα=√⟨3⟩。','第2步：R=√⟨1+3⟩=2，tanα=√⟨3⟩ ⇒ α=60°。','第3步：2cos(x−60°)=1 ⇒ cos(x−60°)=⟦1|2⟧。','第4步：由 0°≤x<360° 得 −60°≤x−60°<300°，在此范围 cos=⟦1|2⟧ 的解为 x−60°=±60°。','第5步：x=0° 或 120°。检验：x=0° 时 cos0°+0=1 ✔。']},
+{t:'解方程 3（总复习题9 第24题·较难）',q:'解 12sinx−5cosx=13，0°≤x<360°。',g:circ({pts:[{a:112.62,l:"112°37'"}],rays:[{a:22.62,l:'α'}],arcs:[{f:0,t:22.62,l:'α'},{f:22.62,t:112.62,l:'90°'}]}),s:['思路：左边最大值为 √⟨12²+5²⟩=13，恰好等于右边，所以只会有一个解。','第1步：设 12sinx−5cosx=Rsin(x−α)=Rsinxcosα−Rcosxsinα，得 Rcosα=12，Rsinα=5。','第2步：R=√⟨144+25⟩=13，tanα=⟦5|12⟧ ⇒ α≈22°37′。','第3步：13sin(x−α)=13 ⇒ sin(x−α)=1。','第4步：x−α=90° ⇒ x=90°+22°37′=112°37′。只有这一个解（图：两弧相接，22°37′ 后再加 90°）。']},
+{t:'解方程 4（总复习题9 第30题）',q:'求所有自 0° 到 360° 满足 cos2x=sinx 的角。',g:circ({h:.5,hl:'sinx=1/2',pts:[{a:30,l:'30°'},{a:150,l:'150°'},{a:270,l:'270°'}]}),s:['思路：左边是 2x，右边是 x，用 cos2x=1−2sin²x 统一成 sinx。','第1步：1−2sin²x=sinx ⇒ 2sin²x+sinx−1=0。','第2步：因式分解：(2sinx−1)(sinx+1)=0。','第3步：sinx=⟦1|2⟧ ⇒ x=30°，150°。','第4步：sinx=−1 ⇒ x=270°。','答：x=30°，150°，270°（图中红点即三个解）。']},
+{t:'解方程 5（总复习题9 第27题·注意检验）',q:'解 secx=2tanx，−180°<x<180°。',g:circ({h:.5,hl:'sinx=1/2',pts:[{a:30,l:'30°'},{a:150,l:'150°'}]}),s:['思路：化成 sinx、cosx。注意 secx、tanx 都要求 cosx≠0。','第1步：⟦1|cosx⟧=2⟦sinx|cosx⟧，两边同乘 cosx（cosx≠0）。','第2步：1=2sinx ⇒ sinx=⟦1|2⟧。','第3步：x=30° 或 150°。','第4步：检验 cosx≠0：cos30°、cos150° 都不为 0 ✔。在 −180°<x<180° 内没有其他解。','提醒：不可直接约掉 cosx 而不检验，否则可能漏掉或多出解。']},
+{t:'解方程 6（总复习题9 第28题·较难）',q:'解 cotx+cosecx=3，−180°<x<180°。',g:circ({rays:[{a:36.87,l:'x'},{a:18.43,l:'x/2'}],arcs:[{f:0,t:18.43,l:'x/2'},{f:0,t:36.87,l:'x'}]}),s:['思路：先证明 cotx+cosecx=cot⟦x|2⟧，把方程变成半角的简单方程。','第1步：cotx+cosecx=⟦cosx+1|sinx⟧。','第2步：分子 1+cosx=2cos²⟦x|2⟧，分母 sinx=2sin⟦x|2⟧cos⟦x|2⟧，约分得 cot⟦x|2⟧。','第3步：cot⟦x|2⟧=3 ⇒ tan⟦x|2⟧=⟦1|3⟧。','第4步：−90°<⟦x|2⟧<90°，tan>0 ⇒ ⟦x|2⟧≈18°26′ ⇒ x≈36°52′。','检验：x=36°52′ 时 sinx≠0 ✔，且 cot36.87°+cosec36.87°=1.333+1.667=3 ✔。']}]];
+function pfH(i){return PF[i].length?`<h3>证明题与练习（逐步讲解）</h3><p>点“下一步”一步步看；先自己想，再对照。</p>`+PF[i].map(e=>`<div class=card><b>${e.t}</b><br>${M(e.q)}${e.g||''}<div class=row><button onclick="nx(this,0)">下一步 ▶</button><button onclick="nx(this,1)">全部显示</button></div>${e.s.map(x=>`<div class="fm st" style="display:none">${M(x)}</div>`).join('')}</div>`).join(''):''}
+function nx(b,all){const c=b.closest('.card'),h=[...c.querySelectorAll('.st')].filter(x=>x.style.display=='none');(all?h:h.slice(0,1)).forEach(x=>x.style.display='block');if(h.length<=(all?h.length:1))c.querySelectorAll('.row button').forEach(x=>x.disabled=true)}
+// ---- 题目引擎 ----
+const T=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29]];
+const mc=(q,c,w,e,s)=>{w=[...new Set(w)].filter(x=>x!=c).slice(0,3);const o=sh([c,...w]);return{q,o,a:o.indexOf(c),e,s}};
+const fl=(q,a,e,s,tol=.003)=>({q,a:[].concat(a),e,s,tol});
+const trp=()=>{let[a,b,h]=pk(T);return Math.random()<.5?[a,b,h]:[b,a,h]};
+const SP=[[.5,'⟦1|2⟧'],[-.5,'−⟦1|2⟧'],[Math.sqrt(3)/2,'⟦√⟨3⟩|2⟧'],[-Math.sqrt(3)/2,'−⟦√⟨3⟩|2⟧']];
+const sp=v=>SP.find(x=>Math.abs(x[0]-v)<1e-6)[1];
+const GM1=[()=>{const[p,q,h]=trp();return mc(`已知 sinA=⟦${p}|${h}⟧，求 cosA 的可能值。`,`±⟦${q}|${h}⟧`,[`±⟦${p}|${h}⟧`,`⟦${q}|${h}⟧`,`±⟦${q}|${p}⟧`],`cos²A=1−(⟦${p}|${h}⟧)²=⟦${q*q}|${h*h}⟧，cosA=±⟦${q}|${h}⟧`,circ({rays:[{a:Math.asin(p/h)/D,l:'A'}],arcs:[{f:0,t:Math.asin(p/h)/D,l:'A'}],proj:1,pl:[p,q]}))},
+()=>{const a=ri(2,5);let b=ri(2,5);if(b==a)b=a+ri(1,3);return mc(`已知 x=${a}sinθ，y=${b}cosθ，则 x 与 y 的关系式是：`,`⟦x²|${a*a}⟧+⟦y²|${b*b}⟧=1`,[`⟦x²|${b*b}⟧+⟦y²|${a*a}⟧=1`,`${a}x²+${b}y²=1`,`⟦x|${a}⟧+⟦y|${b}⟧=1`],`sinθ=⟦x|${a}⟧，cosθ=⟦y|${b}⟧，代入 sin²θ+cos²θ=1 得 ⟦x²|${a*a}⟧+⟦y²|${b*b}⟧=1`,`<svg viewBox="0 0 240 200" class=sv><path d="M8 100H234M120 8V192" stroke=currentColor opacity=.45 /><ellipse cx=120 cy=100 rx=${a*18} ry=${b*14} fill=none stroke=#22d3ee stroke-width=2 /><text x=${126+a*18} y=94>${a}</text><text x=126 y=${96-b*14}>${b}</text></svg>`)},
+()=>{const L=[['sec²θ−tan²θ','1'],['cosec²θ−cot²θ','1'],['(1−sin²θ)sec²θ','1'],['tanθcosθ','sinθ'],['sinθsecθ','tanθ'],['(1−cos²θ)cosec²θ','1'],['sec²θ(1−sin²θ)','1'],['cotθsinθ','cosθ']],e=pk(L),all=['1','sinθ','cosθ','tanθ','secθ'];return mc(`化简 ${e[0]}：`,e[1],all,`利用平方关系与商数关系化简，结果为 ${e[1]}。`,A(35,'θ',['sinθ','cosθ']))}];
+const GF1=[()=>{const[p,q,h]=trp(),k=pk([[2,'第二象限',-1],[3,'第三象限',-1],[4,'第四象限',1]]);return fl(`已知 sinθ=${fr(k[2]*-1*p*(k[0]==2?-1:1),h)}${''}`.replace(/.*/,'')+`已知 sinθ=${fr(k[0]==2?p:-p,h)}，θ 在${k[1]}，求 cosθ（分数请输入如 −3/5）。`,(k[0]==4?1:-1)*q/h,`cos²θ=1−sin²θ=⟦${q*q}|${h*h}⟧，${k[1]}的 cosθ ${k[0]==4?'为正':'为负'}，故 cosθ=${fr((k[0]==4?1:-1)*q,h)}`,circ({rays:[{a:Math.atan2(k[0]==2?p:-p,(k[0]==4?1:-1)*q)/D,l:'θ'}],arcs:[{f:0,t:(Math.atan2(k[0]==2?p:-p,(k[0]==4?1:-1)*q)/D+360)%360,l:'θ'}]}))},
+()=>{const[p,q,h]=trp();return fl(`已知 cosθ=⟦${q}|${h}⟧，θ 在第四象限，求 tanθ（如 −3/4）。`,-p/q,`sinθ=−⟦${p}|${h}⟧（第四象限为负），tanθ=⟦sinθ|cosθ⟧=${fr(-p,q)}`,circ({rays:[{a:-Math.asin(p/h)/D,l:'θ'}],arcs:[{f:0,t:360-Math.asin(p/h)/D,l:'θ'}]}))}];
+const GM2=[()=>{let[a1,b1,h1]=pk(T),[a2,b2,h2]=pk(T);if(h1==h2)[a2,b2,h2]=[5,12,13][0]==a1?[8,15,17]:[5,12,13];const Dn=h1*h2,v={'sin(α+β)':a1*b2+b1*a2,'sin(α−β)':a1*b2-b1*a2,'cos(α+β)':b1*b2-a1*a2,'cos(α−β)':b1*b2+a1*a2},k=pk(Object.keys(v)),ws=Object.keys(v).filter(x=>x!=k).map(x=>fr(v[x],Dn));
+const al=Math.asin(a1/h1)/D,be=Math.asin(a2/h2)/D;return mc(`已知 sinα=⟦${a1}|${h1}⟧，sinβ=⟦${a2}|${h2}⟧，α、β 为锐角，求 ${k}。`,fr(v[k],Dn),ws.concat(fr(a1*a2+b1*b2,Dn+1)),`cosα=⟦${b1}|${h1}⟧，cosβ=⟦${b2}|${h2}⟧，由公式得 ${k}=${fr(v[k],Dn)}`,circ({rays:[{a:al,l:'α'},{a:be,l:'β'}],arcs:[{f:0,t:Math.min(al,be),l:al>be?'β':'α'},{f:0,t:Math.max(al,be),l:al>be?'α':'β'}]}))},
+()=>{const L=[['sin75°','⟦√⟨6⟩+√⟨2⟩|4⟧',[45,30,'+']],['cos75°','⟦√⟨6⟩−√⟨2⟩|4⟧',[45,30,'+']],['tan15°','2−√⟨3⟩',[60,45,'−']],['tan75°','2+√⟨3⟩',[45,30,'+']]],e=pk(L);return mc(`不使用计算机，求 ${e[0]} 的值。`,e[1],L.map(x=>x[1]).concat('⟦√⟨3⟩|2⟧'),`${e[0]} 分拆成 ${e[2][0]}°${e[2][2]}${e[2][1]}° 的特殊角，利用和差公式得 ${e[1]}`,circ({rays:[{a:e[2][0],l:e[2][0]+'°'}],arcs:[{f:0,t:e[2][0],l:e[2][0]+'°'},{f:e[2][0],t:e[2][2]=='+'?e[2][0]+e[2][1]:e[2][0]+15,l:'+'+(e[2][2]=='+'?e[2][1]:15)+'°'}]}))}];
+const GF2=[()=>{let[a1,b1,h1]=pk(T),[a2,b2,h2]=[5,12,13];if(h1==13)[a2,b2,h2]=[3,4,5];const op=pk(['+','−']),s=op=='+'?1:-1;return fl(`已知 sinα=${fr(a1,h1)}，sinβ=${fr(a2,h2)}，α、β 为锐角，求 sin(α${op}β)（如 56/65）。`,(a1*b2+s*b1*a2)/(h1*h2),`cosα=${fr(b1,h1)}，cosβ=${fr(b2,h2)}，sin(α${op}β)=sinαcosβ${op}cosαsinβ=${fr(a1*b2+s*b1*a2,h1*h2)}`,circ({rays:[{a:Math.asin(a1/h1)/D,l:'α'},{a:Math.asin(a2/h2)/D,l:'β'}],arcs:[{f:0,t:Math.asin(a1/h1)/D,l:'α'},{f:0,t:Math.asin(a2/h2)/D,l:'β'}].sort((x,y)=>x.t-y.t)}))}];
+const GM3=[()=>{const[p,q,h]=trp(),k=pk(['sin2A','cos2A','tan2A']),v={sin2A:[2*p*q,h*h],cos2A:[q*q-p*p,h*h],tan2A:[2*p*q,q*q-p*p]},al=Math.asin(p/h)/D;return mc(`已知 sinA=⟦${p}|${h}⟧，A 为锐角，求 ${k}。`,fr(...v[k]),Object.keys(v).filter(x=>x!=k).map(x=>fr(...v[x])).concat(fr(-v[k][0],v[k][1])),`cosA=⟦${q}|${h}⟧；${k=='sin2A'?'sin2A=2sinAcosA':k=='cos2A'?'cos2A=cos²A−sin²A':'tan2A=⟦sin2A|cos2A⟧'}=${fr(...v[k])}`,circ({rays:[{a:al,l:'A'},{a:2*al,l:'2A'}],arcs:[{f:0,t:al,l:'A'},{f:0,t:2*al,l:'2A'}]}))},
+()=>{const t=pk([15,75,105,165]),f=pk(['sin','cos']),v=f=='sin'?Math.sin(2*t*D):Math.cos(2*t*D);return mc(f=='sin'?`求 2sin${t}°cos${t}° 的值。`:`求 1−2sin²${t}° 的值。`,sp(v),SP.map(x=>x[1]),f=='sin'?`2sin${t}°cos${t}°=sin${2*t}°=${sp(v)}`:`1−2sin²${t}°=cos${2*t}°=${sp(v)}`,circ({rays:[{a:t,l:t+'°'},{a:2*t%360,l:2*t+'°'}],arcs:[{f:0,t:t,l:'A'},{f:0,t:2*t,l:'2A'}]}))},
+()=>{const[p,q,h]=trp(),al=180-Math.asin(p/h)/D;return mc(`已知 sinA=⟦${p}|${h}⟧，A 为钝角，求 cos2A。`,fr(q*q-p*p,h*h),[fr(p*p-q*q,h*h),fr(-2*p*q,h*h),fr(2*p*q,h*h)],`cos2A=1−2sin²A=1−⟦${2*p*p}|${h*h}⟧=${fr(q*q-p*p,h*h)}（与象限无关）`,circ({rays:[{a:al,l:'A'},{a:2*al%360,l:'2A'}],arcs:[{f:0,t:al,l:'A'},{f:0,t:2*al,l:'2A'}]}))}];
+const GF3=[()=>{const[p,q,h]=trp();return fl(`已知 sinA=−⟦${p}|${h}⟧，A 为第三象限角，求 sin2A（如 24/25）。`,2*p*q/(h*h),`cosA=−⟦${q}|${h}⟧，sin2A=2sinAcosA=2(−⟦${p}|${h}⟧)(−⟦${q}|${h}⟧)=${fr(2*p*q,h*h)}`,circ({rays:[{a:180+Math.asin(p/h)/D,l:'A'}],arcs:[{f:0,t:180+Math.asin(p/h)/D,l:'A'}]}))},
+()=>{const t=pk([30,45,60]),m={30:[1,3],45:[1,1],60:[3,1]}[t];return fl(`已知 tanA=${fr(m[0]*0+Math.round(Math.tan(t*D)*10)/10==Math.tan(t*D)?0:1,1)}`.replace(/.*/,'')+`已知 tanA=${t==45?'1':t==30?'√3/3 (≈0.577)':'√3 (≈1.732)'}，A 为锐角，求 tan2A 的值（保留3位小数；不存在则输入 0）。`,t==45?0:Math.tan(2*t*D),`tan2A=⟦2tanA|1−tan²A⟧${t==45?'：分母为0，tan90° 不存在':'，A='+t+'° ⇒ tan'+2*t+'°≈'+Math.tan(2*t*D).toFixed(3)}`,circ({rays:[{a:t,l:'A'},{a:2*t,l:'2A'}],arcs:[{f:0,t:t,l:'A'},{f:0,t:2*t,l:'2A'}]}))}];
+const GM4=[()=>{const f=pk(['sin','cos','tan']),al=pk([30,45,60]),sg=pk([1,-1]),vv=f=='tan'?{30:'⟦√⟨3⟩|3⟧',45:'1',60:'√⟨3⟩'}[al]:{30:'⟦1|2⟧',45:'⟦√⟨2⟩|2⟧',60:'⟦√⟨3⟩|2⟧'}[al],
+ S={sin:[[al,180-al],[180+al,360-al]],cos:[[al,360-al],[180-al,180+al]],tan:[[al,180+al],[180-al,360-al]]}[f],i=sg>0?0:1,L=x=>x.map(a=>a+'°').join('，'),all=[...S,[al,180-al],[180+al,360-al]];
+const c=L(S[i]),w=[L(S[1-i]),L([al,180+al]),L([al,360-al]),L([180-al,360-al]),L([90-al,90+al]),L([al,180-al,180+al,360-al]),L([90+al,270-al])];
+const pts=S[i].map(a=>({a,l:a+'°'}));return mc(`解 ${f}x=${sg<0?'−':''}${vv}，0°<x<360°，则 x=`,c,w,`${f}x ${sg>0?'>':'<'} 0，相伴锐角 ${al}°，位于${f=='sin'?(sg>0?'第一、二':'第三、四'):f=='cos'?(sg>0?'第一、四':'第二、三'):(sg>0?'第一、三':'第二、四')}象限 ⇒ x=${c}`,circ({pts,h:f=='sin'?sg*Math.sin(al*D):null,v:f=='cos'?sg*Math.cos(al*D):null,hl:(sg<0?'−':'')+vv.replace(/[⟦⟧⟨⟩]/g,'').replace('|','/')}))},
+()=>{const k=pk([['cos2x+3cosx+2=0','120°，180°，240°'],['2cos²x+cosx−1=0','60°，180°，300°'],['2sin²x−sinx−1=0','90°，210°，330°'],['sin2x=sinx','0°，60°，180°，300°']]);return mc(`解 ${k[0]}，0°≤x<360°，则 x=`,k[1],k.length&&['120°，180°，240°','60°，180°，300°','90°，210°，330°','0°，60°，180°，300°','60°，300°'].filter(x=>x!=k[1]),`因式分解（或用倍角公式化为 cosx、sinx 的二次式）后分别求解，得 x=${k[1]}`,circ({pts:k[1].split('，').map(x=>({a:parseInt(x),l:x}))}))}];
+const GF4=[()=>{const p=ri(2,6),q=ri(1,7);return fl(`解 ${p}sinx=${q}cosx，0°<x<180°（保留1位小数）。`,Math.atan(q/p)/D,`两边除以 cosx：tanx=⟦${q}|${p}⟧，x≈${(Math.atan(q/p)/D).toFixed(1)}°（0°~180° 内 tan>0 仅第一象限）`,circ({pts:[{a:Math.atan(q/p)/D,l:(Math.atan(q/p)/D).toFixed(1)+'°'}]}),.2)},
+()=>{const al=pk([30,45,60]);return fl(`若 sinx=cos${90-al}°，0°<x<90°，求 x（度）。`,al,`cos${90-al}°=sin${al}°，在 0°~90° 内 x=${al}°`,circ({pts:[{a:al,l:al+'°'}],arcs:[{f:0,t:al,l:''}]}))}];
+
+const tnA=(p,h)=>Math.asin(p/h)/D;
+GM1.push(()=>{const[p,q,h]=trp();return mc(`已知 sinθ+cosθ=${fr(p+q,h)}，求 sinθcosθ 的值。`,fr(p*q,h*h),[fr((p+q)**2,2*h*h),fr(p*q,h),fr(h*h-(p+q)**2,2*h*h)],`(sinθ+cosθ)²=1+2sinθcosθ ⇒ sinθcosθ=⟦(${fr(p+q,h)})²−1|2⟧=${fr(p*q,h*h)}`,circ({rays:[{a:Math.atan2(p,q)/D,l:'θ'}],arcs:[{f:0,t:Math.atan2(p,q)/D,l:'θ'}],proj:1,pl:['sinθ','cosθ']}))},
+()=>{const n=ri(2,6);return mc(`若 secθ+tanθ=${n}，则 secθ−tanθ 的值是：`,fr(1,n),[`${n}`,fr(1,n+1),fr(n,n+1)],`(secθ+tanθ)(secθ−tanθ)=sec²θ−tan²θ=1 ⇒ secθ−tanθ=⟦1|${n}⟧`,A(40,'θ',['tanθ','1']))});
+GF1.push(()=>{const n=ri(2,7);return fl(`已知 secθ+tanθ=${n}，求 secθ−tanθ 的值（如 1/3）。`,1/n,`(secθ+tanθ)(secθ−tanθ)=sec²θ−tan²θ=1，故 secθ−tanθ=⟦1|${n}⟧`,A(40,'θ',['tanθ','1']))},
+()=>{const[p,q,h]=trp();return fl(`已知 sinθ+cosθ=${fr(p+q,h)}，求 sinθcosθ（如 12/25）。`,p*q/(h*h),`两边平方：1+2sinθcosθ=⟦${(p+q)**2}|${h*h}⟧ ⇒ sinθcosθ=${fr(p*q,h*h)}`,A(40,'θ',['sinθ','cosθ']))});
+GM2.push(()=>{let p=ri(2,6),q=ri(2,7);if(p==q)q++;return mc(`已知 tanx=⟦1|${p}⟧，tany=⟦1|${q}⟧，求 tan(x+y)。`,fr(p+q,p*q-1),[fr(p+q,p*q+1),fr(q-p,p*q+1),fr(p*q-1,p+q),fr(p+q,p*q),fr(p*q,p+q),fr(p+q,p*q+2)],`tan(x+y)=⟦tanx+tany|1−tanxtany⟧=⟦⟦1|${p}⟧+⟦1|${q}⟧|1−⟦1|${p*q}⟧⟧=${fr(p+q,p*q-1)}`,circ({rays:[{a:Math.atan(1/p)/D,l:'x'},{a:(Math.atan(1/p)+Math.atan(1/q))/D,l:'x+y'}],arcs:[{f:0,t:Math.atan(1/p)/D,l:'x'},{f:Math.atan(1/p)/D,t:(Math.atan(1/p)+Math.atan(1/q))/D,l:'y'}]}))});
+GF2.push(()=>{let i=ri(0,4),j=(i+ri(1,4))%5;const[a1,b1,h1]=T[i],[a2,b2,h2]=T[j],al=180+tnA(a1,h1),be=180-tnA(a2,h2);return fl(`已知 sinα=−⟦${a1}|${h1}⟧，sinβ=⟦${a2}|${h2}⟧，α 在第三象限，β 在第二象限，求 sin(α+β)（如 −16/65）。`,(a1*b2-b1*a2)/(h1*h2),`cosα=−⟦${b1}|${h1}⟧，cosβ=−⟦${b2}|${h2}⟧（第三、二象限的余弦为负）<br>sin(α+β)=sinαcosβ+cosαsinβ=(−⟦${a1}|${h1}⟧)(−⟦${b2}|${h2}⟧)+(−⟦${b1}|${h1}⟧)(⟦${a2}|${h2}⟧)=${fr(a1*b2-b1*a2,h1*h2)}`,circ({rays:[{a:al,l:'α'},{a:be,l:'β'}],arcs:[{f:0,t:be,l:'β'},{f:0,t:al,l:'α'}].sort((x,y)=>x.t-y.t).map((o,k)=>({f:0,t:o.t,l:o.l}))}))});
+GM3.push(()=>{const[p,q,h]=trp();return mc(`已知 cosA=${fr(q*q-p*p,h*h)}，0°<A<180°，求 sin⟦A|2⟧。`,fr(p,h),[fr(q,h),fr(p,q),fr(q*q-p*p,h)],`sin²⟦A|2⟧=⟦1−cosA|2⟧=⟦${2*p*p}|${2*h*h}⟧=⟦${p*p}|${h*h}⟧；0°<⟦A|2⟧<90° 取正值，sin⟦A|2⟧=${fr(p,h)}`,circ({rays:[{a:2*tnA(p,h),l:'A'},{a:tnA(p,h),l:'A/2'}],arcs:[{f:0,t:tnA(p,h),l:'A/2'},{f:0,t:2*tnA(p,h),l:'A'}]}))});
+GF3.push(()=>{const[p,q,h]=trp();return fl(`已知 sinA=⟦${p}|${h}⟧，求 sin3A（如 117/125）。`,(3*p*h*h-4*p**3)/h**3,`sin3A=3sinA−4sin³A=3(⟦${p}|${h}⟧)−4(⟦${p}|${h}⟧)³=${fr(3*p*h*h-4*p**3,h**3)}`,circ({rays:[{a:tnA(p,h),l:'A'},{a:3*tnA(p,h)%360,l:'3A'}],arcs:[{f:0,t:tnA(p,h),l:'A'},{f:0,t:3*tnA(p,h),l:'3A'}]}))},
+()=>{const[p,q,h]=trp();return fl(`已知 cosA=${fr(q*q-p*p,h*h)}，0°<A<180°，求 tan⟦A|2⟧（如 3/4）。`,p/q,`tan⟦A|2⟧=⟦sinA|1+cosA⟧ 或由 sin⟦A|2⟧=${fr(p,h)}、cos⟦A|2⟧=${fr(q,h)} 得 ${fr(p,q)}`,circ({rays:[{a:2*tnA(p,h),l:'A'},{a:tnA(p,h),l:'A/2'}],arcs:[{f:0,t:tnA(p,h),l:'A/2'},{f:0,t:2*tnA(p,h),l:'A'}]}))});
+const AX=[[1,1,45,Math.SQRT2],[3**.5,1,30,2],[1,3**.5,60,2]],RT={'√⟨3⟩':3**.5};
+const aux=()=>{const[a,b,al,R]=pk(AX),ph=pk(al==45?[45,60,30,90]:[30,45,60]),c=R*Math.cos(ph*D),nm=x=>x==1?'':x==3**.5?'√⟨3⟩':'√⟨2⟩',cl=tf(Math.round(c*1e9)/1e9),rr=[(al+ph)%360,((al-ph)%360+360)%360].sort((x,y)=>x-y);return{a,b,al,ph,cl,rr,ex:`${nm(a)}cosx+${nm(b)}sinx=${cl}`}};
+GM4.push(()=>{const k=aux(),L=x=>x.map(v=>v+'°').join('，'),c=L(k.rr);return mc(`解 ${k.ex}，0°≤x<360°，则 x=`,c,[L([k.ph,360-k.ph].sort((x,y)=>x-y)),L([(90-k.al+k.ph)%360,(90-k.al-k.ph+360)%360].sort((x,y)=>x-y)),L([(k.al+k.ph+90)%360,(k.al-k.ph+450)%360].sort((x,y)=>x-y)),L([(k.al+k.ph)%360,(180+k.al-k.ph)%360].sort((x,y)=>x-y)),'45°，135°','90°，270°','0°，180°','60°，300°'],`化成 Rcos(x−${k.al}°)：R=${k.al==45?'√⟨2⟩':'2'}，α=${k.al}°，得 cos(x−${k.al}°)=cos${k.ph}° ⇒ x−${k.al}°=±${k.ph}° ⇒ x=${c}`,circ({pts:k.rr.map(a=>({a,l:a+'°'})),rays:[{a:k.al,l:'α'}],arcs:[{f:0,t:k.al,l:'α'}]}))},
+()=>{const K=[['cos2x=cosx','0°，120°，240°'],['sin2x=sinx','0°，60°，180°，300°'],['2sin²x+sinx−1=0','30°，150°，270°'],['2cos²x−cosx−1=0','0°，120°，240°'],['sin2x=cosx','30°，90°，150°，270°'],['tan²x=3','60°，120°，240°，300°'],['4sin²x=3','60°，120°，240°，300°'],['2cos²x=cosx','60°，90°，270°，300°']],k=pk(K);return mc(`解 ${k[0]}，0°≤x<360°，则 x=`,k[1],K.map(x=>x[1]),`移项并因式分解（必要时用倍角公式化为单一函数），分别解各因式，得 x=${k[1]}`,circ({pts:k[1].split('，').map(x=>({a:parseInt(x),l:x}))}))});
+GF4.push(()=>{const k=aux(),mm=k.rr;return fl(`解 ${k.ex}，0°≤x<360°（度，用逗号隔开）。`,mm,`化成 Rcos(x−${k.al}°) 的形式后，得 x=${mm.join('°，')}°`,circ({pts:mm.map(a=>({a,l:a+'°'})),rays:[{a:k.al,l:'α'}],arcs:[{f:0,t:k.al,l:'α'}]}),.5)},
+()=>{const[m,n]=pk([[3,4],[2,5],[4,3],[2,3],[3,5],[5,2]]),d=m-n,t=Math.atan(n/m)/D,ans=[t,t+180,135,315].map(x=>Math.round(x*10)/10);return fl(`解 ${m}tan²x${d<0?'−':'+'}${Math.abs(d)==1?'':Math.abs(d)}tanx−${n}=0，0°<x<360°（保留1位小数，逗号隔开）。`,ans,`因式分解：(${m}tanx−${n})(tanx+1)=0<br>tanx=⟦${n}|${m}⟧ ⇒ x=${ans[0]}°，${ans[1]}°；tanx=−1 ⇒ x=135°，315°`,circ({pts:ans.map(a=>({a,l:a+'°'}))}),.2)});
+const GMS=[GM1,GM2,GM3,GM4],GFS=[GF1,GF2,GF3,GF4];
+// ---- 测验组件 ----
+function quiz(box,gm,gf,nm,nf,pass,fin){let sc=0,dn=0,fsc=0,fd=0;const ms=Array.from({length:nm},()=>pk(gm)()),bx=document.createElement('div');box.innerHTML='';box.append(bx);
+ ms.forEach((q,i)=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<b>选择题 ${i+1}</b>　${M(q.q)}`+q.o.map((o,j)=>`<button class=o data-j=${j}>${'ABCD'[j]}. ${M(o)}</button>`).join('')+`<div class=ex></div>`;
+  d.querySelectorAll('.o').forEach(b=>b.onclick=()=>{if(d.dataset.d)return;d.dataset.d=1;const j=+b.dataset.j,ok=j==q.a;if(ok)sc++;b.classList.add(ok?'ok':'no');d.querySelectorAll('.o')[q.a].classList.add('ok');
+   const e=d.querySelector('.ex');e.classList.add('s');e.innerHTML=`<span class=${ok?'gd':'bd'}>${ok?'✔ 正确！':'✘ 错误，正确答案是 '+'ABCD'[q.a]}</span><br>${M(q.e)}${q.s||''}`;
+   if(++dn==nm){const r=document.createElement('div');r.className='card';r.innerHTML=`选择题得分：<b>${sc}/${nm}</b> ${sc>=pass?'🎉 可以作答填充题！':'😅 需答对 '+pass+' 题或以上才能解锁填充题。'} <button>换一组新题</button>`;r.querySelector('button').onclick=()=>quiz(box,gm,gf,nm,nf,pass,fin);bx.append(r);if(sc>=pass)fills(bx)}});bx.append(d)});
+ function fills(bx){const h=document.createElement('h3');h.textContent='作答题（填充）';bx.append(h);
+  Array.from({length:nf},()=>pk(gf)()).forEach((q,i)=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<b>填充题 ${i+1}</b>　${M(q.q)}<div class=row><input type=text placeholder="你的答案"><button>提交</button></div><div class=ex></div>`;
+   d.querySelector('button').onclick=()=>{if(d.dataset.d)return;const v=d.querySelector('input').value.replace(/[，;；]/g,',').split(/[,\s]+/).filter(Boolean).map(pv).sort((a,b)=>a-b);if(!v.length||v.some(isNaN))return;d.dataset.d=1;const a=[...q.a].sort((x,y)=>x-y),ok=v.length==a.length&&a.every((x,k)=>Math.abs(x-v[k])<=q.tol);if(ok)fsc++;
+    const e=d.querySelector('.ex');e.classList.add('s');e.innerHTML=`<span class=${ok?'gd':'bd'}>${ok?'✔ 正确！':'✘ 错误'}</span> 参考答案：${a.map(x=>q.tol>.1?x.toFixed(1):M(tf(x))).join('，')}<br>${M(q.e)}${q.s||''}`;
+    if(++fd==nf){const r=document.createElement('div');r.className='card';const t=sc+fsc,T2=nm+nf;r.innerHTML=fin?`<h3>总成绩：${t}/${T2}</h3>${t>=T2*.85?'🏆 优秀！三角恒等式与方程式掌握扎实。':t>=T2*.6?'👍 良好，再复习做错的题型。':'📘 需加强，建议回到各小节重做例题与计算器。'}`:`填充题得分：<b>${fsc}/${nf}</b>　本节总分 ${t}/${T2}`;bx.append(r)}};bx.append(d)})}
+ if(!nm){}}
+// ---- 计算器 ----
+const CS=[
+ {h:'输入 sinA（可输入分数 如 4/5）与角所在象限',f:'<input id=c1 value="4/5" size=6> 象限 <select id=c2><option>1<option>2<option>3<option>4</select>',r(){const s=pv($('#c1').value),q=+$('#c2').value;if(isNaN(s)||Math.abs(s)>1)return'sinA 须在 −1 到 1 之间';if((s>0&&q>2)||(s<0&&q<3))return'sinA 的正负号与所选象限不符（第一、二象限为正，第三、四象限为负）';if(!s&&0)return'';const c=Math.sqrt(1-s*s)*(q==1||q==4?1:-1),th=(Math.atan2(s,c)/D+360)%360;
+  return{t:`sin²A+cos²A=1 ⇒ cos²A=1−(${tf(s)})²=${tf(c*c)}<br>cosA=${tf(c)}${Math.abs(c)<1e-9?'':`<br>tanA=⟦sinA|cosA⟧=${tf(s/c)}`}<br>验算：(${tf(s)})²+(${tf(c)})²=${tf(s*s+c*c)} ✔`,g:circ({rays:[{a:th,l:'A'}],arcs:[{f:0,t:th||1,l:'A'}],proj:1,pl:['sinA='+tf(s).replace(/[⟦⟧⟨⟩]/g,'').replace('|','/'),'cosA']})}}},
+ {h:'输入角 A、B（度）及运算',f:'A <input id=c1 value=45 size=4> B <input id=c2 value=30 size=4> <select id=c3><option>+<option>−</select>',r(){const a=pv($('#c1').value),b=pv($('#c2').value),m=$('#c3').value=='+'?1:-1;if(isNaN(a)||isNaN(b))return'请输入数字';const x=a+m*b,s=Math.sin,c=Math.cos,v=Math.tan;
+  const sA=s(a*D),cA=c(a*D),sB=s(b*D),cB=c(b*D),o=m>0?'+':'−',o2=m>0?'−':'+',P=y=>`(${tf(y)})`;
+  return{t:`已知 sinA=${tf(sA)}，cosA=${tf(cA)}，sinB=${tf(sB)}，cosB=${tf(cB)}<br>sin(A${o}B)=sinAcosB${o}cosAsinB<br>=${P(sA)}${P(cB)}${o}${P(cA)}${P(sB)}<br>=${tf(sA*cB+m*cA*sB)}<br>cos(A${o}B)=cosAcosB${o2}sinAsinB<br>=${P(cA)}${P(cB)}${o2}${P(sA)}${P(sB)}<br>=${tf(cA*cB-m*sA*sB)}<br>tan(A${o}B)=${Math.abs(c(x*D))<1e-9?'不存在（cos='+'0）':tf(v(x*D))}<br><small>（直接计算 ${x}° 验证一致）</small>`,g:circ({rays:[{a:a%360,l:'A'},{a:x%360,l:m>0?'A+B':'A−B'}],arcs:m>0?[{f:0,t:a,l:'A'},{f:a,t:x,l:'B'}]:[{f:0,t:Math.min(a,x),l:'r1'},{f:0,t:Math.max(a,x),l:'r2'}].map((o,i)=>({f:o.f,t:o.t,l:i?'A':'A−B'}))})}}},
+ {h:'输入角 A（度）',f:'A <input id=c1 value=30 size=5>°',r(){const a=pv($('#c1').value);if(isNaN(a))return'请输入数字';const s=Math.sin,c=Math.cos;
+  return{t:`sin2A=2sinAcosA=${tf(s(2*a*D))}<br>cos2A=cos²A−sin²A=${tf(c(2*a*D))}<br>tan2A=${Math.abs(c(2*a*D))<1e-9?'不存在':tf(Math.tan(2*a*D))}<br>半角：sin⟦A|2⟧=${tf(s(a/2*D))}，cos⟦A|2⟧=${tf(c(a/2*D))}`,g:circ({rays:[{a:a%360,l:'A'},{a:2*a%360,l:'2A'}],arcs:[{f:0,t:a||1,l:'A'},{f:0,t:2*a||1,l:'2A'}]})}}},
+ {h:'解 f(x)=k，0°≤x<360°',f:'<select id=c1><option>sin<option>cos<option>tan</select>x = <input id=c2 value="1/2" size=7>',r(){const f=$('#c1').value,k=pv($('#c2').value);if(isNaN(k))return'请输入数字或分数';if(f!='tan'&&Math.abs(k)>1)return'此方程无解（−1≤'+f+'x≤1）';let r=[];for(let a=0;a<360;a+=.01){const A1=a*D,B1=(a+.01)*D,F=Math[f];const u=F(A1)-k,w=F(B1)-k;if(u*w<=0&&Math.abs(u-w)<.5&&Math.abs(F((a+.005)*D)-k)<.02)r.push(Math.round((a+.005)*100)/100)}
+  r=r.filter((x,i)=>!i||x-r[i-1]>.5).map(x=>Math.round(x*10)/10);const rs=r.map(x=>x+'°').join('，')||'无解';return{t:`${f}x=${tf(k)} ⇒ 先找相伴锐角，再按象限(ASTC)判断<br>解：x=${rs}`,g:circ({pts:r.map(a=>({a,l:a+'°'})),h:f=='sin'?k:null,v:f=='cos'?k:null,hl:tf(k).replace(/[⟦⟧⟨⟩]/g,'').replace('|','/')})}}}];
+// ---- 页面 ----
+const NM=['9.1 基本恒等式','9.2 和差公式','9.3 倍角与半角','9.4 三角方程式','总复习'];
+$('#tabs').innerHTML=NM.map((n,i)=>`<button onclick="go(${i})">${n}</button>`).join('');
+function go(i){document.querySelectorAll('#tabs button').forEach((b,j)=>{b.classList.toggle('on',i==j);if(i==j)b.scrollIntoView({inline:'center',block:'nearest'})});const m=$('#m');
+ if(i==4){m.innerHTML=`<h2>总复习：10题选择 + 5题填充</h2><p>题目由引擎随机生成，涵盖 9.1–9.4（含较难综合题型）。</p><div id=rv></div>`;quiz($('#rv'),GMS.flat(),GFS.flat(),10,5,0,1);return}
+ m.innerHTML=`<h2>${NM[i]}</h2><div class=card><h3>公式速查</h3>${FM[i].map(x=>`<div class=fm>${M(x)}</div>`).join('')}</div><h3>课本例题讲解</h3>`+EX[i].map(e=>`<div class=card><b>${e.t}</b>　${M(e.q)}<div class=fm>${M(e.s)}</div>${e.g}</div>`).join('')+`<div class=card><h3>🧮 专属计算器</h3><p>${CS[i].h}</p><div class=row>${CS[i].f}<button id=cb>计算</button></div><div id=co></div></div>${pfH(i)}<h3>随堂测验</h3><div id=qz></div>`;
+ const run=()=>{const r=CS[i].r();$('#co').innerHTML=typeof r=='string'?`<p class=bd>${r}</p>`:`<div class=fm>${M(r.t)}</div>${r.g}`};$('#cb').onclick=run;run();quiz($('#qz'),GMS[i],GFS[i],5,2,3,0)}
+go(0);
+</script></body></html>

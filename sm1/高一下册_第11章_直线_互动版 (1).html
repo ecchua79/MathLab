@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 (ecchua79) · Chinese High School 华仁中学 · 峇株吧辖 · 高一下册 第11章 直线 互动版 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School 华仁中学">
+<title>高一下册 第11章 直线 · 互动课程</title>
+<style>
+/* © 蔡逸众 ecchua79 · Chinese High School */
+:root{--bg:#f4f6fb;--c:#fff;--t:#1b2233;--m:#5b6478;--p:#2457d6;--ok:#12803c;--no:#c62828;--g:#dde2ee;--h:#eef3ff}
+[data-t=d]{--bg:#0f1420;--c:#182033;--t:#e8ecf6;--m:#9aa5bd;--p:#6ea0ff;--ok:#4cd07d;--no:#ff7b7b;--g:#2c3752;--h:#1d2a4a}
+*{box-sizing:border-box}html{font-size:15px}
+body{margin:0;background:var(--bg);color:var(--t);font:1rem/1.55 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--c);border-bottom:1px solid var(--g);padding:6px 8px}
+.top{display:flex;align-items:center;gap:6px}.top b{flex:1;font-size:1.05rem}
+button{font:inherit;cursor:pointer;color:var(--t);background:var(--h);border:1px solid var(--g);border-radius:8px;padding:3px 9px}
+#nav{display:flex;gap:6px;overflow-x:auto;white-space:nowrap;margin-top:6px;padding-bottom:3px;-webkit-overflow-scrolling:touch}
+#nav button{flex:none}#nav .on{background:var(--p);color:#fff;border-color:var(--p)}
+main{max-width:760px;margin:0 auto;padding:8px 10px 20px}
+h2{margin:6px 0;font-size:1.25rem}h3{margin:14px 0 6px;font-size:1.05rem;color:var(--p)}
+.box,.qc,.ex1{background:var(--c);border:1px solid var(--g);border-radius:10px;padding:8px 10px;margin:6px 0}
+.box{background:var(--h)}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.25}
+.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 3px}.fr b{font-weight:400;padding:0 3px}
+.rd{display:inline-flex;vertical-align:middle;align-items:stretch}
+.rd svg{width:.75em;overflow:visible}.rd>span{border-top:1.5px solid currentColor;padding:0 2px;margin-left:-1px}
+.fg{text-align:center}.pl{width:100%;max-width:300px;overflow:hidden;background:var(--c);border:1px solid var(--g);border-radius:8px}
+.calc label{margin-right:6px;white-space:nowrap}.calc input,.ans{width:4em;font:inherit;padding:2px 4px;border:1px solid var(--g);border-radius:6px;background:var(--c);color:var(--t)}
+.ans{width:9em}.calc select{font:inherit;padding:2px;margin-bottom:4px}
+.out{margin-top:6px;overflow-x:auto}
+.ops button{display:block;width:100%;text-align:left;margin:4px 0;padding:6px 10px}
+.ops .ok{background:var(--ok);color:#fff}.ops .no{background:var(--no);color:#fff}
+.ex{margin-top:6px;padding:6px 8px;border-left:4px solid var(--p);background:var(--h);border-radius:6px}
+.qn{color:var(--m);font-size:.85rem}.hd{background:#e0662b;color:#fff;border-radius:4px;padding:0 5px;font-size:.75rem}
+.res{padding:8px;border-radius:8px;margin:8px 0;font-weight:600;border:1px solid var(--g)}.res.ok{color:var(--ok)}.res.no{color:var(--no)}
+.info{color:var(--m);font-size:.85rem}
+footer{text-align:center;color:var(--m);font-size:.8rem;padding:14px 8px;border-top:1px solid var(--g)}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.09}
+</style></head><body>
+<div id="wm"></div>
+<header><div class="top"><b>📐 第11章 直线</b><button id="fm">A−</button><button id="fp">A+</button><button id="th">🌙</button></div><div id="nav"></div></header>
+<main id="main"></main>
+<footer>峇株吧辖华仁中学出品<br>蔡逸众老师 制作</footer>
+<script>
+console.log('%c© 蔡逸众 / ecchua79 / Chinese High School 华仁中学','color:#2457d6');
+const $=s=>document.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),NZ=(a,b)=>{let v;do v=R(a,b);while(!v);return v},
+gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),pick=a=>a[R(0,a.length-1)],
+shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const N=n=>n<0?'−'+(-n):''+n,Pn=n=>n<0?'('+N(n)+')':''+n;
+const fr=(n,d)=>`<span class=fr><i>${n}</i><b>${d}</b></span>`;
+const rad=s=>`<span class=rd><svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M.5 12L3 10.5L5.5 18.5L9.5 .8H10" fill="none" stroke="currentColor" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg><span>${s}</span></span>`;
+const q=(n,d=1)=>{let g=gcd(n,d)||1;n/=g;d/=g;if(d<0){n=-n;d=-d}return d==1?N(n):(n<0?'−':'')+fr(Math.abs(n),d)};
+const sg=(n,d)=>(n<0)==(d<0)||n==0?' + '+q(n,d):' − '+q(-n,d);
+const P=(x,y)=>`(${N(x)}, ${N(y)})`;
+const nrm=(A,B,C)=>{let g=gcd(gcd(A,B),C)||1;A/=g;B/=g;C/=g;if(A<0||(A==0&&B<0)){A=-A;B=-B;C=-C}return[A,B,C]};
+const eq=(A,B,C,raw)=>{if(!raw)[A,B,C]=nrm(A,B,C);const T=(c,v)=>c?(c<0?' − ':' + ')+((Math.abs(c)==1&&v)?'':Math.abs(c))+v:'';return(T(A,'<i>x</i>')+T(B,'<i>y</i>')+T(C,'')).replace(/^ \+ /,'').replace(/^ − /,'−')+' = 0'};
+const lhs=(A,B,C)=>eq(A,B,C,1).slice(0,-4);
+const lf=(x1,y1,x2,y2)=>[y2-y1,-(x2-x1),(x2-x1)*y1-(y2-y1)*x1];
+function plot(o){const pts=o.pts||[],ls=o.ls||[];let m=0;pts.forEach(p=>m=Math.max(m,Math.abs(p[0]),Math.abs(p[1])));
+const Rg=o.R||Math.max(6,Math.ceil(m)+1),S=300,k=S/(2*Rg),X=x=>S/2+x*k,Y=y=>S/2-y*k,col=['#2457d6','#e0662b','#8e44ad'];
+let h='<svg viewBox="0 0 300 300" class=pl>';
+for(let i=-Rg;i<=Rg;i++)h+=`<path d="M${X(i)} 0V300M0 ${Y(i)}H300" stroke="var(--g)" stroke-width=".6"/>`;
+h+='<path d="M0 150H298M150 300V2" stroke="var(--t)" stroke-width="1.2"/><text x="290" y="143" font-size="11" fill="var(--t)">x</text><text x="156" y="12" font-size="11" fill="var(--t)">y</text>';
+const st=Rg>12?5:Rg>6?2:1;for(let i=-Rg;i<=Rg;i+=st)if(i&&Math.abs(i)<Rg)h+=`<text x="${X(i)-3}" y="${Y(0)+11}" font-size="8" fill="var(--m)">${i}</text><text x="${X(0)+3}" y="${Y(i)+3}" font-size="8" fill="var(--m)">${i}</text>`;
+ls.forEach((l,i)=>{const[A,B,C]=l,c=l[3]||col[i%3];let p,r;if(B){p=[-60,(-C+60*A)/B];r=[60,(-C-60*A)/B]}else{p=[-C/A,-60];r=[-C/A,60]}h+=`<path d="M${X(p[0])} ${Y(p[1])}L${X(r[0])} ${Y(r[1])}" stroke="${c}" stroke-width="2" fill="none"/>`});
+(o.sg||[]).forEach(s=>h+=`<path d="M${X(s[0])} ${Y(s[1])}L${X(s[2])} ${Y(s[3])}" stroke="var(--m)" stroke-width="1.3" ${s[4]?'stroke-dasharray="4 3"':''}/>`);
+(o.arcs||[]).forEach(a=>{const[cx,cy,r,a1,a2,t,c]=a,u=a1*Math.PI/180,w=a2*Math.PI/180,cc=c||'#d81b60';h+=`<path d="M${X(cx)+r*Math.cos(u)} ${Y(cy)-r*Math.sin(u)}A${r} ${r} 0 ${a2-a1>180?1:0} 0 ${X(cx)+r*Math.cos(w)} ${Y(cy)-r*Math.sin(w)}" fill="none" stroke="${cc}" stroke-width="1.6"/>`;const md=(a1+a2)/2*Math.PI/180;if(t)h+=`<text x="${X(cx)+(r+9)*Math.cos(md)-6}" y="${Y(cy)-(r+7)*Math.sin(md)+3}" font-size="10" fill="${cc}">${t}</text>`});
+if(o.ex)h+=o.ex(X,Y,k);
+pts.forEach(p=>h+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="3.5" fill="#c62828"/><text x="${X(p[0])+5}" y="${Y(p[1])-5}" font-size="11" font-weight="700" fill="var(--t)">${p[2]||''}</text>`);
+return h+'</svg></div>'.replace('</div>','')+'';}
+const fg=h=>`<div class=fg>${h}</div>`,PL=o=>fg(plot(o));
+const dEx=(x0,y0,A,B,C)=>{const v=A*x0+B*y0+C,m=A*A+B*B,n=Math.abs(v),s=Math.round(Math.sqrt(m)),sqr=s*s==m;
+return `<i>d</i> = ${fr(`|${N(A)}(${N(x0)}) + ${N(B)}(${N(y0)}) + ${N(C)}|`,rad(`${A*A} + ${B*B}`))} = ${fr(n,rad(m))}${sqr?' = '+q(n,s):' ≈ '+(n/Math.sqrt(m)).toFixed(3)}`};
+const fd=(x0,y0,A,B,C)=>{const m=A*A+B*B,v=A*x0+B*y0+C,fx=x0-A*v/m,fy=y0-B*v/m,L=Math.sqrt(m),d=Math.abs(v)/L;
+return PL({ls:[[A,B,C]],pts:[[x0,y0,'P'],[fx,fy,'Q']],sg:[[x0,y0,fx,fy,1]],ex:(X,Y)=>{if(d<1e-9)return'';const a=[B/L,A/L],b=[(x0-fx)/d,-(y0-fy)/d],z=10,x=X(fx),y=Y(fy);
+return `<path d="M${x+z*a[0]} ${y+z*a[1]}L${x+z*(a[0]+b[0])} ${y+z*(a[1]+b[1])}L${x+z*b[0]} ${y+z*b[1]}" fill="none" stroke="var(--t)" stroke-width="1.2"/>`}})};
+/* ===== 题目生成器 ===== */
+const G=[[],[],[],[],[]],TR=[[3,4],[5,12],[8,15],[6,8],[7,24]];
+G[0].push(()=>{const x1=R(-6,3),y1=R(-5,5),dx=NZ(-6,6),dy=NZ(-6,6),x2=x1+dx,y2=y1+dy,m=q(dy,dx);
+return{q:`求过 A${P(x1,y1)} 与 B${P(x2,y2)} 两点的直线斜率。`,f:PL({ls:[lf(x1,y1,x2,y2)],pts:[[x1,y1,'A'],[x2,y2,'B']]}),a:m,w:[q(dx,dy),q(-dy,dx),q(-dx,dy),q(dy,dx+1),q(dy+1,dx),q(dy,dx-1),q(dy-1,dx)],
+e:`<i>m</i> = ${fr('<i>y</i>₂ − <i>y</i>₁','<i>x</i>₂ − <i>x</i>₁')} = ${fr(N(y2)+' − '+Pn(y1),N(x2)+' − '+Pn(x1))} = ${fr(N(dy),N(dx))} = ${m}`,fa:[dy,dx]}});
+G[0].push(()=>{const p=R(2,4),b=R(1,4),k=R(2,3),x=k*p,y=k*b;
+return{q:`A${P(-p,-b)}、B(0, 0)、C(<i>x</i>, ${y}) 三点共线，求 <i>x</i> 的值。`,f:PL({ls:[[b,-p,0]],pts:[[-p,-b,'A'],[0,0,'B'],[x,y,'C']]}),a:N(x),w:[N(-x),q(y*b,p),N(y),N(x+p),N(x+2),N(x-1),N(2*x)],
+e:`共线 ⇒ <i>m</i><sub>AB</sub> = <i>m</i><sub>BC</sub>。<i>m</i><sub>AB</sub> = ${fr(N(b),N(p))}，<i>m</i><sub>BC</sub> = ${fr(y,'<i>x</i>')}，故 ${fr(b,p)} = ${fr(y,'<i>x</i>')} ⇒ <i>x</i> = ${x}`,fa:[x,1]}});
+G[0].push(()=>{const n=NZ(-6,6),d=R(1,4),m=q(n,d);
+return{q:`直线 <i>l</i>₁ 的斜率是 ${m}，若 <i>l</i>₂ ⊥ <i>l</i>₁，求 <i>l</i>₂ 的斜率。`,f:PL({ls:[[n,-d,0],[d,n,0]],pts:[[0,0,'O']]}),a:q(-d,n),w:[q(d,n),q(-n,d),m,q(-d,-n),q(-d,n+1),q(-d-1,n),q(-1,n+d)],
+e:`垂直 ⇒ <i>m</i>₁·<i>m</i>₂ = −1，所以 <i>m</i>₂ = −1 ÷ ${m} = ${q(-d,n)}`,fa:[-d,n]}});
+G[1].push(()=>{const x1=R(-5,5),y1=R(-5,5),m=NZ(-4,4),C=y1-m*x1;
+return{q:`求过点 ${P(x1,y1)} 且斜率为 ${N(m)} 的直线方程式（一般式）。`,f:PL({ls:[[m,-1,C]],pts:[[x1,y1,'A']]}),a:eq(m,-1,C),w:[eq(m,-1,-C),eq(m,-1,y1+m*x1),eq(m,1,-C),eq(m,-1,C+x1)],
+e:`点斜式：<i>y</i> − ${Pn(y1)} = ${Pn(m)}(<i>x</i> − ${Pn(x1)})，整理得 ${eq(m,-1,C)}`,fq:`过点 ${P(x1,y1)} 且斜率为 ${N(m)} 的直线，<i>y</i> 截距是多少？`,fe:`令 <i>x</i> = 0：<i>y</i> = ${N(y1)} + ${Pn(m)}(0 − ${Pn(x1)}) = ${N(C)}`,fa:[C,1]}});
+G[1].push(()=>{const x1=R(-5,5),y1=R(-5,5),dx=NZ(-5,5),dy=NZ(-5,5),x2=x1+dx,y2=y1+dy,[A,B,C]=lf(x1,y1,x2,y2);
+return{q:`求过 A${P(x1,y1)} 与 B${P(x2,y2)} 的直线方程式（一般式）。`,f:PL({ls:[[A,B,C]],pts:[[x1,y1,'A'],[x2,y2,'B']]}),a:eq(A,B,C),w:[eq(A,B,-C),eq(dx,-dy,C),eq(A,-B,C),eq(A,B,C+dx)],
+e:`两点式：${fr('<i>y</i> − '+Pn(y1),'<i>x</i> − '+Pn(x1))} = ${fr(N(y2)+' − '+Pn(y1),N(x2)+' − '+Pn(x1))}，整理得 ${eq(A,B,C)}`,fq:`过 A${P(x1,y1)} 与 B${P(x2,y2)} 的直线，<i>x</i> 截距是多少？`,fe:`直线 ${eq(A,B,C)}，令 <i>y</i> = 0 得 <i>x</i> = ${q(-C,A)}`,fa:[-C,A]}});
+G[1].push(()=>{const a=NZ(-6,6),b=NZ(-6,6);
+return{q:`直线的 <i>x</i> 截距是 ${N(a)}，<i>y</i> 截距是 ${N(b)}，求直线方程式（一般式）。`,f:PL({ls:[[b,a,-a*b]],pts:[[a,0,'P'],[0,b,'Q']]}),a:eq(b,a,-a*b),w:[eq(a,b,-a*b),eq(b,a,a*b),eq(b,-a,-a*b),eq(b,a,-(a+b))],
+e:`截距式：${fr('<i>x</i>',N(a))} + ${fr('<i>y</i>',N(b))} = 1，同乘 ${N(a*b)} 得 ${eq(b,a,-a*b)}`,fq:`直线的 <i>x</i> 截距是 ${N(a)}，<i>y</i> 截距是 ${N(b)}，求斜率。`,fe:`<i>m</i> = ${fr('−'+Pn(b),N(a))} = ${q(-b,a)}`,fa:[-b,a]}});
+G[2].push(()=>{const A=NZ(-7,7),B=NZ(-7,7),C=NZ(-9,9),k=R(0,1);
+return{q:`直线 ${eq(A,B,C)} 的${k?'<i>y</i> 截距':'斜率'}是？`,f:PL({ls:[[A,B,C]],pts:[[0,-C/B,'']],R:Math.max(7,Math.ceil(Math.abs(C/B))+1)}),a:k?q(-C,B):q(-A,B),w:k?[q(C,B),q(-C,A),q(-A,B),q(B,-C)]:[q(A,B),q(B,-A),q(-B,A),q(-C,B)],
+e:`化为斜截式：<i>y</i> = ${q(-A,B)}<i>x</i>${sg(-C,B)}，所以斜率 = ${q(-A,B)}，<i>y</i> 截距 = ${q(-C,B)}`,fa:k?[-C,B]:[-A,B]}});
+G[2].push(()=>{const A=NZ(-5,5),B=NZ(-5,5),C=R(-8,8),p=R(-5,5),b=R(-5,5),k=-(A*p+B*b);
+return{q:`求过点 ${P(p,b)} 且与直线 ${eq(A,B,C)} 平行的直线方程式。`,f:PL({ls:[[A,B,C],[A,B,k]],pts:[[p,b,'P']]}),a:eq(A,B,k),w:[eq(A,B,-k),eq(A,B,C),eq(B,-A,B*b-A*p),eq(A,B,A*p-B*b)],
+e:`平行 ⇒ 斜率相同，设所求为 ${lhs(A,B,0)} + <i>k</i> = 0；代入 ${P(p,b)}：${N(A*p+B*b)} + <i>k</i> = 0，<i>k</i> = ${k}，即 ${eq(A,B,k)}`,fq:`过点 ${P(p,b)} 且与直线 ${lhs(A,B,C)} = 0 平行的直线可写成 ${lhs(A,B,0)} + <i>k</i> = 0，求 <i>k</i>。`,fa:[k,1]}});
+G[2].push(()=>{const A=NZ(-5,5),B=NZ(-5,5),C=NZ(-8,8),t=NZ(-3,3),p=R(-5,5),b=R(-5,5);
+return{q:`求过点 ${P(p,b)} 且与直线 ${eq(A,B,C)} 垂直的直线方程式。`,f:PL({ls:[[A,B,C],[B,-A,A*b-B*p]],pts:[[p,b,'P']]}),a:eq(B,-A,A*b-B*p),w:[eq(B,-A,B*p-A*b),eq(A,B,-(A*p+B*b)),eq(B,A,-(B*p+A*b)),eq(A,-B,A*p-B*b)],
+e:`原直线斜率 ${q(-A,B)}，垂直 ⇒ 所求斜率 ${q(B,A)}；设 ${lhs(B,-A,0)} + <i>k</i> = 0，代入点得 <i>k</i> = ${N(A*b-B*p)}，即 ${eq(B,-A,A*b-B*p)}`,
+fq:`直线 ${lhs(A,B,0)} + <i>C</i> = 0 与直线 ${N(B*t)}<i>x</i> + <i>k</i><i>y</i> + 4 = 0 互相垂直，求 <i>k</i>。`,fe:`<i>m</i>₁<i>m</i>₂ = −1：${fr(N(-A),N(B))}·${fr(N(-B*t),'<i>k</i>')} = −1 ⇒ <i>k</i> = ${N(-A*t)}`,fa:[-A*t,1]}});
+G[3].push(()=>{let x0=R(-5,5),y0=R(-5,5),A1,B1,A2,B2;do{A1=NZ(-4,4);B1=NZ(-4,4);A2=NZ(-4,4);B2=NZ(-4,4)}while(A1*B2==A2*B1);
+const C1=-(A1*x0+B1*y0),C2=-(A2*x0+B2*y0);
+return{q:`求直线 <i>l</i>₁：${eq(A1,B1,C1)} 与 <i>l</i>₂：${eq(A2,B2,C2)} 的交点坐标。`,f:PL({ls:[[A1,B1,C1],[A2,B2,C2]],pts:[[x0,y0,'P']]}),a:P(x0,y0),w:[P(y0,x0),P(-x0,y0),P(x0,-y0),P(x0+1,y0-1)],
+e:`① ${eq(A1,B1,C1)}<br>② ${eq(A2,B2,C2)}<br>联立消元，解得 <i>x</i> = ${x0}，<i>y</i> = ${y0}，交点 ${P(x0,y0)}`,fq:`直线 ${eq(A1,B1,C1)} 与 ${eq(A2,B2,C2)} 的交点为 (<i>x</i>, <i>y</i>)，求 <i>x</i> + <i>y</i> 的值。`,fe:`交点 ${P(x0,y0)}，<i>x</i> + <i>y</i> = ${x0+y0}`,fa:[x0+y0,1]}});
+G[3].push(()=>{const A=NZ(-4,4),B=NZ(-4,4),C=R(-6,6),k=NZ(-3,3),ty=R(0,2);let A2,B2,C2;
+if(ty==0){do{A2=NZ(-4,4);B2=NZ(-4,4)}while(A*B2==A2*B||A*A2+B*B2==0);C2=R(-6,6)}else{A2=k*A;B2=k*B;C2=ty==1?k*C+NZ(-4,4):k*C}
+const m=(a,b)=>q(-a,b);
+return{q:`判断直线 ${eq(A,B,C,1)} 与 ${eq(A2,B2,C2,1)} 的位置关系。`,f:PL({ls:[[A,B,C],[A2,B2,C2]]}),h:0,a:['相交于一点','平行但不重合','重合（无限多个交点）'][ty],w:['相交于一点','平行但不重合','重合（无限多个交点）','互相垂直'].filter((_,i)=>i!=ty),
+e:`<i>m</i>₁ = ${m(A,B)}，<i>m</i>₂ = ${m(A2,B2)}。`+(ty==0?'斜率不同 ⇒ 相交于一点。':`斜率相同；<i>y</i> 截距 <i>c</i>₁ = ${q(-C,B)}，<i>c</i>₂ = ${q(-C2,B2)}，${ty==1?'不相等 ⇒ 平行但不重合。':'相等 ⇒ 重合。'}`)}});
+G[3].push(()=>{const A=NZ(-6,6),B=NZ(-6,6),C=NZ(-12,12);
+return{q:`直线 ${eq(A,B,C)} 与 <i>x</i> 轴的交点坐标是？`,f:PL({ls:[[A,B,C]],pts:[[-C/A,0,'P'],[0,-C/B,'Q']]}),a:`(${q(-C,A)}, 0)`,w:[`(0, ${q(-C,B)})`,`(${q(C,A)}, 0)`,`(${q(-C,B)}, 0)`,`(0, ${q(-C,A)})`],
+e:`令 <i>y</i> = 0：${lhs(A,0,C)} = 0 ⇒ <i>x</i> = ${fr(N(-C),N(A))} = ${q(-C,A)}，交点 (${q(-C,A)}, 0)`,fq:`直线 ${eq(A,B,C)} 的 <i>x</i> 截距是多少？`,fa:[-C,A]}});
+G[4].push(()=>{const[a,b]=pick(TR),sw=R(0,1),A=(sw?b:a)*pick([1,-1]),B=(sw?a:b)*pick([1,-1]),x0=R(-5,5),y0=R(-5,5);let C=R(-12,12);if(A*x0+B*y0+C==0)C++;
+const v=A*x0+B*y0+C,m=A*A+B*B,s=Math.round(Math.sqrt(m)),n=Math.abs(v);
+return{q:`求点 P${P(x0,y0)} 到直线 ${eq(A,B,C,1)} 的距离。`,f:fd(x0,y0,A,B,C),a:q(n,s),w:[q(n,m),q(n,Math.abs(A)+Math.abs(B)),q(Math.abs(A*x0+B*y0),s),q(n+s,s)],e:dEx(x0,y0,A,B,C),fa:[n,s]}});
+G[4].push(()=>{const[a,b]=pick([[1,1],[1,2],[2,1],[1,3],[3,1],[2,3]]),A=a*pick([1,-1]),B=b*pick([1,-1]),x0=R(-5,5),y0=R(-5,5);let C=R(-9,9);if(A*x0+B*y0+C==0)C++;
+const v=A*x0+B*y0+C,m=A*A+B*B,n=Math.abs(v);
+return{q:`求点 P${P(x0,y0)} 到直线 ${eq(A,B,C,1)} 的距离（保留根号）。`,f:fd(x0,y0,A,B,C),a:fr(n,rad(m)),w:[fr(n,m),fr(n,rad(Math.abs(A)+Math.abs(B))),fr(Math.abs(A*x0+B*y0),rad(m)),fr(n,rad(m+1))],e:dEx(x0,y0,A,B,C)}});
+const g53=()=>{const[a,b]=pick(TR),A=a,B=-b,s=Math.round(Math.hypot(A,B)),C1=R(-12,12),C2=C1+NZ(-10,10),sc=pick([1,2]),d=Math.abs(C1-C2);
+return{h:sc==2,q:`求两平行线 ${eq(sc*A,sc*B,sc*C1,1)} 与 ${eq(A,B,C2,1)} 之间的距离。`,f:PL({ls:[[A,B,C1],[A,B,C2]],R:10}),a:q(d,s),w:[q(d,s*s),q(Math.abs(sc*C1-C2),s),q(Math.abs(C1+C2),s),q(d,Math.abs(A)+Math.abs(B)),q(2*d,s)],
+e:`先把 <i>l</i>₁ 化成与 <i>l</i>₂ 相同的 <i>x</i>、<i>y</i> 系数：${eq(A,B,C1,1)}。<br><i>d</i> = ${fr(`|${N(C1)} − ${Pn(C2)}|`,rad(`${A*A} + ${B*B}`))} = ${fr(d,s)} = ${q(d,s)}`,fa:[d,s]}};G[4].push(g53);
+const h1=()=>{const mx=R(-3,3),my=R(-3,3),u=NZ(-3,3),v=NZ(-3,3),yk=R(-3,3),c=u*mx+v*my,k0=c-v*yk;
+return{h:1,q:`A${P(mx-u,my-v)}、B${P(mx+u,my+v)} 的连线的垂直平分线上有一点 (<i>k</i>, ${N(yk)})，求 <i>k</i> 的值。`,f:PL({ls:[[u,v,-c]],pts:[[mx-u,my-v,'A'],[mx+u,my+v,'B'],[mx,my,'M']],sg:[[mx-u,my-v,mx+u,my+v,1]]}),a:q(k0,u),w:[q(-k0,u),q(c+v*yk,u),q(k0,v),q(c,u)],
+e:`中点 M${P(mx,my)}；AB 斜率 ${q(v,u)}，垂直平分线过 M 且与 AB 垂直：${eq(u,v,-c,1)}。代入 <i>y</i> = ${yk}，得 <i>k</i> = ${q(k0,u)}`,fa:[k0,u]}};
+G[1].push(()=>{const x1=R(-5,5),y1=R(-5,5),th=pick([45,135]),m=th==45?1:-1,C=y1-m*x1,xi=-C/m;
+return{q:`求过点 ${P(x1,y1)}、倾斜角为 ${th}° 的直线方程式（一般式）。`,f:PL({ls:[[m,-1,C]],pts:[[x1,y1,'A'],[xi,0,'']],arcs:[[xi,0,16,0,th,'θ'],[xi,0,28,th,180,'180°−θ','#2e7d32']]}),a:eq(m,-1,C),w:[eq(m,-1,-C),eq(-m,-1,C),eq(m,1,C),eq(m,-1,y1+m*x1)],
+e:`<i>m</i> = tan ${th}° = ${N(m)}；点斜式 <i>y</i> − ${Pn(y1)} = ${Pn(m)}(<i>x</i> − ${Pn(x1)})，整理得 ${eq(m,-1,C)}`,fq:`过点 ${P(x1,y1)}、倾斜角为 ${th}° 的直线，<i>y</i> 截距是多少？`,fe:`<i>m</i> = tan ${th}° = ${N(m)}，令 <i>x</i> = 0 得 <i>y</i> = ${N(C)}`,fa:[C,1]}});
+G[3].push(()=>{const k=R(1,4),b=R(1,4),p=R(1,3),u=R(1,3),s=b*(k+1);
+return{q:`直线 ${p>1?p:''}<i>kx</i> + (<i>k</i> + 1)<i>y</i> − ${s} = 0 与 (${u>1?u:''}<i>k</i> − 1)<i>x</i> − <i>y</i> + ${b} = 0 的交点在 <i>y</i> 轴上，求 <i>k</i> 的值。`,f:PL({ls:[[p*k,k+1,-s],[u*k-1,-1,b]],pts:[[0,b,'P']]}),a:N(k),w:[N(k+1),N(k-1),N(-k),N(b),N(k+2)],
+e:`交点在 <i>y</i> 轴上，设为 (0, <i>y</i>₀)。代入第二条：−<i>y</i>₀ + ${b} = 0 ⇒ <i>y</i>₀ = ${b}；代入第一条：(<i>k</i> + 1)(${b}) − ${s} = 0 ⇒ <i>k</i> + 1 = ${k+1} ⇒ <i>k</i> = ${k}`,fa:[k,1]}});
+G[4].push(()=>{const[a,b]=pick(TR.slice(0,2)),A=a*pick([1,-1]),B=b*pick([1,-1]),s=Math.round(Math.hypot(A,B)),d=R(1,2),y0=R(-4,4),C=R(-6,6),K=B*y0+C,n1=d*s-K,n2=-d*s-K,
+o=[[n1,A],[n2,A]].sort((x,y)=>x[0]/x[1]-y[0]/y[1]),pr=(x,y)=>`<i>a</i> = ${x} 或 <i>a</i> = ${y}`;
+return{q:`已知点 A(<i>a</i>, ${N(y0)}) 到直线 ${eq(A,B,C,1)} 的距离是 ${d}，求 <i>a</i> 的值。`,f:PL({ls:[[A,B,C]],pts:[[o[0][0]/o[0][1],y0,'A₁'],[o[1][0]/o[1][1],y0,'A₂']]}),a:pr(q(...o[0]),q(...o[1])),
+w:[pr(q(d*s-C,A),q(-d*s-C,A)),pr(q(n1,B),q(n2,B)),pr(q(-n1,A),q(-n2,A)),pr(q(n1+s,A),q(n2+s,A))],
+e:`<i>d</i> = ${fr(`|${N(A)}<i>a</i> ${K<0?'−':'+'} ${Math.abs(K)}|`,s)} = ${d} ⇒ ${N(A)}<i>a</i> ${K<0?'−':'+'} ${Math.abs(K)} = ±${d*s}<br>解得 ${pr(q(...o[0]),q(...o[1]))}`,
+fq:`已知点 A(<i>a</i>, ${N(y0)}) 到直线 ${eq(A,B,C,1)} 的距离是 ${d}，求 <i>a</i> 的较大值。`,fa:o[1]}});
+const h17=()=>{const[m,n]=pick([[5,3],[2,1],[3,1],[3,2]]),Mx=NZ(-4,4),My=NZ(-4,4),t=m+n,A=n*My,B=m*Mx,C=-t*Mx*My,a=t*Mx/n,b=t*My/m,
+base=`一直线过点 M${P(Mx,My)}。A、B 分别是直线在 <i>x</i> 轴、<i>y</i> 轴上的截点，若 M 分线段 AB 成 ${m} : ${n}（AM : MB）`;
+return{h:1,q:base+'，求直线方程式。',f:PL({ls:[[A,B,C]],pts:[[a,0,'A'],[0,b,'B'],[Mx,My,'M']]}),a:eq(A,B,C),w:[eq(m*My,n*Mx,-t*Mx*My),eq(A,B,-C),eq(A,-B,C),eq(n*Mx,m*My,C)],
+e:`设 A(<i>a</i>, 0)、B(0, <i>b</i>)。M 分 AB 成 ${m} : ${n}：<i>x</i><sub>M</sub> = ${fr(n+'<i>a</i>',t)} = ${N(Mx)}，<i>y</i><sub>M</sub> = ${fr(m+'<i>b</i>',t)} = ${N(My)}。<br>得 <i>a</i> = ${q(t*Mx,n)}，<i>b</i> = ${q(t*My,m)}；截距式 ${fr('<i>x</i>','<i>a</i>')} + ${fr('<i>y</i>','<i>b</i>')} = 1，整理得 ${eq(A,B,C)}`,fq:base+'，求直线的 <i>x</i> 截距。',fa:[t*Mx,n]}};
+const h18=()=>{const a=R(1,5),k=R(0,1),m0=-4-a,m1=2-a,t1=`(${a} + <i>m</i>)<i>x</i> + 4<i>y</i> = ${14-3*a} − 3<i>m</i>`,t2=`2<i>x</i> + (${a+2} + <i>m</i>)<i>y</i> = 8`,pr=(x,y)=>`${x} 或 ${y}`;
+return{h:1,q:`已知两直线 <i>l</i>₁：${t1}，<i>l</i>₂：${t2}。当 <i>m</i> 为何值时，两直线${k?'平行':'平行但不重合'}？`,f:PL({ls:[[a+m0,4,-(26)],[2,a+2+m0,-8]],R:10}),
+a:k?'<i>m</i> = '+pr(N(m0),N(m1)):'<i>m</i> = '+N(m0),w:k?[pr(N(-m0),N(-m1)),pr(N(m0),N(-m1)),pr(N(-m0),N(m1)),'<i>m</i> 只有 '+N(m0)]:['<i>m</i> = '+N(m1),'<i>m</i> = '+N(-m0),'<i>m</i> = '+pr(N(m0),N(m1)),'<i>m</i> = '+N(-m1)],
+e:`平行 ⇒ 斜率相同：(${a} + <i>m</i>)(${a+2} + <i>m</i>) = 4 × 2 ⇒ (<i>m</i> + ${a})² + 2(<i>m</i> + ${a}) − 8 = 0 ⇒ (<i>m</i> + ${a+4})(<i>m</i> + ${a-2}) = 0，<i>m</i> = ${N(m0)} 或 ${N(m1)}。<br>检验：<i>m</i> = ${N(m1)} 时两式同为 2<i>x</i> + 4<i>y</i> = 8，<b>重合</b>；<i>m</i> = ${N(m0)} 时 −4<i>x</i> + 4<i>y</i> = 26 与 2<i>x</i> − 2<i>y</i> = 8 不重合（图为 <i>m</i> = ${N(m0)}）。`,
+fa:k?undefined:[m0,1]}};
+const h20=()=>{const x0=NZ(-5,5),y0=R(-5,5);let A1,B1,A2,B2;do{A1=NZ(-4,4);B1=NZ(-4,4);A2=NZ(-4,4);B2=NZ(-4,4)}while(A1*B2==A2*B1);const a0=NZ(-5,5),B3=NZ(-4,4),C3=-(a0*x0+B3*y0),C1=-(A1*x0+B1*y0),C2=-(A2*x0+B2*y0);
+return{h:1,q:`三条直线 ${eq(A1,B1,C1,1)}、${eq(A2,B2,C2,1)} 及 <i>ax</i> ${B3<0?'−':'+'} ${Math.abs(B3)}<i>y</i> ${C3<0?'−':'+'} ${Math.abs(C3)} = 0 相交于一点，求 <i>a</i> 的值。`,f:PL({ls:[[A1,B1,C1],[A2,B2,C2],[a0,B3,C3]],pts:[[x0,y0,'P']]}),a:N(a0),w:[N(-a0),N(a0+1),N(a0-1),N(2*a0)],
+e:`先解前两条的交点：${P(x0,y0)}。三线共点，所以它也在第三条上：<i>a</i>·${Pn(x0)} + ${Pn(B3)}·${Pn(y0)} + ${Pn(C3)} = 0 ⇒ <i>a</i> = ${N(a0)}`,fa:[a0,1]}};
+const h24=()=>{const bx=R(-4,4),by=R(-4,4),a1=NZ(-4,4),b1=NZ(-4,4),a2=NZ(-4,4),b2=NZ(-4,4);if(a1*b2==a2*b1)return h24();let A,B,C;
+if(R(0,1)){A=1;B=0;C=-(bx+NZ(-5,5))}else{[A,B]=pick(TR.slice(0,2));C=R(-10,10);if(A*bx+B*by+C==0)C++}
+const v=A*bx+B*by+C,s=Math.round(Math.hypot(A,B)),n=Math.abs(v),c1=-(a1*bx+b1*by),c2=-(a2*bx+b2*by);
+return{h:1,q:`△ABC 的三边 AB、BC、CA 分别在直线 ${eq(a1,b1,c1,1)}、${eq(a2,b2,c2,1)}、${eq(A,B,C,1)} 上，求 AC 边上的高。`,f:PL({ls:[[a1,b1,c1],[a2,b2,c2],[A,B,C]],pts:[[bx,by,'B']]}),a:q(n,s),w:[q(n,s*s),q(n,Math.abs(A)+Math.abs(B)),q(Math.abs(A*bx+B*by),s),q(n+s,s),q(n+1,s),q(2*n,s)],
+e:`B 是 AB 与 BC 的交点，解得 B${P(bx,by)}。AC 边上的高 = B 到直线 CA 的距离：<br>${dEx(bx,by,A,B,C)}`,fa:[n,s]}};
+const H=[h1,h17,h18,h20,h24,g53];
+/* ===== 计算器 ===== */
+function c1([x1,y1,x2,y2]){const dx=x2-x1,dy=y2-y1;if(!dx&&!dy)return'两点重合，请换一点。';
+if(!dx)return`Δ<i>x</i> = 0：直线垂直于 <i>x</i> 轴，θ = 90°，<b>斜率没有定义</b>。`+PL({ls:[[1,0,-x1]],pts:[[x1,y1,'A'],[x2,y2,'B']]});
+const m=q(dy,dx);let th=Math.atan(dy/dx)*180/Math.PI;if(th<0)th+=180;const xi=dy?x1-y1*dx/dy:0;
+let h=`<i>m</i> = ${fr('<i>y</i>₂ − <i>y</i>₁','<i>x</i>₂ − <i>x</i>₁')} = ${fr(N(y2)+' − '+Pn(y1),N(x2)+' − '+Pn(x1))} = ${fr(N(dy),N(dx))} = <b>${m}</b><br>tan θ = ${m} ⇒ θ ≈ ${th.toFixed(1)}°（${!dy?'平行于 <i>x</i> 轴，斜率为 0':dy*dx>0?'斜率为正，倾斜角为锐角':'斜率为负，倾斜角为钝角'}）`;
+return h+PL({ls:[lf(x1,y1,x2,y2)],pts:dy?[[x1,y1,'A'],[x2,y2,'B'],[xi,0,'']]:[[x1,y1,'A'],[x2,y2,'B']],sg:[[x1,y1,x2,y1,1],[x2,y1,x2,y2,1]],
+arcs:dy?[[xi,0,16,0,th,'θ'],[xi,0,28,th,180,'180°−θ','#2e7d32']]:[],ex:(X,Y)=>`<text x="${X((x1+x2)/2)-8}" y="${Y(y1)+(dy>0?12:-4)}" font-size="10" fill="var(--m)">Δx</text><text x="${X(x2)+4}" y="${Y((y1+y2)/2)}" font-size="10" fill="var(--m)">Δy</text>`})}
+const w2=f=>v=>{if(v.some(x=>!Number.isInteger(x)))return'请输入整数';const r=f(v);if(!r||(!r[0]&&!r[1]))return'输入无效';return`${r[3]}<br>整理得：<b>${eq(r[0],r[1],r[2])}</b>`+PL({ls:[[r[0],r[1],r[2]]],pts:r[4]})};
+const M2=[{n:'点斜式',l:[['x₁',-2],['y₁',1],['m',4]],f:w2(([x1,y1,m])=>[m,-1,y1-m*x1,`<i>y</i> − ${Pn(y1)} = ${Pn(m)}(<i>x</i> − ${Pn(x1)})`,[[x1,y1,'A']]])},
+{n:'两点式',l:[['x₁',-1],['y₁',3],['x₂',4],['y₂',-2]],f:w2(([x1,y1,x2,y2])=>[...lf(x1,y1,x2,y2),x2-x1?`${fr('<i>y</i> − '+Pn(y1),'<i>x</i> − '+Pn(x1))} = ${fr(N(y2)+' − '+Pn(y1),N(x2)+' − '+Pn(x1))}`:'<i>x</i>₁ = <i>x</i>₂：垂直于 <i>x</i> 轴',[[x1,y1,'A'],[x2,y2,'B']]])},
+{n:'斜截式',l:[['m',2],['c',4]],f:w2(([m,c])=>[m,-1,c,`<i>y</i> = ${Pn(m)}<i>x</i> + ${Pn(c)}`,[[0,c,'']]])},
+{n:'截距式',l:[['a',-3],['b',2]],f:w2(([a,b])=>a&&b?[b,a,-a*b,`${fr('<i>x</i>',N(a))} + ${fr('<i>y</i>',N(b))} = 1`,[[a,0,''],[0,b,'']]]:null)}];
+function c3([A,B,C]){if(!A&&!B)return'<i>A</i>、<i>B</i> 不能同时为 0';let h=`直线：<b>${eq(A,B,C,1)}</b><br>`,p=[];
+if(B)p.push([0,-C/B,'']);if(A)p.push([-C/A,0,'']);
+if(!B)h+=`垂直于 <i>x</i> 轴：<i>x</i> = ${q(-C,A)}，斜率没有定义`;else if(!A)h+=`平行于 <i>x</i> 轴：<i>y</i> = ${q(-C,B)}，斜率 = 0`;
+else h+=`斜截式：<i>y</i> = ${q(-A,B)}<i>x</i>${sg(-C,B)}<br>斜率 = ${q(-A,B)}，<i>y</i> 截距 = ${q(-C,B)}，<i>x</i> 截距 = ${q(-C,A)}`;
+return h+PL({ls:[[A,B,C]],pts:p})}
+function c4([A1,B1,C1,A2,B2,C2]){if((!A1&&!B1)||(!A2&&!B2))return'系数 <i>A</i>、<i>B</i> 不能同时为 0';const D=A1*B2-A2*B1;let h=`① ${eq(A1,B1,C1,1)}<br>② ${eq(A2,B2,C2,1)}<br>`;
+if(D){const xn=B1*C2-B2*C1,yn=A2*C1-A1*C2;return h+`斜率不同 ⇒ 相交于一点<br>交点 = <b>(${q(xn,D)}, ${q(yn,D)})</b>`+PL({ls:[[A1,B1,C1],[A2,B2,C2]],pts:[[xn/D,yn/D,'P']]})}
+const co=A1*C2==A2*C1&&B1*C2==B2*C1;return h+(co?'斜率与截距都相同 ⇒ <b>两直线重合</b>，有无限多个交点':'斜率相同但截距不同 ⇒ <b>平行但不重合</b>，没有交点')+PL({ls:[[A1,B1,C1],[A2,B2,C2]]})}
+function c5([x0,y0,A,B,C]){if(!A&&!B)return'<i>A</i>、<i>B</i> 不能同时为 0';if(A*x0+B*y0+C==0)return'点在直线上，<i>d</i> = 0。';return dEx(x0,y0,A,B,C)+fd(x0,y0,A,B,C)}
+const CALCS=[{l:[['x₁',-3],['y₁',1],['x₂',6],['y₂',3]],f:c1},{n:0},{l:[['A',4],['B',-3],['C',-11]],f:c3},{l:[['A₁',1],['B₁',5],['C₁',-35],['A₂',3],['B₂',2],['C₂',-27]],f:c4},{l:[['x₀',2],['y₀',-3],['A',3],['B',-4],['C',12]],f:c5}];
+/* ===== 课本内容 ===== */
+const EX=[[
+['例题 1(a)　求过 A(−3, 1)、B(6, 3) 的直线斜率。',`<i>m</i><sub>AB</sub> = ${fr('3 − 1','6 − (−3)')} = ${fr(2,9)}`,PL({ls:[lf(-3,1,6,3)],pts:[[-3,1,'A'],[6,3,'B']]})],
+['例题 1(c)　求过 R(1, −2)、S(−1, 3) 的直线斜率。',`<i>m</i><sub>RS</sub> = ${fr('3 − (−2)','−1 − 1')} = ${q(5,-2)}　（斜率为负 ⇒ 倾斜角为钝角）`,PL({ls:[lf(1,-2,-1,3)],pts:[[1,-2,'R'],[-1,3,'S']]})],
+['例题 4　证明 A(−2,−1)、B(1,0)、C(4,3)、D(1,2) 是平行四边形的四个顶点。',`<i>m</i><sub>AB</sub> = ${fr('0 − (−1)','1 − (−2)')} = ${fr(1,3)}，<i>m</i><sub>DC</sub> = ${fr('3 − 2','4 − 1')} = ${fr(1,3)} ⇒ AB ∥ DC<br><i>m</i><sub>AD</sub> = ${fr('2 − (−1)','1 − (−2)')} = 1，<i>m</i><sub>BC</sub> = ${fr('3 − 0','4 − 1')} = 1 ⇒ AD ∥ BC　∴ 是平行四边形`,PL({pts:[[-2,-1,'A'],[1,0,'B'],[4,3,'C'],[1,2,'D']],sg:[[-2,-1,1,0],[1,0,4,3],[4,3,1,2],[1,2,-2,-1]]})]],
+[['例题 1(a)　求过点 A(−2, 1) 且斜率是 4 的直线方程式。',`点斜式：<i>y</i> − 1 = 4[<i>x</i> − (−2)] ⇒ <b>4<i>x</i> − <i>y</i> + 9 = 0</b>`,PL({ls:[[4,-1,9]],pts:[[-2,1,'A']]})],
+['例题 3　求过点 A(−1, 3)、B(4, −2) 的直线方程式。',`两点式：${fr('<i>y</i> − 3','<i>x</i> − (−1)')} = ${fr('−2 − 3','4 − (−1)')} = −1 ⇒ <b><i>x</i> + <i>y</i> − 2 = 0</b>`,PL({ls:[[1,1,-2]],pts:[[-1,3,'A'],[4,-2,'B']]})],
+['例题 6　已知 <i>x</i> 截距是 −3，<i>y</i> 截距是 2，求直线方程式。',`截距式：${fr('<i>x</i>','−3')} + ${fr('<i>y</i>',2)} = 1 ⇒ <b>2<i>x</i> − 3<i>y</i> + 6 = 0</b>`,PL({ls:[[2,-3,6]],pts:[[-3,0,''],[0,2,'']]})],
+['例题 2　一直线过点 P(−5, −3)，倾斜角 θ = 135°，求直线方程式。',`<i>m</i> = tan 135° = −1；<i>y</i> − (−3) = −1[<i>x</i> − (−5)] ⇒ <b><i>x</i> + <i>y</i> + 8 = 0</b>（θ 与相邻的 45° 角用不同半径的弧标出）`,PL({ls:[[1,1,8]],pts:[[-5,-3,'P'],[-8,0,'']],arcs:[[-8,0,16,0,135,'θ'],[-8,0,28,135,180,'45°','#2e7d32']]})]],
+[['例题 1(a)　求 4<i>x</i> − 3<i>y</i> − 11 = 0 的斜率及 <i>y</i> 截距。',`3<i>y</i> = 4<i>x</i> − 11 ⇒ <i>y</i> = ${fr(4,3)}<i>x</i> − ${fr(11,3)}　∴ <i>m</i> = ${fr(4,3)}，<i>y</i> 截距 = ${q(-11,3)}`,PL({ls:[[4,-3,-11]],pts:[[0,-11/3,'']]})],
+['例题 3　求过 (1, 2) 且与 2<i>x</i> + 3<i>y</i> + 4 = 0 平行的直线。',`原直线斜率 ${q(-2,3)}，平行 ⇒ <i>m</i> = ${q(-2,3)}；<i>y</i> − 2 = ${q(-2,3)}(<i>x</i> − 1) ⇒ <b>2<i>x</i> + 3<i>y</i> − 8 = 0</b>`,PL({ls:[[2,3,4],[2,3,-8]],pts:[[1,2,'P']]})],
+['例题 5　求过 (−3, −2) 且与 5<i>x</i> − 2<i>y</i> − 1 = 0 垂直的直线。',`原斜率 ${fr(5,2)}，垂直 ⇒ <i>m</i> = ${fr('−1',fr(5,2))} = ${q(-2,5)}；<i>y</i> + 2 = ${q(-2,5)}(<i>x</i> + 3) ⇒ <b>2<i>x</i> + 5<i>y</i> + 16 = 0</b>`,PL({ls:[[5,-2,-1],[2,5,16]],pts:[[-3,-2,'P']]})]],
+[['例题 1　求 <i>x</i> + 5<i>y</i> − 35 = 0 与 3<i>x</i> + 2<i>y</i> − 27 = 0 的交点。',`① ×3：3<i>x</i> + 15<i>y</i> − 105 = 0；③ − ②：13<i>y</i> − 78 = 0 ⇒ <i>y</i> = 6，代入① ⇒ <i>x</i> = 5。交点 <b>(5, 6)</b>`,PL({ls:[[1,5,-35],[3,2,-27]],pts:[[5,6,'P']]})],
+['例题 2　求 2<i>x</i> − 4<i>y</i> + 3 = 0 与 <i>x</i> − 2<i>y</i> = 0 的交点。',`<i>l</i>₁：<i>y</i> = ${fr(1,2)}<i>x</i> + ${fr(3,4)}，<i>l</i>₂：<i>y</i> = ${fr(1,2)}<i>x</i>；<i>m</i>₁ = <i>m</i>₂ 但 <i>c</i>₁ ≠ <i>c</i>₂ ⇒ <b>平行但不重合，没有交点</b>`,PL({ls:[[2,-4,3],[1,-2,0]]})],
+['例题 3　直线 2<i>kx</i> + (<i>k</i> + 1)<i>y</i> − 9 = 0 与 (2<i>k</i> − 1)<i>x</i> − <i>y</i> + 3 = 0 的交点在 <i>y</i> 轴上，求 <i>k</i>。',`设交点 (0, <i>b</i>)。代入第二条：−<i>b</i> + 3 = 0 ⇒ <i>b</i> = 3；代入第一条：(<i>k</i> + 1)·3 − 9 = 0 ⇒ <b><i>k</i> = 2</b>`,PL({ls:[[4,3,-9],[3,-1,3]],pts:[[0,3,'P']]})]],
+[['例题 1(a)　求点 P(2, −3) 到直线 3<i>x</i> − 4<i>y</i> + 12 = 0 的距离。',dEx(2,-3,3,-4,12),fd(2,-3,3,-4,12)],
+['例题 3　求平行线 3<i>x</i> − 4<i>y</i> − 10 = 0 与 6<i>x</i> − 8<i>y</i> + 5 = 0 的距离。',`在 <i>l</i>₁ 取点 (${fr(10,3)}, 0)，求它到 <i>l</i>₂ 的距离：<br><i>d</i> = ${fr('|6·'+fr(10,3)+' − 8(0) + 5|',rad('6² + 8²'))} = ${fr(25,10)} = ${fr(5,2)}`,PL({ls:[[3,-4,-10],[6,-8,5]],pts:[[10/3,0,'P']]})],
+['例题 2　已知点 A(<i>a</i>, 6) 到直线 3<i>x</i> − 4<i>y</i> = 2 的距离是 4，求 <i>a</i>。',`4 = ${fr('|3<i>a</i> − 4(6) − 2|',rad('3² + (−4)²'))} = ${fr('|3<i>a</i> − 26|',5)} ⇒ ${fr('3<i>a</i> − 26',5)} = ±4 ⇒ <b><i>a</i> = ${fr(46,3)} 或 <i>a</i> = 2</b>`,PL({ls:[[3,-4,-2]],pts:[[2,6,'A₁'],[46/3,6,'A₂']],sg:[[2,6,46/3,6,1]]})]]];
+const TABS=[['11.1 斜率',`倾斜角 θ（0° ≤ θ < 180°），斜率 <i>m</i> = tan θ（θ ≠ 90°）。<br>过 A(<i>x</i>₁, <i>y</i>₁)、B(<i>x</i>₂, <i>y</i>₂)：<i>m</i> = ${fr('<i>y</i>₂ − <i>y</i>₁','<i>x</i>₂ − <i>x</i>₁')}。平行 <i>m</i>₁ = <i>m</i>₂；垂直 <i>m</i>₁<i>m</i>₂ = −1。`],
+['11.2 方程式形式',`点斜式 <i>y</i> − <i>y</i>₁ = <i>m</i>(<i>x</i> − <i>x</i>₁)；两点式 ${fr('<i>y</i> − <i>y</i>₁','<i>x</i> − <i>x</i>₁')} = ${fr('<i>y</i>₂ − <i>y</i>₁','<i>x</i>₂ − <i>x</i>₁')}；斜截式 <i>y</i> = <i>mx</i> + <i>c</i>；截距式 ${fr('<i>x</i>','<i>a</i>')} + ${fr('<i>y</i>','<i>b</i>')} = 1。`],
+['11.3 一般式',`<i>Ax</i> + <i>By</i> + <i>C</i> = 0：<i>m</i> = −${fr('<i>A</i>','<i>B</i>')}，<i>y</i> 截距 = −${fr('<i>C</i>','<i>B</i>')}。平行：<i>m</i>₁ = <i>m</i>₂；垂直：<i>m</i>₁<i>m</i>₂ = −1。`],
+['11.4 交点',`解联立方程式 ＝ 求两直线交点。<i>m</i>₁ ≠ <i>m</i>₂：交于一点；<i>m</i>₁ = <i>m</i>₂、<i>c</i>₁ ≠ <i>c</i>₂：平行无交点；<i>m</i>、<i>c</i> 都相同：重合。`],
+['11.5 距离',`点 P(<i>x</i>₀, <i>y</i>₀) 到 <i>Ax</i> + <i>By</i> + <i>C</i> = 0：<i>d</i> = ${fr('|<i>Ax</i>₀ + <i>By</i>₀ + <i>C</i>|',rad('<i>A</i>² + <i>B</i>²'))}。二平行线距离：在一线上取一点，求它到另一线的距离。`],
+['总复习','综合 11.1–11.5 并加入总复习题 11 的较难题型（分点求截距式、含参数的平行、三线共点、三角形的高）：10 题选择 + 5 题作答，完成后给出分数评估。']];
+/* ===== 测验引擎 ===== */
+const gr=s=>{s=s.replace(/[−–—]/g,'-').replace(/\s/g,'');const m=s.match(/^(-?[\d.]+)\/(-?[\d.]+)$/);return m?m[1]/m[2]:s===''?NaN:Number(s)};
+function quiz(host,gens,cfg){function go(){host.innerHTML='';let done=0,sc=0;const ids=shuf(gens.map((_,i)=>i)),L=[];
+const mu=cfg.must?cfg.must():[];mu.forEach(g=>L.push(g()));for(let i=mu.length;i<cfg.n;i++)L.push(gens[ids[i%ids.length]]());
+const info=document.createElement('div');info.className='info';host.appendChild(info);const stat=()=>info.textContent=`选择题 ${done}/${cfg.n} 已完成 · 答对 ${sc} 题`;stat();
+const mk=(t,x,f)=>{const c=document.createElement('div');c.className='qc';c.innerHTML=`<div class=qn>${t}${x.h?' <span class=hd>难题</span>':''}</div><div>${f?x.fq||x.q:x.q}</div>${(f?x.ff||x.f:x.f)||''}`;host.appendChild(c);return c};
+const btn=()=>{const b=document.createElement('button');b.textContent='🔄 重新出题';b.onclick=go;host.appendChild(b)};
+L.forEach((x,i)=>{const c=mk(`第 ${i+1} 题 · 选择题`,x),o=[x.a];x.w.forEach(w=>{if(!o.includes(w)&&o.length<4)o.push(w)});['以上皆非','条件不足','没有这样的值'].forEach(p=>{if(o.length<4)o.push(p)});
+const ops=document.createElement('div');ops.className='ops';c.appendChild(ops);const ex=document.createElement('div');ex.className='ex';ex.hidden=true;c.appendChild(ex);
+shuf(o.map((h,j)=>[h,j==0])).forEach(([h,ok],j)=>{const b=document.createElement('button');b.innerHTML='ABCD'[j]+'. '+h;b.dataset.ok=ok?1:'';b.onclick=()=>{ops.querySelectorAll('button').forEach(z=>{z.disabled=true;if(z.dataset.ok)z.classList.add('ok')});if(!ok)b.classList.add('no');else sc++;
+ex.hidden=false;ex.innerHTML=(ok?'✔ 答对了！':`✘ 答错了。正确答案：${x.a}`)+'<br>'+x.e;done++;stat();if(done==cfg.n)after()};ops.appendChild(b)})});
+function after(){const f=document.createElement('div');host.appendChild(f);if(sc<cfg.gate){f.innerHTML=`<div class="res no">答对 ${sc}/${cfg.n}，需答对 ${cfg.gate} 题以上才能挑战作答题，再试一次吧！</div>`;btn();return}
+f.innerHTML=`<div class="res ok">选择题答对 ${sc}/${cfg.n}${cfg.gate?' —— 作答题解锁！':'，接着是作答题。'}</div>`;
+const F=(cfg.fixed?cfg.fixed():[]).map(g=>{let x;do x=g();while(!x.fa);return x});let t=0;while(F.length<cfg.nf&&t++<80){const x=pick(gens)();if(x.fa)F.push(x)}let fd=0,fs=0;
+F.slice(0,cfg.nf).forEach((x,i)=>{const c=mk(`第 ${i+1} 题 · 作答题`,x,1);c.insertAdjacentHTML('beforeend','<input class=ans placeholder="如 3/2 或 1.5"> <button>提交</button><div class=ex hidden></div>');
+const inp=c.querySelector('input'),b=c.querySelector('button'),ex=c.querySelector('.ex');b.onclick=()=>{const v=gr(inp.value);if(isNaN(v)){inp.focus();return}const ok=Math.abs(v-x.fa[0]/x.fa[1])<.0051;inp.disabled=b.disabled=true;if(ok)fs++;
+ex.hidden=false;ex.innerHTML=(ok?'✔ 答对了！':`✘ 答错了。正确答案：${q(x.fa[0],x.fa[1])}`)+'<br>'+(x.fe||x.e);fd++;if(fd==cfg.nf){const T=sc+fs,tt=cfg.n+cfg.nf;const r=document.createElement('div');r.className='res '+(T/tt>=.6?'ok':'no');
+r.innerHTML=cfg.final?`总分 ${T}/${tt}（选择 ${sc}/${cfg.n} + 作答 ${fs}/${cfg.nf}）<br>评估：${T>=13?'🏆 优秀！掌握得很扎实':T>=10?'👍 良好，再巩固错题':T>=7?'🙂 及格，建议重看例题与计算器':'💪 加油！先从各节例题开始复习'}`:`作答题答对 ${fs}/${cfg.nf}${fs==cfg.nf?' 🎉 全对！':''}`;host.appendChild(r);btn()}}})}}
+go()}
+/* ===== 组装页面 ===== */
+const nav=$('#nav'),main=$('#main'),all=G.flat().concat(H.filter(g=>g!=g53));
+TABS.forEach(([n,intro],i)=>{const b=document.createElement('button');b.textContent=n;b.onclick=()=>show(i);nav.appendChild(b);
+const s=document.createElement('section');s.hidden=true;s.id='s'+i;
+s.innerHTML=`<h2>${n}</h2><div class=box>${intro}</div>`+(i<5?`<h3>📖 课本例题</h3>`+EX[i].map(e=>`<div class=ex1><b>${e[0]}</b><br>${e[1]}${e[2]}</div>`).join('')+`<h3>🧮 专属计算器</h3><div class="box calc" id=c${i}></div>`:'')+`<h3>✏️ ${i<5?'小测：5 题选择':'总复习'}</h3><div id=q${i}></div>`;main.appendChild(s)});
+function initCalc(i){const h=$('#c'+i),cf=i==1?M2:[CALCS[i]];let md=0;h.innerHTML=(i==1?'<select>'+M2.map((m,j)=>`<option value=${j}>${m.n}</option>`).join('')+'</select><br>':'')+'<span class=ins></span><div class=out></div>';
+const ins=h.querySelector('.ins'),out=h.querySelector('.out'),run=()=>{const v=[...ins.querySelectorAll('input')].map(e=>e.value===''?NaN:+e.value);out.innerHTML=v.some(isNaN)?'请输入数字':cf[md].f(v)||'输入无效'},
+build=()=>{ins.innerHTML=cf[md].l.map(([n,v])=>`<label>${n} <input type=number step=any value=${v}></label>`).join('');ins.querySelectorAll('input').forEach(e=>e.oninput=run);run()};
+if(i==1)h.querySelector('select').onchange=e=>{md=+e.target.value;build()};build()}
+for(let i=0;i<5;i++){initCalc(i);quiz($('#q'+i),G[i],{n:5,nf:2,gate:3})}
+quiz($('#q5'),all,{n:10,nf:5,gate:0,final:1,must:()=>shuf(H).slice(0,2),fixed:()=>shuf(H).slice(0,2)});
+function show(i){[...main.children].forEach((s,j)=>s.hidden=j!=i);[...nav.children].forEach((b,j)=>b.classList.toggle('on',j==i));scrollTo(0,0);try{localStorage.setItem('l11tab',i)}catch(e){}}
+let fs=15;try{fs=+localStorage.getItem('l11fs')||15;if(localStorage.getItem('l11th')=='d')document.documentElement.dataset.t='d'}catch(e){}
+const sf=d=>{fs=Math.min(22,Math.max(12,fs+d));document.documentElement.style.fontSize=fs+'px';try{localStorage.setItem('l11fs',fs)}catch(e){}};sf(0);
+$('#fm').onclick=()=>sf(-1);$('#fp').onclick=()=>sf(1);
+$('#th').onclick=()=>{const d=document.documentElement.dataset.t=='d';d?delete document.documentElement.dataset.t:document.documentElement.dataset.t='d';try{localStorage.setItem('l11th',d?'l':'d')}catch(e){}};
+$('#wm').style.backgroundImage=`url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="230" height="130"><text x="10" y="80" font-size="11" fill="#888" transform="rotate(-25 100 70)">蔡逸众 · ecchua79 · Chinese High School</text></svg>')}")`;
+show(0);
+</script></body></html>
