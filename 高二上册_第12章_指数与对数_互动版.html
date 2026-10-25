@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!-- © 蔡逸众 (ecchua79) · Chinese High School 华仁中学 · 高二上册 第12章 指数与对数 互动课程 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School 华仁中学">
+<meta name="copyright" content="© 蔡逸众 ecchua79 Chinese High School">
+<title>第12章 指数与对数 · 互动课程</title>
+<style>
+/* watermark: 蔡逸众 / ecchua79 / Chinese High School */
+:root{--bg:#fafaf7;--fg:#1b1f2a;--card:#fff;--ac:#6d3fb5;--bd:#d6d6e2;--ok:#16a34a;--no:#dc2626;--soft:#f1ecfa}
+:root[data-t=d]{--bg:#12141c;--fg:#e7e9f0;--card:#1c2030;--ac:#b794f4;--bd:#35395a;--soft:#262a42}
+*{box-sizing:border-box}html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+header{display:flex;justify-content:space-between;align-items:center;padding:.5rem .8rem;background:var(--ac);color:#fff;gap:.5rem}
+header h1{font-size:1.05rem;margin:0}header button{background:#fff3;color:#fff;border:1px solid #fff8;border-radius:6px;padding:.2rem .55rem;font-size:.9rem;margin-left:.2rem}
+nav{position:sticky;top:0;z-index:5;display:flex;overflow-x:auto;white-space:nowrap;gap:.35rem;padding:.4rem .6rem;background:var(--bg);border-bottom:1px solid var(--bd);scrollbar-width:thin}
+nav button{flex:none;padding:.4rem .8rem;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--fg);font-size:.95rem}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:820px;margin:auto;padding:.6rem}
+section{display:none}section.on{display:block}
+h2{font-size:1.2rem;margin:.4rem 0;color:var(--ac)}h3{font-size:1.05rem;margin:.9rem 0 .3rem;border-left:4px solid var(--ac);padding-left:.5rem}
+.box,.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:.6rem .75rem;margin:.5rem 0}
+.box{background:var(--soft)}.box p{margin:.25rem 0}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .15em;line-height:1.15;font-size:.95em}
+.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 .25em}.fr b{font-weight:400;padding:0 .25em}
+sup .fr{font-size:.8em}sup{font-size:.75em;line-height:0}
+.rd{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 .1em}.rd>i{font-size:.6em;font-style:normal;align-self:flex-start}
+.rd svg{width:.7em;height:auto;fill:none;stroke:currentColor;stroke-width:1.4;vector-effect:non-scaling-stroke}.rd svg path{vector-effect:non-scaling-stroke}
+.rr{border-top:1.5px solid currentColor;padding:.12em .15em 0 .1em}
+.gr{width:100%;max-width:380px;color:var(--fg);display:block;margin:.3rem auto}.gr text{fill:currentColor;font-size:9px}
+.bx{fill:none;stroke:var(--ac);stroke-width:1.2}.ar{fill:none;stroke:currentColor}
+.fg{text-align:center}
+.op{display:grid;gap:.35rem;margin-top:.4rem}.op button{text-align:left;padding:.5rem .65rem;border:1.5px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font-size:1rem}
+.op button.ok{background:#16a34a33;border-color:var(--ok)}.op button.no{background:#dc262633;border-color:var(--no)}
+.ex{margin-top:.5rem;padding:.5rem;border-left:4px solid var(--ac);background:var(--soft);border-radius:6px}
+.bt{padding:.4rem .8rem;border:0;border-radius:8px;background:var(--ac);color:#fff;font-size:1rem}
+input[type=number],input[type=text]{width:4.6em;padding:.3rem;border:1.5px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--fg);font-size:1rem}
+input[type=text]{width:9em}
+.fi{display:inline-flex;flex-direction:column;vertical-align:middle}.fi input{width:3.6em}.fi input:first-child{border-bottom:2.5px solid var(--fg)}
+.calc{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
+.msg{font-weight:600}.warn{color:var(--no)}.score{font-size:2.2rem;font-weight:700;color:var(--ac);text-align:center}
+summary{cursor:pointer;padding:.15rem 0}details[open]>summary{margin-bottom:.3rem;border-bottom:1px dashed var(--bd)}
+footer{text-align:center;font-size:.8rem;padding:1rem .5rem 2rem;opacity:.75}
+.wm{position:fixed;inset:0;pointer-events:none;z-index:9;overflow:hidden}
+.wm span{position:absolute;font-size:.7rem;opacity:.05;transform:rotate(-28deg);white-space:nowrap;color:var(--fg)}
+</style></head><body>
+<header><h1>第12章 指数与对数</h1><div><button id=fm>A−</button><button id=fp>A+</button><button id=th>🌓</button></div></header>
+<nav id=nav></nav><main id=main></main>
+<footer>© 蔡逸众 (ecchua79) 制作 · Chinese High School 华仁中学 · 峇株吧辖<br>本页可离线使用，题目每次随机生成；log 默认表示常用对数（底数 10）</footer>
+<div class=wm id=wm></div>
+<script>
+const $=s=>document.querySelector(s),rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[rnd(0,a.length-1)];
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),N=n=>String(n).replace('-','−');
+const F=(n,d)=>`<span class=fr><i>${n}</i><b>${d}</b></span>`,P=(b,e)=>`${b}<sup>${e}</sup>`,L=(b,x)=>`log<sub>${b}</sub>${x}`;
+const R=(c,k=2)=>`<span class=rd>${k!==2?`<i>${k}</i>`:''}<svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M0 12L3 10L5 19L10 1H11"/></svg><span class=rr>${c}</span></span>`;
+const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return[n/g,d/g]};
+const fR=([n,d])=>d==1?N(n):(n<0?'−':'')+F(Math.abs(n),d),fe=(p,q)=>q==1?N(p):(p<0?'−':'')+F(Math.abs(p),q);
+const fn=v=>N(Number.isInteger(v)?v:parseFloat(v.toPrecision(8)));
+const lin=(p,q)=>(p==1?'x':p+'x')+(q>0?'+'+q:q<0?'−'+(-q):'');
+/* ---------- SVG helpers ---------- */
+function G(o){const W=320,H=210,m=26,[x0,x1]=o.xr,[y0,y1]=o.yr,sx=x=>m+(x-x0)/(x1-x0)*(W-2*m),sy=y=>H-m-(y-y0)/(y1-y0)*(H-2*m);
+ const ay=Math.min(Math.max(0,y0),y1),ax=Math.min(Math.max(0,x0),x1),sxp=Math.max(1,Math.round((x1-x0)/8)),syp=Math.max(1,Math.round((y1-y0)/6));
+ let s=`<svg viewBox="0 0 ${W} ${H}" class=gr><defs><clipPath id=cp><rect x=${m} y=${m/2} width=${W-2*m} height=${H-1.5*m}/></clipPath></defs>`;
+ for(let x=Math.ceil(x0/sxp)*sxp;x<=x1;x+=sxp)if(x)s+=`<line x1=${sx(x)} x2=${sx(x)} y1=${sy(ay)-2} y2=${sy(ay)+2} stroke=currentColor /><text x=${sx(x)} y=${sy(ay)+11} text-anchor=middle>${N(x)}</text>`;
+ for(let y=Math.ceil(y0/syp)*syp;y<=y1;y+=syp)if(y)s+=`<line y1=${sy(y)} y2=${sy(y)} x1=${sx(ax)-2} x2=${sx(ax)+2} stroke=currentColor /><text x=${sx(ax)-4} y=${sy(y)+3} text-anchor=end>${N(y)}</text>`;
+ s+=`<line x1=${sx(x0)} x2=${sx(x1)} y1=${sy(ay)} y2=${sy(ay)} stroke=currentColor /><line x1=${sx(ax)} x2=${sx(ax)} y1=${sy(y0)} y2=${sy(y1)} stroke=currentColor /><text x=${W-8} y=${sy(ay)-4}>x</text><text x=${sx(ax)+5} y=${m/2+6}>y</text>`;
+ (o.hl||[]).forEach(v=>s+=`<line x1=${sx(x0)} x2=${sx(x1)} y1=${sy(v)} y2=${sy(v)} stroke=#16a34a stroke-dasharray="4 3" /><text x=${sx(x1)-4} y=${sy(v)-3} text-anchor=end>y=${N(v)}</text>`);
+ (o.vl||[]).forEach(v=>s+=`<line y1=${sy(y0)} y2=${sy(y1)} x1=${sx(v)} x2=${sx(v)} stroke=#16a34a stroke-dasharray="4 3" /><text x=${sx(v)+3} y=${m/2+14}>x=${N(v)}</text>`);
+ (o.curves||[]).forEach((c,k)=>{let d='',pen=0;for(let i=0;i<=240;i++){const x=x0+(x1-x0)*i/240,y=c.f(x);if(isFinite(y)&&y>y0-(y1-y0)&&y<y1+(y1-y0)){d+=(pen?'L':'M')+sx(x).toFixed(1)+' '+sy(y).toFixed(1)+' ';pen=1}else pen=0}
+  s+=`<path d="${d}" fill=none stroke=${c.c||['#e11d48','#2563eb'][k]} stroke-width=2 clip-path="url(#cp)"/>`;if(c.l)s+=`<text x=${sx(c.lx??x1)-4} y=${sy(c.f(c.lx??x1))>m?Math.max(sy(c.f(c.lx??x1)),m)-4:m} text-anchor=end fill=${c.c||['#e11d48','#2563eb'][k]} style="fill:${c.c||['#e11d48','#2563eb'][k]}">${c.l}</text>`});
+ (o.pts||[]).forEach(p=>{s+=`<line x1=${sx(p.x)} x2=${sx(p.x)} y1=${sy(p.y)} y2=${sy(ay)} stroke=#888 stroke-dasharray="2 2" /><line x1=${sx(p.x)} x2=${sx(ax)} y1=${sy(p.y)} y2=${sy(p.y)} stroke=#888 stroke-dasharray="2 2" /><circle cx=${sx(p.x)} cy=${sy(p.y)} r=3.5 fill=#f59e0b stroke=#000 /><text x=${sx(p.x)+(sx(p.x)>W-90?-6:6)} y=${sy(p.y)-6} text-anchor=${sx(p.x)>W-90?'end':'start'}>${p.l}</text>`});
+ return s+'</svg>'}
+const flow=(rows,w=78)=>{const h=26,g=20;let s='';rows.forEach((r,j)=>r.forEach((t,i)=>{const x=i*(w+g)+2,y=j*40+4;s+=`<rect x=${x} y=${y} width=${w} height=${h} rx=6 class=bx /><text x=${x+w/2} y=${y+17} text-anchor=middle style="font-size:10.5px">${t}</text>`+(i?`<path d="M${x-g+3} ${y+13}H${x-3}m-5-4l5 4l-5 4" class=ar />`:'')}));return`<svg viewBox="0 0 ${Math.max(...rows.map(r=>r.length))*(w+g)} ${rows.length*40+6}" class=gr>${s}</svg>`};
+/* ---------- question engine ---------- */
+const build=(q,ansH,wr,exp,ex={})=>{const w=[...new Set(wr)].filter(x=>x!==ansH).slice(0,3),opts=shuf([ansH,...w]);return{q,opts,a:opts.indexOf(ansH),exp,ansH,...ex}};
+const mkR=(q,ans,wr,exp,ex={})=>{ans=rat(...ans);const seen=new Set([ans.join()]),w=[];for(const r of [...wr.map(x=>rat(...x)),...[1,-1,2,-2,3,-3].map(k=>[ans[0]+k*ans[1],ans[1]])]){if(!seen.has(r.join())){seen.add(r.join());w.push(r)}}return build(q,fR(ans),w.map(fR),exp,{val:ans[0]/ans[1],...ex})};
+const g11a=()=>{const r=pick([2,3,4,5]),q=pick([2,3]),a=r**q;let p=pick([1,2,3,-1,-2,-3]);if(p%q==0)p=p>0?1:-1;const ap=Math.abs(p),ans=p>0?[r**p,1]:[1,r**ap];
+ return mkR(`求 ${P(a,fe(p,q))} 的值（不使用计算机）`,ans,[[r*ap,1],[a**ap,1],p>0?[1,r**p]:[r**ap,1],[-ans[0],ans[1]]],`${P(a,fe(p,q))} = (${R(a,q)})<sup>${N(p)}</sup> = ${r}<sup>${N(p)}</sup> = ${fR(ans)}`)};
+const g11b=()=>{const b=pick([2,3,5]);let p1,q1,p2,q2,mul,P3,Q3;do{p1=rnd(1,3);q1=rnd(-3,3);p2=rnd(1,3);q2=rnd(-3,3);mul=Math.random()<.5;P3=p1+(mul?p2:-p2);Q3=q1+(mul?q2:-q2)}while(P3<1);
+ const A=lin(p1,q1),B=lin(p2,q2);return build(`化简 ${P(b,A)} ${mul?'×':'÷'} ${P(b,B)}`,P(b,lin(P3,Q3)),[P(b,lin(P3,-Q3)),P(b,lin(P3,q1*q2)),P(b,lin(p1*p2,Q3)),P(b,lin(P3+1,Q3)),P(b,lin(P3+2,Q3)),P(b,lin(P3,Q3+1)),P(b,lin(P3,Q3-1))],`${mul?'同底数相乘，指数相加':'同底数相除，指数相减'}：(${A}) ${mul?'+':'−'} (${B}) = ${lin(P3,Q3)}`)};
+const g11c=()=>{const big=Math.random()<.5,a=big?pick([1.5,2,3,5]):pick([0.3,0.5,0.6,0.8]);let s=rnd(-30,30)/10,t=rnd(-30,30)/10;if(s==t)t=s+1.5;
+ const A=P(a,N(s)),B=P(a,N(t)),gt=(s>t)==big,top=Math.max(a**s,a**t,1.5)*1.25;
+ return build(`比较 ${A} 与 ${B} 的大小`,gt?`${A} > ${B}`:`${A} < ${B}`,[gt?`${A} < ${B}`:`${A} > ${B}`,`${A} = ${B}`,'无法比较'],`底数 ${a} ${big?'> 1，函数在 (−∞, ∞) 上是增函数':'介于 0 与 1 之间，函数在 (−∞, ∞) 上是减函数'}；指数 ${N(s)} ${s>t?'>':'<'} ${N(t)}，所以 ${A} ${gt?'>':'<'} ${B}。`,
+  {fig:G({xr:[-3.5,3.5],yr:[-top*.1,top],curves:[{f:x=>a**x,l:`y=${a}ˣ`,lx:3}],pts:[{x:s,y:a**s,l:N(s)},{x:t,y:a**t,l:N(t)}]})})};
+const g11d=()=>{const a=pick([2,3,5]),k=rnd(1,3);return mkR(`已知 f(x) = ${P(a,'x')}，求 f(${N(-k)})`,[1,a**k],[[-1,a**k],[a**k,1],[-(a**k),1],[1,a*k]],`f(${N(-k)}) = ${P(a,N(-k))} = ${F(1,P(a,k))} = ${F(1,a**k)}`)};
+const g11e=()=>{const b=pick([2,3,5]),k=pick([-3,-2,1,2,3]);return build(`函数 y = ${P(b,'x')} ${k>0?'+':'−'} ${Math.abs(k)} 的图像的渐近线是？`,`y = ${N(k)}`,['y = 0',`y = ${N(1+k)}`,`x = ${N(k)}`],`因为 ${P(b,'x')} > 0 且趋近 0，所以 y = ${P(b,'x')} ${k>0?'+':'−'} ${Math.abs(k)} 无限趋近 y = ${N(k)}。`,
+ {fig:G({xr:[-3,3],yr:[Math.min(-1,k-1.5),Math.max(k+6,6)],curves:[{f:x=>b**x+k}],hl:[k]})})};
+const g21=()=>{const a=pick([2,3,5]),n=pick([-2,-1,2,3,4]),V=fR(n>0?[a**n,1]:[1,a**-n]);return build(`将 ${P(a,N(n))} = ${V} 写成对数式`,`${L(a,V)} = ${N(n)}`,[`${L(a,N(n))} = ${V}`,`${L(V,a)} = ${N(n)}`,`${L(a,V)} = ${N(-n)}`],`${P('a','n')} = x ⇔ ${L('a','x')} = n：底数 ${a} 是对数的底，幂 ${V} 是真数，指数 ${N(n)} 是对数值。`)};
+const g22=()=>{const a=pick([2,3,4,5,10]),n=pick([-2,-1,2,3]),x=n>0?[a**n,1]:[1,a**-n];return mkR(`求 x：${L(a,'x')} = ${N(n)}`,x,[[a*n,1],n>0?[n**a,1]:[1,(-n)**a],[a+n,1],n>0?[1,a**n]:[a**-n,1]],`${L(a,'x')} = ${N(n)} ⇒ x = ${P(a,N(n))} = ${fR(x)}`)};
+const g23=()=>{if(Math.random()<.5){const a=pick([2,3,5]),s=rnd(2,4),t=rnd(1,s-1),add=Math.random()<.5,X=a**s,Y=a**t,ans=add?s+t:s-t;
+  return mkR(`不使用计算机，求 ${L(a,X)} ${add?'+':'−'} ${L(a,Y)} 的值`,[ans,1],add?[[s*t,1],[s-t,1],[ans+1,1]]:[[s+t,1],[s*t,1],[ans+1,1]],`${add?'积':'商'}的对数：${L(a,X)} ${add?'+':'−'} ${L(a,Y)} = ${L(a,`${X}${add?'×':'÷'}${Y}`)} = ${L(a,a**ans)} = ${ans}`)}
+ const k=rnd(1,3),C=pick([2,4,5,8,25]),M=C*10**k,A=pick([2,4,5,8,20,25,40,50,100,200,250].filter(d=>M%d==0&&M/d>=2)),B=M/A;
+ return mkR(`不使用计算机，求 log ${A} + log ${B} − log ${C} 的值`,[k,1],[[k+1,1],[k+2,1],[k-1,1]],`log ${A} + log ${B} − log ${C} = log ${F(A+'×'+B,C)} = log ${10**k} = ${k}`)};
+const g24=()=>{const r=pick([2,3,5]),p=pick([2,3,4]);if(Math.random()<.5){const q=rnd(1,5),ans=rat(q,p);
+  return mkR(`不使用计算机，求 ${L(r**p,r**q)} 的值`,ans,[rat(p,q),[q*p,1],[q-p,1]],`换底（以 ${r} 为底）：${L(r**p,r**q)} = ${F(L(r,P(r,q)),L(r,P(r,p)))} = ${F(q,p)}${ans[1]==1?' = '+ans[0]:''}`)}
+ const ans=rat(1,2*p);return mkR(`不使用计算机，求 ${L(r**p,R(r))} 的值`,ans,[rat(1,p),[2*p,1],rat(p,2)],`${R(r)} = ${P(r,fe(1,2))}，换底：${L(r**p,R(r))} = ${F(L(r,P(r,fe(1,2))),L(r,P(r,p)))} = ${F(F(1,2),p)} = ${fR(ans)}`)};
+const g25=()=>{const a=pick([2,3,5]),k=pick([-4,-3,-2,-1,1,2,3,4]),T=k>0?`x − ${k}`:`x + ${-k}`;
+ return build(`函数 y = ${L(a,'('+T+')')} 的定义域是？`,`x > ${N(k)}`,[`x > ${N(-k)}`,`x < ${N(k)}`,`x ≥ ${N(k)}`],`真数必须大于 0：${T} > 0 ⇒ x > ${N(k)}。图中虚线 x = ${N(k)} 是渐近线。`,{fig:G({xr:[k-2.5,k+8],yr:[-3,4],curves:[{f:x=>Math.log(x-k)/Math.log(a)}],vl:[k]})})};
+const g26=()=>{const bb=pick([[2,1],[3,1],[5,1],[1,2],[1,3],[2,5]]),a=bb[0]/bb[1],big=a>1;let m=rnd(2,12),n=rnd(2,12);if(m==n)n=m+3;
+ const B=bb[1]==1?bb[0]:F(bb[0],bb[1]),X=L(B,m),Y=L(B,n),gt=(m>n)==big,f=x=>Math.log(x)/Math.log(a),lo=Math.min(f(m),f(n),0)-1,hi=Math.max(f(m),f(n),0)+1;
+ return build(`比较 ${X} 与 ${Y} 的大小`,`${X} ${gt?'>':'<'} ${Y}`,[`${X} ${gt?'<':'>'} ${Y}`,`${X} = ${Y}`,'无法比较'],`底数 ${B} ${big?'> 1，对数函数在 (0, ∞) 上是增函数':'介于 0 与 1 之间，对数函数在 (0, ∞) 上是减函数'}；真数 ${m} ${m>n?'>':'<'} ${n}，所以 ${X} ${gt?'>':'<'} ${Y}。`,{fig:G({xr:[-.5,14],yr:[lo,hi],curves:[{f}],pts:[{x:m,y:f(m),l:`真数${m}`},{x:n,y:f(n),l:`真数${n}`}]})})};
+const g31=()=>{const a=pick([2,3,5]),c=pick([2,3]),x0=pick([-2,-1,1,2,3,4]),b=x0*(c-1);return mkR(`解方程 ${P(a,lin(1,b))} = ${P(a,c+'x')}`,[x0,1],[rat(b,c+1),[-x0,1],[b,1]],`底数相同，指数相等：x ${b>=0?'+ '+b:'− '+(-b)} = ${c}x ⇒ ${c-1==1?'':c-1}x = ${b} ⇒ x = ${x0}`)};
+const g32=()=>{const a=pick([2,3,5]),k=rnd(1,4),M=(a-1)*a**k;return mkR(`解方程 ${P(a,'x+1')} − ${P(a,'x')} = ${M}`,[k,1],[[k+1,1],[k-1,1],[a**k,1]],`${P(a,'x+1')} = ${a}·${P(a,'x')}，故 ${P(a,'x')}(${a} − 1) = ${M} ⇒ ${P(a,'x')} = ${a**k} = ${P(a,k)} ⇒ x = ${k}`)};
+const g33=()=>{const a=pick([2,3]),k1=rnd(1,3),k2=k1+rnd(1,2),s=a**k1,u=a**k2;return build(`解方程 ${P(a,'2x')} − ${s+u}·${P(a,'x')} + ${s*u} = 0`,`x = ${k1} 或 x = ${k2}`,[`x = ${s} 或 x = ${u}`,`x = ${k1}`,`x = ${N(-k1)} 或 x = ${N(-k2)}`,`x = ${k1+1} 或 x = ${k2+1}`],`设 t = ${P(a,'x')}：t² − ${s+u}t + ${s*u} = 0 ⇒ (t − ${s})(t − ${u}) = 0。${P(a,'x')} = ${s} ⇒ x = ${k1}；${P(a,'x')} = ${u} ⇒ x = ${k2}（t 必须 > 0，两根都可取）。`)};
+const g34=()=>{const a=pick([2,3,5]),n=rnd(1,3),b=pick([-3,-2,-1,1,2,3,4]);return mkR(`解方程 ${L(a,'('+(b>0?'x + '+b:'x − '+(-b))+')')} = ${n}`,[a**n-b,1],[[a**n+b,1],[a*n-b,1],[a**n,1]],`x ${b>0?'+ '+b:'− '+(-b)} = ${P(a,n)} = ${a**n} ⇒ x = ${a**n-b}（检验：真数 ${a**n} > 0 ✓）`)};
+const g35=()=>{const a=pick([2,3,5]),r=rnd(4,7),s=3-r,k=1-r*s;return build(`解方程 2${L(a,'(x − 1)')} = ${L(a,'(x + '+k+')')}`,`x = ${r}`,[`x = ${r} 或 x = ${N(s)}`,`x = ${N(s)}`,`x = ${r+1}`],`${L(a,'(x−1)²')} = ${L(a,'(x+'+k+')')} ⇒ (x−1)² = x + ${k} ⇒ x² − 3x − ${-r*s} = 0 ⇒ (x − ${r})(x + ${-s}) = 0。检验：x = ${N(s)} 使 x − 1 < 0，是增根，舍去；原方程的解是 x = ${r}。`,{val:r})};
+const g36=()=>{let P0,rr,k,z;do{P0=pick([20000,25000,30000,40000,50000]);rr=pick([3,4,5,6,8]);k=pick([1.5,2,3]);z=Math.log(k)/Math.log((100+rr)/100)}while(Math.abs(z-Math.round(z))<.02);const n=Math.ceil(z),q=(100+rr)/100;
+ return mkR(`RM ${P0} 存入银行，年利率 ${rr}%（复利）。至少需要多少年，本利和才会超过 RM ${P0*k}？`,[n,1],[[n-1,1],[n+1,1],[Math.round((k-1)*100/rr),1]],`${P0}(1 + ${rr}%)<sup>n</sup> > ${P0*k} ⇒ ${P(q,'n')} > ${k} ⇒ n > ${F('log '+k,'log '+q)} ≈ ${z.toFixed(2)}，最小整数 n = ${n}。`)};
+const g37=()=>{const a=pick([2,3,5,7]);let b,x;do{b=rnd(3,30);x=Math.log(b)/Math.log(a)}while(Math.abs(x-Math.round(x))<1e-9||b==a);const f=v=>v.toFixed(4).replace('-','−');
+ return build(`解方程 ${P(a,'x')} = ${b}（答案准确至四位小数）`,f(x),[f(Math.log(a)/Math.log(b)),f(b/a),f(Math.log(b/a)/Math.log(a)),f(Math.log(b)-Math.log(a))],`两边取对数：x log ${a} = log ${b} ⇒ x = ${F('log '+b,'log '+a)} = ${F(fn(Math.log10(b)),fn(Math.log10(a)))} = ${f(x)}`,{val:x})};
+const hA=()=>{const A=pick([1,2,3])*1e6,B=pick([25e4,5e5]),m=rnd(2,4),T=A+B*m,S=v=>v.toLocaleString('en-US');
+ return mkR(`（总复习题）某公司月销售额 S（RM）与广告投入 x（RM）的关系为 S = ${S(A)} + ${S(B)} log (x + 1)。若要月销售额达到 RM ${S(T)}，应投入多少广告费（RM）？`,[10**m-1,1],[[10**m,1],[10**m+1,1],[m,1]],`${S(T)} = ${S(A)} + ${S(B)} log (x+1) ⇒ log (x+1) = ${m} ⇒ x + 1 = ${P(10,m)} ⇒ x = ${10**m-1}`)};
+const hB=()=>{const x0=rnd(1,4),b=pick([-3,-2,-1,1,3,4]),c=1-x0*(b-2),ps=`x² ${b>=0?'+ '+b:'− '+(-b)}x ${c>=0?'+ '+c:'− '+(-c)}`;
+ return mkR(`（总复习题）解方程 ${L('(x+1)','('+ps+')')} = 2`,[x0,1],[[-x0,1],[x0+1,1],[x0+2,1]],`(x+1)² = ${ps} ⇒ x² + 2x + 1 = ${ps} ⇒ ${N(2-b)}x = ${N(c-1)} ⇒ x = ${x0}。检验：底数 x+1 = ${x0+1} > 0 且 ≠ 1，真数 > 0 ✓`)};
+const g11f=()=>{const a=pick([2,3,5]),m=pick([3,5,7]),k=rnd(1,3);if(Math.random()<.5)return mkR(`已知 ${P(a,'x')} = ${m}，求 ${P(a,'x+'+k)} 的值`,[m*a**k,1],[[m+a**k,1],[m*k,1],[m+k,1]],`${P(a,'x+'+k)} = ${P(a,'x')}·${P(a,k)} = ${m} × ${a**k} = ${m*a**k}`);
+ return mkR(`已知 ${P(a,'x')} = ${m}，求 ${P(a,'−x')} 的值`,[1,m],[[-m,1],[-1,m],[m,1]],`${P(a,'−x')} = ${F(1,P(a,'x'))} = ${F(1,m)}`)};
+const g11g=()=>{const a=pick([2,3,4,5]),n=pick([2,3]);return mkR(`已知指数函数 f(x) = a<sup>x</sup> 的图像经过点 (${n}, ${a**n})，求 f(−1)`,[1,a],[[a,1],[-1,a],[a**n,1],[1,a**n]],`a<sup>${n}</sup> = ${a**n} ⇒ a = ${a}，所以 f(−1) = ${P(a,'−1')} = ${F(1,a)}`)};
+const g11h=()=>{const c=pick([1,2,3,4]),dec=Math.random()<.5;return build(`函数 y = ${P('(m − '+c+')','x')} 是${dec?'减':'增'}函数，求 m 的取值范围`,dec?`${c} < m < ${c+1}`:`m > ${c+1}`,dec?[`m < ${c+1}`,`m > ${c}`,`m > ${c+1}`]:[`m > ${c}`,`m < ${c+1}`,`${c} < m < ${c+1}`],`底数为 m − ${c}。${dec?`减函数要求 0 < m − ${c} < 1 ⇒ ${c} < m < ${c+1}`:`增函数要求 m − ${c} > 1 ⇒ m > ${c+1}`}。`)};
+const ex3=(i,j,k)=>{let s='';[[j,'a'],[k,'b']].forEach(([c,v])=>{if(c)s+=(s?(c>0?' + ':' − '):(c<0?'−':''))+(Math.abs(c)==1?'':Math.abs(c))+v});if(i)s+=(s?(i>0?' + ':' − '):(i<0?'−':''))+Math.abs(i);return s||'0'};
+const g27=()=>{let i,j,k;do{i=rnd(-1,2);j=rnd(0,2);k=rnd(0,2)}while(j+k==0);const v=rat(2**Math.max(i,0)*3**j*5**k,2**Math.max(-i,0));
+ return build(`已知 ${L(2,3)} = a，${L(2,5)} = b，以 a 及 b 表示 ${L(2,fR(v))}`,ex3(i,j,k),[ex3(-i,j,k),ex3(i,j,-k),ex3(i+1,j,k),ex3(i,j+1,k),ex3(i,-j,k)],`${fR(v)} = ${P(2,N(i))} × ${P(3,j)} × ${P(5,k)}，所以 ${L(2,fR(v))} = ${N(i)}·${L(2,2)} + ${j}·${L(2,3)} + ${k}·${L(2,5)} = ${ex3(i,j,k)}`)};
+const g28=()=>{const [a,b,c]=shuf([2,3,5,7]),k=rnd(2,4);return mkR(`不使用计算机，求 ${L(a,b)} · ${L(b,c)} · ${L(c,a**k)} 的值`,[k,1],[[k+1,1],[k-1,1],[a*k,1]],`换底：${F('log '+b,'log '+a)} × ${F('log '+c,'log '+b)} × ${F('log '+a**k,'log '+c)} = ${F('log '+a**k,'log '+a)} = ${k}`)};
+const g29=()=>{const r=pick([2,3,4,5]),n=pick([2,3]),v=r**n;return mkR(`已知 y = ${L('a','x')} 的图像经过点 (${v}, ${n})，求底数 a`,[r,1],[rat(v,n),[n,1],[v-n,1]],`${L('a',v)} = ${n} ⇒ a<sup>${n}</sup> = ${v} ⇒ a = ${r}`)};
+const g2a=()=>{const a=pick([2,3,5]),k=rnd(1,4);return build(`函数 y = ${L(a,'(x² − '+k*k+')')} 的定义域是？`,`x < ${N(-k)} 或 x > ${k}`,[`${N(-k)} < x < ${k}`,`x > ${k}`,`x < ${k}`],`真数 x² − ${k*k} > 0 ⇒ (x − ${k})(x + ${k}) > 0 ⇒ x < ${N(-k)} 或 x > ${k}。`,{fig:G({xr:[-k-4,k+4],yr:[-3,4],curves:[{f:x=>Math.log(x*x-k*k)/Math.log(a)}],vl:[-k,k]})})};
+const g38=()=>{const [m,r,d]=pick([[3,4,2],[3,8,7],[4,8,6],[4,16,15],[2,4,3],[5,8,4],[5,16,14],[5,32,31]]),s=2**m/r;
+ return build(`解方程 ${L(2,'x')} + ${L(2,'(x − '+d+')')} = ${m}`,`x = ${r}`,[`x = ${r} 或 x = ${N(-s)}`,`x = ${N(-s)}`,`x = ${2**m}`,`x = ${r+1}`,`x = ${r-1}`],`${L(2,'[x(x−'+d+')]')} = ${m} ⇒ x² − ${d}x = ${2**m} ⇒ (x − ${r})(x + ${s}) = 0。检验：x = ${N(-s)} 使真数 < 0，是增根；解是 x = ${r}。`,{val:r})};
+const g39=()=>{const bb=pick([[2,1],[3,1],[1,2],[1,3]]),big=bb[0]>bb[1],B=bb[1]==1?bb[0]:`(${F(1,bb[1])})`,b=pick([-2,-1,1,2,3]),c=rnd(-2,4),gt=Math.random()<.5,v=c-b,dir=gt==big?'>':'<',fl=dir=='>'?'<':'>';
+ return build(`解不等式 ${P(B,lin(1,b))} ${gt?'>':'<'} ${P(B,N(c))}`,`x ${dir} ${N(v)}`,[`x ${fl} ${N(v)}`,`x ${dir} ${N(c+b)}`,`x ${fl} ${N(c+b)}`],`底数 ${big?'> 1，增函数：不等号方向不变':'介于 0 与 1 之间，减函数：不等号方向要反转'}，所以 x ${b>0?'+ '+b:'− '+(-b)} ${dir} ${N(c)} ⇒ x ${dir} ${N(v)}。`)};
+const g3a=()=>{const a=pick([2,3]),t=rnd(1,2);return mkR(`解方程 ${L(a,'x')} + ${L(a*a,'x')} = ${3*t}`,[a**(2*t),1],[[a**(3*t),1],[a**t,1],[3*t,1]],`${L(a*a,'x')} = ${F(1,2)}${L(a,'x')}，所以 ${F(3,2)}${L(a,'x')} = ${3*t} ⇒ ${L(a,'x')} = ${2*t} ⇒ x = ${a**(2*t)}`)};
+const g3b=()=>{if(Math.random()<.5){let M;do M=rnd(3,60)*100;while(Number.isInteger(Math.log2(M)));const n=Math.ceil(Math.log2(M));return mkR(`某细胞每次分裂由 1 个变成 2 个。至少需要分裂多少次，细胞总数才会超过 ${M}？`,[n,1],[[n-1,1],[n+1,1],[Math.round(M/2),1]],`${P(2,'n')} > ${M} ⇒ n > ${F('log '+M,'log 2')} ≈ ${Math.log2(M).toFixed(2)}，最小整数 n = ${n}`)}
+ const p=pick([1000,2000,5000]),r=pick([2,3,4,5]),n=pick([5,8,10]),q=1+r/100,v=+(p*q**n).toFixed(2),f=x=>(+x).toFixed(2);
+ return build(`通货膨胀率为每年 ${r}%。今天价值 RM ${p} 的商品，${n} 年后的等值价格是多少（RM，准确至两位小数）？`,f(v),[f(p*(1+r*n/100)),f(p*q**(n-1)),f(p/q**n)],`${p} × (1 + ${r}%)<sup>${n}</sup> = ${p} × ${P(q,n)} = ${f(v)}`,{val:v})};
+const T1=[g11a,g11b,g11c,g11d,g11e,g11f,g11g,g11h],T2=[g21,g22,g23,g24,g25,g26,g27,g28,g29,g2a],T3=[g31,g32,g33,g34,g35,g36,g37,g38,g39,g3a,g3b],HARD=[hA,hB],
+ FILL=[[g11a,g11d,g11f,g11g],[g22,g23,g24,g28,g29],[g31,g32,g34,g36,g37,g38,g3a,g3b]],FALL=[g11a,g11d,g11f,g11g,g22,g23,g24,g28,g29,g31,g32,g34,g35,g36,g37,g38,g3a,g3b];
+const parse=s=>{s=s.replace(/[−–]/g,'-').replace(/\s|,|RM|x=|^x=/gi,'');let v;const m=s.match(/^(-?\d+\.?\d*)\/(-?\d+\.?\d*)$/);v=m?m[1]/m[2]:Number(s);return s===''||isNaN(v)?null:v};
+//@@DOM
+/* ---------- quiz UI ---------- */
+function Quiz(el,cfg){let qs,done,ok,fd,fo;const $$=s=>el.querySelector(s);
+ const start=()=>{qs=cfg.mc().map(g=>g());done=ok=fd=fo=0;el.innerHTML='<div class=qs></div><div class=fl></div><div class=rs></div>';
+  qs.forEach((q,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<b>第 ${i+1} 题</b><div class=qt>${q.q}</div>${q.fig?`<div class=fg>${q.fig}</div>`:''}<div class=op>${q.opts.map((o,j)=>`<button data-j=${j}>${'ABCD'[j]}. ${o}</button>`).join('')}</div><div class=ex hidden></div>`;
+   c.querySelectorAll('.op button').forEach(b=>b.onclick=()=>{if(c.dataset.l)return;c.dataset.l=1;const j=+b.dataset.j,good=j==q.a;c.querySelectorAll('.op button').forEach((x,k)=>{x.disabled=true;if(k==q.a)x.classList.add('ok');else if(k==j)x.classList.add('no')});
+    const e=c.querySelector('.ex');e.hidden=false;e.innerHTML=(good?'✅ 正确！':'❌ 错误，正确答案是 '+'ABCD'[q.a]+'。')+'<br>'+q.exp;done++;ok+=good?1:0;if(done==qs.length)afterMC()});$$('.qs').appendChild(c)})};
+ const afterMC=()=>{const r=$$('.rs');if(cfg.review||ok>=3){r.innerHTML=`<p class=msg>选择题 ${ok}/${qs.length}${cfg.review?'':'，已解锁作答题！'}</p>`;showFill()}else{r.innerHTML=`<p class=msg>选择题 ${ok}/5，需答对 3 题才能解锁作答题。</p><button class=bt>换一组新题再试</button>`;r.querySelector('button').onclick=start}};
+ const showFill=()=>{const fl=$$('.fl'),fq=cfg.fill().map(g=>g());fl.innerHTML='<h4>作答题（输入答案；分数请写 3/2，不必化成小数）</h4>';
+  fq.forEach((q,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<b>作答 ${i+1}</b><div class=qt>${q.q}</div><input type=text placeholder="答案"> <button class=bt>提交</button><div class=ex hidden></div>`;const inp=c.querySelector('input'),bt=c.querySelector('button');
+   bt.onclick=()=>{if(c.dataset.l)return;const v=parse(inp.value);if(v==null){inp.focus();return}c.dataset.l=1;inp.disabled=bt.disabled=true;const good=Math.abs(v-q.val)<6e-4;fo+=good?1:0;fd++;const e=c.querySelector('.ex');e.hidden=false;e.innerHTML=(good?'✅ 正确！':'❌ 错误。')+` 正确答案：${q.ansH}<br>${q.exp}`;if(fd==fq.length)end(fq.length)};fl.appendChild(c)})};
+ const end=n=>{const r=$$('.rs');if(cfg.review){const t=ok+fo,m=qs.length+n;r.innerHTML=`<div class=score>${t} / ${m}</div><p class=msg>${t>=m*.87?'🏆 优秀！指数与对数掌握得很扎实。':t>=m*.67?'👍 良好，再看看错题的解析。':t>=m*.5?'🙂 及格，建议回到各小节重做练习。':'💪 继续加油！先复习 12.1–12.3 的例题与计算器。'}</p><button class=bt>重新测验（全新题目）</button>`}
+  else r.innerHTML+=`<p class=msg>作答题 ${fo}/${n}。</p><button class=bt>再来一组新题</button>`;r.querySelector('button').onclick=start};
+ start()}
+/* ---------- content ---------- */
+const fi=(a,b,x,y)=>`<span class=fi><input id=${a} type=number step=any value=${x}><input id=${b} type=number step=any value=${y}></span>`;
+const warn='<p class=warn>请检查输入：底数须大于 0 且不等于 1，真数须大于 0。</p>';
+const num=(v,k)=>`<span style="color:#d97706">${v}</span>`;
+function calc1(){const a=+$('#c1a').value;let p=+$('#c1p').value,q=+$('#c1q').value,o=$('#c1o');if(!(a>0)||a==1||!q||isNaN(p)){o.innerHTML=warn;return}
+ const e=p/q,v=a**e,ints=Number.isInteger(p)&&Number.isInteger(q);if(ints)[p,q]=rat(p,q);const rt=a**(1/q);let s=`<p>${P(fn(a),ints?fe(p,q):fn(e))} = `;
+ if(ints&&q>=2){s+=`(${R(fn(a),q)})<sup>${N(p)}</sup>`+(Math.abs(rt-Math.round(rt))<1e-9?` = ${Math.round(rt)}<sup>${N(p)}</sup>`:'')+' = '}
+ s+=`<b>${fn(v)}</b></p><p>${a>1?'底数 > 1：增函数':'0 < 底数 < 1：减函数'}；点 (${fn(e)}, ${fn(v)}) 在图像上。</p>`;
+ o.innerHTML=s+`<div class=fg>${G({xr:[Math.min(-3,e-1),Math.max(3,e+1)],yr:[-1,Math.max(4,Math.min(v*1.3,40))],curves:[{f:x=>a**x,l:`y=${fn(a)}ˣ`}],pts:[{x:e,y:v,l:`(${fn(e)}, ${fn(v)})`}]})}</div>`}
+function calc2(){const a=+$('#c2a').value,x=+$('#c2x').value,o=$('#c2o');if(!(a>0)||a==1||!(x>0)){o.innerHTML=warn;return}
+ const n=Math.log(x)/Math.log(a),ok=Math.abs(n-Math.round(n))<1e-9;o.innerHTML=`<p>${L(fn(a),fn(x))} = n ⇔ ${P(fn(a),'n')} = ${fn(x)}</p><p>换底：${L(fn(a),fn(x))} = ${F('log '+fn(x),'log '+fn(a))} = ${F(fn(Math.log10(x)),fn(Math.log10(a)))} = <b>${fn(n)}</b></p>${ok?`<p>验算：${P(fn(a),fn(Math.round(n)))} = ${fn(x)} ✓</p>`:''}<div class=fg>${G({xr:[-.5,Math.max(6,x*1.15)],yr:[Math.min(-3,n-1),Math.max(4,n+1)],curves:[{f:t=>Math.log(t)/Math.log(a),l:`y=log${fn(a)}x`}],pts:[{x:x,y:n,l:`(${fn(x)}, ${fn(n)})`}]})}</div>`}
+function calc3(){const a=+$('#c3a').value,b=+$('#c3b').value,o=$('#c3o');if(!(a>0)||a==1||isNaN(b)){o.innerHTML=warn;return}
+ if(b<=0){o.innerHTML=`<p class=warn>${P(fn(a),'x')} 永远大于 0，所以 ${P(fn(a),'x')} = ${fn(b)} <b>无解</b>（图像与直线不相交）。</p><div class=fg>${G({xr:[-3,3],yr:[b-1,5],curves:[{f:x=>a**x}],hl:[b]})}</div>`;return}
+ const x=Math.log(b)/Math.log(a);o.innerHTML=`<p>两边取对数：x log ${fn(a)} = log ${fn(b)}</p><p>x = ${F('log '+fn(b),'log '+fn(a))} = ${F(fn(Math.log10(b)),fn(Math.log10(a)))} = <b>${fn(+x.toFixed(4))}</b>（四位小数）</p><div class=fg>${G({xr:[Math.min(-3,x-2),Math.max(3,x+2)],yr:[-1,Math.max(4,b*1.4)],curves:[{f:t=>a**t,l:`y=${fn(a)}ˣ`}],hl:[b],pts:[{x:x,y:b,l:`x=${fn(+x.toFixed(4))}`}]})}</div>`}
+const calcBox=(h,body,out)=>`<h3>🧮 专属计算器</h3><div class=card><div class=calc>${body}</div><div id=${out}></div></div>`;
+const L1=`<div class=box><p>零指数 a⁰ = 1；负整数指数 ${P('a','−n')} = ${F(1,P('a','n'))}；分数指数 ${P('a',F('m','n'))} = (${R('a','n')})<sup>m</sup></p><p>${P('a','m')}×${P('a','n')} = ${P('a','m+n')}　${P('a','m')}÷${P('a','n')} = ${P('a','m−n')}　(${P('a','m')})<sup>n</sup> = ${P('a','mn')}　(ab)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup>　(${F('a','b')})<sup>n</sup> = ${F('a<sup>n</sup>','b<sup>n</sup>')}</p><p>指数函数 f(x) = a<sup>x</sup>（a>0, a≠1）：图像过 (0,1)，渐近线 y=0，值域 (0,∞)；a>1 增函数，0<a<1 减函数。</p></div>`;
+const L2=`<div class=box><p>${P('a','n')} = x ⇔ ${L('a','x')} = n　(a>0, a≠1, x>0)</p><p>${L('a','a')} = 1；${L('a','1')} = 0；${L('a','(xy)')} = ${L('a','x')} + ${L('a','y')}；${L('a',F('x','y'))} = ${L('a','x')} − ${L('a','y')}；${L('a','x<sup>m</sup>')} = m${L('a','x')}</p><p>换底公式：${L('a','b')} = ${F(L('c','b'),L('c','a'))}；${L('a','b')} = ${F(1,L('b','a'))}。对数函数过 (1,0)，渐近线 x=0，定义域 (0,∞)。</p></div>`;
+const L3=`<div class=box><p>① 同底法：化成 ${P('a','f(x)')} = ${P('a','g(x)')} ⇒ f(x)=g(x)　② 取对数法　③ 换元法：设 t = a<sup>x</sup>（t>0）　④ 对数方程必须<b>检验</b>真数 >0，舍去增根。</p></div>`;
+const NL=(lo,hi,rs,os=[],ts=[])=>{const sx=x=>20+(x-lo)/(hi-lo)*280;let s=`<svg viewBox="0 0 320 50" class=gr><line x1=15 x2=305 y1=25 y2=25 stroke=currentColor />`;
+ rs.forEach(([a,b])=>s+=`<line x1=${sx(Math.max(a,lo))} x2=${sx(Math.min(b,hi))} y1=25 y2=25 stroke=#e11d48 stroke-width=5 />`);
+ ts.forEach(t=>s+=`<text x=${sx(t)} y=44 text-anchor=middle>${N(t)}</text><circle cx=${sx(t)} cy=25 r=4 fill=${os.includes(t)?'var(--bg)':'#e11d48'} stroke=#e11d48 />`);return s+'</svg>'};
+const EXS=[];const E=(n,t,q,s,svg)=>EXS.push({n,h:`<details class=card${[1,5,18].includes(n)?' open':''}><summary><b>例题${n}</b> · ${t}</summary><p>${q}</p><p>${s}</p><div class=fg>${svg}</div></details>`});
+const exs=(a,b)=>EXS.filter(e=>e.n>=a&&e.n<=b).sort((x,y)=>x.n-y.n).map(e=>e.h).join('');
+const f2=F(1,2),lg3=L(3,'');
+E(1,'求值（指数与分数指数）',`不使用计算机：(a) (${F('−2',5)})<sup>3</sup> − (${F('−2',5)})<sup>2</sup>　(b) ${P(4,fe(3,2))} + ${P(8,fe(2,3))} − ${P(64,fe(2,3))}　(c) ${P('('+F(25,36)+')',fe(-1,2))} + (−4)<sup>0</sup> − ${P('(2'+F(1,4)+')',fe(1,2))} − ${P('0.001',fe(1,3))}`,
+ `(a) = ${F('−8',125)} − ${F(4,25)} = ${F('−28',125)}<br>(b) = (2²)<sup>${F(3,2)}</sup> + (2³)<sup>${F(2,3)}</sup> − (4³)<sup>${F(2,3)}</sup> = 2³ + 2² − 4² = 8 + 4 − 16 = −4<br>(c) = ${F(6,5)} + 1 − ${F(3,2)} − ${F(1,10)} = ${F(3,5)}`,
+ flow([['(a) (−0.4)³ = −0.064','(−0.4)² = 0.16','−0.064−0.16 = −0.224'],['(b) 4 开方再立方 → 8','8 开立方再平方 → 4','64 开立方再平方 → 16'],['(c) 1.2 + 1 = 2.2','2.2 − 1.5 = 0.7','0.7 − 0.1 = 0.6']],110));
+E(2,'化简（指数运算法则）',`(a) (x³y⁻²)(x⁻¹y⁵)　(b) (a⁻²b³)² ÷ (ab⁻¹)³　(c) ${F('(2a⁻¹b²)(−3ab⁻³)','6a²b⁻⁴c')}`,
+ `(a) = x<sup>3+(−1)</sup>y<sup>−2+5</sup> = x²y³<br>(b) = a⁻⁴b⁶ ÷ a³b⁻³ = a⁻⁷b⁹ = ${F('b⁹','a⁷')}<br>(c) = ${F('−6a⁻²b³','6c')} = −${F('b³','a²c')}`,
+ flow([['(a) x: 3+(−1) = 2','y: −2+5 = 3','x²y³'],['(b) a: −4−3 = −7','b: 6−(−3) = 9','b⁹ ÷ a⁷'],['(c) a: −1+1−2 = −2','b: 2−3+4 = 3','c: 0−1 = −1，系数 −1']],110));
+E(3,'化简（含 n 的指数）',`(a) 64 × 16<sup>2n−3</sup> ÷ 4<sup>4n−3</sup>　(b) ${F('10 × 5<sup>2n+1</sup> + 5<sup>2n</sup>','25<sup>n</sup>')}`,
+ `(a) = 2⁶ × 2<sup>4(2n−3)</sup> ÷ 2<sup>2(4n−3)</sup> = 2<sup>6+8n−12−8n+6</sup> = 2⁰ = 1<br>(b) = ${F('10 × 5<sup>2n</sup> × 5 + 5<sup>2n</sup>','5<sup>2n</sup>')} = ${F('5<sup>2n</sup>(50 + 1)','5<sup>2n</sup>')} = 51`,
+ flow([['(a) 指数先写 6','+(8n−12)','−(8n−6) = 0 → 1'],['(b) 提公因式','5^2n × (50+1)','÷ 5^2n = 51']],110));
+E(4,'比较大小（指数函数的单调性）',`(a) ${P(2,'1.2')} 与 ${P(2,'2.5')}　(b) ${P('0.3','0.5')} 与 ${P('0.3','2.1')}　(c) ${P(5,'−2.5')} 与 ${P(5,'−0.5')}　(d) ${P('0.6','−3.2')} 与 ${P('0.6','−0.8')}`,
+ `(a) 2 > 1 增函数，1.2 < 2.5 ⇒ ${P(2,'1.2')} < ${P(2,'2.5')}<br>(b) 0 < 0.3 < 1 减函数，0.5 < 2.1 ⇒ ${P('0.3','0.5')} > ${P('0.3','2.1')}<br>(c) 5 > 1 增函数，−2.5 < −0.5 ⇒ ${P(5,'−2.5')} < ${P(5,'−0.5')}<br>(d) 0 < 0.6 < 1 减函数，−3.2 < −0.8 ⇒ ${P('0.6','−3.2')} > ${P('0.6','−0.8')}`,
+ G({xr:[-1,3.5],yr:[-.5,7],curves:[{f:x=>2**x,l:'y=2ˣ',lx:2.8}],pts:[{x:1.2,y:2**1.2,l:'1.2'},{x:2.5,y:2**2.5,l:'2.5'}]})+G({xr:[-1,3.5],yr:[-.5,3.5],curves:[{f:x=>.3**x,l:'y=0.3ˣ',lx:-.2}],pts:[{x:.5,y:.3**.5,l:'0.5'},{x:2.1,y:.3**2.1,l:'2.1'}]})+G({xr:[-3.5,1],yr:[-.3,5],curves:[{f:x=>5**x,l:'y=5ˣ',lx:.8}],pts:[{x:-2.5,y:5**-2.5,l:'−2.5'},{x:-.5,y:5**-.5,l:'−0.5'}]})+G({xr:[-4,2],yr:[-.5,8],curves:[{f:x=>.6**x,l:'y=0.6ˣ',lx:-3.6}],pts:[{x:-3.2,y:.6**-3.2,l:'−3.2'},{x:-.8,y:.6**-.8,l:'−0.8'}]}));
+E(5,'指数式写成对数式',`(a) 3² = 9　(b) 4<sup>−2</sup> = ${F(1,16)}　(c) 5⁰ = 1`,`(a) ${L(3,9)} = 2　(b) ${L(4,F(1,16))} = −2　(c) ${L(5,1)} = 0<br>口诀：底数当“底”，幂当“真数”，指数当“对数值”。`,
+ flow([['3² = 9','互化 ⇔','log₃9 = 2'],['4⁻² = 0.0625','互化 ⇔','log₄0.0625 = −2'],['5⁰ = 1','互化 ⇔','log₅1 = 0']],104));
+E(6,'对数式写成指数式',`(a) ${L(5,25)} = 2　(b) ${L(9,27)} = ${F(3,2)}　(c) ${L(10,0.1)} = −1`,`(a) 5² = 25　(b) 9<sup>${F(3,2)}</sup> = 27　(c) 10<sup>−1</sup> = 0.1`,
+ flow([['log₅25 = 2','互化 ⇔','5² = 25'],['log₉27 = 1.5','互化 ⇔','9^1.5 = 27'],['log₁₀0.1 = −1','互化 ⇔','10⁻¹ = 0.1']],104));
+E(7,'求对数式中的 x',`(a) ${L(4,'x')} = 2　(b) ${L(2,F(1,2))} = x　(c) ${L('x',125)} = 3`,`(a) x = 4² = 16<br>(b) 2<sup>x</sup> = ${F(1,2)} = 2<sup>−1</sup> ⇒ x = −1<br>(c) x³ = 125 ⇒ x = 5`,
+ flow([['(a) x = 4²','= 16'],['(c) x³ = 125','x = 5']],104)+G({xr:[-3,3],yr:[-.5,4],curves:[{f:x=>2**x,l:'y=2ˣ',lx:2.2}],hl:[.5],pts:[{x:-1,y:.5,l:'(b) (−1, 0.5)'}]}));
+E(8,'特殊对数的值',`(a) ${L('4.5',1)}　(b) ${L('0.5','0.5')}　(c) ${L(5,F(1,25))}`,`(a) 1 的对数是 0，所以 = 0<br>(b) 底的对数是 1，所以 = 1<br>(c) = ${L(5,'5<sup>−2</sup>')} = −2${L(5,5)} = −2`,
+ G({xr:[-.5,7],yr:[-3,2.5],curves:[{f:x=>Math.log(x)/Math.log(5),l:'y=log₅x',lx:6.5}],pts:[{x:1,y:0,l:'(1,0)'},{x:5,y:1,l:'(5,1)'},{x:.04,y:-2,l:'(0.04,−2)'}]}));
+E(9,'以 a = log 2 表示',`已知 a = log 2：(a) log 4²　(b) (log 4)²　(c) log (2 × 64)`,`(a) = 2log 4 = 2log 2² = 4log 2 = 4a<br>(b) = (log 2²)² = (2log 2)² = (2a)² = 4a²<br>(c) = log (2 × 2⁶) = log 2⁷ = 7log 2 = 7a`,
+ flow([['(a) log 4² = 2log 4','2log 2² = 4log 2','= 4a'],['(b) (log 4)²','= (2log 2)² = (2a)²','= 4a²'],['(c) 2 × 64 = 2⁷','log 2⁷ = 7log 2','= 7a']],110));
+E(10,'对数运算法则',`(a) 100<sup>log 6</sup>　(b) log 40 + log 60 − log 24　(c) 3${L(3,2)} + ${L(3,54)} − ${L(3,16)}`,`(a) = 10<sup>2log 6</sup> = 10<sup>log 6²</sup> = 6² = 36<br>(b) = log ${F('40 × 60',24)} = log 100 = 2<br>(c) = ${L(3,8)} + ${L(3,54)} − ${L(3,16)} = ${L(3,F('8 × 54',16))} = ${L(3,27)} = 3`,
+ flow([['(a) 100^log6','= 10^(2log6)','= 10^log36 = 36'],['(b) 40×60÷24','= 100','log 100 = 2'],['(c) 3log₃2 → log₃8','8×54÷16 = 27','log₃27 = 3']],110));
+E(11,'用 a、b 表示对数',`已知 ${L(2,3)} = a，${L(2,5)} = b：(a) ${L(2,7.5)}　(b) ${L(2,R(0.8))}`,`(a) ${L(2,F(15,2))} = ${L(2,3)} + ${L(2,5)} − ${L(2,2)} = a + b − 1<br>(b) ${L(2,R(0.8))} = ${f2}(${L(2,'2²')} − ${L(2,5)}) = ${f2}(2 − b) = 1 − ${f2}b`,
+ flow([['(a) 7.5 = 3×5÷2','log₂3+log₂5−log₂2','= a + b − 1'],['(b) √0.8 = (4÷5)^0.5','0.5(2 − log₂5)','= 1 − 0.5b']],110));
+E(12,'换底公式（计算机求值）',`求 ${L(2,3)} 的值`,`${L(2,3)} = ${F('log<sub>10</sub> 3','log<sub>10</sub> 2')} = ${F('0.4771','0.3010')} ≈ 1.5850`,G({xr:[-.5,8],yr:[-3,4],curves:[{f:x=>Math.log2(x),l:'y=log₂x',lx:7.5}],pts:[{x:3,y:Math.log2(3),l:'(3, 1.585)'}]}));
+E(13,'换底公式（不用计算机）',`(a) ${L(4,8)}　(b) ${L(9,R(3))}`,`(a) ${L(4,8)} = ${F(L(2,8),L(2,4))} = ${F(3,2)}<br>(b) ${L(9,R(3))} = ${F(L(3,R(3)),L(3,9))} = ${F(F(1,2),2)} = ${F(1,4)}`,
+ flow([['(a) log₂8 = 3','log₂4 = 2','3 ÷ 2 = 1.5'],['(b) log₃√3 = 0.5','log₃9 = 2','0.5 ÷ 2 = 0.25']],104));
+E(14,'换底公式的运用',`(a) ${L(5,27)} · ${L(9,25)}　(b) ${L(8,16)} + ${L(R(3),3)} + log 0.0001`,`(a) = ${F('log 27','log 5')} × ${F('log 25','log 9')} = ${F('3 log 3','log 5')} × ${F('2 log 5','2 log 3')} = 3<br>(b) = ${F(4,3)} + ${F(1,f2)} + (−4) = −${F(2,3)}`,
+ flow([['(a) 3log3 ÷ log5','× 2log5 ÷ 2log3','约分 = 3'],['(b) log₈16 ≈ 1.333','log√3 3 = 2','log0.0001 = −4'],['1.333 + 2 − 4','= −0.667','= −⅔']],110));
+E(15,'以 x、y 表示',`已知 ${L(3,2)} = x，${L(5,3)} = y：(a) ${L(3,30)}　(b) ${L(25,1.5)}`,`(a) = ${L(3,2)} + ${L(3,3)} + ${L(3,5)} = x + 1 + ${F(1,'y')}<br>(b) = ${F(L(3,F(3,2)),L(3,25))} = ${F('1 − x','2'+F(1,'y'))} = ${F('y − xy',2)}`,
+ flow([['(a) 30 = 2×3×5','log₃2 + 1 + log₃5','log₃5 = 1 ÷ y'],['(b) 1.5 = 3÷2','(1 − x) ÷ (2 × 1/y)','= (1−x) × y ÷ 2']],110));
+E(16,'比较对数大小',`(a) ${L(2,9)} 与 ${L(2,3)}　(b) ${L(F(1,3),8)} 与 ${L(F(1,3),2)}`,`(a) 2 > 1 增函数，9 > 3 ⇒ ${L(2,9)} > ${L(2,3)}<br>(b) 0 < ${F(1,3)} < 1 减函数，8 > 2 ⇒ ${L(F(1,3),8)} < ${L(F(1,3),2)}`,
+ G({xr:[-.5,10],yr:[-1,4],curves:[{f:x=>Math.log2(x),l:'y=log₂x',lx:9.5}],pts:[{x:3,y:Math.log2(3),l:'(3, 1.58)'},{x:9,y:Math.log2(9),l:'(9, 3.17)'}]})+G({xr:[-.5,9],yr:[-3,3],curves:[{f:x=>Math.log(x)/Math.log(1/3),l:'y=log₁⁄₃x'}],pts:[{x:2,y:Math.log(2)/Math.log(1/3),l:'(2, −0.63)'},{x:8,y:Math.log(8)/Math.log(1/3),l:'(8, −1.89)'}]}));
+E(17,'求定义域',`(a) f(x) = ${L('a','(x + 2)')}　(b) y = ${L(3,'(x² + 3)')}　(c) y = ${L(2,F('x − 2','x + 1'))}`,`(a) x + 2 > 0 ⇒ x > −2<br>(b) x² + 3 > 0 恒成立 ⇒ 定义域是 R<br>(c) ${F('x − 2','x + 1')} > 0 ⇒ x < −1 或 x > 2`,
+ `<p>(a) x > −2</p>${NL(-6,4,[[-2,Infinity]],[-2],[-2])}<p>(b) R</p>${NL(-4,4,[[-Infinity,Infinity]],[],[0])}<p>(c) x < −1 或 x > 2（空心圆表示不含）</p>${NL(-4,5,[[-Infinity,-1],[2,Infinity]],[-1,2],[-1,2])}`);
+E(18,'解指数方程（同底法）',`(a) 2(2<sup>x+1</sup>) = 8<sup>x</sup>　(b) 4(2<sup>x−1</sup>) = −4`,`(a) 2<sup>1+x+1</sup> = 2<sup>3x</sup> ⇒ x + 2 = 3x ⇒ x = 1<br>(b) 2<sup>x−1</sup> = −1，但 2<sup>x−1</sup> 必须大于 0，所以原方程无解。`,
+ G({xr:[-1.5,2.5],yr:[-1,20],curves:[{f:x=>2**(x+2),l:'y=2ˣ⁺²',lx:2.2},{f:x=>8**x,l:'y=8ˣ',lx:1.5}],pts:[{x:1,y:8,l:'(a) (1, 8)'}]})+G({xr:[-3,3],yr:[-5,10],curves:[{f:x=>4*2**(x-1),l:'y=4·2ˣ⁻¹',lx:2.6}],hl:[-4]}));
+E(19,'取对数解方程',`(a) 3<sup>x</sup> = 5　(b) 2<sup>x−1</sup> = 5<sup>x+3</sup>（准确至四位小数）`,`(a) x = ${F('log 5','log 3')} = 1.4650<br>(b) (x − 1)ln 2 = (x + 3)ln 5 ⇒ x(ln 2 − ln 5) = 3ln 5 + ln 2 ⇒ x = ${F('3ln 5 + ln 2','ln 2 − ln 5')} = −6.0259`,
+ G({xr:[-1,3],yr:[-1,10],curves:[{f:x=>3**x,l:'y=3ˣ',lx:2.4}],hl:[5],pts:[{x:Math.log(5)/Math.log(3),y:5,l:'x = 1.4650'}]})+flow([['(b) 两边取 ln','(x−1)ln2 = (x+3)ln5','展开并移项'],['x(ln2 − ln5)','= 3ln5 + ln2','x = −6.0259']],110));
+E(20,'提公因式',`解 5<sup>x+1</sup> − 5<sup>x</sup> = 500`,`5·5<sup>x</sup> − 5<sup>x</sup> = 500 ⇒ 5<sup>x</sup>(5 − 1) = 500 ⇒ 5<sup>x</sup> = 125 ⇒ x = 3`,G({xr:[-1,4],yr:[-50,700],curves:[{f:x=>4*5**x,l:'y=4·5ˣ',lx:3.6}],hl:[500],pts:[{x:3,y:500,l:'(3, 500)'}]}));
+E(21,'换元法',`解 2<sup>2x</sup> − 5·2<sup>x</sup> − 6 = 0（准确至四位小数）`,`设 t = 2<sup>x</sup>：t² − 5t − 6 = 0 ⇒ (t − 6)(t + 1) = 0。<br>t = 6：x = ${F('log 6','log 2')} = 2.5850；t = −1：2<sup>x</sup> > 0，无解。所以 x = 2.5850。`,
+ G({xr:[-2,7],yr:[-12,16],curves:[{f:t=>t*t-5*t-6,l:'y=t²−5t−6',lx:6.4}],pts:[{x:6,y:0,l:'t=6 ✓'},{x:-1,y:0,l:'t=−1 ✗'}]}));
+E(22,'复利应用题',`n 年后本利和为 p(1 + r%)<sup>n</sup>。RM 50,000，年利率 3.2%，至少几年本利和超过 RM 68,512？`,`50000(1.032)<sup>n</sup> > 68512 ⇒ 1.032<sup>n</sup> > ${F(68512,50000)} ⇒ n > ${F('log '+F(68512,50000),'log 1.032')} ≈ 9.99，最小整数 n = 10。`,
+ G({xr:[0,12],yr:[0,80],curves:[{f:n=>50*1.032**n,l:'本利和(千)',lx:11}],hl:[68.512],pts:[{x:10,y:50*1.032**10,l:'n=10'}]}));
+E(23,'对数方程（含检验）',`(a) 2${L(2,'(x − 1)')} = 4　(b) ${L(7,'(7x² − 4x − 2)')} = 0`,`(a) ${L(2,'(x − 1)')} = 2 ⇒ x − 1 = 4 ⇒ x = 5（检验：真数 4 > 0 ✓）<br>(b) 7x² − 4x − 2 = 1 ⇒ (7x + 3)(x − 1) = 0 ⇒ x = −${F(3,7)} 或 x = 1，经检验都是解。`,
+ G({xr:[0,8],yr:[-3,4],curves:[{f:x=>Math.log2(x-1)}],hl:[2],pts:[{x:5,y:2,l:'(a) x=5'}]})+G({xr:[-1.5,2],yr:[-5,10],curves:[{f:x=>7*x*x-4*x-3,l:'y=7x²−4x−3',lx:1.9}],pts:[{x:-3/7,y:0,l:'−0.43'},{x:1,y:0,l:'1'}]}));
+E(24,'对数相加',`解 log x + log (7 − x) = 1`,`log [x(7 − x)] = 1 ⇒ 7x − x² = 10 ⇒ (x − 5)(x − 2) = 0。经检验 x = 5 和 x = 2 都是解。`,G({xr:[0,7],yr:[-1,13],curves:[{f:x=>x*(7-x),l:'y=x(7−x)',lx:6.6}],hl:[10],pts:[{x:2,y:10,l:'x=2'},{x:5,y:10,l:'x=5'}]}));
+E(25,'增根的检验',`解 2${L(3,'(x − 1)')} = ${L(3,'(x + 11)')}`,`(x − 1)² = x + 11 ⇒ x² − 3x − 10 = 0 ⇒ x = 5 或 x = −2。x = −2 使 x − 1 < 0，是增根；解是 x = 5。`,
+ G({xr:[-3,8],yr:[-2,4],curves:[{f:x=>2*Math.log(x-1)/Math.log(3),l:'2log₃(x−1)',lx:7.5},{f:x=>Math.log(x+11)/Math.log(3),l:'log₃(x+11)',lx:4}],vl:[1],pts:[{x:5,y:Math.log(16)/Math.log(3),l:'(5, 2.52)'}]}));
+E(26,'对数相减',`解 ${L(8,'(3x − 1)')} − ${L(8,'(x − 2)')} = 1`,`${L(8,F('3x − 1','x − 2'))} = 1 ⇒ ${F('3x − 1','x − 2')} = 8 ⇒ 3x − 1 = 8x − 16 ⇒ x = 3（检验 ✓）`,G({xr:[1.5,6],yr:[0,20],curves:[{f:x=>(3*x-1)/(x-2),l:'y=(3x−1)÷(x−2)',lx:5.8}],hl:[8],vl:[2],pts:[{x:3,y:8,l:'(3, 8)'}]}));
+E(27,'换元（log 的平方）',`解 ${L(2,'²x')} − 3${L(2,'x')} = 0`,`(log₂x)(log₂x − 3) = 0 ⇒ log₂x = 0 或 3 ⇒ x = 1 或 x = 8，都是解。<br>注意：(log₂x)² 可写成 log₂²x，它不等于 log₂x²。`,
+ G({xr:[0,10],yr:[-3,6],curves:[{f:x=>Math.log2(x)**2-3*Math.log2(x),l:'y=(log₂x)²−3log₂x',lx:9.8}],pts:[{x:1,y:0,l:'x=1'},{x:8,y:0,l:'x=8'}]}));
+E(28,'换元（底数含 x）',`解 ${L(3,'x')} − 2${L('x',3)} = 1`,`设 y = ${L(3,'x')}，${L('x',3)} = ${F(1,'y')}：y − ${F(2,'y')} = 1 ⇒ y² − y − 2 = 0 ⇒ y = 2 或 −1。<br>x = 3² = 9 或 x = 3<sup>−1</sup> = ${F(1,3)}，都是解。`,
+ G({xr:[-2,3.5],yr:[-4,5],curves:[{f:y=>y*y-y-2,l:'y²−y−2',lx:3.3}],pts:[{x:2,y:0,l:'y=2 → x=9'},{x:-1,y:0,l:'y=−1 → x=⅓'}]}));
+E(29,'指数含 log',`解 x<sup>2log x − 1</sup> = 10`,`取 log：(2log x − 1)(log x) = 1。设 y = log x：2y² − y − 1 = 0 ⇒ (2y + 1)(y − 1) = 0 ⇒ y = −${f2} 或 1。<br>x = 10<sup>−${f2}</sup> = ${F(1,R(10))} 或 x = 10，都是解。`,
+ G({xr:[-1.5,2],yr:[-2,5],curves:[{f:y=>2*y*y-y-1,l:'2y²−y−1',lx:1.9}],pts:[{x:-.5,y:0,l:'y=−0.5'},{x:1,y:0,l:'y=1'}]}));
+E(30,'点击率应用题',`点击率 C(%) = 2log (0.5x + 1)，x 为展示次数。(a) x = 1000 时的 C；(b) C = 10% 时 x 是多少？`,`(a) C = 2log (0.5 × 1000 + 1) = 2log 501 = 5.3997%<br>(b) 10 = 2log (0.5x + 1) ⇒ log (0.5x + 1) = 5 ⇒ 0.5x + 1 = 10⁵ ⇒ x = 199998 次。`,
+ G({xr:[0,220],yr:[0,12],curves:[{f:t=>2*Math.log10(500*t+1),l:'C(x)，x 单位：千次',lx:215}],pts:[{x:1,y:5.3997,l:'(1000, 5.4%)'},{x:199.998,y:10,l:'(199998, 10%)'}]}));
+const TABS=[
+{n:'12.1 指数函数',h:`<h2>12.1 指数函数</h2>${L1}<h3>📘 例题解说（点标题展开／折叠）</h3>${exs(1,4)}`+
+ calcBox(0,`底数 a <input id=c1a type=number step=any value=4> 指数 ${fi('c1p','c1q',3,2)} <button class=bt onclick=calc1()>计算</button>`,'c1o')+`<h3>✏️ 随堂练习（每次随机）</h3><div id=q1></div>`,
+ init(){calc1();Quiz($('#q1'),{mc:()=>shuf(T1).slice(0,5),fill:()=>shuf(FILL[0]).slice(0,2)})}},
+{n:'12.2 对数函数',h:`<h2>12.2 对数函数</h2>${L2}<h3>📘 例题解说（点标题展开／折叠）</h3>${exs(5,17)}`+
+ calcBox(0,`底数 a <input id=c2a type=number step=any value=2> 真数 x <input id=c2x type=number step=any value=8> <button class=bt onclick=calc2()>计算</button>`,'c2o')+`<h3>✏️ 随堂练习（每次随机）</h3><div id=q2></div>`,
+ init(){calc2();Quiz($('#q2'),{mc:()=>shuf(T2).slice(0,5),fill:()=>shuf(FILL[1]).slice(0,2)})}},
+{n:'12.3 指数与对数方程式',h:`<h2>12.3 指数方程式与对数方程式</h2>${L3}<h3>📘 例题解说（点标题展开／折叠）</h3>${exs(18,30)}`+
+ calcBox(0,`解 ${P('a','x')} = b：a <input id=c3a type=number step=any value=3> b <input id=c3b type=number step=any value=5> <button class=bt onclick=calc3()>求解</button>`,'c3o')+`<h3>✏️ 随堂练习（每次随机）</h3><div id=q3></div>`,
+ init(){calc3();Quiz($('#q3'),{mc:()=>shuf(T3).slice(0,5),fill:()=>shuf(FILL[2]).slice(0,2)})}},
+{n:'总复习',h:`<h2>总复习</h2><div class=box>10 题选择题 + 5 题作答题（先做完 10 题选择题才会出现作答题）。题目抽自 12.1–12.3，并加入总复习题中较难的题目；每次都是新题。</div><div id=qr></div>`,
+ init(){Quiz($('#qr'),{review:1,mc:()=>shuf([pick(HARD),...shuf([...T1,...T2,...T3]).slice(0,9)]),fill:()=>shuf([pick(HARD),...shuf(FALL).slice(0,4)])})}}];
+function init(){}
+/* ---------- shell ---------- */
+const nav=$('#nav'),main=$('#main'),root=document.documentElement;
+TABS.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>{[...nav.children].forEach((x,j)=>{x.classList.toggle('on',i==j);main.children[j].classList.toggle('on',i==j)});b.scrollIntoView({inline:'center',block:'nearest'});scrollTo(0,0)};nav.appendChild(b);
+ const s=document.createElement('section');s.innerHTML=t.h;main.appendChild(s)});
+TABS.forEach(t=>t.init());nav.children[0].click();
+let fs=16;try{fs=+localStorage.getItem('fs')||16;root.dataset.t=localStorage.getItem('th')||(matchMedia('(prefers-color-scheme:dark)').matches?'d':'l')}catch(e){}
+const setF=v=>{fs=Math.max(12,Math.min(22,v));root.style.fontSize=fs+'px';try{localStorage.setItem('fs',fs)}catch(e){}};setF(fs);
+$('#fm').onclick=()=>setF(fs-1);$('#fp').onclick=()=>setF(fs+1);
+$('#th').onclick=()=>{root.dataset.t=root.dataset.t=='d'?'l':'d';try{localStorage.setItem('th',root.dataset.t)}catch(e){}};
+for(let i=0;i<8;i++){const s=document.createElement('span');s.textContent='蔡逸众 · ecchua79 · Chinese High School';s.style.left=(i%2*55-8+(Math.floor(i/2)%2)*18)+'%';s.style.top=(Math.floor(i/2)*26+6)+'%';$('#wm').appendChild(s)}
+console.log('%c© 蔡逸众 / ecchua79 / Chinese High School 华仁中学','color:#6d3fb5;font-weight:bold');
+</script></body></html>
