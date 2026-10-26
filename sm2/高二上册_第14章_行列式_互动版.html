@@ -1,0 +1,170 @@
+<!DOCTYPE html><!-- © 蔡逸众 (ecchua79) · Chinese High School 峇株吧辖华仁中学 · 行列式互动课程 -->
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="蔡逸众 / ecchua79 / Chinese High School"><title>行列式 · 高二上册第14章</title>
+<style>/* © 蔡逸众 ecchua79 Chinese High School */
+:root{--bg:#f6f7fb;--fg:#1d2433;--card:#fff;--ac:#a2449b;--ac2:#243b8f;--ok:#1b9a59;--bad:#d33;--bd:#d6d9e4}
+body.d{--bg:#12151f;--fg:#e6e9f2;--card:#1c2130;--bd:#33394d;--ac:#d77ad0;--ac2:#2b3a7a}
+html{font-size:15px}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+#top{position:sticky;top:0;z-index:5}header{display:flex;justify-content:space-between;align-items:center;padding:.4rem .7rem;background:var(--ac2);color:#fff}
+header button{margin-left:.3rem;padding:.2rem .5rem;border:0;border-radius:.3rem;font-size:1rem}
+nav{display:flex;overflow-x:auto;gap:.4rem;padding:.4rem .6rem;background:var(--card);border-bottom:1px solid var(--bd)}
+nav button{flex:none;white-space:nowrap;border:1px solid var(--bd);background:var(--bg);color:var(--fg);padding:.3rem .7rem;border-radius:1rem;font-size:1rem}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:46rem;margin:auto;padding:.5rem}.card{background:var(--card);border:1px solid var(--bd);border-radius:.6rem;padding:.5rem .7rem;margin:.5rem 0;overflow-x:auto}
+h2{color:var(--ac);margin:.2rem 0}h3{color:var(--ac2);margin:.3rem 0}body.d h3{color:#8fa8ff}
+.m{vertical-align:middle;color:var(--fg);max-width:100%}.m text{fill:currentColor;font-size:15px;font-family:serif;text-anchor:middle}
+.row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15rem}.fr i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 .2rem}
+.g{display:inline-grid;gap:.2rem}input,select{font-size:1rem;padding:.2rem;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:.3rem}.g input{width:3rem;text-align:center}
+.o{display:block;width:100%;text-align:left;margin:.25rem 0;padding:.45rem .6rem;border:1px solid var(--bd);border-radius:.4rem;background:var(--bg);color:var(--fg);font-size:1rem}
+.o.ok{background:#1b9a5940;border-color:var(--ok)}.o.bad{background:#dd333340;border-color:var(--bad)}.ex{margin-top:.4rem;padding:.4rem;border-left:3px solid var(--ac);background:var(--bg)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:.4rem;padding:.4rem .8rem;font-size:1rem;margin:.2rem}.fi{width:6rem}
+summary{cursor:pointer;font-size:1.05rem}footer{text-align:center;font-size:.85rem;padding:1rem;opacity:.8}#wm{position:fixed;inset:0;pointer-events:none;z-index:9;overflow:hidden;opacity:.035}
+#wm div{position:absolute;inset:-50%;transform:rotate(-25deg);display:flex;flex-wrap:wrap;gap:7rem 9rem;align-content:flex-start;font-size:.75rem;font-weight:700}
+</style></head><body>
+<div id="top"><header><b>高二上册 · 第14章 行列式</b><span><button onclick="fs(-1)">A−</button><button onclick="fs(1)">A+</button><button onclick="th()">☀/🌙</button></span></header><nav id="nav"></nav></div>
+<main id="mn"></main>
+<footer>峇株吧辖华仁中学出品<br>蔡逸众老师 制作 · Chinese High School · ecchua79</footer><div id="wm"><div id="wi"></div></div>
+<script>
+console.log('%c© 蔡逸众 · ecchua79 · Chinese High School 峇株吧辖华仁中学','color:#a2449b');
+const $=(s,e=document)=>e.querySelector(s),ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[ri(0,a.length-1)];
+const f=n=>{if(typeof n=='string')return n;n=Math.round(n*1e6)/1e6;return n<0?'−'+(-n):''+n},P=n=>n<0?'('+f(n)+')':f(n);
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const fr=(n,d)=>`<span class=fr><i>${n}</i><b>${d}</b></span>`;
+const d2=m=>m[0][0]*m[1][1]-m[0][1]*m[1][0],mn=(m,i,j)=>m.filter((_,x)=>x!=i).map(r=>r.filter((_,y)=>y!=j));
+const d3=m=>m[0][0]*d2(mn(m,0,0))-m[0][1]*d2(mn(m,0,1))+m[0][2]*d2(mn(m,0,2));
+const tm=m=>[[m[0][0]*m[1][1]*m[2][2],m[0][1]*m[1][2]*m[2][0],m[0][2]*m[1][0]*m[2][1]],[m[0][2]*m[1][1]*m[2][0],m[0][0]*m[1][2]*m[2][1],m[0][1]*m[1][0]*m[2][2]]];
+const rm=(n,lo,hi)=>Array.from({length:n},()=>Array.from({length:n},()=>ri(lo,hi)));
+// ---------- 主题 / 字号 ----------
+let FS=15;try{FS=+localStorage.getItem('fs14')||15;if(localStorage.getItem('th14')=='d')document.body.classList.add('d')}catch(e){}
+function fs(d){FS=Math.max(12,Math.min(22,FS+d));document.documentElement.style.fontSize=FS+'px';try{localStorage.setItem('fs14',FS)}catch(e){}}
+function th(){document.body.classList.toggle('d');try{localStorage.setItem('th14',document.body.classList.contains('d')?'d':'l')}catch(e){}}
+document.documentElement.style.fontSize=FS+'px';$('#wi').innerHTML=Array(40).fill('<span>蔡逸众 · ecchua79 · Chinese High School</span>').join('');
+// ---------- SVG ----------
+function sq(c,r,x,y){let s='',w=0;const cs=Math.abs(c),t=(c<0?'−':'')+(cs==1?'':cs);
+if(t){s+=`<text x=${x} y=${y} style="text-anchor:start">${t}</text>`;w+=t.length*8.5}
+const a=x+w,rw=String(r).length*8+3;s+=`<path d="M${a+1} ${y-4}L${a+4} ${y+1}L${a+8} ${y-13}H${a+10+rw}" fill="none" stroke="currentColor" stroke-width="1.3"/><text x=${a+11} y=${y} style="text-anchor:start">${r}</text>`;return[s,w+11+rw]}
+const rs=(c,r)=>{if(c==0||+r==1)return f(c);const[g,w]=sq(c,r,1,18);return`<svg class=m viewBox="0 0 ${w+3} 26" width=${w+3} height=26>${g}</svg>`};
+function cl(v,x,y){const m=typeof v=='string'&&v.replace(/\s/g,'').match(/^([-−]?)(\d*)√(\d+)$/);if(!m)return`<text x=${x} y=${y}>${f(v)}</text>`;const[g,w]=sq((m[1]?-1:1)*(m[2]===''?1:+m[2]),m[3],0,0);return`<g transform="translate(${x-w/2} ${y})">${g}</g>`}
+function mx(M,o={}){const n=M.length,cw=o.cw||34,ch=24,W=n*cw+14,H=n*ch+8,sc=o.sc||1.25,X=j=>7+j*cw+cw/2,Y=i=>4+i*ch+ch/2;
+let s=`<svg class=m viewBox="0 0 ${W} ${H}" width="${W*sc}" height="${H*sc}">`;
+if(o.hr!=null)s+=`<rect x=4 y=${4+o.hr*ch} width=${W-8} height=${ch} fill="#e8a33044"/>`;
+if(o.hc!=null)s+=`<rect x=${7+o.hc*cw} y=3 width=${cw} height=${H-6} fill="#e8a33044"/>`;
+if(o.ce)s+=`<rect x=${7+o.ce[1]*cw+2} y=${4+o.ce[0]*ch+1} width=${cw-4} height=${ch-2} rx=4 fill="#d3333366"/>`;
+s+=`<path d="M5 2V${H-2}M${W-5} 2V${H-2}" stroke="currentColor" stroke-width="1.6" fill="none"/>`;
+M.forEach((r,i)=>r.forEach((v,j)=>s+=cl(v,X(j),Y(i)+5)));
+if(o.x)s+=`<path d="M${X(0)+8} ${Y(0)-6}L${X(1)-8} ${Y(1)+6}" stroke="#1b9a59" stroke-width="2.2"/><path d="M${X(1)-8} ${Y(0)-6}L${X(0)+8} ${Y(1)+6}" stroke="#d33" stroke-width="2.2" stroke-dasharray="4 3"/>`;
+return s+'</svg>'}
+function sar(M){const cw=34,ch=24,W=5*cw+14,H=3*ch+8,sc=1.2,X=j=>7+j*cw+cw/2,Y=i=>4+i*ch+ch/2;
+let s=`<svg class=m viewBox="0 0 ${W} ${H}" width="${W*sc}" height="${H*sc}">`;
+for(let i=0;i<3;i++)for(let j=0;j<5;j++)s+=`<text x=${X(j)} y=${Y(i)+5} ${j>2?'opacity=".55"':''}>${f(M[i][j%3])}</text>`;
+for(let k=0;k<3;k++)s+=`<path d="M${X(k)-8} ${Y(0)-9}L${X(k+2)+8} ${Y(2)+9}" stroke="#1b9a59" stroke-width="1.8"/><path d="M${X(k+2)+8} ${Y(0)-9}L${X(k)-8} ${Y(2)+9}" stroke="#d33" stroke-width="1.8" stroke-dasharray="4 3"/>`;
+return s+'<path d="M7 2V'+(H-2)+'M'+(W-7)+' 2V'+(H-2)+'" stroke="currentColor" stroke-width="1.6"/></svg>'}
+// ---------- 解答 ----------
+const s2=m=>{const[[a,b],[c,d]]=m;return`(${P(a)})(${P(d)}) − (${P(b)})(${P(c)})<br>= ${P(a*d)} − ${P(b*c)}<br>= <b>${f(d2(m))}</b>`};
+const s3=m=>{const[p,n]=tm(m);return`= ${p.map(P).join(' + ')} − ${n.map(P).join(' − ')}<br>= <b>${f(d3(m))}</b>`};
+function ex(M,t,i){let tx=[],nu=[],v=0;for(let j=0;j<3;j++){const[r,c]=t=='r'?[i,j]:[j,i],mi=d2(mn(M,r,c)),sg=(r+c)%2?-1:1,co=sg*mi;v+=M[r][c]*co;
+tx.push(`${P(M[r][c])}×(${sg>0?'+':'−'})`+mx(mn(M,r,c),{sc:.62,cw:30}));nu.push(`${P(M[r][c])}×${P(co)}`)}
+return`按第${i+1}${t=='r'?'行':'列'}展开：<br>= ${tx.join(' + ')}<br>= ${nu.join(' + ')}<br>= <b>${f(v)}</b>`}
+function prop(M,op,r,s,k){const T=m=>m[0].map((_,j)=>m.map(x=>x[j]));let A=M.map(x=>x.slice()),rule,pred,o={},d1=d3(M);const c=op=='SC'?'列':'行';
+if(op=='P5'){const B=M.map(x=>x.slice()),C=M.map(x=>x.slice());B[r]=M[r].map(v=>v-k);C[r]=M[r].map(()=>k);const a=d3(B),b=d3(C);return`<div class=row>${mx(M)}<b>=</b>${mx(B,{hr:r})}<b>+</b>${mx(C,{hr:r})}</div>性质5：第${r+1}行每个数拆成「原数 − ${f(k)}」与 ${f(k)}<br>${f(d1)} = ${f(a)} + ${f(b)} ${Math.abs(d1-a-b)<1e-9?'✔':''}`}
+if((op=='SR'||op=='SC'||op=='A')&&r==s)return'请选择不同的 r 与 s';
+if(op=='T'){A=T(M);rule='性质1：行列依次对调，值不变';pred=d1}
+else if(op=='SR'||op=='SC'){if(op=='SC')A=T(A);[A[r],A[s]]=[A[s],A[r]];if(op=='SC')A=T(A);rule=`性质2：对调第${r+1}、${s+1}${c}，值变号`;pred=-d1}
+else if(op=='K'){A[r]=A[r].map(v=>v*k);o={hr:r};rule=`性质4：第${r+1}行乘以 ${f(k)}，值变为 ${f(k)} 倍`;pred=k*d1}
+else{A[r]=A[r].map((v,j)=>v+k*M[s][j]);o={hr:r};rule=`性质6：第${s+1}行的 ${f(k)} 倍加到第${r+1}行，值不变`;pred=d1}
+const d=d3(A),z=A.some((x,i)=>A.some((y,j)=>i<j&&x.every((v,t)=>v==y[t])));
+return`<div class=row>${mx(M)}<b>→</b>${mx(A,o)}</div>${rule}<br>原值 = ${f(d1)}；按性质得 ${f(pred)}；直接展开 = <b>${f(d)}</b> ${Math.abs(d-pred)<1e-9?'✔':''}${z?'<br>变换后有两行相同（性质3），值为 0。':''}`}
+// ---------- 题目引擎 ----------
+const sym3=[['a','b','c'],['d','e','f'],['g','h','i']];
+const G={
+g2(){const m=rm(2,-9,9),[[a,b],[c,d]]=m,v=d2(m);return{q:'求二阶行列式的值：',fig:mx(m),a:v,w:[a*d+b*c,b*c-a*d,a*d,b*c,v+1,v-1],e:s2(m),ef:mx(m,{x:1})}},
+geq(){const p=ri(-5,5),q=ri(-4,4)||2,r=ri(-4,4)||-3,s=pick([-3,-2,2,3,4]),x0=ri(-6,6),e=s*(x0+p)-q*r,xp='x'+(p?(p>0?'+'+p:'−'+-p):'');
+return{q:'解方程，求 x：',fig:mx([[xp,q],[r,s]],{cw:52})+' = '+f(e),a:x0,w:[-x0,x0+p,x0-p,x0+1,x0-1],e:`展开：${P(s)}(${xp}) − ${P(q)}×${P(r)} = ${f(e)}<br>${P(s)}(${xp}) = ${f(e+q*r)}<br>${xp} = ${fr(f(e+q*r),f(s))} = ${f(x0+p)}<br>x = <b>${f(x0)}</b>`}},
+g3(){const m=rm(3,-4,4),v=d3(m),[p,n]=tm(m),sp=p[0]+p[1]+p[2],sn=n[0]+n[1]+n[2];
+return{q:'用萨拉斯法求三阶行列式的值：',fig:mx(m),a:v,w:[sp,-v,sp+sn,sn-sp,v+2*n[0]],e:s3(m),ef:sar(m)}},
+gcof(){const m=rm(3,-4,4),i=ri(0,2),j=ri(0,2),mi=d2(mn(m,i,j)),sg=(i+j)%2?-1:1,a=sg*mi;
+return{q:`求元素 ${f(m[i][j])}（第${i+1}行第${j+1}列）的代数余子式的值：`,fig:mx(m,{hr:i,hc:j,ce:[i,j]}),a,w:[-a,mi,-mi,m[i][j]*a,a+1],e:`划去第${i+1}行、第${j+1}列，余子式 = ${mx(mn(m,i,j),{sc:.7})} = ${f(mi)}<br>符号 (−1)<sup>${i+1}+${j+1}</sup> = ${sg>0?'+1':'−1'}<br>代数余子式 = <b>${f(a)}</b>`}},
+gexp(){const m=rm(3,-4,4),t=pick(['r','c']),i=ri(0,2),z=ri(0,2);t=='r'?m[i][z]=0:m[z][i]=0;let ns=0;for(let j=0;j<3;j++){const[r,c]=t=='r'?[i,j]:[j,i];ns+=m[r][c]*d2(mn(m,r,c))}
+const v=d3(m);return{q:`按第${i+1}${t=='r'?'行':'列'}展开，求值：`,fig:mx(m,t=='r'?{hr:i}:{hc:i}),a:v,w:[ns,-v,ns+1,v+2],e:ex(m,t,i)}},
+gp(h){const D=pick([-8,-6,-5,-4,-3,-2,2,3,4,5,6,7,8]),k=pick([2,3,4,5,-2,-3]),K=f(k),r=pick([1,2,3]),s=pick([1,2,3].filter(x=>x!=r)),d=pick(['行','列']);let c,a,e;
+if(h)[c,a,e]=[`先对调第${r}${d}与第${s}${d}，再把第${r}${d}所有元素乘以 ${K}，最后行列互换`,-k*D,`对调变号 → −(${f(D)})；乘以${K} → ${K}×(−(${f(D)}))；转置值不变`];
+else[c,a,e]=pick([['将行与列依次对调',D,'性质1：值不变'],[`将第${r}${d}与第${s}${d}对调`,-D,`性质2：值变号 → −(${f(D)})`],[`把第${r}${d}的所有元素都乘以 ${K}`,k*D,`性质4：${K}×(${f(D)})`],[`把第${r}${d}乘以 ${K} 后加到第${s}${d}对应元素上`,D,'性质6：值不变'],[`若第${r}${d}与第${s}${d}的对应元素相同`,0,'性质3：有两'+d+'相同，值为0']]);
+return{q:`已知 ${mx(sym3,{cw:30})} = ${f(D)}。${c}，求所得行列式的值。`,a,w:[D,-D,k*D,-k*D,0,D+k],e:e+` = <b>${f(a)}</b>`}}};
+G.gsr=()=>{const r=pick([2,3,5,6,7]),a=ri(-4,4)||2,b=ri(-4,4)||3,c=ri(-5,5)||2,d=ri(-5,5)||1,sr=x=>x+'√'+r,A=a*d,B=b*c;
+if(Math.random()<.5){const k=A-B;return{q:`求值（写成 k√${r} 的形式，作答时只填 k）：`,fig:mx([[sr(a),sr(b)],[c,d]],{cw:50}),a:k,fm:v=>rs(v,r),w:[A+B,B-A,k*r,A,k+1],e:`= (${rs(a,r)})(${P(d)}) − (${rs(b,r)})(${P(c)})<br>= ${rs(A,r)} − (${rs(B,r)})<br>= <b>${rs(k,r)}</b>`}}
+const k=r*(A-B);return{q:'求值：',fig:mx([[sr(a),sr(b)],[sr(c),sr(d)]],{cw:50}),a:k,w:[A-B,r*(A+B),r*(B-A),A-B+r,k+r],e:`= (${rs(a,r)})(${rs(d,r)}) − (${rs(b,r)})(${rs(c,r)})<br>= ${P(A*r)} − ${P(B*r)} = <b>${f(k)}</b>`}};
+G.gph=()=>G.gp(1);
+function opts(a,w){let s=new Set([a]);for(const x of sh(w))if(s.size<4&&Number.isFinite(x)&&!s.has(x))s.add(x);while(s.size<4)s.add(a+ri(-9,9));return sh([...s])}
+const num=t=>parseFloat(String(t).replace(/[−–—]/g,'-'));
+function quiz(el,gs,fg,nm,nf,gate,rev){let ok,mc,fd;
+const lst=(g,n)=>{let L=[];while(L.length<n)L.push(...sh(g));return L.slice(0,n)};
+const res=(c,q,good)=>{const x=$('.ex',c);x.hidden=false;x.innerHTML=(good?'<b style="color:var(--ok)">✔ 正确</b>':'<b style="color:var(--bad)">✘ 错误</b>，正确答案：<b>'+(q.fm?q.fm(q.a):f(q.a))+'</b>')+'<br>'+q.e+(q.ef?'<br>'+q.ef:'');if(good)ok++};
+const start=()=>{ok=mc=fd=0;el.innerHTML='';const box=document.createElement('div'),end=document.createElement('div');el.append(box,end);
+lst(gs,nm).forEach((g,i)=>{const q=G[g](),c=document.createElement('div');c.className='card';
+c.innerHTML=`<b>选择题 ${i+1}/${nm}</b><br>${q.q} ${q.fig||''}`+opts(q.a,q.w).map(o=>`<button class=o data-v="${o}">${q.fm?q.fm(o):f(o)}</button>`).join('')+'<div class=ex hidden></div>';
+c.onclick=e=>{const b=e.target.closest('.o');if(!b||c.dataset.l)return;c.dataset.l=1;const good=num(b.dataset.v)==q.a;
+c.querySelectorAll('.o').forEach(x=>{if(num(x.dataset.v)==q.a)x.classList.add('ok')});if(!good)b.classList.add('bad');res(c,q,good);
+if(++mc==nm){const pass=!gate||ok>=gate;end.innerHTML=`<div class=card><b>选择题 ${ok}/${nm}</b> ${pass?'':'未达 '+gate+' 题，暂不开放作答题。'}${pass?'':'<button class=btn onclick="this.closest(\'[data-q]\').qs()">重新出题</button>'}</div>`;if(pass)fills(end)}};box.append(c)})};
+const fills=end=>{lst(fg,nf).forEach((g,i)=>{const q=G[g](),c=document.createElement('div');c.className='card';
+c.innerHTML=`<b>作答题 ${i+1}/${nf}</b><br>${q.q} ${q.fig||''}<br>答案：<input class=fi> <button class=btn>提交</button><div class=ex hidden></div>`;
+$('.btn',c).onclick=()=>{const i1=$('.fi',c);if(i1.disabled||i1.value.trim()=='')return;i1.disabled=true;const good=Math.abs(num(i1.value)-q.a)<1e-6;res(c,q,good);
+if(++fd==nf){const t=ok,N=nm+nf,r=t>=N*.87?'优秀 🏆':t>=N*.67?'良好 👍':t>=N*.5?'及格':'需要加油';const z=document.createElement('div');z.className='card';
+z.innerHTML=`<b>总得分 ${t}/${N}</b>${rev?' · 评估：<b>'+r+'</b>':''}<br><button class=btn onclick="this.closest('[data-q]').qs()">重新出题</button>`;end.append(z)}};end.append(c)})};
+el.dataset.q=1;el.qs=start;start()}
+// ---------- 计算器 ----------
+function calc(el,n,def,extra,fn){el.innerHTML=`<div class=g style="grid-template-columns:repeat(${n},auto)">${def.flat().map(v=>`<input value="${v}">`).join('')}</div> ${extra}<div class=out style="margin-top:.4rem"></div>`;
+const upd=()=>{const v=[...el.querySelectorAll('.g input')].map(i=>num(i.value)),M=[];for(let i=0;i<n;i++)M.push(v.slice(i*n,i*n+n));$('.out',el).innerHTML=v.some(isNaN)?'请输入数字':fn(M,el)};el.oninput=el.onchange=upd;upd()}
+const sel=(c,v)=>`<select class=${c}>${[1,2,3].map(x=>`<option ${x==v?'selected':''}>${x}`).join('')}</select>`;
+const dt=(t,b)=>`<details class=card><summary><b>${t}</b></summary>${b}</details>`;const exc=(t,m)=>dt(t,mx(m,{x:1})+'<br>'+s2(m));
+const E3=[[1,3,1],[2,1,4],[3,2,2]],E4=[[2,-1,1],[1,0,2],[-1,1,-3]];
+const sf=n=>{let c=1;for(let i=2;i*i<=n;i++)while(n%(i*i)==0){n/=i*i;c*=i}return[c,n]};
+const pe=t=>{t=String(t).replace(/\s/g,'');const m=t.match(/^([-−]?)(\d*)√(\d+)$/);if(m){const[k,r]=sf(+m[3]),c0=(m[1]?-1:1)*(m[2]===''?1:+m[2]);return{c:c0*k,r,c0,r0:+m[3],s:t}}const v=num(t);return isNaN(v)?null:{c:v,r:1,c0:v,r0:1,s:t}};
+const mul=(A,B)=>{const[k,r]=sf(A.r*B.r);return{c:A.c*B.c*k,r}},tx=T=>rs(T.c,T.r);
+function sd(E){const[a,b,c,d]=E,p=mul(a,d),q=mul(b,c),e=x=>x.r0==1?'('+f(x.c0)+')':`(${rs(x.c0,x.r0)})`;let fin;
+if(p.r==q.r||!q.c||!p.c){fin=tx(p.r==q.r?{c:p.c-q.c,r:p.r}:!q.c?p:{c:-q.c,r:q.r})}else fin=tx(p)+(q.c>0?' − ':' + ')+tx({c:Math.abs(q.c),r:q.r});
+return`${e(a)}${e(d)} − ${e(b)}${e(c)}<br>= ${tx(p)} − ${q.c<0?'('+tx(q)+')':tx(q)}<br>= <b>${fin}</b>`}
+function surdCal(el){el.innerHTML=`<div class=row><div class=g style="grid-template-columns:repeat(2,auto)">${['√2','2√6','2','√3'].map(v=>`<input value="${v}" style="width:4.2rem">`).join('')}</div><button class=btn>√</button><small>点输入框，再按 √ 插入根号，如 2√6</small></div><div class=out style="margin-top:.4rem"></div>`;
+let last=$('input',el);el.querySelectorAll('input').forEach(i=>i.onfocus=()=>last=i);
+const upd=()=>{const E=[...el.querySelectorAll('input')].map(i=>pe(i.value));$('.out',el).innerHTML=E.some(x=>!x)?'请输入如 2√6 或整数':`<div class=row>${mx([[E[0].s,E[1].s],[E[2].s,E[3].s]],{cw:50,x:1})}</div>${sd(E)}`};
+$('.btn',el).onclick=()=>{const p=last.selectionStart??last.value.length;last.value=last.value.slice(0,p)+'√'+last.value.slice(p);last.focus();upd()};el.oninput=upd;upd()}
+const ex6=()=>{const A=[[-7,7,-5],[8,-1,2],[-2,1,'k']],B=[[-7,-2,8],[7,1,-1],[-5,'k',2]],C=[[-7,7,-5],[-2,1,'k'],[8,-1,2]];return`已知 ${mx(A)} = 5，求 ${mx(B)}。<br>${mx(B)} = ${mx(C)}（性质1：行列互换）<br>= −${mx(A)}（性质2：对调第2、3行）= <b>−5</b>`};
+const ex7=()=>{const a=[[2,0,-2],[2,0,-1],[3,15,6]],b=[[1,0,-1],[2,0,-1],[3,15,6]],c=[[1,0,-1],[2,0,-1],[1,5,2]];return`证明 ${mx(a)} = 6${mx(c)}<br>${mx(a)} = 2${mx(b)}（性质4：第1行提出2）<br>= 2×3${mx(c)}（性质4：第3行提出3）= 6${mx(c)}<br>数值核对：${f(d3(a))} = 6×${f(d3(c))} ✔`};
+const ex8=()=>{const A=[[5,5,-1],[2,3,-1],[1,0,3]],B=[[1,-1,1],[2,3,-1],[1,0,3]],C=[[4,6,-2],[2,3,-1],[1,0,3]],D=[[2,3,-1],[2,3,-1],[1,0,3]];return`证明 ${mx(A)} = ${mx(B)}<br>第1行：5=1+4，5=−1+6，−1=1+(−2)，由性质5：<br>${mx(A)} = ${mx(B)} + ${mx(C)}<br>= ${mx(B)} + 2${mx(D)}（性质4）<br>= ${mx(B)} + 0（性质3：两行相同）= ${mx(B)}<br>数值核对：${f(d3(A))} = ${f(d3(B))} + ${f(d3(C))} ✔`};
+const rvx=()=>{const q=[['a','b','c'],[1,-1,2],['x','y','z']];return[exc('1(a)',[[3,8],[11,-4]]),exc('1(b)',[[2,-9],[-3,11]]),
+dt('1(c)',mx([[1,'cos x'],['cos x',1]],{cw:56})+'<br>= (1)(1) − cos x·cos x = 1 − cos²x = <b>sin²x</b>'),
+dt('1(d)',mx([['log₂4','2log₃9'],[-2,1]],{cw:62})+'<br>log₂4 = 2，2log₃9 = 4<br>= (2)(1) − (4)(−2) = 2 + 8 = <b>10</b>'),
+dt('1(e)',mx([[3,6,2],[1,2,1],[5,10,8]])+`<br>第2列 = 2×第1列（对应成比例）→ 值为 <b>0</b>　核对：${f(d3([[3,6,2],[1,2,1],[5,10,8]]))}`),
+dt('1(f)',sar([[4,2,5],[1,-3,2],[-2,5,-3]])+'<br>'+s3([[4,2,5],[1,-3,2],[-2,5,-3]])),
+dt('2(a)',mx([['2a','−b'],['b','b']],{cw:40})+'<br>= (2a)(b) − (−b)(b) = 2ab + b² = <b>b(2a + b)</b>'),
+dt('2(b)',mx([['√2','2√6'],[2,'√3']],{cw:50,x:1})+'<br>'+sd(['√2','2√6','2','√3'].map(pe))),
+dt('2(c)',mx([['√10','√5'],[-1,'√2']],{cw:50,x:1})+'<br>'+sd(['√10','√5','-1','√2'].map(pe))),
+dt('3 已知 '+'值为3',`(a) ${mx([[1,-1,2],['a','b','c'],['x','y','z']])} = −${mx(q)} = <b>−3</b>（性质2：对调1、2行）<br>(b) ${mx([['a','b','c'],[-5,5,-10],['x','y','z']])} = −5${mx(q)} = <b>−15</b>（性质4：第2行提出−5）<br>(c) 第2行 = (a,b,c) + (−2)×(1,−1,2)，由性质6变为 (a,b,c)；第1行提出2（性质4）：<br>= 2${mx([['x','y','z'],['a','b','c'],[1,-1,2]])}，行序 (x y z, a b c, 1 −1 2) 由原式经两次对调得到，值不变 → 2×3 = <b>6</b>`),
+dt('4',mx([[1,0,1],['a','b','c'],[0,1,0]])+`<br>按第3行展开：= 1×(−1)<sup>3+2</sup>×${mx([[1,1],['a','c']],{sc:.8})} = −(c − a) = <b>a − c</b>`),
+dt('5',mx([['ad','d','a'],['bd',0,'b'],['cd','d','c']],{cw:40})+'<br>第1列提出 d（性质4）= d·'+mx([['a','d','a'],['b',0,'b'],['c','d','c']])+'，第1、3列相同 → <b>0</b>（性质3）'),
+dt('6',`已知 ${mx([[2,3,1],[1,1,-2],['a',2,1]])} = 9，求 ${mx([[3,2,1],[2,'a',1],[1,1,-2]])}<br>把原式各行的第1、2列对调（性质2，变号）；再对调第2、3行（性质2，变号）→ 得所求式。<br>两次变号，值不变：<b>9</b>`)]};
+const S=[
+{id:'14.1a',t:'14.1a 二阶行列式',gs:['g2','g2','geq','gsr'],
+intro:`<p>将四个数排成两行两列，两旁各加一条竖线，叫<b>二阶行列式</b>；横排叫行，纵排叫列，行数＝列数＝阶。<br><b>对角线法则</b>：实线（主对角线）两数之积 − 虚线（副对角线）两数之积。<br>⚠ 行列式的竖线 ≠ 绝对值符号。</p><div class=row>${mx([['a','b'],['c','d']],{x:1})} = ad − bc</div>`,
+exs:()=>[exc('例题1(a)',[[2,-4],[1,5]]),exc('例题1(b)',[[-2,4],[6,-8]]),exc('例题1(c)',[[2,1],[-3,0]])],
+cal:el=>calc(el,2,[[2,-4],[1,5]],'',(M)=>`<div class=row>${mx(M,{x:1})}</div>${s2(M)}`),cal2:el=>surdCal(el)},
+{id:'14.1b',t:'14.1b 三阶行列式',gs:['g3'],
+intro:`<p><b>萨拉斯法</b>（仅限三阶）：把第1、2列重抄在右边，实线（绿）三数积相加，虚线（红）三数积逐一减去。</p>${sar([['a₁','b₁','c₁'],['a₂','b₂','c₂'],['a₃','b₃','c₃']])}<br>= a₁b₂c₃ + b₁c₂a₃ + c₁a₂b₃ − c₁b₂a₃ − a₁c₂b₃ − b₁a₂c₃`,
+exs:()=>[dt('例题2',`${sar(E3)}<br>${s3(E3)}`)],
+cal:el=>calc(el,3,E3,'',M=>`${sar(M)}<br>${s3(M)}`)},
+{id:'14.1c',t:'14.1c 余子式与展开',gs:['gcof','gexp','gcof'],
+intro:`<p>划去某元素所在的行与列，余下的行列式叫该元素的<b>余子式</b>；乘以 (−1)<sup>i+j</sup> 得<b>代数余子式</b>。正负号如图。<br><b>定理1</b>：行列式的值＝任意一行（或列）的元素与其代数余子式的乘积之和。<br>想一想：某行（或列）全为 0，则值为 0。</p><div class=row>${mx([['+','−','+'],['−','+','−'],['+','−','+']],{cw:30})}${mx([[1,2,3],[4,5,6],[7,8,9]],{hr:0,hc:1,ce:[0,1]})}<span>红格的余子式＝${mx([[4,6],[7,9]],{sc:.8})}</span></div>`,
+exs:()=>[['解法一',ex(E4,'r',0)],['解法二',ex(E4,'r',1)],['解法三',ex(E4,'c',2)]].map(a=>dt('例题3 '+a[0],`${mx(E4)}<br>${a[1]}`)),
+cal:el=>calc(el,3,E4,`<div class=row><select class=t><option value=r>按行<option value=c>按列</select> 第${sel('i',1)}</div>`,(M,e)=>`${mx(M,$('.t',e).value=='r'?{hr:$('.i',e).value-1}:{hc:$('.i',e).value-1})}<br>${ex(M,$('.t',e).value,$('.i',e).value-1)}`)},
+{id:'14.2',t:'14.2 行列式的性质',gs:['gp','gp','gp'],
+intro:`<p>利用性质可以简化计算（以三阶为例）：</p><div style="line-height:1.9"><div><b>性质1</b>　行与列依次对调，值不变。</div><div><b>性质2</b>　对调任意两行（或列），值变号。</div><div><b>性质3</b>　若任意两行（或列）的对应元素相同，则值为 0。</div><div><b>性质4</b>　某一行（或列）的所有元素都乘以常数 k，所得行列式等于原行列式的 k 倍。</div><div><b>性质5</b>　某一行（或列）的元素都是两数之和，则可拆成两个行列式之和。</div><div><b>性质6</b>　某一行（或列）乘以常数 k 加到另一行（或列）的对应元素上，值不变。</div></div><p>想一想：两行（列）对应元素成比例，则值为 0。</p>`,
+exs:()=>[...[['例题4（性质1）',[[2,2,1],[1,0,1],[1,1,3]],'T',0,0,0],['例题5（性质2，对调第2、3列）',[[1,0,2],[3,1,0],[2,2,2]],'SC',1,2,0]].map(a=>dt(a[0],prop(...a.slice(1)))),dt('例题6',ex6()),dt('例题7（性质4）',ex7()),dt('例题8（性质5、4、3）',ex8()),dt('例题9（性质6，第1行×(−1)加到第2行）',prop([[-2,3,1],[1,2,3],[3,-1,2]],'A',1,0,-1))],
+cal:el=>calc(el,3,[[1,0,2],[3,1,0],[2,2,2]],`<div class=row><select class=op><option value=T>转置(性质1)<option value=SR>对调两行(性质2)<option value=SC selected>对调两列(性质2)<option value=K>第r行×k(性质4)<option value=A>第r行＋k×第s行(性质6)<option value=P5>拆开第r行(性质5)</select> r${sel('r',2)} s${sel('s',3)} k<input class=k value=2 style="width:3rem"></div>`,(M,e)=>{const q=c=>$(c,e).value;return prop(M,q('.op'),q('.r')-1,q('.s')-1,num(q('.k'))||0)})},
+{id:'总复习',t:'总复习',rev:1,gs:['g2','geq','g3','gcof','gexp','gp','gph','gsr'],fg:['g3','geq','gexp','gph','gph','gsr'],nm:10,nf:5,intro:'下面是课本《总复习题14》全部题目的解答（可折叠），之后是 10 道选择 + 5 道作答的总测验，含较难题型，完成后给出评估。',exs:rvx}];
+// ---------- 页面 ----------
+const nav=$('#nav'),MN=$('#mn');
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.t;b.onclick=()=>go(i);nav.append(b);const d=document.createElement('section');d.hidden=true;
+let h=`<h2>${s.t}</h2>`+(s.intro?`<div class=card>${s.intro}</div>`:'')+`<h3>${s.rev?'课本总复习题14（折叠）':'课本例题（折叠）'}</h3>`+[].concat(s.exs()).join('').replace('<details','<details open');
+if(s.cal)h+='<h3>计算器</h3><div class=card><div class=cl></div></div>';if(s.cal2)h+='<div class=card><b>含根号的二阶行列式</b><div class=cl2></div></div>';
+h+=`<h3>${s.rev?'总复习测验':'随堂测验（5题选择，答对3题以上解锁2题作答）'}</h3><div class=qz></div>`;d.innerHTML=h;if(s.cal)s.cal($('.cl',d));if(s.cal2)s.cal2($('.cl2',d));
+quiz($('.qz',d),s.gs,s.fg||s.gs,s.nm||5,s.nf||2,s.rev?0:3,s.rev);MN.append(d);s.d=d;s.b=b});
+function go(i){S.forEach((s,j)=>{s.d.hidden=j!=i;s.b.classList.toggle('on',j==i)});S[i].b.scrollIntoView({inline:'center',block:'nearest'});scrollTo(0,0)}go(0);
+</script></body></html>
