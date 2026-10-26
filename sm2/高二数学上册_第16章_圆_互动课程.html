@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高二数学上册 第16章 圆 · 互动课程</title>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<style>
+:root{--bg:#0b1020;--card:#141b34;--ink:#e8ecff;--mut:#7f8bb3;--acc:#38d0ff;--ok:#2ecc71;--bad:#ff5c6c;--hl:#ffb347;--line:#2a3560}
+[data-theme=light]{--bg:#f4f6fb;--card:#fff;--ink:#1a2140;--mut:#6a7596;--acc:#0a7bd6;--ok:#16a05a;--bad:#d62839;--hl:#d9730d;--line:#cfd6ea}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.75 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+header h1{font-size:1.15rem;margin:0;color:var(--acc)}
+.ctl button,.btn,.op button,nav button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.35rem .8rem;font:inherit;cursor:pointer}
+.btn{background:var(--acc);color:#001;border:0;margin:.4rem 0;font-weight:600}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 1rem;background:var(--bg);border-bottom:1px solid var(--line);scrollbar-width:thin}
+nav button{flex:none;white-space:nowrap}nav button.on{background:var(--acc);color:#001;font-weight:700}
+main{max-width:880px;margin:0 auto;padding:1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.8rem 0}
+summary{cursor:pointer;color:var(--acc);line-height:1.8}summary b{color:var(--hl)}details[open]>summary{margin-bottom:.4rem}h2{color:var(--acc)}h3{color:var(--hl);margin-bottom:0}h4{margin:.2rem 0;color:var(--acc)}
+.in{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.5rem}
+label{display:flex;flex-direction:column;font-size:.8rem;color:var(--mut)}
+input,select{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:.3rem;font:inherit;min-width:0}
+.f{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25}
+.f i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 .25em}.f b{font-weight:400;padding:0 .25em}
+.rt{display:inline-flex;align-items:stretch;vertical-align:middle}
+.rt svg{width:.75em;min-height:1.3em;flex:none;overflow:visible}
+.rt path{fill:none;stroke:currentColor;stroke-width:1.6;vector-effect:non-scaling-stroke}
+.rb{border-top:1.6px solid currentColor;padding:0 .15em;margin-top:1px;display:inline-block}
+svg.g{width:100%;max-width:320px;display:block;margin:.5rem auto;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.gr{stroke:var(--line);stroke-width:.5}.ax{stroke:var(--mut);stroke-width:1.2}.tk{font-size:8px;fill:var(--mut)}.lb{font-size:12px;fill:var(--ink);font-weight:600}
+.op{display:grid;gap:.4rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.op button{text-align:left;padding:.5rem .8rem}.op button.ok{background:var(--ok);color:#001;border-color:var(--ok)}.op button.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.q{border-top:1px dashed var(--line);padding:.6rem 0}.ex:empty{display:none}.ex{background:var(--bg);border-radius:8px;padding:.5rem .8rem;margin-top:.5rem}
+.g1{color:var(--ok)}.b1{color:var(--bad)}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:50;background-repeat:repeat}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:1.5rem 1rem 2rem}
+</style></head><body>
+<header><h1>高二数学上册 · 第16章 圆</h1><div class=ctl><button id=fm>A−</button> <button id=f0>A</button> <button id=fp>A+</button> <button id=th>🌙/☀️</button></div></header>
+<nav id=tabs></nav><main id=main></main>
+<script>
+const $=(s,e=document)=>e.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)],sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),fmt=x=>+x.toFixed(3),sgn=()=>pick([-1,1]);
+const rad=s=>`<span class=rt><svg viewBox="0 0 10 20" preserveAspectRatio="none"><path d="M0 13L3 11L6 19L10 .8"/></svg><span class=rb>${s}</span></span>`;
+const frac=(a,b)=>`<span class=f><i>${a}</i><b>${b}</b></span>`;
+const T=s=>s.replace(/\{([^{}]+?)\/([^{}]+?)\}/g,(m,a,b)=>frac(a,b)).replace(/√\[([^\]]+)\]/g,(m,a)=>rad(a)).replace(/-(?=\d)/g,'−');
+const radq=(p,q)=>{if(!p)return'0';let b=p*q,a=1;for(let i=2;i*i<=b;i++)while(b%(i*i)==0){b/=i*i;a*=i}const g=gcd(a,q);a/=g;q/=g;const n=b==1?a:(a==1?rad(b):a+rad(b));return q==1?n:frac(n,q)};
+const ab=(p,q=1)=>{const g=gcd(p,q)||1;p=Math.abs(p)/g;q=Math.abs(q)/g;return q==1?p:frac(p,q)};
+const sub=(v,p,q=1)=>p==0?v:`(${v} ${p*q>0?'−':'+'} ${ab(p,q)})`,sq=(v,p,q=1)=>p==0?v+'²':sub(v,p,q)+'²',sf=(p,q=1)=>(p*q<0?'−':'')+ab(p,q);
+const tm=(v,p,q=1)=>{if(!p)return'';const a=ab(p,q);return(p*q>0?' + ':' − ')+(v&&a===1?'':a)+v};
+const stdEq=(h,k,r2)=>`${sq('x',h)} + ${sq('y',k)} = ${r2}`,genEq=(A,B,C,D=1)=>`x² + y²${tm('x',A,D)}${tm('y',B,D)}${tm('',C,D)} = 0`,pt=(x,y)=>`(${x}, ${y})`;
+const co=(n,v)=>(Math.abs(n)==1?'':Math.abs(n))+v;
+const lt=(a,b,c)=>{let s='';if(a)s+=(a<0?'−':'')+co(a,'x');if(b)s+=(s?(b<0?' − ':' + '):(b<0?'−':''))+co(b,'y');return s+' = '+c};
+const L0=(a,b,c)=>(a<0?'−':'')+co(a,'x')+(b<0?' − ':' + ')+co(b,'y')+(c?(c<0?' − ':' + ')+Math.abs(c):'')+' = 0';
+const det=m=>m[0]*(m[4]*m[8]-m[5]*m[7])-m[1]*(m[3]*m[8]-m[5]*m[6])+m[2]*(m[3]*m[7]-m[4]*m[6]);
+const KC={r:'var(--bad)',b:'var(--acc)',h:'var(--hl)',g:'var(--ok)',m:'var(--mut)'};
+/* ---------- SVG 坐标图 ---------- */
+function G(o){const W=300,P=o.p||[],C=o.c||[],S=o.s||[],L=o.l||[],A=o.ra||[],xs=[0],ys=[0];
+P.forEach(p=>{xs.push(p[0]);ys.push(p[1])});C.forEach(c=>{xs.push(c[0]-c[2],c[0]+c[2]);ys.push(c[1]-c[2],c[1]+c[2])});S.forEach(s=>{xs.push(s[0],s[2]);ys.push(s[1],s[3])});
+const x0=Math.min(...xs)-.8,x1=Math.max(...xs)+.8,y0=Math.min(...ys)-.8,y1=Math.max(...ys)+.8,rg=Math.max(x1-x0,y1-y0),sc=(W-30)/rg,cx=(x0+x1)/2,cy=(y0+y1)/2,X=x=>W/2+(x-cx)*sc,Y=y=>W/2-(y-cy)*sc,xl=cx-W/2/sc,xh=cx+W/2/sc,yl=cy-W/2/sc,yh=cy+W/2/sc,st=rg>24?5:rg>12?2:1;
+let s=`<svg class=g viewBox="0 0 ${W} ${W}">`;
+for(let i=Math.ceil(xl/st)*st;i<=xh;i+=st){s+=`<line class=gr x1="${X(i)}" x2="${X(i)}" y1="0" y2="${W}"/>`;if(i)s+=`<text class=tk x="${X(i)}" y="${Math.min(Math.max(Y(0)+10,10),W-3)}" text-anchor="middle">${i}</text>`}
+for(let j=Math.ceil(yl/st)*st;j<=yh;j+=st){s+=`<line class=gr y1="${Y(j)}" y2="${Y(j)}" x1="0" x2="${W}"/>`;if(j)s+=`<text class=tk y="${Y(j)+3}" x="${Math.min(Math.max(X(0)-3,10),W-3)}" text-anchor="end">${j}</text>`}
+s+=`<line class=ax x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}"/><line class=ax y1="0" y2="${W}" x1="${X(0)}" x2="${X(0)}"/><text class=lb x="${W-10}" y="${Y(0)-4}">x</text><text class=lb x="${X(0)+4}" y="10">y</text>`;
+C.forEach(c=>{const k=KC[c[3]||'b'];s+=`<circle cx="${X(c[0])}" cy="${Y(c[1])}" r="${c[2]*sc}" fill="${k}" fill-opacity=".08" stroke="${k}" stroke-width="2"${c[4]?' stroke-dasharray="6 4"':''}/>`});
+L.forEach(l=>{const[a,b,c,k,d]=l;let p,q;if(Math.abs(b)>1e-9){p=[xl,-(a*xl+c)/b];q=[xh,-(a*xh+c)/b]}else{p=[-c/a,yl];q=[-c/a,yh]}s+=`<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="${KC[k||'h']}" stroke-width="2"${d?' stroke-dasharray="5 4"':''}/>`});
+S.forEach(l=>{s+=`<line x1="${X(l[0])}" y1="${Y(l[1])}" x2="${X(l[2])}" y2="${Y(l[3])}" stroke="${KC[l[4]||'g']}" stroke-width="1.8"${l[5]?' stroke-dasharray="4 3"':''}/>`});
+A.forEach(a=>{const v=[X(a[0]),Y(a[1])],n=(px,py)=>{const dx=X(px)-v[0],dy=Y(py)-v[1],l=Math.hypot(dx,dy)||1;return[dx/l*9,dy/l*9]},d=n(a[2],a[3]),e=n(a[4],a[5]);s+=`<path d="M${v[0]+d[0]} ${v[1]+d[1]}L${v[0]+d[0]+e[0]} ${v[1]+d[1]+e[1]}L${v[0]+e[0]} ${v[1]+e[1]}" fill="none" stroke="var(--ink)" stroke-width="1.3"/>`});
+P.forEach(p=>{s+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="3.5" fill="${KC[p[3]||'r']}"/><text class=lb x="${X(p[0])+6}" y="${Y(p[1])-6}">${p[2]||''}</text>`});
+return s+'</svg>'}
+const gLine=(h,k,r,L)=>{const q=(L.a*h+L.b*k+L.c)/(L.a*L.a+L.b*L.b),fx=h-q*L.a,fy=k-q*L.b,o={c:[[h,k,r]],l:[[L.a,L.b,L.c]],p:[[h,k,'C','b']]};if(Math.abs(q)>1e-9){o.p.push([fx,fy,'F']);o.s=[[h,k,fx,fy]];o.ra=[[fx,fy,h,k,fx-L.b,fy+L.a]]}return o};
+const gTan=(h,k,r,px,py)=>{const d=Math.hypot(px-h,py-k),f=Math.atan2(py-k,px-h),t=Math.acos(r/d),T1=[h+r*Math.cos(f+t),k+r*Math.sin(f+t)],T2=[h+r*Math.cos(f-t),k+r*Math.sin(f-t)];return{c:[[h,k,r]],p:[[px,py,'P'],[h,k,'C','b'],[...T1,'Q'],[...T2,"Q′"]],s:[[h,k,...T1],[h,k,...T2],[px,py,...T1,'r'],[px,py,...T2,'r'],[h,k,px,py,'m',1]],ra:[[...T1,h,k,px,py],[...T2,h,k,px,py]]}};
+/* ---------- 题目引擎 ---------- */
+const tri=[[3,4],[4,3],[6,8],[8,6],[5,12],[12,5]],hyp=t=>Math.round(Math.hypot(...t)),o3=(ok,c)=>[...new Set(c.filter(x=>x!==ok))].slice(0,3).map(String);
+const mkL=(h,k,d,s)=>{const t=pick(tri),a=t[0]*sgn(),b=t[1]*sgn(),N=hyp(t);return{a,b,N,c:s*d*N-a*h-b*k}};
+const hk=()=>{let h,k;do{h=R(-4,4);k=R(-4,4)}while(!h||!k||h==k);return[h,k]};
+const dxy=()=>{const t=pick(tri);return[t[0]*sgn(),t[1]*sgn(),hyp(t)]};
+const m1a=()=>{const mx=R(-3,3),my=R(-3,3),dx=R(1,3)*sgn(),dy=R(1,3)*sgn(),A=[mx-dx,my-dy],B=[mx+dx,my+dy],c=dx*mx+dy*my,ok=lt(dx,dy,c);return{q:`已知 A${pt(...A)}、B${pt(...B)}，动点 P 满足 PA = PB，求 P 的轨迹方程式。`,ok,bad:[lt(dx,dy,dx*A[0]+dy*A[1]),lt(dx,dy,dx*B[0]+dy*B[1]),lt(dy,-dx,dy*mx-dx*my)],ex:`PA=PB ⇒ P 在 AB 的垂直平分线上。AB 中点 M${pt(mx,my)}，AB 方向 (${2*dx}, ${2*dy})，直线与它垂直：${ok}。`,g:{p:[[...A,'A'],[...B,'B'],[mx,my,'M']],s:[[...A,...B]],l:[[dx,dy,-c]]}}};
+const m1b=()=>{const[h,k]=hk(),r=R(2,5),ok=stdEq(h,k,r*r);return{q:`动点 P 与定点 K${pt(h,k)} 的距离恒为 ${r}，求 P 的轨迹方程式。`,ok,bad:[stdEq(h,k,r),stdEq(-h,-k,r*r),stdEq(k,h,r*r)],ex:`PK=${r} ⇒ (x−h)²+(y−k)²=r²，右边是半径的平方 ${r*r}：${ok}。`,g:{c:[[h,k,r]],p:[[h,k,'K']]}}};
+const m1c=()=>{const[dx,dy,r]=dxy();let mx,my;do{mx=R(-3,3);my=R(-3,3)}while(mx==my);const A=[mx-dx,my-dy],B=[mx+dx,my+dy],ok=pt(mx,my);return{q:`已知 A${pt(...A)}、B${pt(...B)}，动点 P 满足 ∠APB = 90°。P 的轨迹是圆，圆心坐标是？`,ok,bad:[pt(...A),pt(...B),pt(my,mx)],ex:`AP⊥PB，P 在以 AB 为直径的圆上。圆心是 AB 中点 ${ok}，半径 = {AB/2} = ${r}。`,g:{c:[[mx,my,r]],p:[[...A,'A'],[...B,'B'],[mx,my,'圆心']],s:[[...A,...B]]}}};
+const f1a=()=>{const[dx,dy,r]=dxy(),mx=R(-3,3),my=R(-3,3),A=[mx-dx,my-dy],B=[mx+dx,my+dy];return{q:`已知 A${pt(...A)}、B${pt(...B)}，动点 P 满足 ∠APB = 90°，则 P 的轨迹是圆，其半径等于？`,ans:r,ex:`AB=√[(${2*dx})²+(${2*dy})²]=${2*r}，AB 是直径，r = {AB/2} = ${r}。`,g:{c:[[mx,my,r]],p:[[...A,'A'],[...B,'B']],s:[[...A,...B]]}}};
+const f1b=()=>{const mx=R(-3,3),my=R(-3,3),dx=R(1,3)*sgn(),dy=R(1,3)*sgn(),A=[mx-dx,my-dy],B=[mx+dx,my+dy],c=dx*mx+dy*my;return{q:`已知 A${pt(...A)}、B${pt(...B)}，动点 P 满足 PA = PB，轨迹方程式可写成 ${lt(dx,dy,'c')}，求 c。`,ans:c,ex:`轨迹是垂直平分线，必过中点 M${pt(mx,my)}，代入得 c = ${dx}×${mx} + ${dy}×${my} = ${c}。`,g:{p:[[...A,'A'],[...B,'B'],[mx,my,'M']],s:[[...A,...B]],l:[[dx,dy,-c]]}}};
+const m2a=()=>{const[h,k]=hk(),r=R(2,6),ok=`圆心 ${pt(h,k)}，r = ${r}`;return{q:`圆 ${stdEq(h,k,r*r)} 的圆心与半径是？`,ok,bad:[`圆心 ${pt(-h,-k)}，r = ${r}`,`圆心 ${pt(h,k)}，r = ${r*r}`,`圆心 ${pt(k,h)}，r = ${r}`],ex:`对照 (x−h)²+(y−k)²=r²：h=${h}，k=${k}，r²=${r*r}，r=${r}。括号内的符号与圆心坐标相反。`,g:{c:[[h,k,r]],p:[[h,k,'C']]}}};
+const m2b=()=>{let h,k,r,C;do{[h,k]=hk();r=R(2,5);C=h*h+k*k-r*r}while(!C);const ok=genEq(-2*h,-2*k,C);return{q:`圆心为 ${pt(h,k)}、半径为 ${r} 的圆，其一般方程式是？`,ok,bad:[genEq(2*h,2*k,C),genEq(-2*h,-2*k,h*h+k*k+r*r),genEq(-2*h,-2*k,-C)],ex:`展开 ${stdEq(h,k,r*r)}：A=−2h=${-2*h}，B=−2k=${-2*k}，C=h²+k²−r²=${C}。`,g:{c:[[h,k,r]],p:[[h,k,'C']]}}};
+const m2c=()=>{const[dx,dy,r]=dxy();let mx,my;do{mx=R(-3,3);my=R(-3,3)}while(!mx||!my||mx==my);const A=[mx-dx,my-dy],B=[mx+dx,my+dy],ok=stdEq(mx,my,r*r);return{q:`求以 A${pt(...A)}、B${pt(...B)} 为直径两端点的圆的方程式。`,ok,bad:[stdEq(mx,my,r),stdEq(mx,my,4*r*r),stdEq(-mx,-my,r*r)],ex:`圆心 = AB 中点 ${pt(mx,my)}；r = {AB/2} = ${r}，r² = ${r*r}：${ok}`,g:{c:[[mx,my,r]],p:[[...A,'A'],[...B,'B'],[mx,my,'C']],s:[[...A,...B]]}}};
+const f2a=()=>{const[h,k]=hk(),r=R(2,5);return{q:`圆心 ${pt(h,k)}、半径 ${r} 的圆，一般式 x² + y² + Ax + By + C = 0 中，C 等于？`,ans:h*h+k*k-r*r,ex:`C = h²+k²−r² = ${h*h}+${k*k}−${r*r} = ${h*h+k*k-r*r}。`,g:{c:[[h,k,r]],p:[[h,k,'C']]}}};
+const f2b=()=>{const[h,k]=hk(),r=R(2,6);return{q:`圆 ${genEq(-2*h,-2*k,h*h+k*k-r*r)} 的半径是？`,ans:r,ex:`配方：${stdEq(h,k,r*r)}，所以 r = ${r}。（或 r²={A²/4}+{B²/4}−C=${r*r}）`,g:{c:[[h,k,r]],p:[[h,k,'C']]}}};
+const m3a=()=>{const t=pick(tri),H=hyp(t),h=R(-3,3),k=R(-3,3),px=h+t[0]*sgn(),py=k+t[1]*sgn(),y=R(0,2),r=[H,H-R(1,2),H+R(1,2)][y],ok=['在圆上','在圆外','在圆内'][y];return{q:`点 P${pt(px,py)} 与圆 ${stdEq(h,k,r*r)} 的位置关系是？`,ok,bad:['在圆上','在圆外','在圆内','无法判断'].filter(x=>x!=ok),ex:`圆心 C${pt(h,k)}，r=${r}。PC=√[(${px-h})²+(${py-k})²]=${H}，PC ${H==r?'=':H>r?'>':'<'} r ⇒ 点${ok}。`,g:{c:[[h,k,r]],p:[[px,py,'P'],[h,k,'C','b']],s:[[h,k,px,py,'m',1]]}}};
+const gDist=(h,k,r,px,py)=>{const d=Math.hypot(px-h,py-k),u=[(px-h)/d,(py-k)/d];return{c:[[h,k,r]],p:[[px,py,'P'],[h,k,'C','b'],[h+r*u[0],k+r*u[1],'Q','h'],[h-r*u[0],k-r*u[1],"Q′",'h']],s:[[px,py,h-r*u[0],k-r*u[1],'h']]}};
+const m3b=()=>{const t=pick(tri),H=hyp(t),h=R(-3,3),k=R(-3,3),px=h+t[0]*sgn(),py=k+t[1]*sgn(),r=R(1,H-2),lo=R(0,1),ok=lo?H-r:H+r;return{q:`点 P${pt(px,py)} 到圆 ${stdEq(h,k,r*r)} 的${lo?'最短':'最长'}距离是？`,ok:''+ok,bad:o3(ok,[H,lo?H+r:H-r,r,ok+1,ok+2,ok-1]),ex:`PC=${H} > r=${r}，P 在圆外。${lo?'最短 = PC − r':'最长 = PC + r'} = ${H} ${lo?'−':'+'} ${r} = ${ok}。`,g:gDist(h,k,r,px,py)}};
+const f3a=()=>{const t=pick(tri),H=hyp(t),h=R(-3,3),k=R(-3,3),px=h+t[0]*sgn(),py=k+t[1]*sgn(),r=R(1,H-2);return{q:`点 P${pt(px,py)} 到圆 ${genEq(-2*h,-2*k,h*h+k*k-r*r)} 的最长距离是？`,ans:H+r,ex:`配方得圆心 C${pt(h,k)}，r=${r}。PC=${H}（P 在圆外），最长 = PC + r = ${H+r}。`,g:gDist(h,k,r,px,py)}};
+const f3b=()=>{const t=pick(tri),H=hyp(t),h=R(-3,3),k=R(-3,3),px=h+t[0]*sgn(),py=k+t[1]*sgn(),r=H+R(1,4),lo=R(0,1);return{q:`点 P${pt(px,py)} 到圆 ${stdEq(h,k,r*r)} 的${lo?'最短':'最长'}距离是？`,ans:lo?r-H:r+H,ex:`PC=${H} < r=${r}，P 在圆内。${lo?'最短 = r − PC':'最长 = r + PC'} = ${lo?r-H:r+H}。`,g:gDist(h,k,r,px,py)}};
+const m4a=()=>{const h=R(-3,3),k=R(-3,3),r=R(2,5),e=pick([-1,0,1]),d=r+e,L=mkL(h,k,d,sgn()),rel=e<0?'相交于两点':e==0?'相切':'相离';return{q:`判断直线 ${L0(L.a,L.b,L.c)} 与圆 ${stdEq(h,k,r*r)} 的位置关系。`,ok:rel,bad:['相交于两点','相切','相离','无法判断'].filter(x=>x!=rel),ex:`圆心 ${pt(h,k)}，r=${r}。d = {|ah+bk+c|/√[a²+b²]} = {${d*L.N}/${L.N}} = ${d}。d ${e<0?'<':e==0?'=':'>'} r ⇒ ${rel}。`,g:gLine(h,k,r,L)}};
+const m4b=()=>{const[H,r,t]=pick([[5,3,4],[5,4,3],[10,6,8],[10,8,6],[15,9,12],[15,12,9]]),h=R(-3,3),k=R(-3,3),u=pick([[3,4],[4,3]]),f=H/5,px=h+u[0]*f*sgn(),py=k+u[1]*f*sgn(),c=R(0,1)?genEq(-2*h,-2*k,h*h+k*k-r*r):stdEq(h,k,r*r);return{q:`点 P${pt(px,py)} 在圆 ${c} 外，求 P 到圆的切线长。`,ok:''+t,bad:o3(t,[H,r,H-r,t+1,t+2,H+r]),ex:`C${pt(h,k)}，r=${r}，PC=${H}。切线⊥半径，△CPQ 为直角三角形：PQ² = PC² − r² = ${H*H}−${r*r} = ${t*t}，PQ = ${t}。`,g:gTan(h,k,r,px,py)}};
+const m4c=()=>{const h=R(-3,3),k=R(-3,3),r=R(2,4),L=mkL(h,k,r,sgn()),ok=stdEq(h,k,r*r);return{q:`求以 ${pt(h,k)} 为圆心，且与直线 ${L0(L.a,L.b,L.c)} 相切的圆的方程式。`,ok,bad:[stdEq(h,k,r),stdEq(h,k,r*L.N),stdEq(h,k,r*r*L.N*L.N)],ex:`相切 ⇒ r = d = {|ah+bk+c|/√[a²+b²]} = {${r*L.N}/${L.N}} = ${r}，方程式 ${ok}。`,g:gLine(h,k,r,L)}};
+const f4a=()=>{const[H,r,t]=pick([[5,3,4],[5,4,3],[10,6,8],[10,8,6],[15,9,12],[15,12,9]]),h=R(-3,3),k=R(-3,3),u=pick([[3,4],[4,3]]),f=H/5,px=h+u[0]*f*sgn(),py=k+u[1]*f*sgn();return{q:`点 P${pt(px,py)} 在圆 ${genEq(-2*h,-2*k,h*h+k*k-r*r)} 外，求 P 到圆的切线长。`,ans:t,ex:`配方得 C${pt(h,k)}，r=${r}；PC=${H}；t = √[PC²−r²] = √[${H*H}−${r*r}] = ${t}。`,g:gTan(h,k,r,px,py)}};
+const f4b=()=>{const h=R(-3,3),k=R(-3,3),d=R(1,6),L=mkL(h,k,d,sgn());return{q:`圆心 ${pt(h,k)} 到直线 ${L0(L.a,L.b,L.c)} 的距离是？`,ans:d,ex:`d = {|a·h+b·k+c|/√[a²+b²]} = {${d*L.N}/${L.N}} = ${d}。`,g:gLine(h,k,0.8,L)}};
+const hmin=()=>{const b=R(1,4),s=R(b+1,6),c=s*s-b*b;return{q:`g 为实数，圆 x² + y² + 2gx − ${2*b}y − ${c} = 0 的最小半径是？`,ok:''+s,bad:o3(s,[s*s,b,c,s+1,s-1]),ex:`配方：(x+g)²+(y−${b})² = g²+${b*b}+${c} = g²+${s*s}。g=0 时 r² 最小为 ${s*s}，r_min = ${s}。`,g:{c:[[0,b,s]],p:[[0,b,'C']]}}};
+const hsl=()=>{const[h,r,n,d]=pick([[5,3,3,4],[5,4,4,3],[10,6,3,4],[13,5,5,12]]),ok=`±{${n}/${d}}`;return{q:`直线 y = mx 与圆 (x − ${h})² + y² = ${r*r} 相切，求 m 的值。`,ok,bad:[`{${n}/${d}}`,`±{${d}/${n}}`,`±{${n}/${h}}`],ex:`相切 ⇒ d=r：{|mh|/√[m²+1]} = ${r} ⇒ m²·${h*h} = ${r*r}(m²+1) ⇒ m² = {${r*r}/${h*h-r*r}}，m = ±{${n}/${d}}（有两条切线）。`,g:{c:[[h,0,r]],l:[[n/d,-1,0],[-n/d,-1,0]],p:[[h,0,'C','b']]}}};
+const h3=()=>{const[d,hf,r]=pick([[3,4,5],[4,3,5],[6,8,10],[8,6,10],[5,12,13],[12,5,13]]),h=R(-3,3),k=R(-3,3),L=mkL(h,k,d,sgn());return{q:`直线 ${L0(L.a,L.b,L.c)} 与圆 ${genEq(-2*h,-2*k,h*h+k*k-r*r)} 相交于两点，求直线被圆所截得的弦长。`,ans:2*hf,ex:`C${pt(h,k)}，r=${r}，d = {|ah+bk+c|/√[a²+b²]} = ${d}。半弦 = √[r²−d²] = √[${r*r}−${d*d}] = ${hf}，弦长 = ${2*hf}。`,g:gLine(h,k,r,L)}};
+/* ---------- 计算器 ---------- */
+const ci=(a,b,c,D)=>{if(!D)return{e:'三点共线，无法确定圆'};if(D<0){a=-a;b=-b;c=-c;D=-D}const q=2*D,rp=a*a+b*b-4*c*D,rq=4*D*D;if(rp<=0)return{e:'r² ≤ 0，这不是圆'};return{h:-a/q,k:-b/q,r:Math.sqrt(rp/rq),html:`一般式：${genEq(a,b,c,D)}<br>圆心 (${sf(-a,q)}, ${sf(-b,q)})<br>r² = ${ab(rp,rq)}，r = ${radq(rp,rq)} ≈ ${fmt(Math.sqrt(rp/rq))}<br>标准式：${sq('x',-a,q)} + ${sq('y',-b,q)} = ${ab(rp,rq)}`}};
+const cg=r=>({c:[[r.h,r.k,r.r]],p:[[r.h,r.k,'C','b']]});
+const calc1={t:'轨迹方程式计算器',f:[['mode','条件',['1|PA : PB = m : n','2|∠APB = 90°']],['x1','A 的 x',-1],['y1','A 的 y',3],['x2','B 的 x',7],['y2','B 的 y',-3],['m','m',2],['n','n',1]],run:v=>{const{x1,y1,x2,y2,m,n}=v;if(x1==x2&&y1==y2)return'A、B 不能重合';
+if(v.mode=='2'){const r=ci(-(x1+x2),-(y1+y2),x1*x2+y1*y2,1),g=cg(r);g.p.push([x1,y1,'A'],[x2,y2,'B']);g.s=[[x1,y1,x2,y2]];return{h:`∠APB=90° ⇒ P 在以 AB 为直径的圆上：(x−x₁)(x−x₂)+(y−y₁)(y−y₂)=0<br>${r.html}`,g}}
+if(m<=0||n<=0)return'm、n 必须为正数';const m2=m*m,n2=n*n;
+if(m2==n2){const a=2*(x2-x1),b=2*(y2-y1),c=x2*x2+y2*y2-x1*x1-y1*y1,g=gcd(gcd(a,b),c)||1;return{h:`PA = PB ⇒ P 在 AB 的垂直平分线上<br>${2*(x2-x1)}x + ${2*(y2-y1)}y = ${c} 化简得：<br><b>${lt(a/g,b/g,c/g)}</b>`,g:{p:[[x1,y1,'A'],[x2,y2,'B']],s:[[x1,y1,x2,y2]],l:[[a,b,-c]]}}}
+const r=ci(-2*(n2*x1-m2*x2),-2*(n2*y1-m2*y2),n2*(x1*x1+y1*y1)-m2*(x2*x2+y2*y2),n2-m2);if(r.e)return r.e;const g=cg(r);g.p.push([x1,y1,'A'],[x2,y2,'B']);return{h:`PA:PB=${m}:${n} ⇒ ${n2}·PA² = ${m2}·PB²（阿波罗尼斯圆）<br>${r.html}`,g}}};
+const calc2={t:'三点求圆计算器',f:[['x1','P 的 x',2],['y1','P 的 y',2],['x2','Q 的 x',6],['y2','Q 的 y',-6],['x3','R 的 x',-2],['y3','R 的 y',0]],run:v=>{const{x1,y1,x2,y2,x3,y3}=v,s=[-(x1*x1+y1*y1),-(x2*x2+y2*y2),-(x3*x3+y3*y3)],D=det([x1,y1,1,x2,y2,1,x3,y3,1]),r=ci(det([s[0],y1,1,s[1],y2,1,s[2],y3,1]),det([x1,s[0],1,x2,s[1],1,x3,s[2],1]),det([x1,y1,s[0],x2,y2,s[1],x3,y3,s[2]]),D);if(r.e)return r.e;const g=cg(r);g.p.push([x1,y1,'P'],[x2,y2,'Q'],[x3,y3,'R']);return{h:`设 x²+y²+Ax+By+C=0，把三点代入得三元一次方程组并解出 A、B、C：<br>${r.html}`,g}}};
+const calc3={t:'一般式 → 圆心半径计算器',f:[['A','A',-4],['B','B',6],['C','C',-12]],run:v=>{const r=ci(v.A,v.B,v.C,1);if(r.e)return r.e;return{h:`x²+y²+Ax+By+C=0 配方：<br>${r.html}`,g:cg(r)}}};
+const pr=s=>{s=String(s).replace(/−/g,'-').replace(/\s/g,'');const m=s.match(/^(-?\d*\.?\d+)(?:\/(-?\d*\.?\d+))?$/);if(!m)return null;const f=x=>{const d=(x.split('.')[1]||'').length;return[Math.round(x*10**d),10**d]};const[a,b]=f(m[1]),[c,d]=m[2]?f(m[2]):[1,1];if(!c)return null;return rr(a*d,b*c)};
+const rr=(p,q)=>{if(q<0){p=-p;q=-q}const g=gcd(p,q)||1;return[p/g,q/g]},rm=(x,y)=>rr(x[0]*y[0],x[1]*y[1]),rd=(x,y)=>rr(x[0]*y[1],x[1]*y[0]),ra=(x,y)=>rr(x[0]*y[1]+y[0]*x[1],x[1]*y[1]),rn=x=>[-x[0],x[1]];
+const calc7={t:'配方法详解：一般式 → 标准式（可输入分数）',f:[['a','x² 的系数','3','t'],['b','y² 的系数','3','t'],['A','x 的系数 A','-12','t'],['B','y 的系数 B','-6','t'],['C','常数项 C','1','t']],run:v=>{const a=pr(v.a),b=pr(v.b),A=pr(v.A),B=pr(v.B),C=pr(v.C);
+if(!a||!b||!A||!B||!C)return'请输入整数、分数（如 1/3、-2/5）或小数；x²、y² 的系数不能为 0';
+if(a[0]!=b[0]||a[1]!=b[1])return`x² 的系数 ${sf(...a)} 与 y² 的系数 ${sf(...b)} 不相等 ⇒ 这不是圆。圆的一般式要求 x² 与 y² 的系数相等（并且没有 xy 项）。请把两者改成相同的数再试。`;
+const ls=r=>r[0]==1&&r[1]==1?'':ab(...r),neg=a[0]<0,A1=rd(A,a),B1=rd(B,a),C1=rd(C,a),Ah=rm(A1,[1,2]),Bh=rm(B1,[1,2]),qa=rm(Ah,Ah),qb=rm(Bh,Bh),R=ra(ra(rn(C1),qa),qb);
+let h=`<b>已知：</b>${neg?'−':''}${ls(a)}x² ${neg?'−':'+'} ${ls(a)}y²${tm('x',...A)}${tm('y',...B)}${tm('',...C)} = 0<br>`;
+h+=a[0]==1&&a[1]==1?`<b>步骤 1</b>：x²、y² 的系数已经是 1，不必再除。<br>`:`<b>步骤 1</b>：配方前先把 x²、y² 的系数化为 1，两边同除以 ${sf(...a)}：<br>&emsp;x² + y²${tm('x',...A1)}${tm('y',...B1)}${tm('',...C1)} = 0<br>`;
+h+=`<b>步骤 2</b>：把常数项移到右边，x 项与 x² 放一起，y 项与 y² 放一起：<br>&emsp;x²${tm('x',...A1)} + y²${tm('y',...B1)} = ${sf(...rn(C1))}<br>`;
+h+=`<b>步骤 3</b>：配方 —— 一次项系数取一半再平方，左右两边同时加上：<br>&emsp;x：系数 ${sf(...A1)}，一半 = ${sf(...Ah)}，平方 = ${ab(...qa)}<br>&emsp;y：系数 ${sf(...B1)}，一半 = ${sf(...Bh)}，平方 = ${ab(...qb)}<br>`;
+h+=`&emsp;${sq('x',-Ah[0],Ah[1])} + ${sq('y',-Bh[0],Bh[1])} = ${sf(...rn(C1))} + ${ab(...qa)} + ${ab(...qb)} = ${sf(...R)}<br>`;
+if(R[0]<=0)return{h:h+`<b>步骤 4</b>：右边 r² ${R[0]==0?'= 0，只表示一个点（点圆）':'&lt; 0，没有实数轨迹'}，所以<b>不是圆</b>。`,g:{p:[[-Ah[0]/Ah[1],-Bh[0]/Bh[1],'C','b']]}};
+const hx=-Ah[0]/Ah[1],ky=-Bh[0]/Bh[1],r=Math.sqrt(R[0]/R[1]);
+h+=`<b>步骤 4</b>：写成标准式并读出圆心与半径：<br>&emsp;<b>${sq('x',-Ah[0],Ah[1])} + ${sq('y',-Bh[0],Bh[1])} = ${ab(...R)}</b><br>&emsp;圆心 (${sf(-Ah[0],Ah[1])}, ${sf(-Bh[0],Bh[1])})，r = ${radq(...R)} ≈ ${fmt(r)}<br><small>口诀：括号里的符号与圆心坐标相反；右边是半径的平方，必须大于 0。</small>`;return{h,g:{c:[[hx,ky,r]],p:[[hx,ky,'C','b']]}}}};
+const calc4={t:'点与圆位置关系计算器',f:[['h','圆心 h',-2],['k','圆心 k',1],['r','半径 r',3],['px','P 的 x',1],['py','P 的 y',5]],run:v=>{const{h,k,r,px,py}=v;if(r<=0)return'r 必须大于 0';const n=(px-h)**2+(py-k)**2,PC=Math.sqrt(n),c=n==r*r?'=':n>r*r?'>':'<',w=PC%1?'≈':'=';return{h:`PC = √[(${px-h})²+(${py-k})²] = ${radq(n,1)} ${w} ${fmt(PC)}，r = ${r}<br>PC ${c} r ⇒ <b>点${n==r*r?'在圆上':n>r*r?'在圆外':'在圆内'}</b><br>最短距离 = |PC − r| ${w} ${fmt(Math.abs(PC-r))}<br>最长距离 = PC + r ${w} ${fmt(PC+r)}`,g:n?gDist(h,k,r,px,py):{c:[[h,k,r]],p:[[h,k,'C']]}}}};
+const calc5={t:'直线与圆位置关系计算器（几何法）',f:[['h','圆心 h',0],['k','圆心 k',1],['r','半径 r',2],['a','直线 a',3],['b','b',1],['c','c',-6]],run:v=>{const{h,k,r,a,b,c}=v;if(r<=0||(!a&&!b))return'请输入有效的 r 与直线';const N=a*a+b*b,u=Math.abs(a*h+b*k+c),d=u/Math.sqrt(N),z=u*u-r*r*N;return{h:`直线 ${L0(a,b,c)}<br>d = {|ah+bk+c|/√[a²+b²]} = {${u}/√[${N}]} ≈ ${fmt(d)}，r = ${r}<br>${z<0?'d < r ⇒ <b>相交于两点</b>':z==0?'d = r ⇒ <b>相切</b>':'d > r ⇒ <b>相离</b>'}`,g:gLine(h,k,r,{a,b,c})}}};
+const calc6={t:'切线长计算器',f:[['h','圆心 h',2],['k','圆心 k',2],['r','半径 r',2],['px','P 的 x',4],['py','P 的 y',8]],run:v=>{const{h,k,r,px,py}=v,n=(px-h)**2+(py-k)**2-r*r;if(r<=0)return'r 必须大于 0';if(n<0)return'P 在圆内，没有切线';if(n==0)return'P 在圆上，切线长为 0';return{h:`PC² = ${n+r*r}，r² = ${r*r}<br>切线长 PQ = √[PC²−r²] = √[${n}] = ${radq(n,1)} ≈ ${fmt(Math.sqrt(n))}`,g:gTan(h,k,r,px,py)}}};
+/* ---------- 章节内容 ---------- */
+const SEC=[
+{k:'16.1',n:'轨迹方程式',th:'轨迹 = 满足条件的所有点的集合。步骤：设 P(x, y) → 写出条件 → 用距离公式 → 化简。<br>PA = PB → 垂直平分线；PA = r → 圆；PA:PB = m:n（m≠n）→ 圆；∠APB = 90° → 以 AB 为直径的圆（斜率相乘 m₁·m₂ = −1）。',
+ex:[{t:'例题 1',q:'A(3, 1)、B(5, 3)，动点 P 与 A、B 等距，求 P 的轨迹方程式。',s:'设 P(x, y)，PA = PB<br>√[(x−3)²+(y−1)²] = √[(x−5)²+(y−3)²]<br>平方整理：4x + 4y − 24 = 0<br>∴ 轨迹为 <b>x + y = 6</b>（AB 的垂直平分线）',g:{p:[[3,1,'A'],[5,3,'B']],s:[[3,1,5,3]],l:[[1,1,-6,'h',1]]}},
+{t:'例题 2',q:'定点 A(4, 3)，动点 P 与 A 的距离恒为 3，求 P 的轨迹方程式。',s:'设 P(x, y)，PA = 3<br>√[(x−4)²+(y−3)²] = 3 ⇒ (x−4)² + (y−3)² = 3²<br>∴ <b>(x−4)² + (y−3)² = 9</b>（圆心 A，半径 3）',g:{c:[[4,3,3]],p:[[4,3,'A','b']],s:[[4,3,7,3]]}},
+{t:'例题 3',q:'A(−1, 0)、B(5, 0)，AP : PB = 2 : 1，求 P 的轨迹方程式。',s:'{AP/PB} = 2 ⇒ AP² = 4PB²<br>(x+1)² + y² = 4[(x−5)² + y²]<br>3x² + 3y² − 42x + 99 = 0 ⇒ <b>x² + y² − 14x + 33 = 0</b><br>即 (x−7)² + y² = 16：圆心 (7, 0)，r = 4',g:{c:[[7,0,4]],p:[[-1,0,'A'],[5,0,'B'],[7,4,'P'],[7,0,'C','b']],s:[[-1,0,7,4],[7,4,5,0]]}},
+{t:'例题 4',q:'A(−1, 3)、B(7, −3)，∠APB = 90°，求 P 的轨迹方程式。',s:'AP ⊥ PB ⇒ m_AP · m_PB = −1<br>{y−3/x+1} · {y+3/x−7} = −1<br>y² − 9 = −(x² − 6x − 7) ⇒ <b>x² + y² − 6x − 16 = 0</b><br>即 (x−3)² + y² = 25：以 AB 为直径的圆，圆心 M(3, 0)，r = 5',g:{c:[[3,0,5]],p:[[-1,3,'A'],[7,-3,'B'],[6,4,'P'],[3,0,'M','b']],s:[[-1,3,7,-3],[-1,3,6,4],[6,4,7,-3]],ra:[[6,4,-1,3,7,-3]]}}],
+calcs:[calc1],mg:[m1a,m1b,m1c],fg:[f1a,f1b]},
+{k:'16.2',n:'圆的方程式',th:'标准式：(x − h)² + (y − k)² = r²，圆心 (h, k)，半径 r。<br>一般式：x² + y² + Ax + By + C = 0，圆心 (−{A/2}, −{B/2})，r² = {A²/4} + {B²/4} − C > 0。<br>一般式化标准式：先配方；三点求圆：代入一般式解 A、B、C。',
+ex:[{t:'例题 5',q:'圆心 C(−3, −4)，半径 5，求圆的标准方程式。',s:'(x − (−3))² + (y − (−4))² = 5²<br>∴ <b>(x+3)² + (y+4)² = 25</b>',g:{c:[[-3,-4,5]],p:[[-3,-4,'C','b']],s:[[-3,-4,2,-4]]}},
+{t:'例题 6',q:'A(−5, −3)、B(1, 5)，求以 AB 为直径的圆的标准方程式。',s:'圆心 C = AB 中点 = ({−5+1/2}, {−3+5/2}) = (−2, 1)<br>r = {1/2}AB = {1/2} × √[100] = 5<br>∴ <b>(x+2)² + (y−1)² = 25</b>',g:{c:[[-2,1,5]],p:[[-5,-3,'A'],[1,5,'B'],[-2,1,'C','b']],s:[[-5,-3,1,5]]}},
+{t:'例题 7',q:'圆过点 (1, 2)、(3, 2)，且半径为 √[5]，求圆的标准方程式。',s:'设圆心 (h, k)，(x−h)² + (y−k)² = 5<br>代入两点：(1−h)² + (2−k)² = 5 ⋯(1)，(3−h)² + (2−k)² = 5 ⋯(2)<br>(1)−(2)：(1−h)² − (3−h)² = 0 ⇒ 4h = 8 ⇒ h = 2<br>代入 (1)：(2−k)² = 4 ⇒ k = 0 或 k = 4<br>∴ <b>(x−2)² + y² = 5</b> 或 <b>(x−2)² + (y−4)² = 5</b>（两个圆）',g:{c:[[2,0,Math.sqrt(5)],[2,4,Math.sqrt(5),'h']],p:[[1,2,'P'],[3,2,'Q'],[2,0,'C₁','b'],[2,4,'C₂','b']]}},
+{t:'例题 8',q:'圆过 A(1, 4)、B(4, 3)，且圆心在直线 x + y − 4 = 0 上，求圆的方程式。',s:'设圆心 C(h, k)。圆心在直线上：h + k − 4 = 0 ⋯(1)<br>CA = CB：(h−1)² + (k−4)² = (h−4)² + (k−3)² ⇒ 3h − k − 4 = 0 ⋯(2)<br>(1)+(2)：4h − 8 = 0 ⇒ h = 2，k = 2<br>r = CA = √[(2−1)²+(2−4)²] = √[5]<br>∴ <b>(x−2)² + (y−2)² = 5</b>',g:{c:[[2,2,Math.sqrt(5)]],l:[[1,1,-4,'h',1]],p:[[1,4,'A'],[4,3,'B'],[2,2,'C','b']],s:[[2,2,1,4,'m',1],[2,2,4,3,'m',1]]}},
+{t:'例题 9',q:'圆 3x² + 3y² − 12x − 6y + 1 = 0，求圆心及半径。',s:'÷3：x² + y² − 4x − 2y + {1/3} = 0<br>配方：(x−2)² + (y−1)² = 4 + 1 − {1/3} = {14/3}<br>圆心 (2, 1)，r = √[{14/3}] = {√[42]/3}',g:{c:[[2,1,Math.sqrt(14/3)]],p:[[2,1,'C','b']]}},
+{t:'例题 10',q:'求经过 P(2, 2)、Q(6, −6)、R(−2, 0) 三点的圆的方程式。',s:'设 x² + y² + Ax + By + C = 0，代入三点：<br>2A + 2B + C = −8，6A − 6B + C = −72，−2A + C = −4<br>解得 A = −4，B = 6，C = −12<br>∴ <b>x² + y² − 4x + 6y − 12 = 0</b>，即 (x−2)² + (y+3)² = 25',g:{c:[[2,-3,5]],p:[[2,2,'P'],[6,-6,'Q'],[-2,0,'R'],[2,-3,'C','b']]}}],
+calcs:[calc7,calc3,calc2],mg:[m2a,m2b,m2c],fg:[f2a,f2b]},
+{k:'16.3',n:'点与圆的位置关系',th:'设圆心 C，半径 r：PC = r 在圆上；PC > r 在圆外；PC < r 在圆内。<br>P 在圆外：最短 = PC − r，最长 = PC + r；P 在圆内：最短 = r − PC，最长 = r + PC。',
+ex:[{t:'例题 11',q:'判断点 A(3, 2)、B(3, 3)、C(2, 2) 在圆 (x−1)² + (y−2)² = 2² 上、圆外或圆内。',s:'圆心 D(1, 2)，r = 2<br>AD = √[(3−1)²+(2−2)²] = 2 = r ⇒ A 在圆上<br>BD = √[(3−1)²+(3−2)²] = √[5] &gt; r ⇒ B 在圆外<br>CD = √[(2−1)²+(2−2)²] = 1 &lt; r ⇒ C 在圆内',g:{c:[[1,2,2]],p:[[3,2,'A'],[3,3,'B'],[2,2,'C','h'],[1,2,'D','b']]}},
+{t:'例题 12',q:'求点 P(1, 5) 到圆 (x+2)² + (y−1)² = 9 的最长及最短距离。',s:'圆心 C(−2, 1)，r = 3<br>PC = √[3² + 4²] = 5 &gt; r ⇒ P 在圆外<br>最短 PQ = PC − r = 5 − 3 = <b>2</b><br>最长 PQ′ = PC + r = 5 + 3 = <b>8</b>',g:{c:[[-2,1,3]],p:[[1,5,'P'],[-2,1,'C','b'],[-.2,3.4,'Q','h'],[-3.8,-1.4,"Q′",'h']],s:[[1,5,-3.8,-1.4,'h']]}}
+,{t:'例题 13',q:'求点 P(7, −2) 到圆 x² + y² − 8x + 12y − 12 = 0 的最长及最短距离。',s:'配方：(x−4)² + (y+6)² = 8² ⇒ 圆心 C(4, −6)，r = 8<br>PC = √[(7−4)²+(−2+6)²] = 5 &lt; r ⇒ P 在圆内<br>最短 PQ = r − PC = 8 − 5 = <b>3</b><br>最长 PQ′ = r + PC = 8 + 5 = <b>13</b>',g:gDist(4,-6,8,7,-2)}],
+calcs:[calc4],mg:[m3a,m3b],fg:[f3a,f3b]},
+{k:'16.4',n:'直线与圆的位置关系',th:'几何法：d = {|Ah+Bk+C|/√[A²+B²]}；d < r 相交于两点，d = r 相切，d > r 相离。<br>代数法：联立后判别式 Δ > 0 / = 0 / < 0 对应相交 / 相切 / 相离。<br>切线长 t = √[PC² − r²]；弦长 = 2√[r² − d²]。',
+ex:[{t:'例题 14',q:'直线 3x + y − 6 = 0 与圆 x² + y² − 2y − 3 = 0，判断位置关系。',s:'圆：x² + (y−1)² = 2²，圆心 (0, 1)，r = 2<br>d = {|3(0)+1−6|/√[3²+1²]} = {5/√[10]} ≈ 1.58 &lt; 2<br>∴ 直线与圆<b>相交于两点</b>',g:{c:[[0,1,2]],l:[[3,1,-6]],p:[[0,1,'C','b']]}},
+{t:'例题 15',q:'证明圆 x² + y² − 2x − 15 = 0 与直线 3x − 4y + 17 = 0 相切。',s:'<b>证法一</b>：y = {3x+17/4} 代入圆方程：25x² + 70x + 49 = 0<br>Δ = 70² − 4(25)(49) = 0 ⇒ 只有一个交点 ⇒ 相切<br><b>证法二</b>：圆 (x−1)² + y² = 4²，圆心 (1, 0)，r = 4<br>d = {|3(1)−4(0)+17|/√[3²+(−4)²]} = {20/5} = 4 = r ⇒ 相切',g:gLine(1,0,4,{a:3,b:-4,c:17})},
+{t:'例题 16',q:'求以 (2, 2) 为圆心，且与直线 3x + 4y − 9 = 0 相切的圆的方程式。',s:'相切 ⇒ r = d = {|3(2)+4(2)−9|/√[3²+4²]} = {5/5} = 1<br>∴ <b>(x−2)² + (y−2)² = 1</b>',g:gLine(2,2,1,{a:3,b:4,c:-9})},
+{t:'例题 17',q:'圆 (x−3)² + (y−2)² = 5 与直线 x + 2y + k = 0，求 k 的取值范围使圆与直线相离。',s:'圆心 (3, 2)，r = √[5]。相离 ⇒ d &gt; r<br>d = {|3+4+k|/√[1²+2²]} = {|k+7|/√[5]} &gt; √[5] ⇒ |k + 7| &gt; 5<br>⇒ k + 7 &gt; 5 或 k + 7 &lt; −5<br>∴ <b>k &lt; −12 或 k &gt; −2</b>（与课本判别式法 (k+12)(k+2) &gt; 0 结果相同）<br>图中虚线为 k = −12、k = −2 的两条切线。',g:{c:[[3,2,Math.sqrt(5)]],l:[[1,2,-12,'h',1],[1,2,-2,'h',1],[1,2,3,'r']],p:[[3,2,'C','b']]}},
+{t:'例题 18',q:'斜率为 3 的直线与圆 x² + y² + 8x − 6y + 15 = 0 相切，求此直线的方程式。',s:'设直线 3x − y + c = 0。圆：(x+4)² + (y−3)² = 10，圆心 (−4, 3)，r = √[10]<br>{|3(−4)−3+c|/√[3²+(−1)²]} = √[10] ⇒ |c − 15| = 10<br>c = 25 或 c = 5<br>∴ <b>3x − y + 25 = 0</b> 或 <b>3x − y + 5 = 0</b>（两条切线）',g:{c:[[-4,3,Math.sqrt(10)]],l:[[3,-1,25],[3,-1,5]],p:[[-4,3,'C','b']]}},
+{t:'例题 19',q:'P(4, 8) 为圆 x² + y² − 4x − 4y + 4 = 0 外一点，求切线长 PQ。',s:'(x−2)² + (y−2)² = 2² ⇒ C(2, 2)，r = 2<br>△CPQ 为直角三角形（CQ ⊥ PQ）<br>PQ² = CP² − CQ² = (4−2)² + (8−2)² − 2² = 36<br>∴ 切线长 <b>PQ = 6</b>',g:{c:[[2,2,2]],p:[[4,8,'P'],[2,2,'C','b'],[4,2,'Q','h']],s:[[2,2,4,8,'m',1],[4,8,4,2,'r'],[2,2,4,2]],ra:[[4,2,2,2,4,8]]}}],
+calcs:[calc5,calc6],mg:[m4a,m4b,m4c],fg:[f4a,f4b]},
+{k:'总复习',n:'总复习题',rev:1,mp:[m1a,m1b,m1c,m2a,m2b,m2c,m3a,m3b,m4a,m4b,m4c,hmin,hsl],fp:[f1a,f1b,f2a,f2b,f3a,f3b,f4a,f4b,h3]}];
+/* ---------- 界面 ---------- */
+function calcCard(c){const d=document.createElement('div');d.className='card';d.innerHTML=`<h4>🧮 ${c.t}</h4><div class=in>${c.f.map(f=>Array.isArray(f[2])?`<label>${f[1]}<select name="${f[0]}">${f[2].map(o=>{const[a,b]=o.split('|');return`<option value="${a}">${b}</option>`}).join('')}</select></label>`:`<label>${f[1]}<input ${f[3]?'type=text':'type=number step=any'} name="${f[0]}" value="${f[2]}"></label>`).join('')}</div><button class=btn>计算并画图</button><div class=out></div>`;
+const run=()=>{const v={};c.f.forEach(f=>{const e=$(`[name=${f[0]}]`,d);v[f[0]]=Array.isArray(f[2])||f[3]?e.value:Number(e.value)});let r;try{r=c.run(v)}catch(e){r='输入有误'}$('.out',d).innerHTML=typeof r=='string'?`<p class=b1>${r}</p>`:`<p>${T(r.h)}</p>`+G(r.g)};$('.btn',d).onclick=run;d.addEventListener('keydown',e=>{if(e.key=='Enter')run()});run();return d}
+function quiz(el,mg,fg,gate,again,rev){el.innerHTML='<div class=ml></div><div class=fl></div><div class=rs></div>';const ml=$('.ml',el),fl=$('.fl',el),rs=$('.rs',el),N=mg.length;let ms=0,md=0,fs=0,fd=0;
+const fin=()=>{const tot=ms+fs,all=N+fg.length,p=tot/all;rs.innerHTML=`<p><b>成绩：选择题 ${ms}/${N}，作答题 ${fs}/${fg.length}${rev?`；总分 ${tot}/${all}（${Math.round(p*100)} 分）`:''}</b></p>${rev?`<p>${p>=.85?'🏆 优秀！掌握得非常扎实。':p>=.65?'👍 良好，请再看看错题的解析。':p>=.45?'🙂 及格，建议回到各节复习例题与计算器。':'💪 需要加强，请从 16.1 逐节复习后再挑战。'}</p>`:''}<button class=btn>再来一组（重新出题）</button>`;$('.btn',rs).onclick=again};
+const unlock=()=>{if(ms<gate){rs.innerHTML=`<p>选择题答对 ${ms}/${N}，需答对 ${gate} 题或以上才能解锁作答题。</p><button class=btn>重新出题</button>`;$('.btn',rs).onclick=again;return}
+rs.innerHTML=`<p class=g1><b>${gate?`🎉 选择题 ${ms}/${N}，解锁作答题！`:`选择题 ${ms}/${N}，接下来是作答题`}</b></p>`;
+fg.forEach((g,i)=>{const d=g(),c=document.createElement('div');c.className='q';c.innerHTML=`<p><b>作答 ${i+1}.</b> ${T(d.q)}</p><input type=text inputmode=decimal placeholder="输入答案"> <button class=btn>提交</button><div class=ex></div>`;const inp=$('input',c),bt=$('button',c);
+bt.onclick=()=>{if(c.dataset.l||inp.value.trim()==='')return;c.dataset.l=1;const good=Math.abs(Number(inp.value.replace('−','-').trim())-d.ans)<1e-6;inp.disabled=bt.disabled=true;if(good)fs++;$('.ex',c).innerHTML=`<b class=${good?'g1':'b1'}>${good?'✔ 正确':'✘ 错误'}</b> 正确答案：${d.ans}<br>${T(d.ex)}${d.g?G(d.g):''}`;if(++fd==fg.length)fin()};fl.append(c)})};
+mg.forEach((g,i)=>{const d=g(),o=sh([...new Set([d.ok,...d.bad])]),c=document.createElement('div');c.className='q';c.innerHTML=`<p><b>${i+1}.</b> ${T(d.q)}</p><div class=op>${o.map(x=>`<button>${T(x)}</button>`).join('')}</div><div class=ex></div>`;const bs=[...c.querySelectorAll('.op button')];
+bs.forEach((b,j)=>b.onclick=()=>{if(c.dataset.l)return;c.dataset.l=1;const good=o[j]===d.ok;bs.forEach((x,t)=>{x.disabled=true;if(o[t]===d.ok)x.classList.add('ok')});if(!good)b.classList.add('no');else ms++;$('.ex',c).innerHTML=`<b class=${good?'g1':'b1'}>${good?'✔ 正确':'✘ 错误'}</b> 正确答案：${T(d.ok)}<br>${T(d.ex)}${d.g?G(d.g):''}`;if(++md==N)unlock()});ml.append(c)})}
+function startQuiz(el,S){quiz(el,S.rev?sh(S.mp).slice(0,10):sh(Array.from({length:5},(_,i)=>S.mg[i%S.mg.length])),S.rev?sh(S.fp).slice(0,5):S.fg,S.rev?0:3,()=>startQuiz(el,S),S.rev)}
+const tabs=$('#tabs'),main=$('#main'),ps=[],bs=[];
+SEC.forEach((S,i)=>{const b=document.createElement('button');b.textContent=`${S.k} ${S.n}`;b.onclick=()=>show(i);tabs.append(b);bs.push(b);const p=document.createElement('section');p.hidden=true;
+p.innerHTML=S.rev?`<h2>总复习：10 题选择 + 5 题作答</h2><div class=card>题目抽取自 16.1–16.4 的题型，并加入总复习题中较难的题型（最小半径、斜率切线、弦长）。10 题选择题完成后出现 5 题作答题，最后给出分数评估。</div><div class="card qz"></div>`:`<h2>${S.k} ${S.n}</h2><div class=card>${T(S.th)}</div><h3>📘 课本例题（点击展开 / 折叠）</h3>${S.ex.map((e,i)=>`<details class=card${i?'':' open'}><summary><b>${e.t}</b> · ${T(e.q)}</summary><p>${T(e.s)}</p>${G(e.g)}</details>`).join('')}<h3>🧮 专属计算器</h3><div class=cs></div><h3>📝 随堂测验</h3><div class="card qz"></div>`;
+main.append(p);ps.push(p);S.calcs&&S.calcs.forEach(c=>$('.cs',p).append(calcCard(c)));startQuiz($('.qz',p),S)});
+function show(i){ps.forEach((p,j)=>{p.hidden=i!=j;bs[j].classList.toggle('on',i==j)});bs[i].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});scrollTo(0,0)}show(0);
+let fz=16;const sz=d=>{fz=d?Math.min(24,Math.max(13,fz+d)):16;document.documentElement.style.fontSize=fz+'px'};$('#fm').onclick=()=>sz(-1);$('#f0').onclick=()=>sz(0);$('#fp').onclick=()=>sz(1);
+$('#th').onclick=()=>{const h=document.documentElement;h.dataset.theme=h.dataset.theme=='dark'?'light':'dark'};
+/* ---------- 水印 / footer ---------- */
+const WM=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+function wm(){if(!$('#wm')){const d=document.createElement('div');d.id='wm';d.style.backgroundImage=`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='400' height='230'><text x='30' y='125' transform='rotate(-24 200 115)' font-size='12' font-family='sans-serif' fill='#888' fill-opacity='.1'>${WM[0]} · ${WM[3]}</text></svg>`)}")`;document.body.append(d)}
+if(!$('#hw')){const s=document.createElement('span');s.id='hw';s.textContent=WM.join(' | ');s.setAttribute('aria-hidden','true');s.style.cssText='position:absolute;left:-9999px;top:0;opacity:0;pointer-events:none;font-size:1px';document.body.append(s)}
+if(!$('#ft')){const f=document.createElement('footer');f.id='ft';f.innerHTML=`© ${WM[0]} · ${WM[3]}<br>高二数学上册 第16章 圆 · 离线互动课程，仅供教学使用`;document.body.append(f)}document.body.dataset.author=WM[0]}
+wm();new MutationObserver(wm).observe(document.body,{childList:true});console.log(WM[0]+' | '+WM[3]);
+</script></body></html>
