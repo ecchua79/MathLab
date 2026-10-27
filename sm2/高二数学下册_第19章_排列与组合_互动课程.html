@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="峇株吧辖华仁中学蔡逸众制作 / Made by ecchua79">
+<title>高二数学下册 第19章 排列与组合 · 互动课程</title>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | 华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | Made by ecchua79 -->
+<style>
+:root{--bg:#f4f7f6;--fg:#1b2a2a;--card:#fff;--ac:#0f766e;--bd:#cfdcd9;--ok:#15803d;--no:#b91c1c;--mut:#5b6b6a;--fs:16px}
+[data-t=d]{--bg:#0d1719;--fg:#e3efed;--card:#15262a;--ac:#5eead4;--bd:#2b4348;--ok:#4ade80;--no:#f87171;--mut:#9bb3b0}
+*{box-sizing:border-box}html{font-size:var(--fs)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;line-height:1.75}
+header{padding:12px 14px 6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+h1{font-size:1.25rem;margin:0}h2{font-size:1.2rem;margin:.6rem 0}h3{font-size:1.02rem;margin:1.2rem 0 .3rem;color:var(--ac)}
+.ctl button,.bt{font:inherit;border:1px solid var(--ac);background:transparent;color:var(--ac);border-radius:8px;padding:3px 11px;cursor:pointer}
+.bt{background:var(--ac);color:var(--bg);margin:6px 0}.bt:disabled{opacity:.5}
+nav{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--bd);scrollbar-width:thin}
+nav button{flex:0 0 auto;font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:10px;padding:5px 12px;cursor:pointer;text-align:center;line-height:1.3}
+nav button small{display:block;font-size:.68rem;color:var(--mut)}nav button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}nav button.on small{color:var(--bg)}
+main{max-width:860px;margin:0 auto;padding:6px 14px 70px}.pane{display:none}.pane.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:8px 0}
+.mut{color:var(--mut);font-size:.85rem}sub{font-size:.7em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.35}.fr i{font-style:normal;padding:0 5px}.fr i:first-child{border-bottom:1.5px solid currentColor}
+.s{display:block;margin:8px auto}.s text{fill:var(--fg);text-anchor:middle;dominant-baseline:central;font-size:14px}
+.bx{fill:var(--card);stroke:var(--ac);stroke-width:2}.ln{stroke:var(--mut);stroke-width:1.5;fill:none}.gl{stroke:var(--bd);stroke-width:1.5}.pt{stroke:#ef4444;stroke-width:4;fill:none;stroke-linejoin:round}
+.dt{fill:#2563eb}.dt2{fill:#d97706}.dt3{fill:#059669}.dt4{fill:#9333ea}.dt5{fill:#dc2626}.dh{fill:none;stroke:var(--mut);stroke-width:1.5}
+.ci{display:flex;flex-wrap:wrap;gap:10px}.ci label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mut)}
+input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:5px 8px;min-width:0;width:9.5rem}
+.co{margin-top:8px}.co p{margin:.3rem 0}
+.q{border-top:1px dashed var(--bd);padding:8px 0}.q:first-of-type{border:0}
+.op{display:block;width:100%;text-align:left;font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--bd);border-radius:10px;padding:7px 12px;margin:6px 0;cursor:pointer}
+.op.ok{border-color:var(--ok);background:rgba(34,197,94,.16)}.op.no{border-color:var(--no);background:rgba(239,68,68,.16)}
+.ex{margin-top:8px;padding:8px 12px;border-radius:10px;font-size:.95rem;border-left:4px solid var(--ok);background:rgba(128,128,128,.09)}.ex.no{border-color:var(--no)}
+.msg{padding:10px 12px;border-radius:10px;margin:10px 0;border:1px solid var(--ok)}.msg.no{border-color:var(--no)}
+.pg{font-size:.85rem;color:var(--mut)}
+#wm{position:fixed;inset:0;pointer-events:none;z-index:50;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='190'><text x='20' y='110' transform='rotate(-25 140 95)' font-size='16' fill='rgba(128,128,128,.17)' font-family='sans-serif'>峇株吧辖华仁中学 蔡逸众制作</text></svg>")}
+footer{text-align:center;font-size:.8rem;color:var(--mut);padding:18px 10px 30px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<header>
+ <h1>第19章 排列与组合</h1>
+ <div class="ctl"><button id="fm">A−</button> <button id="fz">A</button> <button id="fp">A+</button> <button id="th">🌙 夜间</button></div>
+</header>
+<nav id="tabs"></nav>
+<main id="main"></main>
+<div id="wm"></div>
+<span aria-hidden="true" style="position:absolute;left:-9999px;top:0;opacity:0;font-size:1px">峇株吧辖华仁中学蔡逸众制作 华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 Made by ecchua79</span>
+<footer>© 2026 峇株吧辖华仁中学 · 蔡逸众制作 · Made by ecchua79　|　高二数学下册 第19章 互动课程（离线可用）</footer>
+<script>
+const B=BigInt,$=s=>document.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pk=a=>a[R(0,a.length-1)],shuf=a=>[...a].sort(()=>Math.random()-.5);
+const pickN=(a,k)=>{let o=[];while(o.length<k)o=o.concat(shuf(a));return o.slice(0,k)};
+const F=x=>String(x).replace(/\B(?=(\d{3})+(?!\d))/g,','),fa=n=>{let r=1n;for(let i=2n;i<=B(n);i++)r*=i;return r},P=(n,r)=>r>n||r<0?0n:fa(n)/fa(n-r),C=(n,r)=>r>n||r<0?0n:P(n,r)/fa(r);
+const fr=(a,b)=>`<span class="fr"><i>${a}</i><i>${b}</i></span>`,pp=(n,r)=>`<sub>${n}</sub>P<sub>${r}</sub>`,cc=(n,r)=>`<sub>${n}</sub>C<sub>${r}</sub>`,Lb=n=>'ABCDEFGHIJKL'.slice(0,n).split('');
+/* ---------- SVG 工具 ---------- */
+const NS=(w,h,c)=>`<svg class="s" viewBox="0 0 ${w} ${h}" style="max-width:${w}px;width:100%">${c}</svg>`,T=(x,y,t,c='')=>`<text x="${x}" y="${y}" ${c}>${t}</text>`;
+function sl(it,op='×',res){let x=10,s='';it.forEach((t,i)=>{if(i){s+=T(x+10,40,op,'style="font-size:22px"');x+=20}s+=`<rect class="bx" x="${x}" y="15" width="64" height="50" rx="8"/>`+T(x+32,40,t[0],'style="font-weight:700;font-size:18px"')+T(x+32,80,t[1],'style="font-size:12px"');x+=64});if(res!=null){s+=T(x+14,40,'= '+res,'style="font-size:20px;font-weight:700;text-anchor:start"');x+=14+String(res).length*13+20}return NS(x+10,95,s)}
+function tree(A,Bf,j='，'){const bl=a=>typeof Bf=='function'?Bf(a):Bf;let n=0;A.forEach(a=>n+=bl(a).length);const H=n*24+20,ry=H/2;let s=`<circle class="dt" cx="26" cy="${ry}" r="5"/>`,k=0;A.forEach(a=>{const L=bl(a),y1=10+(k+(L.length-1)/2)*24+12;s+=`<line class="ln" x1="30" y1="${ry}" x2="120" y2="${y1}"/>`+T(140,y1,a);L.forEach(b=>{const y2=10+k*24+12;k++;s+=`<line class="ln" x1="160" y1="${y1}" x2="250" y2="${y2}"/>`+T(268,y2,b)+T(330,y2,a+j+b,'style="text-anchor:start;font-size:12px"')})});return NS(430,H,s)}
+function circ(L,C){const n=L.length,cx=120,cy=105,Rr=75;let s=`<circle class="ln" cx="${cx}" cy="${cy}" r="${Rr-18}" style="stroke-dasharray:4 4"/>`;L.forEach((l,i)=>{const a=-Math.PI/2+2*Math.PI*i/n,x=cx+Rr*Math.cos(a),y=cy+Rr*Math.sin(a);s+=`<circle class="${C?C[i]:'dt'}" cx="${x}" cy="${y}" r="16"/>`+T(x,y,l,'style="fill:#fff;font-weight:700"')});return NS(240,210,s)}
+const CL=['dt','dt2','dt3','dt4','dt5'];
+function tok(w){const d=[...new Set(w)];let s='';[...w].forEach((c,i)=>{const x=10+(i%14)*30,y=10+Math.floor(i/14)*34;s+=`<rect class="${CL[d.indexOf(c)%5]}" x="${x}" y="${y}" width="26" height="28" rx="6"/>`+T(x+13,y+14,c,'style="fill:#fff;font-weight:700"')});return NS(440,20+Math.ceil(w.length/14)*34,s)}
+function grid(e,n){const c=34;let s='';for(let i=0;i<=e;i++)s+=`<line class="gl" x1="${30+i*c}" y1="20" x2="${30+i*c}" y2="${20+n*c}"/>`;for(let j=0;j<=n;j++)s+=`<line class="gl" x1="30" y1="${20+j*c}" x2="${30+e*c}" y2="${20+j*c}"/>`;let x=0,y=0,E=e,N=n,t=0,p=`M30 ${20+n*c}`;while(E||N){if((t++%2==0&&E)||!N){x++;E--}else{y++;N--}p+=`L${30+x*c} ${20+n*c-y*c}`}return NS(70+e*c,50+n*c,s+`<path d="${p}" class="pt"/>`+T(16,20+n*c+8,'A')+T(30+e*c+14,12,'B'))}
+function dots(G){let x=10,s='',mr=1;G.forEach(g=>{const cols=Math.min(g[0],6),w=Math.max(cols*22+14,g[1].length*12+10),rows=Math.ceil(g[0]/6);mr=Math.max(mr,rows);s+=`<rect class="bx" x="${x}" y="10" width="${w}" height="${rows*22+16}" rx="8"/>`;for(let i=0;i<g[0];i++)s+=`<circle class="${i<g[3]?g[2]:'dh'}" cx="${x+17+(i%6)*22}" cy="${27+Math.floor(i/6)*22}" r="8"/>`;s+=T(x+w/2,rows*22+34,g[1],'style="font-size:12px"');x+=w+12});return NS(x+4,mr*22+50,s)}
+/* ---------- 题目引擎（每次随机生成） ---------- */
+const G=(t,f)=>(f.tag=t,f);
+const g1=[G('19.1',()=>{const a=R(3,8),b=R(2,6),c=R(2,5);return{q:`餐厅有果汁${a}种、茶${b}种、咖啡${c}种，${pk(['阿源','杰西','小明'])}只想喝其中一种饮料，共有多少种不同的选择？`,a:B(a+b+c),w:[a*b*c],e:`三类饮料互斥，任选其一即可完成，用<b>加法原理</b>：${a}+${b}+${c}=${a+b+c}。`,s:sl([[a,'果汁'],[b,'茶'],[c,'咖啡']],'+',a+b+c)}}),
+G('19.1',()=>{const a=R(2,5),b=R(2,5),c=R(2,4);return{q:`阿健从家到学校有${a}条路线，学校到餐厅有${b}条，餐厅回家有${c}条。他依次经过学校、餐厅再回家，共有多少种不同的路线？`,a:B(a*b*c),w:[a+b+c],e:`分三个步骤、缺一不可，用<b>乘法原理</b>：${a}×${b}×${c}=${a*b*c}。`,s:sl([[a,'家→校'],[b,'校→餐'],[c,'餐→家']],'×',a*b*c)}}),
+G('19.1',()=>{const a=R(3,6),b=R(3,6),c=R(3,6),t=R(0,1),h=`${a}名高一生、${b}名高二生、${c}名高三生组成研究小组。`,it=[[a,'高一'],[b,'高二'],[c,'高三']];return t?{q:h+'每个年级各选一名组长，有多少种选法？',a:B(a*b*c),w:[a+b+c],e:`分三步：${a}×${b}×${c}=${a*b*c}（乘法原理）。`,s:sl(it,'×',a*b*c)}:{q:h+'选其中一人当组长，有多少种选法？',a:B(a+b+c),w:[a*b*c],e:`分三类：${a}+${b}+${c}=${a+b+c}（加法原理）。`,s:sl(it,'+',a+b+c)}})];
+const g2=[G('19.2',()=>{const n=R(5,10),r=R(2,4),v=[...Array(r)].map((_,i)=>n-i);return{q:`从${n}个不同的元素中任取${r}个排成一列，有多少种排法？`,a:P(n,r),w:[B(n)**B(r),C(n,r)],e:`${pp(n,r)}=${v.join('×')}=${F(P(n,r))}。`,s:sl(v.map((x,i)=>[x,'第'+(i+1)+'位']),'×',F(P(n,r)))}}),
+G('19.2',()=>{const k=R(5,8),m=R(3,4),o=Math.ceil(k/2),v=[...Array(m-1)].map((_,i)=>k-1-i),a=B(o)*P(k-1,m-1);return{q:`由1、2、…、${k}这${k}个数字（不重复）可组成多少个${m}位奇数？`,a,w:[P(k,m)],e:`先排有限制的个位：奇数有${o}种；其余${m-1}位从剩下${k-1}个数中排列：${pp(k-1,m-1)}=${v.join('×')}=${F(P(k-1,m-1))}。共${o}×${F(P(k-1,m-1))}=${F(a)}。`,s:sl([...v.map((x,i)=>[x,'第'+(i+1)+'位']),[o,'个位(奇)']],'×',F(a))}}),
+G('19.2',()=>{const n=R(5,8),a=fa(n-1)*2n;return{q:`${n}人排成一行，其中特定的两人必须相邻，有多少种排法？`,a,w:[fa(n),fa(n-1)],e:`把相邻的两人看成一人：${n-1}个“人”全排列有(${n-1})!种；这两人可互换位置，有2!种。共(${n-1})!×2!=${F(a)}。`,s:sl([[(n-1)+'!','整体排列'],['2!','两人互换']],'×',F(a))}})];
+const g3=[G('19.3',()=>{const n=R(3,6),r=R(3,4),a=B(n)**B(r);return{q:`若数字可重复使用，由${Lb(n).map((_,i)=>i+1).join('、')}这${n}个数字可组成多少个${r}位数？`,a,w:[P(n,r),B(r)**B(n)],e:`每一位都有${n}种取法：${n}<sup>${r}</sup>=${F(a)}。`,s:sl([...Array(r)].map((_,i)=>[n,['百','十','个','']['千百十个'.indexOf('千百十个'[4-r+i])>=0?0:0]&&'千百十个'[4-r+i]+'位']),'×',F(a))}}),
+G('19.3',()=>{const m=R(3,5),k=R(3,6),a=B(k)**B(m);return{q:`每位高二学生必须在${k}门选修课中选一门。现有${m}名学生，共有多少种不同的选课方式？`,a,w:[B(m)**B(k)],e:`每位学生都有${k}种选择（学生是“做选择”，课程是“被选择”）：${k}<sup>${m}</sup>=${F(a)}，而不是${m}<sup>${k}</sup>。`,s:sl([...Array(m)].map((_,i)=>[k,'学生'+'ABCDE'[i]]),'×',F(a))}}),
+G('19.3',()=>{const r=R(3,5),a=10n**B(r)-1n;return{q:`用0~9这十个数字任选${r}个（可重复）组成密码，但全为0的密码不能使用，可编成多少个密码？`,a,w:[10n**B(r)],e:`每位都有10种取法：10<sup>${r}</sup>=${F(10n**B(r))}，再减去全为0的1种，得${F(a)}。`,s:sl(Array(r).fill([10,'0~9']),'×')}})];
+const g4=[G('19.4',()=>{const n=R(4,8);return{q:`${n}人围圆桌而坐，有多少种不同的坐法？`,a:fa(n-1),w:[fa(n)],e:`每个环形排列对应${n}个线性排列：${n}!÷${n}=(${n}−1)!=${F(fa(n-1))}。`,s:circ(Lb(n))}}),
+G('19.4',()=>{const n=R(5,8),r=R(3,4);return{q:`从${n}人中选${r}人围圆桌而坐，有多少种不同的坐法？`,a:P(n,r)/B(r),w:[P(n,r)],e:`${fr(pp(n,r),r)}=${F(P(n,r))}÷${r}=${F(P(n,r)/B(r))}。`,s:circ(Lb(r))}}),
+G('19.4',()=>{const n=R(5,8),a=fa(n-2)*2n;return{q:`${n}人围圆桌而坐，其中特定的两人必须相邻，有多少种坐法？`,a,w:[fa(n-1),fa(n-1)*2n],e:`两人视为一人，${n-1}人围坐有(${n-1}−1)!种，两人互换有2!种：(${n-2})!×2!=${F(a)}。`,s:circ(Lb(n).map((x,i)=>i<2?'甲':x),Lb(n).map((_,i)=>i<2?'dt2':'dt'))}}),
+G('19.4',()=>{const k=R(3,5),a=fa(k-1)*fa(k);return{q:`${k}男${k}女围圆桌而坐，若同性不能相邻，有多少种坐法？`,a,w:[fa(k)*fa(k)],e:`先排${k}个男生（环形）：(${k}−1)!种；再把${k}个女生排入${k}个空位：${k}!种。共(${k-1})!×${k}!=${F(a)}。`,s:circ(Lb(2*k).map((_,i)=>i%2?'女':'男'),Lb(2*k).map((_,i)=>i%2?'dt2':'dt'))}})];
+const WD=['MISSISSIPPI','MALAYSIA','EXPRESSION','MATHEMATICS','BANANA','LETTER','ARRANGEMENT','GEOMETRIC'];
+const g5=[G('19.5',()=>{const a1=R(2,4),a2=R(1,3),a3=R(1,2),n=a1+a2+a3,a=fa(n)/(fa(a1)*fa(a2)*fa(a3));return{q:`有${n}面彩旗，其中红旗${a1}面、黄旗${a2}面、白旗${a3}面。将它们排成一行，有多少种排法？`,a,w:[fa(n)],e:`${fr(n+'!',a1+'!×'+a2+'!×'+a3+'!')}=${F(a)}。`,s:tok('红'.repeat(a1)+'黄'.repeat(a2)+'白'.repeat(a3))}}),
+G('19.5',()=>{const w=pk(WD),c={};[...w].forEach(ch=>c[ch]=(c[ch]||0)+1);const ds=Object.values(c).filter(v=>v>1),n=w.length,den=ds.reduce((p,v)=>p*fa(v),1n);return{q:`将“${w}”一字的字母全取重新排列，有多少种排法？`,a:fa(n)/den,w:[fa(n)],e:`共${n}个字母，重复的字母：${Object.entries(c).filter(e=>e[1]>1).map(e=>e[0]+'有'+e[1]+'个').join('、')}。排列数=${fr(n+'!',ds.map(v=>v+'!').join('×'))}=${F(fa(n)/den)}。`,s:tok(w)}}),
+G('19.5',()=>{const e=R(2,5),n=R(2,4);return{q:`某市区道路呈方格状。小明从A处走到B处，需向东走${e}段、向北走${n}段，且只能走最短路径。共有多少条不同的路径？`,a:C(e+n,e),w:[fa(e+n),B(e*n)],e:`共走${e+n}步，其中${e}步向东、${n}步向北：${fr((e+n)+'!',e+'!×'+n+'!')}=${F(C(e+n,e))}条。图中红线是其中一条。`,s:grid(e,n)}})];
+const g6=[G('19.6',()=>{const n=R(6,12),r=R(2,4);return{q:`从${n}个不同的元素中任取${r}个作为一组（不计顺序），有多少种取法？`,a:C(n,r),w:[P(n,r)],e:`${cc(n,r)}=${fr(pp(n,r),r+'!')}=${F(P(n,r))}÷${fa(r)}=${F(C(n,r))}。`,s:dots([[n,n+'个中取'+r+'个','dt',r]])}}),
+G('19.6',()=>{const m=R(4,8),w=R(3,6),x=R(2,3),y=R(1,2),a=C(m,x)*C(w,y);return{q:`从${m}个男生及${w}个女生中选出${x+y}人组成委员会，其中${x}男${y}女，有多少种选法？`,a,w:[C(m+w,x+y)],e:`男生：${cc(m,x)}=${C(m,x)}；女生：${cc(w,y)}=${C(w,y)}；乘法原理：${C(m,x)}×${C(w,y)}=${F(a)}。`,s:dots([[m,m+'男取'+x,'dt',x],[w,w+'女取'+y,'dt2',y]])}}),
+G('19.6',()=>{const k=R(2,5),a=C(2*k,k)/2n;return{q:`将${2*k}名学生平均分成两组（两组没有先后之分），有多少种不同的分法？`,a,w:[C(2*k,k)],e:`先分步取：${cc(2*k,k)}×${cc(k,k)}=${F(C(2*k,k))}；两组无顺序，要除以2!：${F(C(2*k,k))}÷2=${F(a)}。`,s:dots([[k,'第一组','dt',k],[k,'第二组','dt2',k]])}}),
+G('19.6',()=>{const n=R(3,6),a=2n**B(n)-1n;return{q:`小明想从${n}位朋友中邀请至少一位参加生日派对，共有多少种邀请法？`,a,w:[2n**B(n)],e:`邀请k人有${cc(n,'k')}种，k=1~${n}相加，等于${2n**B(n)}−1（排除“一个都不邀请”）=${F(a)}。`,s:dots([[n,n+'位朋友','dt',n]])}})];
+const H=[G('总复习',()=>{const a=R(2,4),b=R(3,5),c=R(2,3),v=6n*fa(a)*fa(b)*fa(c);return{q:`书架上有${a}本不同的历史书、${b}本不同的地理书、${c}本不同的文学书。若全部排成一行，且同类型的书必须排在一起，有多少种排法？`,a:v,w:[fa(a+b+c)],e:`先把三类书当作三“块”排列：3!=6；再排各类内部：${a}!×${b}!×${c}!。共6×${fa(a)}×${fa(b)}×${fa(c)}=${F(v)}。`,s:sl([['3!','三类排列'],[a+'!','历史'],[b+'!','地理'],[c+'!','文学']],'×')}}),
+G('总复习',()=>{const [lo,hi]=pk([[3000,7000],[4000,9000],[2000,6000],[5000,9000]]);let tot=0,ps=[];for(let d=lo/1000;d<hi/1000;d++){let c=0;for(let k=d*1000;k<d*1000+1000;k++)if(k>lo&&k<hi&&k%2&&new Set(String(k)).size==4)c++;tot+=c;ps.push(`千位为${d}：${c}个`)}return{q:`若数字不重复，由0~9这十个数字可组成多少个介于${lo}与${hi}之间的奇数？`,a:B(tot),e:`按千位数字分类（个位须为奇数且不与千位重复，其余两位从剩下的8个数字中排列，如千位为偶数：5×${pp(8,2)}=280）：${ps.join('；')}。合计${tot}个。`}}),
+G('总复习',()=>{const m=R(4,6),n=R(3,5),k=4;let t=0n,p=[];for(let e=2;e<k;e++){const v=C(m,e)*C(n,k-e);t+=v;p.push(`${e}名工程师+${k-e}名技术员：${cc(m,e)}×${cc(n,k-e)}=${v}`)}return{q:`从${m}名工程师及${n}名技术员中选出${k}人组成小组，小组必须有至少2名工程师及至少1名技术员，有多少种选法？`,a:t,w:[C(m+n,k)],e:p.join('；')+`；合计${t}种。`,s:dots([[m,m+'工程师','dt',2],[n,n+'技术员','dt2',1]])}}),
+G('总复习',()=>{const w=pk([['TRIANGLE',5,3],['VOLUME',3,3],['CHAPTER',5,2]]),c=w[1],v=w[2],a=fa(c)*P(c+1,v);return{q:`将“${w[0]}”一字的字母全取排列，其中母音字母不相邻的排法有多少种？`,a,w:[fa(c+v)],e:`先排${c}个子音：${c}!种；母音插入子音之间及两端的${c+1}个空隙：${pp(c+1,v)}=${F(P(c+1,v))}种。共${c}!×${F(P(c+1,v))}=${F(a)}。`,s:tok(w[0])}})];
+/* ---------- 课文数据 ---------- */
+const S=[
+{id:'19.1',t:'加法与乘法原理',lead:`<b>📱 导入：</b>六位数字手机密码，每位有10种选择，最多要试 10<sup>6</sup>=1,000,000 次——这就是乘法原理！<br><b>加法原理</b>（分类、任选其一）：m<sub>1</sub>+m<sub>2</sub>+…+m<sub>n</sub>；<b>乘法原理</b>（分步、缺一不可）：m<sub>1</sub>×m<sub>2</sub>×…×m<sub>n</sub>。`,
+ ex:[['例题1　饮料选择（加法原理）','果汁有5种，茶有3种，阿源只想喝其中一种，有多少种选择？','果汁与茶互斥，选哪一类都完成，故 5+3=<b>8</b> 种。',sl([[5,'果汁'],[3,'茶']],'+',8)],
+ ['例题2、3　套餐（乘法原理与树图）','主菜3种（鸡肉、牛肉、猪肉），配菜2种（沙拉、玉米）。再加饮料2种（咖啡、茶），共有几种套餐？','主菜+配菜：3×2=6种（见树图）；再配饮料：3×2×2=<b>12</b> 种。',tree(['鸡肉','牛肉','猪肉'],['沙拉','玉米'])+sl([[3,'主菜'],[2,'配菜'],[2,'饮料']],'×',12)]],
+ c:{i:[['m','模式','',['乘法','加法']],['l','各步骤（类）的方法数，用逗号隔开','5,3']],f:v=>{const a=v.l.split(/[,，\s]+/).map(Number).filter(x=>x>0&&x<=999).slice(0,6),m=v.m=='乘法';if(a.length<2)return'请输入至少两个正整数（用逗号隔开）';const r=m?a.reduce((x,y)=>x*B(y),1n):B(a.reduce((x,y)=>x+y,0));return`<p>${a.join(m?' × ':' + ')} = <b>${F(r)}</b>　（${m?'乘法原理：分步，缺一不可':'加法原理：分类，任选其一'}）</p>`+sl(a.map((x,i)=>[x,(m?'第'+(i+1)+'步':'第'+(i+1)+'类')]),m?'×':'+',F(r))+(m&&a.length==2&&a[0]*a[1]<=24?tree(Array.from({length:a[0]},(_,i)=>'a'+(i+1)),Array.from({length:a[1]},(_,j)=>'b'+(j+1))):'')}},g:g1},
+{id:'19.2',t:'排列与排列数公式',lead:`从n个不同元素中取r个排成一列：${pp('n','r')}=n(n−1)(n−2)…(n−r+1)=${fr('n!','(n−r)!')}；全排列 n!=${pp('n','n')}，并规定0!=1。<br>解题口诀：<b>先排有限制的位置</b>。`,
+ ex:[['例题5　从A、B、C中取2个排列','从A、B、C三个字母，每次取2个来排列，有多少种排法？','第一位有3种，第二位从剩下2个中选，有2种：3×2=<b>6</b> 种（树图列出）。',tree(['A','B','C'],a=>'ABC'.split('').filter(x=>x!=a),'')],
+ ['例题13(b)　四位奇数','由1~7这七个数字可组成多少个数字不重复的四位奇数？','先排个位：奇数1、3、5、7，有4种；千、百、十位从剩下6个数中排：'+pp(6,3)+'=6×5×4。共4×120=<b>480</b> 个。',sl([[6,'千位'],[5,'百位'],[4,'十位'],[4,'个位(奇)']],'×',480)]],
+ c:{i:[['n','n（元素总数）',7],['r','r（取出个数）',3]],f:v=>{const n=+v.n,r=+v.r;if(!(Number.isInteger(n)&&Number.isInteger(r)&&n>=1&&n<=60&&r>=0&&r<=n))return'请输入整数：1≤n≤60，0≤r≤n';const t=[...Array(Math.min(r,7))].map((_,i)=>n-i);return`<p>${pp(n,r)} = ${fr(n+'!','('+n+'−'+r+')!')} = ${r?t.join('×')+(r>7?'×…×'+(n-r+1):''):'1'} = <b>${F(P(n,r))}</b></p><p>n! = ${n}! = ${F(fa(n))}</p>`+(r?sl(t.map((x,i)=>[x,'第'+(i+1)+'位']),'×',F(P(n,r)))+(r>7?'<p class="mut">（只显示前7个位置）</p>':''):'')}},g:g2},
+{id:'19.3',t:'相异元素可重复排列',lead:`元素可重复选取：从n个不同元素中取r个排列，共 n×n×…×n = n<sup>r</sup> 种。<br>注意区分<b>“做选择的”</b>与<b>“被选择的”</b>：底数是被选择的个数。`,
+ ex:[['例题23　四位数','若数字可重复使用，由1、3、5、7、9可组成多少个四位数？','每一位都有5种取法：5<sup>4</sup>=<b>625</b> 个。',sl([[5,'千位'],[5,'百位'],[5,'十位'],[5,'个位']],'×',625)],
+ ['例题24　选修课','每位高二生要在5门选修课中选一门，3名学生有多少种选课方式？','每位学生有5种选择：5<sup>3</sup>=<b>125</b>（不是3<sup>5</sup>）。',sl([[5,'学生A'],[5,'学生B'],[5,'学生C']],'×',125)]],
+ c:{i:[['n','n（可选元素种数）',5],['r','r（位数/人数）',4]],f:v=>{const n=+v.n,r=+v.r;if(!(Number.isInteger(n)&&Number.isInteger(r)&&n>=1&&n<=100&&r>=1&&r<=12))return'请输入整数：1≤n≤100，1≤r≤12';const k=Math.min(r,6);return`<p>${n}<sup>${r}</sup> = ${Array(Math.min(r,6)).fill(n).join('×')}${r>6?'×…':''} = <b>${F(B(n)**B(r))}</b></p>`+sl(Array(k).fill([n,'每位'+n+'种']),'×',F(B(n)**B(r)))+(r>6?'<p class="mut">（只显示前6位）</p>':'')+(r<=n?`<p class="mut">对比：不可重复时 ${pp(n,r)} = ${F(P(n,r))}</p>`:'')}},g:g3},
+{id:'19.4',t:'相异元素的环形排列',lead:`n个不同元素作环形排列：${fr('n!','n')}=(n−1)!；从n个中取r个作环形排列：${fr(pp('n','r'),'r')}。<br>环形排列看的是<b>相对位置</b>，旋转后相同的算同一种。`,
+ ex:[['例题27　4人围圆桌','四人P、Q、R、S围圆桌而坐，有多少种不同的坐法？','每个环形排列对应4个线性排列：4!÷4=3!=<b>6</b> 种。',circ(['P','Q','R','S'])],
+ ['例题31　4男4女相间','4男4女围圆桌而坐，同性不能相邻，有多少种坐法？','先排4个男生（环形）：(4−1)!；再把4个女生排入4个空位：4!。共6×24=<b>144</b> 种。',circ(['男','女','男','女','男','女','男','女'],['dt','dt2','dt','dt2','dt','dt2','dt','dt2'])]],
+ c:{i:[['n','n（人数）',6],['r','r（入座人数）',4]],f:v=>{const n=+v.n,r=+v.r;if(!(Number.isInteger(n)&&Number.isInteger(r)&&r>=1&&n<=30&&r<=n))return'请输入整数：1≤r≤n≤30';return`<p>${fr(pp(n,r),r)} = ${fr(F(P(n,r)),r)} = <b>${F(P(n,r)/B(r))}</b>${r==n?`　（即 (${n}−1)! = ${F(fa(n-1))}）`:''}</p>`+(r<=12?circ(Lb(r)):'<p class="mut">（人数超过12，不绘图）</p>')}},g:g4},
+{id:'19.5',t:'不尽相异元素的排列',lead:`n个元素中有n<sub>1</sub>个a<sub>1</sub>、n<sub>2</sub>个a<sub>2</sub>、…、n<sub>k</sub>个a<sub>k</sub>（n<sub>1</sub>+…+n<sub>k</sub>=n），全排列数为 ${fr('n!','n<sub>1</sub>!·n<sub>2</sub>!·…·n<sub>k</sub>!')}。<br>最短路径问题可看成“东、东…北、北…”的不尽相异排列。`,
+ ex:[['例题34　MISSISSIPPI','将“MISSISSIPPI”的字母全取重新排列，有多少种排法？','共11个字母：1个M、4个I、4个S、2个P。'+fr('11!','1!×4!×4!×2!')+'=<b>34,650</b> 种。',tok('MISSISSIPPI')],
+ ['例题35　最短路径','5条南北向、4条东西向大道，从A到B有多少条最短路径？','必须走4段东、3段北，共7步：'+fr('7!','4!×3!')+'=<b>35</b> 条。',grid(4,3)]],
+ c:{i:[['m','模式','',['字母全排列','最短路径']],['l','字母模式：各字母个数；路径模式：东,北','3,2,1']],f:v=>{const L=v.l.split(/[,，\s]+/).map(Number).filter(x=>Number.isInteger(x)&&x>=0);if(v.m=='最短路径'){const[e,n]=L;if(!(e>=1&&n>=1&&e<=9&&n<=9))return'请输入“东,北”段数，如 4,3（各1~9）';return`<p>共走${e}段东、${n}段北，共${e+n}步：${fr((e+n)+'!',e+'!×'+n+'!')} = ${cc(e+n,e)} = <b>${F(C(e+n,e))}</b> 条最短路径</p>`+grid(e,n)+'<p class="mut">红线为其中一条路径</p>'}const c=L.filter(x=>x>0),n=c.reduce((a,b)=>a+b,0);if(!c.length||c.length>8||n>20)return'请输入各元素个数，如 3,2,1（最多8种、共不超过20个）';return`<p>共${n}个元素：${fr(n+'!',c.map(x=>x+'!').join('×'))} = <b>${F(fa(n)/c.reduce((p,x)=>p*fa(x),1n))}</b></p>`+tok(c.map((x,i)=>'ABCDEFGH'[i].repeat(x)).join(''))}},g:g5},
+{id:'19.6',t:'组合与组合数公式',lead:`从n个不同元素中取r个作一组（不计顺序）：${cc('n','r')}=${fr(pp('n','r'),'r!')}=${fr('n!','(n−r)!·r!')}；${cc('n',0)}=${cc('n','n')}=1，且 ${cc('n','r')}=${cc('n','n−r')}。<br>平均分堆要除以堆数的全排列数，以消除重复。`,
+ ex:[['例题38　委员会','25个男生及15个女生中选出5人，组成3男2女的委员会，有多少种选法？','男生：'+cc(25,3)+'=2300；女生：'+cc(15,2)+'=105；乘法原理：2300×105=<b>241,500</b> 种。',dots([[25,'25男取3','dt',3],[15,'15女取2','dt2',2]])],
+ ['例题45(b)　平均分堆','12本不同的书平均分成三堆，每堆4本，有多少种堆法？','先分步取：'+cc(12,4)+'×'+cc(8,4)+'×'+cc(4,4)+'=34,650，三堆无顺序，除以3!：34,650÷6=<b>5,775</b> 种。',dots([[4,'第一堆','dt',4],[4,'第二堆','dt2',4],[4,'第三堆','dt3',4]])]],
+ c:{i:[['n','n（元素总数）',10],['r','r（取出个数）',3]],f:v=>{const n=+v.n,r=+v.r;if(!(Number.isInteger(n)&&Number.isInteger(r)&&n>=1&&n<=60&&r>=0&&r<=n))return'请输入整数：1≤n≤60，0≤r≤n';return`<p>${cc(n,r)} = ${fr(pp(n,r),r+'!')} = ${fr(F(P(n,r)),F(fa(r)))} = <b>${F(C(n,r))}</b></p><p>对称性：${cc(n,n-r)} = ${F(C(n,n-r))}（取出r个＝留下n−r个）</p>`+(n<=40?dots([[n,n+'个中取'+r,'dt',r]]):'<p class="mut">（n>40，不绘图）</p>')}},g:g6},
+{id:'总复习',t:'综合测验',lead:'综合第19.1~19.6的题型，并加入课本总复习中较难的题目：10题选择 + 5题作答，完成后给出分数评估。题目每次都不同。',rev:1}];
+/* ---------- 补充：课本其余例题 ---------- */
+const AB=['A','B','C','D'];
+S[0].ex.push(['例题4　年级组长','3名高一生、4名高二生、5名高三生组成研究小组。(a)选一人当组长；(b)每个年级各选一名组长，各有多少种选法？','(a)分三类，加法原理：3+4+5=<b>12</b>；(b)分三步，缺一不可，乘法原理：3×4×5=<b>60</b>。',sl([[3,'高一'],[4,'高二'],[5,'高三']],'+',12)+sl([[3,'高一'],[4,'高二'],[5,'高三']],'×',60)]);
+S[1].ex.push(
+['例题6　求值','求值：(a)'+fr('70!','68!')+'；(b)'+pp(5,2)+'。','(a)'+fr('70×69×68!','68!')+'=70×69=<b>4,830</b>；(b)'+fr('5!','3!')+'=5×4=<b>20</b>。',sl([[70,'70!÷68!'],[69,'']],'×',4830)+sl([[5,'第1位'],[4,'第2位']],'×',20)],
+['例题7　化简',`化简 ${fr('(n+1)!','(n−1)!')}。`,`${fr('(n+1)·n·(n−1)!','(n−1)!')}=(n+1)n=<b>n²+n</b>。`,sl([['n+1','因子'],['n','因子']],'×','n²+n')],
+['例题8　求n的值',`若 52(${pp('n',2)})=${pp('2n',3)}，求n。`,`52n(n−1)=2n(2n−1)(2n−2)，因n≠0、n≠1（排列数要求n≥2），约去n(n−1)得 13=2n−1，<b>n=7</b>。检验：52×42=2184，14×13×12=2184。`,sl([[2184,'左边'],[2184,'右边']],'=')],
+['例题9　列出二位数','由1、2、3可组成多少个数字不重复的二位数？列出这些数。',pp(3,2)+'=3×2=<b>6</b> 个：12、13、21、23、31、32。',tree(['1','2','3'],a=>['1','2','3'].filter(x=>x!=a),'')],
+['例题10　VOLUME','从“VOLUME”中任取3个字母排成一行，有多少种排法？',pp(6,3)+'=6×5×4=<b>120</b> 种。',sl([[6,'第1个'],[5,'第2个'],[4,'第3个']],'×',120)],
+['例题11　巴士座位','巴士有28个座位，甲、乙、丙三名学生上车后有多少种坐法？',pp(28,3)+'=28×27×26=<b>19,656</b> 种。',sl([[28,'甲'],[27,'乙'],[26,'丙']],'×',F(19656))],
+['例题12　两端母音','4个不同母音、4个不同子音共8个字母排成一行，两端为母音的排法有多少种？','先排两端：'+pp(4,2)+'=12；中间6个字母全排列：6!=720。共12×720=<b>8,640</b> 种。',sl([[4,'左端'],[3,'右端'],['6!','中间6个']],'×',F(8640))],
+['例题13(a)(c)　数字1~7','(a)可组成多少个不重复的四位数？(c)两端都是偶数的四位数？','(a)'+pp(7,4)+'=<b>840</b>；(c)先排两端：偶数2、4、6，'+pp(3,2)+'=6，再排中间：'+pp(5,2)+'=20，共6×20=<b>120</b>。',sl([[7,'千'],[6,'百'],[5,'十'],[4,'个']],'×',840)+sl([[3,'千(偶)'],[5,'百'],[4,'十'],[2,'个(偶)']],'×',120)],
+['例题14　1、2、3的自然数','由1、2、3可组成多少个数字不重复的自然数？','分三类：一位数3个，二位数6个，三位数6个，加法原理：3+6+6=<b>15</b> 个。',sl([[3,'一位数'],[6,'二位数'],[6,'三位数']],'+',15)],
+['例题15　含0的三位数','从0~5中取不同数字，可组成多少个(a)三位数；(b)能被10整除的三位数？','(a)百位不能是0：5×'+pp(5,2)+'=<b>100</b>；(b)个位必为0：'+pp(5,2)+'=<b>20</b>。',sl([[5,'百(非0)'],[5,'十'],[4,'个']],'×',100)+sl([[5,'百'],[4,'十'],[1,'个=0']],'×',20)],
+['例题16　0~8的四位数','从0~8中取不同数字，可组成多少个(a)四位数；(b)四位偶数？','(a)8×'+pp(8,3)+'=<b>2,688</b>；(b)分两类：个位0：'+pp(8,3)+'=336；个位2、4、6、8：4×7×'+pp(7,2)+'=1,176。共336+1,176=<b>1,512</b>。',sl([[8,'千(非0)'],[8,'百'],[7,'十'],[6,'个']],'×',F(2688))+sl([[336,'个位为0'],[1176,'个位2468']],'+',F(1512))],
+['例题17　大于2100的数','由0~5可组成多少个大于2100且数字不重复的四位数？','第一类：千位3、4、5：3×'+pp(5,3)+'=180；第二类：千位为2，百位不能是0（须大于2100）：4×'+pp(4,2)+'=48。共180+48=<b>228</b>。',sl([[180,'千位>2'],[48,'千位=2']],'+',228)],
+['例题18　3000到7000的奇数','从3000到7000，共有多少个数字不重复的奇数？','千位为3、4、5、6四种情况：3→4×'+pp(8,2)+'=224；4→5×56=280；5→224；6→280。共<b>1,008</b>。',sl([[224,'千位3'],[280,'千位4'],[224,'千位5'],[280,'千位6']],'+',F(1008))],
+['例题19　8人排队','8人排队：(a)排成一行；(b)前后两行各4人；(c)三行，各1、3、4人。','(a)8!=<b>40,320</b>；(b)'+pp(8,4)+'×'+pp(4,4)+'=1680×24=<b>40,320</b>；(c)'+pp(8,1)+'×'+pp(7,3)+'×'+pp(4,4)+'=8×210×24=<b>40,320</b>（排成几行都一一对应一行排法）。',sl([[8,'1'],[7,'2'],[6,'3'],[5,'4'],[4,'5'],[3,'6'],[2,'7'],[1,'8']],'×',F(40320))],
+['例题20　限制位置','6名学生排成一列，小杰不能站第一个也不能站最后一个，有多少种列队方式？','小杰只能站中间4个位置：4种；其余5人任意排：5!。共4×120=<b>480</b>。',sl([[4,'小杰'],['5!','其余5人']],'×',480)],
+['例题21　男女排列','4男4女排成一行：(a)特定两女相邻；(b)特定两女不相邻；(c)男女相间。','(a)7!×2!=<b>10,080</b>；(b)8!−7!×2!=40,320−10,080=<b>30,240</b>；(c)男女相间有两种（男先或女先）：4!×4!×2!=<b>1,152</b>。',sl([['7!','两女当一人'],['2!','互换']],'×',F(10080))+sl([['4!','男'],['4!','女'],[2,'谁先']],'×',F(1152))]);
+S[2].ex.unshift(['例题22　由1、2组成的数','由数字1、2可组成多少个(a)二位数；(b)三位数？（数字可重复）','(a)2×2=<b>4</b>：11、12、21、22；(b)2×2×2=<b>8</b>。',tree(['1','2'],['1','2'],'')+sl([[2,'百位'],[2,'十位'],[2,'个位']],'×',8)]);
+S[2].ex.push(
+['例题25　大于5000','用1、2、3、5、7可组成多少个大于5000的四位数（可重复）？','千位只能是5或7：2种；其余三位各5种：2×5³=<b>250</b>。',sl([[2,'千(5或7)'],[5,'百'],[5,'十'],[5,'个']],'×',250)],
+['例题26　密码','由0~9任选四个数字（可重复）组成密码，0000不能用，可编成多少个密码？','10⁴=10,000，减去0000：<b>9,999</b> 个。',sl([[10,'0~9'],[10,'0~9'],[10,'0~9'],[10,'0~9']],'×')+'<p class="mut">10×10×10×10=10,000，再减去1</p>']);
+S[3].ex.push(
+['例题28　4人选3人围坐','四人P、Q、R、S中选三人围圆桌而坐，有多少种坐法？',pp(4,3)+'=24个线性排列，每个环形排列对应3个：24÷3=<b>8</b> 种。',circ(['P','Q','R'])],
+['例题29　花盆环形','6盆不同的花，(a)全部放在圆形展览台周围；(b)选3盆放置，各有多少种放法？','(a)(6−1)!=<b>120</b>；(b)'+fr(pp(6,3),3)+'=120÷3=<b>40</b>。',circ(Lb(6))],
+['例题30　8人开会','8人围圆桌，其中正、副组长及文书各一人：(a)无限制；(b)正、副组长相邻；(c)文书坐在正、副组长之间。','(a)7!=<b>5,040</b>；(b)两人当一人：(7−1)!×2!=<b>1,440</b>；(c)三人当一块：(6−1)!×2!=<b>240</b>。',circ(['正','文','副','甲','乙','丙','丁','戊'],['dt2','dt3','dt2','dt','dt','dt','dt','dt'])]);
+S[4].ex.unshift(['例题32　a、a、b','将a、a、b三个元素全取排列，有多少种排法？','把两个a暂当不同元素：3!=6；每种排法中两个a互换算同一种：6÷2!=<b>3</b> 种：aab、aba、baa。',tok('aab')]);
+S[4].ex.splice(1,0,['例题33　彩旗','红旗3面、黄旗2面、白旗1面排成一行，有多少种排法？',fr('6!','3!×2!×1!')+'=<b>60</b> 种。',tok('红红红黄黄白')]);
+S[5].ex.unshift(['例题36　从x、y、z取2个','从x、y、z三个元素任取两个为一组，有多少种？','每个组合有2!种排列：'+pp(3,2)+'='+cc(3,2)+'×2!，所以'+cc(3,2)+'='+fr('6','2')+'=<b>3</b>：xy、xz、yz。',dots([[3,'3个中取2','dt',2]])]);
+S[5].ex.push(
+['例题37　15人选4人','从15人中选4人组成小组，有多少种选法？',cc(15,4)+'=<b>1,365</b> 种。',dots([[15,'15人选4人','dt',4]])],
+['例题39　平行线上的三角形','两条平行线上各有5个点，最多能组成多少个三角形？','需一线取2点、另一线取1点：'+cc(5,2)+'×'+cc(5,1)+'+'+cc(5,1)+'×'+cc(5,2)+'=50+50=<b>100</b> 个。',NS(300,120,[0,1,2,3,4].map(i=>`<circle class="dt" cx="${40+i*55}" cy="25" r="6"/><circle class="dt2" cx="${40+i*55}" cy="95" r="6"/>`).join('')+'<line class="ln" x1="20" y1="25" x2="280" y2="25"/><line class="ln" x1="20" y1="95" x2="280" y2="95"/><path d="M95 25L205 25L150 95Z" class="pt" style="stroke-width:2.5"/>')],
+['例题40　邀请朋友','小明想从4位朋友中邀请至少一位参加派对，共有多少种邀请法？','邀请k人有'+cc(4,'k')+'种：4+6+4+1=<b>15</b>。',sl([[4,'1人'],[6,'2人'],[4,'3人'],[1,'4人']],'+',15)],
+['例题41　羽球双打','5名男队员、4名女队员：(a)一对男双与一对女双对打；(b)两队混双对打，各有多少种选法？','(a)'+cc(5,2)+'×'+cc(4,2)+'=10×6=<b>60</b>；(b)再把2男2女配成两队混双，有2!种：60×2=<b>120</b>。',dots([[5,'5男取2','dt',2],[4,'4女取2','dt2',2]])],
+['例题42　专家小组','7名历史专家、4名地理专家选5人：(a)至少2名地理专家；(b)最多3名地理专家。','(a)2地3史：6×35=210；3地2史：4×21=84；4地1史：1×7=7；共<b>301</b>。(b)总数'+cc(11,5)+'=462，减去4地1史的7种：<b>455</b>。',sl([[210,'2地3史'],[84,'3地2史'],[7,'4地1史']],'+',301)],
+['例题43　4本书分给甲乙','4本不同的书：(a)1本给甲3本给乙；(b)分成1本与3本两堆；(c)甲乙各2本；(d)分成两堆各2本。','(a)'+cc(4,1)+'×'+cc(3,3)+'=<b>4</b>；(b)堆没有人的区别，同样<b>4</b>；(c)'+cc(4,2)+'×'+cc(2,2)+'=<b>6</b>；(d)两堆无先后：6÷2!=<b>3</b>。',tree(['AB','AC','AD'],a=>({AB:['CD'],AC:['BD'],AD:['BC']})[a],'｜')],
+['例题44　12本书分5、4、3','(a)分5本给甲、4本给乙、3本给丙；(b)分给三人，一人5本、一人4本、一人3本；(c)分成5、4、3三堆。','(a)'+cc(12,5)+'×'+cc(7,4)+'×'+cc(3,3)+'=<b>27,720</b>；(b)谁得几本有3!种：27,720×6=<b>166,320</b>；(c)三堆数量不同，不会重复：<b>27,720</b>。',sl([['12C5','甲5本'],['7C4','乙4本'],['3C3','丙3本']],'×',F(27720))],
+['例题45(a)　平均分给三人','12本不同的书分给甲、乙、丙各4本，有多少种分法？',cc(12,4)+'×'+cc(8,4)+'×'+cc(4,4)+'=495×70×1=<b>34,650</b>。',sl([['12C4','甲4本'],['8C4','乙4本'],['4C4','丙4本']],'×',F(34650))],
+['例题46　五堆','12本不同的书分成五堆，三堆各2本、两堆各3本，有多少种堆法？','分步：'+cc(12,2)+'×'+cc(10,2)+'×'+cc(8,2)+'×'+cc(6,3)+'×'+cc(3,3)+'=1,663,200，2本的3堆、3本的2堆各无顺序，除以3!×2!=12：<b>138,600</b>。',dots([[2,'2本','dt',2],[2,'2本','dt',2],[2,'2本','dt',2],[3,'3本','dt2',3],[3,'3本','dt2',3]])]);
+/* 总复习：更多难题 */
+H.push(G('总复习',()=>{const c=R(4,6),k=R(2,4),a=fa(c-1)*P(c,k);return{q:`将${c}个不同颜色的杯子及${k}罐不同口味的果汁排成环形，其中罐装饮料不能相邻，有多少种排法？`,a,w:[fa(c+k-1)],e:`先排${c}个杯子（环形）：(${c}−1)!=${fa(c-1)}；${k}罐饮料插入${c}个杯子之间的空隙：${pp(c,k)}=${P(c,k)}。共${F(a)}。`,s:circ(Lb(c).map(()=>'杯'),Array(c).fill('dt'))}}),
+G('总复习',()=>{const n=R(6,10),a=2n**B(n)-2n*(1n+B(n));return{q:`从班会的${n}名执委中委派至少2名、最多${n-2}名代表出席座谈会，有多少种委派法？`,a,w:[2n**B(n)],e:`所有委派法共2<sup>${n}</sup>=${2n**B(n)}种，排除0名(1种)、1名(${n}种)、${n-1}名(${n}种)、${n}名(1种)，共${2*n+2}种：${F(a)}。`}}),
+G('总复习',()=>{const k=R(5,6),E=Math.floor(k/2)+1,a=fa(k)+B(E-1)*B(k-1)*fa(k-1);return{q:`由0、1、…、${k}这${k+1}个数字全取排列，可组成多少个${k+1}位偶数？`,a,w:[fa(k+1)/2n],e:`个位为0：${k}!=${fa(k)}；个位为${E-1}个非零偶数之一：${E-1}×(首位不能是0也不能与个位同，有${k-1}种)×${k-1}!=${F(B(E-1)*B(k-1)*fa(k-1))}。共${F(a)}。`}}),
+G('总复习',()=>{const k=R(3,4),a=fa(2*k+1)/(2n**B(k)*fa(k));return{q:`有${2*k+1}本不同的书，分成${k+1}堆，其中${k}堆各有2本，另一堆有1本，有多少种堆法？`,a,w:[fa(2*k+1)/2n**B(k)],e:`分步取书：${[...Array(k)].map((_,i)=>cc(2*k+1-2*i,2)).join('×')}（最后1本自成一堆）=${F(fa(2*k+1)/2n**B(k))}；${k}堆各2本无顺序，除以${k}!：${F(a)}。`,s:dots([...Array(k)].map(()=>[2,'2本','dt',2]).concat([[1,'1本','dt2',1]]))}}));
+/* ---------- 计算器 / 测验 ---------- */
+function calc(h,d){h.innerHTML=`<div class="ci">${d.i.map(([k,l,v,o])=>`<label>${l}${o?`<select data-k="${k}">${o.map(x=>`<option>${x}</option>`).join('')}</select>`:`<input data-k="${k}" value="${v}">`}</label>`).join('')}</div><button class="bt">计算</button><div class="co"></div>`;const run=()=>{const v={};h.querySelectorAll('[data-k]').forEach(e=>v[e.dataset.k]=e.value);h.querySelector('.co').innerHTML=d.f(v)};h.querySelector('.bt').onclick=run;h.querySelectorAll('[data-k]').forEach(e=>e.oninput=run);run()}
+function opts(x){const a=String(x.a);let w=[...new Set((x.w||[]).map(v=>B(v)).filter(v=>v>0n&&v!=x.a).map(String))].slice(0,3),t=0;while(w.length<3&&t++<99){const v=x.a+B(R(1,6))*(Math.random()<.5?-1n:1n);if(v>0n&&!w.includes(String(v))&&String(v)!=a)w.push(String(v))}return shuf([a,...w])}
+function quiz(h,cf){const mk=g=>({...g(),tag:g.tag}),M=cf.mc().map(mk),Fq=cf.fl().map(mk);let ma=0,mo=0,fd=0,fo=0,bad={};
+ h.innerHTML='<div class="pg"></div><div class="mq"></div><div class="fq"></div><div class="sm"></div><button class="bt">🔄 重新出题</button>';const[pg,mq,fq,sm,rb]=h.children;rb.onclick=()=>quiz(h,cf);
+ const up=()=>pg.textContent=`选择题 ${ma}/${M.length}　答对 ${mo}`+(ma==M.length&&mo>=cf.need?`　｜　作答题 ${fd}/${Fq.length}　答对 ${fo}`:''),
+ exh=(x,ok)=>`<div class="ex ${ok?'':'no'}"><b>${ok?'✅ 回答正确':'❌ 回答错误'}</b>，正确答案：<b>${F(x.a)}</b><br>${x.e}${x.s||''}</div>`,
+ fin=()=>{const t=mo+fo,N=M.length+Fq.length,p=Math.round(t/N*100);if(cf.rev){const wk=Object.keys(bad).map(k=>`${k}（错${bad[k]}题）`).join('、');sm.innerHTML=`<div class="msg ${p>=50?'':'no'}"><b>总分：${t} / ${N}（${p}%）</b><br>${p>=90?'🏆 优秀！排列与组合掌握得非常扎实。':p>=70?'👍 良好！再巩固出错的类型就更稳了。':p>=50?'🙂 及格。建议回到各节例题和计算器再练习。':'💪 需要加强，先从各节随堂题开始，再回来挑战。'}${wk?`<br>建议复习：${wk}`:'<br>没有失分，太棒了！'}</div>`}else sm.innerHTML=`<div class="msg">本节完成：选择题 ${mo}/${M.length}，作答题 ${fo}/${Fq.length}。${t==N?'🎉 全部答对！':'点“重新出题”可挑战全新题目。'}</div>`},
+ showF=()=>{Fq.forEach((x,i)=>{const d=document.createElement('div');d.className='q';d.innerHTML=`<p><b>作答题 ${i+1}</b>　${x.q}</p><input inputmode="numeric" placeholder="输入整数答案"> <button class="bt">提交</button><div class="r"></div>`;const bt=d.querySelector('button'),ip=d.querySelector('input');bt.onclick=()=>{if(!ip.value.trim())return;ip.disabled=bt.disabled=true;const ok=ip.value.replace(/[,，\s]/g,'')==String(x.a);ok?fo++:bad[x.tag]=(bad[x.tag]||0)+1;fd++;d.querySelector('.r').innerHTML=exh(x,ok);up();if(fd==Fq.length)fin()};fq.appendChild(d)})},
+ afterMC=()=>{if(mo<cf.need){sm.innerHTML=`<div class="msg no">本次答对 ${mo} 题，需答对 ${cf.need} 题以上才能解锁作答题。看完解析后点“重新出题”再试一次！</div>`;return}sm.innerHTML=cf.rev?'':`<div class="msg">🎉 答对 ${mo} 题，已解锁作答题！</div>`;showF()};
+ M.forEach((x,i)=>{const o=opts(x),d=document.createElement('div');d.className='q';d.innerHTML=`<p><b>第${i+1}题</b>　${x.q}</p><div class="os">${o.map((v,j)=>`<button class="op" data-v="${v}">${'ABCD'[j]}. ${F(v)}</button>`).join('')}</div><div class="r"></div>`;
+  d.querySelector('.os').onclick=e=>{const b=e.target.closest('.op');if(!b||d.dataset.d)return;d.dataset.d=1;const ok=b.dataset.v==String(x.a);d.querySelectorAll('.op').forEach(k=>{k.disabled=true;if(k.dataset.v==String(x.a))k.classList.add('ok')});if(ok)mo++;else{b.classList.add('no');bad[x.tag]=(bad[x.tag]||0)+1}ma++;d.querySelector('.r').innerHTML=exh(x,ok);up();if(ma==M.length)afterMC()};mq.appendChild(d)});up()}
+/* ---------- 页面生成 ---------- */
+const ALL=[g1,g2,g3,g4,g5,g6].flat(),nav=$('#tabs'),main=$('#main');
+S.forEach((s,i)=>{nav.insertAdjacentHTML('beforeend',`<button data-i="${i}">${s.id}<small>${s.t}</small></button>`);
+ main.insertAdjacentHTML('beforeend',`<section class="pane" id="p${i}"><h2>${s.id}${s.rev?'':' '}${s.t}</h2><div class="card">${s.lead}</div>`+(s.rev?'':`<h3>📖 课本例题</h3>${s.ex.map(e=>`<div class="card"><b>${e[0]}</b><p>${e[1]}</p><p>${e[2]}</p>${e[3]}</div>`).join('')}<h3>🧮 ${s.id} 专属计算器</h3><div class="card cal"></div><h3>📝 随堂选择题（5题）</h3>`)+`<div class="card qz"></div></section>`);
+ const p=$('#p'+i);if(!s.rev){calc(p.querySelector('.cal'),s.c);quiz(p.querySelector('.qz'),{mc:()=>pickN(s.g,5),fl:()=>pickN(s.g,2),need:3})}
+ else quiz(p.querySelector('.qz'),{rev:1,need:0,mc:()=>shuf([...shuf(H).slice(0,2),...shuf(ALL).slice(0,8)]),fl:()=>shuf([...shuf(H).slice(0,2),...shuf(ALL).slice(0,3)])})});
+function go(i){document.querySelectorAll('.pane').forEach((e,k)=>e.classList.toggle('on',k==i));nav.querySelectorAll('button').forEach((b,k)=>{b.classList.toggle('on',k==i);if(k==i)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})});scrollTo(0,0);try{localStorage.setItem('c19tab',i)}catch(e){}}
+nav.onclick=e=>{const b=e.target.closest('button');if(b)go(+b.dataset.i)};
+let fs=16,dk=0;try{fs=+localStorage.getItem('c19fs')||16;dk=+localStorage.getItem('c19dk')||0}catch(e){}
+const ap=()=>{document.documentElement.style.setProperty('--fs',fs+'px');document.documentElement.dataset.t=dk?'d':'l';$('#th').textContent=dk?'☀️ 白天':'🌙 夜间';try{localStorage.setItem('c19fs',fs);localStorage.setItem('c19dk',dk)}catch(e){}};
+$('#fm').onclick=()=>{fs=Math.max(13,fs-1);ap()};$('#fp').onclick=()=>{fs=Math.min(24,fs+1);ap()};$('#fz').onclick=()=>{fs=16;ap()};$('#th').onclick=()=>{dk=1-dk;ap()};ap();
+let t0=0;try{t0=+localStorage.getItem('c19tab')||0}catch(e){}go(Math.min(t0,S.length-1));
+const WMH=$('#wm').outerHTML,FTH=$('footer').outerHTML;setInterval(()=>{if(!$('#wm'))document.body.insertAdjacentHTML('beforeend',WMH);if(!$('footer'))document.body.insertAdjacentHTML('beforeend',FTH)},3000);
+console.log('%c峇株吧辖华仁中学蔡逸众制作 · Made by ecchua79','color:#0f766e;font-weight:bold');
+</script>
+</body>
+</html>
