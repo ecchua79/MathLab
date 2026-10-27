@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School 华仁中学">
+<!-- © 蔡逸众 (ecchua79) · Chinese High School 华仁中学 · 矩阵互动课程 -->
+<title>矩阵 · 高二上册第15章</title>
+<style>
+/* © 蔡逸众 ecchua79 Chinese High School */
+:root{--bg:#fff;--fg:#1c2433;--card:#f2f5fb;--ac:#e8632b;--bl:#254a9a;--bd:#cdd6e6;--ok:#1d8a4a;--no:#c62f2f}
+[data-t=d]{--bg:#12161f;--fg:#e6ebf5;--card:#1c2330;--ac:#ff8a50;--bl:#7fa6ff;--bd:#33405a;--ok:#4cd387;--no:#ff7b7b}
+*{box-sizing:border-box}html{font-size:15px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5;padding-top:env(safe-area-inset-top,0px)}
+header{display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--card);border-bottom:2px solid var(--ac)}
+header h1{font-size:1.05rem;margin:0;flex:1;color:var(--bl)}
+button,select,input{font:inherit;color:var(--fg)}
+.cb{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:3px 9px;cursor:pointer}
+nav{display:flex;overflow-x:auto;gap:6px;padding:6px 8px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--bg);z-index:5;-webkit-overflow-scrolling:touch}
+nav button{flex:none;white-space:nowrap;border:1px solid var(--bd);background:var(--card);border-radius:16px;padding:4px 12px;cursor:pointer}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{padding:8px 10px;max-width:900px;margin:auto}
+h2{color:var(--bl);margin:6px 0}h3{margin:12px 0 4px;color:var(--ac)}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;margin:6px 0;overflow-x:auto}
+.mx{display:inline-grid;gap:3px 12px;padding:2px 9px;border:solid var(--fg);border-width:0 2px;border-radius:7px;vertical-align:middle;text-align:center;margin:2px 3px}
+.mx input{width:3.3em;text-align:center;background:var(--bg);border:1px solid var(--bd);border-radius:5px;padding:2px}
+.mx span{display:flex;align-items:center;justify-content:center;min-width:1.4em}
+.fr{display:inline-flex;align-items:center}.fp{display:inline-flex;flex-direction:column;text-align:center;line-height:1.15;margin:0 1px;font-size:.92em}
+.fp i{font-style:normal;border-bottom:1.5px solid;padding:0 3px}.fp b{font-weight:400}
+.out{margin-top:6px;overflow-x:auto}.bad{color:var(--no);font-weight:600}
+.qc{border:1px solid var(--bd);border-radius:10px;padding:8px;margin:7px 0;background:var(--bg)}
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin:6px 0}
+.ops button,.fb{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:6px;cursor:pointer}
+.ops button.r{background:var(--ok);color:#fff}.ops button.w{background:var(--no);color:#fff}
+.ex{margin-top:5px;font-size:.93rem}.fi{width:7em;padding:4px;border:1px solid var(--bd);border-radius:6px;background:var(--bg)}
+.sum{font-size:1.1rem;text-align:center;padding:10px}
+footer{text-align:center;font-size:.8rem;opacity:.75;padding:14px 8px 24px;border-top:1px solid var(--bd);margin-top:16px}
+.wm{position:fixed;inset:0;pointer-events:none;z-index:9;overflow:hidden}
+.wm span{position:absolute;font-size:.6rem;opacity:.09;transform:rotate(-25deg);white-space:nowrap}
+</style></head><body>
+<header><h1>《数学》高二上册 · 第15章 矩阵</h1><button class=cb id=fm>A−</button><button class=cb id=fp>A+</button><button class=cb id=th>🌙</button></header>
+<nav id=nav></nav><main id=pane></main>
+<footer>峇株吧辖华仁中学出品 · 蔡逸众老师 制作 · ecchua79<br>Chinese High School · 离线可用</footer>
+<i style="position:absolute;left:-9999px" aria-hidden=true>蔡逸众 ecchua79 Chinese High School</i>
+<div class=wm id=wm></div>
+<script>
+console.log('%c© 蔡逸众 · ecchua79 · Chinese High School 华仁中学','color:#e8632b');
+const $=s=>document.querySelector(s),ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pk=a=>a[ri(0,a.length-1)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const nz=(a,b)=>{let v=0;while(!v)v=ri(a,b);return v};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const F=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d)||1;return{n:n/g,d:d/g}},I=n=>F(n);
+const add=(a,b)=>F(a.n*b.d+b.n*a.d,a.d*b.d),mul=(a,b)=>F(a.n*b.n,a.d*b.d),sub=(a,b)=>add(a,F(-b.n,b.d)),div=(a,b)=>F(a.n*b.d,a.d*b.n);
+const fh=f=>typeof f=='string'?f:f.d==1?(f.n<0?'−'+-f.n:''+f.n):`<span class=fr>${f.n<0?'−':''}<span class=fp><i>${Math.abs(f.n)}</i><b>${f.d}</b></span></span>`;
+const FR=(n,d)=>`<span class=fp><i>${n}</i><b>${d}</b></span>`;
+const mh=M=>`<span class=mx style="grid-template-columns:repeat(${M[0].length},auto)">${M.flat().map(f=>`<span>${fh(f)}</span>`).join('')}</span>`;
+const RM=(r,c,lo=-5,hi=9)=>Array.from({length:r},()=>Array.from({length:c},()=>I(ri(lo,hi))));
+const mA=(A,B,f)=>A.map((r,i)=>r.map((x,j)=>f(x,B?B[i][j]:0)));
+const MA=(A,B)=>mA(A,B,add),MS=(A,B)=>mA(A,B,sub),MK=(k,A)=>A.map(r=>r.map(x=>mul(typeof k=='number'?I(k):k,x)));
+const MM=(A,B)=>A.map(r=>B[0].map((_,j)=>r.reduce((s,x,k)=>add(s,mul(x,B[k][j])),F(0))));
+const T=A=>A[0].map((_,j)=>A.map(r=>r[j]));
+const minor=(A,i,j)=>A.filter((_,k)=>k!=i).map(r=>r.filter((_,k)=>k!=j));
+const det=A=>A.length==1?A[0][0]:A[0].reduce((s,x,j)=>add(s,mul(I(j%2?-1:1),mul(x,det(minor(A,0,j))))),F(0));
+const cof=A=>A.map((r,i)=>r.map((_,j)=>mul(I((i+j)%2?-1:1),det(minor(A,i,j)))));
+const inv=A=>MK(div(I(1),det(A)),T(cof(A)));
+/* ---------- SVG ---------- */
+const fs=(f,x,y)=>{if(typeof f=='string')return`<text x="${x}" y="${y+6}" text-anchor="middle" font-size="19" fill="currentColor">${f}</text>`;
+if(f.d==1)return`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="20" fill="currentColor">${f.n<0?'−'+-f.n:f.n}</text>`;
+const a=Math.abs(f.n),w=Math.max(String(a).length,String(f.d).length)*9+6;
+return`<g fill="currentColor" font-size="15" text-anchor="middle">${f.n<0?`<text x="${x-w/2-6}" y="${y+5}" font-size="18">−</text>`:''}<text x="${x}" y="${y-3}">${a}</text><line x1="${x-w/2}" x2="${x+w/2}" y1="${y}" y2="${y}" stroke="currentColor" stroke-width="1.4"/><text x="${x}" y="${y+15}">${f.d}</text></g>`};
+const ln=f=>typeof f=='string'?f.length:f.d==1?String(Math.abs(f.n)).length+(f.n<0):Math.max(String(Math.abs(f.n)).length,String(f.d).length)+1.5;
+function ms(M,hi){const r=M.length,c=M[0].length,fr=M.some(a=>a.some(f=>typeof f!='string'&&f.d!=1)),cw=Math.max(40,Math.max(...M.flat().map(ln))*11+14),rh=fr?44:30,w=c*cw+16,h=r*rh+8;
+let s=`<path d="M8,0 h-6 v${h} h6 M${w-8},0 h6 v${h} h-6" fill="none" stroke="currentColor" stroke-width="2"/>`;
+M.forEach((row,i)=>row.forEach((f,j)=>{const cx=8+j*cw+cw/2,cy=4+i*rh+rh/2;if(hi&&hi(i,j))s+=`<rect x="${cx-cw/2+2}" y="${cy-rh/2+1}" width="${cw-4}" height="${rh-2}" rx="6" fill="#e8632b" opacity=".3"/>`;s+=fs(f,cx,cy)}));return{s,w:w+6,h}}
+const tx=(t,w,fz=18)=>({s:`<text x="${w/2}" y="21" text-anchor="middle" font-size="${fz}" fill="currentColor">${t}</text>`,w,h:30});
+const fi=f=>({s:fs(f,22,22),w:46,h:44});
+function lay(it){let x=4,H=Math.max(...it.map(i=>i.h)),s='';it.forEach(i=>{s+=`<g transform="translate(${x},${(H-i.h)/2+4})">${i.s}</g>`;x+=i.w+6});return`<div style="overflow-x:auto"><svg viewBox="0 0 ${x} ${H+8}" width="${x}" style="max-width:100%;height:auto">${s}</svg></div>`}
+/* ---------- 各节的演示函数 ---------- */
+const bad=s=>`<p class=bad>⚠ ${s}</p>`;
+const o1=(A,i,j)=>{const r=A.length,c=A[0].length,z=A.flat().every(f=>!f.n),id=r==c&&A.every((x,a)=>x.every((f,b)=>f.n==(a==b?1:0)));
+const ty=id?'单位矩阵':z?'零矩阵':r==c?`${r} 阶方阵`:r==1?'行矩阵':c==1?'列矩阵':'一般矩阵';
+return lay([ms(A,(a,b)=>a==i&&b==j),tx('转置 →',70),ms(T(A))])+`<p>A 是 <b>${r}×${c}</b> 矩阵（${ty}）。a<sub>${i+1}${j+1}</sub>＝第 ${i+1} 行第 ${j+1} 列＝<b>${fh(A[i][j])}</b>。Aᵀ（右）是 ${c}×${r} 矩阵：行与列互换。</p>`};
+const o2=(op,A,B,k)=>{let C,it,st=[];const ac=A[0].length;
+if(op=='k'){C=MK(k,A);it=[fi(I(k)),ms(A),tx('=',26),ms(C)];C.forEach((r,i)=>r.forEach((x,j)=>st.push(`${k}×(${A[i][j].n}) = ${x.n}`)))}
+else if(op=='m'){if(ac!=B.length)return bad(`A 的列数(${ac}) ≠ B 的行数(${B.length})，AB 无意义。`)+lay([ms(A),tx('×',26),ms(B)]);C=MM(A,B);
+it=[ms(A,i=>i==0),tx('×',26),ms(B,(i,j)=>j==0),tx('=',26),ms(C,(i,j)=>!i&&!j)];C.forEach((r,i)=>r.forEach((x,j)=>st.push(`c<sub>${i+1}${j+1}</sub> = ${A[i].map((a,t)=>`(${a.n})(${B[t][j].n})`).join('+')} = ${x.n}`)))}
+else{if(A.length!=B.length||ac!=B[0].length)return bad('只有同阶矩阵才能相加减。');const p=op=='a';C=p?MA(A,B):MS(A,B);it=[ms(A),tx(p?'+':'−',26),ms(B),tx('=',26),ms(C)];C.forEach((r,i)=>r.forEach((x,j)=>st.push(`${A[i][j].n} ${p?'+':'−'} (${B[i][j].n}) = ${x.n}`)))}
+return lay(it)+`<p>${op=='m'?'橙色：A 的第1行 × B 的第1列 → c₁₁（行乘列再相加）':'对应元素逐个运算'}<br>${st.join('<br>')}</p>`};
+const o3=A=>{const n=A.length,d=det(A);let s=lay([ms(A),tx(`|A| = ${d.n}`,80)]);if(!d.n)return s+`<p class=bad>|A| = 0，A 没有逆矩阵。</p>`;
+const C=cof(A),J=T(C),V=MK(div(I(1),d),J),dl=n==2?`|A| = ad − bc = (${A[0][0].n})(${A[1][1].n}) − (${A[0][1].n})(${A[1][0].n}) = ${d.n}`:`沙路法：|A| = ${d.n}`;
+return s+(n==3?lay([ms(C),tx('转置 →',70),ms(J)])+'<p>左：各数的代数余子式矩阵；右：伴随矩阵 adj A（转置）。</p>':'')+lay([tx('A⁻¹ =',56),fi(div(I(1),d)),ms(J),tx('=',26),ms(V)])+`<p>${dl}≠0，故 A⁻¹ = ${FR('1','|A|')}·adj A。</p>`};
+const o4=(A,B)=>{const n=A.length,d=det(A),V=['x','y','z'].slice(0,n).map(v=>[v]);let s=lay([ms(A),ms(V),tx('=',26),ms(B)]);if(!d.n)return s+`<p class=bad>|A| = 0，系数矩阵不可逆，不能用逆矩阵法。</p>`;
+const Iv=inv(A),X=MM(Iv,B);return s+lay([tx('X = A⁻¹B =',84),ms(Iv),ms(B),tx('=',26),ms(X)])+`<p>|A| = ${d.n}。解：${X.map((r,i)=>`${V[i][0]} = ${fh(r[0])}`).join('，')}</p>`};
+/* ---------- 计算器输入 ---------- */
+const sel=(id,a,v)=>`<select id=${id}>${a.map(x=>`<option${x==v?' selected':''}>${x}</option>`).join('')}</select>`;
+const G=(id,r,c,d)=>`<span class=mx style="grid-template-columns:repeat(${c},auto)">${Array.from({length:r*c},(_,k)=>`<input id=${id}${k} type=number value=${d?d[k%d.length]:ri(-3,6)}>`).join('')}</span>`;
+const RG=(id,r,c)=>Array.from({length:r},(_,i)=>Array.from({length:c},(_,j)=>{const v=parseFloat($('#'+id+(i*c+j)).value);return I(Math.round(isNaN(v)?0:v))}));
+const clamp=(id,m)=>{const e=$('#'+id);if(+e.value>m)e.value=m};
+function t1(h){h.innerHTML=`行${sel('r',[1,2,3],2)} 列${sel('c',[1,2,3],3)}　看 a<sub>ij</sub>：i${sel('i',[1,2,3],1)} j${sel('j',[1,2,3],2)}<div id=gs></div><div class=out id=o></div>`;
+const rb=()=>{$('#gs').innerHTML='A = '+G('a',+$('#r').value,+$('#c').value,[1,2,3,4,5,6,7,8,9])};
+const go=()=>{const r=+$('#r').value,c=+$('#c').value;clamp('i',r);clamp('j',c);$('#o').innerHTML=o1(RG('a',r,c),$('#i').value-1,$('#j').value-1)};
+h.oninput=e=>{if(e.target.id=='r'||e.target.id=='c')rb();go()};rb();go()}
+function t2(h){h.innerHTML=`运算${sel('op',['A + B','A − B','k × A','A × B'],'A × B')} k=<input id=k type=number value=2 style="width:3.5em">　A：${sel('m',[1,2,3],2)}行${sel('p',[1,2,3],3)}列　B 的列数${sel('n',[1,2,3],2)}<div id=gs></div><div class=out id=o></div>`;
+const rb=()=>{const op=$('#op').value,m=+$('#m').value,p=+$('#p').value,n=+$('#n').value;$('#gs').innerHTML='A='+G('a',m,p)+(op=='k × A'?'':' B='+(op=='A × B'?G('b',p,n):G('b',m,p)))};
+const go=()=>{const op=$('#op').value,m=+$('#m').value,p=+$('#p').value,n=+$('#n').value;const A=RG('a',m,p),B=op=='k × A'?0:op=='A × B'?RG('b',p,n):RG('b',m,p);$('#o').innerHTML=o2({'A + B':'a','A − B':'s','k × A':'k','A × B':'m'}[op],A,B,+$('#k').value||0)};
+h.oninput=e=>{if(/^(op|m|p|n)$/.test(e.target.id))rb();go()};rb();go()}
+function t3(h){const D={2:[5,3,2,1],3:[1,-1,1,3,2,-2,2,-1,3]};h.innerHTML=`阶数${sel('n',[2,3],2)}<div id=gs></div><div class=out id=o></div>`;
+const rb=()=>{const n=+$('#n').value;$('#gs').innerHTML='A='+G('a',n,n,D[n])},go=()=>{const n=+$('#n').value;$('#o').innerHTML=o3(RG('a',n,n))};
+h.oninput=e=>{if(e.target.id=='n')rb();go()};rb();go()}
+function t4(h){const D={2:[[7,-4,1,5],[11,-4]],3:[[1,-1,1,4,-4,1,1,2,-1],[4,7,1]]};h.innerHTML=`未知数个数${sel('n',[2,3],2)}<div id=gs></div><div class=out id=o></div>`;
+const rb=()=>{const n=+$('#n').value;$('#gs').innerHTML='系数 A='+G('a',n,n,D[n][0])+' 常数 B='+G('b',n,1,D[n][1])},go=()=>{const n=+$('#n').value;$('#o').innerHTML=o4(RG('a',n,n),RG('b',n,1))};
+h.oninput=e=>{if(e.target.id=='n')rb();go()};rb();go()}
+const M=a=>a.map(r=>r.map(I)),ZZ=A=>A.map(r=>r.map(()=>I(0))),eqm=(X,Y)=>JSON.stringify(X)==JSON.stringify(Y);
+const row=(lb,L,R)=>`<p><b>${lb}</b></p>`+lay([ms(L),tx(eqm(L,R)?'=':'≠',26),ms(R)]);
+const o4k=(h,A,k,B)=>lay([fi(h),ms(A),tx('+',26),fi(k),ms(B),tx('=',26),ms(MA(MK(h,A),MK(k,B)))])+'<p>先把纯量乘进每个元素，再对应元素相加（减法就是加上负数倍）。</p>';
+function XP(h,k){let c=-1;h.innerHTML=`<p>${{1:'目的：检验矩阵加法的性质。',2:'目的：检验矩阵纯量积的性质。',3:'目的：探索矩阵的乘法是否具有交换律。'}[k]}（第一组是课本的矩阵，之后随机换组，可多试几次再归纳）</p><button class=fb>🔄 ${k==3?'下一组':'换一组矩阵'}</button><div class=out></div><p class=cc></p>`;
+const o=h.querySelector('.out'),cc=h.querySelector('.cc');
+const go=()=>{c++;const tb=!c;let s='',t='';
+if(k==1){const A=tb?M([[1,5],[-1,4]]):RM(ri(1,3),ri(1,3)),r=A.length,l=A[0].length,B=tb?M([[-2,1],[3,-4]]):RM(r,l),C=tb?M([[2,4],[-3,0]]):RM(r,l);
+s=lay([tx('A =',40),ms(A),tx('B =',40),ms(B),tx('C =',40),ms(C)])+row('A + B 与 B + A',MA(A,B),MA(B,A))+row('(A + B) + C 与 A + (B + C)',MA(MA(A,B),C),MA(A,MA(B,C)))+row('A + O 与 A（O 为零矩阵）',MA(A,ZZ(A)),A);t='结论：加法有<b>交换律</b>、<b>结合律</b>，且 A + O = O + A = A。'}
+if(k==2){const A=tb?M([[1,5],[-1,4]]):RM(2,2,-3,5),B=tb?M([[-2,1],[3,4]]):RM(2,2,-3,5),h2=tb?5:nz(-4,4),k2=tb?-3:nz(-4,4);
+s=lay([tx('A =',40),ms(A),tx('B =',40),ms(B)])+`<p>h = ${h2}，k = ${k2}</p>`+row('h(A + B) 与 hA + hB',MK(h2,MA(A,B)),MA(MK(h2,A),MK(h2,B)))+row('(h + k)A 与 hA + kA',MK(h2+k2,A),MA(MK(h2,A),MK(k2,A)))+row('(hk)A 与 h(kA)',MK(h2*k2,A),MK(h2,MK(k2,A)));t='结论：纯量积有<b>分配律</b> h(A+B)=hA+hB、(h+k)A=hA+kA，以及<b>结合律</b> (hk)A=h(kA)。'}
+if(k==3){const cs=[[[[-2,1],[1,-2]],[[2,2],[-1,-1]]],[[[2,1]],[[5],[3]]],[[[3,0],[2,-1]],[[-2],[7]]],[[[1,2],[-5,0],[6,2]],[[2,-1,0],[3,-2,1]]]],[A,B]=c<4?cs[c].map(M):[RM(2,2,-3,4),RM(2,2,-3,4)],ab=A[0].length==B.length,ba=B[0].length==A.length;
+s=lay([tx('A =',40),ms(A),tx('B =',40),ms(B)])+(ab&&ba?row('AB 与 BA',MM(A,B),MM(B,A)):ab?`<p><b>AB =</b></p>`+lay([ms(MM(A,B))])+bad('BA 无意义（B 的列数 ≠ A 的行数）'):`<p><b>BA =</b></p>`+lay([ms(MM(B,A))])+bad('AB 无意义（A 的列数 ≠ B 的行数）'));t='结论：AB 不一定等于 BA，矩阵乘法<b>不一定</b>具有交换律；有时 BA 甚至无意义。'}
+o.innerHTML=s;cc.innerHTML=t};h.querySelector('button').onclick=go;go()}
+function t5(h){const rnd=n=>{let d,A;do{d=Array.from({length:n*n},()=>ri(-3,5));A=Array.from({length:n},(_,i)=>d.slice(i*n,i*n+n).map(I))}while(!det(A).n);return d};
+h.innerHTML=`阶数${sel('wn',[2,3,4],3)} <button class=fb id=wr>🎲 随机生成</button><div id=wg></div><div class=out id=wo></div>`;
+const rb=()=>{const n=+$('#wn').value;$('#wg').innerHTML='A='+G('w',n,n,rnd(n))},go=()=>{const n=+$('#wn').value,A=RG('w',n,n),d=det(A);if(!d.n){$('#wo').innerHTML=bad('|A| = 0，没有逆矩阵。');return}const V=inv(A);$('#wo').innerHTML=lay([ms(A),tx('逆矩阵 →',84),ms(V)])+lay([ms(A),ms(V),tx('=',26),ms(MM(A,V))])+`<p>|A| = ${d.n}。验证：A·A⁻¹ = I（单位矩阵）✔</p>`};
+h.oninput=e=>{if(e.target.id=='wn')rb();go()};$('#wr').onclick=()=>{rb();go()};rb();go()}
+/* ---------- 题目引擎 ---------- */
+const ch=C=>{const D=C.map(r=>r.slice()),i=ri(0,D.length-1),j=ri(0,D[0].length-1);D[i][j]=add(D[i][j],I(pk([-2,-1,1,2])));return D};
+const eq=(r,v,p)=>r.map((c,i)=>{c=c.n;const a=Math.abs(c),t=(a==1?'':a)+v[i];return i?(c<0?' − ':' + ')+t:(c<0?'−':'')+t}).join('')+' = '+p;
+const sysA=n=>{let A,d;do{A=Array.from({length:n},()=>Array.from({length:n},()=>I(nz(-3,4))));d=det(A).n}while(!d||Math.abs(d)>40);return A};
+const G1=[
+()=>{const r=ri(2,4);let c;do c=ri(2,4);while(c==r);return{q:`矩阵 A = ${mh(RM(r,c))} 的阶是？`,c:`${r}×${c}`,w:[`${c}×${r}`,`${r}×${r}`,`${c}×${c}`,`${r+c}`],e:`横向是行、纵向是列：A 有 ${r} 行 ${c} 列，是 ${r}×${c} 矩阵（行数在前）。`}},
+()=>{const A=RM(3,3),i=ri(0,2);let j;do j=ri(0,2);while(j==i);const v=A[i][j];return{q:`A = ${mh(A)}，a<sub>${i+1}${j+1}</sub> = ？`,c:fh(v),w:[fh(A[j][i]),fh(A[i][(j+1)%3]),fh(A[(i+1)%3][j]),fh(F(-v.n)),fh(F(v.n+ri(1,3)))],e:`a<sub>ij</sub> 是第 i 行第 j 列：第 ${i+1} 行第 ${j+1} 列是 ${fh(v)}（${fh(A[j][i])} 是 a<sub>${j+1}${i+1}</sub>，行列别弄反）。`}},
+()=>{const A=RM(2,3),t=T(A);return{q:`A = ${mh(A)}，则 Aᵀ = ？`,c:mh(t),w:[mh(A),mh(A.map(r=>r.slice().reverse())),mh(MK(-1,t)),mh([[A[0][0],A[0][1]],[A[0][2],A[1][0]],[A[1][1],A[1][2]]])],e:`转置：行与列依次对调，A 的第 i 行变成 Aᵀ 的第 i 列。2×3 矩阵的转置是 3×2：${mh(t)}`}}];
+const F1=[()=>{const x=ri(-3,4),y=ri(-4,5),p=ri(2,4),q=ri(-3,3),s=ri(-4,4),v1=p*x+q,v2=y+s,t=(a,b)=>`${a}${b>=0?'+':'−'}${Math.abs(b)}`;
+return{q:`相等矩阵：${mh([[`${p}x${q>=0?'+'+q:q}`,3],[`y${s>=0?'+'+s:s}`,5]].map(r=>r.map(v=>typeof v=='number'?I(v):v)))} = ${mh([[I(v1),I(3)],[I(v2),I(5)]])}，求 x + y 的值。`,a:x+y,e:`对应元素相等：${p}x${q>=0?'+':''}${q} = ${v1} ⇒ x = ${x}；y${s>=0?'+':''}${s} = ${v2} ⇒ y = ${y}。x+y = ${x+y}。`}},
+()=>{const A=RM(2,3),i=ri(1,3),j=ri(1,2);return{q:`A = ${mh(A)}，求 Aᵀ 的第 ${i} 行第 ${j} 列元素。`,a:A[j-1][i-1].n,e:`Aᵀ 的第 ${i} 行第 ${j} 列 = A 的第 ${j} 行第 ${i} 列 = ${A[j-1][i-1].n}。`}}];
+const G2=[
+()=>{const c=ri(2,3),A=RM(2,c),B=RM(2,c),p=Math.random()<.5,C=p?MA(A,B):MS(A,B);return{q:`A = ${mh(A)}，B = ${mh(B)}，求 A ${p?'+':'−'} B。`,c:mh(C),w:[mh(p?MS(A,B):MA(A,B)),mh(ch(C)),mh(ch(C)),mh(mA(A,B,mul))],e:`同阶矩阵才能加减，对应元素相${p?'加':'减'}：${mh(C)}`}},
+()=>{const A=RM(2,2),B=RM(2,2),k=ri(2,4),h=ri(2,3),C=MS(MK(k,A),MK(h,B));return{q:`A = ${mh(A)}，B = ${mh(B)}，求 ${k}A − ${h}B。`,c:mh(C),w:[mh(MS(MK(k,A),B)),mh(MK(k,MS(A,B))),mh(MA(MK(k,A),MK(h,B))),mh(ch(C))],e:`纯量积：每个元素都乘以该数。${k}A = ${mh(MK(k,A))}，${h}B = ${mh(MK(h,B))}，相减得 ${mh(C)}`}},
+()=>{const A=RM(2,2,-3,5),B=RM(2,2,-3,5),C=MM(A,B);return{q:`A = ${mh(A)}，B = ${mh(B)}，求 AB。`,c:mh(C),w:[mh(MM(B,A)),mh(mA(A,B,mul)),mh(MA(A,B)),mh(MM(T(A),B))],e:`c<sub>ij</sub> ＝ A 的第 i 行 × B 的第 j 列再相加（行乘列）。AB = ${mh(C)}；注意 AB ≠ BA。`}},
+()=>({q:'设 A、B 为可相乘的矩阵，下列哪一个恒成立？',c:'(AB)ᵀ = BᵀAᵀ',w:['(AB)ᵀ = AᵀBᵀ','AB = BA','(A + B)² = A² + 2AB + B²','A² 的每个元素是 A 对应元素的平方'],e:'(AB)ᵀ = BᵀAᵀ（顺序要反过来）；矩阵乘法不满足交换律，A² = A·A 也不是逐元素平方。'})];
+const F2=[()=>{const A=RM(2,3,-3,5),B=RM(3,2,-3,5),C=MM(A,B),i=ri(0,1),j=ri(0,1);return{q:`A = ${mh(A)}，B = ${mh(B)}，求 AB 的第 ${i+1} 行第 ${j+1} 列元素。`,a:C[i][j].n,e:`A 的第 ${i+1} 行乘 B 的第 ${j+1} 列：${A[i].map((a,t)=>`(${a.n})(${B[t][j].n})`).join(' + ')} = ${C[i][j].n}`}},
+()=>{const A=RM(2,2),B=RM(2,2),X=MA(A,MK(2,B)),i=ri(0,1),j=ri(0,1);return{q:`A = ${mh(A)}，B = ${mh(B)}。若 3X − 4B = 2A + X，求 X 的第 ${i+1} 行第 ${j+1} 列元素。`,a:X[i][j].n,e:`2X = 2A + 4B ⇒ X = A + 2B = ${mh(X)}，所求为 ${X[i][j].n}。`}}];
+const nd=()=>{let A,d;do{A=RM(2,2,-4,5);d=det(A).n}while(Math.abs(d)<2);return[A,d]};
+const G3=[
+()=>{const[a,b]=[ri(-5,6),ri(-5,6)],c=ri(-5,6),d=ri(-5,6),A=[[I(a),I(b)],[I(c),I(d)]],v=a*d-b*c;return{q:`求 |A|，A = ${mh(A)}。`,c:''+v,w:[''+(a*d+b*c),''+(b*c-a*d),''+(a*b-c*d),''+(a*c-b*d)],e:`|A| = ad − bc = (${a})(${d}) − (${b})(${c}) = ${v}（主对角线之积减副对角线之积）。`}},
+()=>{const[A,d]=nd(),a=A[0][0],b=A[0][1],c=A[1][0],e=A[1][1],f=I(1);const K=(m,k)=>mh(MK(F(1,d*k),m));const adj=[[e,F(-b.n)],[F(-c.n),a]];return{q:`求 A 的逆矩阵，A = ${mh(A)}。`,c:mh(inv(A)),w:[mh(adj),K([[a,F(-b.n)],[F(-c.n),e]],1),K([[e,b],[c,a]],1),K(adj,-1)],e:`|A| = ${d} ≠ 0。A⁻¹ = ${FR('1','|A|')}·${mh(adj)}（主对角线互换，副对角线变号）＝ ${mh(inv(A))}`}},
+()=>{const a=ri(1,4),b=ri(1,4),k=pk([2,3,-2]),Z=[[I(a),I(b)],[I(k*a),I(k*b)]],O=[Z];while(O.length<4){const[M]=nd();O.push(M)}return{q:'下列哪一个矩阵没有逆矩阵？',c:mh(Z),w:O.slice(1).map(mh),e:`没有逆矩阵 ⇔ |A| = 0。${mh(Z)} 的 |A| = (${a})(${k*b}) − (${b})(${k*a}) = 0；其余行列式都不为 0。`}},
+()=>({q:'A、B 都是可逆的同阶方阵，(AB)⁻¹ = ？',c:'B⁻¹A⁻¹',w:['A⁻¹B⁻¹','A⁻¹ + B⁻¹','(A + B)⁻¹','AᵀBᵀ'],e:'(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I，所以 (AB)⁻¹ = B⁻¹A⁻¹，顺序要反过来。'})];
+const F3=[()=>{const A=RM(3,3,-3,4),m=T=>T.map(Number),g=(i,j)=>A[i][j].n,p=g(0,0)*g(1,1)*g(2,2)+g(0,1)*g(1,2)*g(2,0)+g(0,2)*g(1,0)*g(2,1),n=g(0,2)*g(1,1)*g(2,0)+g(0,1)*g(1,0)*g(2,2)+g(0,0)*g(1,2)*g(2,1);return{q:`求 |A|，A = ${mh(A)}。`,a:p-n,e:`沙路法：(aei + bfg + cdh) − (ceg + bdi + afh) = ${p} − (${n}) = ${p-n}。`}},
+()=>{const k=ri(2,4),c=ri(2,5),x0=nz(-4,5);return{q:`若矩阵 ${mh([[`${k}x`,`${c*x0}`],[`${k}`,`${c}`]].map(r=>r.map(v=>v)))} 没有逆矩阵，求 x 的值。`,a:x0,e:`没有逆矩阵 ⇒ |A| = 0：(${k}x)(${c}) − (${c*x0})(${k}) = 0 ⇒ ${k*c}x = ${k*c*x0} ⇒ x = ${x0}。`}}];
+const solv=(n,x)=>{const A=sysA(n),X=Array.from({length:n},()=>ri(-4,5)),B=MM(A,X.map(v=>[I(v)]));return[A,X,B,det(A).n]};
+const G4=[()=>{const n=pk([2,2,3]),[A,X,B,d]=solv(n),V=['x','y','z'].slice(0,n),f=a=>V.map((v,i)=>`${v} = ${a[i]}`).join('，'),R=inv(A);
+return{q:`用逆矩阵解方程组：<br>${A.map((r,i)=>eq(r,V,B[i][0].n)).join('<br>')}`,c:f(X),w:[f(X.slice().reverse()),f(X.map(x=>-x)),f(X.map(x=>x*d)),f(X.map((x,i)=>i?x:x+1)),f(X.map((x,i)=>i?x:-x))],e:`A = ${mh(A)}，|A| = ${d} ≠ 0，A⁻¹ = ${mh(R)}，X = A⁻¹B = ${mh(MM(R,B))}。常见错误：忘了乘 ${FR('1','|A|')}，或把 B 乘在 A⁻¹ 的左边。`}},
+()=>{const[A,X,B,d]=solv(2),R=inv(A);return{q:`方程组 ${mh(A)}${mh([['x'],['y']])} = ${mh(B)} 的解是？`,c:`x = ${X[0]}，y = ${X[1]}`,w:[`x = ${X[1]}，y = ${X[0]}`,`x = ${-X[0]}，y = ${X[1]}`,`x = ${X[0]}，y = ${-X[1]}`,`x = ${X[0]*d}，y = ${X[1]*d}`,`x = ${X[0]+1}，y = ${X[1]-1}`],e:`X = A⁻¹B = ${mh(R)}${mh(B)} = ${mh(MM(R,B))}。`}}];
+const F4=[()=>{const x=ri(2,8)*50,y=ri(1,5)*50;let A,d;do{A=[[ri(1,4),ri(1,4)],[ri(1,4),ri(1,4)]];d=det(A.map(r=>r.map(I))).n}while(!d);const p=A[0][0]*x+A[0][1]*y,q=A[1][0]*x+A[1][1]*y;return{q:`配套 A：成人票 ${A[0][0]} 张 + 儿童票 ${A[0][1]} 张，共 RM${p}；配套 B：成人票 ${A[1][0]} 张 + 儿童票 ${A[1][1]} 张，共 RM${q}。求儿童票单价（RM）。`,a:y,e:`设成人票 x、儿童票 y，列方程组，用 X = A⁻¹B 解得 x = ${x}，y = ${y}。`}},
+()=>{const[A,X,B]=solv(3),R=inv(A);return{q:`解方程组并求 z：<br>${A.map((r,i)=>eq(r,['x','y','z'],B[i][0].n)).join('<br>')}`,a:X[2],e:`|A| = ${det(A).n}，A⁻¹ = ${mh(R)}，X = ${mh(MM(R,B))}，所以 z = ${X[2]}。`}}];
+/* 总复习题中较难题 */
+const HQ=[()=>{const r1=nz(-4,5);let r2;do r2=nz(-4,5);while(r2==r1);const s=-(r1+r2),M=[['x',`${r1*r2}`],['−1',`x${s>=0?'+':'−'}${Math.abs(s)}`]].map(r=>r),
+a=`x = ${r1} 或 x = ${r2}`;return{q:`若矩阵 ${mh(M)} 没有逆矩阵，求 x 的值。`,c:a,w:[`x = ${-r1} 或 x = ${-r2}`,`x = ${-r1} 或 x = ${r2}`,`x = ${r1} 或 x = ${-r2}`,`x = ${r1+r2}`],e:`|A| = 0：x(x${s>=0?'+':'−'}${Math.abs(s)}) − (${r1*r2})(−1) = 0 ⇒ x² ${s>=0?'+':'−'} ${Math.abs(s)}x + ${r1*r2} = 0 ⇒ (x − ${r1})(x − ${r2}) = 0。`}}];
+const HF=[()=>{const a=ri(1,5),b=ri(1,5);return{q:`已知 H = ${mh([['a','2b'],['3a','b']])}，K = ${mh([[I(-1)],[I(4)]])}，且 HK = ${mh([[I(-a+8*b)],[I(-3*a+4*b)]])}，求 a。`,a:a,e:`HK = (−a + 8b，−3a + 4b)ᵀ。由 −a + 8b = ${-a+8*b}、−3a + 4b = ${-3*a+4*b} 解得 a = ${a}，b = ${b}。`}},
+()=>{const p=ri(1,26),q=ri(1,26),v=3*p+2*q;return{q:`密钥 A = ${mh([[I(3),I(2)],[I(1),I(1)]])}，明文列 X = ${mh([[I(p)],[I(q)]])}。AX 的第一项除以 26 的余数是多少？`,a:v%26,e:`AX 第一项 = 3×${p} + 2×${q} = ${v}，${v} ÷ 26 的余数 = ${v%26}。`}}];
+/* ---------- 测验 ---------- */
+const pickN=(a,n)=>{let r=[];while(r.length<n)r.push(...sh(a));return r.slice(0,n)};
+const num=s=>{s=s.replace(/−/g,'-').trim();const m=s.match(/^(-?\d+(?:\.\d+)?)\/(\d+)$/);return m?m[1]/m[2]:parseFloat(s)};
+function Quiz(box,GS,FS,n,nf,thr,rev){let ok=0,dn=0,fk=0,fd=0;box.innerHTML='';const fb=document.createElement('div');
+pickN(GS,n).forEach((g,qi)=>{const o=g(),ops=sh([o.c,...[...new Set(o.w.filter(x=>x!=o.c))].slice(0,3)]),d=document.createElement('div');d.className='qc';
+d.innerHTML=`<b>第 ${qi+1} 题</b>　${o.q}<div class=ops>${ops.map(x=>`<button>${x}</button>`).join('')}</div><div class=ex></div>`;
+d.querySelectorAll('button').forEach((b,bi)=>b.onclick=()=>{if(d.dataset.l)return;d.dataset.l=1;const r=ops[bi]==o.c;if(r)ok++;dn++;b.className=r?'r':'w';if(!r)d.querySelectorAll('button').forEach((x,xi)=>{if(ops[xi]==o.c)x.className='r'});
+d.querySelector('.ex').innerHTML=`<b style="color:var(--${r?'ok':'no'})">${r?'✔ 正确':'✘ 错误'}</b>　正确答案：${o.c}<br>${o.e}`;if(dn==n)fill()});box.appendChild(d)});box.appendChild(fb);
+function fill(){if(!rev&&ok<thr){fb.innerHTML=`<div class=sum>答对 ${ok}/${n} 题，未达 ${thr} 题，暂不开放作答题。<br><button class=fb id=rt>🔄 重新出题</button></div>`;$('#rt').onclick=()=>Quiz(box,GS,FS,n,nf,thr,rev);return}
+fb.innerHTML=`<h3>✍️ 作答题（填写数字）</h3>`;pickN(FS,nf).forEach((g,i)=>{const o=g(),d=document.createElement('div');d.className='qc';d.innerHTML=`<b>作答 ${i+1}</b>　${o.q}<br><input class=fi placeholder="答案"> <button class=fb>提交</button><div class=ex></div>`;
+d.querySelector('button').onclick=()=>{if(d.dataset.l)return;const v=num(d.querySelector('input').value);if(isNaN(v))return;d.dataset.l=1;const r=Math.abs(v-o.a)<1e-6;if(r)fk++;fd++;d.querySelector('.ex').innerHTML=`<b style="color:var(--${r?'ok':'no'})">${r?'✔ 正确':'✘ 错误'}</b>　答案：${o.a}<br>${o.e}`;if(fd==nf)end()};fb.appendChild(d)})}
+function end(){const t=ok+fk,N=n+nf;let m=`选择题 ${ok}/${n}，作答题 ${fk}/${nf}`;if(rev){const p=t/N;m=`总分 ${t}/${N}（${Math.round(p*100)}%）<br>${p>=.87?'🏆 优秀！矩阵掌握得很扎实':p>=.67?'👍 良好，再巩固出错的类型':p>=.5?'🙂 及格，建议回到各节再练习':'📚 需要加强，请先复习各节例题与计算器'}<br>`+m}
+const d=document.createElement('div');d.className='sum';d.innerHTML=m+`<br><button class=fb id=rt2>🔄 重新出题</button>`;fb.appendChild(d);$('#rt2').onclick=()=>Quiz(box,GS,FS,n,nf,thr,rev)}}
+/* ---------- 各节内容 ---------- */
+const inv2=`A⁻¹ = ${FR('1','ad − bc')}${mh([['d','−b'],['−c','a']])}（ad − bc ≠ 0）`;
+const TABS=[
+{k:'15.1 矩阵',n:'矩阵是数排成的<b>行（横）与列（纵）</b>的阵列；有 m 行 n 列叫 <b>m×n 矩阵</b>。位于第 i 行第 j 列的元素记 a<sub>ij</sub>。特殊矩阵：方阵（m=n）、行矩阵、列矩阵、零矩阵 O、单位矩阵 I。两矩阵阶相同且对应元素都相等才相等。转置 Aᵀ：行列互换（m×n → n×m）。注意：行列式是一个<b>值</b>，矩阵是数的阵列。',
+ex:[['例题1 已知 A = B，求 a、b、c',()=>lay([ms([[I(12),I(0)],[`6b+3`,`3c−5`]]),tx('=',26),ms([[`6a`,I(0)],[`2b−5`,`−a`]])])+'<p>对应元素相等：12 = 6a；6b+3 = 2b−5；3c−5 = −a。解得 <b>a = 2，b = −2，c = 1</b>。</p>'],
+['随堂 转置示例 A = (2 0; 1 3; 4 1)',()=>o1([[I(2),I(0)],[I(1),I(3)],[I(4),I(1)]],0,0)]],tool:t1,G:G1,FG:F1},
+{k:'15.2 矩阵的运算',n:'<b>加减法</b>：同阶矩阵对应元素相加减。<b>纯量积</b>：kA 每个元素乘以 k。<b>乘法</b>：A 是 m×p、B 是 p×n，才能相乘，AB 是 m×n，c<sub>ij</sub> = A 的第 i 行 × B 的第 j 列（对应相乘再相加）。乘法<b>不满足交换律</b>（AB ≠ BA），但有结合律、分配律，IA = AI = A，(AB)ᵀ = BᵀAᵀ。',
+ex:[['例题2(a) 计算 (−1 3 0; 3 −4 5) + (1 3 −3; 2 −2 4)',()=>o2('a',[[I(-1),I(3),I(0)],[I(3),I(-4),I(5)]],[[I(1),I(3),I(-3)],[I(2),I(-2),I(4)]])],
+['例题6(b) 计算 (2 0; 4 1)(−2 0 1; 3 2 4)',()=>o2('m',[[I(2),I(0)],[I(4),I(1)]],[[I(-2),I(0),I(1)],[I(3),I(2),I(4)]])],['例题4(a) 计算 2(5 4; 7 3) − 3(5 −1; 2 −3)',()=>o4k(I(2),M([[5,4],[7,3]]),I(-3),M([[5,-1],[2,-3]]))],['例题4(b) 计算 3(2 1 4; −1 −2 −3) + ½(−2 3 6; 0 5 1)',()=>o4k(I(3),M([[2,1,4],[-1,-2,-3]]),F(1,2),M([[-2,3,6],[0,5,1]]))]],xp:[1,2,3],tool:t2,G:G2,FG:F2},
+{k:'15.3 逆矩阵',n:`若 AB = BA = I，则 B 叫 A 的<b>逆矩阵</b> A⁻¹；只有方阵才可能有逆矩阵。二阶：${inv2}，|A| = 0 则没有逆矩阵。三阶：A⁻¹ = ${FR('1','|A|')}·adj A，其中 adj A 是各数<b>代数余子式矩阵的转置</b>。`,
+ex:[['例题11(a) 求 A = (5 3; 2 1) 的逆矩阵',()=>o3([[I(5),I(3)],[I(2),I(1)]])],
+['例题14 求 A = (1 −1 1; 3 2 −2; 2 −1 3) 的逆矩阵',()=>o3([[I(1),I(-1),I(1)],[I(3),I(2),I(-2)],[I(2),I(-1),I(3)]])]],wd:1,tool:t3,G:G3,FG:F3},
+{k:'15.4 线性方程组',n:'把方程组写成 <b>AX = B</b>（A 为系数矩阵）。若 A 可逆，两边左乘 A⁻¹ 得 <b>X = A⁻¹B</b>。注意 A⁻¹ 必须乘在 B 的<b>左边</b>（矩阵乘法不可交换）。|A| = 0 时不能用此法。',
+ex:[['例题15 解 7x − 4y = 11，x + 5y = −4',()=>o4([[I(7),I(-4)],[I(1),I(5)]],[[I(11)],[I(-4)]])],
+['例题16 解 x−y+z=4，4x−4y+z=7，x+2y−z=1',()=>o4([[I(1),I(-1),I(1)],[I(4),I(-4),I(1)],[I(1),I(2),I(-1)]],[[I(4)],[I(7)],[I(1)]])]],tool:t4,G:G4,FG:F4},
+{k:'总复习',n:'共 10 题选择题 + 5 题作答题，抽自 15.1–15.4 的题型并加入总复习题中较难的题目。全部完成后给出分数评估。',ex:[],tool:null,G:[...G1,...G2,...G3,...G4,...HQ,...HQ],FG:[...F1,...F2,...F3,...F4,...HF,...HF],rev:1}];
+let cur=0;
+function show(k){cur=k;[...$('#nav').children].forEach((b,i)=>b.className=i==k?'on':'');const t=TABS[k];
+$('#pane').innerHTML=`<h2>${t.k}</h2><div class=box>${t.n}</div>`+(t.ex.length?`<h3>📘 课本例题</h3>`+t.ex.map(e=>`<div class=box><b>${e[0]}</b><div>${e[1]()}</div></div>`).join('')+(t.xp||[]).map(x=>`<h3>🔬 探索活动 ${x}</h3><div class=box id=xp${x}></div>`).join('')+`<h3>🧮 专属计算器</h3><div class=box id=tool></div>`+(t.wd?`<h3>💡 数学橱窗 1　利用计算机求逆矩阵</h3><div class=box><p>课本用计算机求逆矩阵；这里内置离线版（最高 4 阶）：改动数值或点“随机生成”，并用 A·A⁻¹ = I 验证。</p><div id=wd></div></div>`:'')+`<h3>📝 选择题 × 5</h3>`:`<h3>📝 总复习</h3>`)+`<div id=qz></div>`;
+if(t.tool)t.tool($('#tool'));(t.xp||[]).forEach(x=>XP($('#xp'+x),x));if(t.wd)t5($('#wd'));Quiz($('#qz'),t.G,t.FG,t.rev?10:5,t.rev?5:2,t.rev?0:3,t.rev);scrollTo(0,0)}
+TABS.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.k;b.onclick=()=>show(i);$('#nav').appendChild(b)});
+/* 字体 / 主题 / 浮水印 */
+let fz=15,th='l';try{fz=+localStorage.getItem('mxfz')||15;th=localStorage.getItem('mxth')||'l'}catch(e){}
+const ap=()=>{document.documentElement.style.fontSize=fz+'px';document.documentElement.dataset.t=th;$('#th').textContent=th=='d'?'☀️':'🌙';try{localStorage.setItem('mxfz',fz);localStorage.setItem('mxth',th)}catch(e){}};
+$('#fm').onclick=()=>{fz=Math.max(12,fz-1);ap()};$('#fp').onclick=()=>{fz=Math.min(22,fz+1);ap()};$('#th').onclick=()=>{th=th=='d'?'l':'d';ap()};ap();
+for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent='蔡逸众 · ecchua79 · Chinese High School';s.style.left=(i%3)*38-6+'%';s.style.top=(Math.floor(i/3)*20+4)+'%';$('#wm').appendChild(s)}
+show(0);
+</script></body></html>
