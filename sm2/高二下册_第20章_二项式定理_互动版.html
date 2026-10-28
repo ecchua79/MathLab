@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="蔡逸众 / ecchua79 / Chinese High School (华仁中学)">
+<title>高二下册 第20章 二项式定理 · 互动课程</title>
+<!-- © 蔡逸众 · ecchua79 · Chinese High School 华仁中学 · 第20章 二项式定理 互动版 -->
+<style>/* © 蔡逸众 ecchua79 Chinese High School */
+:root{--bg:#f6f7fb;--fg:#1c2233;--cd:#fff;--ac:#6d3fc0;--bd:#d6d9e8;--ok:#16a34a;--no:#dc2626}
+[data-theme=dark]{--bg:#12141c;--fg:#e6e8f2;--cd:#1c2030;--ac:#b794f6;--bd:#363b52}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+html{font-size:16px}header{display:flex;gap:6px;align-items:center;padding:8px 10px;background:var(--ac);color:#fff;flex-wrap:wrap}
+header h1{font-size:1.05rem;margin:0;flex:1}button,select,input{font:inherit;color:inherit}
+.hb{background:#ffffff33;border:0;color:#fff;border-radius:6px;padding:2px 9px;cursor:pointer}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;padding:8px;background:var(--bg);border-bottom:1px solid var(--bd);-webkit-overflow-scrolling:touch}
+nav button{flex:none;border:1px solid var(--bd);background:var(--cd);border-radius:18px;padding:4px 14px;cursor:pointer}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:860px;margin:0 auto;padding:10px}section{display:none}section.on{display:block}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin:10px 0}
+h2{font-size:1.2rem;margin:.4em 0;color:var(--ac)}h3{font-size:1.05rem;margin:.8em 0 .2em}
+.fb{background:#6d3fc015;border-left:4px solid var(--ac);padding:6px 10px;border-radius:6px;margin:6px 0;overflow-x:auto}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;font-size:.95em;line-height:1.25}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .2em}
+.rad{display:inline-flex;align-items:stretch;vertical-align:middle}.rad svg{width:.7em;overflow:visible}
+.ri{font-size:.6em;align-self:flex-start;margin-right:-.1em}.rd{border-top:1.5px solid currentColor;padding:0 .12em;margin-top:.1em}
+.fig{display:block;width:100%;max-width:420px;margin:6px auto;color:var(--fg)}
+.stp{font-size:.85rem;opacity:.9;overflow-x:auto;border-left:3px solid var(--bd);padding-left:8px;margin:4px 0}
+.row{margin:6px 0;display:flex;gap:4px;align-items:center;flex-wrap:wrap}.in{width:3.4em;text-align:center;border:1px solid var(--bd);border-radius:6px;background:var(--bg);padding:2px}
+.bt{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:5px 14px;cursor:pointer;margin:4px 0}
+.out{margin-top:6px;overflow-x:auto}.op{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.op button{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:6px;cursor:pointer}
+.op button.ok{background:var(--ok);color:#fff}.op button.no{background:var(--no);color:#fff}
+.ex{margin-top:6px;font-size:.92rem;border-top:1px dashed var(--bd);padding-top:4px;overflow-x:auto}
+.res{font-weight:700;color:var(--ac)}.sm{font-size:.75rem;opacity:.7}
+footer{text-align:center;font-size:.8rem;opacity:.75;padding:14px 8px 40px}
+#fw{position:fixed;right:8px;bottom:6px;font-size:.7rem;opacity:.55;pointer-events:none;z-index:9;white-space:nowrap}
+#wm{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+#wm div{position:absolute;left:-30vw;top:-30vh;width:160vw;height:160vh;transform:rotate(-22deg);display:flex;flex-direction:column;justify-content:space-around}
+#wm p{margin:0;display:flex;justify-content:space-around;font-size:.6rem;white-space:nowrap;color:var(--fg);opacity:.07}
+</style></head><body>
+<header><h1>《数学》高二下册 · 第20章 二项式定理</h1><button class=hb id=tm>🌙</button><button class=hb id=fm>A−</button><button class=hb id=fp>A+</button></header>
+<nav id=nv></nav><main id=mn></main>
+<div id=wm><div></div></div><div id=fw>峇株吧辖华仁中学蔡逸众制作</div>
+<footer>峇株吧辖华仁中学（Chinese High School）出品<br>蔡逸众老师 制作 · ecchua79</footer>
+<span hidden data-wm="蔡逸众|ecchua79|Chinese High School|华仁中学"></span>
+<script>
+{const w=document.querySelector("#wm div");for(let r=0;r<6;r++){const p=document.createElement("p");p.innerHTML=Array(5).fill("<span>蔡逸众 · ecchua79 · Chinese High School</span>").join("");w.appendChild(p)}}
+console.log("%c© 蔡逸众 · ecchua79 · Chinese High School 华仁中学","color:#6d3fc0");
+const $=(s,e=document)=>e.querySelector(s);
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sh=a=>{for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const C=(n,r)=>{let v=1;for(let i=1;i<=r;i++)v=v*(n-r+i)/i;return Math.round(v)},F=n=>n<2?1:n*F(n-1);
+const fmt=v=>String(v).replace('-','−'),cc=(n,r)=>`<sup>${n}</sup>C<sub>${r}</sub>`;
+const fr=(n,d)=>`<span class=fr><span>${n}</span><span>${d}</span></span>`;
+const rad=(x,i)=>`<span class=rad>${i==3?'<sup class=ri>3</sup>':''}<svg viewBox="0 0 12 20" preserveAspectRatio="none"><path d="M0 12L3 10L6 18L12 1" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg><span class=rd>${x}</span></span>`;
+const ef=e=>Number.isInteger(e)?e:fr(e*2,2),pn=s=>{s=String(s).replace('−','-').trim();if(s.includes('/')){const[a,b]=s.split('/');return a/b}return s===''?NaN:+s};
+const xp=e=>e==1?'x':e==.5?rad('x'):`x<sup>${ef(e)}</sup>`;
+const mono=(c,e)=>e==0?c:e<0?fr(c,xp(-e)):(c==1?'':c)+xp(e);
+const binom=(a,p,b,q,n)=>{const y=q==='y';return`(${a<0?'−':''}${mono(Math.abs(a),p)}${b<0?' − ':' + '}${y?(Math.abs(b)==1?'':Math.abs(b))+'y':mono(Math.abs(b),q)})<sup>${n}</sup>`};
+function tm(r,n,P,Q,y){if(y){const px=P*(n-r),s=(px?(px==1?'x':`x<sup>${ef(px)}</sup>`):'')+(r?(r==1?'y':`y<sup>${r}</sup>`):'');return[px+','+r,ac=>(ac==1&&s?'':ac)+s]}const e=P*(n-r)+Q*r;return[e,ac=>mono(ac,e)]}
+function expand2(a,p,b,q,n){const y=isNaN(pn(q)),P=pn(p),Q=y?0:pn(q),M=new Map();let st='';
+for(let r=0;r<=n;r++){const c=C(n,r)*a**(n-r)*b**r;st+=`<div>r=${r}：${cc(n,r)}·(${a})<sup>${n-r}</sup>·(${b})<sup>${r}</sup> = ${fmt(c)}</div>`;const[k,f]=tm(r,n,P,Q,y),o=M.get(k)||{c:0,f};o.c+=c;M.set(k,o)}
+let h='',i=0;M.forEach(o=>{if(!o.c)return;h+=(o.c<0?(i?' − ':'−'):(i?' + ':''))+o.f(Math.abs(o.c));i++});return{html:h,steps:st}}
+function term2(a,p,b,q,n,mode,v){const y=isNaN(pn(q)),P=pn(p),Q=y?0:pn(q);let r,msg;
+if(mode=='t'){r=v-1;msg=`第 ${v} 项：r+1=${v}，∴ r=${r}`}else{if(y)return{html:'含 y 的式子请改用“第几项”模式。'};r=P==Q?NaN:(v-P*n)/(Q-P);msg=`令 x 的指数 ${P}(${n}−r)+(${Q})r = ${v}，解得 r=${r}`}
+if(!Number.isInteger(r)||r<0||r>n)return{html:msg+`<br>r 须是 0~${n} 的整数，所以展开式中<b>没有这一项</b>。`};
+const c=C(n,r)*a**(n-r)*b**r,[k,f]=tm(r,n,P,Q,y);
+return{html:`${msg}<br>T<sub>${r+1}</sub> = ${cc(n,r)}·(${a})<sup>${n-r}</sup>·(${b})<sup>${r}</sup>·(x 的部分) = ${cc(n,r)}×${a**(n-r)}×${b**r} = ${fmt(c)}<br><span class=res>T<sub>${r+1}</sub> = ${c<0?'−':''}${f(Math.abs(c))}　（系数 ${fmt(c)}）</span>`,fig:tf(n,r)}}
+function pas(n,h){const W=Math.max(300,(n+1)*34),H=(n+1)*22+8;let s=`<svg viewBox="0 0 ${W} ${H}" class=fig style="max-width:400px">`;
+for(let i=0;i<=n;i++)for(let j=0;j<=i;j++){const on=i==n;s+=`<text x="${W/2+(j-i/2)*34}" y="${18+i*22}" text-anchor="middle" font-size="14" fill="${on?(h===j?'#e11d48':'#7c3aed'):'currentColor'}" font-weight="${on?700:400}">${C(i,j)}</text>`}
+return s+`</svg><div class=sm style="text-align:center">杨辉三角：第 ${n} 行即 (a+b)<sup>${n}</sup> 的二项式系数</div>`}
+function tf(n,r){const w=36,W=(n+1)*w+4;let s=`<svg viewBox="0 0 ${W} 70" class=fig style="max-width:480px">`;
+for(let i=0;i<=n;i++){const on=i==r,x=18+i*w;s+=`<rect x="${2+i*w}" y="4" width="32" height="26" rx="4" fill="${on?'#e11d48':'none'}" stroke="currentColor"/><text x="${x}" y="22" text-anchor="middle" font-size="12" fill="${on?'#fff':'currentColor'}">T${i+1}</text><text x="${x}" y="46" text-anchor="middle" font-size="11" fill="#2563eb">${n-i}</text><text x="${x}" y="62" text-anchor="middle" font-size="11" fill="#16a34a">${i}</text>`}
+return s+`</svg><div class=sm style="text-align:center">红框=第 r+1 项；蓝：a 的指数 n−r；绿：b 的指数 r</div>`}
+// ---- 题目引擎 ----
+const A1=[()=>{const n=R(3,9);return{q:`(a+b)<sup>${n}</sup> 的二项展开式共有几项？`,a:n+1,w:[n,n+2,2*n],e:`项数比幂指数多 1：n+1 = ${n+1} 项。`}},
+()=>{const n=R(4,6),r=R(1,n-1),k=R(2,3),c=C(n,r);return{q:`(x+${k}y)<sup>${n}</sup> 展开式中 x<sup>${n-r}</sup>y<sup>${r}</sup> 项的系数是？`,a:c*k**r,w:[c,k**r,c*k**(n-r),c*k],e:`系数 = ${cc(n,r)}·${k}<sup>${r}</sup> = ${c}×${k**r} = ${c*k**r}（别漏乘 ${k}<sup>${r}</sup>）。${tf(n,r)}`}},
+()=>{const n=R(5,9),r=R(2,3),num=Array.from({length:r},(_,i)=>n-i).join('×'),den=Array.from({length:r},(_,i)=>r-i).join('×');return{q:`${cc(n,r)} 的值是？`,a:C(n,r),w:[C(n,r)*F(r),C(n,r+1),C(n,r-1),n*r],e:`${cc(n,r)} = ${fr(num,den)} = ${C(n,r)}。（${C(n,r)*F(r)} 是排列数，不是组合数）`}},
+()=>{const n=R(4,7),k=R(2,3),c=C(n,2);return{q:`(1 − ${k}x)<sup>${n}</sup> 展开式中 x<sup>2</sup> 的系数是？`,a:c*k*k,w:[c*k,-c*k*k,c,C(n,3)*k**3],e:`T<sub>3</sub> = ${cc(n,2)}(−${k}x)<sup>2</sup> = ${c}×${k*k}x<sup>2</sup>，系数 ${c*k*k}（(−${k})<sup>2</sup> 为正）。${pas(n,2)}`}},
+()=>{const n=R(4,7),r=R(1,n-1),u=C(n-1,r-1),v=C(n-1,r);return{q:`杨辉三角中，(a+b)<sup>${n-1}</sup> 这一行有相邻两数 ${u} 与 ${v}，它们正下方（(a+b)<sup>${n}</sup> 一行）的数是？`,a:u+v,w:[u*v,Math.abs(u-v),u+v+1,u+v-1],e:`每个数等于肩上两数之和：${u}+${v} = ${u+v}，即 ${cc(n,r)} = ${cc(n-1,r-1)} + ${cc(n-1,r)}。${pas(n,r)}`}},
+()=>{const n=R(4,6),r=R(1,n-1),k=R(2,3),c=C(n,r),a=c*(-k)**r;return{q:`(x − ${k}y)<sup>${n}</sup> 展开式中 x<sup>${n-r}</sup>y<sup>${r}</sup> 项的系数是？`,a,w:[Math.abs(a),-a,c*k,c*(-k)**(r-1)],e:`系数 = ${cc(n,r)}·(−${k})<sup>${r}</sup> = ${c}×(${fmt((-k)**r)}) = ${fmt(a)}。${tf(n,r)}`}}];
+const F1=[()=>{const n=R(5,7),r=R(2,3),k=R(2,3);return{q:`(1+${k}x)<sup>${n}</sup> 展开式中 x<sup>${r}</sup> 的系数是 ＿＿＿`,a:C(n,r)*k**r,e:`T<sub>${r+1}</sub> = ${cc(n,r)}(${k}x)<sup>${r}</sup>，系数 ${C(n,r)}×${k**r} = ${C(n,r)*k**r}。${pas(n,r)}`}},
+()=>{const n=R(4,5),r=R(1,n-1),k=R(2,3),a=C(n,r)*k**(n-r)*(r%2?-1:1);return{q:`(${k}x − y)<sup>${n}</sup> 展开式中 x<sup>${n-r}</sup>y<sup>${r}</sup> 的系数是 ＿＿＿`,a,e:`${cc(n,r)}·${k}<sup>${n-r}</sup>·(−1)<sup>${r}</sup> = ${fmt(a)}。${tf(n,r)}`}}];
+const A2=[()=>{const a=R(2,3),b=R(2,4),n=R(5,7),t=R(2,4),r=t-1,c=C(n,r);return{q:`(${a}x+${b}y)<sup>${n}</sup> 按 x 的降幂展开后，第 ${t} 项的系数是？`,a:c*a**(n-r)*b**r,w:[C(n,t)*a**(n-t)*b**t,c*a**r*b**(n-r),c*a*b,c*a**(n-r)],e:`第 ${t} 项：r=${t}−1=${r}（不是 ${t}）。T<sub>${t}</sub> = ${cc(n,r)}·${a}<sup>${n-r}</sup>·${b}<sup>${r}</sup> = ${c*a**(n-r)*b**r}。${tf(n,r)}`}},
+()=>{const n=R(5,8),k=R(2,3),r=R(1,n-1);return{q:`(x + ${fr(k,'x')})<sup>${n}</sup> 展开式的第 ${r+1} 项中，x 的指数是？`,a:n-2*r,w:[n-r,n-2*r+1,r,2*n-r],e:`T<sub>${r+1}</sub> = ${cc(n,r)}x<sup>${n-r}</sup>(${k}x<sup>−1</sup>)<sup>${r}</sup>，指数 (n−r)−r = ${n}−${2*r} = ${n-2*r}。${tf(n,r)}`}},
+()=>{const t=R(3,8);return{q:`二项展开式的第 ${t} 项，通项 T<sub>r+1</sub> 中的 r 等于？`,a:t-1,w:[t,t+1,t-2],e:`r+1 = ${t}，∴ r = ${t-1}。`}},
+()=>{const n=R(8,10),k=R(2,4);return{q:`(a+b)<sup>${n}</sup> 展开式中，第 ${k} 项与第几项的二项式系数相等？`,a:n+2-k,w:[n+1-k,n-k,n+3-k,k+1],e:`第 ${k} 项系数 ${cc(n,k-1)} = ${cc(n,n-k+1)}（${cc('n','r')}=${cc('n','n−r')}），后者是第 ${n-k+2} 项。${tf(n,k-1)}`}},
+()=>{const n=2*R(3,4),r=R(1,n/2),c=C(n,r),m=n-2*r;return{q:`(x − ${fr(1,'x')})<sup>${n}</sup> 展开式中 x<sup>${m}</sup> 项的系数是？`,a:(-1)**r*c,w:[c,-((-1)**r)*c,C(n,r+1),(-1)**r*C(n,r-1)],e:`T<sub>r+1</sub> = (−1)<sup>r</sup>${cc(n,'r')}x<sup>${n}−2r</sup>；${n}−2r=${m} ⇒ r=${r}。系数 (−1)<sup>${r}</sup>×${c} = ${fmt((-1)**r*c)}。${tf(n,r)}`}},
+()=>{const n=3*R(2,3),r=2*n/3,k=2,c=C(n,r);return{q:`(x<sup>2</sup> + ${fr(k,'x')})<sup>${n}</sup> 展开式中的常数项是？`,a:c*k**r,w:[c*k**(n-r),c,C(n,r-1)*k**r,c*k**(r-1)],e:`T<sub>r+1</sub> = ${cc(n,'r')}·${k}<sup>r</sup>·x<sup>${2*n}−3r</sup>；${2*n}−3r=0 ⇒ r=${r}。常数项 ${c}×${k**r} = ${c*k**r}。${tf(n,r)}`}}];
+const F2=[()=>{const n=[6,8,10][R(0,2)],k=R(1,2),r=n/2,v=C(n,r)*(-k)**r;return{q:`(x<sup>2</sup> − ${fr(k,'x<sup>2</sup>')})<sup>${n}</sup> 展开式中的常数项是 ＿＿＿`,a:v,e:`T<sub>r+1</sub> = ${cc(n,'r')}(x<sup>2</sup>)<sup>${n}−r</sup>(−${k}x<sup>−2</sup>)<sup>r</sup>，指数 ${2*n}−4r=0 ⇒ r=${r}。常数项 (−${k})<sup>${r}</sup>×${C(n,r)} = ${fmt(v)}。${tf(n,r)}`}},
+()=>{const n=R(6,8),r=R(1,3),k=R(2,3),m=n-2*r;return{q:`(x + ${fr(k,'x')})<sup>${n}</sup> 展开式中 x<sup>${m}</sup> 项的系数是 ＿＿＿`,a:C(n,r)*k**r,e:`${n}−2r=${m} ⇒ r=${r}。系数 ${cc(n,r)}·${k}<sup>${r}</sup> = ${C(n,r)*k**r}。${tf(n,r)}`}}];
+const H1=()=>{const a=[-3,-2,2,3][R(0,3)],v=20*a**3;return{q:`若 (1+ax)<sup>6</sup> 展开式中 x<sup>3</sup> 的系数为 ${fmt(v)}，则 a 的值是？`,a,w:[-a,2*a,a>0?a+1:a-1,3*a],e:`T<sub>4</sub> = ${cc(6,3)}(ax)<sup>3</sup> = 20a<sup>3</sup>x<sup>3</sup>；20a<sup>3</sup> = ${fmt(v)} ⇒ a<sup>3</sup> = ${fmt(v/20)} ⇒ a = ${a}。${tf(6,3)}`}};
+const H2=()=>{const k=R(4,7);return{q:`若 (px + ${fr('q','x')})<sup>n</sup> 按 x 的降幂展开后，第 ${k} 项是常数项，则 n 的值是？`,a:2*(k-1),w:[k-1,2*k,2*k-1,k+1],e:`T<sub>${k}</sub>：r=${k-1}，x 的指数 (n−r)−r = n−${2*(k-1)} = 0 ⇒ n = ${2*(k-1)}。`}};
+function mk(g){const o=[g.a],s=new Set(o);g.w.forEach(x=>{if(o.length<4&&!s.has(x)){s.add(x);o.push(x)}});let d=1;while(o.length<4){const x=g.a+(d%2?1:-1)*Math.ceil(d/2)*Math.max(1,Math.round(Math.abs(g.a)*.1));d++;if(!s.has(x)){s.add(x);o.push(x)}}return sh(o)}
+function quiz(box,ml,fl,gate,rev){box.innerHTML='';let done=0,ok=0,fd=0,fk=0;const nM=ml.length,nF=fl.length,fb=document.createElement('div'),sc=document.createElement('div');
+const fin=()=>{if(fd<nF)return;const t=ok+fk,tot=nM+nF;sc.innerHTML=`<div class=card><b>本次成绩：${t} / ${tot}</b>${rev?'　'+(t>=tot*.87?'🏆 优秀！二项式定理掌握得很牢':t>=tot*.67?'👍 良好，再看看错题解析':t>=tot*.5?'🙂 及格，建议回到各节复习':'💪 加油，先复习 20.1 与 20.2'):''}<br><button class=bt>重新出题</button></div>`;sc.querySelector('button').onclick=()=>quiz(box,rev?revM():ml.map((_,i)=>ml[i]),rev?revF():fl,gate,rev)};
+ml.forEach((gf,i)=>{const g=gf(),c=document.createElement('div');c.className='card';c.innerHTML=`<b>${i+1}.</b> ${g.q}<div class=op></div><div class=ex hidden></div>`;const op=$('.op',c),ex=$('.ex',c);
+mk(g).forEach(v=>{const b=document.createElement('button');b.innerHTML=fmt(v);b.dataset.v=v;b.onclick=()=>{if(c.dataset.l)return;c.dataset.l=1;[...op.children].forEach(x=>{if(+x.dataset.v===g.a)x.classList.add('ok')});if(v===g.a)ok++;else b.classList.add('no');ex.hidden=false;ex.innerHTML=(v===g.a?'✅ <b>正确！</b>':'❌ <b>错误</b>，正确答案：'+fmt(g.a))+'<br>'+g.e;if(++done==nM)after()};op.appendChild(b)});box.appendChild(c)});
+box.append(fb,sc);
+function after(){if(ok<gate){fb.innerHTML=`<div class=card>本次答对 ${ok}/${nM}，需答对 ${gate} 题以上才能挑战作答题。<br><button class=bt>再来一组</button></div>`;fb.querySelector('button').onclick=()=>quiz(box,ml,fl,gate,rev);return}
+fb.innerHTML=`<h3>${rev?'填充题':'作答题'}（答案为整数）</h3>`;fl.forEach((gf,i)=>{const g=gf(),c=document.createElement('div');c.className='card';c.innerHTML=`<b>${i+1}.</b> ${g.q} <input class=in style="width:6em" inputmode=numeric> <button class=bt>提交</button><div class=ex hidden></div>`;
+$('button',c).onclick=()=>{if(c.dataset.l)return;const v=pn($('input',c).value);if(isNaN(v))return;c.dataset.l=1;const r=v===g.a;if(r)fk++;const ex=$('.ex',c);ex.hidden=false;ex.innerHTML=(r?'✅ <b>正确！</b>':'❌ <b>错误</b>，正确答案：'+fmt(g.a))+'<br>'+g.e;fd++;fin()};fb.appendChild(c)})}}
+const pick=(a,k)=>sh(a.slice()).slice(0,k),revM=()=>[...pick(A1,4),...pick(A2,4),H1,H2],revF=()=>[pick(F1,1)[0],F1[0],F2[0],F2[1],[H1,H2][R(0,1)]];
+// ---- 计算器（符号引擎：任意式子展开 / 求某一项）----
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),r6=e=>Math.round(e*720)/720;
+const rn=(n,d)=>{if(d<0){n=-n;d=-d}const k=gcd(n,d)||1;return[n/k,d/k]};
+const sqx=(n,s)=>{for(let q=2;q*q<=s;q++)while(s%(q*q)==0){n*=q;s/=q*q}return[n,s]};
+const mT=(n,d=1,s=1,v={})=>({n,d,s,v}),key=t=>t.s+'|'+Object.keys(t.v).sort().map(k=>k+t.v[k]).join(',');
+const clean=P=>{const M=new Map();P.forEach(t=>{const k=key(t),o=M.get(k);if(o){[o.n,o.d]=rn(o.n*t.d+t.n*o.d,o.d*t.d)}else M.set(k,{...t,v:{...t.v}})});return[...M.values()].filter(t=>t.n)};
+const pAdd=(P,Q,sg=1)=>clean([...P,...Q.map(t=>({...t,n:t.n*sg}))]);
+const tMul=(a,b)=>{let[n,d]=rn(a.n*b.n,a.d*b.d),s;[n,s]=sqx(n,a.s*b.s);[n,d]=rn(n,d);const v={...a.v};for(const k in b.v){v[k]=r6((v[k]||0)+b.v[k]);if(!v[k])delete v[k]}return{n,d,s,v}};
+const pMul=(P,Q)=>clean(P.flatMap(a=>Q.map(b=>tMul(a,b)))),pPow=(P,k)=>{let X=[mT(1)];for(let i=0;i<k;i++)X=pMul(X,P);return X};
+const tInv=t=>{const[n,d]=rn(t.d,t.n*t.s),v={};for(const k in t.v)v[k]=-t.v[k];return{n,d,s:t.s,v}};
+const root=(P,k)=>{if(P.length!=1)throw Error('根号内只支持单项式');const t=P[0];if(t.s!=1||(t.n<0&&k==2))throw Error('根号内系数须为正有理数');let n,d,s=1;
+if(k==2){const[m,ss]=sqx(1,t.n*t.d);n=m;d=t.d;s=ss}else{n=Math.round(Math.cbrt(t.n));d=Math.round(Math.cbrt(t.d));if(n**3!=t.n||d**3!=t.d)throw Error('立方根内系数须为完全立方数')}
+const v={};for(const x in t.v)v[x]=r6(t.v[x]/k);[n,d]=rn(n,d);return[{n,d,s,v}]};
+function parse(src){const s=String(src).replace(/\s+/g,'').replace(/[−–]/g,'-').replace(/√/g,'sqrt').replace(/∛/g,'cbrt').replace(/[×·]/g,'*').replace(/（/g,'(').replace(/）/g,')');let i=0;const pk=()=>s[i],E=m=>{throw Error(m)};
+const cl=()=>{if(pk()!=')')E('括号不匹配');i++};
+const atom=()=>{const c=pk();if(c==null)E('式子不完整');if(c=='('){i++;const P=expr();cl();return P}
+const m=/^\d+(\.\d+)?/.exec(s.slice(i));if(m){i+=m[0].length;const p=m[0].split('.'),[n,d]=rn(+p.join(''),10**(p[1]||'').length);return[mT(n,d)]}
+for(const f of['sqrt','cbrt'])if(s.startsWith(f,i)){i+=4;if(pk()!='(')E(f+' 后需要括号');i++;const P=expr();cl();return root(P,f=='sqrt'?2:3)}
+if(/[a-z]/.test(c)){i++;return[mT(1,1,1,{[c]:1})]}E('无法识别“'+c+'”')};
+const pw=()=>{let B=atom();while(pk()=='^'){i++;let ng=1;if(pk()=='-'){i++;ng=-1}let k;if(pk()=='('){i++;const P=expr();cl();if(P.length!=1||Object.keys(P[0].v).length||P[0].s!=1)E('指数须为常数');k=P[0].n/P[0].d}else{const m=/^\d+/.exec(s.slice(i));if(!m)E('指数不正确');i+=m[0].length;k=+m[0]}k*=ng;
+if(Number.isInteger(k)){if(k>=0)B=pPow(B,k);else{if(B.length!=1)E('负指数只支持单项式');B=pPow([tInv(B[0])],-k)}}else{if(B.length!=1||B[0].n!=1||B[0].d!=1||B[0].s!=1)E('分数指数只支持 x^(1/2) 这类单项式');const v={};for(const x in B[0].v)v[x]=r6(B[0].v[x]*k);B=[mT(1,1,1,v)]}}return B};
+const unary=()=>{if(pk()=='-'){i++;return pMul([mT(-1)],pw())}if(pk()=='+')i++;return pw()};
+const term=()=>{let P=unary();for(;;){const c=pk();if(c=='*'){i++;P=pMul(P,pw())}else if(c=='/'){i++;const Q=pw();if(Q.length!=1)E('除数须为单项式');P=pMul(P,[tInv(Q[0])])}else if(c&&/[0-9a-z(]/.test(c))P=pMul(P,pw());else return P}};
+const expr=()=>{let P=term();while(pk()=='+'||pk()=='-'){const o=s[i++];P=pAdd(P,term(),o=='-'?-1:1)}return P};
+const P=expr();if(i<s.length)E('无法解析“'+s.slice(i,i+6)+'”');return P}
+const vH=(k,e)=>{const w=Math.floor(e+1e-9),r=r6(e-w);let h=w>=1?k+(w>1?`<sup>${w}</sup>`:''):'';if(r>0){let f=0;for(const q of[2,3,4,6])if(!f&&Math.abs(r*q-Math.round(r*q))<1e-9)f=q;const p=Math.round(r*f);h+=(f==2||f==3)?rad(k+(p>1?`<sup>${p}</sup>`:''),f):`${k}<sup>${fr(p,f)}</sup>`}return h};
+const tH=t=>{const nm=[],dn=[],ac=Math.abs(t.n);Object.keys(t.v).sort().forEach(k=>{const e=t.v[k];e>0?nm.push(vH(k,e)):dn.push(vH(k,-e))});
+const N=((ac==1&&(nm.length||dn.length||t.s!=1))?'':ac)+(t.s!=1?rad(t.s):'')+nm.join(''),D=(t.d!=1?t.d:'')+dn.join('');return D?fr(N||1,D):(N||1)};
+const ph=P=>{if(!P.length)return'0';const ks=[...new Set(P.flatMap(t=>Object.keys(t.v)))].sort();const S=[...P].sort((a,b)=>{for(const k of ks){const d=(b.v[k]||0)-(a.v[k]||0);if(d)return d}return a.s-b.s});return S.map((t,i)=>(t.n<0?(i?' − ':'−'):(i?' + ':''))+tH(t)).join('')};
+const echo=s=>{let h=s.replace(/\s+/g,'').replace(/\*/g,'·').replace(/√/g,'sqrt').replace(/∛/g,'cbrt');h=h.replace(/(\d+|[a-z](?:\^\d+)?)\/(sqrt|cbrt)\(([^()]*)\)/g,(m,a,f,x)=>fr(a,rad(x,f=='cbrt'?3:2)));let p;do{p=h;h=h.replace(/(sqrt|cbrt)\(([^()]*)\)/g,(m,f,x)=>rad(x,f=='cbrt'?3:2))}while(p!=h);
+h=h.replace(/\^\(([^()]*)\)/g,'<sup>$1</sup>').replace(/\^(\d+)/g,'<sup>$1</sup>');return h.replace(/(\d+|[a-z](?:<sup>\d+<\/sup>)?)\/(\d+|[a-z](?:<sup>\d+<\/sup>)?)/g,(m,a,b)=>fr(a,b))};
+function binSplit(src){const s=src.replace(/\s+/g,'').replace(/−/g,'-'),m=/^\((.*)\)\^(\d+)$/.exec(s);if(!m)return null;let d=0,cuts=[0];const q=m[1];for(let i=0;i<q.length;i++){const c=q[i];if(c=='(')d++;else if(c==')'){d--;if(d<0)return null}else if(d==0&&i>0&&(c=='+'||c=='-')&&!'^(*/'.includes(q[i-1]))cuts.push(i)}
+if(cuts.length!=2)return null;return{A:q.slice(0,cuts[1]),B:q.slice(cuts[1]).replace(/^\+/,''),n:+m[2]}}
+function solveExpand(src,hint){const P=parse(src),b=binSplit(src);let h=hint?`<div>${hint}</div>`:'';
+if(b){const n=b.n,A=parse(b.A),B=parse(b.B);h+=`<div>通项 T<sub>r+1</sub> = ${cc(n,'r')}A<sup>n−r</sup>B<sup>r</sup>，A = ${ph(A)}，B = ${ph(B)}</div><div class=stp>`;for(let r=0;r<=n;r++)h+=`<div>r=${r}：${cc(n,r)}·(${ph(A)})<sup>${n-r}</sup>·(${ph(B)})<sup>${r}</sup> = ${ph(pMul([mT(C(n,r))],pMul(pPow(A,n-r),pPow(B,r))))}</div>`;h+='</div>'}
+return h+`<div class=res>结果：${ph(P)||0}</div>`+(b&&b.n<=12?pas(b.n):'')}
+const sameV=(a,b)=>JSON.stringify(Object.entries(a).sort())==JSON.stringify(Object.entries(b).sort());
+function solveTerm(A,B,n,sel){const PA=parse(A),PB=parse(B),M=sel.m?parse(sel.m)[0]:0;let rr=-1,res;
+for(let r=0;r<=n;r++){const X=pMul([mT(C(n,r))],pMul(pPow(PA,n-r),pPow(PB,r)));if(sel.t){if(r==sel.t-1){rr=r;res=X}}else if(X.length==1&&sameV(X[0].v,M.v)){rr=r;res=X}}
+if(rr<0)return'<div>展开式中<b>没有这一项</b>（该项系数为 0）。</div>';
+return`<div>通项 T<sub>r+1</sub> = ${cc(n,'r')}(${ph(PA)})<sup>n−r</sup>(${ph(PB)})<sup>r</sup></div><div>${sel.t?`第 ${sel.t} 项：r+1=${sel.t} ⇒ r=${rr}`:`令字母部分相符 ⇒ r=${rr}`}</div><div>T<sub>${rr+1}</sub> = ${cc(n,rr)}·(${ph(PA)})<sup>${n-rr}</sup>·(${ph(PB)})<sup>${rr}</sup></div><div class=res>T<sub>${rr+1}</sub> = ${ph(res)}${sel.m?`　系数 = ${ph(res.map(t=>({...t,v:{}})))}`:''}</div>${tf(n,rr)}`}
+function calc(h,mode){const ps=['(2x-y/3)^4','(sqrt(x)-3/sqrt(x))^4','(1+2x+x^2)^3','(x+2)^4(x-2)^4','(1+sqrt(x))^5-(1-sqrt(x))^5','(cbrt(x^2)+x)^3'];
+h.innerHTML=mode==1?`<div class=row><input class=in style="width:100%;text-align:left" value="${ps[0]}" spellcheck=false></div><div class=row>${['√(','∛(','^','x','y','/','(',')','+','-'].map(b=>`<button class=bt data-k="${b}" style="padding:1px 9px;margin:0">${b}</button>`).join('')}</div><div class=sm>可输入任意式子：x^2、√( )、∛( )、分数用 /，如 2/sqrt(x)。试试：${ps.map((p,i)=>`<a href="#" data-p=${i}>${i+1}</a>`).join(' ')}</div><button class="bt go">展开</button><div class=out></div>`
+:`<div class=row>(A <input class=in style="width:5em" value="x"> ＋ B <input class=in style="width:5em" value="-1/x">)<sup><input class=in value=8></sup></div><div class=row><select><option value=t>求第几项</option><option value=m selected>求含某项的系数</option></select><input class=in style="width:5em" value="x^4"></div><div class=sm>A、B 是二项式的两项（可含 √、分数）；“第几项”按 A 在前的顺序；“含某项”填字母部分，如 x^4、1/x^3、x^3y^6。</div><button class="bt go">计算</button><div class=out></div>`;
+const ins=[...h.querySelectorAll('input')],out=$('.out',h),sel=$('select',h),run=()=>{try{if(mode==1)out.innerHTML=`<div>${echo(ins[0].value)} = </div>`+solveExpand(ins[0].value);else{const n=parseInt(ins[2].value),v=ins[3].value;if(!(n>=1&&n<=20))throw Error('n 须为 1~20 的整数');out.innerHTML=`<div>${echo(`(${ins[0].value}+${ins[1].value})^${n}`).replace('+-','−')}</div>`+solveTerm(ins[0].value,ins[1].value,n,sel.value=='t'?{t:+v}:{m:v})}}catch(e){out.innerHTML='⚠ '+e.message}};
+$('.go',h).onclick=run;h.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k.replace('√(','sqrt(').replace('∛(','cbrt(');ins[0].value+=k;ins[0].focus()});h.querySelectorAll('[data-p]').forEach(a=>a.onclick=e=>{e.preventDefault();ins[0].value=ps[a.dataset.p];run()});run()}
+// ---- 课本习题 ----
+const E_=(s,d,h)=>({d,run:()=>solveExpand(s,h)}),T_=(A,B,n,sel,d)=>({d,run:()=>solveTerm(A,B,n,sel)}),S_=(d,html)=>({d,run:()=>html});
+const rx=rad('x'),EXL=[['随堂练习 20.1　展开下列各式',[E_('(2x-y/3)^4',`(2x − ${fr('y',3)})<sup>4</sup>`),E_('(x+3/x)^5',`(x + ${fr(3,'x')})<sup>5</sup>`),E_('(1-4x)^6','(1 − 4x)<sup>6</sup>'),E_('(2sqrt(x)+2/sqrt(x))^4',`(2${rx} + ${fr(2,rx)})<sup>4</sup>`)]],
+['习题 20.1　展开下列各式',[E_('(x-3y)^3','(x − 3y)<sup>3</sup>'),E_('(a+b^2)^5','(a + b<sup>2</sup>)<sup>5</sup>'),E_('(2+1/x)^4',`(2 + ${fr(1,'x')})<sup>4</sup>`),E_('(sqrt(x)/2-1/sqrt(x))^6',`(${fr(rx,2)} − ${fr(1,rx)})<sup>6</sup>`),E_('(cbrt(x^2)+x)^3',`(${rad('x<sup>2</sup>',3)} + x)<sup>3</sup>`),
+E_('(x+2)^4(x-2)^4','(x + 2)<sup>4</sup>(x − 2)<sup>4</sup>','先合并：(x+2)⁴(x−2)⁴ = [(x+2)(x−2)]⁴ = (x²−4)⁴，再用二项式定理。'),E_('(x(1-x^2))^3','[x(1 − x<sup>2</sup>)]<sup>3</sup>','[x(1−x²)]³ = x³(1−x²)³，先展开 (1−x²)³ 再乘 x³。'),
+E_('(1+sqrt(x))^5-(1-sqrt(x))^5',`(1 + ${rx})<sup>5</sup> − (1 − ${rx})<sup>5</sup>`,'两式展开后，√x 的偶次项相同、奇次项符号相反，相减后只剩奇次项（各项 ×2）。'),E_('(1+x^2-2x)^3','(1 + x<sup>2</sup> − 2x)<sup>3</sup>','1+x²−2x = (1−x)²，所以原式 = (1−x)⁶。'),E_('(x+2x^2+x^3)^4','(x + 2x<sup>2</sup> + x<sup>3</sup>)<sup>4</sup>','x+2x²+x³ = x(1+x)²，所以原式 = x⁴(1+x)⁸。')]],
+['随堂练习 20.2',[T_('2x','-3y',9,{m:'x^3y^6'},`求 (2x − 3y)<sup>9</sup> 展开式中 x<sup>3</sup>y<sup>6</sup> 的系数。`)]],
+['习题 20.2',[T_('x','-2',9,{t:4},'求 (x − 2)<sup>9</sup> 按 x 的降幂展开后的第 4 项的系数。'),T_('5x','3',4,{t:3},'求 (5x + 3)<sup>4</sup> 按 x 的降幂展开后的第 3 项。'),T_('1','-x^3/3',8,{t:5},`求 (1 − ${fr('x<sup>3</sup>',3)})<sup>8</sup> 按 x 的升幂展开后的第 5 项。`),
+T_('sqrt(2x)','cbrt(x)',7,{t:4},`求 (${rad('2x')} + ${rad('x',3)})<sup>7</sup> 按 x 的降幂展开后的第 4 项。`),T_('x','-1/x',10,{t:6},`求 (x − ${fr(1,'x')})<sup>10</sup> 按 x 的降幂展开后的第 6 项。`),T_('x','1/x',9,{m:'1/x^3'},`求 (x + ${fr(1,'x')})<sup>9</sup> 展开式中 ${fr(1,'x<sup>3</sup>')} 项的系数。`)]],
+['总复习题 20',[E_('(1-3x)^5','求 (1 − 3x)<sup>5</sup> 的展开式。'),E_('(sqrt(x)+2/sqrt(x))^6',`展开 (${rx} + ${fr(2,rx)})<sup>6</sup>。`),T_('2x^2/3','-1/x^2',10,{t:8},`求 (${fr('2x<sup>2</sup>',3)} − ${fr(1,'x<sup>2</sup>')})<sup>10</sup> 按 x 的降幂展开后的第 8 项。`),T_('3x','-1/sqrt(x)',8,{t:5},`求 (3x − ${fr(1,rx)})<sup>8</sup> 按 x 的降幂展开后的第 5 项。`),T_('sqrt(x)','1/(2x)',20,{m:'1/x^2'},`求 (${rx} + ${fr(1,'2x')})<sup>20</sup> 展开式中 ${fr(1,'x<sup>2</sup>')} 的系数。`),
+S_('若二项式 (1 + ax)<sup>6</sup> 的展开式中 x<sup>3</sup> 的系数为 −160，求 a 的值。',`T<sub>4</sub> = ${cc(6,3)}(ax)<sup>3</sup> = 20a<sup>3</sup>x<sup>3</sup><div>20a<sup>3</sup> = −160 ⇒ a<sup>3</sup> = −8</div><div class=res>a = −2</div>${tf(6,3)}`),
+S_(`写出 (px + ${fr('q','x')})<sup>n</sup> 按 x 的降幂展开后的第 5 项。若此项是常数项，求 n 的值。`,`r+1=5 ⇒ r=4<div>T<sub>5</sub> = ${cc('n',4)}(px)<sup>n−4</sup>(${fr('q','x')})<sup>4</sup> = <span class=res>${cc('n',4)}p<sup>n−4</sup>q<sup>4</sup>x<sup>n−8</sup></span></div><div>常数项 ⇒ x 的指数 n−8 = 0 ⇒ <span class=res>n = 8</span>（此时 T<sub>5</sub> = ${cc(8,4)}p<sup>4</sup>q<sup>4</sup> = 70p<sup>4</sup>q<sup>4</sup>）</div>`)]]];
+const EXH=()=>EXL.map((g,gi)=>`<h3>${g[0]}</h3>`+g[1].map((it,i)=>`<div class=card data-x="${gi}-${i}"><b>${i+1}.</b> ${it.d} <button class=bt>查看解答</button><div class=ex hidden></div></div>`).join('')).join('');
+const exInit=e=>e.querySelectorAll('[data-x]').forEach(c=>{const[g,i]=c.dataset.x.split('-'),it=EXL[g][1][i],b=$('button',c),ex=$('.ex',c);b.onclick=()=>{if(ex.hidden){try{ex.innerHTML=it.run()}catch(er){ex.innerHTML='⚠ '+er.message}ex.hidden=false;b.textContent='收起'}else{ex.hidden=true;b.textContent='查看解答'}}});
+// ---- 页面 ----
+const sq=`<svg viewBox="0 0 150 150" class=fig style="max-width:190px"><rect x="5" y="5" width="90" height="90" fill="#ef4444" opacity=".7"/><rect x="95" y="5" width="50" height="90" fill="#22c55e" opacity=".7"/><rect x="5" y="95" width="90" height="50" fill="#22c55e" opacity=".7"/><rect x="95" y="95" width="50" height="50" fill="#3b82f6" opacity=".7"/><g text-anchor="middle" font-size="14" fill="currentColor"><text x="50" y="55">a²</text><text x="120" y="55">ab</text><text x="50" y="125">ab</text><text x="120" y="125">b²</text></g></svg><div class=sm style="text-align:center">(a+b)² = a² + 2ab + b²（几何分割）</div>`;
+const E1=(t,args,pre='')=>{const o=expand2(...args);return`<div class=card><b>${t}</b>　展开 ${binom(args[0],pn(args[1]),args[2],args[3]==='y'?'y':pn(args[3]),args[4])}。${pre}<div class=stp>${o.steps}</div>∴ 原式 = <span class=res>${o.html}</span>${pas(args[4])}</div>`};
+const E2=(t,txt,args,mode,v)=>{const o=term2(...args,mode,v);return`<div class=card><b>${t}</b>　${txt}<div style="margin-top:4px">${o.html}</div>${o.fig||''}</div>`};
+const S=[
+{k:'20.1',h:`<h2>20.1 指数为自然数的二项式定理</h2><div class=card>${sq}<div class=fb>(a+b)<sup>n</sup> = ${cc('n',0)}a<sup>n</sup> + ${cc('n',1)}a<sup>n−1</sup>b + … + ${cc('n','r')}a<sup>n−r</sup>b<sup>r</sup> + … + ${cc('n','n')}b<sup>n</sup>（n∈N）</div>① 每项 a、b 的指数和 = n；a 的指数从 n 降到 0，b 的指数从 0 升到 n。<br>② 展开式共有 n+1 项。<br>③ 第 r+1 项的系数是 ${cc('n','r')}，且 ${cc('n','r')} = ${cc('n','n−r')}。<br>④ 杨辉三角：${cc('n+1','r')} = ${cc('n','r−1')} + ${cc('n','r')}。<br>⑤ 令 a=1，b=x：(1+x)<sup>n</sup> = 1 + ${cc('n',1)}x + ${cc('n',2)}x<sup>2</sup> + … + ${cc('n','n')}x<sup>n</sup>。</div><h3>课本例题</h3>`+
+E1('例题 1',[1,1,2,'y',4])+E1('例题 2',[1,0,1,1,5])+E1('例题 3',[1,2,-2,-1,5])+E1('例题 4',[1,.5,-3,-.5,4],'（此处 x<sup>½</sup> 即 '+rad('x')+'，x<sup>−½</sup> 即 '+fr(1,rad('x'))+'）')+
+E1('例题 5',[1,0,1,1,6],'　(1+2x+x<sup>2</sup>)<sup>3</sup> = [(1+x)<sup>2</sup>]<sup>3</sup> = (1+x)<sup>6</sup>，下面展开 (1+x)<sup>6</sup>。')+`<h3>🧮 展开计算器</h3>`,c:1,m:A1,f:F1},
+{k:'20.2',h:`<h2>20.2 二项展开式的通项公式</h2><div class=card><div class=fb>T<sub>r+1</sub> = ${cc('n','r')}a<sup>n−r</sup>b<sup>r</sup></div>求“第 k 项”：令 r+1=k；求“含 x<sup>m</sup> 项”：把 a、b 的 x 指数代入，令总指数 = m，解出 r（须为 0~n 的整数）；常数项即令总指数 = 0。</div><h3>课本例题</h3>`+
+E2('例题 6',`求 ${binom(2,1,5,'y',8)} 按 x 的降幂展开后的第 4 项。`,[2,1,5,'y',8],'t',4)+
+E2('例题 7',`求 (x − ${fr(1,'x')})<sup>8</sup> 的展开式中含 x<sup>4</sup> 项的系数。`,[1,1,-1,-1,8],'k',4)+
+E2('例题 8',`求 (x<sup>2</sup> − ${fr(2,'x<sup>2</sup>')})<sup>10</sup> 的展开式中的常数项。`,[1,2,-2,-2,10],'k',0)+`<h3>🧮 通项计算器</h3>`,c:2,m:A2,f:F2},
+{k:'课本习题',ex:1,h:`<h2>课本习题全部解答</h2><div class=card>随堂练习、习题 20.1、习题 20.2、总复习题 20 全部收录。先自己做，再点“查看解答”核对每一步。</div>`+EXH()},
+{k:'总复习',h:`<h2>总复习</h2><div class=card>10 道选择题（含总复习题中较难的题型），做完后出现 5 道填充题，最后给出成绩评估。每次出题都不一样。</div>`,rev:1}];
+const nv=$('#nv'),mn=$('#mn');
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.k;nv.appendChild(b);const e=document.createElement('section');e.innerHTML=s.h+(s.c?'<div class=card><div class=calc></div></div>':'')+(s.ex?'':'<h3>📝 选择题</h3><div class=qz></div>');mn.appendChild(e);
+if(s.c)calc($('.calc',e),s.c);if(s.ex)exInit(e);else quiz($('.qz',e),s.rev?revM():pick(s.m,5),s.rev?revF():s.f,s.rev?0:3,!!s.rev);
+b.onclick=()=>{[...nv.children].forEach((x,j)=>{x.classList.toggle('on',j==i);mn.children[j].classList.toggle('on',j==i)});b.scrollIntoView({inline:'center',block:'nearest'});scrollTo(0,0)}});
+nv.children[0].click();
+let fs=16;try{fs=+localStorage.fs||16}catch(e){}const ap=()=>{document.documentElement.style.fontSize=fs+'px';try{localStorage.fs=fs}catch(e){}};ap();
+$('#fm').onclick=()=>{fs=Math.max(12,fs-1);ap()};$('#fp').onclick=()=>{fs=Math.min(22,fs+1);ap()};
+const th=t=>{document.documentElement.dataset.theme=t;$('#tm').textContent=t=='dark'?'☀️':'🌙';try{localStorage.th=t}catch(e){}};
+$('#tm').onclick=()=>th(document.documentElement.dataset.theme=='dark'?'light':'dark');try{th(localStorage.th||'light')}catch(e){}
+</script></body></html>

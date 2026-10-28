@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="峇株吧辖华仁中学蔡逸众制作 / Made by ecchua79">
+<title>高二数学下册 第21章 统计学 · 互动课程</title>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79 -->
+<style>
+:root{--fs:16px;--bg:#f4f7fc;--c:#1b2433;--cd:#fff;--p:#2563eb;--a:#e8590c;--g:#16a34a;--r:#dc2626;--b:#cbd5e1;--m:#64748b}
+body[data-t=d]{--bg:#0a0f1f;--c:#dbe4f5;--cd:#131b32;--p:#60a5fa;--a:#fb923c;--g:#4ade80;--r:#f87171;--b:#2a3556;--m:#94a3b8}
+html{font-size:var(--fs)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--c);font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;background:var(--cd);border-bottom:1px solid var(--b)}
+h1{font-size:1.1rem;margin:0}h2{margin:.6em 0 .2em}h3{margin:1em 0 .2em;color:var(--p)}
+button{font:inherit;cursor:pointer;color:var(--c);background:var(--cd);border:1px solid var(--b);border-radius:8px;padding:3px 12px}
+button:hover{border-color:var(--p)}
+nav{position:sticky;top:0;z-index:5;display:flex;overflow-x:auto;gap:6px;padding:8px;background:var(--cd);border-bottom:1px solid var(--b)}
+nav button{flex:none;white-space:nowrap}nav button.on{background:var(--p);color:#fff;border-color:var(--p)}
+main{max-width:880px;margin:auto;padding:8px 12px}section{display:none}section.on{display:block}
+.card{position:relative;background:var(--cd);border:1px solid var(--b);border-radius:12px;padding:10px 14px;margin:10px 0}
+.box{background:rgba(99,102,241,.1);border-left:4px solid var(--p);padding:6px 12px;margin:8px 0;border-radius:6px}
+.stp{margin:6px 0;padding:4px 8px;border-left:3px solid var(--a);background:rgba(128,128,128,.08);overflow-x:auto}
+.m{color:var(--m);font-size:.9em}.g{color:var(--g)}.r{color:var(--r)}
+textarea,input{font:inherit;width:100%;color:var(--c);background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:6px}
+input{width:9em}.opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px}
+.opt.ok{border-color:var(--g);background:rgba(22,163,74,.2)}.opt.bad{border-color:var(--r);background:rgba(220,38,38,.2)}
+.ex{margin-top:8px;padding:8px;border-radius:8px;background:rgba(128,128,128,.1)}
+.tb{border-collapse:collapse;margin:6px 0;font-size:.9em}.tb td,.tb th{border:1px solid var(--b);padding:2px 8px;text-align:center}
+.f{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.3}
+.f i{font-style:normal;border-bottom:1.5px solid currentColor;padding:0 4px}.f b{font-weight:400;padding:0 4px}
+.rt{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 2px}
+.rl{width:.9em;flex:none;min-height:1.3em;overflow:visible}.rc{position:relative;padding:.25em .15em 0 .1em}
+.rb{position:absolute;left:-.5px;top:-.5px;width:calc(100% + .5px);height:1px;overflow:visible}
+.rl path,.rb line{fill:none;stroke:currentColor;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.sv{width:100%;max-width:520px;height:auto;display:block;margin:6px auto}.sv line:not([stroke]){stroke:currentColor}
+.fw{position:fixed;inset:-50%;display:flex;flex-wrap:wrap;gap:90px 100px;align-content:center;justify-content:center;transform:rotate(-25deg);pointer-events:none;z-index:50;opacity:.04;font-size:9px;font-weight:700;overflow:hidden}
+.hw{position:absolute;right:2px;bottom:0;font:1px/1px sans-serif;opacity:.02;pointer-events:none}
+footer{text-align:center;color:var(--m);font-size:.85em;padding:18px 10px 30px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#e8590c"/></marker></defs></svg>
+<header><h1>📊 高二数学下册 · 第21章 统计学</h1><div><button id="fm">A-</button> <button id="f0">A</button> <button id="fp">A+</button> <button id="th">🌙 / ☀</button></div></header>
+<nav></nav>
+<main><details class="card"><summary>📌 本章学习目标</summary><ul><li>能计算并诠释集中趋势与离中趋势</li><li>理解各统计量的优缺点与适用情况</li><li>理解数据变换对集中／离中趋势的影响</li><li>理解异常值，能绘制箱线图</li><li>能计算并诠释统计指数</li></ul></details></main>
+<footer>© 2026 峇株吧辖华仁中学 蔡逸众制作 · Made by ecchua79<br>高二数学下册 第21章 统计学 · 离线互动课程 · 仅供教学使用，请勿擅自转载</footer>
+<script>
+const WM=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,P=a=>a[R(0,a.length-1)],r2=x=>Math.round(x*100)/100,fm=x=>String(r2(x)),sum=a=>a.reduce((s,x)=>s+x,0),mean=a=>sum(a)/a.length,arr=(n,a,b)=>Array.from({length:n},()=>R(a,b)),sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]),srt=a=>[...a].sort((x,y)=>x-y),dl=a=>a.join('，');
+const F=(n,d)=>`<span class="f"><i>${n}</i><b>${d}</b></span>`;
+const SQ=h=>`<span class="rt"><svg class="rl" viewBox="0 0 10 30" preserveAspectRatio="none"><path d="M0.5 17L3 15L6 28L10 0"/></svg><span class="rc">${h}<svg class="rb" viewBox="0 0 10 1" preserveAspectRatio="none"><line x1="0" y1=".5" x2="10" y2=".5"/></svg></span></span>`;
+const T=(...a)=>`<div class="stp">${a.join('')}</div>`;
+const med=a=>{const s=srt(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};
+const qs=a=>{const s=srt(a),n=s.length,h=n>>1;return[med(s.slice(0,h)),med(s),med(s.slice(n-h))]};
+const mde=a=>{const c={};a.forEach(x=>c[x]=(c[x]||0)+1);const v=Object.values(c),m=Math.max(...v);return m==1||v.every(x=>x==m)?[]:Object.keys(c).filter(k=>c[k]==m).map(Number)};
+const gp=l=>{const j=l.length>1&&l[1][0]-l[0][1]===1&&l.every(x=>Number.isInteger(x[0])&&Number.isInteger(x[1]))?.5:0;return l.map(([lo,hi,f])=>({L:lo-j,U:hi+j,f,m:(lo+hi)/2}))};
+const gq=(g,k)=>{const n=sum(g.map(x=>x.f)),t=k*n/4;let F0=0;for(const x of g){if(F0+x.f>=t)return{v:x.L+(t-F0)/x.f*(x.U-x.L),x,F0,n,t};F0+=x.f}};
+const gm=g=>{const j=g.reduce((b,x,i)=>x.f>g[b].f?i:b,0),x=g[j],d1=x.f-(j?g[j-1].f:0),d2=x.f-(g[j+1]?g[j+1].f:0);return{v:d1+d2?x.L+d1/(d1+d2)*(x.U-x.L):(x.L+x.U)/2,j,d1,d2,x}};
+function ps(t){t=t.replace(/[，、；;\n]/g,',').replace(/：/g,':').replace(/[–~－—]/g,'-');const tk=t.split(/[,\s]+/).filter(Boolean);
+if(tk.some(s=>/^\d+(\.\d+)?-\d+(\.\d+)?:\d/.test(s)))return{t:'g',g:gp(tk.map(s=>{const m=s.match(/^([\d.]+)-([\d.]+):([\d.]+)$/);return m&&[+m[1],+m[2],+m[3]]}).filter(Boolean))};
+const d=[];tk.forEach(s=>{if(s.includes(':')){const[v,f]=s.split(':').map(Number);for(let i=0;i<f;i++)d.push(v)}else if(!isNaN(+s))d.push(+s)});return{t:'r',d}}
+/* ===== SVG ===== */
+const sv=(h,b)=>`<svg class="sv" viewBox="0 0 340 ${h}" font-size="11" fill="currentColor">${b}</svg>`;
+function axis(lo,hi,x,y){let s=(hi-lo)/6;const p=10**Math.floor(Math.log10(s));s=[1,2,5,10].map(m=>m*p).find(m=>m>=s);let o=`<line x1="${x(lo)}" x2="${x(hi)}" y1="${y}" y2="${y}"/>`;for(let v=Math.ceil(lo/s)*s;v<=hi+1e-9;v+=s)o+=`<line x1="${x(v)}" x2="${x(v)}" y1="${y}" y2="${y+4}"/><text x="${x(v)}" y="${y+15}" text-anchor="middle">${r2(v)}</text>`;return o}
+function dot(d,ms=[]){const s=srt(d),a=s[0],b=s.at(-1),e=(b-a)*.08+1,lo=a-e,hi=b+e,x=v=>20+(v-lo)/(hi-lo)*300,c={},cc={};d.forEach(v=>cc[v]=(cc[v]||0)+1);const dy=Math.min(10,68/Math.max(...Object.values(cc)));let o=axis(lo,hi,x,100);
+d.forEach(v=>{c[v]=(c[v]||0)+1;o+=`<circle cx="${x(v)}" cy="${95-(c[v]-1)*dy}" r="${Math.min(4.5,dy/2+.5)}" fill="var(--p)"/>`});
+ms.forEach(([v,t,col],i)=>{o+=`<line x1="${x(v)}" x2="${x(v)}" y1="8" y2="100" stroke="${col}" stroke-width="1.6" stroke-dasharray="4 3"/><text x="${10+i*110}" y="128" fill="${col}">━ ${t} ${fm(v)}</text>`});return sv(135,o)}
+function dev(d){const m=mean(d),s=srt(d),a=s[0]-1,b=s.at(-1)+1,x=v=>20+(v-a)/(b-a)*300,n=d.length,ay=24+n*14;let o=axis(a,b,x,ay);
+d.forEach((v,i)=>{const y=18+i*14;o+=`<line x1="${x(v)}" x2="${x(m)}" y1="${y}" y2="${y}" stroke="var(--a)" stroke-width="1.6" marker-end="url(#ah)"/><circle cx="${x(v)}" cy="${y}" r="3.5" fill="var(--p)"/>`});
+o+=`<line x1="${x(m)}" x2="${x(m)}" y1="10" y2="${ay}" stroke="var(--r)" stroke-dasharray="4 3"/><text x="${x(m)}" y="9" text-anchor="middle" fill="var(--r)">x̄=${fm(m)}</text>`;return sv(ay+22,o)}
+function box(d,Q){const s=srt(d),[q1,q2,q3]=Q||qs(d),i=q3-q1,lf=q1-1.5*i,uf=q3+1.5*i,ins=s.filter(v=>v>=lf&&v<=uf),wl=ins[0],wu=ins.at(-1),a=s[0],b=s.at(-1),e=(b-a)*.06+1,lo=a-e,hi=b+e,x=v=>20+(v-lo)/(hi-lo)*300;
+let o=axis(lo,hi,x,104)+`<line x1="${x(wl)}" x2="${x(q1)}" y1="58" y2="58"/><line x1="${x(q3)}" x2="${x(wu)}" y1="58" y2="58"/><line x1="${x(wl)}" x2="${x(wl)}" y1="48" y2="68"/><line x1="${x(wu)}" x2="${x(wu)}" y1="48" y2="68"/><rect x="${x(q1)}" y="40" width="${x(q3)-x(q1)}" height="36" fill="var(--a)" fill-opacity=".55" stroke="currentColor"/><line x1="${x(q2)}" x2="${x(q2)}" y1="40" y2="76" stroke="currentColor" stroke-width="2.5"/>`;
+s.filter(v=>v<lf||v>uf).forEach(v=>o+=`<circle cx="${x(v)}" cy="58" r="3.5" fill="var(--r)"/>`);
+[[lf,'下围栏'],[uf,'上围栏']].forEach(([v,t])=>{if(x(v)>12&&x(v)<330)o+=`<line x1="${x(v)}" x2="${x(v)}" y1="22" y2="104" stroke="var(--r)" stroke-dasharray="3 3"/><text x="${x(v)}" y="17" text-anchor="middle" fill="var(--r)">${t} ${fm(v)}</text>`});
+[[q1,'Q₁'],[q2,'Q₂'],[q3,'Q₃']].forEach(([v,t],k)=>o+=`<text x="${x(v)}" y="${k==1?90:36}" text-anchor="middle" font-size="10">${t}=${fm(v)}</text>`);return sv(122,o)}
+function bars(lb,v,b){const mx=Math.max(...v,b||0)*1.15,n=v.length,w=Math.min(40,260/n),gap=(300-w*n)/(n+1),y=t=>110-t/mx*95;let o=`<line x1="20" x2="330" y1="110" y2="110"/>`;
+v.forEach((t,i)=>{const X=20+gap+i*(w+gap);o+=`<rect x="${X}" y="${y(t)}" width="${w}" height="${110-y(t)}" fill="var(--p)" fill-opacity=".75"/><text x="${X+w/2}" y="${y(t)-3}" text-anchor="middle">${fm(t)}</text><text x="${X+w/2}" y="124" text-anchor="middle">${lb[i]}</text>`});
+if(b)o+=`<line x1="20" x2="330" y1="${y(b)}" y2="${y(b)}" stroke="var(--r)" stroke-dasharray="5 3"/><text x="330" y="${y(b)-3}" text-anchor="end" fill="var(--r)">基期=${b}</text>`;return sv(132,o)}
+function hist(g,md){const L0=g[0].L,U1=g.at(-1).U,mf=Math.max(...g.map(x=>x.f)),x=v=>25+(v-L0)/(U1-L0)*295,y=f=>110-f/mf*88;let o=`<line x1="25" x2="325" y1="110" y2="110"/><line x1="25" x2="25" y1="15" y2="110"/>`;
+g.forEach(b=>o+=`<rect x="${x(b.L)}" y="${y(b.f)}" width="${x(b.U)-x(b.L)}" height="${110-y(b.f)}" fill="var(--p)" fill-opacity=".35" stroke="var(--p)"/><text x="${x(b.L)}" y="122" font-size="8" text-anchor="middle">${r2(b.L)}</text>`);
+o+=`<text x="${x(U1)}" y="122" font-size="8" text-anchor="middle">${r2(U1)}</text>`;
+if(md){const{j,v}=md,b=g[j],pf=j?g[j-1].f:0,nf=g[j+1]?g[j+1].f:0;o+=`<line x1="${x(b.L)}" y1="${y(b.f)}" x2="${x(b.U)}" y2="${y(nf)}" stroke="var(--a)" stroke-width="1.5"/><line x1="${x(b.L)}" y1="${y(pf)}" x2="${x(b.U)}" y2="${y(b.f)}" stroke="var(--a)" stroke-width="1.5"/><line x1="${x(v)}" x2="${x(v)}" y1="${y(b.f)}" y2="110" stroke="var(--r)" stroke-dasharray="4 3"/><text x="${x(v)}" y="11" text-anchor="middle" fill="var(--r)">众数≈${fm(v)}</text>`}return sv(130,o)}
+/* ===== 计算器 ===== */
+function A1(t){const p=ps(t);
+if(p.t=='g'){const g=p.g,n=sum(g.map(b=>b.f)),sfx=sum(g.map(b=>b.m*b.f)),md=gq(g,2),mo=gm(g),C=r2(md.x.U-md.x.L);
+return `<table class="tb"><tr><th>组界</th><th>组中点 x</th><th>频数 f</th><th>fx</th></tr>${g.map(b=>`<tr><td>${b.L}–${b.U}</td><td>${b.m}</td><td>${b.f}</td><td>${r2(b.m*b.f)}</td></tr>`).join('')}</table>`+
+T(`平均数 = ${F('Σfx','Σf')} = ${F(r2(sfx),n)} = <b>${fm(sfx/n)}</b>`)+
+T(`n = ${n}，${F('n','2')} = ${n/2}，中位数在 ${md.x.L}–${md.x.U} 组：L<sub>m</sub>=${md.x.L}，F<sub>m</sub>=${md.F0}，f<sub>m</sub>=${md.x.f}，C<sub>m</sub>=${C}`)+
+T(`中位数 = ${md.x.L} + ${F(`${n/2} − ${md.F0}`,md.x.f)} × ${C} = <b>${fm(md.v)}</b>`)+
+T(`众数组 ${mo.x.L}–${mo.x.U}，d<sub>1</sub>=${mo.d1}，d<sub>2</sub>=${mo.d2}；众数 = ${mo.x.L} + ${F(mo.d1,`${mo.d1} + ${mo.d2}`)} × ${r2(mo.x.U-mo.x.L)} = <b>${fm(mo.v)}</b>`)+hist(g,mo)+cum(g)}
+const d=p.d;if(!d.length)return'<p>请输入数据</p>';const n=d.length,s=srt(d),sm=sum(d),mn=sm/n,md=med(d),mo=mde(d);
+return T(`排序：${dl(s)}（n = ${n}）`)+T(`平均数 = ${F('Σx','n')} = ${F(r2(sm),n)} = <b>${fm(mn)}</b>`)+
+T(n%2?`n 是奇数，中位数是第 ${F('n+1','2')} = ${(n+1)/2} 位 → <b>${fm(md)}</b>`:`n 是偶数，中位数是第 ${n/2} 位与第 ${n/2+1} 位的平均：${F(s[n/2-1]+' + '+s[n/2],2)} = <b>${fm(md)}</b>`)+
+T(mo.length?`众数 = <b>${mo.join('、')}</b>（出现次数最多）`:'没有众数（每个数据出现的次数相同）')+
+dot(d,[[mn,'平均数','var(--r)'],[md,'中位数','var(--g)']].concat(mo.length?[[mo[0],'众数','var(--p)']]:[]))}
+function A2(t){const p=ps(t);let d,g,q,rg;
+if(p.t=='g'){g=p.g;d=g.flatMap(b=>Array(b.f).fill(b.m));q=[1,2,3].map(k=>gq(g,k).v);rg=T(`全距 = 最后一组上限 − 第一组下限 = ${g.at(-1).U} − ${g[0].L} = <b>${fm(g.at(-1).U-g[0].L)}</b>`)}
+else{d=p.d;if(d.length<2)return'<p>请至少输入2个数据</p>';q=qs(d);const a=Math.max(...d),b=Math.min(...d);rg=T(`全距 = 最大值 − 最小值 = ${a} − ${b} = <b>${a-b}</b>`)}
+const n=d.length,m=mean(d),sx=sum(d.map(x=>x*x)),v=sx/n-m*m,sd=Math.sqrt(Math.max(v,0)),I=q[2]-q[0];
+return rg+T(`Q₁ = ${fm(q[0])}，Q₂ = ${fm(q[1])}，Q₃ = ${fm(q[2])}`)+T(`IQR = Q₃ − Q₁ = ${fm(I)}；QD = ${F('Q₃ − Q₁','2')} = ${F(fm(q[2])+' − '+fm(q[0]),2)} = <b>${fm(I/2)}</b>`)+
+T(`x̄ = ${fm(m)}，Σx² = ${fm(sx)}，n = ${n}`)+T(`σ² = ${F('Σx²','n')} − x̄² = ${F(fm(sx),n)} − ${fm(m)}² = <b>${fm(v)}</b>`)+T(`σ = ${SQ(fm(v))} = <b>${fm(sd)}</b>`)+(g?hist(g)+cum(g):n<=14?dev(d):dot(d,[[m,'平均数','var(--r)']]))}
+function A3(t){if(t=='@m15')return M15();const p=ps(t);if(p.t=='g'){const g=p.g,q=[1,2,3].map(k=>gq(g,k).v),a=g[0].L,b=g.at(-1).U,i=q[2]-q[0],o=a<q[0]-1.5*i||b>q[2]+1.5*i;return T(`Q₁ = ${fm(q[0])}，Q₂ = ${fm(q[1])}，Q₃ = ${fm(q[2])}（由累积频数公式求得）`)+T(`IQR = ${fm(i)}；围栏 ${fm(q[0]-1.5*i)} 至 ${fm(q[2]+1.5*i)}；数据范围 ${a}–${b}，${o?'超出围栏，请留意异常值':'没有超出围栏，无异常值'}`)+box([a,b],q)+cum(g)}const d=p.d;if(d.length<4)return'<p>请至少输入4个数据</p>';
+const s=srt(d),[q1,q2,q3]=qs(d),i=q3-q1,lf=q1-1.5*i,uf=q3+1.5*i,out=s.filter(v=>v<lf||v>uf),ins=s.filter(v=>v>=lf&&v<=uf);
+return T(`排序：${dl(s)}`)+T(`Q₁ = ${fm(q1)}，Q₂ = ${fm(q2)}，Q₃ = ${fm(q3)}`)+T(`IQR = Q₃ − Q₁ = ${fm(q3)} − ${fm(q1)} = <b>${fm(i)}</b>`)+
+T(`Q₁ − 1.5×IQR = ${fm(q1)} − 1.5×${fm(i)} = <b>${fm(lf)}</b>`)+T(`Q₃ + 1.5×IQR = ${fm(q3)} + 1.5×${fm(i)} = <b>${fm(uf)}</b>`)+
+T(out.length?`异常值：<b>${out.join('、')}</b>（小于 ${fm(lf)} 或大于 ${fm(uf)}）`:'没有异常值')+T(`下限（左须端）= ${ins[0]}，上限（右须端）= ${ins.at(-1)}`)+box(d)}
+function A4(t){const rows=t.split(/[\n;；]+/).map(r=>r.split(/[,，\s]+/).filter(Boolean).map(Number)).filter(r=>r.length>=2&&r.every(x=>!isNaN(x)&&true));
+if(!rows.length)return'<p>每行输入：基期值,计算期值,权数（权数可省略）</p>';const W=rows.map(([a,b,w=1])=>({a,b,w,x:b/a*100})),sw=sum(W.map(r=>r.w)),swx=sum(W.map(r=>r.w*r.x)),ci=swx/sw;
+if(W.length==1){const r=W[0];return T(`价比（指数） = ${F('P₁','P₀')} × 100 = ${F(r.b,r.a)} × 100 = <b>${fm(r.x)}</b>`)+T(`${fm(r.x)} − 100 = ${fm(r.x-100)}，表示${r.x>=100?'上涨':'下降'}了 <b>${fm(Math.abs(r.x-100))}%</b>`)+bars(['基期','计算期'],[100,r.x],100)}
+return `<table class="tb"><tr><th>项</th><th>基期</th><th>计算期</th><th>价比 x</th><th>权数 w</th><th>wx</th></tr>${W.map((r,i)=>`<tr><td>${i+1}</td><td>${r.a}</td><td>${r.b}</td><td>${fm(r.x)}</td><td>${r.w}</td><td>${fm(r.w*r.x)}</td></tr>`).join('')}<tr><td colspan="4">合计</td><td>${sw}</td><td>${fm(swx)}</td></tr></table>`+
+T(`综合指数 = ${F('Σwx','Σw')} = ${F(fm(swx),sw)} = <b>${fm(ci)}</b>`)+T(`表示整体${ci>=100?'上涨':'下降'}了 <b>${fm(Math.abs(ci-100))}%</b>`)+bars(W.map((_,i)=>'项'+(i+1)),W.map(r=>r.x),100)}
+function cum(g){const n=sum(g.map(b=>b.f)),L0=g[0].L,U=g.at(-1).U,x=v=>30+(v-L0)/(U-L0)*290,y=c=>110-c/n*95;let c=0;const pts=[[L0,0]];g.forEach(b=>{c+=b.f;pts.push([b.U,c])});
+let o=`<line x1="30" x2="325" y1="110" y2="110"/><line x1="30" x2="30" y1="12" y2="110"/><text x="2" y="${y(n)+3}" font-size="8">${n}</text><polyline points="${pts.map(p=>x(p[0])+','+y(p[1])).join(' ')}" fill="none" stroke="var(--p)" stroke-width="1.8"/>`;
+pts.forEach(p=>o+=`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="2.5" fill="var(--p)"/><text x="${x(p[0])}" y="122" font-size="8" text-anchor="middle">${r2(p[0])}</text>`);
+[1,2,3].forEach(k=>{const q=gq(g,k);o+=`<line x1="30" x2="${x(q.v)}" y1="${y(q.t)}" y2="${y(q.t)}" stroke="var(--a)" stroke-dasharray="3 3"/><line x1="${x(q.v)}" x2="${x(q.v)}" y1="${y(q.t)}" y2="110" stroke="var(--a)" stroke-dasharray="3 3"/><text x="${x(q.v)+3}" y="${y(q.t)+11}" fill="var(--a)" font-size="9">Q${k}≈${fm(q.v)}</text>`});
+return `<p class="m">累积频数多边形：橙色虚线从 n/4、n/2、3n/4 的高度读出 Q₁、Q₂、Q₃。</p>`+sv(130,o)}
+function M15(){const D=[['国文',30,50,60,67,77,[96]],['英文',28,46,54,70,88,[]],['华文',34,54,65,75,98,[17]],['数学',26,37,55,67,90,[]],['科学',44,55,63,70,85,[14]]],y=v=>130-v*1.15;
+let o=`<line x1="30" x2="30" y1="${y(100)}" y2="130"/><line x1="30" x2="330" y1="130" y2="130"/>`;
+for(let v=0;v<=100;v+=20)o+=`<line x1="27" x2="30" y1="${y(v)}" y2="${y(v)}"/><text x="24" y="${y(v)+3}" text-anchor="end" font-size="9">${v}</text>`;
+D.forEach(([n,a,q1,q2,q3,b,ou],i)=>{const c=65+i*58;o+=`<line x1="${c}" x2="${c}" y1="${y(a)}" y2="${y(q1)}"/><line x1="${c}" x2="${c}" y1="${y(q3)}" y2="${y(b)}"/><line x1="${c-8}" x2="${c+8}" y1="${y(a)}" y2="${y(a)}"/><line x1="${c-8}" x2="${c+8}" y1="${y(b)}" y2="${y(b)}"/><rect x="${c-16}" y="${y(q3)}" width="32" height="${y(q1)-y(q3)}" fill="var(--a)" fill-opacity=".55" stroke="currentColor"/><line x1="${c-16}" x2="${c+16}" y1="${y(q2)}" y2="${y(q2)}" stroke="currentColor" stroke-width="2.5"/><text x="${c}" y="145" text-anchor="middle">${n}</text>`;ou.forEach(v=>o+=`<circle cx="${c}" cy="${y(v)}" r="3" fill="var(--r)"/>`)});
+return sv(150,o)+T('(a) 国文：最高分 96，最低分 30，全距 = 96 − 30 = <b>66</b>；英文：最高分 88，最低分 28，全距 = 88 − 28 = <b>60</b>')+T('(b) 四分位距 IQR = Q₃ − Q₁：国文 17，英文 24，华文 21，数学 30，科学 15 → <b>科学</b>的四分位距最小')+T('(c) <b>科学</b>。它的箱体最窄，除了 1 位同学（红点）外，其他同学的成绩都落在一个较小的范围内。')}
+const H=f=>(l,i)=>`<p><b>${l}</b></p>`+f(i),a1=H(A1),a2=H(A2),a3=H(A3),a4=H(A4),J=(...a)=>a.join('');
+const XS={'21.1':[
+['某公寓一层16户住家某月份的电费(RM)：22.55，57.74，31.90，82.40，34.52，23.12，30.64，34.23，37.86，26.55，18.72，25.63，41.33，19.26，15.60，47.87。求平均数、中位数及众数。',A1('22.55,57.74,31.90,82.40,34.52,23.12,30.64,34.23,37.86,26.55,18.72,25.63,41.33,19.26,15.60,47.87')],
+['销售奖励：3位职员各RM600，10位各RM400，8位各RM200，4位没有奖励。求平均数、中位数及众数。',A1('600:3,400:10,200:8,0:4')],
+['火车运载货物重量(公吨)：9–12有7列，13–16有9列，17–20有17列，21–24有28列，25–28有19列。(a)利用公式求平均数、中位数及众数；(b)作直方图求众数；(c)作累积频数多边形求中位数。（下方已含直方图与累积频数多边形）',A1('9-12:7,13-16:9,17-20:17,21-24:28,25-28:19')],
+['德士司机工作时长(小时)：1–4有17人，5–8有24人，9–12有 x 人，13–16有9人。平均工作时长为7小时，求 x。',T(`组中点 2.5、6.5、10.5、14.5：${F('2.5×17 + 6.5×24 + 10.5x + 14.5×9','17 + 24 + x + 9')} = 7`)+T('329 + 10.5x = 7(50 + x) → 3.5x = 21 → x = <b>6</b>')],
+['已知5个数据的平均数为15，若加入两个数据 3x 及 5x 后，平均数减少了2，求 x。',T('原总和 = 5×15 = 75；新平均数 = 15 − 2 = 13，共7个数据，新总和 = 91')+T('75 + 3x + 5x = 91 → 8x = 16 → x = <b>2</b>')],
+['家庭人数：1人2户，2人8户，3人17户，4人 x 户，5人24户，6人15户，7人4户。家庭人数的中位数为4，求 x 的可能值。',T(`n = 70 + x。人数 ≤ 3 的共 2 + 8 + 17 = 27 户，中位数为4，表示中位数的位置落在第 28 至第 27 + x 位之间。`)+T(`n 为奇数：第 ${F('71 + x','2')} 位 ≤ 27 + x → x ≥ 17；n 为偶数：第 ${F('72 + x','2')} 位 ≤ 27 + x → x ≥ 18`)+T('所以 x 的可能值为 <b>x ≥ 17 的整数</b>（17、18、19、…）')],
+['30名学生身高(cm)：150–155有5人，155–160有6人，160–165有 x 人，165–170有7人，170–175有6人，175–180有2人。(a)求 x；(b)求身高的中位数。',T('(a) 5 + 6 + x + 7 + 6 + 2 = 30 → x = <b>4</b>')+a1('(b) 代入 x = 4','150-155:5,155-160:6,160-165:4,165-170:7,170-175:6,175-180:2')],
+['超市顾客消费金额(RM)：0–50有24人，50–100有40人，100–150有15人，150–200有8人，200–250有7人，250–300有1人。求众数组及消费金额众数。',A1('0-50:24,50-100:40,100-150:15,150-200:8,200-250:7,250-300:1')],
+['某学生数学科7次评估分数：55，70，60，54，65，74，70。(a)求平均数、中位数及众数；(b)向家长说明平时成绩水平，应采用哪一个统计量？',A1('55,70,60,54,65,74,70')+T('(b) 数据没有极端值，平均数（约64.57）与中位数（65）很接近，都能代表平时成绩，可采用<b>平均数</b>。众数70只反映出现最多的分数，偏高，不宜采用。')],
+['咖啡价格(RM)：9，10，10，11，12，12，12，12，14，14，16。(a)求平均数、中位数及众数；(b)所有咖啡享10%折扣，折扣后再用一张RM1优惠券，求调整后成交价的平均数、中位数及众数。',a1('(a)','9,10,10,11,12,12,12,12,14,14,16')+T('(b) 新价格 y = 0.9x − 1（a = 0.9，b = −1），新统计量 = 0.9 × 原统计量 − 1')+T('平均数 = 0.9×12 − 1 = <b>9.8</b>；中位数 = 0.9×12 − 1 = <b>9.8</b>；众数 = 0.9×12 − 1 = <b>9.8</b>（单位 RM）')]],
+'21.2':[
+['求数据 18，20，12，17，13，11，20，14，8，20，5，4 的全距、四分位数及四分位差。',A2('18,20,12,17,13,11,20,14,8,20,5,4')],
+['8个高二商科班的数学平均分数：67.55，57.89，60.87，62.57，73.41，84.33，78.55，56.72。求全距、四分位数及四分位距。',A2('67.55,57.89,60.87,62.57,73.41,84.33,78.55,56.72')],
+['求下列数据的方差及标准差：(a) 2，5，2，9；(b) 3，4，9，4，7，6；(c) 3，8，11，12，10，9，11，12。',J(a2('(a)','2,5,2,9'),a2('(b)','3,4,9,4,7,6'),a2('(c)','3,8,11,12,10,9,11,12'))],
+['公共假期加班时数：1小时1人，2小时1人，3小时3人，4小时8人，5小时2人。求平均数及标准差。',A2('1:1,2:1,3:3,4:8,5:2')],
+['投篮游戏投进次数：0次27人，1次38人，2次25人，3次10人。求平均数及标准差。',A2('0:27,1:38,2:25,3:10')],
+['某星期上海最高气温：11，3，3，4，4，9，8；香港：20，20，17，15，17，17，20。分别求平均数及标准差，哪一地较分散？',J(a2('上海','11,3,3,4,4,9,8'),a2('香港','20,20,17,15,17,17,20'),T('上海的标准差较大（约3.02对1.85），所以<b>上海</b>的最高气温较分散。'))],
+['A班各科平均分数：76，58，64，71，73，59，68，73；B班：63，54，60，67，68，65，70，69。分别求平均值及标准差，哪一班较集中？',J(a2('A班','76,58,64,71,73,59,68,73'),a2('B班','63,54,60,67,68,65,70,69'),T('B班的标准差较小（约5.02对6.32），所以<b>B班</b>的各科平均分数较集中。'))],
+['大学生一天的自习与运动时间(分钟)：0–30、31–61、62–92、93–123、124–154；自习人数 6，13，7，3，3；运动人数 2，5，16，5，4。分别求平均数及标准差，比较哪一组的时间分布更稳定。',J(a2('自习','0-30:6,31-61:13,62-92:7,93-123:3,124-154:3'),a2('运动','0-30:2,31-61:5,62-92:16,93-123:5,124-154:4'),T('运动时间的标准差较小（约31.7对36.4），所以<b>运动时间</b>的分布更稳定。'))],
+['60棵树高度(m)：0–4有6棵，5–9有11棵，10–14有18棵，15–19有16棵，20–24有9棵。利用公式求四分位数及四分位差。',A2('0-4:6,5-9:11,10-14:18,15-19:16,20-24:9')],
+['两组年龄层员工薪资(RM)：3000–4000、4000–5000、…、9000–10000。21–30岁人数：15，21，7，4，3，0，0；31–40岁：1，2，16，9，6，5，1。分别求标准差，比较哪一组较分散。',J(a2('21–30岁','3000-4000:15,4000-5000:21,5000-6000:7,6000-7000:4,7000-8000:3,8000-9000:0,9000-10000:0'),a2('31–40岁','3000-4000:1,4000-5000:2,5000-6000:16,6000-7000:9,7000-8000:6,8000-9000:5,9000-10000:1'),T('31–40岁组的标准差较大（约1300对1126），所以<b>31–40岁组</b>的薪资分布较分散。'))],
+['过去5年投资A的年回酬率(%)：6，7，8，7，7；投资B：2，10，4，13，6。(a)求标准差；(b)比较风险，哪一项较适合风险偏好较低的投资者？',J(a2('投资A','6,7,8,7,7'),a2('投资B','2,10,4,13,6'),T('(b) 投资A的标准差约0.63，投资B约4.00。A 的回酬率较稳定、风险较低，较适合风险偏好较低的投资者。'))],
+['已知10个数据的和为55，平方和为385，求平均数及方差。',T(`x̄ = ${F(55,10)} = <b>5.5</b>`)+T(`σ² = ${F(385,10)} − 5.5² = 38.5 − 30.25 = <b>8.25</b>`)],
+[`已知 10，12，x，x，y，x，21，y 的平均数为18，标准差为 2${SQ('6')}，求 x 及 y 的值。`,T('共8个数据：10 + 12 + 21 + 3x + 2y = 18×8 = 144 → 3x + 2y = 101 ……①')+T(`σ = 2${SQ('6')}，σ² = 24：${F('Σx²','8')} − 18² = 24 → Σx² = 2784`)+T('10² + 12² + 21² = 685，所以 3x² + 2y² = 2099 ……②')+T(`由①：y = ${F('101 − 3x','2')}，代入②化简：5x² − 202x + 2001 = 0 → x = 23 或 17.4`)+T('x = 23 时 y = 16；x = 17.4 时 y = 24.4。若数据为整数，则 <b>x = 23，y = 16</b>。')]],
+'21.3':[
+['判断各组数据是否存在异常值：(a) 4，12，16，2，8，10，13；(b) 17，11，12，18，12，15，13，1；(c) 13，6，4，11，15，14，10，8，7。',J(a3('(a)','4,12,16,2,8,10,13'),a3('(b)','17,11,12,18,12,15,13,1'),a3('(c)','13,6,4,11,15,14,10,8,7'))],
+['餐厅过去两个星期每日订购冰块重量(kg)：15，12，21，0，14，18，16，19，13，17，20，16，11，10。(a)是否存在异常值？(b)作箱线图；(c)计算平均重量时，是否应将异常值纳入？为什么？',a3('(a)(b)','15,12,21,0,14,18,16,19,13,17,20,16,11,10')+T('(c) 0 被标示为异常值。若 0 是餐厅休息日（没有订购），它不代表平常的订购量，计算平均每日订购量时可剔除；若确实是营业日订购了0，则是有效数据，应保留。必须按实际情况决定取舍。')],
+['体育生跑10 km的用时(分钟)：30–40有7人，41–51有18人，52–62有16人，63–73有7人。(a)求四分位数；(b)作箱线图。',A3('30-40:7,41-51:18,52-62:16,63-73:7')]],
+'21.4':[
+['2021年1月为基期，1月、2月、3月的感染人数分别为1200、2000、5200人，求2月及3月的指数。',J(a4('2月','1200,2000'),a4('3月','1200,5200'))],
+['1月至4月用水量(m³)：15，20，23，27。以1月为基期，求其余各月的指数。',[20,23,27].map((v,i)=>a4(i+2+'月','15,'+v)).join('')],
+['2020至2025年报考人数：1200，1350，1400，1800，1550，1400。以2020年为基期，求其余各年的指数。',[1350,1400,1800,1550,1400].map((v,i)=>a4(2021+i+'年','1200,'+v)).join('')],
+['运动鞋2024年售价RM480，2025年RM520。以2024年为基期，求价比及上涨了多少巴仙。',a4('价比','480,520')],
+['榴莲每月平均价格(RM/kg)：6月78，8月55，10月76，12月28。分别以6月、8月、10月为基期，12月为计算期，求价比。',['以6月为基期','以8月为基期','以10月为基期'].map((l,i)=>a4(l,[78,55,76][i]+',28')).join('')],
+['A、B、C三种食材的价比：基期2020、计算期2022：A 160，B b，C 120；基期2020、计算期2024：A 120，B 180，C c；基期2022、计算期2024：A a，B 220，C 150。求 a、b、c。',T(`先后两段价比相乘再除以100：2020→2024 = (2020→2022) × (2022→2024) ÷ 100`)+T(`a = ${F('120','160')} × 100 = <b>75</b>`)+T(`180 = ${F('b × 220','100')} → b = ${F('180 × 100','220')} = <b>81.82</b>`)+T(`c = ${F('120 × 150','100')} = <b>180</b>`)],
+['2024年各主要生活开销项目价比与权数：食品120(6)，娱乐150(4)，交通110(2)，保险125(2)，其他130(1)。求生活开销指数。（已知价比，基期值填100）',a4('生活开销指数','100,120,6\n100,150,4\n100,110,2\n100,125,2\n100,130,1')],
+['四种文具2018年→2024年单价(RM)：甲1.20→1.80(权6)，乙0.20→0.25(权2)，丙0.50→0.65(权1)，丁3.60→4.50(权1)。求综合指数。',a4('综合指数','1.2,1.8,6\n0.2,0.25,2\n0.5,0.65,1\n3.6,4.5,1')],
+['三种白米2020→2023年单价(RM/10kg)：A 20→30（销量80袋），B 32→56（35袋），C 48→60（20袋）。(a)不加权，求综合指数；(b)以销量为权数，求综合指数。',J(a4('(a) 不加权','20,30\n32,56\n48,60'),a4('(b) 以销量为权数','20,30,80\n32,56,35\n48,60,20'))],
+['某物品2019年价格RM15.00，2021年 x，2023年RM29.40。(a)若2019至2021年与2021至2023年的上涨百分比相同，求 x；(b)以2019年为基期，求2021年及2023年的价比。',T(`(a) 上涨百分比相同，价比相同：${F('x','15')} = ${F('29.4','x')} → x² = 441 → x = <b>21</b>`)+a4('(b) 2021年','15,21')+a4('2023年','15,29.4')],
+['产品A、B、C在2021年→2025年的价格(RM)：A 8.00→12.00（价比a，权数4）；B b→27.00（价比150，权数3）；C 15.00→c（价比90，权数9）。(a)求 a、b、c；(b)求2025年的物价指数。',T(`(a) a = ${F('12.00','8.00')} × 100 = <b>150</b>；150 = ${F('27.00','b')} × 100 → b = <b>18</b>；90 = ${F('c','15.00')} × 100 → c = <b>13.5</b>`)+a4('(b) 物价指数','100,150,4\n100,150,3\n100,90,9')]],
+'总复习':[
+['求数据 8，6，9，10，4，3，12，2 的平均数、中位数、众数、全距、四分位差、方差及标准差。',J(a1('集中趋势','8,6,9,10,4,3,12,2'),a2('离中趋势','8,6,9,10,4,3,12,2'))],
+['12名员工每日工作时长(小时)：8，10，9，8，9，9，10，7，9，8，8，10。求平均数、中位数、众数、全距、四分位差、方差及标准差。',J(a1('集中趋势','8,10,9,8,9,9,10,7,9,8,8,10'),a2('离中趋势','8,10,9,8,9,9,10,7,9,8,8,10'))],
+['10位学生上学期数学成绩：75，96，91，93，79，66，64，36，82，56；下学期：71，92，88，84，63，67，62，76，91，59。分别求平均数及标准差，哪一学期较集中？',J(a2('上学期','75,96,91,93,79,66,64,36,82,56'),a2('下学期','71,92,88,84,63,67,62,76,91,59'),T('下学期的标准差较小（约12.02对17.76），所以<b>下学期</b>的成绩较集中。'))],
+['40位员工一周运动次数：0次10人，1次8人，2次5人，3次4人，4次2人，5次5人，6次3人，7次3人。求平均数、中位数及众数。',A1('0:10,1:8,2:5,3:4,4:2,5:5,6:3,7:3')],
+['随堂测验分数：0–5、5–10、10–15、15–20；A班人数 1，8，13，28；B班 17，11，6，16。(a)分别求平均数、中位数及标准差；(b)哪一班较一致；(c)求两班合并后的平均分数及标准差。',J(a2('A班','0-5:1,5-10:8,10-15:13,15-20:28'),a2('B班','0-5:17,5-10:11,10-15:6,15-20:16'),T('(b) A班的标准差较小（约4.09对6.25），所以<b>A班</b>的表现较一致。'),a2('(c) 两班合并','0-5:18,5-10:19,10-15:19,15-20:44'))],
+['某校各年级全年总平均：71，68，72，67，67，72；留级率(%)：4.2，12.2，2.0，11.07，10.6，2.2。分别求平均值及标准差。',J(a2('全年总平均','71,68,72,67,67,72'),a2('留级率(%)','4.2,12.2,2.0,11.07,10.6,2.2'))],
+['客户一年内回购广告配套次数：15，1，4，5，9，12，14，10，5，12，2，14。(a)求四分位数；(b)作箱线图。',A3('15,1,4,5,9,12,14,10,5,12,2,14')],
+['水灾后4天内灾民人数：56，248，377，405。以前一天为基期，求第2至第4天的指数。',J(a4('第2天','56,248'),a4('第3天','248,377'),a4('第4天','377,405'))],
+['蛋糕价格：2020年RM90，2022年RM120，2025年RM180。以2020年为基期，求2022及2025年价比，并求价格上涨了多少巴仙。',J(a4('2022年','90,120'),a4('2025年','90,180'))],
+['某家庭衣、食、住、行的价比（以上一年为基期）及相对消费量：衣95(1)，食120(5)，住100(4)，行105(2)。以相对消费量为权数，求综合指数。',a4('综合指数','100,95,1\n100,120,5\n100,100,4\n100,105,2')],
+['椰浆饭材料价比（2023→2025）及成本比重：白米与椰奶120(6)，辣椒 x(1)，熟蛋150(2)，黄瓜105(1)；综合指数为123.5。(a)求 x；(b)熟蛋2025年价格RM0.60，求2023年价格；(c)2023年总成本RM3.00，求2025年总成本。',T(`(a) ${F('6×120 + x + 2×150 + 105','10')} = 123.5 → 1125 + x = 1235 → x = <b>110</b>`)+T(`(b) 150 = ${F('0.60','P₀')} × 100 → P₀ = <b>RM0.40</b>`)+T(`(c) 3.00 × ${F('123.5','100')} = 3.705 ≈ <b>RM3.71</b>`)]]};
+const EXS=s=>{const L=XS[s.id];return L?`<h3>📚 课本${s.id=='总复习'?'总复习题21':'习题'+s.id}（先自己做，再点「看解答」）</h3>`+L.map((x,i)=>`<div class="card"><b>${i+1}.</b> ${x[0]}<details><summary>看解答</summary>${x[1]}</details></div>`).join(''):''};
+/* ===== 出题引擎 ===== */
+const mk=(q,a,exp,svg,w)=>({q,a:r2(a),exp,svg,w,u:''});
+const ID=(n,lo,hi)=>{for(;;){const d=arr(n-1,lo,hi),l=R(lo,hi)*n-sum(d);if(l>=lo&&l<=hi)return d.concat(l)}};
+const OL=()=>{for(;;){const b=arr(R(8,10),45,75),[a,,c]=qs(b),i=c-a,hi=Math.random()<.5,o=hi?Math.ceil(c+1.5*i)+R(3,15):Math.floor(a-1.5*i)-R(3,15);if(o<1)continue;const d=sh([...b,o]),[q1,q2,q3]=qs(d),I=q3-q1;const out=d.filter(v=>v<q1-1.5*I||v>q3+1.5*I);if(out.length==1&&out[0]==o)return{d,o,q1,q2,q3,I,lf:q1-1.5*I,uf:q3+1.5*I}}};
+const G1=[
+()=>{const d=arr(R(5,7),4,30),m=mean(d);return mk(`求数据 ${dl(d)} 的平均数（保留两位小数）。`,m,`平均数 = ${F('Σx','n')} = ${F(sum(d),d.length)} = ${fm(m)}`,dot(d,[[m,'平均数','var(--r)']]),[med(d),Math.max(...d),sum(d)/(d.length+1)])},
+()=>{const d=arr(R(6,9),3,40),md=med(d),s=srt(d),n=d.length;return mk(`求数据 ${dl(d)} 的中位数。`,md,`排序：${dl(s)}。n = ${n}，`+(n%2?`中位数是第 ${(n+1)/2} 位 = ${fm(md)}。`:`取第 ${n/2}、${n/2+1} 位的平均：${F(s[n/2-1]+' + '+s[n/2],2)} = ${fm(md)}。`),dot(d,[[md,'中位数','var(--g)']]),[mean(d),s[(n>>1)-1],s[n>>1]])},
+()=>{const b=sh(Array.from({length:30},(_,i)=>i+1)).slice(0,6),d=sh([...b,b[0],b[0]]);return mk(`求数据 ${dl(d)} 的众数。`,b[0],`${b[0]} 出现了 3 次，其余数据只出现 1 次，出现次数最多，故众数 = ${b[0]}。`,dot(d,[[b[0],'众数','var(--p)']]),[med(d),mean(d),b[1]])},
+()=>{const k=R(4,5),f=arr(k,2,12),n=sum(f),s=sum(f.map((x,i)=>x*i));return mk(`某班 ${n} 名学生一周借书次数：${f.map((x,i)=>i+'次 '+x+'人').join('，')}。求借书次数的平均数。`,s/n,`平均数 = ${F('Σfx','Σf')} = ${F(s,n)} = ${fm(s/n)}`,bars(f.map((_,i)=>i),f),[(k-1)/2,f.indexOf(Math.max(...f)),s/(n+1)])},
+()=>{const m=R(10,40),a=P([2,3,5,-2,10]),b=R(1,20);return mk(`一组数据的平均数是 ${m}。把每个数据都变换成 ${a}x + ${b}，求新数据的平均数。`,a*m+b,`新平均数 = a × 原平均数 + b = ${a}×${m} + ${b} = ${a*m+b}`,null,[a*m,m+b,a*(m+b)])},
+()=>{const s0=R(20,40),f=arr(5,3,15),g=gp(f.map((x,i)=>[s0+5*i,s0+5*i+4,x])),q=gq(g,2),n=sum(f);return mk(`某班 ${n} 名学生体重分布：${g.map(b=>`${b.m-2}–${b.m+2} kg：${b.f}人`).join('，')}。利用公式求体重的中位数（保留两位小数）。`,q.v,`n = ${n}，${F('n','2')} = ${n/2}，中位数组 ${q.x.L}–${q.x.U}，F<sub>m</sub>=${q.F0}，f<sub>m</sub>=${q.x.f}，C<sub>m</sub>=5。<br>中位数 = ${q.x.L} + ${F(`${n/2} − ${q.F0}`,q.x.f)} × 5 = ${fm(q.v)}`,hist(g),[q.x.L,q.x.L+2.5,gm(g).v])}];
+const G2=[
+()=>{const d=arr(R(7,9),10,90),a=Math.max(...d),b=Math.min(...d);return mk(`求数据 ${dl(d)} 的全距。`,a-b,`全距 = 最大值 − 最小值 = ${a} − ${b} = ${a-b}`,dot(d),[a,b,a-b+R(1,5),a-b-R(1,5)])},
+()=>{const d=arr(R(7,10),2,40),[a,b,c]=qs(d);return mk(`求数据 ${dl(d)} 的四分位差 QD。`,(c-a)/2,`排序：${dl(srt(d))}<br>Q₁ = ${fm(a)}，Q₂ = ${fm(b)}，Q₃ = ${fm(c)}<br>QD = ${F('Q₃ − Q₁','2')} = ${F(fm(c)+' − '+fm(a),2)} = ${fm((c-a)/2)}`,box(d),[c-a,c,a])},
+()=>{const d=sh(ID(5,2,15)),m=mean(d),sx=sum(d.map(x=>x*x)),v=sx/5-m*m;return mk(`求数据 ${dl(d)} 的方差。`,v,`x̄ = ${m}，Σx² = ${d.map(x=>x+'²').join(' + ')} = ${sx}<br>σ² = ${F('Σx²','n')} − x̄² = ${F(sx,5)} − ${m}² = ${fm(v)}`,dev(d),[Math.sqrt(v),sx/5,v+1])},
+()=>{const d=sh(ID(5,2,15)),m=mean(d),sx=sum(d.map(x=>x*x)),v=sx/5-m*m;return mk(`求数据 ${dl(d)} 的标准差（保留两位小数）。`,Math.sqrt(v),`x̄ = ${m}，Σx² = ${sx}，σ² = ${F(sx,5)} − ${m}² = ${fm(v)}<br>σ = ${SQ(fm(v))} = ${fm(Math.sqrt(v))}`,dev(d),[v,m,Math.sqrt(v)+.5])},
+()=>{const s=R(2,9),a=P([2,3,-2,-3,5]),b=R(1,15);return mk(`一组数据的标准差是 ${s}。把每个数据变换成 ${a}x + ${b} 后，求新数据的标准差。`,Math.abs(a)*s,`加上 b 不改变分散程度；乘以 a 后标准差变为 |a| 倍：|${a}| × ${s} = ${Math.abs(a)*s}`,null,[a*a*s,s+b,Math.abs(a)*s+b])},
+()=>{const f=arr(4,2,10),v=[3,4,5,6],n=sum(f),m=sum(f.map((x,i)=>x*v[i]))/n,sx=sum(f.map((x,i)=>x*v[i]*v[i])),q=sx/n-m*m;return mk(`数据 3、4、5、6 出现的频数分别是 ${dl(f)}，求标准差（保留两位小数）。`,Math.sqrt(q),`n = ${n}，x̄ = ${F(r2(m*n),n)} = ${fm(m)}，Σfx² = ${sx}<br>σ = ${SQ(F('Σfx²','Σf')+' − x̄²')} = ${SQ(F(sx,n)+' − '+fm(m)+'²')} = ${SQ(fm(q))} = ${fm(Math.sqrt(q))}`,bars(v,f),[q,m,Math.sqrt(q)+.5])}];
+const ex3=z=>`排序：${dl(srt(z.d))}；Q₁=${fm(z.q1)}，Q₃=${fm(z.q3)}，IQR = ${fm(z.I)}<br>`;
+const G3=[
+()=>{const z=OL();return mk(`数据：${dl(z.d)}。求上围栏 Q₃ + 1.5×IQR 的值。`,z.uf,ex3(z)+`Q₃ + 1.5×IQR = ${fm(z.q3)} + 1.5×${fm(z.I)} = ${fm(z.uf)}`,box(z.d),[z.lf,z.q3+z.I,z.q3])},
+()=>{const z=OL();return mk(`数据：${dl(z.d)}。求下围栏 Q₁ − 1.5×IQR 的值。`,z.lf,ex3(z)+`Q₁ − 1.5×IQR = ${fm(z.q1)} − 1.5×${fm(z.I)} = ${fm(z.lf)}`,box(z.d),[z.uf,z.q1-z.I,z.q1])},
+()=>{const z=OL();return mk(`数据：${dl(z.d)}。找出这组数据的异常值。`,z.o,ex3(z)+`围栏：${fm(z.lf)} 至 ${fm(z.uf)}。只有 ${z.o} 落在围栏之外，所以异常值是 ${z.o}。`,box(z.d),[z.q1,z.q3,Math.max(...z.d.filter(v=>v!=z.o))])},
+()=>{const z=OL(),w=Math.max(...z.d.filter(v=>v<=z.uf));return mk(`数据：${dl(z.d)}。箱线图的上限（右须端）是多少？`,w,ex3(z)+`上围栏 = ${fm(z.uf)}。上限取围栏内的最大数据：${w}（异常值不能当须的端点）。`,box(z.d),[z.uf,z.q3,Math.max(...z.d)])},
+()=>{const z=OL();return mk(`数据：${dl(z.d)}。求四分位距 IQR。`,z.I,`排序：${dl(srt(z.d))}<br>Q₁ = ${fm(z.q1)}，Q₃ = ${fm(z.q3)}，IQR = Q₃ − Q₁ = ${fm(z.I)}`,box(z.d),[z.I/2,z.q3,z.q1])}];
+const PV=[110,120,125,140,150,180,200];
+const G4=[
+()=>{const p0=P([20,40,50,80,120,250]),r=P(PV),p1=p0*r/100;return mk(`某商品基期价格为 RM${p0}，计算期价格为 RM${p1}。求计算期的价比。`,r,`价比 = ${F('P₁','P₀')} × 100 = ${F(p1,p0)} × 100 = ${r}`,bars(['基期','计算期'],[100,r],100),[r-100,p1,100+(r-100)/2])},
+()=>{const p0=P([20,40,50,80,120,250]),r=P(PV),p1=p0*r/100;return mk(`某商品基期价格为 RM${p0}，计算期价格为 RM${p1}，计算期比基期上涨了百分之几？`,r-100,`价比 = ${F(p1,p0)} × 100 = ${r}，上涨百分比 = ${r} − 100 = ${r-100}%`,bars(['基期','计算期'],[100,r],100),[r,p1-p0,(r-100)/2])},
+()=>{const k=R(3,4),x=Array.from({length:k},()=>P([100,105,110,120,125,140,150,160])),w=arr(k,1,9),sw=sum(w),sx=sum(w.map((v,i)=>v*x[i]));return mk(`各项价比分别为 ${dl(x)}，对应权数分别为 ${dl(w)}，求综合指数。`,sx/sw,`Σwx = ${w.map((v,i)=>v+'×'+x[i]).join(' + ')} = ${sx}，Σw = ${sw}<br>综合指数 = ${F('Σwx','Σw')} = ${F(sx,sw)} = ${fm(sx/sw)}`,bars(x.map((_,i)=>'项'+(i+1)),x,100),[mean(x),sx/k,sx/(sw+1)])},
+()=>{const p0=P([40,60,80,120,200]),r=P([115,125,130,150,175,220]);return mk(`某物品基期价格为 RM${p0}，计算期的指数为 ${r}（基期＝100），求计算期的价格（RM）。`,p0*r/100,`价比 = ${F('P₁','P₀')} × 100 → P₁ = ${F(r,100)} × ${p0} = ${fm(p0*r/100)}`,bars(['基期','计算期'],[100,r],100),[p0*r/10,p0+r,p0*100/r])},
+()=>{const i1=P([120,125,150,160,200]),pr=P([110,120,125,150]),i2=i1*pr/100;return mk(`以2020年为基期，2022年的指数是 ${i1}，2024年的指数是 ${fm(i2)}。改以2022年为基期，求2024年的价比。`,pr,`新基期是 2022 年：价比 = ${F(fm(i2),i1)} × 100 = ${pr}`,bars(['2020','2022','2024'],[100,i1,i2],100),[i2-i1+100,i2,i2-i1])}];
+const H1=()=>{for(;;){const n=P([5,6,8]),m=R(10,30),d=R(1,4),x=((n+2)*(m-d)-n*m)/8;if(Number.isInteger(x)&&x>0)return mk(`已知 ${n} 个数据的平均数为 ${m}，若加入两个数据 3x 及 5x 后，平均数减少了 ${d}，求 x 的值。`,x,`原总和 = ${n}×${m} = ${n*m}；新平均数 = ${m} − ${d} = ${m-d}，共 ${n+2} 个数据，新总和 = ${(n+2)*(m-d)}<br>${n*m} + 3x + 5x = ${(n+2)*(m-d)} → 8x = ${(n+2)*(m-d)-n*m} → x = ${x}`,null,[x+1,x+2,x*2])}};
+const H3=()=>{const w=P([[6,1,2,1],[2,3,4,1],[4,2,3,1],[3,3,2,2],[5,1,2,2]]),x=P([110,125,130,140]),r=[P([110,120,130]),x,P([100,150]),P([105,115])],sx=sum(w.map((v,i)=>v*r[i])),ci=sx/10,o=sx-w[1]*x;return mk(`某综合指数由四项价比 ${r[0]}、x、${r[2]}、${r[3]}（权数依次为 ${dl(w)}）组成，已知综合指数为 ${fm(ci)}，求 x 的值。`,x,`Σw = 10，Σwx = ${fm(ci)} × 10 = ${sx}<br>${w.map((v,i)=>i==1?v+'x':v+'×'+r[i]).join(' + ')} = ${sx} → ${w[1]}x = ${sx-o+w[1]*x-w[1]*x-0 === 0 ? 0 : sx-o} → x = ${x}`,bars(['项1','项2','项3','项4'],r,100),[x+10,x-10,ci])};
+const H4=()=>{const n=P([8,12,20]),m=P([4,5,6,7.5]),v=P([4,6.25,9,12.25]),sx=n*m,s2=n*(v+m*m);return mk(`已知 ${n} 个数据的和为 ${sx}，平方和为 ${s2}，求这些数据的方差。`,v,`x̄ = ${F(sx,n)} = ${m}<br>σ² = ${F('Σx²','n')} − x̄² = ${F(s2,n)} − ${m}² = ${fm(v)}`,null,[Math.sqrt(v),s2/n,v+m])};
+/* ===== 构建页面 ===== */
+const S=[
+{id:'21.1',n:'集中趋势',g:G1,d:'8,12,13,21,13,9,15',h:'输入数据：① 逗号分隔的数字；② 频数表「值:频数」如 0:5,1:12；③ 分组数据「下限-上限:频数」如 41-45:5,46-50:7',run:A1,
+k:`<div class="box"><b>平均数</b>　x̄ = ${F('x₁ + x₂ + … + xₙ','n')} = ${F('Σx','n')}；有频数：x̄ = ${F('Σfx','Σf')}（分组数据取组中点）</div>
+<div class="box"><b>中位数</b>　n 为奇数：第 ${F('n+1','2')} 位；n 为偶数：第 ${F('n','2')} 位与第 ( ${F('n','2')} + 1 ) 位的平均数。<br>分组：m = L<sub>m</sub> + ${F(F('n','2')+' − F<sub>m</sub>','f<sub>m</sub>')} × C<sub>m</sub></div>
+<div class="box"><b>众数</b>　出现次数最多的数。分组：众数 = L + ${F('d<sub>1</sub>','d<sub>1</sub> + d<sub>2</sub>')} × C</div>
+<div class="box"><b>变换 ax + b</b>　平均数、中位数、众数 → a × 原统计量 + b。<br><b>如何选择？</b> 有极端值→中位数；最受欢迎的选择→众数；需用到全部数据→平均数。</div>`,
+ex:[['例题1(a)','求 8，12，13，21，13，9，15 的平均数、中位数及众数。','8,12,13,21,13,9,15'],['例题2','某班30名学生一周借书次数：0次5人、1次12人、2次5人、3次4人、4次3人、5次1人。求平均数、中位数及众数。','0:5,1:12,2:5,3:4,4:3,5:1'],['例题3','50名学生体重(kg)：41–45有5人、46–50有7人、51–55有10人、56–60有11人、61–65有8人、66–70有6人、71–75有3人。利用公式求平均数、中位数、众数。','41-45:5,46-50:7,51-55:10,56-60:11,61-65:8,66-70:6,71-75:3'],['例题4','100名高中生身高(cm)的分组数据，用直方图与公式估计众数（橙线交点即众数）。','145-148:4,149-152:7,153-156:10,157-160:16,161-164:18,165-168:13,169-172:11,173-176:10,177-180:9,181-184:2']]},
+{id:'21.2',n:'离中趋势',g:G2,d:'5,9,6,11,4',h:'输入数据（同上三种格式皆可）。会算出全距、Q₁Q₂Q₃、IQR、QD、方差与标准差。',run:A2,
+k:`<div class="box"><b>全距</b> = 最大值 − 最小值（分组：最后一组上限 − 第一组下限），易受极端值影响。</div>
+<div class="box"><b>四分位数</b>　Q₁、Q₂、Q₃：n 为奇数时去掉中位数再分前后两半，各取中位数。<br>IQR = Q₃ − Q₁，　QD = ${F('Q₃ − Q₁','2')}</div>
+<div class="box"><b>方差与标准差</b><br>σ² = ${F('Σ(x − x̄)²','n')} = ${F('Σx²','n')} − x̄²　　σ = ${SQ(F('Σx²','n')+' − x̄²')}</div>
+<div class="box"><b>变换 ax + b</b>：全距、IQR、QD → |a| × 原值；σ² → a²σ²；σ → |a|σ（加 b 不影响离散程度）。</div>`,
+ex:[['例题6','某商店15天的顾客人数：48，50，62，52，38，40，35，42，45，55，68，58，32，60，65。求全距（并看看标准差）。','48,50,62,52,38,40,35,42,45,55,68,58,32,60,65'],['例题8(b)','求 7，11，12，18，12，5，13，1 的四分位数及四分位差。','7,11,12,18,12,5,13,1'],['例题10','某班800 m 用时(分钟)分组数据，求四分位数及四分位差。','3.0-3.5:6,3.5-4.0:10,4.0-4.5:17,4.5-5.0:9,5.0-5.5:4,5.5-6.0:4'],['例题11','求 5，9，6，11，4 的方差与标准差。（粉红箭头 = 各数据与平均数的差）','5,9,6,11,4'],['例题13','48名学生完成作文的时长：20–28有2人、29–37有10人、38–46有11人、47–55有18人、56–64有7人。求标准差。','20-28:2,29-37:10,38-46:11,47-55:18,56-64:7']]},
+{id:'21.3',n:'箱线图',g:G3,d:'30,51,56,66,67,75,78,79,80,82,83,84,85,88,90',h:'输入原始数据（逗号分隔，或 值:频数），自动判断异常值并画箱线图。',run:A3,
+k:`<div class="box"><b>异常值准则</b>：大于 Q₃ + 1.5×IQR，或小于 Q₁ − 1.5×IQR 的数据（需结合实际情况决定取舍）。</div>
+<div class="box"><b>箱线图五数</b>：下限、Q₁、Q₂、Q₃、上限。无异常值时，下限与上限＝最小值与最大值；有异常值时，须只延伸到围栏内最远的数据，异常值以点标出。</div>`,
+ex:[['例题14','某班15名学生的数学分数：67，80，78，66，90，79，51，83，56，30，75，85，82，84，88。求四分位数、判断异常值并作箱线图。','67,80,78,66,90,79,51,83,56,30,75,85,82,84,88'],['习题21.3 第2题','餐厅两星期每日订购冰块重量(kg)：15，12，21，0，14，18，16，19，13，17，20，16，11，10。','15,12,21,0,14,18,16,19,13,17,20,16,11,10'],['例题15','班导师比较五个科目的成绩箱线图（数值取自课本图）。(a)分别求国文与英文成绩的全距；(b)哪个科目的四分位距最小？(c)哪个科目的成绩表现较为一致？为什么？','@m15']]},
+{id:'21.4',n:'统计指数',g:G4,d:'100,120,8\n100,125,12\n100,140,3\n100,150,9',h:'每行一项：基期值,计算期值,权数（权数可省略）。一行＝价比；多行＝综合指数。若已知价比，基期值填 100，计算期值填价比。',run:A4,
+k:`<div class="box"><b>指数</b> = ${F('Q₁','Q₀')} × 100（Q₀ 基期值，Q₁ 计算期值；基期指数为 100）</div>
+<div class="box"><b>价比</b> = ${F('P₁','P₀')} × 100；价比减 100 即上涨（或下降）的百分比。</div>
+<div class="box"><b>加权平均数／综合指数</b> = ${F('w₁x₁ + w₂x₂ + … + wₙxₙ','w₁ + w₂ + … + wₙ')} = ${F('Σwx','Σw')}（x 为价比，w 为权数）</div>`,
+ex:[['例题16','某路段早高峰车流量：平日800辆，节假日1000辆。以平日为基期，求节假日的车流量指数。','800,1000'],['例题17','某跑步鞋2015年 RM130，2020年 RM250，2025年 RM380。以2015年为基期，求2025年价比。','130,380'],['例题19','交通消费：公交车价比120(权数8)、地铁125(12)、出租车140(3)、电召车150(9)，求交通消费指数。','100,120,8\n100,125,12\n100,140,3\n100,150,9'],['例题20','餐厅2019年→2021年：水电费600→840(权2)、人工费3000→4200(权4)、食材费3000→5400(权5)、杂费300→600(权1)，求综合指数。','600,840,2\n3000,4200,4\n3000,5400,5\n300,600,1']]}];
+const $=s=>document.querySelector(s),nav=$('nav'),main=$('main');
+const opts=q=>{const a=fm(q.a),s=new Set([a]);(q.w||[]).map(fm).forEach(t=>{if(s.size<4&&+t>=0)s.add(t)});const d=Math.max(1,Math.round(Math.abs(q.a)*.1));let k=1;while(s.size<4){[q.a+k*d,Math.abs(q.a-k*d)].forEach(t=>{if(s.size<4)s.add(fm(t))});k++}return sh([...s])};
+function Quiz(el,mg,fg,need,fin){
+const card=h=>{const c=document.createElement('div');c.className='card';c.innerHTML=h+`<div class="ex" style="display:none"></div><i class="hw">${P(WM)}</i>`;return c},
+shw=(c,ok,q)=>{const e=c.querySelector('.ex');e.style.display='block';e.innerHTML=`<b class="${ok?'g':'r'}">${ok?'✔ 回答正确！':'✘ 回答错误，正确答案：'+fm(q.a)}</b><div>${q.exp}</div>${q.svg||''}`};
+function go(){el.innerHTML='<button>🔄 重新出题</button>';el.firstChild.onclick=go;
+const z={m:0,c:0,f:0,fc:0},M=(typeof mg=='function'?mg():mg).map(g=>g()),Fq=(typeof fg=='function'?fg():fg).map(g=>g()),top=document.createElement('div');el.append(top);
+M.forEach((q,i)=>{const c=card(`<b>选择题 ${i+1}/${M.length}</b><p>${q.q}</p><div class="ob"></div>`),ob=c.querySelector('.ob');
+opts(q).forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.dataset.v=o;b.onclick=()=>{ob.querySelectorAll('button').forEach(x=>{x.disabled=true;if(x.dataset.v==fm(q.a))x.classList.add('ok')});const ok=o==fm(q.a);if(!ok)b.classList.add('bad');z.m++;z.c+=ok;shw(c,ok,q);if(z.m==M.length)done()};ob.append(b)});top.append(c)});
+function done(){const r=document.createElement('div');r.className='card';top.append(r);
+if(need&&z.c<need){r.innerHTML=`<b>选择题答对 ${z.c}/${M.length}</b>：需答对 ${need} 题或以上才能解锁作答题。点击上方「重新出题」再试！`;return}
+r.innerHTML=`<b>选择题答对 ${z.c}/${M.length}</b> ${need?'🎉 解锁作答题！':''}<p class="m">作答题：保留两位小数，整数直接填写。</p>`;
+Fq.forEach((q,i)=>{const c=card(`<b>作答题 ${i+1}/${Fq.length}</b><p>${q.q}</p><input type="text" inputmode="decimal" placeholder="答案"> <button>提交</button>`),inp=c.querySelector('input'),bt=c.querySelector('button');
+bt.onclick=()=>{const v=parseFloat(inp.value);if(isNaN(v))return;inp.disabled=bt.disabled=true;const ok=Math.abs(v-q.a)<=.011;z.f++;z.fc+=ok;shw(c,ok,q);
+if(z.f==Fq.length){const e=document.createElement('div');e.className='card';e.innerHTML=fin?fin(z):`<b>本节成绩：选择 ${z.c}/${M.length}，作答 ${z.fc}/${Fq.length}</b>`;top.append(e)}};top.append(c)})}}
+go()}
+S.forEach((s,i)=>{const d=document.createElement('section');d.innerHTML=`<h2>${s.id} ${s.n}</h2>${s.k}<h3>📖 课本例题讲解</h3>${s.ex.map(e=>`<div class="card"><b>${e[0]}</b><p>${e[1]}</p><details open><summary>解答与图示</summary>${s.run(e[2])}</details></div>`).join('')}
+<h3>🧮 ${s.id} 专属计算器</h3><div class="card"><p class="m">${s.h}</p><textarea rows="4">${s.d}</textarea><p><button class="cb">计算 · 生成解答与图</button></p><div class="cres"></div></div><h3>📝 随堂测验（5题选择，答对3题以上解锁2题作答）</h3><div class="qz"></div>${EXS(s)}`;main.append(d);
+const ta=d.querySelector('textarea'),rs=d.querySelector('.cres');d.querySelector('.cb').onclick=()=>rs.innerHTML=s.run(ta.value);rs.innerHTML=s.run(ta.value);
+Quiz(d.querySelector('.qz'),()=>sh(s.g).slice(0,5),()=>sh(s.g).slice(0,2),3)});
+const rv=document.createElement('section');rv.innerHTML=`<h2>总复习</h2><div class="card"><p>共 <b>10 题选择 + 5 题作答</b>，题目由引擎随机生成，涵盖 21.1–21.4 及课本总复习中较难的题型（如已知平均数变化求 x、由 Σx 与 Σx² 求方差、由综合指数反求价比）。选择题全部完成后才会出现作答题，最后给出总评。</p></div><div class="qz"></div>${EXS({id:'总复习'})}`;main.append(rv);
+Quiz(rv.querySelector('.qz'),()=>sh([...sh(G1).slice(0,2),...sh(G2).slice(0,2),...sh(G3).slice(0,2),...sh(G4).slice(0,1),H1,H3,H4]),()=>[G1[5],G2[3],G3[0],G4[2],P([H1,H3,H4])],0,z=>{const t=z.c+z.fc,p=Math.round(t/15*100);return`<h3>总评：${t}/15（${p}%）</h3><p>${p>=87?'🏆 优秀！统计学掌握得非常扎实。':p>=67?'👍 良好，再巩固出错的题型会更好。':p>=47?'🙂 及格，建议回到各节再看例题与计算器。':'💪 继续加油，先重做每节的随堂测验。'}</p>选择题 ${z.c}/10 · 作答题 ${z.fc}/5`});
+const secs=[...main.querySelectorAll('section')];
+[...S.map(s=>s.id+' '+s.n),'总复习'].forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{secs.forEach((x,j)=>x.classList.toggle('on',i==j));[...nav.children].forEach((x,j)=>x.classList.toggle('on',i==j));b.scrollIntoView({inline:'center',block:'nearest'});scrollTo(0,0)};nav.append(b)});nav.firstChild.click();
+document.querySelectorAll('.card').forEach((c,i)=>{if(!c.querySelector('.hw'))c.insertAdjacentHTML('beforeend',`<i class="hw">${WM[i%4]}</i>`)});
+const fw=document.createElement('div');fw.className='fw';for(let i=0;i<160;i++){const s=document.createElement('span');s.textContent=WM[i%4];fw.append(s)}document.body.append(fw);
+let fs=16;const ap=()=>{document.documentElement.style.setProperty('--fs',fs+'px');try{localStorage.setItem('c21fs',fs)}catch(e){}};
+try{fs=+localStorage.getItem('c21fs')||16;if(localStorage.getItem('c21t')=='d')document.body.dataset.t='d'}catch(e){}ap();
+$('#fm').onclick=()=>{fs=Math.max(12,fs-2);ap()};$('#fp').onclick=()=>{fs=Math.min(26,fs+2);ap()};$('#f0').onclick=()=>{fs=16;ap()};
+$('#th').onclick=()=>{const d=document.body.dataset.t=='d';d?delete document.body.dataset.t:document.body.dataset.t='d';try{localStorage.setItem('c21t',d?'l':'d')}catch(e){}};
+console.log('峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79');
+</script></body></html>
