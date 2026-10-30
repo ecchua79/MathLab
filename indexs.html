@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高中数学电子书 · 目录</title>
+<style>
+:root{
+  --ink:#1b1b1f; --ink2:#4a4a55; --ink3:#8a8a96;
+  --paper:#faf8f4; --card:#ffffff; --line:#e6e1d7;
+  --accent:#9c3b2e; --accent2:#c9a227;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","SimSun",Georgia,serif;
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding:64px 28px 96px}
+header.top{border-bottom:3px double var(--line);padding-bottom:28px;margin-bottom:12px}
+h1{font-size:34px;margin:0 0 10px;letter-spacing:.06em;font-weight:700}
+.sub{color:var(--ink2);font-size:14.5px;letter-spacing:.04em}
+.stats{margin-top:14px;color:var(--ink3);font-size:13px}
+.stats b{color:var(--accent);font-weight:700;font-size:15px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px}
+nav a{
+  font-size:13.5px;color:var(--ink2);text-decoration:none;
+  border:1px solid var(--line);background:var(--card);
+  padding:6px 14px;border-radius:999px;transition:.18s;
+  font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+nav a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.search{display:flex;align-items:center;gap:10px;margin:18px 0 4px}
+.search input{
+  flex:1;max-width:420px;font-size:14px;padding:9px 14px;border-radius:8px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;outline:none;
+  transition:.18s;
+}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(156,59,46,.08)}
+#hint{font-size:12.5px;color:var(--ink3);font-family:system-ui,sans-serif}
+.book{margin-top:56px}.bhead{display:flex;align-items:baseline;gap:14px;border-left:4px solid var(--accent);
+  padding-left:14px;margin-bottom:22px}
+.bhead h2{font-size:22px;margin:0;letter-spacing:.08em}
+.bhead .meta{color:var(--ink3);font-size:12.5px;font-family:system-ui,sans-serif}
+.ch{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:18px 20px 14px;margin-bottom:12px;transition:.18s}
+.ch:hover{box-shadow:0 4px 18px rgba(60,40,20,.07);border-color:#d8d0c2}
+.chhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.chno{font-family:"SF Mono",Consolas,monospace;font-size:12px;color:#fff;
+  background:var(--accent);border-radius:4px;padding:1px 7px;letter-spacing:.05em}
+.chtitle{font-size:17.5px;font-weight:700;color:var(--ink);text-decoration:none;
+  border-bottom:1.5px solid transparent;transition:.15s}
+.chtitle:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.path{margin-left:auto;font-family:"SF Mono",Consolas,monospace;font-size:11.5px;
+  color:var(--ink3);background:#f4f1ea;padding:2px 8px;border-radius:4px}
+.secs{list-style:none;margin:12px 0 2px;padding:12px 0 0 4px;
+  border-top:1px dashed var(--line);display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px 22px}
+.secs li{display:flex;gap:9px;font-size:14px;color:var(--ink2);padding:2px 0;
+  font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+.secs .no{color:var(--accent2);font-family:"SF Mono",Consolas,monospace;
+  font-size:12.5px;min-width:34px;font-weight:600}
+.nosec{color:var(--ink3);font-size:13px;margin:10px 0 2px}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--ink3);font-size:12.5px;text-align:center}
+@media(max-width:600px){.wrap{padding:36px 16px 64px}h1{font-size:26px}.path{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <h1>高中数学 · 电子书目录</h1>
+  <p class="sub">高一上册 — 高二下册　全 <b style="color:var(--accent)">23</b> 章　94 个小节</p>
+  <p class="stats">点击章节标题进入对应文件夹 · 路径遵循 sm1/c01、sm2/c12 命名</p>
+</header>
+<nav><a href="#b0">高一上册</a><a href="#b1">高一下册</a><a href="#b2">高二上册</a><a href="#b3">高二下册</a></nav>
+<div class="search"><input id="q" type="search" placeholder="搜索章节或小节，例如「概率」「12.3」" autocomplete="off"><span id="hint"></span></div>
+<section class="book" id="b0"><header class="bhead"><h2>高一上册</h2><span class="meta">课程 510 · 6 章</span></header><article class="ch" id="c1"><div class="chhead"><span class="chno">01</span><a class="chtitle" href="sm1/c01/">直角坐标系与直线</a><span class="path">sm1/c01/</span></div><ul class="secs"><li><span class="no">1.1</span><span class="st">直角坐标系与距离公式</span></li><li><span class="no">1.2</span><span class="st">定比分点</span></li><li><span class="no">1.3</span><span class="st">多边形的面积</span></li><li><span class="no">1.4</span><span class="st">直线的斜率</span></li><li><span class="no">1.5</span><span class="st">直线方程式</span></li><li><span class="no">1.6</span><span class="st">两条直线的交点</span></li><li><span class="no">1.7</span><span class="st">点到直线的距离</span></li></ul></article><article class="ch" id="c2"><div class="chhead"><span class="chno">02</span><a class="chtitle" href="sm1/c02/">一元二次方程式与二次函数</a><span class="path">sm1/c02/</span></div><ul class="secs"><li><span class="no">2.1</span><span class="st">一元二次方程式的根的判别式</span></li><li><span class="no">2.2</span><span class="st">一元二次方程式的根与系数的关系</span></li><li><span class="no">2.3</span><span class="st">二次函数的图像与最值</span></li><li><span class="no">2.4</span><span class="st">一元二次函数的图像与直线的位置关系</span></li></ul></article><article class="ch" id="c3"><div class="chhead"><span class="chno">03</span><a class="chtitle" href="sm1/c03/">多项式</a><span class="path">sm1/c03/</span></div><ul class="secs"><li><span class="no">3.1</span><span class="st">多项式</span></li><li><span class="no">3.2</span><span class="st">余式定理</span></li><li><span class="no">3.3</span><span class="st">因式定理</span></li><li><span class="no">3.4</span><span class="st">一元多项式的因式分解</span></li><li><span class="no">3.5</span><span class="st">解一元高次方程式</span></li></ul></article><article class="ch" id="c4"><div class="chhead"><span class="chno">04</span><a class="chtitle" href="sm1/c04/">无理式</a><span class="path">sm1/c04/</span></div><ul class="secs"><li><span class="no">4.1</span><span class="st">根式、无理式</span></li><li><span class="no">4.2</span><span class="st">分数指数</span></li><li><span class="no">4.3</span><span class="st">根式的运算</span></li><li><span class="no">4.4</span><span class="st">有理化因式及有理化分母</span></li></ul></article><article class="ch" id="c5"><div class="chhead"><span class="chno">05</span><a class="chtitle" href="sm1/c05/">函数</a><span class="path">sm1/c05/</span></div><ul class="secs"><li><span class="no">5.1</span><span class="st">函数的定义</span></li><li><span class="no">5.2</span><span class="st">函数的定义域与值域</span></li><li><span class="no">5.3</span><span class="st">函数的图像及其变换</span></li><li><span class="no">5.4</span><span class="st">合成函数</span></li><li><span class="no">5.5</span><span class="st">一对一函数、映成函数及一一映成函数</span></li><li><span class="no">5.6</span><span class="st">反函数</span></li></ul></article><article class="ch" id="c6"><div class="chhead"><span class="chno">06</span><a class="chtitle" href="sm1/c06/">不等式</a><span class="path">sm1/c06/</span></div><ul class="secs"><li><span class="no">6.1</span><span class="st">不等式及其性质</span></li><li><span class="no">6.2</span><span class="st">一元二次不等式</span></li><li><span class="no">6.3</span><span class="st">分式不等式</span></li><li><span class="no">6.4</span><span class="st">二元一次不等式</span></li><li><span class="no">6.5</span><span class="st">线性规划</span></li></ul></article></section><section class="book" id="b1"><header class="bhead"><h2>高一下册</h2><span class="meta">课程 511 · 5 章</span></header><article class="ch" id="c7"><div class="chhead"><span class="chno">07</span><a class="chtitle" href="sm1/c07/">逻辑</a><span class="path">sm1/c07/</span></div><ul class="secs"><li><span class="no">7.1</span><span class="st">命题</span></li><li><span class="no">7.2</span><span class="st">逻辑联结词</span></li><li><span class="no">7.3</span><span class="st">全称量词与存在量词</span></li><li><span class="no">7.4</span><span class="st">充分条件、必要条件及充要条件</span></li><li><span class="no">7.5</span><span class="st">推理</span></li></ul></article><article class="ch" id="c8"><div class="chhead"><span class="chno">08</span><a class="chtitle" href="sm1/c08/">角度与弧度</a><span class="path">sm1/c08/</span></div><ul class="secs"><li><span class="no">8.1</span><span class="st">任意角的概念与度量</span></li><li><span class="no">8.2</span><span class="st">弧长与扇形面积</span></li></ul></article><article class="ch" id="c9"><div class="chhead"><span class="chno">09</span><a class="chtitle" href="sm1/c09/">任意角的三角函数</a><span class="path">sm1/c09/</span></div><ul class="secs"><li><span class="no">9.1</span><span class="st">任意角的三角函数</span></li><li><span class="no">9.2</span><span class="st">三角函数的诱导公式</span></li><li><span class="no">9.3</span><span class="st">三角函数的图像</span></li><li><span class="no">9.4</span><span class="st">反三角函数</span></li></ul></article><article class="ch" id="c10"><div class="chhead"><span class="chno">10</span><a class="chtitle" href="sm1/c10/">三角学的应用</a><span class="path">sm1/c10/</span></div><ul class="secs"><li><span class="no">10.1</span><span class="st">正弦定律</span></li><li><span class="no">10.2</span><span class="st">余弦定律</span></li><li><span class="no">10.3</span><span class="st">三角形的面积</span></li><li><span class="no">10.4</span><span class="st">测量问题</span></li></ul></article><article class="ch" id="c11"><div class="chhead"><span class="chno">11</span><a class="chtitle" href="sm1/c11/">三角恒等式与三角方程式</a><span class="path">sm1/c11/</span></div><ul class="secs"><li><span class="no">11.1</span><span class="st">同角三角函数的基本关系式</span></li><li><span class="no">11.2</span><span class="st">两角之和与差的三角函数</span></li><li><span class="no">11.3</span><span class="st">倍角的三角函数</span></li><li><span class="no">11.4</span><span class="st">三角方程式</span></li></ul></article></section><section class="book" id="b2"><header class="bhead"><h2>高二上册</h2><span class="meta">课程 537 · 7 章</span></header><article class="ch" id="c12"><div class="chhead"><span class="chno">12</span><a class="chtitle" href="sm2/c12/">指数与对数</a><span class="path">sm2/c12/</span></div><ul class="secs"><li><span class="no">12.1</span><span class="st">指数函数</span></li><li><span class="no">12.2</span><span class="st">对数函数</span></li><li><span class="no">12.3</span><span class="st">指数方程式与对数方程式</span></li></ul></article><article class="ch" id="c13"><div class="chhead"><span class="chno">13</span><a class="chtitle" href="sm2/c13/">数列与级数</a><span class="path">sm2/c13/</span></div><ul class="secs"><li><span class="no">13.1</span><span class="st">数列与级数</span></li><li><span class="no">13.2</span><span class="st">等差数列与等差级数</span></li><li><span class="no">13.3</span><span class="st">等比数列与等比级数</span></li><li><span class="no">13.4</span><span class="st">复利与年金</span></li></ul></article><article class="ch" id="c14"><div class="chhead"><span class="chno">14</span><a class="chtitle" href="sm2/c14/">行列式</a><span class="path">sm2/c14/</span></div><ul class="secs"><li><span class="no">14.1</span><span class="st">行列式</span></li><li><span class="no">14.2</span><span class="st">行列式的性质</span></li></ul></article><article class="ch" id="c15"><div class="chhead"><span class="chno">15</span><a class="chtitle" href="sm2/c15/">矩阵</a><span class="path">sm2/c15/</span></div><ul class="secs"><li><span class="no">15.1</span><span class="st">矩阵</span></li><li><span class="no">15.2</span><span class="st">矩阵的运算</span></li><li><span class="no">15.3</span><span class="st">逆矩阵及其应用</span></li><li><span class="no">15.4</span><span class="st">线性方程组</span></li></ul></article><article class="ch" id="c16"><div class="chhead"><span class="chno">16</span><a class="chtitle" href="sm2/c16/">圆</a><span class="path">sm2/c16/</span></div><ul class="secs"><li><span class="no">16.1</span><span class="st">轨迹方程式</span></li><li><span class="no">16.2</span><span class="st">圆的方程式</span></li><li><span class="no">16.3</span><span class="st">点与圆的位置关系</span></li><li><span class="no">16.4</span><span class="st">直线与圆的位置关系</span></li></ul></article><article class="ch" id="c17"><div class="chhead"><span class="chno">17</span><a class="chtitle" href="sm2/c17/">平面向量</a><span class="path">sm2/c17/</span></div><ul class="secs"><li><span class="no">17.1</span><span class="st">向量</span></li><li><span class="no">17.2</span><span class="st">直角坐标系中的向量</span></li><li><span class="no">17.3</span><span class="st">平面向量的简单应用</span></li></ul></article><article class="ch" id="c18"><div class="chhead"><span class="chno">18</span><a class="chtitle" href="sm2/c18/">立体几何</a><span class="path">sm2/c18/</span></div><ul class="secs"><li><span class="no">18.1</span><span class="st">立体图形</span></li><li><span class="no">18.2</span><span class="st">直线与平面所成的角</span></li><li><span class="no">18.3</span><span class="st">两个平面所成的角</span></li><li><span class="no">18.4</span><span class="st">立体几何应用问题</span></li></ul></article></section><section class="book" id="b3"><header class="bhead"><h2>高二下册</h2><span class="meta">课程 538 · 5 章</span></header><article class="ch" id="c19"><div class="chhead"><span class="chno">19</span><a class="chtitle" href="sm2/c19/">排列与组合</a><span class="path">sm2/c19/</span></div><ul class="secs"><li><span class="no">19.1</span><span class="st">加法原理与乘法原理</span></li><li><span class="no">19.2</span><span class="st">排列与排列数公式</span></li><li><span class="no">19.3</span><span class="st">相异元素可重复的排列</span></li><li><span class="no">19.4</span><span class="st">相异元素的环形排列</span></li><li><span class="no">19.5</span><span class="st">不尽相异元素的排列</span></li><li><span class="no">19.6</span><span class="st">组合与组合数公式</span></li></ul></article><article class="ch" id="c20"><div class="chhead"><span class="chno">20</span><a class="chtitle" href="sm2/c20/">二项式定理</a><span class="path">sm2/c20/</span></div><ul class="secs"><li><span class="no">20.1</span><span class="st">指数为自然数的二项式定理</span></li><li><span class="no">20.2</span><span class="st">二项展开式的通项公式</span></li></ul></article><article class="ch" id="c21"><div class="chhead"><span class="chno">21</span><a class="chtitle" href="sm2/c21/">统计学</a><span class="path">sm2/c21/</span></div><ul class="secs"><li><span class="no">21.1</span><span class="st">集中趋势</span></li><li><span class="no">21.2</span><span class="st">离中趋势</span></li><li><span class="no">21.3</span><span class="st">箱线图</span></li><li><span class="no">21.4</span><span class="st">统计指数</span></li></ul></article><article class="ch" id="c22"><div class="chhead"><span class="chno">22</span><a class="chtitle" href="sm2/c22/">概率</a><span class="path">sm2/c22/</span></div><ul class="secs"><li><span class="no">22.1</span><span class="st">样本空间与事件</span></li><li><span class="no">22.2</span><span class="st">概率的定义</span></li><li><span class="no">22.3</span><span class="st">加法原理</span></li><li><span class="no">22.4</span><span class="st">乘法原理</span></li><li><span class="no">22.5</span><span class="st">数学期望值</span></li><li><span class="no">22.6</span><span class="st">常态分布</span></li></ul></article><article class="ch" id="c23"><div class="chhead"><span class="chno">23</span><a class="chtitle" href="sm2/c23/">线性回归</a><span class="path">sm2/c23/</span></div><ul class="secs"><li><span class="no">23.1</span><span class="st">相关系数</span></li><li><span class="no">23.2</span><span class="st">回归直线</span></li></ul></article></section>
+<footer>《数学》高中系列 · 董总 E启学电子书</footer>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q'), hint=document.getElementById('hint');
+  var chs=[].slice.call(document.querySelectorAll('.ch'));
+  var books=[].slice.call(document.querySelectorAll('.book'));
+  function run(){
+    var v=q.value.trim().toLowerCase(), n=0;
+    chs.forEach(function(el){
+      var hit = !v || el.textContent.toLowerCase().indexOf(v)>-1;
+      el.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    books.forEach(function(bk){
+      var vis=[].slice.call(bk.querySelectorAll('.ch')).some(function(e){return e.style.display!=='none';});
+      bk.style.display = vis ? '' : 'none';
+    });
+    hint.textContent = v ? ('匹配 '+n+' 章') : '';
+  }
+  q.addEventListener('input', run);
+})();
+</script>
+</body>
+</html>
