@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="峇株吧辖华仁中学蔡逸众制作 | 峇株吧辖蔡逸众制作 | 华仁中学蔡逸众制作 | Made by ecchua79"><title>高二数学下册 第22章 概率 · 互动课程</title>
+<style>
+:root{--bg:#0b1220;--cd:#131d33;--tx:#e6edf7;--mu:#8fa3c4;--ac:#38bdf8;--ok:#22c55e;--no:#ef4444;--bd:#2a3b60}
+[data-theme=light]{--bg:#f2f6fc;--cd:#fff;--tx:#14213d;--mu:#5b6b8a;--ac:#0ea5e9;--ok:#15803d;--no:#b91c1c;--bd:#c9d6ec}
+*{box-sizing:border-box}html{font-size:16px}body{margin:0;background:var(--bg);color:var(--tx);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.7}
+header{padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;background:var(--cd);border-bottom:1px solid var(--bd)}
+header h1{font-size:1.15rem;margin:0}.ctl button,.bt{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:.5rem;padding:.3rem .7rem;cursor:pointer;font-size:.9rem}
+.bt{background:var(--ac);color:#04121f;font-weight:bold}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:.4rem;overflow-x:auto;padding:.5rem;background:var(--bg);border-bottom:1px solid var(--bd);-webkit-overflow-scrolling:touch}
+.tabs button{flex:0 0 auto;background:var(--cd);color:var(--tx);border:1px solid var(--bd);border-radius:.6rem;padding:.4rem .8rem;cursor:pointer;font-size:.95rem;text-align:center;line-height:1.3}
+.tabs small{display:block;font-size:.7rem;color:var(--mu)}.tabs .on{background:var(--ac);color:#04121f;border-color:var(--ac)}.tabs .on small{color:#04121f}
+main{max-width:56rem;margin:auto;padding:1rem;position:relative;z-index:2}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:.8rem;padding:.9rem 1rem;margin:.8rem 0}
+h2{color:var(--ac)}h3{border-left:4px solid var(--ac);padding-left:.5rem}h4{margin:.2rem 0;color:var(--ac)}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .15em;line-height:1.25}.fr i{font-style:normal;border-bottom:.09em solid currentColor;padding:0 .25em}.fr b{font-weight:400;padding:0 .25em}
+.sv{width:min(100%,32em);height:auto;display:block;margin:.3rem auto}svg text{fill:var(--tx);font-size:13px;font-family:inherit}svg .sm{font-size:11px}svg .b{font-weight:bold}
+svg .ln{stroke:var(--tx);fill:none;stroke-width:1.3}svg .ch{fill:var(--bd);fill-opacity:.55}svg .hi{fill:var(--ac)}svg text.hl{fill:#04121f;font-weight:bold}svg .nm{paint-order:stroke;stroke:var(--cd);stroke-width:4px}
+svg .ca{fill:#3b82f6;fill-opacity:.28;stroke:#3b82f6;stroke-width:1.5}svg .cb{fill:#f59e0b;fill-opacity:.28;stroke:#f59e0b;stroke-width:1.5}
+.sol{background:rgba(56,189,248,.08);border-radius:.5rem;padding:.4rem .7rem}.fl{display:flex;flex-wrap:wrap;gap:.6rem}.fl label{font-size:.9rem;color:var(--mu);display:flex;flex-direction:column}
+input,select,textarea{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:.4rem;padding:.3rem .5rem;font-size:1rem;width:8rem}textarea{width:12rem;height:5.5rem}.er{color:var(--no)}
+.qc{border:1px solid var(--bd);border-radius:.6rem;padding:.6rem .8rem;margin:.6rem 0}.op{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.5rem;margin-top:.5rem}
+.op button{background:var(--bg);color:var(--tx);border:2px solid var(--bd);border-radius:.5rem;padding:.5rem;font-size:1rem;cursor:pointer}.op button:disabled{cursor:default}
+.op .g,.ex.g{border-color:var(--ok)!important;background:rgba(34,197,94,.16)!important}.op .b,.ex.b{border-color:var(--no)!important;background:rgba(239,68,68,.16)!important}
+.ex{margin-top:.6rem;border:2px solid;border-radius:.5rem;padding:.5rem .7rem;font-size:.95rem}.info{padding:.5rem;background:rgba(56,189,248,.12);border-radius:.5rem}.sum{font-size:1.1rem;padding:.8rem;border:2px dashed var(--ac);border-radius:.6rem;margin:.8rem 0}
+.fi{display:flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap}
+footer{text-align:center;color:var(--mu);font-size:.85rem;padding:1.5rem 1rem 2.5rem;position:relative;z-index:2}
+#vw{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;opacity:.035;user-select:none}#vw div{position:absolute;inset:-50%;transform:rotate(-24deg);display:flex;flex-wrap:wrap;gap:6rem 8rem;align-content:flex-start;font-size:.65rem;font-weight:bold;color:var(--tx)}
+#vb{position:fixed;right:.6rem;bottom:.4rem;z-index:6;font-size:.7rem;color:var(--mu);opacity:.8;pointer-events:none}
+</style></head><body>
+<header><h1>📐 高二数学下册 · 第22章 概率</h1><div class="ctl"><button id="fm">A-</button> <button id="f0">A</button> <button id="fp">A+</button> <button id="th">🌙/☀️</button></div></header>
+<nav class="tabs" id="tabs"></nav><main id="main"></main>
+<footer>© 峇株吧辖华仁中学 蔡逸众 制作 · Made by ecchua79 · 仅供教学使用，未经许可请勿转载<br>本课程完全离线运行，题目由内置引擎随机生成。常态分布概率以数值计算，与课本查表结果末位可能相差 0.0001。</footer>
+<div id="vw" aria-hidden="true"></div><div id="vb">Made by ecchua79</div>
+<div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:.01;font-size:1px" id="hw">峇株吧辖华仁中学蔡逸众制作 峇株吧辖蔡逸众制作 华仁中学蔡逸众制作 Made by ecchua79</div>
+<!-- 峇株吧辖华仁中学蔡逸众制作 | Made by ecchua79 -->
+<script>
+const $=s=>document.querySelector(s),ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pk=a=>a[ri(0,a.length-1)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),fa=n=>n<2?1:n*fa(n-1),f2=x=>+x.toFixed(2);
+const C=(n,r)=>{if(r<0||r>n)return 0;let x=1;for(let i=1;i<=r;i++)x=x*(n-r+i)/i;return Math.round(x)};
+const F=(n,d)=>d==1?`${n}`:`<span class="fr"><i>${n}</i><b>${d}</b></span>`;
+const R=(n,d)=>{let g=gcd(n,d)||1;return F(n/g,d/g)},FR=(n,d)=>F(n,d)+(gcd(n,d)>1?'='+R(n,d):'');
+const phi=z=>Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
+const Q=z=>{if(z<0)return 1-Q(-z);let t=1/(1+.2316419*z);return phi(z)*t*(.31938153+t*(-.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))))};
+const Phi=z=>1-Q(z),zinv=p=>{let l=-8,h=8;for(let i=0;i<60;i++){let m=(l+h)/2;Phi(m)<p?l=m:h=m}return(l+h)/2};
+const coins=k=>{let r=[''];for(let i=0;i<k;i++)r=r.flatMap(x=>[x+'H',x+'T']);return r},hc=s=>s.split('H').length-1;
+/* ---------- SVG helpers ---------- */
+const sv=(w,h,b)=>`<svg viewBox="0 0 ${w} ${h}" class="sv">${b}</svg>`;
+const tx=(x,y,s,c='',a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}" class="${c}">${s}</text>`;
+const lab=(x,y,l)=>{if(!Array.isArray(l))return tx(x,y+4,l);if(l[1]==1)return tx(x,y+4,l[0]);let w=Math.max(String(l[0]).length,String(l[1]).length)*3.7+2;return tx(x,y-3,l[0])+`<line x1="${x-w}" x2="${x+w}" y1="${y}" y2="${y}" class="ln"/>`+tx(x,y+12,l[1])};
+const rad=(x,y,s,w)=>`<polyline class="ln" points="${x},${y-5} ${x+4},${y+2} ${x+9},${y-17} ${x+13+w},${y-17}"/><text x="${x+12}" y="${y}" textLength="${w}" lengthAdjust="spacingAndGlyphs" style="font-size:16px">${s}</text>`;
+function chips(it,hi=new Set()){let w=Math.max(...it.map(x=>x.length))*7.4+12,per=Math.max(1,Math.floor(420/(w+6))),o='';it.forEach((x,i)=>{let X=6+(i%per)*(w+6),Y=6+Math.floor(i/per)*28,h=hi.has(i);o+=`<rect x="${X}" y="${Y}" width="${w}" height="22" rx="5" class="${h?'hi':'ch'}"/>`+tx(X+w/2,Y+15,x,h?'hl':'')});return sv(430,Math.ceil(it.length/per)*28+10,o)}
+const dgrid=f=>{let o=tx(26,16,'①＼②','sm');for(let i=1;i<=6;i++){o+=tx(28,48+(i-1)*34,i,'b')+tx(79+(i-1)*52,20,i,'b');for(let j=1;j<=6;j++){let h=f(i,j);o+=`<rect x="${54+(j-1)*52}" y="${28+(i-1)*34}" width="50" height="32" rx="4" class="${h?'hi':'ch'}"/>`+tx(79+(j-1)*52,48+(i-1)*34,i+','+j,'sm'+(h?' hl':''))}}return sv(380,240,o)};
+const COL={红:'#ef4444',黄:'#facc15',白:'#e2e8f0',黑:'#1e293b',蓝:'#3b82f6'};
+const balls=g=>{let o='',i=0;g.forEach(([n,c])=>{for(let k=0;k<n;k++,i++)o+=`<circle cx="${18+(i%15)*27}" cy="${18+Math.floor(i/15)*27}" r="11" fill="${COL[c]}" stroke="#64748b"/>`});let r=Math.ceil(i/15);return sv(430,r*27+34,o+g.map(([n,c,nm],j)=>tx(8+j*112,r*27+26,nm+' '+n+' 个','sm','start')).join(''))};
+function venn(o){let d=o.dis,a=d?115:155,b=d?305:265,r=d?75:85;return sv(420,210,`<rect x="5" y="5" width="410" height="200" rx="8" class="ln"/>${tx(16,22,o.S||'S','b','start')}<circle cx="${a}" cy="105" r="${r}" class="ca"/><circle cx="${b}" cy="105" r="${r}" class="cb"/>${tx(a-r*.5,30,o.nA,'b')}${tx(b+r*.5,30,o.nB,'b')}${tx(d?a:128,108,o.A)}${tx(210,108,d?'':o.AB)}${tx(d?b:292,108,o.B)}${tx(398,196,o.out,'', 'end')}`)}
+function tree(a,root='开始'){let L=a.reduce((s,x)=>s+x.k.length,0),H=L*38+14,rx=34,ax=150,kx=270,n=0,o='',ry=H/2,dy=(a,b)=>b<a?-13:b>a?15:-13;a.forEach(A=>{let ys=A.k.map(()=>19+38*n++),ay=(ys[0]+ys[ys.length-1])/2;o+=`<line x1="${rx}" y1="${ry}" x2="${ax}" y2="${ay}" class="ln"/>`+lab((rx+ax)/2,(ry+ay)/2+dy(ry,ay),A.p);A.k.forEach((K,i)=>{o+=`<line x1="${ax}" y1="${ay}" x2="${kx}" y2="${ys[i]}" class="ln"/>`+lab((ax+kx)/2,(ay+ys[i])/2+dy(ay,ys[i]),K.p)+tx(kx,ys[i]+4,K.n,'nm b')+(K.r?tx(kx+24,ys[i]+4,K.r,'sm','start'):'')});o+=tx(ax,ay+4,A.n,'nm b')});return sv(470,H,o+tx(rx,ry+4,root,'nm b'))}
+function bars(xs,ps,hi=[],dp=4){let n=xs.length,bw=Math.min(46,360/n),W=Math.max(300,n*bw*1.25+30),m=Math.max(...ps),o='';xs.forEach((x,i)=>{let h=Math.max(2,ps[i]/m*110),X=20+i*bw*1.25;o+=`<rect x="${X}" y="${140-h}" width="${bw}" height="${h}" rx="3" class="${hi.includes(i)?'hi':'ch'}"/>`+(n<=12?tx(X+bw/2,136-h,+ps[i].toFixed(dp),'sm'):'')+(n<=12||i%2==0?tx(X+bw/2,158,x,'sm'):'')});return sv(W,170,o+`<line x1="14" x2="${W-6}" y1="140" y2="140" class="ln"/>`)}
+function bell(o){let{mu,sg,lo,hi}=o,X=x=>30+(x-(mu-4*sg))/(8*sg)*360,Y=x=>150-Math.exp(-Math.pow((x-mu)/sg,2)/2)*115,a=Math.max(lo,mu-4*sg),b=Math.min(hi,mu+4*sg),cv=[],sd=[X(a)+',150'];for(let i=0;i<=160;i++){let x=mu-4*sg+i*sg/20;cv.push(X(x).toFixed(1)+','+Y(x).toFixed(1))}if(a<b)for(let i=0;i<=80;i++){let x=a+(b-a)*i/80;sd.push(X(x).toFixed(1)+','+Y(x).toFixed(1))}sd.push(X(b)+',150');let t=[...new Set([mu,lo,hi].filter(isFinite).map(v=>+v.toFixed(3)))];return sv(420,182,`<polygon points="${sd.join(' ')}" class="hi" opacity=".65"/><polyline points="${cv.join(' ')}" class="ln"/><line x1="20" x2="400" y1="150" y2="150" class="ln"/>`+t.map(v=>`<line x1="${X(v)}" x2="${X(v)}" y1="150" y2="155" class="ln"/>`+tx(X(v),169,v,'sm')).join('')+(o.lab?tx(210,16,o.lab,'b'):''))}
+/* ---------- answer engine ---------- */
+const AI=v=>({k:'i',v}),AF=(n,d)=>{let g=gcd(n,d);return{k:'f',n:n/g,d:d/g,v:n/d}},AD=(v,dp,pr)=>({k:'d',v,dp,pr});
+const fmtA=a=>a.k=='i'?a.v:a.k=='f'?F(a.n,a.d):a.v.toFixed(a.dp),key=a=>a.k=='f'?a.n+'/'+a.d:fmtA(a)+'';
+function opts(a,w=[]){const ok=x=>a.k=='i'?x.v>0:a.k=='f'?x.n>0&&x.n<x.d:(!a.pr||(x.v>0&&x.v<1));let s=new Map([[key(a),a]]),add=x=>{if(s.size<4&&x&&ok(x)&&!s.has(key(x)))s.set(key(x),x)};w.forEach(add);let c;
+ if(a.k=='i')c=[a.v+1,a.v-1,a.v+2,a.v*2,a.v-2,Math.round(a.v/2),a.v+3].map(AI);else if(a.k=='f'){let{n,d}=a;c=[[n+1,d],[n-1,d],[d-n,d],[n,d+1],[n*2,d],[n,d*2],[n+2,d]].map(x=>AF(...x))}else{let v=a.v,u=Math.pow(10,-a.dp);c=[v*.8,v*1.25,1-v,v/2,v*1.5,v+10*u,v-10*u,v*.9].map(x=>AD(x,a.dp,a.pr))}
+ c.forEach(add);for(let t=1;s.size<4&&t<60;t++)add(a.k=='i'?AI(a.v+3+t):a.k=='f'?AF(ri(1,a.d*2+3),a.d*2+3+t):AD(a.v+t*Math.pow(10,-a.dp)*7,a.dp,a.pr));return[...s.values()]}
+const parse=s=>{s=s.trim().replace('％','%');let p=1;if(s.endsWith('%')){p=100;s=s.slice(0,-1)}if(s.includes('/')){let[x,y]=s.split('/');return x/y/p}return s===''?NaN:+s/p};
+const same=(a,x)=>isNaN(x)?false:a.k=='i'?Math.abs(x-a.v)<1e-9:a.k=='f'?Math.abs(x-a.v)<6e-4:Math.abs(x-a.v)<Math.max(.5*Math.pow(10,-a.dp),2e-4)+1e-12;
+function quiz(h,pool,o){let ok=0,dn=0,fk=0,fd=0;h.innerHTML=`<h3>${o.ti}</h3><div class="qm"></div><div class="qs"></div><div class="qf"></div><div class="qe"></div>`;
+ const qm=h.querySelector('.qm'),qs=h.querySelector('.qs'),qf=h.querySelector('.qf'),qe=h.querySelector('.qe');
+ const pick=n=>{let r=[];while(r.length<n)r=r.concat(sh(pool));return r.slice(0,n).map(g=>g())};
+ const xp=(q,g)=>`<div class="ex ${g?'g':'b'}">${g?'✅ 回答正确！':'❌ 回答错误。'}正确答案：<b>${fmtA(q.a)}</b><div>📝 解析：${q.e}</div>${q.s?`<div>${q.s}</div>`:''}</div>`;
+ pick(o.nm).forEach((q,i)=>{let c=document.createElement('div'),os=sh(opts(q.a,q.w));c.className='qc';c.innerHTML=`<div><b>选择题 ${i+1}.</b> ${q.t}</div><div class="op">${os.map((x,j)=>`<button>${'ABCD'[j]}. ${fmtA(x)}</button>`).join('')}</div>`;
+  c.querySelectorAll('button').forEach((b,j)=>b.onclick=()=>{let g=key(os[j])==key(q.a);c.querySelectorAll('button').forEach((x,k)=>{x.disabled=true;if(key(os[k])==key(q.a))x.classList.add('g')});if(!g)b.classList.add('b');c.insertAdjacentHTML('beforeend',xp(q,g));g&&ok++;if(++dn==o.nm)after()});qm.appendChild(c)});
+ function after(){if(ok>=o.need){qs.innerHTML=`<p class="info">🎉 选择题答对 ${ok}/${o.nm}，作答题已解锁！</p>`;fills()}else{qs.innerHTML=`<p class="info">选择题答对 ${ok}/${o.nm}，需答对 ${o.need} 题才能作答题。先看看解析，再来一次吧！</p><button class="bt">🔄 重新出题</button>`;qs.querySelector('button').onclick=()=>quiz(h,pool,o)}}
+ function fills(){pick(o.nf).forEach((q,i)=>{let c=document.createElement('div');c.className='qc';c.innerHTML=`<div><b>作答题 ${i+1}.</b> ${q.t}<br><small>${q.a.k=='d'?'（填入小数，准确至'+q.a.dp+'位）':q.a.k=='f'?'（填入分数如 3/8，或小数）':'（填入整数）'}</small></div><div class="fi"><input placeholder="你的答案"><button class="bt">提交</button></div>`;
+  let inp=c.querySelector('input'),bt=c.querySelector('button'),sub=()=>{let x=parse(inp.value);if(isNaN(x)){inp.focus();return}let g=same(q.a,x);inp.disabled=bt.disabled=true;c.insertAdjacentHTML('beforeend',xp(q,g));g&&fk++;if(++fd==o.nf)fin()};bt.onclick=sub;inp.onkeydown=e=>e.key=='Enter'&&sub();qf.appendChild(c)})}
+ function fin(){let t=ok+fk,N=o.nm+o.nf,p=t/N;qe.innerHTML=o.rev?`<div class="sum">🏁 总复习成绩：<b>${t}/${N}</b>（选择 ${ok}/${o.nm}，作答 ${fk}/${o.nf}）<br>${p>=.9?'🏆 优秀！概率掌握得非常扎实。':p>=.75?'👍 良好！再复习错题即可更上一层楼。':p>=.6?'🙂 及格。建议回到各小节的例题和计算器再练习。':'💪 继续加油！请逐节重看例题讲解，再来挑战。'}</div><button class="bt">🔄 再来一次</button>`:`<div class="sum">本节成绩：选择 ${ok}/${o.nm}，作答 ${fk}/${o.nf} ${ok+fk==o.nm+o.nf?'🌟 满分！':''}</div><button class="bt">🔄 换一批题</button>`;qe.querySelector('button').onclick=()=>quiz(h,pool,o)}}
+function calc(h,fs,fn){h.innerHTML='<div class="fl">'+fs.map(f=>f[4]=='t'?`<label>${f[1]}<textarea data-k="${f[0]}">${f[2]}</textarea></label>`:f[3]?`<label>${f[1]}<select data-k="${f[0]}">${f[3].map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label>`:`<label>${f[1]}<input type="number" step="any" data-k="${f[0]}" value="${f[2]}"></label>`).join('')+'</div><div class="out"></div>';
+ const run=()=>{let v={};h.querySelectorAll('[data-k]').forEach(e=>v[e.dataset.k]=e.tagName=='SELECT'||e.tagName=='TEXTAREA'?e.value:+e.value);try{h.querySelector('.out').innerHTML=fn(v)}catch(e){h.querySelector('.out').innerHTML='<p class="er">⚠️ '+e.message+'</p>'}};h.addEventListener('input',run);run()}
+const t6=x=>+x.toFixed(6),conv=P=>{let d=[1];P.forEach(p=>{let n=Array(d.length+1).fill(0);d.forEach((v,i)=>{n[i]+=v*(1-p);n[i+1]+=v*p});d=n});return d};
+/* ---------- 题目生成器 ---------- */
+const G=[[],[],[],[],[],[]];
+G[0]=[()=>{let k=ri(2,4),n=2**k*6;return{t:`抛掷 ${k} 枚硬币各一次，并投掷一粒骰子一次，此试验的样本空间有多少个样本点？`,a:AI(n),e:`每枚硬币有 2 种结果，骰子有 6 种结果。由树图（乘法）得 n(S)=${'2×'.repeat(k)}6=<b>${n}</b>。`}},
+()=>{let s=ri(3,11),n=6-Math.abs(s-7),l=[];for(let i=1;i<=6;i++)for(let j=1;j<=6;j++)i+j==s&&l.push(`(${i},${j})`);return{t:`投掷两粒骰子一次，事件 A=“点数之和是 ${s}”含有多少个样本点？`,a:AI(n),e:`列出 A={${l.join(', ')}}，共 <b>${n}</b> 个样本点（图中高亮）。`,s:dgrid((i,j)=>i+j==s)}},
+()=>{let k=ri(3,4),h=ri(1,k-1),L=coins(k),hi=new Set();L.forEach((x,i)=>hc(x)==h&&hi.add(i));return{t:`抛掷 ${k} 枚硬币一次，事件 B=“恰好 ${h} 枚正面朝上”含有多少个样本点？`,a:AI(hi.size),e:`样本空间共 ${L.length} 个样本点，恰有 ${h} 个 H 的有 C(${k},${h})=${hi.size} 个（高亮）。`,s:chips(L,hi)}},
+()=>{let n=ri(4,6),L='ABCDEF'.slice(0,n).split(''),p=[];for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)p.push(L[i]+L[j]);return{t:`从 ${n} 个字母 ${L.join('、')} 中任取两个（不计次序），样本空间含有多少个样本点？`,a:AI(p.length),e:`n(S)=C(${n},2)=${p.length}：${p.join('、')}。`,s:chips(p)}}];
+const col=['红','黄','白','黑'];
+G[1]=[()=>{let c=sh(col).slice(0,3),n=c.map(()=>ri(2,6)),j=ri(0,2),N=n[0]+n[1]+n[2];return{t:`一袋内有 ${c.map((x,i)=>n[i]+' 粒'+x+'球').join('、')}。从中任意抽取一球，求抽得${c[j]}球的概率。`,a:AF(n[j],N),e:`n(S)=${N}，n(A)=${n[j]}。P(A)=${F('n(A)','n(S)')}=${FR(n[j],N)}。`,s:balls(c.map((x,i)=>[n[i],x,x+'球']))}},
+()=>{let a=ri(3,6),b=ri(3,6),N=a+b,m=C(a,2),T=C(N,2);return{t:`一袋内有 ${a} 粒红球及 ${b} 粒白球。从中同时任意抽取 2 球，求两球都是红球的概率。`,a:AF(m,T),e:`n(S)=C(${N},2)=${T}；n(A)=C(${a},2)=${m}。P(A)=${FR(m,T)}。`,s:balls([[a,'红','红球'],[b,'白','白球']])}},
+()=>{let s=ri(8,11),n=0;for(let i=1;i<=6;i++)for(let j=1;j<=6;j++)i+j>=s&&n++;return{t:`投掷两粒公平的骰子一次，求点数之和至少是 ${s} 的概率。`,a:AF(n,36),e:`n(S)=36；点数和≥${s} 的样本点有 ${n} 个（高亮）。P=${FR(n,36)}。`,s:dgrid((i,j)=>i+j>=s)}},
+()=>{let k=ri(3,5),j=ri(1,k-1),m=C(k,j),T=2**k,L=coins(k),hi=new Set();L.forEach((x,i)=>hc(x)==j&&hi.add(i));return{t:`抛掷 ${k} 枚匀称的硬币一次，求恰好 ${j} 枚正面朝上的概率。`,a:AF(m,T),e:`n(S)=2<sup>${k}</sup>=${T}；n(A)=C(${k},${j})=${m}。P(A)=${FR(m,T)}。`,s:chips(L,hi)}},
+()=>{let c=pk([['NUMERICAL',9,4,'母音','UEIA'],['PROBLEM',7,5,'子音','PRBLM'],['PROBLEM',7,2,'母音','OE']]),[w,n,m,nm,v]=c,x=fa(n-m+1)*fa(m),y=fa(n);return{t:`将“${w}”一字中的所有字母任意排列，求 ${m} 个${nm}相邻的概率。`,a:AF(x,y),e:`n(S)=${n}!=${y}。把 ${m} 个${nm}看成一个整体，共 ${n-m+1} 个“字母”，排法 ${n-m+1}!；${nm}内部可互换 ${m}!。n(A)=${n-m+1}!×${m}!=${x}。P=${FR(x,y)}。`,s:chips(w.split(''),new Set(w.split('').map((ch,i)=>v.includes(ch)?i:-1)))}},
+()=>{let a=ri(4,7),b=ri(3,6),N=a+b,m=C(a,2)*b,T=C(N,3);return{t:`某小组有 ${a} 名男生及 ${b} 名女生。从中任选 3 人，求恰有 2 名男生的概率。`,a:AF(m,T),e:`n(S)=C(${N},3)=${T}；n(A)=C(${a},2)×C(${b},1)=${C(a,2)}×${b}=${m}。P(A)=${FR(m,T)}。`,s:balls([[a,'蓝','男生'],[b,'红','女生']])}}];
+G[2]=[()=>{let A=ri(25,55)/100,B=ri(20,45)/100,X=ri(5,Math.floor(Math.min(A,B)*100)-3)/100,u=f2(A+B-X);return{t:`已知 P(A)=${A}，P(B)=${B}，P(A∩B)=${X}，求 P(A∪B)。`,a:AD(u,2,1),e:`P(A∪B)=P(A)+P(B)−P(A∩B)=${A}+${B}−${X}=<b>${u}</b>。`,s:venn({A:f2(A-X),AB:X,B:f2(B-X),out:f2(1-u),nA:'A',nB:'B'})}},
+()=>{let N=pk([20,30,40,50]),[a,b]=pk([[2,3],[2,5],[3,4],[3,5],[4,6]]),l=a*b/gcd(a,b),x=N/a|0,y=N/b|0,z=N/l|0,m=x+y-z;return{t:`从 1 至 ${N} 的整数中任取一个，求它是 ${a} 的倍数或 ${b} 的倍数的概率。`,a:AF(m,N),e:`A（${a}的倍数）${x} 个；B（${b}的倍数）${y} 个；A∩B（${l}的倍数）${z} 个。P(A∪B)=${F(x,N)}+${F(y,N)}−${F(z,N)}=${FR(m,N)}。`,s:venn({A:x-z,AB:z,B:y-z,out:N-m,nA:a+'的倍数',nB:b+'的倍数'})}},
+()=>{let r=ri(2,5),o=ri(4,8),N=r+o,T=C(N,2),k=C(o,2);return{t:`一盒中有 ${r} 粒红球及 ${o} 粒白球。从中任意抽取 2 球，求至少有一粒红球的概率。`,a:AF(T-k,T),e:`A′=“没有红球”（2 球都是白球）：n(A′)=C(${o},2)=${k}，n(S)=C(${N},2)=${T}。P(A)=1−P(A′)=1−${F(k,T)}=${FR(T-k,T)}。`,s:balls([[r,'红','红球'],[o,'白','白球']])}},
+()=>{let r=ri(2,5),w=ri(2,5),b=ri(2,5),N=r+w+b;return{t:`一盒中有 ${r} 粒红球、${w} 粒白球及 ${b} 粒黑球。从中任意抽取一球，求抽得红球或白球的概率。`,a:AF(r+w,N),e:`红球与白球不可能同时出现，是互斥事件：P(A∪B)=P(A)+P(B)=${F(r,N)}+${F(w,N)}=${FR(r+w,N)}。`,s:balls([[r,'红','红球'],[w,'白','白球'],[b,'黑','黑球']])}}];
+const T2=(r1,n1,r2,n2)=>tree([{n:'红',p:[r1,n1],k:[{n:'红',p:[r2,n2],r:'(红,红)'},{n:'黄',p:[n2-r2,n2],r:'(红,黄)'}]},{n:'黄',p:[n1-r1,n1],k:[{n:'红',p:[r2,n2],r:'(黄,红)'},{n:'黄',p:[n2-r2,n2],r:'(黄,黄)'}]}],'甲盒→乙盒');
+G[3]=[()=>{let r1=ri(2,6),y1=ri(2,6),r2=ri(2,6),y2=ri(2,6),n1=r1+y1,n2=r2+y2;return{t:`甲盒有 ${r1} 粒红球及 ${y1} 粒黄球；乙盒有 ${r2} 粒红球及 ${y2} 粒黄球。从两盒中各任意抽取一球，求两球都是红球的概率。`,a:AF(r1*r2,n1*n2),e:`两盒抽取互不影响，是独立事件：P(A∩B)=P(A)×P(B)=${F(r1,n1)}×${F(r2,n2)}=${FR(r1*r2,n1*n2)}。`,s:T2(r1,n1,r2,n2)}},
+()=>{let n=ri(4,8),k=ri(1,n-1),p=pk([.2,.3,.4,.6,.7,.8]),xs=[],ps=[];for(let i=0;i<=n;i++){xs.push(i);ps.push(C(n,i)*p**i*(1-p)**(n-i))}let v=ps[k];return{t:`某事件每次试验成功的概率是 ${p}，独立重复试验 ${n} 次，求恰好成功 ${k} 次的概率。`,a:AD(v,4,1),e:`P=C(${n},${k})p<sup>${k}</sup>q<sup>${n-k}</sup>=${C(n,k)}×${p}<sup>${k}</sup>×${f2(1-p)}<sup>${n-k}</sup>=<b>${v.toFixed(4)}</b>。`,s:bars(xs,ps,[k])}},
+()=>{let b1=ri(8,14),b2=ri(8,14),g1=ri(8,14),g2=ri(8,14),Gn=g1+g2;return{t:`某班男生 ${b1+b2} 人（其中 ${b1} 人会游泳），女生 ${Gn} 人（其中 ${g1} 人会游泳）。任选一人，已知她是女生，求她会游泳的概率。`,a:AF(g1,Gn),e:`条件概率：样本空间缩小为 ${Gn} 名女生，其中 ${g1} 人会游泳。P(B|A)=${F('n(A∩B)','n(A)')}=${FR(g1,Gn)}。`,s:venn({A:g2,AB:g1,B:b1,out:b2,nA:'A 女生',nB:'B 会游泳',S:'全班'})}},
+()=>{let r=ri(3,6),y=ri(2,5),N=r+y;return{t:`一盒中有 ${r} 粒红球及 ${y} 粒黄球。依次抽取两球，抽后不放回，求两次都抽得红球的概率。`,a:AF(r*(r-1),N*(N-1)),e:`第一次抽得红球 ${F(r,N)}；不放回后剩 ${N-1} 球、${r-1} 红，第二次为红球 ${F(r-1,N-1)}。两次不独立：P=${F(r,N)}×${F(r-1,N-1)}=${FR(r*(r-1),N*(N-1))}。`,s:tree([{n:'红',p:[r,N],k:[{n:'红',p:[r-1,N-1],r:'(红,红)'},{n:'黄',p:[y,N-1],r:'(红,黄)'}]},{n:'黄',p:[y,N],k:[{n:'红',p:[r,N-1],r:'(黄,红)'},{n:'黄',p:[y-1,N-1],r:'(黄,黄)'}]}])}},
+()=>{let pa=pk([.5,.6,.7,.4]),x=pk([.02,.03,.04,.05]),y=pk([.01,.015,.02]),t=pa*x+(1-pa)*y,v=pa*x/t,pc=z=>+(z*100).toFixed(1);return{t:`甲厂产品占总数的 ${pc(pa)}%，其余来自乙厂。甲厂废品率 ${pc(x)}%，乙厂废品率 ${pc(y)}%。任取一件产品，若它是废品，求它来自甲厂的概率。`,a:AD(v,4,1),e:`P(废品)=${pa}×${x}+${f2(1-pa)}×${y}=${t.toFixed(5)}。P(甲|废品)=${F((pa*x).toFixed(4),t.toFixed(5))}=<b>${v.toFixed(4)}</b>。`,s:tree([{n:'甲',p:pa,k:[{n:'废品',p:x},{n:'合格',p:+(1-x).toFixed(3)}]},{n:'乙',p:f2(1-pa),k:[{n:'废品',p:y},{n:'合格',p:+(1-y).toFixed(3)}]}])}},
+()=>{let P=sh([[1,2],[2,3],[3,4],[1,3],[2,5],[3,5],[4,5]]).slice(0,3),D=P[0][1]*P[1][1]*P[2][1],q=P.reduce((s,x)=>s*(x[1]-x[0]),1),dist=conv(P.map(x=>x[0]/x[1]));return{t:`甲、乙、丙三人独立解同一道题，各自解出的概率分别是 ${P.map(x=>F(x[0],x[1])).join('、')}。求这道题至少被一人解出的概率。`,a:AF(D-q,D),e:`A′=“三人都没解出”，三人互不影响：P(A′)=${P.map(x=>F(x[1]-x[0],x[1])).join('×')}=${FR(q,D)}。P(A)=1−P(A′)=${FR(D-q,D)}。`,s:bars(['0人','1人','2人','3人'],dist,[1,2,3])}}];
+G[4]=[()=>{let pz,c=pk([1,2]),p=pk([.1,.2,.25,.4]);do pz=pk([3,5,8,10,20]);while(f2(p*pz-c)==0);let v=f2(p*pz-c);return{t:`付 RM${c} 玩一场游戏，赢的概率是 ${p}，赢时可获得奖金 RM${pz}（不含已付的 RM${c}）。求此人玩一场游戏获利的期望值（RM，准确至两位小数）。`,a:AD(v,2),e:`赢：净赚 RM${pz-c}，概率 ${p}；输：亏 RM${c}，概率 ${f2(1-p)}。E=${pz-c}×${p}+(−${c})×${f2(1-p)}=<b>${v.toFixed(2)}</b>。`,s:bars(['+'+(pz-c),'−'+c],[p,1-p])}},
+()=>{let m=pk([20,30,50,60]),L=pk([1000,2000,5000]),q=pk([.001,.002,.005]),v=f2(m-q*L);return{t:`保险公司售出一份保单，保费 RM${m}，出险时赔偿 RM${L}，出险概率是 ${q}。求保险公司每份保单的期望利润（RM，准确至两位小数）。`,a:AD(v,2),e:`不出险：赚 RM${m}，概率 ${+(1-q).toFixed(3)}；出险：亏 RM${L-m}，概率 ${q}。E=${m}×${+(1-q).toFixed(3)}+(−${L-m})×${q}=<b>${v.toFixed(2)}</b>。`,s:bars(['+'+m,'−'+(L-m)],[1-q,q])}},
+()=>{let a=pk([20,30,40,60]),b=pk([2,3,5,6]),v=f2((a-5*b)/6);return{t:`掷一粒公平的骰子，掷得 6 点可得 RM${a}，掷得其他点数须付 RM${b}。求掷一次所得的期望值（RM，准确至两位小数）。`,a:AD(v,2),e:`E=${a}×${F(1,6)}+(−${b})×${F(5,6)}=${F(a-5*b,6)}≈<b>${v.toFixed(2)}</b>。`,s:bars(['+'+a,'−'+b],[1/6,5/6])}},
+()=>{let X=[ri(3,10)*100,ri(1,3)*100,-ri(1,5)*100],p1=ri(2,5)/10,p2=ri(1,Math.max(1,Math.round((.9-p1)*10)))/10,p3=f2(1-p1-p2),v=f2(X[0]*p1+X[1]*p2+X[2]*p3);return{t:`某摊贩一天获利 RM${X[0]}、RM${X[1]}、RM${X[2]} 的概率分别是 ${p1}、${p2}、${p3}。求他一天获利的期望值（RM，准确至两位小数）。`,a:AD(v,2),e:`E=${X[0]}×${p1}+${X[1]}×${p2}+(${X[2]})×${p3}=${f2(X[0]*p1)}+${f2(X[1]*p2)}+(${f2(X[2]*p3)})=<b>${v.toFixed(2)}</b>。`,s:bars(X.map(x=>(x>0?'+':'−')+Math.abs(x)),[p1,p2,p3])}}];
+const zq=z=>f2(z),muS=(mu,sg)=>[mu,sg];
+G[5]=[()=>{let z=ri(5,260)/100,v=Q(z);return{t:`若 Z 是标准常态分布，求 P(Z>${z})。（准确至四位小数）`,a:AD(v,4,1),e:`P(Z>${z})=Q(${z})（右尾面积，阴影）=<b>${v.toFixed(4)}</b>。`,s:bell({mu:0,sg:1,lo:z,hi:Infinity,lab:'P='+v.toFixed(4)})}},
+()=>{let a=-ri(10,250)/100,b=ri(10,250)/100,v=Phi(b)-Phi(a);return{t:`若 Z 是标准常态分布，求 P(${a}<Z<${b})。（准确至四位小数）`,a:AD(v,4,1),e:`P=1−P(Z≤${a})−P(Z≥${b})=1−${Q(-a).toFixed(4)}−${Q(b).toFixed(4)}=<b>${v.toFixed(4)}</b>。`,s:bell({mu:0,sg:1,lo:a,hi:b,lab:'P='+v.toFixed(4)})}},
+()=>{let mu=ri(40,180),sg=ri(4,15),x=+(mu+sg*ri(-22,22)/10).toFixed(1),z=+((x-mu)/sg).toFixed(3),v=Phi(z);return{t:`某测验成绩 X~N(${mu}, ${sg}²)，即平均数 ${mu}、标准差 ${sg}。求 P(X<${x})。（准确至四位小数）`,a:AD(v,4,1),e:`先标准化：Z=${F('X−μ','σ')}=${F(`${x}−${mu}`,sg)}=${z}。P(X<${x})=P(Z<${z})=<b>${v.toFixed(4)}</b>。`,s:bell({mu,sg,lo:-Infinity,hi:x,lab:'P='+v.toFixed(4)})}},
+()=>{let N=pk([1200,1500,2000,2500,3000]),mu=ri(40,70),sg=ri(5,12),c=+(mu+sg*ri(2,20)/10).toFixed(1),z=+((c-mu)/sg).toFixed(3),p=Q(z),n=Math.round(N*p);return{t:`某校 ${N} 名学生的成绩呈常态分布，平均 ${mu} 分，标准差 ${sg} 分。求成绩超过 ${c} 分的学生约有多少人？（四舍五入至整数）`,a:AI(n),e:`Z=${F(`${c}−${mu}`,sg)}=${z}；P(X>${c})=P(Z>${z})=${p.toFixed(4)}。人数=${N}×${p.toFixed(4)}=${(N*p).toFixed(1)}≈<b>${n}</b>。`,s:bell({mu,sg,lo:c,hi:Infinity,lab:'P='+p.toFixed(4)})}},
+()=>{let neg=Math.random()<.5,a=ri(20,200)/100,p=+(neg?Phi(-a):Q(a)).toFixed(4),v=neg?zinv(p):zinv(1-p);return{t:`若 Z 是标准常态分布，且 ${neg?`P(Z<a)=${p}`:`P(Z>a)=${p}`}，求 a。（准确至两位小数）`,a:AD(+v.toFixed(2),2),e:neg?`${p}<0.5，故 a<0。由对称性 P(Z>−a)=${p}，查表得 −a≈${(-v).toFixed(2)}，所以 a=<b>${v.toFixed(2)}</b>。`:`${p}<0.5，故 a>0。反查标准常态分布表得 a≈<b>${v.toFixed(2)}</b>。`,s:bell({mu:0,sg:1,lo:neg?-Infinity:v,hi:neg?v:Infinity,lab:'P='+p})}},
+()=>{let k=ri(1,3),mu=ri(50,100),sg=ri(3,10),v=+(Phi(k)-Phi(-k)).toFixed(4);return{t:`X~N(${mu}, ${sg}²)，求 P(μ−${k}σ<X<μ+${k}σ)，即 X 落在 ${mu-k*sg} 与 ${mu+k*sg} 之间的概率。（准确至四位小数）`,a:AD(v,4,1),e:`标准化后即 P(−${k}<Z<${k})=1−2×P(Z>${k})=1−2×${Q(k).toFixed(4)}=<b>${v.toFixed(4)}</b>。`,s:bell({mu,sg,lo:mu-k*sg,hi:mu+k*sg,lab:'P='+v.toFixed(4)})}}];
+const HARD=[G[1][4],G[1][5],G[3][3],G[3][4],G[3][5],G[5][4],G[5][3]];
+/* ---------- 章节内容 ---------- */
+const V=(a,b)=>venn({...a,...b});
+const dens=sv(380,100,`${tx(8,58,'f(x) =','b','start')}${lab(135,40,['1',''])}<line x1="80" x2="200" y1="48" y2="48" class="ln"/>${tx(95,78,'σ','','middle')}${rad(104,78,'2π',34)}${tx(222,60,'e','b','middle').replace('<text','<text style="font-size:20px"')}${tx(290,38,'−(x − μ)²')}<line x1="238" x2="342" y1="46" y2="46" class="ln"/>${tx(290,64,'2σ²')}`);
+const S=[
+{id:'22.1',nm:'样本空间与事件',pt:`<p><b>试验</b>：反复观察的动作；<b>样本点</b>：每一种可能结果；<b>样本空间 S</b>：所有样本点组成的集合。<br><b>事件</b>是 S 的子集：必然事件 S、不可能事件 ∅、基本事件（只含一个样本点）。<br>A∪B：A、B 至少一个发生；A∩B：A、B 同时发生；A′：A 不发生。</p>`,
+ex:[{t:'例题 1 抛两次硬币',q:'将一枚硬币抛掷两次，写出样本空间。',s:tree([{n:'H',p:'',k:[{n:'H',p:'',r:'(H,H)'},{n:'T',p:'',r:'(H,T)'}]},{n:'T',p:'',k:[{n:'H',p:'',r:'(T,H)'},{n:'T',p:'',r:'(T,T)'}]}],'开始'),a:'由树图：S={(H,H),(H,T),(T,H),(T,T)}，n(S)=2×2=4。'},
+{t:'例题 3 投掷两粒骰子',q:'写出投掷两粒骰子一次的样本空间。',s:dgrid(()=>0),a:'行表示骰子一，列表示骰子二，共 6×6=<b>36</b> 个样本点：(1,1),(1,2),…,(6,6)。'},
+{t:'例题 4 盒内 7 粒小球',q:'盒内有标号 1～7 的小球，任取一球。A=“偶数”={2,4,6}，B={1,2,3,4}，求 A∩B；C=“3的倍数”，D=“奇数”，求 C∪D。',s:V({A:'6',AB:'2, 4',B:'1, 3',out:'5, 7',nA:'A',nB:'B'})+V({A:'6',AB:'3',B:'1, 5, 7',out:'2, 4',nA:'C',nB:'D'}),a:'A∩B={2,4}（两圈重叠部分）。C={3,6}，D={1,3,5,7}，C∪D={1,3,5,6,7}（两圈合起来）。'}],
+cl:[['样本空间生成器',[['k','硬币枚数(0–4)',2],['m','骰子粒数(0–2)',1],['h','正面数(-1=不限)',-1],['s','点数和(0=不限,仅2粒骰子)',0]],v=>{let{k,m,h,s}=v;if(k<0||k>4||m<0||m>2||k+m<1)throw Error('硬币 0–4 枚、骰子 0–2 粒，且至少要有一样。');let dl=[[]];for(let i=0;i<m;i++)dl=dl.flatMap(d=>[1,2,3,4,5,6].map(x=>[...d,x]));let it=[];coins(k).forEach(c=>dl.forEach(d=>it.push({c,d})));let act=h>=0||(s>0&&m==2),hi=new Set(),lb=it.map((x,i)=>{if(act&&(h<0||hc(x.c)==h)&&(!(s>0&&m==2)||x.d[0]+x.d[1]==s))hi.add(i);return x.c+(x.c&&x.d.length?'·':'')+x.d.join(',')}),n=it.length;return`<p>n(S)=2<sup>${k}</sup>×6<sup>${m}</sup>=<b>${n}</b></p>`+(act?`<p>事件 E 含 <b>${hi.size}</b> 个样本点（高亮），P(E)=${FR(hi.size,n)}</p>`:'')+(n<=100?chips(lb,hi):'<p>样本点太多，不逐一列出。</p>')}]],g:G[0]},
+{id:'22.2',nm:'概率的定义',pt:`<p><b>古典概率模型</b>：结果有限个、且每个结果发生的可能性相等。<br>P(A) = ${F('n(A)','n(S)')}，　0 ≤ P(A) ≤ 1，P(∅)=0，P(S)=1。</p>`,
+ex:[{t:'例题 5 投掷骰子',q:'投掷一粒匀称的骰子，求点数是 3 的概率及点数是奇数的概率。',s:chips(['1','2','3','4','5','6'],new Set([2]))+chips(['1','2','3','4','5','6'],new Set([0,2,4])),a:`n(S)=6。A={3}：P(A)=${F(1,6)}。B={1,3,5}：P(B)=${FR(3,6)}。`},
+{t:'例题 6 抛三枚硬币',q:'抛掷三枚匀称的硬币，求(a)只有一枚正面朝上；(b)至少一枚正面朝上的概率。',s:chips(coins(3),new Set(coins(3).map((x,i)=>hc(x)==1?i:-1)))+chips(coins(3),new Set(coins(3).map((x,i)=>hc(x)>=1?i:-1))),a:`n(S)=8。(a) n(A)=3，P(A)=${F(3,8)}。(b) 只有 TTT 不含正面，n(B)=7，P(B)=${F(7,8)}。`},
+{t:'例题 7 抽产品',q:'20 件产品中有 15 件正品、5 件次品，任抽 3 件，求(a)3 件都是次品；(b)2 正 1 次的概率。',s:balls([[15,'白','正品'],[5,'红','次品']]),a:`n(S)=C(20,3)=1140。(a) n(A)=C(5,3)=10，P=${FR(10,1140)}。(b) n(B)=C(15,2)×C(5,1)=105×5=525，P=${FR(525,1140)}。`},
+{t:'例题 9 字母排列',q:'将“NUMERICAL”的字母任意排列，求(a)4 个母音相邻；(b)4 个母音不完全相邻的概率。',s:chips('NUMERICAL'.split(''),new Set([1,3,5,7])),a:`n(S)=9!。(a) 把 4 个母音（高亮）看成一个整体：6!×4!，P=${F('6!×4!','9!')}=${R(17280,362880)}。(b) P=1−${R(1,21)}=${R(20,21)}。`}],
+cl:[['抽取概率计算器（两类物品）',[['a','A 类个数',5],['b','B 类个数',7],['r','抽取个数',3],['j','恰有 A 类 j 个',2]],v=>{let{a,b,r,j}=v;if([a,b,r,j].some(x=>x<0||!Number.isInteger(x)))throw Error('请输入非负整数。');if(r>a+b||r<1)throw Error('抽取个数须在 1 到总数之间。');let N=a+b,T=C(N,r),m=C(a,j)*C(b,r-j),al=T-C(b,r);return`<p>n(S)=C(${N},${r})=${T}</p><p>恰有 ${j} 个 A：n=C(${a},${j})×C(${b},${r-j})=${m}，P=${FR(m,T)}≈${(m/T).toFixed(4)}</p><p>至少 1 个 A：P=1−${F(C(b,r),T)}=${FR(al,T)}≈${(al/T).toFixed(4)}</p>`+(N<=45?balls([[a,'红','A 类'],[b,'蓝','B 类']]):'')}]],g:G[1]},
+{id:'22.3',nm:'加法原理',pt:`<p>加法原理：P(A∪B)=P(A)+P(B)−P(A∩B)。<br>互斥事件（A∩B=∅）：P(A∪B)=P(A)+P(B)。<br>对立事件：P(A)=1−P(A′)，常用于“至少一个”。</p>`,
+ex:[{t:'例题 10 文具',q:'铅笔盒有 3 支红圆珠笔、5 支蓝圆珠笔、3 个红橡皮擦、6 个蓝橡皮擦。任取一件，求“红色文具”或“圆珠笔”的概率。',s:V({A:3,AB:3,B:5,out:6,nA:'A 红色',nB:'B 圆珠笔',S:'共17件'}),a:`P(A)=${F(6,17)}，P(B)=${F(8,17)}，P(A∩B)=${F(3,17)}。P(A∪B)=${F(6,17)}+${F(8,17)}−${F(3,17)}=${F(11,17)}。`},
+{t:'例题 11 班机延误',q:'P 延误概率 0.32，Q 延误概率 0.25，同时延误 0.18，求至少一班延误的概率。',s:V({A:'0.14',AB:'0.18',B:'0.07',out:'0.61',nA:'P',nB:'Q'}),a:'P(A∪B)=0.32+0.25−0.18=<b>0.39</b>。（图中数字为各区域概率，总和为 1）'},
+{t:'例题 12 互斥事件',q:'投掷骰子一次，求点数小于 2 或是偶数的概率。',s:venn({dis:1,A:'1',B:'2, 4, 6',out:'3, 5',nA:'A',nB:'B'}),a:`A={1}，B={2,4,6}，A∩B=∅，互斥。P(A∪B)=${F(1,6)}+${F(3,6)}=${FR(4,6)}。`},
+{t:'例题 16 对立事件',q:'篮子里有 3 个橙、5 个梨、5 个苹果，任取 4 个，求至少一个苹果的概率。',s:balls([[3,'黄','橙'],[5,'白','梨'],[5,'红','苹果']]),a:`A′=“没有苹果”：n(A′)=C(8,4)=70，n(S)=C(13,4)=715。P(A)=1−${F(70,715)}=1−${R(70,715)}=${R(645,715)}。`}],
+cl:[['加法原理计算器',[['pa','P(A)',0.4],['pb','P(B)',0.3],['pab','P(A∩B)',0.1]],v=>{let{pa,pb,pab}=v;if([pa,pb,pab].some(x=>x<0||x>1))throw Error('概率须在 0 与 1 之间。');if(pab>Math.min(pa,pb)+1e-9||pa+pb-pab>1+1e-9)throw Error('数据不合理：P(A∩B)不能大于 P(A)、P(B)，且 P(A∪B)不能超过 1。');let u=pa+pb-pab;return`<p>P(A∪B)=${pa}+${pb}−${pab}=<b>${t6(u)}</b></p><p>P(A′)=${t6(1-pa)}，P(B′)=${t6(1-pb)}，P(都不发生)=${t6(1-u)}</p><p>${pab==0?'P(A∩B)=0，A、B 是<b>互斥事件</b>。':'A、B 不互斥。'}</p>`+venn({A:t6(pa-pab),AB:pab,B:t6(pb-pab),out:t6(1-u),nA:'A',nB:'B',dis:pab==0})}]],g:G[2]},
+{id:'22.4',nm:'乘法原理',pt:`<p>独立事件：P(A∩B)=P(A)×P(B)。　二项概率：P(X=k)=C(n,k)p<sup>k</sup>q<sup>n−k</sup>（q=1−p）。<br>条件概率：P(B|A)=${F('P(A∩B)','P(A)')}。　乘法原理：P(A∩B)=P(A)×P(B|A)。<br>全概率与逆推：P(B)=P(A)P(B|A)+P(A′)P(B|A′)，P(A|B)=${F('P(A)P(B|A)','P(B)')}。</p>`,
+ex:[{t:'例题 17 独立事件',q:'甲盒 6 红 4 黄，乙盒 3 红 5 黄。各抽一球，求两球都是红球的概率。',s:T2(6,10,3,8),a:`独立：P=${F(6,10)}×${F(3,8)}=${FR(18,80)}。`},
+{t:'例题 19 不放回的彩票',q:'20 张彩票中 3 张有奖，二人依次各抽一张，谁中奖概率大？',s:tree([{n:'中',p:[3,20],k:[{n:'中',p:[2,19],r:'(中,中)'},{n:'不',p:[17,19],r:'(中,不)'}]},{n:'不',p:[17,20],k:[{n:'中',p:[3,19],r:'(不,中)'},{n:'不',p:[16,19],r:'(不,不)'}]}],'第一人→第二人'),a:`第二人中奖=${F(3,20)}×${F(2,19)}+${F(17,20)}×${F(3,19)}=${F(6,380)}+${F(51,380)}=${R(57,380)}。与第一人的 ${F(3,20)} 相等，机会均等。`},
+{t:'例题 22 二项概率',q:'投篮命中率 0.2，投 5 次恰好中 2 次的概率？',s:bars([0,1,2,3,4,5],[0,1,2,3,4,5].map(i=>C(5,i)*.2**i*.8**(5-i)),[2]),a:'P=C(5,2)×0.2²×0.8³=10×0.04×0.512=<b>0.2048</b>。（高亮柱）'},
+{t:'例题 25 条件概率',q:'50 人班：男生 22（12 人会游泳），女生 28（11 人会游泳）。已知抽到女生，她会游泳的概率？',s:venn({A:17,AB:11,B:12,out:10,nA:'A 女生',nB:'B 会游泳',S:'全班 50 人'}),a:`样本空间缩小为 28 名女生：P(B|A)=${F(11,28)}。或 ${F('P(A∩B)','P(A)')}=${F('11/50','28/50')}=${F(11,28)}。`},
+{t:'例题 29 逆推（贝叶斯）',q:'纯商生占 60%，及格率 80%；文商生占 40%，及格率 85%。若某生及格，他是纯商生的概率？',s:tree([{n:'纯商',p:0.6,k:[{n:'及格',p:0.8},{n:'不及格',p:0.2}]},{n:'文商',p:0.4,k:[{n:'及格',p:0.85},{n:'不及格',p:0.15}]}]),a:`P=${F('0.6×0.8','0.6×0.8+0.4×0.85')}=${F('0.48','0.82')}≈<b>0.5854</b>。`}],
+cl:[['① 独立事件（3 个事件）',[['p1','P(A₁)',0.5],['p2','P(A₂)',0.6],['p3','P(A₃)',0.7]],v=>{let P=[v.p1,v.p2,v.p3];if(P.some(x=>x<0||x>1))throw Error('概率须在 0 与 1 之间。');let d=conv(P);return`<p>全部发生：${P.join('×')}=<b>${t6(d[3])}</b></p><p>恰好 1 个：${t6(d[1])}　恰好 2 个：${t6(d[2])}</p><p>全不发生：${t6(d[0])}；至少 1 个：1−${t6(d[0])}=<b>${t6(1-d[0])}</b></p>`+bars(['0个','1个','2个','3个'],d)}],
+['② 二项概率',[['n','试验次数 n',5],['p','成功概率 p',0.2],['k','成功次数 k',2]],v=>{let{n,p,k}=v;if(!Number.isInteger(n)||!Number.isInteger(k)||n<1||n>30||k<0||k>n||p<0||p>1)throw Error('n 为 1–30 的整数，0≤k≤n，0≤p≤1。');let xs=[],ps=[];for(let i=0;i<=n;i++){xs.push(i);ps.push(C(n,i)*p**i*(1-p)**(n-i))}let le=ps.slice(0,k+1).reduce((a,b)=>a+b,0);return`<p>P(X=${k})=C(${n},${k})×${p}<sup>${k}</sup>×${t6(1-p)}<sup>${n-k}</sup>=${C(n,k)}×…=<b>${ps[k].toFixed(4)}</b></p><p>P(X≤${k})=${le.toFixed(4)}；P(X≥${k})=${(1-le+ps[k]).toFixed(4)}</p>`+bars(xs,ps,[k])}],
+['③ 条件概率与逆推',[['pa','P(A)',0.6],['b1','P(B|A)',0.8],['b2','P(B|A′)',0.85]],v=>{let{pa,b1,b2}=v;if([pa,b1,b2].some(x=>x<0||x>1))throw Error('概率须在 0 与 1 之间。');let pb=pa*b1+(1-pa)*b2;if(pb==0)throw Error('P(B)=0，无法逆推。');return`<p>P(B)=${pa}×${b1}+${t6(1-pa)}×${b2}=<b>${t6(pb)}</b></p><p>P(A|B)=${F(t6(pa*b1),t6(pb))}=<b>${(pa*b1/pb).toFixed(4)}</b></p>`+tree([{n:'A',p:pa,k:[{n:'B',p:b1},{n:'B′',p:t6(1-b1)}]},{n:'A′',p:t6(1-pa),k:[{n:'B',p:b2},{n:'B′',p:t6(1-b2)}]}])}]],g:G[3]},
+{id:'22.5',nm:'数学期望值',pt:`<p>若获利 x₁,x₂,…,x<sub>k</sub> 的概率为 p₁,p₂,…,p<sub>k</sub>（p₁+…+p<sub>k</sub>=1），则期望值<br><b>E = x₁p₁ + x₂p₂ + … + x<sub>k</sub>p<sub>k</sub></b>（一种加权平均数）。<br>期望值是大量重复后“平均每次”的结果，可为正、零或负。</p>`,
+ex:[{t:'例题 30 旅游保险',q:'保费 RM15，保额 RM1,000，意外概率 0.001，求保险公司期望利润。',s:bars(['+15','−985'],[.999,.001],[],3),a:`E=15×${F(999,1000)}+(−985)×${F(1,1000)}=14.985−0.985=<b>RM 14</b>。`},
+{t:'例题 31 彩票',q:'发行 10000 张 RM1 彩票，仅一张有奖，奖金 RM6,000。买一张，获利期望值？',s:bars(['+5999','−1'],[.0001,.9999],[],4),a:`E=5999×${F(1,10000)}+(−1)×${F(9999,10000)}=<b>−RM 0.40</b>（平均每张亏 0.40）。`},
+{t:'例题 32 露天小贩',q:'晴天赚 RM1,000、阴天赚 RM500、雨天亏 RM500；概率分别 0.4、0.2、0.4。',s:bars(['+1000','+500','−500'],[.4,.2,.4],[],1),a:'E=1000×0.4+500×0.2+(−500)×0.4=400+100−200=<b>RM 300</b>。'}],
+cl:[['期望值计算器',[['d','每行：数值 概率',`1000 0.4\n500 0.2\n-500 0.4`,0,'t'],['fee','参加费用 (RM)',0]],v=>{let r=v.d.trim().split(/\n+/).map(l=>l.trim().split(/[\s,，:：]+/).map(Number));if(r.some(x=>x.length<2||x.some(isNaN)))throw Error('每行请输入“数值 概率”两个数字。');let sp=r.reduce((s,x)=>s+x[1],0);if(Math.abs(sp-1)>1e-6)throw Error('概率之和须为 1，目前为 '+t6(sp)+'。');let E=r.reduce((s,x)=>s+x[0]*x[1],0);return`<p>E=${r.map(x=>`(${x[0]})×${x[1]}`).join('+')}=<b>${t6(E)}</b></p>`+(v.fee?`<p>扣除费用 RM${v.fee} 后：<b>${t6(E-v.fee)}</b> ${E-v.fee>0?'（划算）':'（不划算）'}</p>`:'')+bars(r.map(x=>x[0]),r.map(x=>x[1]),[],3)}]],g:G[4]},
+{id:'22.6',nm:'常态分布',pt:`<p>常态曲线呈钟形，对称于平均数 μ。X~N(μ,σ²) 的概率等于曲线下的面积。标准化：<b>Z = ${F('X − μ','σ')}</b>，则 Z~N(0,1)。<br>P(X=x)=0；右尾 P(Z≥z) 与左尾 P(Z≤−z) 相等（对称性）。</p><p>密度函数：</p>${dens}`,
+ex:[{t:'例题 33 标准常态分布',q:'Z 是标准常态分布，求 (a)P(Z≤−1.23)，(b)P(Z<0.352)，(e)P(0.201<Z≤1.016)。',s:bell({mu:0,sg:1,lo:-Infinity,hi:-1.23,lab:'P=0.1093'})+bell({mu:0,sg:1,lo:-Infinity,hi:.352,lab:'P=0.6375'})+bell({mu:0,sg:1,lo:.201,hi:1.016,lab:'P=0.2655'}),a:'(a) 对称性：P(Z≤−1.23)=P(Z≥1.23)=<b>0.1093</b>。(b) 1−P(Z≥0.352)=1−0.3632+0.0007≈<b>0.6375</b>。(e) P(Z>0.201)−P(Z>1.016)=0.4203−0.1548=<b>0.2655</b>。'},
+{t:'例题 34 反求 a',q:'已知 P(Z>a)=0.2287，求 a。',s:bell({mu:0,sg:1,lo:.743,hi:Infinity,lab:'P=0.2287'}),a:'0.2287<0.5，所以 a>0。反查表得 <b>a=0.743</b>。'},
+{t:'例题 35 男生身高',q:'1500 名男生身高呈常态分布，μ=176 cm，σ=9.3 cm。(a)身高低于 155 cm 的概率；(b)介于 160 与 190 cm；(c)高于 180 cm 的人数。',s:bell({mu:176,sg:9.3,lo:-Infinity,hi:155,lab:'(a)'})+bell({mu:176,sg:9.3,lo:160,hi:190,lab:'(b)'})+bell({mu:176,sg:9.3,lo:180,hi:Infinity,lab:'(c)'}),a:`(a) Z=${F('155−176','9.3')}=−2.258，P(Z>2.258)=<b>0.0119</b>。(b) P(−1.720<Z<1.505)=1−0.0427−0.0662=<b>0.8911</b>。(c) Z=${F('180−176','9.3')}=0.430，P=0.3336，1500×0.3336≈<b>500 人</b>。`}],
+cl:[['常态分布计算器',[['mu','平均数 μ',176],['sg','标准差 σ',9.3],['md','求',0,[['lt','P(X<a)'],['gt','P(X>a)'],['bt','P(a<X<b)'],['inv','反求 h：P(X<h)=p']]],['a','a',155],['b','b',190],['p','p（反求用）',0.2779],['N','人数 N',1500]],v=>{let{mu,sg,md,a,b,p,N}=v;if(sg<=0)throw Error('标准差须大于 0。');let z=x=>(x-mu)/sg,P,lo,hi,st;if(md=='lt'){P=Phi(z(a));lo=-Infinity;hi=a;st=`Z=${F(`${a}−${mu}`,sg)}=${z(a).toFixed(3)}；P(X<${a})=P(Z<${z(a).toFixed(3)})`}else if(md=='gt'){P=Q(z(a));lo=a;hi=Infinity;st=`Z=${F(`${a}−${mu}`,sg)}=${z(a).toFixed(3)}；P(X>${a})=P(Z>${z(a).toFixed(3)})`}else if(md=='bt'){if(a>=b)throw Error('须 a<b。');P=Phi(z(b))-Phi(z(a));lo=a;hi=b;st=`Z₁=${F(`${a}−${mu}`,sg)}=${z(a).toFixed(3)}，Z₂=${F(`${b}−${mu}`,sg)}=${z(b).toFixed(3)}；P=P(${z(a).toFixed(3)}<Z<${z(b).toFixed(3)})`}else{if(p<=0||p>=1)throw Error('p 须在 0 与 1 之间。');let zz=zinv(p),h=mu+sg*zz;P=p;lo=-Infinity;hi=h;st=`P(Z<z)=${p} ⇒ z=${zz.toFixed(3)}；h=μ+zσ=${mu}+${zz.toFixed(3)}×${sg}=<b>${h.toFixed(3)}</b>`}return`<p>${st}=<b>${P.toFixed(4)}</b></p><p>占 ${(P*100).toFixed(2)}%；${N} 人中约 <b>${Math.round(N*P)}</b> 人。</p>`+bell({mu,sg,lo,hi,lab:'P='+P.toFixed(4)})}]],g:G[5]}];
+/* ---------- 课本习题（随堂练习 + 习题 + 总复习题）---------- */
+const d4=x=>x.toFixed(4),d3=x=>x.toFixed(3),pc=x=>(x*100).toFixed(2)+'%',bn=(n,k,p)=>C(n,k)*p**k*(1-p)**(n-k),lst=a=>'{'+a.join(', ')+'}',zu=p=>zinv(1-p);
+const prs=(a,b,f)=>{let r=[];for(let i=1;i<=a;i++)for(let j=1;j<=b;j++)f(i,j)&&r.push(`(${i},${j})`);return r};
+const tri=f=>{let r=[];for(let i=1;i<=6;i++)for(let j=1;j<=6;j++)for(let k=1;k<=6;k++)f(i,j,k)&&r.push(`(${i},${j},${k})`);return r};
+const HI=(L,f)=>new Set(L.map((x,i)=>f(x)?i:-1));
+const NOTE='<small>（课本此题的分数在PDF中缺失，数据为补充，方法相同）</small>';
+const zc=(z,mu,sg)=>`Z=${F(`X−${mu}`,sg)}`;
+const XE=[[],[],[],[],[],[],[]];
+XE[0]=[['随堂练习 22.1a',[
+['写出抛掷两枚硬币一次的样本空间。',`S={(H,H),(H,T),(T,H),(T,T)}，n(S)=4。`,chips(coins(2))],
+['从 0,1,…,9 这十个数字中任选一个，写出样本空间。',`S={0,1,2,3,4,5,6,7,8,9}，n(S)=10。`,chips([0,1,2,3,4,5,6,7,8,9].map(String))]]],
+['随堂练习 22.1b',[
+['投掷一粒骰子一次，以集合表示事件 A=“点数是质数”。',`质数有 2,3,5，所以 A={2,3,5}。`,chips(['1','2','3','4','5','6'],new Set([1,2,4]))],
+['投掷三粒骰子一次，以集合表示事件 B=“点数之和小于 6”。',`和为 3、4、5：B=${lst(tri((a,b,c)=>a+b+c<6))}，共 ${tri((a,b,c)=>a+b+c<6).length} 个样本点。`,chips(tri((a,b,c)=>a+b+c<6).map(x=>x.replace(/[(),]/g,'')))],
+['抛掷两枚硬币一次：K=“恰好一个正面朝上”，L=“至少一个正面朝上”，M=“最多一个正面朝上”，以集合表示。',`K={(H,T),(T,H)}；L={(H,H),(H,T),(T,H)}；M={(H,T),(T,H),(T,T)}。`,chips(['HH','HT','TH','TT'],new Set([1,2]))]]],
+['习题 22.1',[
+['从 K、O、T、A 四个字母中任取两个，求 (a)样本空间 S；(b)P=“一个母音一个子音”；(c)Q=“两个都是母音”；(d)R=“至少一个母音”。',`母音 O、A，子音 K、T。<br>(a) S={KO,KT,KA,OT,OA,TA}，n(S)=C(4,2)=6。<br>(b) P={KO,KA,OT,TA}。<br>(c) Q={OA}。<br>(d) R=${lst(['KO','KA','OT','OA','TA'])}（只有 KT 不含母音）。`,chips(['KO','KT','KA','OT','OA','TA'],new Set([0,2,3,4,5]))],
+['投掷三粒骰子一次，求点数之和是 15 的事件。',`组合为 {3,6,6}、{4,5,6}、{5,5,5}，计顺序共 3+6+1=${tri((a,b,c)=>a+b+c==15).length} 个：<br>${lst(tri((a,b,c)=>a+b+c==15))}。`],
+['从 A、B、C 三个字母中任取两个排成一列，求 (a)样本空间 S；(b)M=“恰有一个字母是母音”。',`(a) 排列 A(3,2)=6：S={AB,BA,AC,CA,BC,CB}。<br>(b) 母音只有 A：M={AB,BA,AC,CA}。`,chips(['AB','BA','AC','CA','BC','CB'],new Set([0,1,2,3]))],
+['抛掷三枚硬币一次，求 (a)S；(b)A=“三枚都正面”；(c)B=“两正一反”；(d)C=“至少两枚正面”。',`(a) S=${lst(coins(3).map(x=>`(${x.split('').join(',')})`))}，n(S)=8。<br>(b) A={(H,H,H)}。<br>(c) B={(H,H,T),(H,T,H),(T,H,H)}。<br>(d) C=A∪B，共 4 个样本点。`,chips(coins(3),new Set(coins(3).map((x,i)=>hc(x)>=2?i:-1)))],
+['投掷两粒骰子一次，求 (a)A=“点数相等”；(b)B=“一粒的点数是另一粒的两倍”；(c)C=“点数之和是 5 或 6 的倍数”。',`(a) A=${lst(prs(6,6,(i,j)=>i==j))}。<br>(b) B=${lst(prs(6,6,(i,j)=>i==2*j||j==2*i))}。<br>(c) 和为 5、6、10、12：C 含 ${prs(6,6,(i,j)=>(i+j)%5==0||(i+j)%6==0).length} 个样本点：${lst(prs(6,6,(i,j)=>(i+j)%5==0||(i+j)%6==0))}。<small>（按“5 的倍数或 6 的倍数”理解）</small>`,dgrid((i,j)=>(i+j)%5==0||(i+j)%6==0)]]]];
+const bl=(a,b)=>balls([[a,'红','红'],[b,'蓝','蓝']]);
+XE[1]=[['随堂练习 22.2',[
+['班上 13 人 A 血型、10 人 B 血型、2 人 AB 血型、15 人 O 血型。任选 4 人，求 (a)2A 2B；(b)2A 1AB 1O；(c)四种血型各一人的概率。',`n(S)=C(40,4)=${C(40,4)}。<br>(a) C(13,2)×C(10,2)=${C(13,2)*C(10,2)}，P=${FR(C(13,2)*C(10,2),C(40,4))}。<br>(b) C(13,2)×C(2,1)×C(15,1)=${C(13,2)*30}，P=${FR(C(13,2)*30,C(40,4))}。<br>(c) 13×10×2×15=3900，P=${FR(3900,C(40,4))}。`,balls([[13,'红','A'],[10,'蓝','B'],[2,'黄','AB'],[15,'白','O']])],
+['将“PROBLEM”所有字母任意排列，求 (a)5 个子音相邻；(b)5 个子音不完全相邻的概率。',`n(S)=7!。(a) 子音看成一个整体：3!×5!，P=${F('3!×5!','7!')}=${R(720,5040)}。<br>(b) P=1−${R(1,7)}=${R(6,7)}。`,chips('PROBLEM'.split(''),new Set([0,1,3,4,6]))]]],
+['习题 22.2',[
+['一袋有 2 白球、3 红球、4 黄球。任取一球，求 (a)红球；(b)不是红球的概率。',`n(S)=9。(a) ${FR(3,9)}。(b) 1−${R(3,9)}=${FR(6,9)}。`,balls([[2,'白','白'],[3,'红','红'],[4,'黄','黄']])],
+['盒中 3 颗喉糖、5 颗口香糖，任取两颗，求两颗都是口香糖的概率。',`n(S)=C(8,2)=28，n(A)=C(5,2)=10，P=${FR(10,28)}。`,balls([[3,'白','喉糖'],[5,'红','口香糖']])],
+['箱中 4 本小说、8 本散文，任取 3 本，求 (a)3 本都是小说；(b)两本小说一本散文。',`n(S)=C(12,3)=220。(a) C(4,3)=4，P=${FR(4,220)}。(b) C(4,2)×8=48，P=${FR(48,220)}。`,balls([[4,'蓝','小说'],[8,'红','散文']])],
+['从“TRIANGLE”中任取 3 个字母，求母音比子音多的概率。',`母音 I,A,E（3 个），子音 T,R,N,G,L（5 个）。n(S)=C(8,3)=56。母音多：2 母音 1 子音 C(3,2)×5=15，或 3 母音 1，共 16。P=${FR(16,56)}。`,chips('TRIANGLE'.split(''),new Set([2,3,7]))],
+['投掷三粒公平骰子一次，求点数之和大于 15 的概率。',`和为 16、17、18 的样本点：6+3+1=${tri((a,b,c)=>a+b+c>15).length}。P=${FR(tri((a,b,c)=>a+b+c>15).length,216)}。`],
+['将 2233344455 各数字任意排列，求两个“2”恰好相邻的概率。',`10 个位置中，两个 2 的位置共 C(10,2)=45 种，相邻有 9 种。P=${FR(9,45)}。（或：把 22 看成整体 ${F('9!/(3!3!2!)','10!/(2!3!3!2!)')}=${R(5040,25200)}）`],
+['将 1、2、3、4、5 五张卡片任意排成一个五位数，求它是偶数的概率。',`n(S)=5!=120。个位须为 2 或 4：2×4!=48。P=${FR(48,120)}。`]]]];
+XE[2]=[['随堂练习 22.3a',[
+['袋中红、黄、蓝卡片各 5 张，任取一张，求红色或黄色的概率。',`红、黄互斥：P=${F(5,15)}+${F(5,15)}=${FR(10,15)}。`,balls([[5,'红','红'],[5,'黄','黄'],[5,'蓝','蓝']])],
+['45 位学生中 20 位到过新加坡或泰国，14 位到过新加坡，10 位到过泰国。任选一人，求两国都到过的概率。',`n(A∩B)=14+10−20=4，P=${FR(4,45)}。`,venn({A:10,AB:4,B:6,out:25,nA:'新加坡',nB:'泰国',S:'45人'})]]],
+['随堂练习 22.3b',[
+['班有 22 男 23 女，任选 2 人，求至少一个男生的概率。',`A′=“两人都是女生”：P(A′)=${F(C(23,2),C(45,2))}。P(A)=1−${R(253,990)}=${FR(737,990)}。`,bl(22,23)],
+['60 个箱子中 5 个有奖品，选 2 个，求至少一个有奖品的概率。',`P=1−${F(C(55,2),C(60,2))}=1−${R(1485,1770)}=${FR(285,1770)}。`,bl(5,55).replace(/viewBox="0 0 430 \d+"/,'viewBox="0 0 430 30"')]]],
+['习题 22.3',[
+['盒中 5 红、6 黄、8 黑，任取一球，求红球或黄球的概率。',`互斥：${F(5,19)}+${F(6,19)}=${F(11,19)}。`,balls([[5,'红','红'],[6,'黄','黄'],[8,'黑','黑']])],
+['衣架上 15 件衬衫、10 件背心、5 件 T 恤，任取 2 件，求至少一件 T 恤的概率。',`P=1−${F(C(25,2),C(30,2))}=1−${R(300,435)}=${FR(135,435)}。`],
+['18 本参考书：会计 6、经济 5、数学 7。任取两本，求至少一本是会计或经济的概率。',`A′=“两本都是数学”：P=1−${F(21,153)}=1−${R(21,153)}=${FR(132,153)}。`],
+['50 人开会：学生 35、家长 12、老师 3。任选一名发言人，求 (a)老师或学生；(b)老师或家长；(c)家长或学生。',`(a) ${F(3,50)}+${F(35,50)}=${FR(38,50)}。(b) ${F(3,50)}+${F(12,50)}=${FR(15,50)}。(c) ${F(12,50)}+${F(35,50)}=${FR(47,50)}。`],
+['100 张彩票中 3 张有奖，某人买 10 张，求 (a)全不中奖；(b)至少一张中奖。',`(a) P=${F('C(97,10)','C(100,10)')}=${F('90×89×88','100×99×98')}=${R(90*89*88,100*99*98)}≈${d4(90*89*88/(100*99*98))}。<br>(b) 1−${d4(90*89*88/(100*99*98))}=<b>${d4(1-90*89*88/(100*99*98))}</b>。`],
+['45 名学生中 11 人捐过血，任选 3 人，求 (a)都捐过；(b)都没捐过；(c)至少一人捐过的概率。',`n(S)=C(45,3)=${C(45,3)}。(a) ${FR(C(11,3),C(45,3))}。(b) ${FR(C(34,3),C(45,3))}。(c) 1−${R(C(34,3),C(45,3))}=${FR(C(45,3)-C(34,3),C(45,3))}。`],
+['投掷两粒公平骰子一次，求点数之和至少是 9 的概率。',`和≥9：4+3+2+1=10 个，P=${FR(10,36)}。`,dgrid((i,j)=>i+j>=9)],
+['连续抛一枚匀称硬币 5 次，求至少一次正面朝上的概率。',`A′=“全是反面”：P(A)=1−${F(1,32)}=${F(31,32)}。`],
+['盒中 7 红 10 白，任取 3 球，求 (a)至少一红；(b)至少一白；(c)至少两红。',`n(S)=C(17,3)=680。(a) 1−${F(C(10,3),680)}=${FR(560,680)}。(b) 1−${F(C(7,3),680)}=${FR(645,680)}。(c) C(7,2)×10+C(7,3)=${210+35}，P=${FR(245,680)}。`,bl(7,10)],
+['投掷三粒公平骰子一次，求 (a)恰有一粒点数是 6；(b)恰有一粒或全部三粒点数是 1 的概率。',`(a) 3×5×5=75，P=${FR(75,216)}。(b) 恰有一粒 1：75；三粒全是 1：1，共 76，P=${FR(76,216)}。`]]]];
+const fx3=(n,d)=>{let a=[n,d];return a};
+XE[3]=[['随堂练习 22.4a',[
+['两果篮分别有 10 粒橙（2 粒变坏）、12 粒苹果（4 粒变坏）。各取一粒，求两粒都变坏的概率。',`独立：${F(2,10)}×${F(4,12)}=${FR(8,120)}。`,T2(2,10,4,12).replace(/\(红,红\)/,'(坏,坏)')],
+['甲、乙二人参加射箭比赛，射中红心的概率分别是 '+F(5,8)+'、'+F(7,15)+'，求 (a)两人都射中红心；(b)两人都射不中红心；(c)至少一人射中红心的概率。',`(a) ${F(5,8)}×${F(7,15)}=${FR(35,120)}。<br>(b) ${F(3,8)}×${F(8,15)}=${FR(24,120)}。<br>(c) 1−${R(24,120)}=${FR(96,120)}。`,bars(['0人','1人','2人'],conv([5/8,7/15]),[1,2])]]],
+['习题 22.4a',[
+['投掷一粒公平骰子三次，求第一、二次都是 2，第三次是奇数的概率。',`${F(1,6)}×${F(1,6)}×${F(3,6)}=${FR(3,216)}。`],
+['将匀称硬币连掷五次，求连续五次都是正面的概率。',`${F(1,2)}<sup>5</sup>=${F(1,32)}。`],
+['零件三道工序的废品率分别是 1.2%、1.8%、0.8%，互不影响，求三道都合格的概率。',`0.988×0.982×0.992=<b>${d4(.988*.982*.992)}</b>。`],
+['三人独立破译密码，概率分别是 '+F(1,5)+'、'+F(1,3)+'、'+F(1,4)+'，求密码被破译的概率。',`A′=“三人都失败”：${F(4,5)}×${F(2,3)}×${F(3,4)}=${R(24,60)}。P=1−${R(24,60)}=${F(3,5)}。`],
+['甲五发三中，乙三发二中，丙二发一中，各射一次，求 (a)都击中；(b)恰一人击中；(c)至少一人击中。',`概率：${F(3,5)}、${F(2,3)}、${F(1,2)}。<br>(a) ${FR(6,30)}。<br>(b) 3×1×1+2×2×1+2×1×1=9，${FR(9,30)}。<br>(c) 1−${F(2,5)}×${F(1,3)}×${F(1,2)}=1−${R(2,30)}=${FR(28,30)}。`,bars(['0人','1人','2人','3人'],conv([3/5,2/3,1/2]),[1,2,3])],
+['盒中 5 黑、4 黄、3 白，每次取一球后放回，取三次，求 (a)只有一次黄球；(b)三次都是黄球；(c)黑、黄、白各一次。',`P(黄)=${F(4,12)}=${F(1,3)}。(a) 3×${F(1,3)}×${F(2,3)}²=${FR(12,27)}。(b) ${F(1,3)}³=${F(1,27)}。(c) 3!×${F(5,12)}×${F(4,12)}×${F(3,12)}=${FR(360,1728)}。`]]],
+['随堂练习 22.4b',[['八成家庭订购光纤。抽 10 户，求 (a)恰一半订购；(b)全部订购；(c)至少一户没订购。（四位小数）',`n=10，p=0.8。(a) C(10,5)×0.8⁵×0.2⁵=<b>${d4(bn(10,5,.8))}</b>。(b) 0.8¹⁰=<b>${d4(.8**10)}</b>。(c) 1−0.8¹⁰=<b>${d4(1-.8**10)}</b>。`,bars([...Array(11).keys()],[...Array(11).keys()].map(i=>bn(10,i,.8)),[5])]]],
+['习题 22.4b',[
+['植物存活率 0.6，栽 10 棵，求恰有 5 棵存活的概率。',`C(10,5)×0.6⁵×0.4⁵=<b>${d4(bn(10,5,.6))}</b>。`,bars([...Array(11).keys()],[...Array(11).keys()].map(i=>bn(10,i,.6)),[5])],
+['预报准确率 80%，5 次预报恰有 4 次准确的概率。',`C(5,4)×0.8⁴×0.2=<b>${d4(bn(5,4,.8))}</b>。`],
+['某城市 85% 人口注射疫苗，抽 8 人，求最多两人没注射的概率。',`没注射概率 0.15：P(X≤2)=${[0,1,2].map(k=>d4(bn(8,k,.15))).join('+')}=<b>${d4([0,1,2].reduce((s,k)=>s+bn(8,k,.15),0))}</b>。`],
+['药物治愈率 0.96，10 人服用，求至少 8 人治愈的概率。',`P=${[8,9,10].map(k=>d4(bn(10,k,.96))).join('+')}=<b>${d4([8,9,10].reduce((s,k)=>s+bn(10,k,.96),0))}</b>。`],
+['零件次品率 0.04，生产 20 件，求 (a)恰一件；(b)恰两件；(c)最多一件次品。',`(a) <b>${d4(bn(20,1,.04))}</b>。(b) <b>${d4(bn(20,2,.04))}</b>。(c) ${d4(bn(20,0,.04))}+${d4(bn(20,1,.04))}=<b>${d4(bn(20,0,.04)+bn(20,1,.04))}</b>。`],
+['抛匀称硬币 5 次，求 (a)恰 3 次正面；(b)至少 3 次正面；(c)正面次数为奇数的概率。',`(a) ${F(10,32)}=${R(10,32)}。(b) ${F(10+5+1,32)}=${R(16,32)}。(c) 1、3、5 次：${F(5+10+1,32)}=${R(16,32)}。`,bars([0,1,2,3,4,5],[1,5,10,10,5,1].map(x=>x/32),[3,4,5])],
+['途中四个交通灯，红、黄、绿灯时间分别为 90、5、25 秒。求 (a)每个都遇红灯；(b)只在前两个遇红灯；(c)恰有两个遇红灯的概率。',`P(红)=${F(90,120)}=${F(3,4)}。(a) ${F(3,4)}⁴=${F(81,256)}。(b) ${F(3,4)}²×${F(1,4)}²=${F(9,256)}。(c) C(4,2)×${F(9,256)}=${FR(54,256)}。`]]],
+['随堂练习 22.4c',[
+['小华 30 分钟内完成前半份的概率 0.6，1 小时内完成整份的概率 0.3，两者同时 0.24。已知他在 30 分钟内完成前半份，求 1 小时内完成整份的概率。',`P(B|A)=${F('P(A∩B)','P(A)')}=${F('0.24','0.6')}=<b>0.4</b>。`,venn({A:.36,AB:.24,B:.06,out:.34,nA:'A 前半份',nB:'B 整份'})],
+['某家庭有两个孩子，已知其中一个是女孩，求另一个也是女孩的概率。',`S={BB,BG,GB,GG}；已知至少一女：{BG,GB,GG}；两女只有 GG。P=<b>${F(1,3)}</b>。`,chips(['BB','BG','GB','GG'],new Set([1,2,3]))]]],
+['随堂练习 22.4d',[['两工厂：第一间废品率 3%、占 65%；第二间废品率 1.5%。抽得废品，求它来自第一间的概率。',`P=${F('0.65×0.03','0.65×0.03+0.35×0.015')}=${F('0.0195','0.02475')}=<b>${d4(.0195/.02475)}</b>（=${R(26,33)}）。`,tree([{n:'一厂',p:.65,k:[{n:'废品',p:.03},{n:'合格',p:.97}]},{n:'二厂',p:.35,k:[{n:'废品',p:.015},{n:'合格',p:.985}]}])]]],
+['习题 22.4c',[
+['100 个零件：半径合格 94、色泽合格 93、两项都合格 90。任抽一个，已知色泽合格，求半径也合格的概率。',`P=${F(90,93)}=${R(90,93)}。`,venn({A:4,AB:90,B:3,out:3,nA:'半径合格 94',nB:'色泽合格 93',S:'100 个'}).replace('A:4','')],
+['20 粒球：P 球 7 粒（4 白 3 黑），Q 球 13 粒（8 白 5 黑）。任取一球，已知是黑色，求它是 P 的概率。',`黑球共 3+5=8，其中 P 球 3 个。P=<b>${F(3,8)}</b>。`],
+['8 张彩票 3 张有奖，小明先买一张，小健再买一张。求 (a)两人都有奖；(b)小明无奖、小健有奖；(c)小健有奖的概率。',`(a) ${F(3,8)}×${F(2,7)}=${FR(6,56)}。(b) ${F(5,8)}×${F(3,7)}=${F(15,56)}。(c) ${F(6,56)}+${F(15,56)}=${FR(21,56)}（与小明机会相同）。`,tree([{n:'明中',p:[3,8],k:[{n:'健中',p:[2,7],r:'(中,中)'},{n:'健不',p:[5,7],r:'(中,不)'}]},{n:'明不',p:[5,8],k:[{n:'健中',p:[3,7],r:'(不,中)'},{n:'健不',p:[4,7],r:'(不,不)'}]}])],
+['阿辉、阿发投中概率都是 0.3，阿坤、阿仁、阿荣都是 0.45。五人中任选一人投篮，求他投中的概率。',`P=${F(2,5)}×0.3+${F(3,5)}×0.45=0.12+0.27=<b>0.39</b>。`],
+['120 位女老师、80 位男老师；女老师中 80 位教高中，男老师中 60 位。抽出一位教高中的老师，求他是男老师的概率。',`教高中共 80+60=140，其中男 60。P=${FR(60,140)}。`,venn({A:40,AB:60,B:80,out:20,nA:'男老师 80',nB:'教高中',S:'200 位'})]]]];
+XE[4]=[['随堂练习 22.5',[
+['付 RM2 玩游戏，赢的概率 0.4，赢得奖金 RM3，求获利的期望值。',`赢：净赚 3−2=1；输：亏 2。E=1×0.4+(−2)×0.6=<b>−RM0.80</b>。`,bars(['+1','−2'],[.4,.6],[],1)],
+['投资获利 RM2,500 的概率 0.55，亏损 RM1,200 的概率 0.45，求期望利润。',`E=2500×0.55+(−1200)×0.45=1375−540=<b>RM835</b>。`,bars(['+2500','−1200'],[.55,.45],[],2)]]],
+['习题 22.5',[
+['可获利 RM10,000 的概率是 '+F(3,5)+'，亏损 RM6,000 的概率是 '+F(2,5)+'，求期望值。',`E=10000×${F(3,5)}+(−6000)×${F(2,5)}=6000−2400=<b>RM3,600</b>。`,bars(['+10000','−6000'],[.6,.4],[],1)],
+['灯泡正品获利 RM2，次品亏 RM0.50，次品率 2%，求每个灯泡获利期望值。',`E=2×0.98+(−0.5)×0.02=1.96−0.01=<b>RM1.95</b>。`],
+['工厂替每位工人投保 RM60，受伤赔 RM1,200，出事概率 0.005。求保险公司每份保单的期望获利。',`E=60×0.995+(60−1200)×0.005=59.7−5.7=<b>RM54</b>。`,bars(['+60','−1140'],[.995,.005],[],3)],
+['彩票每张 RM2：中 RM5,000 的概率 '+F(1,10000)+'，中 RM500 的概率 '+F(1,1000)+'。求购一张的期望获利。',`E=5000×${F(1,10000)}+500×${F(1,1000)}−2=0.5+0.5−2=<b>−RM1.00</b>。`],
+['RM1 玩游戏：得 RM3,000、RM2,000、RM1,000 的概率都是 '+F(1,10000)+'。求期望获利，是否划算？',`E=(3000+2000+1000)×${F(1,10000)}−1=0.6−1=<b>−RM0.40</b>＜0，不划算。`],
+['园游会发 8000 张 RM1 彩票：5 张 RM500、8 张 RM300、10 张 RM100、50 张 RM10。买一张，求期望获利。',`奖金总额=2500+2400+1000+500=6400。E=${F(6400,8000)}−1=0.8−1=<b>−RM0.20</b>。`]]]];
+const zT=(x,mu,sg)=>+((x-mu)/sg).toFixed(3);
+{const z=zT(155,176,9.3);}
+XE[5]=[['随堂练习 22.6',[['2500 名学生统考，μ=60，σ=11。(a)低于 40 分的人数；(b)78 分或以上（A1）所占百分率；(c)及格率 90%，求及格分（整数）。',`(a) Z=${F('40−60','11')}=${zT(40,60,11)}，P=${d4(Q(-zT(40,60,11)))}，2500×${d4(Q(-zT(40,60,11)))}≈<b>${Math.round(2500*Q(-zT(40,60,11)))} 人</b>。<br>(b) Z=${F('78−60','11')}=${zT(78,60,11)}，P(Z≥${zT(78,60,11)})=<b>${pc(Q(zT(78,60,11)))}</b>。<br>(c) P(X≥x)=0.9 ⇒ z=${d3(zu(.9))}，x=60+(${d3(zu(.9))})×11≈<b>${Math.round(60+zu(.9)*11)}</b> 分。`,bell({mu:60,sg:11,lo:-Infinity,hi:40,lab:'(a)'})]]],
+['习题 22.6',[
+['Z 为标准常态，求 (a)P(Z>0.913) (b)P(Z≤−2.015) (c)P(Z≥−0.5) (d)P(0.241≤Z<1.793) (e)P(−2.215≤Z<−0.973) (f)P(−2.295<Z≤0.568)',`(a) <b>${d4(Q(.913))}</b>　(b) =Q(2.015)=<b>${d4(Q(2.015))}</b>　(c) =1−Q(0.5)=<b>${d4(Phi(.5))}</b><br>(d) Q(0.241)−Q(1.793)=${d4(Q(.241))}−${d4(Q(1.793))}=<b>${d4(Q(.241)-Q(1.793))}</b><br>(e) Q(0.973)−Q(2.215)=${d4(Q(.973))}−${d4(Q(2.215))}=<b>${d4(Q(.973)-Q(2.215))}</b><br>(f) 1−Q(2.295)−Q(0.568)=<b>${d4(Phi(.568)-Q(2.295))}</b>`,bell({mu:0,sg:1,lo:-2.295,hi:.568,lab:'(f)'})],
+['求 a：(a)P(Z>a)=0.0503 (b)P(Z<a)=0.8982 (c)P(Z<a)=0.3681 (d)P(Z>a)=0.8593 (e)P(−a<Z<a)=0.7884',`(a) 0.0503<0.5，a>0：a=<b>${d3(zu(.0503))}</b>。<br>(b) 0.8982>0.5，a>0：a=<b>${d3(zinv(.8982))}</b>。<br>(c) 0.3681<0.5，a<0：a=<b>${d3(zinv(.3681))}</b>。<br>(d) 0.8593>0.5，a<0：a=<b>${d3(zu(.8593))}</b>。<br>(e) 1−2P(Z≥a)=0.7884 ⇒ P(Z≥a)=0.1058，a=<b>${d3(zu(.1058))}</b>。`,bell({mu:0,sg:1,lo:-zu(.1058),hi:zu(.1058),lab:'(e)'})],
+['罐装咖啡 μ=244.5 ml，σ=5.4 ml。(a)少于 235 ml；(b)介于 240 与 250 ml；(c)售出 18000 罐中超过 260 ml 的罐数；(d)买 7 罐，恰有 4 罐少于 242 ml 的概率。',(()=>{let m=244.5,s=5.4,pa=Phi(zT(235,m,s)),pb=Phi(zT(250,m,s))-Phi(zT(240,m,s)),pcc=Q(zT(260,m,s)),pd=Phi(zT(242,m,s));return`(a) Z=${F('235−244.5','5.4')}=${zT(235,m,s)}，P=<b>${d4(pa)}</b>。<br>(b) P(${zT(240,m,s)}<Z<${zT(250,m,s)})=<b>${d4(pb)}</b>。<br>(c) Z=${zT(260,m,s)}，P=${d4(pcc)}，18000×${d4(pcc)}≈<b>${Math.round(18000*pcc)} 罐</b>。<br>(d) P(X<242)=${d4(pd)}；P=C(7,4)×${d4(pd)}⁴×${d4(1-pd)}³=<b>${d4(bn(7,4,pd))}</b>。`})(),bell({mu:244.5,sg:5.4,lo:240,hi:250,lab:'(b)'})],
+['饼干质量 μ=501.25 g，σ=5.32 g。(a)少于 490 g 的百分率；(b)10000 包中超过 510 g 的包数；(c)2.5% 少于 a g，求 a；(d)99.04% 介于 (501.25−c) 与 (501.25+c) g，求 c。',(()=>{let m=501.25,s=5.32,pa=Phi(zT(490,m,s)),pb=Q(zT(510,m,s)),za=zinv(.025),zc2=zu((1-.9904)/2);return`(a) Z=${zT(490,m,s)}，P=<b>${pc(pa)}</b>。<br>(b) Z=${zT(510,m,s)}，P=${d4(pb)}，10000×${d4(pb)}≈<b>${Math.round(10000*pb)} 包</b>。<br>(c) P(Z<z)=0.025 ⇒ z=${d3(za)}，a=501.25+(${d3(za)})×5.32≈<b>${(m+za*s).toFixed(2)} g</b>。<br>(d) P(Z≥z)=${(1-.9904)/2}，z=${d3(zc2)}，c=${d3(zc2)}×5.32≈<b>${(zc2*s).toFixed(2)}</b>。`})(),bell({mu:501.25,sg:5.32,lo:-Infinity,hi:490,lab:'(a)'})],
+['A 牌电视机寿命 μ=7.28 年，σ=2.23 年，保证期 3 年。求被退换的百分率。',`Z=${F('3−7.28','2.23')}=${zT(3,7.28,2.23)}，P(X<3)=P(Z>${-zT(3,7.28,2.23)})=<b>${pc(Phi(zT(3,7.28,2.23)))}</b>。`,bell({mu:7.28,sg:2.23,lo:-Infinity,hi:3,lab:'退换'})],
+['某地区男性身高常态分布，P(X>180)=0.1210，P(X>150)=0.9495，求平均数 μ 与标准差 σ。',(()=>{let z1=zu(.121),z2=zu(.9495),s=30/(z1-z2),m=180-z1*s;return`${F('180−μ','σ')}=${d3(z1)}，${F('150−μ','σ')}=${d3(z2)}（P(Z>${d3(z2)})=0.9495）。<br>两式相减：${F(30,'σ')}=${d3(z1-z2)}，σ=<b>${s.toFixed(2)}</b>；μ=180−${d3(z1)}×${s.toFixed(2)}=<b>${m.toFixed(2)}</b> cm。`})()],
+['入学试 2256 人，满分 400，录取 1200 人，μ=189，σ=53。(a)160 分以下人数；(b)录取最低分（整数）；(c)300 分以上的奖学金人数及占新生百分率；(d)200 分以下的新生（需补习）人数。',(()=>{let N=2256,m=189,s=53,a=Phi(zT(160,m,s))*N,zm=zu(1200/N),lo=m+zm*s,c=Q(zT(300,m,s))*N,d=N*(Phi(zT(200,m,s))-Phi(zm));return`(a) Z=${zT(160,m,s)}，P=${d4(Phi(zT(160,m,s)))}，人数≈<b>${Math.round(a)}</b>。<br>(b) 录取率=${F(1200,2256)}=${(1200/N).toFixed(4)}，P(Z≥z)=${(1200/N).toFixed(4)} ⇒ z=${d3(zm)}，最低分=189+(${d3(zm)})×53≈<b>${Math.round(lo)}</b>。<br>(c) Z=${zT(300,m,s)}，人数≈${Math.round(c)}，占新生 ${F(Math.round(c),1200)}≈<b>${pc(Math.round(c)/1200)}</b>。<br>(d) 新生中 ${Math.round(lo)}≤X<200：P=Φ(${zT(200,m,s)})−Φ(${d3(zm)})，人数≈<b>${Math.round(d)}</b>。`})(),bell({mu:189,sg:53,lo:300,hi:Infinity,lab:'(c) 奖学金'})],
+['数据呈常态分布（平均数 μ，标准差 σ），求介于 (a)μ−σ 及 μ；(b)μ−2σ 及 μ+2σ；(c)μ−3σ 及 μ+3σ 之间所占的百分率。',`(a) P(−1<Z<0)=0.5−${d4(Q(1))}=<b>${pc(.5-Q(1))}</b>。<br>(b) 1−2×${d4(Q(2))}=<b>${pc(1-2*Q(2))}</b>。<br>(c) 1−2×${d4(Q(3))}=<b>${pc(1-2*Q(3))}</b>。`,bell({mu:0,sg:1,lo:-2,hi:2,lab:'μ±2σ'})]]]];
+XE[6]=[['总复习题 22',[
+['投掷两粒骰子一次，求点数之和为 8 的事件。',`${lst(prs(6,6,(i,j)=>i+j==8))}，共 5 个样本点。`,dgrid((i,j)=>i+j==8)],
+['班上 30 名男生、12 名女生，随意选一名代表，求男生当选的概率。',`P=${F(30,42)}=${R(30,42)}。`],
+['数字可重复，由 0 至 9 随意写出一个二位数，求 (a)大于 20；(b)偶数；(c)奇数的概率。',`二位数首位 1–9，个位 0–9：n(S)=9×10=90。(a) 21~99 共 79 个，P=${F(79,90)}。(b) 个位为偶：9×5=45，P=${FR(45,90)}。(c) ${FR(45,90)}。`],
+['电话号码由 7 个数字组成，某人只记得前三个，忘了后四个。一次拨对的概率？',`后四位共 10⁴=10000 种，P=${F(1,10000)}。`],
+['甲、乙各掷两粒骰子。已知乙掷得 10 点，求甲的点数大过乙的概率。',`甲须掷得 11 或 12：2+1=3 种，P=${FR(3,36)}。`,dgrid((i,j)=>i+j>10)],
+['射击比赛甲、乙胜出的概率分别是 0.35、0.45，求两人皆落败的概率。',`（视为互不影响）(1−0.35)×(1−0.45)=0.65×0.55=<b>0.3575</b>。`],
+['200 名老师，四分之一是语文老师；115 女、85 男；20 名男老师是语文老师。选一名，求是女老师且不是语文老师的概率。',`语文老师 50 人，女语文老师=50−20=30，女老师非语文=115−30=85。P=${FR(85,200)}。`,venn({A:85,AB:30,B:20,out:65,nA:'女老师 115',nB:'语文老师 50',S:'200 人'})],
+['投篮命中率 0.8，投三次，求恰好中两次的概率。',`C(3,2)×0.8²×0.2=3×0.64×0.2=<b>0.384</b>。`,bars([0,1,2,3],[0,1,2,3].map(i=>bn(3,i,.8)),[2])],
+['气象预报准确率 89%，一星期（7 天）中有五次准确的概率。',`C(7,5)×0.89⁵×0.11²=<b>${d4(bn(7,5,.89))}</b>。`],
+['高二生被抽中的概率 0.2。某校有 4 位高二生，求至少一位被抽中的概率。',`1−0.8⁴=1−${d4(.8**4)}=<b>${d4(1-.8**4)}</b>。`],
+['100 名顾客：80 人对价格满意，85 人对品质满意，70 人两者都满意。抽一人，已知他对品质满意，求他也对价格满意的概率。',`P=${F(70,85)}=${R(70,85)}。`,venn({A:10,AB:70,B:15,out:5,nA:'价格满意 80',nB:'品质满意 85',S:'100人'}).replace(/A:10/,'')],
+['甲、乙通过考试的概率均为 0.4；丙、丁、戊均为 0.6。五人中任选一人，求他通过的概率。',`P=${F(2,5)}×0.4+${F(3,5)}×0.6=0.16+0.36=<b>0.52</b>。`],
+['投掷公平骰子一次，掷得 6 点得 RM30，其他点数得 RM3，求期望值。',`E=30×${F(1,6)}+3×${F(5,6)}=5+2.5=<b>RM7.50</b>。`,bars(['30','3'],[1/6,5/6])],
+['小美口袋有 4 个 50 仙及 6 个 20 仙，任取两个，求所得的期望值（仙）。',`n(S)=C(10,2)=45：两个 50 仙（100 仙）C(4,2)=6 种；一个各（70 仙）4×6=24 种；两个 20 仙（40 仙）C(6,2)=15 种。<br>E=${F('100×6+70×24+40×15','45')}=${F(2880,45)}=<b>64 仙</b>。`,bars(['100','70','40'],[6/45,24/45,15/45],[],3)],
+['档口每日准备 250 包椰浆饭，成本 RM1.50，售价 RM5.00，平均售出 57%，未售出丢弃。求一日获利期望值。',`售出 250×0.57=142.5 包。E=5×142.5−1.5×250=712.5−375=<b>RM337.50</b>。`],
+['15 封信封：RM100×1、RM50×2、RM10×3、RM5×4、RM1×5。抽一封，求现金期望值；付 RM15 抽奖是否划算？',`总额=100+100+30+20+5=255。E=${F(255,15)}=<b>RM17</b>。17−15=2＞0，期望获利 RM2，<b>划算</b>。`,bars(['100','50','10','5','1'],[1,2,3,4,5].map(x=>x/15),[],3)],
+['猜奖游戏：获 RM2,000、RM500、RM200 的概率都是 '+F(1,5000)+'，获 RM150 的概率是 '+F(1,3000)+'，每玩一次收费 RM1。求奖金期望值，是否划算？',`E=(2000+500+200)×${F(1,5000)}+150×${F(1,3000)}=0.54+0.05=<b>RM0.59</b>。扣除 RM1 后期望为 −RM0.41，<b>不划算</b>。`],
+['2524 名女生体重常态分布，μ=53.79 kg，σ=7.24 kg。(a)少于 40 kg 的概率；(b)超过 65 kg 的人数；(c)介于 45 与 55 kg 的百分率；(d)10.03% 超过 c kg，求 c；(e)任选 10 名，至少两人少于 55 kg 的概率。',(()=>{let m=53.79,s=7.24,N=2524,pa=Phi(zT(40,m,s)),pb=Q(zT(65,m,s)),pcc=Phi(zT(55,m,s))-Phi(zT(45,m,s)),z=zu(.1003),pe=Phi(zT(55,m,s));return`(a) Z=${zT(40,m,s)}，P=<b>${d4(pa)}</b>。<br>(b) Z=${zT(65,m,s)}，P=${d4(pb)}，${N}×${d4(pb)}≈<b>${Math.round(N*pb)} 人</b>。<br>(c) P(${zT(45,m,s)}<Z<${zT(55,m,s)})=<b>${pc(pcc)}</b>。<br>(d) P(Z>z)=0.1003 ⇒ z=${d3(z)}，c=53.79+${d3(z)}×7.24≈<b>${(m+z*s).toFixed(2)}</b>。<br>(e) p=P(X<55)=${d4(pe)}；P=1−(1−p)¹⁰−10p(1−p)⁹=<b>${d4(1-bn(10,0,pe)-bn(10,1,pe))}</b>。`})(),bell({mu:53.79,sg:7.24,lo:45,hi:55,lab:'(c)'})],
+['客服来电通话时间常态分布：1.02% 的通话多于 30 分钟，25.14% 少于 20 分钟。求平均通话时间及标准差。',(()=>{let z1=zu(.0102),z2=zinv(.2514),s=10/(z1-z2),m=30-z1*s;return`${F('30−μ','σ')}=${d3(z1)}，${F('20−μ','σ')}=${d3(z2)}（因 P(Z<z)=0.2514<0.5）。<br>相减：${F(10,'σ')}=${d3(z1-z2)}，σ=<b>${s.toFixed(2)}</b> 分钟；μ=30−${d3(z1)}×${s.toFixed(2)}=<b>${m.toFixed(2)}</b> 分钟。`})(),bell({mu:12,sg:6,lo:30,hi:Infinity,lab:'1.02%'})]]]];
+const exHTML=g=>`<h3>📚 课本习题（随堂练习 + 习题）</h3><p class="info">先自己做，再点“查看解答”核对。解答中的常态分布概率为数值计算，与课本查表末位可能相差 0.0001。</p>`+g.map(([t,L])=>`<div class="card"><h4>${t}</h4>${L.map((x,i)=>`<div class="qc"><b>${i+1}.</b> ${x[0]}<details><summary style="cursor:pointer;color:var(--ac)">📝 查看解答</summary><div class="sol">${x[1]}</div>${x[2]||''}</details></div>`).join('')}</div>`).join('');
+/* ---------- 组装页面 ---------- */
+const tabs=$('#tabs'),main=$('#main');
+S.forEach((s,i)=>{tabs.insertAdjacentHTML('beforeend',`<button data-i="${i}">${s.id}<small>${s.nm}</small></button>`);
+ main.insertAdjacentHTML('beforeend',`<section class="pane" id="p${i}" hidden><h2>${s.id} ${s.nm}</h2><div class="card">${s.pt}</div><h3>📘 课本例题讲解</h3>${s.ex.map(e=>`<div class="card"><h4>${e.t}</h4><p>${e.q}</p>${e.s}<div class="sol">${e.a}</div></div>`).join('')}<h3>🧮 专属计算器</h3>${s.cl.map((c,k)=>`<div class="card"><h4>${c[0]}</h4><div id="c${i}_${k}"></div></div>`).join('')}<div class="card" id="q${i}"></div>${exHTML(XE[i])}</section>`);
+ s.cl.forEach((c,k)=>calc($(`#c${i}_${k}`),c[1],c[2]));quiz($('#q'+i),s.g,{ti:'📝 随堂小测：5 题选择（答对 3 题以上解锁 2 题作答）',nm:5,nf:2,need:3})});
+tabs.insertAdjacentHTML('beforeend','<button data-i="6">总复习<small>10选择+5作答</small></button>');
+main.insertAdjacentHTML('beforeend','<section class="pane" id="p6" hidden><h2>总复习</h2><div class="card">题目从 22.1–22.6 各节随机抽取，并加入较难的题型（排列相邻、不放回抽取、逆推、反求 a 等）。先完成 10 题选择，再作答 5 题，最后给出成绩评估。</div><div class="card" id="q6"></div>'+exHTML(XE[6])+'</section>');
+const pool=[].concat(...G,HARD);quiz($('#q6'),pool,{ti:'🏆 总复习',nm:10,nf:5,need:0,rev:1});
+function go(i){document.querySelectorAll('.pane').forEach((p,j)=>p.hidden=j!=i);tabs.querySelectorAll('button').forEach((b,j)=>{b.classList.toggle('on',j==i);if(j==i)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})});scrollTo(0,0)}
+tabs.onclick=e=>{let b=e.target.closest('button');b&&go(+b.dataset.i)};go(0);
+let fs=16;const setF=n=>{fs=Math.max(12,Math.min(26,n));document.documentElement.style.fontSize=fs+'px'};
+$('#fm').onclick=()=>setF(fs-2);$('#fp').onclick=()=>setF(fs+2);$('#f0').onclick=()=>setF(16);
+$('#th').onclick=()=>{let d=document.documentElement;d.dataset.theme=d.dataset.theme=='dark'?'light':'dark'};
+/* ---------- 水印 ---------- */
+const WM=['峇株吧辖华仁中学蔡逸众制作','峇株吧辖蔡逸众制作','华仁中学蔡逸众制作','Made by ecchua79'];
+function wm(){if(!$('#vw')){document.body.insertAdjacentHTML('beforeend','<div id="vw" aria-hidden="true"></div>')}let v=$('#vw');if(!v.firstChild)v.innerHTML='<div>'+Array.from({length:400},(_,i)=>`<span>${WM[i%4]}</span>`).join('')+'</div>';if(!$('#hw'))document.body.insertAdjacentHTML('beforeend',`<div id="hw" aria-hidden="true" style="position:absolute;left:-9999px;opacity:.01;font-size:1px">${WM.join(' ')}</div>`);if(!$('#vb'))document.body.insertAdjacentHTML('beforeend','<div id="vb">Made by ecchua79</div>')}
+wm();setInterval(wm,3000);
+</script></body></html>
